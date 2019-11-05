@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d07d45a74266e347a6c0f35a3488ad7, type: 3}
+  m_Name: _Broyeur
+  m_EditorClassIdentifier: 
+  cellsEnableToBuild: []
+  blopPrefab: {fileID: 0}
+  mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  mat: {fileID: 2100000, guid: 189feeaa96da1f94d80eaaf5c9899322, type: 2}
+  collider: {fileID: 0}
+  type: 3
+  EnergyCost: 10
+  range: 30
+  blobRatioAtDeath: 0
+  impulseForce_Death: 10
+  prodPerTick: 0
+  rejectPower_RF: 1
+  storageCapability: 10
+  linkCapability: 6
