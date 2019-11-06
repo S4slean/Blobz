@@ -21,7 +21,7 @@ MonoBehaviour:
   mat: {fileID: 2100000, guid: 79ad1efefc63fc74cb4b594196371c61, type: 2}
   collider: {fileID: 0}
   type: 2
-  cost: 0
+  EnergyCost: 15
   range: 40
   blobRatioAtDeath: 0
   impulseForce_Death: 0
