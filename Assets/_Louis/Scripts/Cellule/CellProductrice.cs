@@ -12,7 +12,6 @@ public class CellProductrice : CellMain
     public override void BlobsTick()
     {
         //base.BlobsTick();
-        Debug.Log("Tick");
         //ça marche bien mais à voir si quand 1 batiment meure la produciton saute avec ou pas
         for (int i = 0; i < myCellTemplate.rejectPower_RF; i++)
         {
