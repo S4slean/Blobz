@@ -19,7 +19,7 @@ public class CellMain : PoolableObjects
     public MeshFilter mF;
     public MeshRenderer mR;
     public MeshCollider mC;
-    public CellProximityDectection rangeCollider;
+    public CellProximityDectection ProximityDectection;
 
 
     [Header("Debug")]
@@ -33,6 +33,8 @@ public class CellMain : PoolableObjects
     protected List<CellMain> cellAtProximity = new List<CellMain>();
     protected int currentLinkStockage;
     protected int currentBlobStockage;
+    protected int currentProximityLevel;
+
     // protected MeshCollider mC;
     protected int currentIndex;
     protected bool isDead = false;
@@ -43,7 +45,7 @@ public class CellMain : PoolableObjects
 
     public virtual void Awake()
     {
-
+        ProximityDectection.parent = this;
         mR.material = myCellTemplate.mat;
         mF.mesh = myCellTemplate.mesh;
         mC.sharedMesh = myCellTemplate.mesh;
@@ -219,7 +221,11 @@ public class CellMain : PoolableObjects
 
     public virtual void ProximityCheck()
     {
-        rangeCollider.myCollider.radius = Mathf.SmoothDamp(0, myCellTemplate.range / 2, ref velocity , 0.01f);
+        ProximityDectection.myCollider.radius = Mathf.SmoothDamp(0, myCellTemplate.range / 2, ref velocity , 0.01f);
+    }
+    public virtual void AddToCellAtPromity()
+    {
+
     }
 
 

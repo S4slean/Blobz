@@ -36,4 +36,10 @@ public class CelluleTemplate : ScriptableObject
     public int storageCapability = 10;
     [Range(0f, 12f)]
     public int linkCapability = 6;
+
+    [Header("Proximity Interaction")]
+    [Range(0 , 5)]
+    public int proximityLevelMax = 0;
+    public CellType[] positivesInteractions;
+    public CellType[] negativesInteractions;
 }
