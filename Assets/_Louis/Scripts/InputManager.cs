@@ -46,6 +46,10 @@ public class InputManager : MonoBehaviour
         layer_Mask_Cell = LayerMask.GetMask("Cell");
     }
 
+    //permet d'éviter un getComponent à chaque frame lors du raycast de mouse Over
+    private bool isOverCell;
+    private CellMain cellOver;
+
     private void Update()
     {
         //En train de drag le lien 
@@ -55,6 +59,36 @@ public class InputManager : MonoBehaviour
             CellManager.Instance.DragNewlink(hit);
         }
 
+        #region MOUSEOVER_CELLS
+
+        if (!DraggingLink && !InCellSelection)
+        {
+            RaycastHit hit = Helper.ReturnHit(Input.mousePosition, CellManager.mainCamera, maskLeftCLick);
+            if(hit.transform != null && hit.transform.tag == "Cell" && ! isOverCell)
+            {
+                isOverCell = true;
+
+                cellOver = hit.transform.GetComponent<CellMain>();
+
+            }
+            else if(hit.transform == null || hit.transform.tag != "Cell")
+            {
+                isOverCell = false;
+            }
+
+
+        }
+
+        if (isOverCell)
+        {
+            UIManager.Instance.LoadToolTip(cellOver.transform.position, cellOver);
+        }
+        else
+        {
+            UIManager.Instance.UnloadToolTip();
+        }
+
+        #endregion
 
         //Click Gauche In
         if (Input.GetMouseButtonDown(0))
@@ -62,6 +96,7 @@ public class InputManager : MonoBehaviour
             if (!DraggingLink && !InCellSelection)
             {
                 RaycastHit hit = Helper.ReturnHit(Input.mousePosition,CellManager.mainCamera , maskLeftCLick);
+                Debug.Log(hit.transform, hit.transform);
                 CellManager.Instance.SelectCell(hit);
             }
         }

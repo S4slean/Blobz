@@ -451,7 +451,7 @@ GameObject:
   - component: {fileID: -4082932060337979430}
   m_Layer: 11
   m_Name: Productrice
-  m_TagString: Untagged
+  m_TagString: Cell
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
