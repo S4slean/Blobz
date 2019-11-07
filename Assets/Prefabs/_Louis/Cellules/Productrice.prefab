@@ -490,8 +490,6 @@ MonoBehaviour:
   myCellTemplate: {fileID: 11400000, guid: d35151efcdfd26345aee87cc67d97f88, type: 2}
   NBlob: {fileID: 6169684921917453576}
   NLink: {fileID: 5654715456691700576}
-  mF: {fileID: 1915299017782210915}
-  mR: {fileID: 6800320809283756654}
   mC: {fileID: -4082932060337979430}
   ProximityDectection: {fileID: 8793743034597496004}
   links: []
@@ -627,7 +625,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8034896923649240921}
-  m_Mesh: {fileID: 0}
+  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &6800320809283756654
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -645,7 +643,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 79ad1efefc63fc74cb4b594196371c61, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

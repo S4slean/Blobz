@@ -16,9 +16,11 @@ public class CellMain : PoolableObjects
     [Header("REF")]
     public TextMeshPro NBlob;
     public TextMeshPro NLink;
-    public MeshFilter mF;
-    public MeshRenderer mR;
+
+    //public MeshFilter mF;
+    //public MeshRenderer mR;
     public MeshCollider mC;
+
     public CellProximityDectection ProximityDectection;
 
 
@@ -46,9 +48,11 @@ public class CellMain : PoolableObjects
     public virtual void Awake()
     {
         ProximityDectection.parent = this;
-        mR.material = myCellTemplate.mat;
-        mF.mesh = myCellTemplate.mesh;
-        mC.sharedMesh = myCellTemplate.mesh;
+
+        //mR.material = myCellTemplate.mat;
+        //mF.mesh = myCellTemplate.mesh;
+       // mC.sharedMesh = myCellTemplate.mesh;
+
         mC.convex = true;
         //ProximityCheck();
     }

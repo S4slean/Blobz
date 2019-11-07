@@ -11,8 +11,8 @@ public class CelluleTemplate : ScriptableObject
     public GameObject blopPrefab;
     [Space(20f)]
 
-    public Mesh mesh;
-    public Material mat; 
+    //public Mesh mesh;
+    //public Material mat; 
     public Collider collider;
     [Space(20f)]
 
