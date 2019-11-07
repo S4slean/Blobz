@@ -119,8 +119,12 @@ public class InputManager : MonoBehaviour
             }
         }
 
-        
+        CameraController.instance.MoveCamera();
 
+        if (Input.GetKey(KeyCode.LeftAlt))
+            CameraController.instance.TiltCamera();
+        else
+            CameraController.instance.DecreaseTiltCount();
 
     }
 
