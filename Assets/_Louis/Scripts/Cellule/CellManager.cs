@@ -177,7 +177,7 @@ public class CellManager : MonoBehaviour
 
     public void EnergyVariation(int Variation)
     {
-        Energy += Variation;
-        UIManager.Instance.UpdateEnergy();
+        RessourceTracker.instance.energy += Variation;
+        UIManager.Instance.topBar.UpdateUI();
     }
 }

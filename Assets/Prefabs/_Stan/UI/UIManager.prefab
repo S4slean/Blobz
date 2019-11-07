@@ -46,7 +46,7 @@ MonoBehaviour:
   cellSelection: {fileID: 0}
   SelectedCellUI: {fileID: 0}
   QuestUI: {fileID: 0}
-  TopBar: {fileID: 0}
+  topBar: {fileID: 0}
   tooltipUI: {fileID: 0}
   firstTooltipDelay: 0.4
   secondTooltipDelay: 1.5
