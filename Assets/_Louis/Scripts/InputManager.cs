@@ -81,7 +81,6 @@ public class InputManager : MonoBehaviour
 
         if (isOverCell)
         {
-            Debug.Log("hey");
             UIManager.Instance.LoadToolTip(cellOver.transform.position, cellOver);
         }
         else
@@ -97,7 +96,6 @@ public class InputManager : MonoBehaviour
             if (!DraggingLink && !InCellSelection)
             {
                 RaycastHit hit = Helper.ReturnHit(Input.mousePosition,CellManager.mainCamera , maskLeftCLick);
-                Debug.Log(hit.transform, hit.transform);
                 CellManager.Instance.SelectCell(hit);
             }
         }

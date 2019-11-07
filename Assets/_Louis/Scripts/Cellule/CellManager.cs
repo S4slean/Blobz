@@ -152,7 +152,6 @@ public class CellManager : MonoBehaviour
     }
     public void SelectCell(RaycastHit hit)
     {
-        Debug.Log(hit.transform.name);
         CellMain hitCell = hit.transform.GetComponent<CellMain>();
         if (hitCell != null)
         {
