@@ -213,8 +213,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5711269901007850592}
   - component: {fileID: 9095268931315420088}
-  - component: {fileID: 6831612767030793960}
   - component: {fileID: 5053171121655970789}
+  - component: {fileID: 9191608684372490493}
   m_Layer: 11
   m_Name: Armory
   m_TagString: Cell
@@ -256,29 +256,13 @@ MonoBehaviour:
   myCellTemplate: {fileID: 11400000, guid: e99918bd31012504e993fbf7666e0863, type: 2}
   NBlob: {fileID: 2904753947209794517}
   NLink: {fileID: 1984579306425477977}
-  mF: {fileID: 8456064803678629516}
-  mR: {fileID: 180121306911454143}
-  mC: {fileID: 6831612767030793960}
+  mC: {fileID: 0}
   ProximityDectection: {fileID: 6767594726806389926}
   links: []
   noMoreLink: 0
   BlobNumber: 0
   hasBeenDrop: 0
   targetDirection: {fileID: 7062838035021940735}
---- !u!64 &6831612767030793960
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5449206648009261835}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_Mesh: {fileID: 0}
 --- !u!54 &5053171121655970789
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -295,6 +279,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 1
+--- !u!65 &9191608684372490493
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5449206648009261835}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6068313863173001602
 GameObject:
   m_ObjectHideFlags: 0

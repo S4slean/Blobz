@@ -212,9 +212,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5711269901007850592}
-  - component: {fileID: 6831612767030793960}
   - component: {fileID: 5867697968191919761}
   - component: {fileID: -202813483981728604}
+  - component: {fileID: 9046521798861578125}
   m_Layer: 11
   m_Name: Broyeur
   m_TagString: Cell
@@ -240,20 +240,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!64 &6831612767030793960
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5449206648009261835}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_Mesh: {fileID: 0}
 --- !u!114 &5867697968191919761
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -270,7 +256,7 @@ MonoBehaviour:
   myCellTemplate: {fileID: 11400000, guid: 274bcb4655c1c7d448a180629ab7c672, type: 2}
   NBlob: {fileID: 2904753947209794517}
   NLink: {fileID: 1984579306425477977}
-  mC: {fileID: 6831612767030793960}
+  mC: {fileID: 0}
   ProximityDectection: {fileID: 6767594726806389926}
   links: []
   noMoreLink: 0
@@ -293,6 +279,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 1
+--- !u!65 &9046521798861578125
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5449206648009261835}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6068313863173001602
 GameObject:
   m_ObjectHideFlags: 0
@@ -425,6 +424,7 @@ GameObject:
   - component: {fileID: 1030740689201301829}
   - component: {fileID: 8456064803678629516}
   - component: {fileID: 180121306911454143}
+  - component: {fileID: 7665149249514732528}
   m_Layer: 11
   m_Name: Graph
   m_TagString: Untagged
@@ -492,6 +492,19 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &7665149249514732528
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8803939109487473565}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &9137952289893124619
 GameObject:
   m_ObjectHideFlags: 0
