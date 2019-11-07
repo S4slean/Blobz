@@ -14,7 +14,6 @@ public class CellBroyeur : CellMain
             for (int i = 0; i < myCellTemplate.rejectPower_RF; i++)
             {
                 RemoveBlob(1);
-                Debug.Log("Broyage");
                 CellManager.Instance.EnergyVariation(energyPerBlob);
             }
         }

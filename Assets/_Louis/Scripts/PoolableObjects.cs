@@ -15,7 +15,21 @@ public class PoolableObjects : MonoBehaviour
 
     public void Inpool()
     {
+        //Vector3 pos = transform.position;
+        //pos =Vector3.Lerp(transform.position , ObjectPooler.poolingSystem.transform.position , 0.01f);
+        //transform.position = pos;
+        transform.position = ObjectPooler.poolingSystem.transform.position;
+
         canBePool = true;
+        StartCoroutine(DesactiveGameObject(0.02f));
+
+        
+    }
+    private IEnumerator DesactiveGameObject (float delay)
+    {
+        //A changé mais c'est pour test
+        yield return new WaitForSeconds(delay);
         gameObject.SetActive(false);
+       
     }
 }

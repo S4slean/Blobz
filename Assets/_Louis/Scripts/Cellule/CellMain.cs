@@ -4,7 +4,7 @@ using UnityEngine;
 using System.Linq;
 using TMPro;
 
-[RequireComponent(typeof(MeshCollider) , typeof(SphereCollider))]  //typeof(MeshRenderer), typeof(MeshFilter),
+[RequireComponent(typeof(MeshCollider))]  //typeof(MeshRenderer), typeof(MeshFilter),
 public class CellMain : PoolableObjects
 {
     #region Variables
@@ -16,9 +16,11 @@ public class CellMain : PoolableObjects
     [Header("REF")]
     public TextMeshPro NBlob;
     public TextMeshPro NLink;
-    public MeshFilter mF;
-    public MeshRenderer mR;
+
+    //public MeshFilter mF;
+    //public MeshRenderer mR;
     public MeshCollider mC;
+
     public CellProximityDectection ProximityDectection;
 
 
@@ -46,12 +48,13 @@ public class CellMain : PoolableObjects
     public virtual void Awake()
     {
         ProximityDectection.parent = this;
-        mR.material = myCellTemplate.mat;
-        mF.mesh = myCellTemplate.mesh;
-        mC.sharedMesh = myCellTemplate.mesh;
-        mC.convex = true;
 
-        ProximityCheck();
+        //mR.material = myCellTemplate.mat;
+        //mF.mesh = myCellTemplate.mesh;
+       // mC.sharedMesh = myCellTemplate.mesh;
+
+        mC.convex = true;
+        //ProximityCheck();
     }
 
     public virtual void OnEnable()
@@ -78,8 +81,6 @@ public class CellMain : PoolableObjects
         int I = links.Count;
         for (int i = 0; i < I; i++)
         {
-
-            Debug.Log(links[I - i - 1]);
             if (i > I)
             {
                 break;
@@ -135,7 +136,6 @@ public class CellMain : PoolableObjects
 
     }
 
-
     public virtual void AddBlob(int Amount)
     {
         BlobNumber += Amount;
@@ -153,7 +153,6 @@ public class CellMain : PoolableObjects
         UpdateCaract();
     }
 
-
     public virtual void StockageCapabilityVariation(int Amount)
     {
         currentBlobStockage += Amount;
@@ -164,7 +163,6 @@ public class CellMain : PoolableObjects
         }
         UpdateCaract();
     }
-
 
     public virtual void AddLink(LinkClass linkToAdd, bool output)
     {
@@ -207,7 +205,7 @@ public class CellMain : PoolableObjects
     public virtual void UpdateCaract()
     {
         NBlob.text = (BlobNumber + " / " + currentBlobStockage);
-        NLink.text = (links.Count + " / " +currentLinkStockage);
+        NLink.text = (links.Count + " / " + currentLinkStockage);
     }
     public virtual void ClickInteraction()
     {
@@ -221,14 +219,47 @@ public class CellMain : PoolableObjects
 
     public virtual void ProximityCheck()
     {
-        ProximityDectection.myCollider.radius = Mathf.SmoothDamp(0, myCellTemplate.range / 2, ref velocity , 0.01f);
+       // ProximityDectection.myCollider.radius = Mathf.SmoothDamp(0, myCellTemplate.range / 2, ref velocity, 0.01f);
+        ProximityDectection.myCollider.radius =  myCellTemplate.range / 2;
     }
-    public virtual void AddToCellAtPromity()
+    public virtual void AddToCellAtPromity(CellMain cellDetected)
     {
+        cellAtProximity.Add(cellDetected);
 
+        for (int i = 0; i < myCellTemplate.negativesInteractions.Length; i++)
+        {
+            CellType cellDetectedType = cellDetected.myCellTemplate.type;
+            if (cellDetectedType == myCellTemplate.negativesInteractions[i])
+            {
+                ProximityLevelModification(1);
+                // Ajouter L'UI 
+            }
+
+            else
+            {
+                for (int j = 0; j < myCellTemplate.positivesInteractions.Length; j++)
+                {
+                    if (cellDetectedType == myCellTemplate.positivesInteractions[i])
+                    {
+                        ProximityLevelModification(-1);
+                    }
+                    else
+                    {
+                        Debug.Log("Pas d'interaction entre ces 2 cellules");
+                    }
+                }
+            }
+
+        }
+
+    } 
+    public virtual void ProximityLevelModification(int Amout)
+    {
+        if (Mathf.Abs(currentProximityLevel) <= myCellTemplate.proximityLevelMax)
+        {
+            currentProximityLevel += Amout;
+        }
     }
-
-
 
     public virtual void TickInscription()
     {
@@ -238,7 +269,4 @@ public class CellMain : PoolableObjects
     {
         TickManager.doTick -= BlobsTick;
     }
-
-
-
 }

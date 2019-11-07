@@ -213,8 +213,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5711269901007850592}
   - component: {fileID: 6831612767030793960}
-  - component: {fileID: -6903171021704860085}
   - component: {fileID: 5867697968191919761}
+  - component: {fileID: -202813483981728604}
   m_Layer: 11
   m_Name: Broyeur
   m_TagString: Cell
@@ -254,19 +254,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 14
   m_Mesh: {fileID: 0}
---- !u!135 &-6903171021704860085
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5449206648009261835}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &5867697968191919761
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -283,15 +270,29 @@ MonoBehaviour:
   myCellTemplate: {fileID: 11400000, guid: 274bcb4655c1c7d448a180629ab7c672, type: 2}
   NBlob: {fileID: 2904753947209794517}
   NLink: {fileID: 1984579306425477977}
-  mF: {fileID: 8456064803678629516}
-  mR: {fileID: 180121306911454143}
   mC: {fileID: 6831612767030793960}
-  rangeCollider: {fileID: 6767594726806389926}
+  ProximityDectection: {fileID: 6767594726806389926}
   links: []
   noMoreLink: 0
   BlobNumber: 0
   hasBeenDrop: 0
   energyPerBlob: 100
+--- !u!54 &-202813483981728604
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5449206648009261835}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 1
 --- !u!1 &6068313863173001602
 GameObject:
   m_ObjectHideFlags: 0
@@ -452,7 +453,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8803939109487473565}
-  m_Mesh: {fileID: 0}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &180121306911454143
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -470,7 +471,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 189feeaa96da1f94d80eaaf5c9899322, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
