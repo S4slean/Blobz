@@ -35,6 +35,7 @@ public class CellMain : PoolableObjects
     protected List<CellMain> cellAtProximity = new List<CellMain>();
     protected int currentLinkStockage;
     protected int currentBlobStockage;
+    [SerializeField]
     protected int currentProximityLevel;
 
     // protected MeshCollider mC;
@@ -48,10 +49,10 @@ public class CellMain : PoolableObjects
     public virtual void Awake()
     {
         ProximityDectection.parent = this;
-
         //mR.material = myCellTemplate.mat;
         //mF.mesh = myCellTemplate.mesh;
         //ProximityCheck();
+
     }
 
     public virtual void OnEnable()
@@ -216,8 +217,8 @@ public class CellMain : PoolableObjects
 
     public virtual void ProximityCheck()
     {
-       // ProximityDectection.myCollider.radius = Mathf.SmoothDamp(0, myCellTemplate.range / 2, ref velocity, 0.01f);
-        ProximityDectection.myCollider.radius =  myCellTemplate.range / 2;
+        // ProximityDectection.myCollider.radius = Mathf.SmoothDamp(0, myCellTemplate.range / 2, ref velocity, 0.01f);
+        ProximityDectection.myCollider.radius = myCellTemplate.range / 2;
     }
     public virtual void AddToCellAtPromity(CellMain cellDetected)
     {
@@ -246,10 +247,40 @@ public class CellMain : PoolableObjects
                     }
                 }
             }
+        }
+    }
+
+    public virtual void RemoveToCellAtPromity(CellMain cellDetected)
+    {
+        cellAtProximity.Remove(cellDetected);
+
+        for (int i = 0; i < myCellTemplate.negativesInteractions.Length; i++)
+        {
+            CellType cellDetectedType = cellDetected.myCellTemplate.type;
+            if (cellDetectedType == myCellTemplate.negativesInteractions[i])
+            {
+                ProximityLevelModification(+1);
+                // Ajouter L'UI 
+            }
+
+            else
+            {
+                for (int j = 0; j < myCellTemplate.positivesInteractions.Length; j++)
+                {
+                    if (cellDetectedType == myCellTemplate.positivesInteractions[i])
+                    {
+                        ProximityLevelModification(-1);
+                    }
+                    else
+                    {
+                        Debug.Log("Pas d'interaction entre ces 2 cellules");
+                    }
+                }
+            }
 
         }
 
-    } 
+    }
     public virtual void ProximityLevelModification(int Amout)
     {
         if (Mathf.Abs(currentProximityLevel) <= myCellTemplate.proximityLevelMax)
