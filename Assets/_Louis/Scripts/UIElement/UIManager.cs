@@ -29,7 +29,7 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
-        UpdateEnergy();
+        TickManager.doTick += topBar.UpdateUI;
     }
 
     #region GENERICS
@@ -93,12 +93,9 @@ public class UIManager : MonoBehaviour
 
     #region TOP_BAR
     [Header("Top Bar")]
-    public TopBarUI TopBar;
+    public TopBarUI topBar;
 
-    public void UpdateEnergy()
-    {
 
-    }
     #endregion
 
     #region CELL_TOOLTIP
@@ -132,12 +129,12 @@ public class UIManager : MonoBehaviour
     public void DisplayTooltip(Vector3 pos, CellMain cell)
     {
         tooltipUI.UpdateUI(cell);
-        tooltipUI.anim.Play("first Display");
-        tooltipUI.transform.position = pos + Vector3.up;
-
-
-
         DisplayUI(tooltipUI.gameObject);
+        tooltipUI.transform.position = pos + Vector3.up;
+        tooltipUI.anim.Play("first Display");
+
+
+
         firstTooltipDisplayed = true;
     }
 

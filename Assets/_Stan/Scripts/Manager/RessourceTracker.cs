@@ -13,7 +13,7 @@ public class RessourceTracker : MonoBehaviour
     public int stockNbr;
     public int armoryNbr;
 
-    public int energyProduced;
+    public int energy;
     public int blobProduced;
 
     private void Awake()
