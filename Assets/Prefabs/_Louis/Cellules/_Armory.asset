@@ -27,3 +27,6 @@ MonoBehaviour:
   rejectPower_RF: 1
   storageCapability: 20
   linkCapability: 4
+  proximityLevelMax: 0
+  positivesInteractions: 
+  negativesInteractions: 
