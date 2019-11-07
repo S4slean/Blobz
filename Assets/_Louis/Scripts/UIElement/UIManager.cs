@@ -29,7 +29,7 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
-        TickManager.doTick += topBar.UpdateUI;
+        TickManager.doTick += TopBar.UpdateUI;
     }
 
     #region GENERICS
@@ -93,7 +93,7 @@ public class UIManager : MonoBehaviour
 
     #region TOP_BAR
     [Header("Top Bar")]
-    public TopBarUI topBar;
+    public TopBarUI TopBar;
 
 
     #endregion
