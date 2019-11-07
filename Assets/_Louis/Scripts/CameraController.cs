@@ -6,15 +6,20 @@ public class CameraController : MonoBehaviour
 {
     [Range(0,2)]public float timeToMaxSpeed =1;
     [Range(0, 2)] public float timeToZeroSpeed = 1;
+    public float defaultHeight = 35;
+    
     public float camSpeed = 5;
+    public float maxHeight = 100;
+    [Range(1,100)]public float heightStep = 1;
     float count;
 
     public static CameraController instance;
 
     private void Start()
     {
-        originPos = new Vector3(0, 20, 0);
+        originPos = new Vector3(0, defaultHeight, 0);
         transform.position = originPos;
+        camHeight = defaultHeight;
         transform.LookAt(Vector3.down);
 
         if(instance == null)
@@ -28,19 +33,35 @@ public class CameraController : MonoBehaviour
     }
 
     Vector3 moveDir;
+    float camHeight;
+    float camHeightGoal;
+    float smoothCount;
+    float currentVelocity;
+    float camHeightDelay = 1;
 
     public void MoveCamera()
     {
 
         mouseDir = new Vector3(Input.mousePosition.x - Screen.width / 2, 0, Input.mousePosition.y - Screen.height / 2);
 
+        if(Input.GetAxis("Mouse ScrollWheel") != 0)
+        {
+            camHeightGoal += -Input.GetAxis("Mouse ScrollWheel") * heightStep;
+            smoothCount = 0;
+        }
+
+        smoothCount += Time.deltaTime / camHeightDelay;
+        smoothCount = Mathf.Clamp01(smoothCount);
+
+        camHeight = Mathf.SmoothDamp(camHeight, camHeightGoal, ref currentVelocity, smoothCount);
+
         if (MouseIsInBorder()) {
-            //moveDir = mouseDir.normalized;
+            moveDir = mouseDir.normalized;
         }
         else
             moveDir = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")).normalized;
 
-
+        
 
         if (moveDir != Vector3.zero)
         {
@@ -54,13 +75,13 @@ public class CameraController : MonoBehaviour
             count = Mathf.Clamp01(count);
         }
 
-
+        
         originPos += moveDir * count * camSpeed * Time.deltaTime;
 
         tiltDir = mouseDir * tiltCount * tiltLength / 100;
 
 
-        transform.position = originPos + tiltDir;
+        transform.position = originPos + tiltDir + new Vector3(0,camHeight,0);
 
     }
 
