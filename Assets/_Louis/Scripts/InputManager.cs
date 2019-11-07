@@ -81,6 +81,7 @@ public class InputManager : MonoBehaviour
 
         if (isOverCell)
         {
+            Debug.Log("hey");
             UIManager.Instance.LoadToolTip(cellOver.transform.position, cellOver);
         }
         else

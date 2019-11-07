@@ -34,8 +34,9 @@ public class CameraController : MonoBehaviour
 
         mouseDir = new Vector3(Input.mousePosition.x - Screen.width / 2, 0, Input.mousePosition.y - Screen.height / 2);
 
-        if (MouseIsInBorder())
-            moveDir = mouseDir.normalized;
+        if (MouseIsInBorder()) {
+            //moveDir = mouseDir.normalized;
+        }
         else
             moveDir = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")).normalized;
 
