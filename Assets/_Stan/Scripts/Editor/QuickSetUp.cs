@@ -97,7 +97,7 @@ public class QuickSetUp : Editor
         cellManager = Resources.Load("QuickSetUp/CellManager") as GameObject;
         inputManager = Resources.Load("QuickSetUp/InputManager") as GameObject;
         resourceTracker = Resources.Load("QuickSetUp/RessourceTracker") as GameObject;
-        camera = Resources.Load("QuickSetUp/Main Camera") as GameObject;
+        camera = Resources.Load("QuickSetUp/--MainCamera--") as GameObject;
         levelManager = Resources.Load("QuickSetUp/LevelManager") as GameObject;
     }
 
