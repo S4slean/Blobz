@@ -4,7 +4,7 @@ using UnityEngine;
 using System.Linq;
 using TMPro;
 
-[RequireComponent(typeof(MeshCollider))]  //typeof(MeshRenderer), typeof(MeshFilter),
+//[RequireComponent(typeof(MeshCollider))]  //typeof(MeshRenderer), typeof(MeshFilter),
 public class CellMain : PoolableObjects
 {
     #region Variables
@@ -51,9 +51,6 @@ public class CellMain : PoolableObjects
 
         //mR.material = myCellTemplate.mat;
         //mF.mesh = myCellTemplate.mesh;
-       // mC.sharedMesh = myCellTemplate.mesh;
-
-        mC.convex = true;
         //ProximityCheck();
     }
 

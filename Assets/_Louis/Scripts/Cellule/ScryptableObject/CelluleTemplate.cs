@@ -13,7 +13,7 @@ public class CelluleTemplate : ScriptableObject
 
     //public Mesh mesh;
     //public Material mat; 
-    public Collider collider;
+    //public Collider collider;
     [Space(20f)]
 
     public CellType type;
