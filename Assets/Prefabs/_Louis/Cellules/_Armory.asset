@@ -25,5 +25,5 @@ MonoBehaviour:
   storageCapability: 20
   linkCapability: 4
   proximityLevelMax: 4
-  positivesInteractions: 
-  negativesInteractions: 
+  positivesInteractions: 02000000
+  negativesInteractions: 03000000

@@ -42,4 +42,5 @@ public class CelluleTemplate : ScriptableObject
     public int proximityLevelMax = 0;
     public CellType[] positivesInteractions;
     public CellType[] negativesInteractions;
+    
 }

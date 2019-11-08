@@ -22,7 +22,7 @@ public class CellProximityDectection : MonoBehaviour
         CellMain cell = other.GetComponent<CellMain>();
         if (cell != null)
         {
-            parent.AddToCellAtPromity(cell);
+            parent.RemoveToCellAtPromity(cell);
             Debug.Log("Lost a cell Detected");
         }
 
