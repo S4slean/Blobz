@@ -250,7 +250,6 @@ public class CellMain : PoolableObjects
             }
             else
             {
-                Debug.Log("Pas d'interaction entre ces 2 cellules");
                 return;
             }
         }

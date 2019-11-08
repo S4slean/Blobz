@@ -265,6 +265,13 @@ MonoBehaviour:
   hasBeenDrop: 0
   currentProximityLevel: 0
   targetDirection: {fileID: 7062838035021940735}
+  BlopPerTick:
+  - 0.25
+  - 0.5
+  - 1
+  - 2
+  tickForActivation: 0
+  rfBonus: 0
 --- !u!54 &5053171121655970789
 Rigidbody:
   m_ObjectHideFlags: 0
