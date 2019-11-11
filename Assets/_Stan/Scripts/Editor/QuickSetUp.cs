@@ -119,13 +119,15 @@ public class QuickSetUp : Editor
 
         UIManager uiScript = uiManager.GetComponent<UIManager>();
 
-        uiScript.cellSelection = GameObject.Find("ChooseACell").GetComponent<CellSelectionShop>();
+        uiScript.cellSelection = FindObjectOfType<CellSelectionShop>();
         uiScript.SelectedCellUI = GameObject.Find("SelectedCell");
         uiScript.SelectedCellUI.SetActive(false);
-        uiScript.QuestUI = GameObject.Find("QuestUI").GetComponent<QuestUI>();
-        uiScript.TopBar = GameObject.Find("TopBar").GetComponent<TopBarUI>();
-        uiScript.tooltipUI = GameObject.Find("CellToolTips").GetComponent<TooltipUI>();
+        uiScript.QuestUI = FindObjectOfType<QuestUI>();
+        uiScript.TopBar = FindObjectOfType<TopBarUI>();
+        uiScript.tooltipUI = FindObjectOfType<TooltipUI>();
         uiScript.tooltipUI.gameObject.SetActive(false);
+        uiScript.cellOptionsUI = FindObjectOfType<CellOptionsUI>();
+        uiScript.cellOptionsUI.gameObject.SetActive(false);
 
         GameObject.Find("WorldSpace").GetComponent<Canvas>().worldCamera = camera.GetComponent<Camera>();
 
@@ -148,6 +150,7 @@ public class QuickSetUp : Editor
 
             uiManager.GetComponent<UIManager>().cellSelection.GetComponent<CellSelectionShop>().buttonTypes[i] = btn;
             rect.SetParent(uiManager.GetComponent<UIManager>().cellSelection.transform );
+            
             btn.onClick.AddListener(delegate () { uiManager.GetComponent<UIManager>().cellSelection.CellConstruction(LevelManager.instance.availablesCells[i].blopPrefab.GetComponent<CellMain>()); });  
         }
 
