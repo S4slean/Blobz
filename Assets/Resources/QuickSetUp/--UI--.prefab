@@ -2354,6 +2354,11 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4524424998453287765, guid: bf780af4450f1ad469005987085842a9,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 350
+      objectReference: {fileID: 0}
     - target: {fileID: 2406997976935244743, guid: bf780af4450f1ad469005987085842a9,
         type: 3}
       propertyPath: energy

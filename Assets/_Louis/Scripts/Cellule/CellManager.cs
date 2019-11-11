@@ -106,7 +106,7 @@ public class CellManager : MonoBehaviour
             currentLine.SetPosition(1, currentLink.endPos);
             selectedCell.AddLink(currentLink, true);
             receivingCell.AddLink(currentLink, false);
-            cleanLinkRef();
+           cleanLinkRef();
 
         }
         else
@@ -165,10 +165,6 @@ public class CellManager : MonoBehaviour
                 InputManager.Instance.posCell = selectedCell.transform.position;
                 UIManager.Instance.CellSelected(selectedCell.transform.position);
 
-            }
-            else
-            {
-                InputManager.Instance.clickCooldown = Time.time + InputManager.Instance.DelayBetweenClick;
             }
         }
     }
