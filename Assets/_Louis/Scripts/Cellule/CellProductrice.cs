@@ -5,8 +5,10 @@ using UnityEngine;
 public class CellProductrice : CellMain
 {
     [Header("Spécificitées")]
-    [Range(0, 100)]
-    public int SurproductionRate;
+    private int SurproductionRate;
+    [Header("Proximity Level Modif")]
+    [Range(0f, 100f)]
+    public int[] SurprodRate;
 
 
     public override void BlobsTick()
@@ -36,4 +38,44 @@ public class CellProductrice : CellMain
         }
     }
 
+
+    public override void ProximityLevelModification(int Amout)
+    {
+        base.ProximityLevelModification(Amout);
+        if (currentProximityLevel > 0)
+        {
+            switch (currentProximityLevel)
+            {
+                case 0:
+                    //c'est une variable de debug
+                    currentProximityTier = 0;
+                    SurproductionRate = SurprodRate[0];
+                    break;
+                case 1:
+                    currentProximityTier = 1;
+                    SurproductionRate = SurprodRate[1];
+                    break;
+                case 2:
+                    currentProximityTier = 2;
+                    SurproductionRate = SurprodRate[2];
+                    break;
+                case 3:
+                    currentProximityTier = 3;
+                    SurproductionRate = SurprodRate[3];
+                    break;
+                //si > 0 max tier (soit 4 ) 
+
+                default:
+                    currentProximityTier = 3;
+                    SurproductionRate = SurprodRate[3];
+                    break;
+
+            }
+        }
+        else
+        {
+            currentProximityTier = 0;
+            SurproductionRate = SurprodRate[0];
+        }
+    }
 }

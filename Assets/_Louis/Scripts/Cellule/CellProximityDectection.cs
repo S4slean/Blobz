@@ -14,7 +14,6 @@ public class CellProximityDectection : MonoBehaviour
         if (cell != null)
         {
             parent.AddToCellAtPromity(cell);
-            Debug.Log("new cell Detected");
         }
     }
     private void OnTriggerExit(Collider other)
@@ -22,8 +21,7 @@ public class CellProximityDectection : MonoBehaviour
         CellMain cell = other.GetComponent<CellMain>();
         if (cell != null)
         {
-            parent.AddToCellAtPromity(cell);
-            Debug.Log("Lost a cell Detected");
+            parent.RemoveToCellAtPromity(cell);
         }
 
     }

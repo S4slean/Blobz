@@ -6,39 +6,47 @@ public class CellArmory : CellMain
 {
     [Header("SPECIFICITE CELL")]
     public GameObject targetDirection;
-    //public int tickForActivation;
+    [Header("Proximity Level Modif")]
+    public float[] BlopPerTick;
 
-    //private int currentTick;
+    [SerializeField]
+    private float tickForActivation;
+    private float currentTick;
+    [SerializeField]
+    private float rfBonus = 0;
 
 
 
     public override void BlobsTick()
     {
 
-        //if (currentTick == tickForActivation)
-        //{
-        //    currentTick = 0;
-
         if (BlobNumber > 0)
         {
-            for (int i = 0; i < myCellTemplate.rejectPower_RF; i++)
+            currentTick++;
+            if (currentTick == tickForActivation)
             {
-                RemoveBlob(1);
-                Debug.Log("Spawn");
+                for (int i = 0; i < myCellTemplate.rejectPower_RF + rfBonus; i++)
+                {
+                    RemoveBlob(1);
+                    // Debug.LogWarning("PENSEZ à REGLER le sy")
+                    Blob newBlob = ObjectPooler.poolingSystem.GetPooledObject<Blob>() as Blob;
+                    BlobManager.blobList.Add(newBlob);
 
-                // Debug.LogWarning("PENSEZ à REGLER le sy")
-                Blob newBlob = ObjectPooler.poolingSystem.GetPooledObject<Blob>() as Blob;
-                BlobManager.blobList.Add(newBlob);
+                    newBlob.blobType = BlobManager.BlobType.soldier;
 
-                newBlob.blobType = BlobManager.BlobType.soldier;
+                    newBlob.Outpool();
 
-                newBlob.Outpool();
+                    newBlob.transform.position = targetDirection.transform.position + Helper.RandomVectorInUpSphere();
 
-                newBlob.transform.position = targetDirection.transform.position + Helper.RandomVectorInUpSphere();
+                    newBlob.Jump(Helper.RandomVectorInUpSphere() * 100);
 
-                newBlob.Jump(Helper.RandomVectorInUpSphere() * 100);
-
+                }
+                currentTick = 0;
             }
+        }
+        else
+        {
+            currentTick = 0;
         }
         //}
     }
@@ -46,13 +54,62 @@ public class CellArmory : CellMain
     public override void TickInscription()
     {
         //base.TickInscription();
-        TickManager.doTick2 += BlobsTick;
+        TickManager.doTick += BlobsTick;
     }
 
     public override void TickDesinscription()
     {
         //base.TickDesinscription();
-        TickManager.doTick2 -= BlobsTick;
+        TickManager.doTick -= BlobsTick;
+    }
+
+    public override void ProximityLevelModification(int Amout)
+    {
+        base.ProximityLevelModification(Amout);
+        if (currentProximityLevel > 0)
+        {
+            switch (currentProximityLevel)
+            {
+                case 0:
+                    currentProximityTier = 0;
+                    tickForActivation = (1 / BlopPerTick[currentProximityTier]);
+                    break;
+                case 1:
+                    currentProximityTier = 1;
+                    tickForActivation = (1 / BlopPerTick[currentProximityTier]);
+                    break;
+                case 2:
+                    currentProximityTier = 2;
+                    tickForActivation = (1 / BlopPerTick[currentProximityTier]);
+                    break;
+                case 3:
+                    currentProximityTier = 3;
+                    tickForActivation = (1 / BlopPerTick[currentProximityTier]);
+                    break;
+                //si > 0 max tier (soit 4 ) 
+
+                default:
+                    currentProximityTier = 3;
+                    tickForActivation = (1 / BlopPerTick[currentProximityTier]);
+                    break;
+
+            }
+            if (tickForActivation < 1)
+            {
+                tickForActivation = 1;
+                rfBonus = BlopPerTick[currentProximityLevel] - 1;
+            }
+        }
+        else
+        {
+            currentProximityTier = 0;
+            tickForActivation = (int)(1 / BlopPerTick[currentProximityTier]);
+        }
+
+
+
+
+
     }
 
 }

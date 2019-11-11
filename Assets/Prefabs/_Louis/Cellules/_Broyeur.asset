@@ -14,9 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cellsEnableToBuild: []
   blopPrefab: {fileID: 0}
-  mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
-  mat: {fileID: 2100000, guid: 189feeaa96da1f94d80eaaf5c9899322, type: 2}
-  collider: {fileID: 0}
   type: 3
   EnergyCost: 10
   range: 30
@@ -26,3 +23,6 @@ MonoBehaviour:
   rejectPower_RF: 1
   storageCapability: 10
   linkCapability: 6
+  proximityLevelMax: 4
+  positivesInteractions: 00000000
+  negativesInteractions: 01000000

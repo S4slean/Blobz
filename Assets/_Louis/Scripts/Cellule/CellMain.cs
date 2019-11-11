@@ -16,6 +16,7 @@ public class CellMain : PoolableObjects
     [Header("REF")]
     public TextMeshPro NBlob;
     public TextMeshPro NLink;
+    public TextMeshPro NCurrentProximity;
 
     //public MeshFilter mF;
     //public MeshRenderer mR;
@@ -35,7 +36,9 @@ public class CellMain : PoolableObjects
     protected List<CellMain> cellAtProximity = new List<CellMain>();
     protected int currentLinkStockage;
     protected int currentBlobStockage;
+    [SerializeField]
     protected int currentProximityLevel;
+    protected int currentProximityTier;
 
     // protected MeshCollider mC;
     protected int currentIndex;
@@ -48,10 +51,10 @@ public class CellMain : PoolableObjects
     public virtual void Awake()
     {
         ProximityDectection.parent = this;
-
         //mR.material = myCellTemplate.mat;
         //mF.mesh = myCellTemplate.mesh;
         //ProximityCheck();
+
     }
 
     public virtual void OnEnable()
@@ -65,8 +68,11 @@ public class CellMain : PoolableObjects
         isDead = false;
         currentBlobStockage = myCellTemplate.storageCapability;
         currentLinkStockage = myCellTemplate.linkCapability;
+        cellAtProximity.Clear();
+        currentProximityLevel = 0;
 
         ProximityCheck();
+        ProximityLevelModification(0);
     }
 
 
@@ -133,7 +139,7 @@ public class CellMain : PoolableObjects
 
     }
 
-    public virtual void AddBlob(int Amount)
+    public  void AddBlob(int Amount)
     {
         BlobNumber += Amount;
         NBlob.text = (BlobNumber + " / " + currentBlobStockage);
@@ -143,7 +149,7 @@ public class CellMain : PoolableObjects
         }
         UpdateCaract();
     }
-    public virtual void RemoveBlob(int Amount)
+    public  void RemoveBlob(int Amount)
     {
         BlobNumber -= Amount;
         //UI update
@@ -199,6 +205,7 @@ public class CellMain : PoolableObjects
         outputLinks = outputLinks.OrderBy(t => t.angle).ToList();
     }
 
+
     public virtual void UpdateCaract()
     {
         NBlob.text = (BlobNumber + " / " + currentBlobStockage);
@@ -214,49 +221,67 @@ public class CellMain : PoolableObjects
 
     }
 
-    public virtual void ProximityCheck()
+
+    public  void ProximityCheck()
     {
-       // ProximityDectection.myCollider.radius = Mathf.SmoothDamp(0, myCellTemplate.range / 2, ref velocity, 0.01f);
-        ProximityDectection.myCollider.radius =  myCellTemplate.range / 2;
+        // ProximityDectection.myCollider.radius = Mathf.SmoothDamp(0, myCellTemplate.range / 2, ref velocity, 0.01f);
+        ProximityDectection.myCollider.radius = myCellTemplate.range / 2;
     }
-    public virtual void AddToCellAtPromity(CellMain cellDetected)
+    public  void AddToCellAtPromity(CellMain cellDetected)
     {
         cellAtProximity.Add(cellDetected);
+        CellType cellDetectedType = cellDetected.myCellTemplate.type;
+        for (int i = 0; i < myCellTemplate.negativesInteractions.Length; i++)
+        {
+            if (cellDetectedType == myCellTemplate.negativesInteractions[i])
+            {
+                ProximityLevelModification(-1);
+                // Ajouter L'UI 
+                return;
+            }
+        }
+
+        for (int j = 0; j < myCellTemplate.positivesInteractions.Length; j++)
+        {
+            if (cellDetectedType == myCellTemplate.positivesInteractions[j])
+            {
+                ProximityLevelModification(1);
+                return;
+            }
+            else
+            {
+                return;
+            }
+        }
+    }
+    public  void RemoveToCellAtPromity(CellMain cellDetected)
+    {
+        cellAtProximity.Remove(cellDetected);
+        CellType cellDetectedType = cellDetected.myCellTemplate.type;
 
         for (int i = 0; i < myCellTemplate.negativesInteractions.Length; i++)
         {
-            CellType cellDetectedType = cellDetected.myCellTemplate.type;
             if (cellDetectedType == myCellTemplate.negativesInteractions[i])
             {
-                ProximityLevelModification(1);
+                ProximityLevelModification(+1);
                 // Ajouter L'UI 
             }
 
-            else
-            {
-                for (int j = 0; j < myCellTemplate.positivesInteractions.Length; j++)
-                {
-                    if (cellDetectedType == myCellTemplate.positivesInteractions[i])
-                    {
-                        ProximityLevelModification(-1);
-                    }
-                    else
-                    {
-                        Debug.Log("Pas d'interaction entre ces 2 cellules");
-                    }
-                }
-            }
-
         }
-
-    } 
-    public virtual void ProximityLevelModification(int Amout)
-    {
-        if (Mathf.Abs(currentProximityLevel) <= myCellTemplate.proximityLevelMax)
+        for (int j = 0; j < myCellTemplate.positivesInteractions.Length; j++)
         {
-            currentProximityLevel += Amout;
+            if (cellDetectedType == myCellTemplate.positivesInteractions[j])
+            {
+                ProximityLevelModification(-1);
+            }
         }
     }
+    public virtual void ProximityLevelModification(int Amout)
+    {
+        currentProximityLevel += Amout;
+        NCurrentProximity.text = currentProximityLevel.ToString();
+    }
+
 
     //public bool CheckLinkDistance(Vector3 pos)
     //{
@@ -276,5 +301,14 @@ public class CellMain : PoolableObjects
     public virtual void TickDesinscription()
     {
         TickManager.doTick -= BlobsTick;
+    }
+
+
+    //A changé au lieu de désactiver on peut juste désactiver les components ( c'est une micro opti ) 
+    public override void Inpool()
+    {
+        transform.position = ObjectPooler.poolingSystem.transform.position;
+        canBePool = true;
+        StartCoroutine(DesactiveGameObject(0.02f));
     }
 }
