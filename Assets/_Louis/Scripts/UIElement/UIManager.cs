@@ -172,6 +172,7 @@ public class UIManager : MonoBehaviour
     public void DisplayCellOptions(CellMain cell)
     {
         DisplayUI(cellOptionsUI.gameObject);
+        cellOptionsUI.transform.position = cell.transform.position + Vector3.up;
         cellOptionsUI.cell = cell;
         cellOptionsUI.anim.Play("Display");
     }
