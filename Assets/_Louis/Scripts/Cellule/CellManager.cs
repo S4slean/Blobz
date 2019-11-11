@@ -20,6 +20,8 @@ public class CellManager : MonoBehaviour
     [SerializeField]
     private CellMain receivingCell;
 
+    public Vector3 originalPosOfMovingCell;
+
 
     private void Awake()
     {

@@ -18,14 +18,17 @@ public class CellOptionsUI : MonoBehaviour
         InputManager.Instance.movingObject = true;
 
         //store original POsition
-
+        CellManager.Instance.originalPosOfMovingCell = cell.transform.position;
 
         anim.Play("Hide");
     }
 
     public void DeleteCell()
     {
+        Debug.Log(cell);
+        cell.Died(true);
 
+        anim.Play("Hide");
     }
 
     public void HideCellOptionUI()
