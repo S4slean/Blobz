@@ -103,6 +103,7 @@ public class UIManager : MonoBehaviour
 
     [Header("ToolTip")]
     public TooltipUI tooltipUI;
+    public CellOptionsUI cellOptionsUI;
 
     private float tooltipCount = 0;
     public float firstTooltipDelay = .4f;
@@ -166,8 +167,13 @@ public class UIManager : MonoBehaviour
     public void HideTooltip()
     {
         HideUI(tooltipUI.gameObject);
+    }
 
-
+    public void DisplayCellOptions(CellMain cell)
+    {
+        DisplayUI(cellOptionsUI.gameObject);
+        cellOptionsUI.cell = cell;
+        cellOptionsUI.anim.Play("Display");
     }
 
     #endregion

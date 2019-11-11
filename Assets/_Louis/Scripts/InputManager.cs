@@ -48,112 +48,155 @@ public class InputManager : MonoBehaviour
 
     //permet d'éviter un getComponent à chaque frame lors du raycast de mouse Over
     private bool isOverCell;
+    private bool rightClickedOnCell;
     private CellMain cellOver;
+
+    public bool movingObject = false;
+    public CellMain objectMoved;
 
     private void Update()
     {
-        //En train de drag le lien 
-        if (DraggingLink && !InCellSelection)
+        if (!movingObject)
         {
-            RaycastHit hit = Helper.ReturnHit(Input.mousePosition, CellManager.mainCamera , maskLeftCLick);
-            CellManager.Instance.DragNewlink(hit);
-        }
+            #region LINKS, INTERACTIONS AND CELL_CREATIONS
 
-        #region MOUSEOVER_CELLS
-
-        if (!DraggingLink && !InCellSelection)
-        {
-            RaycastHit hit = Helper.ReturnHit(Input.mousePosition, CellManager.mainCamera, maskLeftCLick);
-            if(hit.transform != null && hit.transform.tag == "Cell" && ! isOverCell)
+            //En train de drag le lien 
+            if (DraggingLink && !InCellSelection)
             {
-                isOverCell = true;
-
-                cellOver = hit.transform.GetComponent<CellMain>();
-
-            }
-            else if(hit.transform == null || hit.transform.tag != "Cell")
-            {
-                isOverCell = false;
+                RaycastHit hit = Helper.ReturnHit(Input.mousePosition, CellManager.mainCamera, maskLeftCLick);
+                CellManager.Instance.DragNewlink(hit);
             }
 
 
-        }
+            //Click Gauche Maintient
+            if (Input.GetMouseButton(0))
+            {
+                if (CellSelected)
+                {
+                    RaycastHit hit = Helper.ReturnHit(Input.mousePosition, CellManager.mainCamera, maskLeftCLick);
+                    //drag pour crée un lien
+                    if (Vector3.Distance(posCell, hit.point) >= distanceBeforeDrag && !DraggingLink)
+                    {
+                        CellManager.Instance.CreatenewLink();
 
-        if (isOverCell)
-        {
+                    }
+                }
+            }
 
-            UIManager.Instance.LoadToolTip(cellOver.transform.position, cellOver);
+
+            //Click Gauche In
+            if (Input.GetMouseButtonDown(0))
+            {
+                if (!DraggingLink && !InCellSelection)
+                {
+                    RaycastHit hit = Helper.ReturnHit(Input.mousePosition, CellManager.mainCamera, maskLeftCLick);
+                    Debug.Log(hit.transform, hit.transform);
+                    CellManager.Instance.SelectCell(hit);
+                }
+            }
+
+            //Click Gauche Out
+            if (Input.GetMouseButtonUp(0))
+            {
+                //pour interagir avec la cellule
+                if (Time.time <= clickCooldown)
+                {
+                    CellManager.Instance.InteractWithCell();
+                }
+
+
+                if (DraggingLink)
+                {
+                    RaycastHit hit = Helper.ReturnHit(Input.mousePosition, CellManager.mainCamera, maskLeftCLick);
+                    CellManager.Instance.ValidateNewLink(hit);
+
+                }
+
+            }
+
+            //Click Droit In
+            if (Input.GetMouseButtonDown(1))
+            {
+                if (InCellSelection)
+                {
+                    UIManager.Instance.DesactivateCellShop();
+
+                }
+                //Deselectionne la cellule si sélectionné 
+                else if (CellSelected && DraggingLink)
+                {
+                    DesactivateLinkWhileDragging();
+                }
+                else if (CellSelected)
+                {
+                    CellManager.Instance.DeselectCell();
+                }
+            }
+
+            #endregion
+
+            #region MOUSEOVER_CELLS - TOOLTIP
+
+            if (!DraggingLink && !InCellSelection)
+            {
+                RaycastHit hit = Helper.ReturnHit(Input.mousePosition, CellManager.mainCamera, maskLeftCLick);
+
+
+                if (hit.transform != null && hit.transform.tag == "Cell" && !isOverCell)
+                {
+                    isOverCell = true;
+                    cellOver = hit.transform.GetComponent<CellMain>();
+                }
+                else if (hit.transform == null || hit.transform.tag != "Cell")
+                {
+                    isOverCell = false;
+                }
+            }
+
+
+            if (isOverCell)
+            {
+                UIManager.Instance.LoadToolTip(cellOver.transform.position, cellOver);
+            }
+            else
+            {
+                UIManager.Instance.UnloadToolTip();
+                rightClickedOnCell = false;
+            }
+
+
+            #endregion
+
+            #region CELL_OPTIONS
+
+            if (isOverCell && Input.GetMouseButtonDown(1))
+            {
+                rightClickedOnCell = true;
+            }
+
+            if (rightClickedOnCell && Input.GetMouseButtonUp(1))
+            {
+                UIManager.Instance.DisplayCellOptions(cellOver);
+            }
+
+            if (!isOverCell && Input.GetMouseButtonDown(1))
+            {
+                UIManager.Instance.cellOptionsUI.HideCellOptionUI();
+            }
+
+            #endregion
         }
         else
         {
-            UIManager.Instance.UnloadToolTip();
-        }
-
-        #endregion
-
-        //Click Gauche In
-        if (Input.GetMouseButtonDown(0))
-        {
-            if (!DraggingLink && !InCellSelection)
+            RaycastHit hit = Helper.ReturnHit(Input.mousePosition, CellManager.mainCamera, maskLeftCLick);
+            if(hit.transform.tag == "Ground")
             {
-                RaycastHit hit = Helper.ReturnHit(Input.mousePosition,CellManager.mainCamera , maskLeftCLick);
-                Debug.Log(hit.transform, hit.transform);
-                CellManager.Instance.SelectCell(hit);
+                objectMoved.transform.position = hit.point;
+
             }
         }
 
-        //Click Gauche Maintient
-        if (Input.GetMouseButton(0))
-        {
-            if (CellSelected)
-            {
-                RaycastHit hit = Helper.ReturnHit(Input.mousePosition, CellManager.mainCamera , maskLeftCLick );
-                //drag pour crée un lien
-                if (Vector3.Distance(posCell, hit.point) >= distanceBeforeDrag && !DraggingLink)
-                {
-                    CellManager.Instance.CreatenewLink();
-
-                }
-            }
-        }
-
-        //Click Gauche Out
-        if (Input.GetMouseButtonUp(0))
-        {
-            //pour interagir avec la cellule
-            if (Time.time <= clickCooldown)
-            {
-                CellManager.Instance.InteractWithCell();
-            }
-
-
-            if (DraggingLink)
-            {
-                RaycastHit hit = Helper.ReturnHit(Input.mousePosition, CellManager.mainCamera , maskLeftCLick);
-                CellManager.Instance.ValidateNewLink(hit);
-
-            }
-
-        }
-
-        //Click Droit In
-        if (Input.GetMouseButtonDown(1))
-        {
-            if (InCellSelection)
-            {
-                UIManager.Instance.DesactivateCellShop();
-
-            }
-            //Deselectionne la cellule si sélectionné 
-            else if (CellSelected && DraggingLink)
-            {
-                DesactivateLinkWhileDragging();
-            }
-            else if (CellSelected)
-            {
-                CellManager.Instance.DeselectCell();
-            }
-        }
+        #region CAMERA
 
         CameraController.instance.MoveCamera();
 
@@ -161,6 +204,8 @@ public class InputManager : MonoBehaviour
             CameraController.instance.TiltCamera();
         else
             CameraController.instance.DecreaseTiltCount();
+
+        #endregion
 
     }
 

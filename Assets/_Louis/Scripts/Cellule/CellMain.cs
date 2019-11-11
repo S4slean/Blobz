@@ -258,6 +258,17 @@ public class CellMain : PoolableObjects
         }
     }
 
+    //public bool CheckLinkDistance(Vector3 pos)
+    //{
+    //    for (int i = 0; i < links.Count; i++)
+    //    {
+    //        if((links[i].originalCell.transform.position - pos).magnitude > links[i].originalCell.
+    //    }
+
+
+    //    return true;
+    //}
+
     public virtual void TickInscription()
     {
         TickManager.doTick += BlobsTick;

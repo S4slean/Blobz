@@ -9,6 +9,7 @@ public class CameraController : MonoBehaviour
     public float defaultHeight = 35;
     
     public float camSpeed = 5;
+    public float minHeight = 20;
     public float maxHeight = 100;
     [Range(1,100)]public float heightStep = 1;
     float count;
@@ -17,9 +18,10 @@ public class CameraController : MonoBehaviour
 
     private void Start()
     {
-        originPos = new Vector3(0, defaultHeight, 0);
-        transform.position = originPos;
-        camHeight = defaultHeight;
+        originPos = new Vector3(0, 0, 0);
+        camHeightGoal = minHeight;
+        camHeight = minHeight;
+        transform.position = originPos + new Vector3(0, camHeight, 0);
         transform.LookAt(Vector3.down);
 
         if(instance == null)
@@ -37,7 +39,7 @@ public class CameraController : MonoBehaviour
     float camHeightGoal;
     float smoothCount;
     float currentVelocity;
-    float camHeightDelay = 1;
+    float camHeightSpeed = 1;
 
     public void MoveCamera()
     {
@@ -47,13 +49,15 @@ public class CameraController : MonoBehaviour
         if(Input.GetAxis("Mouse ScrollWheel") != 0)
         {
             camHeightGoal += -Input.GetAxis("Mouse ScrollWheel") * heightStep;
+            camHeightGoal = Mathf.Clamp(camHeightGoal, minHeight, maxHeight);
             smoothCount = 0;
         }
 
-        smoothCount += Time.deltaTime / camHeightDelay;
+        smoothCount += Time.deltaTime / camHeightSpeed;
         smoothCount = Mathf.Clamp01(smoothCount);
 
-        camHeight = Mathf.SmoothDamp(camHeight, camHeightGoal, ref currentVelocity, smoothCount);
+        camHeight = Mathf.Lerp(camHeight, camHeightGoal, smoothCount);
+
 
         if (MouseIsInBorder()) {
             moveDir = mouseDir.normalized;

@@ -19,6 +19,7 @@ public class QuickSetUp : Editor
     static GameObject levelManager;
 
 
+
     [MenuItem("Blobz/Set Up Scene")]
     static void SetUpScene()
     {
@@ -135,6 +136,20 @@ public class QuickSetUp : Editor
         #endregion
 
         #region CELLS
+        GameObject button = Resources.Load("QuickSetUp/Buttons/CellCreationButton") as GameObject;
+
+        uiScript.cellSelection.buttonTypes = new Button[levelManager.GetComponent<LevelManager>().availablesCells.Length];
+
+        for (int i = 0; i < levelManager.GetComponent<LevelManager>().availablesCells.Length ; i++)
+        {
+            GameObject objInstance = Instantiate(button);
+            RectTransform rect = objInstance.GetComponent<RectTransform>();
+            Button btn = objInstance.GetComponent<Button>();
+
+            uiManager.GetComponent<UIManager>().cellSelection.GetComponent<CellSelectionShop>().buttonTypes[i] = btn;
+            rect.SetParent(uiManager.GetComponent<UIManager>().cellSelection.transform );
+            btn.onClick.AddListener(delegate () { uiManager.GetComponent<UIManager>().cellSelection.CellConstruction(LevelManager.instance.availablesCells[i].blopPrefab.GetComponent<CellMain>()); });  
+        }
 
         #endregion
 

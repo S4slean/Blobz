@@ -4,7 +4,15 @@ using UnityEngine;
 
 public class LevelManager : MonoBehaviour
 {
-    public CelluleTemplate[] availablesCells;  
+    public static LevelManager instance;
 
+    public CelluleTemplate[] availablesCells;
 
+    private void Start()
+    {
+        if (instance == null)
+            instance = this;
+        else
+            Destroy(gameObject);
+    }
 }

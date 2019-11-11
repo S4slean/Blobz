@@ -43,4 +43,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b82149e2da5516489d882f2a4acfb87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  availablesCells: []
+  availablesCells:
+  - {fileID: 11400000, guid: e99918bd31012504e993fbf7666e0863, type: 2}
+  - {fileID: 11400000, guid: 274bcb4655c1c7d448a180629ab7c672, type: 2}
+  - {fileID: 11400000, guid: d35151efcdfd26345aee87cc67d97f88, type: 2}
+  - {fileID: 11400000, guid: df917586c15ca0c409f512efdab3a763, type: 2}
