@@ -179,9 +179,9 @@ public class InputManager : MonoBehaviour
                 UIManager.Instance.DisplayCellOptions(cellOver);
             }
 
-            if (!isOverCell && Input.GetMouseButtonDown(1))
+            if (!isOverCell && Input.GetMouseButtonDown(1) || Input.GetMouseButtonDown(0))
             {
-                UIManager.Instance.cellOptionsUI.HideCellOptionUI();
+                UIManager.Instance.cellOptionsUI.anim.Play("Hide");
             }
 
             #endregion
@@ -191,9 +191,11 @@ public class InputManager : MonoBehaviour
             RaycastHit hit = Helper.ReturnHit(Input.mousePosition, CellManager.mainCamera, maskLeftCLick);
             if(hit.transform.tag == "Ground")
             {
-                objectMoved.transform.position = hit.point;
+                CellManager.Instance.CellDeplacement(hit.point, objectMoved);
 
             }
+
+            //si clic gauche, replacer la cell et update tous ses liens
         }
 
         #region CAMERA

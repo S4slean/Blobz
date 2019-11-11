@@ -17,6 +17,9 @@ public class CellOptionsUI : MonoBehaviour
         InputManager.Instance.objectMoved = cell;
         InputManager.Instance.movingObject = true;
 
+        //store original POsition
+
+
         anim.Play("Hide");
     }
 
