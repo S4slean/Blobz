@@ -325,8 +325,5 @@ public class CellMain : PoolableObjects
     {
         Vector3 graphPos = transform.position + new Vector3(0 , 0.5f , 0 );
         graphTransform.position = graphPos;
-
     }
-
-
 }
