@@ -179,7 +179,7 @@ public class CellMain : PoolableObjects
         }
         else
         {
-            linkToAdd.receveingCell = this;
+            linkToAdd.receivingCell = this;
         }
 
         if (links.Count >= myCellTemplate.linkCapability)

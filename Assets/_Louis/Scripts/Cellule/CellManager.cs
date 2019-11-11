@@ -86,7 +86,7 @@ public class CellManager : MonoBehaviour
             for (int i = 0; i < selectedCell.links.Count; i++)
             {
                 if (selectedCell.links[i].originalCell == receivingCell) check1 = true; else check1 = false;
-                if (selectedCell.links[i].receveingCell == receivingCell) check2 = true; else check2 = false;
+                if (selectedCell.links[i].receivingCell == receivingCell) check2 = true; else check2 = false;
                 if (check1 || check2)
                 {
                     SupressCurrentLink();
@@ -144,6 +144,7 @@ public class CellManager : MonoBehaviour
         cleanLinkRef();
     }
 
+  
     public void DeselectCell()
     {
         selectedCell = null;
@@ -169,10 +170,30 @@ public class CellManager : MonoBehaviour
             }
         }
     }
+
+
     public void InteractWithCell()
     {
         selectedCell.ClickInteraction();
     }
+    public void CellDeplacement (Vector3 posToTest , CellMain cellToMove)
+    {
+        for (int i = 0; i < cellToMove.links.Count; i++)
+        {
+            if (cellToMove.links[i].CheckLength(posToTest) == false)
+            {
+                return;
+            }
+        }
+
+        cellToMove.transform.position = posToTest;
+        for (int i = 0; i < cellToMove.links.Count; i++)
+        {
+            cellToMove.links[i].UpdateLinks(cellToMove , posToTest);
+        }
+
+    }
+
 
     public void EnergyVariation(int Variation)
     {
