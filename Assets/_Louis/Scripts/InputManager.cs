@@ -90,7 +90,7 @@ public class InputManager : MonoBehaviour
                 if (!DraggingLink && !InCellSelection)
                 {
                     RaycastHit hit = Helper.ReturnHit(Input.mousePosition, CellManager.mainCamera, maskLeftCLick);
-                    Debug.Log(hit.transform, hit.transform);
+                    //Debug.Log(hit.transform, hit.transform);
                     CellManager.Instance.SelectCell(hit);
                 }
             }
@@ -181,7 +181,8 @@ public class InputManager : MonoBehaviour
 
             if (!isOverCell && Input.GetMouseButtonDown(1) || Input.GetMouseButtonDown(0))
             {
-                UIManager.Instance.cellOptionsUI.anim.Play("Hide");
+                if(UIManager.Instance.cellOptionsUI.gameObject.activeSelf)
+                    UIManager.Instance.cellOptionsUI.anim.Play("Hide");
             }
 
             #endregion
@@ -196,6 +197,18 @@ public class InputManager : MonoBehaviour
             }
 
             //si clic gauche, replacer la cell et update tous ses liens
+            if (Input.GetMouseButtonDown(0))
+            {
+                movingObject = false;
+                objectMoved = null;
+            }
+
+            else if (Input.GetMouseButtonDown(1))
+            {
+                CellManager.Instance.CellDeplacement(CellManager.Instance.originalPosOfMovingCell, objectMoved);
+                movingObject = false;
+                objectMoved = null;
+            }
         }
 
         #region CAMERA

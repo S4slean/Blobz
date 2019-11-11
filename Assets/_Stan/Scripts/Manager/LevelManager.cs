@@ -6,7 +6,7 @@ public class LevelManager : MonoBehaviour
 {
     public static LevelManager instance;
 
-    public CelluleTemplate[] availablesCells;
+    public CellMain[] availablesCells;
 
     private void Start()
     {

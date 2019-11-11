@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using UnityEngine.UI;
+using UnityEngine.Events;
+using UnityEditor.Events;
 
 public class QuickSetUp : Editor
 {
@@ -137,7 +139,7 @@ public class QuickSetUp : Editor
 
         #endregion
 
-        #region CELLS
+        #region CELLS_SHOP
         GameObject button = Resources.Load("QuickSetUp/Buttons/CellCreationButton") as GameObject;
 
         uiScript.cellSelection.buttonTypes = new Button[levelManager.GetComponent<LevelManager>().availablesCells.Length];
@@ -150,12 +152,27 @@ public class QuickSetUp : Editor
 
             uiManager.GetComponent<UIManager>().cellSelection.GetComponent<CellSelectionShop>().buttonTypes[i] = btn;
             rect.SetParent(uiManager.GetComponent<UIManager>().cellSelection.transform );
-            
-            btn.onClick.AddListener(delegate () { uiManager.GetComponent<UIManager>().cellSelection.CellConstruction(LevelManager.instance.availablesCells[i].blopPrefab.GetComponent<CellMain>()); });  
+
+            //UnityEditor.Events.UnityEventTools.AddPersistentListener(btn.onClick, new UnityEngine.Events.UnityAction(CellConstructionEvent));
+
+
+
+            UnityEventTools.AddObjectPersistentListener<CellMain>(
+                btn.onClick,
+                uiManager.GetComponent<UIManager>().cellSelection.CellConstruction,
+                levelManager.GetComponent<LevelManager>().availablesCells[i]);
+
+            //btn.onClick.Add(delegate () {
+            //    uiManager.GetComponent<UIManager>().cellSelection.CellConstruction(LevelManager.instance.availablesCells[i].blopPrefab.GetComponent<CellMain>()); });  
         }
 
         #endregion
 
 
     }
+
+    //public static void CellConstructionEvent(int i)
+    //{
+    //    uiManager.GetComponent<UIManager>().cellSelection.CellConstruction(LevelManager.instance.availablesCells[i].blopPrefab.GetComponent<CellMain>());
+    //}
 }

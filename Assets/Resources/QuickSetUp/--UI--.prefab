@@ -1602,7 +1602,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1701083647569703368}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6651316797528057288}
+        m_MethodName: DeleteCell
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &3767894105964762331
 GameObject:
   m_ObjectHideFlags: 0
@@ -1902,7 +1913,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1648442087462931082}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6651316797528057288}
+        m_MethodName: MoveCell
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &7132881005910506095
 GameObject:
   m_ObjectHideFlags: 0
