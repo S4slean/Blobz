@@ -17,10 +17,11 @@ public class CellMain : PoolableObjects
     public TextMeshPro NBlob;
     public TextMeshPro NLink;
     public TextMeshPro NCurrentProximity;
+    public Transform graphTransform;
 
     //public MeshFilter mF;
     //public MeshRenderer mR;
-    public MeshCollider mC;
+    // public MeshCollider mC;
 
     public CellProximityDectection ProximityDectection;
 
@@ -75,8 +76,13 @@ public class CellMain : PoolableObjects
         ProximityLevelModification(0);
     }
 
+    private void Start()
+    {
+        GraphSetup();
+    }
 
-    public virtual void Died()
+
+    public virtual void Died(bool intentionnalDeath)
     {
         isDead = true;
         //TickManager.doTick -= BlobsTick;
@@ -91,16 +97,20 @@ public class CellMain : PoolableObjects
             links[I - i - 1].Break();
         }
 
-
-        for (int i = 0; i < BlobNumber; i++)
+        if (!intentionnalDeath)
         {
-            //Debug.Log("SI TU VOIS ÇA C'EST QUE LES BLOB SONT ENCORE INSTANCIE EN SALE AINSI QUE LEUR RIGIDBODY ");
-            //GameObject blob = Instantiate(myCellTemplate.blopPrefab, transform.position, Quaternion.identity);
-            //Rigidbody rb = blob.GetComponent<Rigidbody>();
-            //Vector3 dir = new Vector3(Random.Range(-1, 1), Random.Range(0.1f, 1f), Random.Range(-1, 1)) * myCellTemplate.impulseForce_Death;
-            //rb.AddForce(dir, ForceMode.Impulse);
-            //blob.GetComponent<Blob>().blobType = BlobBehaviour.BlobType.mad;
+            //Spawn les blobs
+            for (int i = 0; i < BlobNumber; i++)
+            {
+                //Debug.Log("SI TU VOIS ÇA C'EST QUE LES BLOB SONT ENCORE INSTANCIE EN SALE AINSI QUE LEUR RIGIDBODY ");
+                //GameObject blob = Instantiate(myCellTemplate.blopPrefab, transform.position, Quaternion.identity);
+                //Rigidbody rb = blob.GetComponent<Rigidbody>();
+                //Vector3 dir = new Vector3(Random.Range(-1, 1), Random.Range(0.1f, 1f), Random.Range(-1, 1)) * myCellTemplate.impulseForce_Death;
+                //rb.AddForce(dir, ForceMode.Impulse);
+                //blob.GetComponent<Blob>().blobType = BlobBehaviour.BlobType.mad;
+            }
         }
+
         if (this == CellManager.Instance.selectedCell)
         {
             if (InputManager.Instance.DraggingLink)
@@ -113,7 +123,6 @@ public class CellMain : PoolableObjects
 
         }
         BlobNumber = 0;
-
         Inpool();
     }
     public virtual void BlobsTick()
@@ -139,17 +148,17 @@ public class CellMain : PoolableObjects
 
     }
 
-    public  void AddBlob(int Amount)
+    public void AddBlob(int Amount)
     {
         BlobNumber += Amount;
         NBlob.text = (BlobNumber + " / " + currentBlobStockage);
         if (BlobNumber > currentBlobStockage && !isDead)
         {
-            Died();
+            Died(false);
         }
         UpdateCaract();
     }
-    public  void RemoveBlob(int Amount)
+    public void RemoveBlob(int Amount)
     {
         BlobNumber -= Amount;
         //UI update
@@ -162,7 +171,7 @@ public class CellMain : PoolableObjects
         UpdateCaract();
         if (BlobNumber > currentBlobStockage && !isDead)
         {
-            Died();
+            Died(false);
         }
         UpdateCaract();
     }
@@ -222,12 +231,12 @@ public class CellMain : PoolableObjects
     }
 
 
-    public  void ProximityCheck()
+    public void ProximityCheck()
     {
         // ProximityDectection.myCollider.radius = Mathf.SmoothDamp(0, myCellTemplate.range / 2, ref velocity, 0.01f);
         ProximityDectection.myCollider.radius = myCellTemplate.range / 2;
     }
-    public  void AddToCellAtPromity(CellMain cellDetected)
+    public void AddToCellAtPromity(CellMain cellDetected)
     {
         cellAtProximity.Add(cellDetected);
         CellType cellDetectedType = cellDetected.myCellTemplate.type;
@@ -254,7 +263,7 @@ public class CellMain : PoolableObjects
             }
         }
     }
-    public  void RemoveToCellAtPromity(CellMain cellDetected)
+    public void RemoveToCellAtPromity(CellMain cellDetected)
     {
         cellAtProximity.Remove(cellDetected);
         CellType cellDetectedType = cellDetected.myCellTemplate.type;
@@ -311,4 +320,13 @@ public class CellMain : PoolableObjects
         canBePool = true;
         StartCoroutine(DesactiveGameObject(0.02f));
     }
+
+    public virtual void GraphSetup()
+    {
+        Vector3 graphPos = transform.position + new Vector3(0 , 0.5f , 0 );
+        graphTransform.position = graphPos;
+
+    }
+
+
 }
