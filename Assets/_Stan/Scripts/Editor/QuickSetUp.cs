@@ -177,9 +177,10 @@ public class QuickSetUp : Editor
 
         uiScript.cellSelection.buttonTypes = new Button[levelManager.GetComponent<LevelManager>().availablesCells.Length];
 
-        for (int i = 0; i < levelManager.GetComponent<LevelManager>().availablesCells.Length ; i++)
+        for (int i = 0; i < lvlMng.availablesCells.Length ; i++)
         {
             GameObject objInstance = Instantiate(button);
+            objInstance.name = lvlMng.availablesCells[i].name + "Button";
             RectTransform rect = objInstance.GetComponent<RectTransform>();
             Button btn = objInstance.GetComponent<Button>();
             EventTrigger trigger = objInstance.GetComponent<EventTrigger>();
