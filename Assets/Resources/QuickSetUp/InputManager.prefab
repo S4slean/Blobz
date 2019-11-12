@@ -46,6 +46,9 @@ MonoBehaviour:
   maskLeftCLick:
     serializedVersion: 2
     m_Bits: 6455
+  UIMask:
+    serializedVersion: 2
+    m_Bits: 32
   distanceBeforeDrag: 1
   DelayBetweenClick: 0
   clickCooldown: 0.1
@@ -54,6 +57,5 @@ MonoBehaviour:
   InCellSelection: 0
   InPauseMenu: 0
   posCell: {x: 0, y: 0, z: 0}
-  leftClickedOnCell: 0
   movingObject: 0
   objectMoved: {fileID: 0}

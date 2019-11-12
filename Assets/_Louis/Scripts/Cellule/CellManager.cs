@@ -176,13 +176,18 @@ public class CellManager : MonoBehaviour
     }
     public void CellDeplacement (Vector3 posToTest , CellMain cellToMove)
     {
+        bool shouldStop = false;
+
         for (int i = 0; i < cellToMove.links.Count; i++)
         {
             if (cellToMove.links[i].CheckLength(posToTest) == false)
             {
-                return;
+                shouldStop = true;
             }
         }
+
+        if (shouldStop)
+            return;
 
         cellToMove.transform.position = posToTest;
         for (int i = 0; i < cellToMove.links.Count; i++)

@@ -1,6 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
+
 
 public class InputManager : MonoBehaviour
 {
@@ -8,6 +11,7 @@ public class InputManager : MonoBehaviour
     public static InputManager Instance;
 
     public LayerMask maskLeftCLick;
+    public LayerMask UIMask;
 
     //défini la distance avant d'activé le drag 
     public float distanceBeforeDrag;
@@ -196,8 +200,16 @@ public class InputManager : MonoBehaviour
 
             if (!isOverCell && Input.GetMouseButtonDown(1) || Input.GetMouseButtonDown(0))
             {
-                if(UIManager.Instance.cellOptionsUI.gameObject.activeSelf)
-                    UIManager.Instance.cellOptionsUI.anim.Play("Hide");
+                
+                RaycastHit uihit = Helper.ReturnHit(Input.mousePosition, CellManager.mainCamera, UIMask);
+                Debug.Log(uihit.transform);
+
+                if (!UIManager.Instance.cellOptionsUI.mouseIsOver)
+                {
+
+                    if (UIManager.Instance.cellOptionsUI.gameObject.activeSelf)
+                        UIManager.Instance.HideUI(UIManager.Instance.cellOptionsUI.gameObject);
+                }
             }
 
             #endregion
@@ -205,7 +217,7 @@ public class InputManager : MonoBehaviour
         else
         {
 
-            if(hit.transform.tag == "Ground")
+            if(hit.transform != null && hit.transform.tag == "Ground")
             {
                 CellManager.Instance.CellDeplacement(hit.point, objectMoved);
 

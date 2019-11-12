@@ -104,6 +104,7 @@ public class UIManager : MonoBehaviour
     [Header("ToolTip")]
     public TooltipUI tooltipUI;
     public CellOptionsUI cellOptionsUI;
+    
 
     private float tooltipCount = 0;
     public float firstTooltipDelay = .4f;
@@ -132,7 +133,7 @@ public class UIManager : MonoBehaviour
         tooltipUI.UpdateUI(cell);
         DisplayUI(tooltipUI.gameObject);
         tooltipUI.transform.position = pos + Vector3.up;
-        tooltipUI.anim.Play("first Display");
+        //tooltipUI.anim.Play("first Display");
 
 
 
@@ -144,19 +145,20 @@ public class UIManager : MonoBehaviour
 
         secondTooltipDisplayed = true;
 
-        tooltipUI.anim.Play("second Display");
+        DisplayUI(tooltipUI.secondDisplay);
+        //tooltipUI.anim.Play("second Display");
     }
 
     public void UnloadToolTip()
     {
 
         if (secondTooltipDisplayed)
-            tooltipUI.anim.Play("hide both");
+            HideUI(tooltipUI.secondDisplay);
 
-        else if (firstTooltipDisplayed)
-            tooltipUI.anim.Play("hide first");
+        if (firstTooltipDisplayed)
+            HideUI(tooltipUI.gameObject);
 
-    
+
         tooltipCount = 0;
 
 
@@ -174,7 +176,7 @@ public class UIManager : MonoBehaviour
         DisplayUI(cellOptionsUI.gameObject);
         cellOptionsUI.transform.position = cell.transform.position + Vector3.up;
         cellOptionsUI.cell = cell;
-        cellOptionsUI.anim.Play("Display");
+        //cellOptionsUI.anim.Play("Display");
     }
 
     #endregion

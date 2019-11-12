@@ -135,6 +135,7 @@ public class QuickSetUp : Editor
         uiScript.TopBar = FindObjectOfType<TopBarUI>();
         uiScript.tooltipUI = FindObjectOfType<TooltipUI>();
         uiScript.tooltipUI.gameObject.SetActive(false);
+       
         uiScript.cellOptionsUI = FindObjectOfType<CellOptionsUI>();
         uiScript.cellOptionsUI.gameObject.SetActive(false);
 
