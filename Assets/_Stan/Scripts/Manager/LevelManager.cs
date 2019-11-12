@@ -7,7 +7,7 @@ public class LevelManager : MonoBehaviour
 {
     public static LevelManager instance;
 
-    public CellMain[] availablesCells;
+    public GameObject[] availablesCells;
 
     private void Start()
     {

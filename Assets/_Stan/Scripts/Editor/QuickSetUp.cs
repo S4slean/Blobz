@@ -89,6 +89,9 @@ public class QuickSetUp : Editor
         if (FindObjectOfType<LevelManager>() != null)
             DestroyImmediate(FindObjectOfType<LevelManager>().gameObject);
 
+        if (FindObjectOfType<BlobManager>() != null)
+            DestroyImmediate(FindObjectOfType<BlobManager>().gameObject);
+
         Debug.Log("Scene Cleaned");
     }
 
@@ -141,6 +144,32 @@ public class QuickSetUp : Editor
 
         #region POOLS
 
+        ObjectPooler pooler = pools.GetComponent<ObjectPooler>();
+        LevelManager lvlMng = levelManager.GetComponent<LevelManager>();
+
+        pooler.poolItems = new List<ObjectPoolItem>();
+
+        ObjectPoolItem linkPoolItem = new ObjectPoolItem();
+        linkPoolItem.objectToPool = Resources.Load("QuickSetUp/Link") as GameObject;
+        linkPoolItem.AmountToPool = 200;
+        pooler.poolItems.Add(linkPoolItem);
+
+
+        ObjectPoolItem blobPoolItem = new ObjectPoolItem();
+        blobPoolItem.objectToPool = Resources.Load("QuickSetUp/Blob") as GameObject;
+        blobPoolItem.AmountToPool = 200;
+        pooler.poolItems.Add(blobPoolItem);
+
+        for (int i = 0; i < lvlMng.availablesCells.Length; i++)
+        {
+            ObjectPoolItem cellPoolItem = new ObjectPoolItem();
+            cellPoolItem.objectToPool = lvlMng.availablesCells[i];
+            cellPoolItem.AmountToPool = 100;
+            pooler.poolItems.Add(cellPoolItem);
+        }
+
+        PoolCustomInpector.GeneratePools();
+
         #endregion
 
         #region CELLS_SHOP
@@ -162,7 +191,7 @@ public class QuickSetUp : Editor
             //UnityEditor.Events.UnityEventTools.AddPersistentListener(btn.onClick, new UnityEngine.Events.UnityAction(CellConstructionEvent));
 
             CellSelectionShop shop = uiScript.cellSelection;
-            CellMain cell = levelManager.GetComponent<LevelManager>().availablesCells[i];
+            CellMain cell = levelManager.GetComponent<LevelManager>().availablesCells[i].GetComponent<CellMain>();
             UnityAction<CellMain> action = new UnityAction<CellMain>(shop.CellConstruction);
 
 
