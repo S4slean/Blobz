@@ -20,6 +20,7 @@ public class QuickSetUp : Editor
     static GameObject resourceTracker;
     static GameObject camera;
     static GameObject levelManager;
+    static GameObject blobManager;
 
 
 
@@ -103,6 +104,7 @@ public class QuickSetUp : Editor
         resourceTracker = Resources.Load("QuickSetUp/RessourceTracker") as GameObject;
         camera = Resources.Load("QuickSetUp/--MainCamera--") as GameObject;
         levelManager = Resources.Load("QuickSetUp/LevelManager") as GameObject;
+        blobManager = Resources.Load("QuickSetUp/BlobManager") as GameObject;
     }
 
     static void BuildNewScene()
@@ -117,6 +119,7 @@ public class QuickSetUp : Editor
         resourceTracker = Instantiate(resourceTracker);
         camera = Instantiate(camera);
         levelManager = Instantiate(levelManager);
+        blobManager = Instantiate(blobManager);
 
         #region UI
 
