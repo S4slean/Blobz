@@ -48,9 +48,12 @@ MonoBehaviour:
     m_Bits: 6455
   distanceBeforeDrag: 1
   DelayBetweenClick: 0
-  clickCooldown: 0
+  clickCooldown: 0.1
   CellSelected: 0
   DraggingLink: 0
   InCellSelection: 0
   InPauseMenu: 0
   posCell: {x: 0, y: 0, z: 0}
+  leftClickedOnCell: 0
+  movingObject: 0
+  objectMoved: {fileID: 0}

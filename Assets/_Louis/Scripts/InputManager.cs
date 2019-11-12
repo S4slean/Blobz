@@ -29,6 +29,8 @@ public class InputManager : MonoBehaviour
 
     [HideInInspector]
     public Vector3 posCell;
+
+    private float clickTime;
     #endregion
 
 
@@ -49,6 +51,7 @@ public class InputManager : MonoBehaviour
     //permet d'éviter un getComponent à chaque frame lors du raycast de mouse Over
     private bool isOverCell;
     private bool rightClickedOnCell;
+    private bool leftClickedOnCell;
     private CellMain cellOver;
 
     public bool movingObject = false;
@@ -56,6 +59,8 @@ public class InputManager : MonoBehaviour
 
     private void Update()
     {
+        RaycastHit hit = Helper.ReturnHit(Input.mousePosition, CellManager.mainCamera, maskLeftCLick);
+
         if (!movingObject)
         {
             #region LINKS, INTERACTIONS AND CELL_CREATIONS
@@ -63,7 +68,7 @@ public class InputManager : MonoBehaviour
             //En train de drag le lien 
             if (DraggingLink && !InCellSelection)
             {
-                RaycastHit hit = Helper.ReturnHit(Input.mousePosition, CellManager.mainCamera, maskLeftCLick);
+
                 CellManager.Instance.DragNewlink(hit);
             }
 
@@ -71,9 +76,11 @@ public class InputManager : MonoBehaviour
             //Click Gauche Maintient
             if (Input.GetMouseButton(0))
             {
-                if (CellSelected)
+                clickTime += Time.deltaTime;
+
+                if (CellSelected && clickTime > clickCooldown && leftClickedOnCell)
                 {
-                    RaycastHit hit = Helper.ReturnHit(Input.mousePosition, CellManager.mainCamera, maskLeftCLick);
+       
                     //drag pour crée un lien
                     if (Vector3.Distance(posCell, hit.point) >= distanceBeforeDrag && !DraggingLink)
                     {
@@ -87,9 +94,13 @@ public class InputManager : MonoBehaviour
             //Click Gauche In
             if (Input.GetMouseButtonDown(0))
             {
-                if (!DraggingLink && !InCellSelection)
+                if (hit.transform != null && hit.transform.tag == "Cell")
+                    leftClickedOnCell = true;
+
+
+                if (!DraggingLink && !InCellSelection && isOverCell)
                 {
-                    RaycastHit hit = Helper.ReturnHit(Input.mousePosition, CellManager.mainCamera, maskLeftCLick);
+
                     //Debug.Log(hit.transform, hit.transform);
                     CellManager.Instance.SelectCell(hit);
                 }
@@ -99,18 +110,22 @@ public class InputManager : MonoBehaviour
             if (Input.GetMouseButtonUp(0))
             {
                 //pour interagir avec la cellule
-                if (Time.time <= clickCooldown)
+                if (clickTime <= clickCooldown && isOverCell && cellOver == CellManager.Instance.selectedCell)
                 {
                     CellManager.Instance.InteractWithCell();
                 }
 
 
+
                 if (DraggingLink)
                 {
-                    RaycastHit hit = Helper.ReturnHit(Input.mousePosition, CellManager.mainCamera, maskLeftCLick);
+
                     CellManager.Instance.ValidateNewLink(hit);
 
                 }
+
+                leftClickedOnCell = false;
+                clickTime = 0;
 
             }
 
@@ -137,22 +152,22 @@ public class InputManager : MonoBehaviour
 
             #region MOUSEOVER_CELLS - TOOLTIP
 
+
             if (!DraggingLink && !InCellSelection)
             {
-                RaycastHit hit = Helper.ReturnHit(Input.mousePosition, CellManager.mainCamera, maskLeftCLick);
-
 
                 if (hit.transform != null && hit.transform.tag == "Cell" && !isOverCell)
                 {
                     isOverCell = true;
                     cellOver = hit.transform.GetComponent<CellMain>();
                 }
-                else if (hit.transform == null || hit.transform.tag != "Cell")
-                {
-                    isOverCell = false;
-                }
             }
 
+            if (hit.transform == null || hit.transform.tag != "Cell")
+            {
+                isOverCell = false;
+                cellOver = null;
+            }
 
             if (isOverCell)
             {
@@ -189,7 +204,7 @@ public class InputManager : MonoBehaviour
         }
         else
         {
-            RaycastHit hit = Helper.ReturnHit(Input.mousePosition, CellManager.mainCamera, maskLeftCLick);
+
             if(hit.transform.tag == "Ground")
             {
                 CellManager.Instance.CellDeplacement(hit.point, objectMoved);

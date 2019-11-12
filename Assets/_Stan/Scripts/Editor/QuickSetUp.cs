@@ -155,15 +155,14 @@ public class QuickSetUp : Editor
 
             //UnityEditor.Events.UnityEventTools.AddPersistentListener(btn.onClick, new UnityEngine.Events.UnityAction(CellConstructionEvent));
 
+            CellSelectionShop shop = uiScript.cellSelection;
+            CellMain cell = levelManager.GetComponent<LevelManager>().availablesCells[i];
+            UnityAction<CellMain> action = new UnityAction<CellMain>(shop.CellConstruction);
 
 
-            UnityEventTools.AddObjectPersistentListener<CellMain>(
-                btn.onClick,
-                uiManager.GetComponent<UIManager>().cellSelection.CellConstruction,
-                levelManager.GetComponent<LevelManager>().availablesCells[i]);
+            //UnityEventTools.AddObjectPersistentListener<CellMain>(btn.onClick, action, cell);
 
-            //btn.onClick.Add(delegate () {
-            //    uiManager.GetComponent<UIManager>().cellSelection.CellConstruction(LevelManager.instance.availablesCells[i].blopPrefab.GetComponent<CellMain>()); });  
+            btn.onClick.AddListener(delegate { action(cell); }) ;  
         }
 
         #endregion
