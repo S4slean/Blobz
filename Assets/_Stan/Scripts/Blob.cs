@@ -16,7 +16,8 @@ public class Blob : PoolableObjects
     public float flySpeed = 5;
 
 
-    private void Start()
+
+    private void OnEnable()
     {
         rb = GetComponent<Rigidbody>();
         rd = GetComponent<Renderer>();
@@ -49,6 +50,7 @@ public class Blob : PoolableObjects
     {
         transform.LookAt(transform.position + direction);
         rb.AddForce(direction, ForceMode.Impulse);
+        Debug.Log("jump");
     }
 
     public void Fly()

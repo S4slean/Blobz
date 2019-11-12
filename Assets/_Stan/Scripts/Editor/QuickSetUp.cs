@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEditor;
 using UnityEngine.UI;
 using UnityEngine.Events;
+using UnityEngine.EventSystems;
 using UnityEditor.Events;
 
 public class QuickSetUp : Editor
@@ -149,6 +150,8 @@ public class QuickSetUp : Editor
             GameObject objInstance = Instantiate(button);
             RectTransform rect = objInstance.GetComponent<RectTransform>();
             Button btn = objInstance.GetComponent<Button>();
+            EventTrigger trigger = objInstance.GetComponent<EventTrigger>();
+            CellConstructionButton constructeur = objInstance.GetComponent<CellConstructionButton>();
 
             uiManager.GetComponent<UIManager>().cellSelection.GetComponent<CellSelectionShop>().buttonTypes[i] = btn;
             rect.SetParent(uiManager.GetComponent<UIManager>().cellSelection.transform );
@@ -160,9 +163,12 @@ public class QuickSetUp : Editor
             UnityAction<CellMain> action = new UnityAction<CellMain>(shop.CellConstruction);
 
 
-            //UnityEventTools.AddObjectPersistentListener<CellMain>(btn.onClick, action, cell);
+            EventTrigger.Entry entry = new EventTrigger.Entry();
+            entry.eventID = EventTriggerType.PointerClick;
+            //entry.callback.AddListener(action);
 
-            btn.onClick.AddListener(delegate { action(cell); }) ;  
+
+            //btn.onClick.AddListener(delegate { action(cell); }) ;  
         }
 
         #endregion

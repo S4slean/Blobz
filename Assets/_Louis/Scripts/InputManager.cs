@@ -43,7 +43,7 @@ public class InputManager : MonoBehaviour
         else
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
+            //DontDestroyOnLoad(gameObject);
         }
         layer_Mask_Cell = LayerMask.GetMask("Cell");
     }

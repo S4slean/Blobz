@@ -62,6 +62,10 @@ MonoBehaviour:
   rd: {fileID: 5531137448002726529}
   tagetTransform: {fileID: 0}
   isStuck: 0
+  infectedCell: {fileID: 0}
+  infectionAmount: 1
+  flyTime: 1
+  flySpeed: 5
 --- !u!23 &5531137448002726529
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -114,7 +118,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!135 &366999153
 SphereCollider:

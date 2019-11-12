@@ -32,7 +32,7 @@ public class CellManager : MonoBehaviour
         else
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
+            //DontDestroyOnLoad(gameObject);
         }
 
         mainCamera = Camera.main;

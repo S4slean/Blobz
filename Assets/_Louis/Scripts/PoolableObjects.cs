@@ -13,12 +13,13 @@ public class PoolableObjects : MonoBehaviour
         gameObject.SetActive(true);
     }
 
-    public  virtual void Inpool()
+    public virtual void Inpool()
     {
         //Vector3 pos = transform.position;
         //pos =Vector3.Lerp(transform.position , ObjectPooler.poolingSystem.transform.position , 0.01f);
         //transform.position = pos;
-        transform.position = ObjectPooler.poolingSystem.transform.position;
+        //transform.position = ObjectPooler.poolingSystem.transform.position;
+        canBePool = true;
         gameObject.SetActive(false);
         
     }

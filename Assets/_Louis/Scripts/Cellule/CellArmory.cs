@@ -38,7 +38,7 @@ public class CellArmory : CellMain
 
                     newBlob.transform.position = targetDirection.transform.position + Helper.RandomVectorInUpSphere();
 
-                    newBlob.Jump(Helper.RandomVectorInUpSphere() * 100);
+                    //newBlob.Jump(Helper.RandomVectorInUpSphere() * 1);
 
                 }
                 currentTick = 0;

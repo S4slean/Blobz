@@ -316,14 +316,23 @@ public class CellMain : PoolableObjects
     //A changé au lieu de désactiver on peut juste désactiver les components ( c'est une micro opti ) 
     public override void Inpool()
     {
-        transform.position = ObjectPooler.poolingSystem.transform.position;
-        canBePool = true;
-        StartCoroutine(DesactiveGameObject(0.02f));
+        if (Application.isEditor)
+        {
+            canBePool = true;
+            gameObject.SetActive(false);
+        }
+        else
+        {
+
+            canBePool = true;
+            transform.position = ObjectPooler.poolingSystem.transform.position;
+            StartCoroutine(DesactiveGameObject(0.02f));
+        }
     }
 
     public virtual void GraphSetup()
     {
-        Vector3 graphPos = transform.position + new Vector3(0 , 0.5f , 0 );
+        Vector3 graphPos = transform.position + new Vector3(0, 0, 0);
         graphTransform.position = graphPos;
     }
 }
