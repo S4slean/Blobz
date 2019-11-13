@@ -179,7 +179,7 @@ GameObject:
   - component: {fileID: 362889066846733970}
   m_Layer: 0
   m_Name: ToolTips
-  m_TagString: Untagged
+  m_TagString: UI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -216,9 +216,9 @@ GameObject:
   - component: {fileID: 362889067093387138}
   - component: {fileID: 362889067093387140}
   - component: {fileID: 362889067093387139}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: BckGrd
-  m_TagString: Untagged
+  m_TagString: UI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -291,10 +291,9 @@ GameObject:
   - component: {fileID: 362889067271759617}
   - component: {fileID: 362889067271759618}
   - component: {fileID: 362889067271759620}
-  - component: {fileID: 362889067271759619}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: CellToolTips
-  m_TagString: Untagged
+  m_TagString: UI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -339,29 +338,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6c730d2d0da8d34eb0f8f8aac137bfa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anim: {fileID: 362889067271759619}
   cellName: {fileID: 362889068556543605}
   cellDescription: {fileID: 362889068261343861}
   effects: {fileID: 362889068537847443}
---- !u!95 &362889067271759619
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 362889067271759616}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 9b3e747904571a24bac18bcd837f8d7c, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  secondDisplay: {fileID: 362889067808366947}
 --- !u!1 &362889067507260719
 GameObject:
   m_ObjectHideFlags: 0
@@ -477,13 +457,13 @@ GameObject:
   m_Component:
   - component: {fileID: 362889067808366948}
   - component: {fileID: 362889067808366950}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: SecondTooltip
-  m_TagString: Untagged
+  m_TagString: UI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &362889067808366948
 RectTransform:
   m_ObjectHideFlags: 0
@@ -523,9 +503,9 @@ GameObject:
   - component: {fileID: 362889068234310786}
   - component: {fileID: 362889068234310788}
   - component: {fileID: 362889068234310787}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: firstToolTip
-  m_TagString: Untagged
+  m_TagString: UI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -599,9 +579,9 @@ GameObject:
   - component: {fileID: 362889068261343860}
   - component: {fileID: 362889068261343862}
   - component: {fileID: 362889068261343861}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: CellDescription
-  m_TagString: Untagged
+  m_TagString: UI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -785,9 +765,9 @@ GameObject:
   - component: {fileID: 362889068430418828}
   - component: {fileID: 362889068430418830}
   - component: {fileID: 362889068430418829}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: CellName
-  m_TagString: Untagged
+  m_TagString: UI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -940,9 +920,9 @@ GameObject:
   - component: {fileID: 362889068537847442}
   - component: {fileID: 362889068537847444}
   - component: {fileID: 362889068537847443}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: CellDescription
-  m_TagString: Untagged
+  m_TagString: UI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1095,9 +1075,9 @@ GameObject:
   - component: {fileID: 362889068556543604}
   - component: {fileID: 362889068556543606}
   - component: {fileID: 362889068556543605}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: CellName
-  m_TagString: Untagged
+  m_TagString: UI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1348,11 +1328,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8203575074865387462}
-  - component: {fileID: 2092475154767742711}
   - component: {fileID: 6651316797528057288}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: CellOptions
-  m_TagString: Untagged
+  m_TagString: UI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1377,25 +1356,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 55, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!95 &2092475154767742711
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 599175792478609449}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 81328dc5ced5fec42a1c7f7c3d9d151b, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &6651316797528057288
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1408,7 +1368,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73787c36dc81474418f6628fe8c2698b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anim: {fileID: 2092475154767742711}
   cell: {fileID: 0}
 --- !u!1 &1111867399417607909
 GameObject:
@@ -1421,9 +1380,9 @@ GameObject:
   - component: {fileID: 3270926205361305875}
   - component: {fileID: 4841326746348910360}
   - component: {fileID: 8468331218742442722}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Bck
-  m_TagString: Untagged
+  m_TagString: UI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1497,9 +1456,9 @@ GameObject:
   - component: {fileID: 2612664439652035824}
   - component: {fileID: 1701083647569703368}
   - component: {fileID: 2777514086643443925}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Btn_Delete
-  m_TagString: Untagged
+  m_TagString: UI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1809,9 +1768,9 @@ GameObject:
   - component: {fileID: 2159763939953478098}
   - component: {fileID: 1648442087462931082}
   - component: {fileID: 1516077769159824728}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Btn_Move
-  m_TagString: Untagged
+  m_TagString: UI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1966,9 +1925,9 @@ GameObject:
   - component: {fileID: 9160924855768845400}
   - component: {fileID: 7126454752418277424}
   - component: {fileID: 1666865415276949299}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Cross
-  m_TagString: Untagged
+  m_TagString: UI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

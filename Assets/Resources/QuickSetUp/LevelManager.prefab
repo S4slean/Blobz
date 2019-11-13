@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   availablesCells:
-  - {fileID: 11400000, guid: e99918bd31012504e993fbf7666e0863, type: 2}
-  - {fileID: 11400000, guid: 274bcb4655c1c7d448a180629ab7c672, type: 2}
-  - {fileID: 11400000, guid: d35151efcdfd26345aee87cc67d97f88, type: 2}
-  - {fileID: 11400000, guid: df917586c15ca0c409f512efdab3a763, type: 2}
+  - {fileID: 5449206648009261835, guid: 257ce46f156b623499da87320e42c31f, type: 3}
+  - {fileID: 5449206648009261835, guid: e06466da8d1decb409888187dfd365c7, type: 3}
+  - {fileID: 6972052367257400834, guid: 4e9497ea1e00ed745bda0818b1c5748c, type: 3}
+  - {fileID: 8322403635272401023, guid: cf6843133c307224196e57962e7f5179, type: 3}

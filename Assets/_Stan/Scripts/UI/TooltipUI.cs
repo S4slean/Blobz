@@ -5,11 +5,12 @@ using TMPro;
 
 public class TooltipUI : MonoBehaviour
 {
-    public Animator anim;
+    //public Animator anim;
     public TextMeshProUGUI cellName;
     public TextMeshProUGUI cellDescription;
     public TextMeshProUGUI effects;
-    
+    public GameObject secondDisplay;
+
 
     public void UpdateUI(CellMain cell)
     {

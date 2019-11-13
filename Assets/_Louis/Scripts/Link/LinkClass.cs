@@ -35,14 +35,14 @@ public class LinkClass : PoolableObjects
         // on pourra lancer une anim ici 
     }
 
-    public  bool CheckLength(Vector3 posToTest)
+    public bool CheckLength(Vector3 posToTest)
     {
         //distance entre la position testé et le point de début et de fin ( donc entre cellule d'origine  et de fin
         float length1 = Vector3.Distance(startPos, posToTest);
         float length2 = Vector3.Distance(endPos, posToTest);
 
         //check la distance en fonction de la range des 2 cellules
-        if (length1 <= originalCell.myCellTemplate.range && length2 <= receivingCell.myCellTemplate.range)
+        if (length1 <= originalCell.myCellTemplate.range/2 && length2 <= receivingCell.myCellTemplate.range/2)
         {
             return true;
         }

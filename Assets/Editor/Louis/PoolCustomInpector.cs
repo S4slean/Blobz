@@ -6,7 +6,7 @@ using UnityEditor;
 [CustomEditor(typeof(ObjectPooler))]
 public class PoolCustomInpector : Editor
 {
-    ObjectPooler objPooler;
+    static ObjectPooler objPooler;
 
 
 
@@ -40,8 +40,12 @@ public class PoolCustomInpector : Editor
         serializedObject.ApplyModifiedProperties();
         base.OnInspectorGUI();
     }
-    private void GeneratePools()
+    public static void GeneratePools()
     {
+        if(objPooler == null)
+        {
+            objPooler = FindObjectOfType<ObjectPooler>();
+        }
         Undo.RecordObject(objPooler, "CreateList");
         objPooler.pooledObjects = new List<PoolableObjects>();
         #region Ancien
@@ -88,7 +92,7 @@ public class PoolCustomInpector : Editor
                 GameObject obj = (GameObject)PrefabUtility.InstantiatePrefab(objPooler.poolItems[j].objectToPool, objPooler.poolItems[j].poolParent.transform);
                 if (obj == null)
                 {
-                    Debug.LogError("Une pool n'a pas d'objet ", this);
+                    
                     return;
                 }
 

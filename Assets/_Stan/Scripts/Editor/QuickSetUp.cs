@@ -21,6 +21,7 @@ public class QuickSetUp : Editor
     static GameObject camera;
     static GameObject levelManager;
     static GameObject blobManager;
+    static GameObject ground;
 
 
 
@@ -48,7 +49,9 @@ public class QuickSetUp : Editor
             || GameObject.FindGameObjectWithTag("UI") != null
             || GameObject.Find("--Pools--") != null
             || FindObjectOfType<CameraController>() != null
-            || FindObjectOfType<LevelManager>() != null)
+            || FindObjectOfType<LevelManager>() != null
+            || FindObjectOfType<BlobManager>() != null
+            || GameObject.FindGameObjectWithTag("Ground"))
         {
             return false;
         }
@@ -89,6 +92,12 @@ public class QuickSetUp : Editor
         if (FindObjectOfType<LevelManager>() != null)
             DestroyImmediate(FindObjectOfType<LevelManager>().gameObject);
 
+        if (FindObjectOfType<BlobManager>() != null)
+            DestroyImmediate(FindObjectOfType<BlobManager>().gameObject);
+
+        if(GameObject.FindGameObjectWithTag("Ground") != null)
+            DestroyImmediate(GameObject.FindGameObjectWithTag("Ground"));
+
         Debug.Log("Scene Cleaned");
     }
 
@@ -105,6 +114,7 @@ public class QuickSetUp : Editor
         camera = Resources.Load("QuickSetUp/--MainCamera--") as GameObject;
         levelManager = Resources.Load("QuickSetUp/LevelManager") as GameObject;
         blobManager = Resources.Load("QuickSetUp/BlobManager") as GameObject;
+        ground = Resources.Load("QuickSetUp/Ground") as GameObject;
     }
 
     static void BuildNewScene()
@@ -120,6 +130,10 @@ public class QuickSetUp : Editor
         camera = Instantiate(camera);
         levelManager = Instantiate(levelManager);
         blobManager = Instantiate(blobManager);
+        ground = Instantiate(ground);
+
+        ground.transform.position = Vector3.zero;
+
 
         #region UI
 
@@ -132,6 +146,7 @@ public class QuickSetUp : Editor
         uiScript.TopBar = FindObjectOfType<TopBarUI>();
         uiScript.tooltipUI = FindObjectOfType<TooltipUI>();
         uiScript.tooltipUI.gameObject.SetActive(false);
+       
         uiScript.cellOptionsUI = FindObjectOfType<CellOptionsUI>();
         uiScript.cellOptionsUI.gameObject.SetActive(false);
 
@@ -141,6 +156,32 @@ public class QuickSetUp : Editor
 
         #region POOLS
 
+        ObjectPooler pooler = pools.GetComponent<ObjectPooler>();
+        LevelManager lvlMng = levelManager.GetComponent<LevelManager>();
+
+        pooler.poolItems = new List<ObjectPoolItem>();
+
+        ObjectPoolItem linkPoolItem = new ObjectPoolItem();
+        linkPoolItem.objectToPool = Resources.Load("QuickSetUp/Link") as GameObject;
+        linkPoolItem.AmountToPool = 200;
+        pooler.poolItems.Add(linkPoolItem);
+
+
+        ObjectPoolItem blobPoolItem = new ObjectPoolItem();
+        blobPoolItem.objectToPool = Resources.Load("QuickSetUp/Blob") as GameObject;
+        blobPoolItem.AmountToPool = 200;
+        pooler.poolItems.Add(blobPoolItem);
+
+        for (int i = 0; i < lvlMng.availablesCells.Length; i++)
+        {
+            ObjectPoolItem cellPoolItem = new ObjectPoolItem();
+            cellPoolItem.objectToPool = lvlMng.availablesCells[i];
+            cellPoolItem.AmountToPool = 100;
+            pooler.poolItems.Add(cellPoolItem);
+        }
+
+        PoolCustomInpector.GeneratePools();
+
         #endregion
 
         #region CELLS_SHOP
@@ -148,13 +189,14 @@ public class QuickSetUp : Editor
 
         uiScript.cellSelection.buttonTypes = new Button[levelManager.GetComponent<LevelManager>().availablesCells.Length];
 
-        for (int i = 0; i < levelManager.GetComponent<LevelManager>().availablesCells.Length ; i++)
+        for (int i = 0; i < lvlMng.availablesCells.Length ; i++)
         {
             GameObject objInstance = Instantiate(button);
+            objInstance.name = lvlMng.availablesCells[i].name + "Button";
             RectTransform rect = objInstance.GetComponent<RectTransform>();
             Button btn = objInstance.GetComponent<Button>();
-            EventTrigger trigger = objInstance.GetComponent<EventTrigger>();
-            CellConstructionButton constructeur = objInstance.GetComponent<CellConstructionButton>();
+
+
 
             uiManager.GetComponent<UIManager>().cellSelection.GetComponent<CellSelectionShop>().buttonTypes[i] = btn;
             rect.SetParent(uiManager.GetComponent<UIManager>().cellSelection.transform );
@@ -162,16 +204,10 @@ public class QuickSetUp : Editor
             //UnityEditor.Events.UnityEventTools.AddPersistentListener(btn.onClick, new UnityEngine.Events.UnityAction(CellConstructionEvent));
 
             CellSelectionShop shop = uiScript.cellSelection;
-            CellMain cell = levelManager.GetComponent<LevelManager>().availablesCells[i];
+            CellMain cell = levelManager.GetComponent<LevelManager>().availablesCells[i].GetComponent<CellMain>();
             UnityAction<CellMain> action = new UnityAction<CellMain>(shop.CellConstruction);
 
-
-            EventTrigger.Entry entry = new EventTrigger.Entry();
-            entry.eventID = EventTriggerType.PointerClick;
-            //entry.callback.AddListener(action);
-
-
-            //btn.onClick.AddListener(delegate { action(cell); }) ;  
+            UnityEventTools.AddObjectPersistentListener<CellMain>(btn.onClick, action, cell);
         }
 
         #endregion
@@ -179,8 +215,4 @@ public class QuickSetUp : Editor
 
     }
 
-    //public static void CellConstructionEvent(int i)
-    //{
-    //    uiManager.GetComponent<UIManager>().cellSelection.CellConstruction(LevelManager.instance.availablesCells[i].blopPrefab.GetComponent<CellMain>());
-    //}
 }
