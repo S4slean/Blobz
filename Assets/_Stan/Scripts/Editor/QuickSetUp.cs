@@ -196,13 +196,7 @@ public class QuickSetUp : Editor
             CellMain cell = levelManager.GetComponent<LevelManager>().availablesCells[i].GetComponent<CellMain>();
             UnityAction<CellMain> action = new UnityAction<CellMain>(shop.CellConstruction);
 
-
-            EventTrigger.Entry entry = new EventTrigger.Entry();
-            entry.eventID = EventTriggerType.PointerClick;
-            //entry.callback.AddListener(action);
-
-
-            //btn.onClick.AddListener(delegate { action(cell); }) ;  
+            UnityEventTools.AddObjectPersistentListener<CellMain>(btn.onClick, action, cell);
         }
 
         #endregion
@@ -210,8 +204,4 @@ public class QuickSetUp : Editor
 
     }
 
-    //public static void CellConstructionEvent(int i)
-    //{
-    //    uiManager.GetComponent<UIManager>().cellSelection.CellConstruction(LevelManager.instance.availablesCells[i].blopPrefab.GetComponent<CellMain>());
-    //}
 }
