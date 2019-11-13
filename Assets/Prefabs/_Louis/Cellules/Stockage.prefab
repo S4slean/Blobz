@@ -626,12 +626,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canBePool: 0
   myCellTemplate: {fileID: 11400000, guid: df917586c15ca0c409f512efdab3a763, type: 2}
+  showRef: 0
   NBlob: {fileID: 4474176674694331671}
   NLink: {fileID: 5353293827010372031}
   NCurrentProximity: {fileID: 4580034776522669225}
   graphTransform: {fileID: 4611135374353505814}
   ProximityDectection: {fileID: 8404008211773970808}
+  showDebug: 0
   links: []
+  showlinks: 0
   noMoreLink: 0
   BlobNumber: 0
   hasBeenDrop: 0

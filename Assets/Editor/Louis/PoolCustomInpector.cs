@@ -9,12 +9,15 @@ public class PoolCustomInpector : Editor
     ObjectPooler objPooler;
 
 
+
     private void OnEnable()
     {
         objPooler = target as ObjectPooler;
     }
     public override void OnInspectorGUI()
     {
+        serializedObject.Update();
+
         if (objPooler.poolItems.Count > 0)
         {
             GUILayout.BeginHorizontal();
@@ -34,6 +37,7 @@ public class PoolCustomInpector : Editor
             EditorGUILayout.HelpBox("You have to create object's Pool", MessageType.Info);
         }
 
+        serializedObject.ApplyModifiedProperties();
         base.OnInspectorGUI();
     }
     private void GeneratePools()

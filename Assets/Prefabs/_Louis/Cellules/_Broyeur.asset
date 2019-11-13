@@ -13,7 +13,10 @@ MonoBehaviour:
   m_Name: _Broyeur
   m_EditorClassIdentifier: 
   cellsEnableToBuild: []
-  blopPrefab: {fileID: 0}
+  blopPrefab: {fileID: 2596948755250502091, guid: 87d5b5a8fb0cf7442878829ab452a3bd,
+    type: 3}
+  buttonColor: {r: 0, g: 0, b: 0, a: 0}
+  cellTexture: {fileID: 0}
   type: 3
   EnergyCost: 10
   range: 30
@@ -26,3 +29,11 @@ MonoBehaviour:
   proximityLevelMax: 4
   positivesInteractions: 00000000
   negativesInteractions: 01000000
+  SurprodRate: 
+  targetDirection: {fileID: 0}
+  BlopPerTick: []
+  stockageCapacity: 
+  REFS: 0
+  ToggleInfoBox: 0
+  stats: 0
+  ProductionGestions: 0

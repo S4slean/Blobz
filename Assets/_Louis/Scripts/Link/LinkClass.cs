@@ -74,4 +74,5 @@ public class LinkClass : PoolableObjects
         originalCell.RemoveLink(this);
         gameObject.SetActive(false);
     }
+
 }

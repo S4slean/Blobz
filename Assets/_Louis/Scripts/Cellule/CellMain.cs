@@ -8,12 +8,11 @@ using TMPro;
 public class CellMain : PoolableObjects
 {
     #region Variables
-    [Tooltip("glissé l'un des srcyptable object structure ici")]
     public CelluleTemplate myCellTemplate;
 
 
     // public List<CelulleMain> outputCell;
-    [Header("REF")]
+    public bool showRef;
     public TextMeshPro NBlob;
     public TextMeshPro NLink;
     public TextMeshPro NCurrentProximity;
@@ -26,8 +25,9 @@ public class CellMain : PoolableObjects
     public CellProximityDectection ProximityDectection;
 
 
-    [Header("Debug")]
+    public bool showDebug;
     public List<LinkClass> links = new List<LinkClass>();
+    public bool showlinks;
     public bool noMoreLink;
     public int BlobNumber;
     public bool hasBeenDrop;

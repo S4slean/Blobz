@@ -6,10 +6,10 @@ public class CellProductrice : CellMain
 {
     [Header("Spécificitées")]
     private int SurproductionRate;
-    [Header("Proximity Level Modif")]
-    [Range(0f, 100f)]
-    public int[] SurprodRate;
-
+   // [Header("Proximity Level Modif")]
+   // [Range(0f, 100f)]
+   //// public int[] myCellTemplate.SurprodRate;
+    
 
     public override void BlobsTick()
     {
@@ -44,30 +44,31 @@ public class CellProductrice : CellMain
         base.ProximityLevelModification(Amout);
         if (currentProximityLevel > 0)
         {
+            
             switch (currentProximityLevel)
             {
                 case 0:
                     //c'est une variable de debug
                     currentProximityTier = 0;
-                    SurproductionRate = SurprodRate[0];
+                    SurproductionRate = myCellTemplate.SurproductionRate[0];
                     break;
                 case 1:
                     currentProximityTier = 1;
-                    SurproductionRate = SurprodRate[1];
+                    SurproductionRate = myCellTemplate.SurproductionRate[1];
                     break;
                 case 2:
                     currentProximityTier = 2;
-                    SurproductionRate = SurprodRate[2];
+                    SurproductionRate = myCellTemplate.SurproductionRate[2];
                     break;
                 case 3:
                     currentProximityTier = 3;
-                    SurproductionRate = SurprodRate[3];
+                    SurproductionRate = myCellTemplate.SurproductionRate[3];
                     break;
                 //si > 0 max tier (soit 4 ) 
 
                 default:
                     currentProximityTier = 3;
-                    SurproductionRate = SurprodRate[3];
+                    SurproductionRate = myCellTemplate.SurproductionRate[3];
                     break;
 
             }
@@ -75,7 +76,7 @@ public class CellProductrice : CellMain
         else
         {
             currentProximityTier = 0;
-            SurproductionRate = SurprodRate[0];
+            SurproductionRate = myCellTemplate.SurproductionRate[0];
         }
     }
 }

@@ -6,9 +6,14 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Cell", menuName = "Cell", order = 1)]
 public class CelluleTemplate : ScriptableObject
 {
-    [Header ("REF IMPORTANT")]
+
+
+   // [Header ("REF IMPORTANT")]
     public GameObject[] cellsEnableToBuild;
     public GameObject blopPrefab;
+    public Color buttonColor;
+    public Texture cellTexture;
+    
     [Space(20f)]
 
     //public Mesh mesh;
@@ -18,7 +23,7 @@ public class CelluleTemplate : ScriptableObject
 
     public CellType type;
     [Range(0f, 50f)]
-    [Header ("Standard Stats")]
+ //   [Header ("Standard Stats")]
     public int EnergyCost = 5;
     [Range(0f, 300f)]
     public int range = 50;
@@ -27,7 +32,7 @@ public class CelluleTemplate : ScriptableObject
     [Range(5 ,100)]
     public int impulseForce_Death = 10;
 
-    [Header("Productions Gestions")]
+   // [Header("Productions Gestions")]
     [Range(0, 10)]
     public int prodPerTick;
     [Range(0, 10)]
@@ -37,10 +42,33 @@ public class CelluleTemplate : ScriptableObject
     [Range(0f, 12f)]
     public int linkCapability = 6;
 
-    [Header("Proximity Interaction")]
+  //  [Header("Proximity Interaction")]
     [Range(0 , 5)]
     public int proximityLevelMax = 0;
     public CellType[] positivesInteractions;
     public CellType[] negativesInteractions;
-    
+
+    #region SPECIFICITE CELL 
+    //Productrice
+    public int[] SurproductionRate;
+    //Armory
+    public GameObject targetDirection;
+    public float[] BlopPerTick;
+    //Stockage
+    public int[] stockageCapacity;
+
+    public int[] LinkCapacity;
+    public int[] Range;
+
+    #endregion
+
+
+    public StatsModificationType StatsModification;
+
+    public bool REFS;
+    public bool ToggleInfoBox = true;
+    public bool STATS;
+    public bool ProductionGestion;
+    public bool ProximityGestion;
+
 }
