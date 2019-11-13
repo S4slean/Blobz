@@ -61,7 +61,7 @@ public class CellManager : MonoBehaviour
     {
         // Permet de draw la line en runtime 
         float distance = Vector3.Distance(currentLink.startPos, hit.point);
-        if (distance <= selectedCell.myCellTemplate.range / 2)
+        if (distance <= selectedCell.myCellTemplate.rangeBase / 2)
         {
             currentLink.endPos = new Vector3(hit.point.x, currentLink.startPos.y, hit.point.z);
             currentLine.SetPosition(1, currentLink.endPos);
@@ -71,7 +71,7 @@ public class CellManager : MonoBehaviour
             Vector3 direction = (hit.point - currentLink.startPos);
             direction = new Vector3(direction.x, 0, direction.z);
             direction = direction.normalized;
-            currentLink.endPos = currentLink.startPos + direction * selectedCell.myCellTemplate.range / 2;
+            currentLink.endPos = currentLink.startPos + direction * selectedCell.myCellTemplate.rangeBase / 2;
             currentLine.SetPosition(1, currentLink.endPos);
         }
     }

@@ -26,7 +26,8 @@ public class CellArmory : CellMain
             currentTick++;
             if (currentTick == tickForActivation)
             {
-                for (int i = 0; i < myCellTemplate.rejectPower_RF + rfBonus; i++)
+                //for (int i = 0; i < myCellTemplate.rejectPowerBase + rfBonus; i++) f
+                for (int i = 0; i <currentRejectPower + rfBonus; i++)
                 {
                     RemoveBlob(1);
                     // Debug.LogWarning("PENSEZ à REGLER le sy")
@@ -40,7 +41,6 @@ public class CellArmory : CellMain
                     newBlob.transform.position = myCellTemplate.targetDirection.transform.position + Helper.RandomVectorInUpSphere();
 
                     //newBlob.Jump(Helper.RandomVectorInUpSphere() * 1);
-
                 }
                 currentTick = 0;
             }
@@ -67,6 +67,7 @@ public class CellArmory : CellMain
     public override void ProximityLevelModification(int Amout)
     {
         base.ProximityLevelModification(Amout);
+
         if (currentProximityLevel > 0)
         {
             switch (currentProximityLevel)
@@ -106,10 +107,7 @@ public class CellArmory : CellMain
             currentProximityTier = 0;
             tickForActivation = (int)(1 / myCellTemplate.BlopPerTick[currentProximityTier]);
         }
-
-
-
-
+        
 
     }
 

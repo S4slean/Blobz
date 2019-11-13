@@ -19,15 +19,30 @@ MonoBehaviour:
   - {fileID: 5449206648009261835, guid: e06466da8d1decb409888187dfd365c7, type: 3}
   blopPrefab: {fileID: 2596948755250502091, guid: 87d5b5a8fb0cf7442878829ab452a3bd,
     type: 3}
+  buttonColor: {r: 0.06549895, g: 1, b: 0, a: 0}
+  cellTexture: {fileID: 0}
   type: 0
   EnergyCost: 5
-  range: 20
+  rangeBase: 15
   blobRatioAtDeath: 0
   impulseForce_Death: 0
-  prodPerTick: 1
-  rejectPower_RF: 2
+  prodPerTickBase: 1
+  rejectPowerBase: 2
   storageCapability: 20
   linkCapability: 8
   proximityLevelMax: 4
   positivesInteractions: 0000000002000000
   negativesInteractions: 03000000
+  SurproductionRate: 0f0000001e0000003c0000005a000000
+  targetDirection: {fileID: 0}
+  BlopPerTick: []
+  stockageCapacity: 
+  LinkCapacity: 
+  Range: 
+  energyPerblop: 0
+  StatsModification: 0
+  REFS: 0
+  ToggleInfoBox: 1
+  STATS: 0
+  ProductionGestion: 1
+  ProximityGestion: 0
