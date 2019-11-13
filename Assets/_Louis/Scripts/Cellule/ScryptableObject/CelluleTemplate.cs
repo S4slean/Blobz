@@ -48,7 +48,6 @@ public class CelluleTemplate : ScriptableObject
 
     #region SPECIFICITE CELL 
     public int[] SurproductionRate;
-    public GameObject targetDirection;
 
     public float[] BlopPerTick;
     public int[] stockageCapacity;
@@ -57,7 +56,6 @@ public class CelluleTemplate : ScriptableObject
     public int[] Range;
 
     public int energyPerblop;
-
     #endregion
 
     #region InspectorCustom

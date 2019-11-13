@@ -19,6 +19,9 @@ public class CellMain : PoolableObjects
     public TextMeshPro NCurrentProximity;
     public Transform graphTransform;
 
+    public Transform TargetPos;
+
+
     //public MeshFilter mF;
     //public MeshRenderer mR;
     // public MeshCollider mC;

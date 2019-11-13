@@ -38,7 +38,7 @@ public class CellArmory : CellMain
 
                     newBlob.Outpool();
 
-                    newBlob.transform.position = myCellTemplate.targetDirection.transform.position + Helper.RandomVectorInUpSphere();
+                    newBlob.transform.position = TargetPos.transform.position + Helper.RandomVectorInUpSphere();
 
                     //newBlob.Jump(Helper.RandomVectorInUpSphere() * 1);
                 }

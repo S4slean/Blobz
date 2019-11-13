@@ -30,7 +30,6 @@ MonoBehaviour:
   positivesInteractions: 02000000
   negativesInteractions: 03000000
   SurproductionRate: 0a00000020000000460000005a000000
-  targetDirection: {fileID: 0}
   BlopPerTick:
   - 0.25
   - 0.5
@@ -41,8 +40,8 @@ MonoBehaviour:
   Range: 
   energyPerblop: 0
   StatsModification: 1
-  REFS: 1
+  REFS: 0
   ToggleInfoBox: 0
-  STATS: 1
-  ProductionGestion: 1
-  ProximityGestion: 1
+  STATS: 0
+  ProductionGestion: 0
+  ProximityGestion: 0

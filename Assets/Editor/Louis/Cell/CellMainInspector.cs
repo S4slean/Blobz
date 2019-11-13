@@ -15,6 +15,7 @@ public class CellMainInspector : Editor
 
     SerializedProperty showRefProp, showDebugProp, showlinksProp;
 
+    SerializedProperty TargetPosProp;
 
 
 
@@ -37,7 +38,7 @@ public class CellMainInspector : Editor
         showDebugProp = serializedObject.FindProperty("showDebug");
         showlinksProp = serializedObject.FindProperty("showlinks");
 
-
+        TargetPosProp = serializedObject.FindProperty("TargetPos");
     }
 
     public override void OnInspectorGUI()
@@ -52,7 +53,6 @@ public class CellMainInspector : Editor
         }
         EditorGUILayout.PropertyField(myCellTemplateProp);
 
-
         EditorGUILayout.PropertyField(showRefProp);
         //foldRef = EditorGUILayout.Foldout(foldRef, "Display REF VARIABLES", true);
         if (showRefProp.boolValue)
@@ -64,6 +64,9 @@ public class CellMainInspector : Editor
             EditorGUILayout.PropertyField(NCurrentProximityProp);
             EditorGUILayout.PropertyField(graphTransformProp);
             EditorGUILayout.PropertyField(ProximityDectectionProp);
+            EditorGUILayout.PropertyField(TargetPosProp);
+         
+
             EditorGUI.indentLevel -= 1;
         }
 
@@ -101,8 +104,6 @@ public class CellMainInspector : Editor
             EditorGUILayout.PropertyField(hasBeenDropProp);
             EditorGUI.indentLevel -= 1;
         }
-
-
 
 
         serializedObject.ApplyModifiedProperties();

@@ -19,7 +19,7 @@ public class CellTemplateCustomInspector : Editor
     //Productrice Spé
     SerializedProperty SurprodRateProp;
     //Armory Spé
-    SerializedProperty targetDirectionProp, BlopPerTickProp;
+    SerializedProperty BlopPerTickProp;
     //Broyeuse Spé
 
     //Stockage Spé
@@ -27,7 +27,7 @@ public class CellTemplateCustomInspector : Editor
 
     SerializedProperty InfoBoxToggleProp, refToggleProp, statToggleProp, ProductionGestionsProp, ProximityGestionProp;
 
-    SerializedProperty energyPerblop;
+    SerializedProperty energyPerblop  ;
 
     private float fieldWidthBase, labelWidthBase;
 
@@ -60,7 +60,6 @@ public class CellTemplateCustomInspector : Editor
 
         SurprodRateProp = serializedObject.FindProperty("SurproductionRate");
 
-        targetDirectionProp = serializedObject.FindProperty("targetDirection");
         BlopPerTickProp = serializedObject.FindProperty("BlopPerTick");
 
         stockageCapacityProp = serializedObject.FindProperty("stockageCapacity");
@@ -89,6 +88,30 @@ public class CellTemplateCustomInspector : Editor
         EditorGUI.indentLevel += 2;
         EditorGUILayout.PropertyField(InfoBoxToggleProp);
         EditorGUI.indentLevel -= 2;
+
+
+
+        EditorGUILayout.BeginVertical("Box");
+        EditorGUILayout.PropertyField(typeProp);
+        switch ((CellType)typeProp.enumValueIndex)
+        {
+            case CellType.Productrice:
+                break;
+            case CellType.Armory:
+                break;
+            case CellType.Stockage:
+                break;
+            case CellType.Broyeur:
+                EditorGUILayout.PropertyField(energyPerblop);
+
+                break;
+            case CellType.Passage:
+                break;
+        }
+        EditorGUILayout.EndVertical();
+        EditorGUILayout.Space();
+
+
         EditorGUILayout.PropertyField(refToggleProp);
         if (refToggleProp.boolValue)
         {
@@ -182,25 +205,6 @@ public class CellTemplateCustomInspector : Editor
         }
         EditorGUILayout.Space();
 
-        EditorGUILayout.BeginVertical("Box");
-        EditorGUILayout.PropertyField(typeProp);
-        switch ((CellType)typeProp.enumValueIndex)
-        {
-            case CellType.Productrice:
-                break;
-            case CellType.Armory:
-                break;
-            case CellType.Stockage:
-                break;
-            case CellType.Broyeur:
-                EditorGUILayout.PropertyField(energyPerblop);
-
-                break;
-            case CellType.Passage:
-                break;
-        }
-        EditorGUILayout.EndVertical();
-        EditorGUILayout.Space();
 
         EditorGUILayout.PropertyField(ProximityGestionProp);
         if (ProximityGestionProp.boolValue)

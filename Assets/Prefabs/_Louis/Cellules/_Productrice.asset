@@ -34,7 +34,6 @@ MonoBehaviour:
   positivesInteractions: 0000000002000000
   negativesInteractions: 03000000
   SurproductionRate: 0f0000001e0000003c0000005a000000
-  targetDirection: {fileID: 0}
   BlopPerTick: []
   stockageCapacity: 
   LinkCapacity: 
@@ -45,4 +44,4 @@ MonoBehaviour:
   ToggleInfoBox: 1
   STATS: 0
   ProductionGestion: 1
-  ProximityGestion: 0
+  ProximityGestion: 1
