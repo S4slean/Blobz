@@ -21,6 +21,7 @@ public class QuickSetUp : Editor
     static GameObject camera;
     static GameObject levelManager;
     static GameObject blobManager;
+    static GameObject ground;
 
 
 
@@ -48,7 +49,9 @@ public class QuickSetUp : Editor
             || GameObject.FindGameObjectWithTag("UI") != null
             || GameObject.Find("--Pools--") != null
             || FindObjectOfType<CameraController>() != null
-            || FindObjectOfType<LevelManager>() != null)
+            || FindObjectOfType<LevelManager>() != null
+            || FindObjectOfType<BlobManager>() != null
+            || GameObject.FindGameObjectWithTag("Ground"))
         {
             return false;
         }
@@ -92,6 +95,9 @@ public class QuickSetUp : Editor
         if (FindObjectOfType<BlobManager>() != null)
             DestroyImmediate(FindObjectOfType<BlobManager>().gameObject);
 
+        if(GameObject.FindGameObjectWithTag("Ground") != null)
+            DestroyImmediate(GameObject.FindGameObjectWithTag("Ground"));
+
         Debug.Log("Scene Cleaned");
     }
 
@@ -108,6 +114,7 @@ public class QuickSetUp : Editor
         camera = Resources.Load("QuickSetUp/--MainCamera--") as GameObject;
         levelManager = Resources.Load("QuickSetUp/LevelManager") as GameObject;
         blobManager = Resources.Load("QuickSetUp/BlobManager") as GameObject;
+        ground = Resources.Load("QuickSetUp/Ground") as GameObject;
     }
 
     static void BuildNewScene()
@@ -123,6 +130,10 @@ public class QuickSetUp : Editor
         camera = Instantiate(camera);
         levelManager = Instantiate(levelManager);
         blobManager = Instantiate(blobManager);
+        ground = Instantiate(ground);
+
+        ground.transform.position = Vector3.zero;
+
 
         #region UI
 
@@ -184,8 +195,8 @@ public class QuickSetUp : Editor
             objInstance.name = lvlMng.availablesCells[i].name + "Button";
             RectTransform rect = objInstance.GetComponent<RectTransform>();
             Button btn = objInstance.GetComponent<Button>();
-            EventTrigger trigger = objInstance.GetComponent<EventTrigger>();
-            CellConstructionButton constructeur = objInstance.GetComponent<CellConstructionButton>();
+
+
 
             uiManager.GetComponent<UIManager>().cellSelection.GetComponent<CellSelectionShop>().buttonTypes[i] = btn;
             rect.SetParent(uiManager.GetComponent<UIManager>().cellSelection.transform );

@@ -106,7 +106,7 @@ public class CellManager : MonoBehaviour
             currentLine.SetPosition(1, currentLink.endPos);
             selectedCell.AddLink(currentLink, true);
             receivingCell.AddLink(currentLink, false);
-           cleanLinkRef();
+            cleanLinkRef();
 
         }
         else
@@ -146,7 +146,7 @@ public class CellManager : MonoBehaviour
         cleanLinkRef();
     }
 
-  
+
     public void DeselectCell()
     {
         selectedCell = null;
@@ -174,9 +174,12 @@ public class CellManager : MonoBehaviour
     {
         selectedCell.ClickInteraction();
     }
-    public void CellDeplacement (Vector3 posToTest , CellMain cellToMove)
+    public void CellDeplacement(Vector3 posToTest, CellMain cellToMove)
     {
         bool shouldStop = false;
+        if (posToTest.y > 2)
+            return;
+
 
         for (int i = 0; i < cellToMove.links.Count; i++)
         {
@@ -187,12 +190,17 @@ public class CellManager : MonoBehaviour
         }
 
         if (shouldStop)
-            return;
-
-        cellToMove.transform.position = posToTest;
-        for (int i = 0; i < cellToMove.links.Count; i++)
         {
-            cellToMove.links[i].UpdateLinks(cellToMove , posToTest);
+
+        }
+        else
+        {
+            cellToMove.transform.position = posToTest;
+            for (int i = 0; i < cellToMove.links.Count; i++)
+            {
+                cellToMove.links[i].UpdateLinks(cellToMove, posToTest);
+            }
+
         }
 
     }
