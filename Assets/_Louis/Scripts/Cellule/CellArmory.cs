@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class CellArmory : CellMain
 {
-    [Header("SPECIFICITE CELL")]
-    public GameObject targetDirection;
-    [Header("Proximity Level Modif")]
-    public float[] BlopPerTick;
+   // [Header("SPECIFICITE CELL")]
+   // public GameObject myCellTemplate.targetDirection;
+   // [Header("Proximity Level Modif")]
+   // public float[] myCellTemplate.BlopPerTick;
 
     [SerializeField]
     private float tickForActivation;
@@ -17,15 +17,17 @@ public class CellArmory : CellMain
 
 
 
+    
     public override void BlobsTick()
     {
-
+        
         if (BlobNumber > 0)
         {
             currentTick++;
             if (currentTick == tickForActivation)
             {
-                for (int i = 0; i < myCellTemplate.rejectPower_RF + rfBonus; i++)
+                //for (int i = 0; i < myCellTemplate.rejectPowerBase + rfBonus; i++) f
+                for (int i = 0; i <currentRejectPower + rfBonus; i++)
                 {
                     RemoveBlob(1);
                     // Debug.LogWarning("PENSEZ à REGLER le sy")
@@ -36,10 +38,9 @@ public class CellArmory : CellMain
 
                     newBlob.Outpool();
 
-                    newBlob.transform.position = targetDirection.transform.position + Helper.RandomVectorInUpSphere();
+                    newBlob.transform.position = TargetPos.transform.position + Helper.RandomVectorInUpSphere();
 
                     //newBlob.Jump(Helper.RandomVectorInUpSphere() * 1);
-
                 }
                 currentTick = 0;
             }
@@ -66,49 +67,47 @@ public class CellArmory : CellMain
     public override void ProximityLevelModification(int Amout)
     {
         base.ProximityLevelModification(Amout);
+
         if (currentProximityLevel > 0)
         {
             switch (currentProximityLevel)
             {
                 case 0:
                     currentProximityTier = 0;
-                    tickForActivation = (1 / BlopPerTick[currentProximityTier]);
+                    tickForActivation = (1 / myCellTemplate.BlopPerTick[currentProximityTier]);
                     break;
                 case 1:
                     currentProximityTier = 1;
-                    tickForActivation = (1 / BlopPerTick[currentProximityTier]);
+                    tickForActivation = (1 / myCellTemplate.BlopPerTick[currentProximityTier]);
                     break;
                 case 2:
                     currentProximityTier = 2;
-                    tickForActivation = (1 / BlopPerTick[currentProximityTier]);
+                    tickForActivation = (1 / myCellTemplate.BlopPerTick[currentProximityTier]);
                     break;
                 case 3:
                     currentProximityTier = 3;
-                    tickForActivation = (1 / BlopPerTick[currentProximityTier]);
+                    tickForActivation = (1 / myCellTemplate.BlopPerTick[currentProximityTier]);
                     break;
                 //si > 0 max tier (soit 4 ) 
 
                 default:
                     currentProximityTier = 3;
-                    tickForActivation = (1 / BlopPerTick[currentProximityTier]);
+                    tickForActivation = (1 / myCellTemplate.BlopPerTick[currentProximityTier]);
                     break;
 
             }
             if (tickForActivation < 1)
             {
                 tickForActivation = 1;
-                rfBonus = BlopPerTick[currentProximityLevel] - 1;
+                rfBonus = myCellTemplate.BlopPerTick[currentProximityLevel] - 1;
             }
         }
         else
         {
             currentProximityTier = 0;
-            tickForActivation = (int)(1 / BlopPerTick[currentProximityTier]);
+            tickForActivation = (int)(1 / myCellTemplate.BlopPerTick[currentProximityTier]);
         }
-
-
-
-
+        
 
     }
 

@@ -6,9 +6,14 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Cell", menuName = "Cell", order = 1)]
 public class CelluleTemplate : ScriptableObject
 {
-    [Header ("REF IMPORTANT")]
+
+
+   // [Header ("REF IMPORTANT")]
     public GameObject[] cellsEnableToBuild;
     public GameObject blopPrefab;
+    public Color buttonColor;
+    public Texture cellTexture;
+    
     [Space(20f)]
 
     //public Mesh mesh;
@@ -18,29 +23,50 @@ public class CelluleTemplate : ScriptableObject
 
     public CellType type;
     [Range(0f, 50f)]
-    [Header ("Standard Stats")]
     public int EnergyCost = 5;
     [Range(0f, 300f)]
-    public int range = 50;
+    public int rangeBase = 50;
     [Range(0, 1)]
     public float blobRatioAtDeath;
     [Range(5 ,100)]
     public int impulseForce_Death = 10;
 
-    [Header("Productions Gestions")]
     [Range(0, 10)]
-    public int prodPerTick;
+    public int prodPerTickBase;
     [Range(0, 10)]
-    public int rejectPower_RF;
+    public int rejectPowerBase;
     [Range(0f, 50f)]
     public int storageCapability = 10;
     [Range(0f, 12f)]
     public int linkCapability = 6;
 
-    [Header("Proximity Interaction")]
+
     [Range(0 , 5)]
     public int proximityLevelMax = 0;
     public CellType[] positivesInteractions;
     public CellType[] negativesInteractions;
-    
+
+    #region SPECIFICITE CELL 
+    public int[] SurproductionRate;
+
+    public float[] BlopPerTick;
+    public int[] stockageCapacity;
+
+    public int[] LinkCapacity;
+    public int[] Range;
+
+    public int energyPerblop;
+    #endregion
+
+    #region InspectorCustom
+
+    public StatsModificationType StatsModification;
+
+    public bool REFS;
+    public bool ToggleInfoBox = true;
+    public bool STATS;
+    public bool ProductionGestion;
+    public bool ProximityGestion;
+
+    #endregion
 }

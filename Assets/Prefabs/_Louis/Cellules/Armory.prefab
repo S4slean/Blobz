@@ -254,22 +254,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canBePool: 0
   myCellTemplate: {fileID: 11400000, guid: e99918bd31012504e993fbf7666e0863, type: 2}
+  showRef: 1
   NBlob: {fileID: 2904753947209794517}
   NLink: {fileID: 1984579306425477977}
   NCurrentProximity: {fileID: 5343809440407741674}
   graphTransform: {fileID: 1030740689201301829}
+  TargetPos: {fileID: 7385949682447689986}
   ProximityDectection: {fileID: 6767594726806389926}
+  showDebug: 0
+  showlinks: 0
   links: []
   noMoreLink: 0
   BlobNumber: 0
   hasBeenDrop: 0
-  currentProximityLevel: 0
-  targetDirection: {fileID: 7062838035021940735}
-  BlopPerTick:
-  - 0.25
-  - 0.5
-  - 1
-  - 2
   tickForActivation: 0
   rfBonus: 0
 --- !u!54 &5053171121655970789

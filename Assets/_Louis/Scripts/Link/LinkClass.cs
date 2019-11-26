@@ -42,7 +42,7 @@ public class LinkClass : PoolableObjects
         float length2 = Vector3.Distance(endPos, posToTest);
 
         //check la distance en fonction de la range des 2 cellules
-        if (length1 <= originalCell.myCellTemplate.range/2 && length2 <= receivingCell.myCellTemplate.range/2)
+        if (length1 <= originalCell.myCellTemplate.rangeBase/2 && length2 <= receivingCell.myCellTemplate.rangeBase/2)
         {
             return true;
         }
@@ -74,4 +74,5 @@ public class LinkClass : PoolableObjects
         originalCell.RemoveLink(this);
         gameObject.SetActive(false);
     }
+
 }
