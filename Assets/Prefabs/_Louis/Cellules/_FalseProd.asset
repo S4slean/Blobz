@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d07d45a74266e347a6c0f35a3488ad7, type: 3}
+  m_Name: _FalseProd
+  m_EditorClassIdentifier: 
+  cellsEnableToBuild:
+  - {fileID: 5449206648009261835, guid: 257ce46f156b623499da87320e42c31f, type: 3}
+  - {fileID: 5449206648009261835, guid: e06466da8d1decb409888187dfd365c7, type: 3}
+  blopPrefab: {fileID: 2596948755250502091, guid: 87d5b5a8fb0cf7442878829ab452a3bd,
+    type: 3}
+  buttonColor: {r: 0, g: 0, b: 0, a: 1}
+  cellTexture: {fileID: 0}
+  type: 0
+  EnergyCost: 5
+  rangeBase: 50
+  blobRatioAtDeath: 0
+  impulseForce_Death: 0
+  prodPerTickBase: 1
+  rejectPowerBase: 1
+  storageCapability: 50
+  linkCapability: 8
+  proximityLevelMax: 2
+  positivesInteractions: 
+  negativesInteractions: 
+  SurproductionRate: 0a000000
+  BlopPerTick: []
+  stockageCapacity: 4600000050000000
+  LinkCapacity: 
+  Range: 
+  energyPerblop: 0
+  StatsModification: 2
+  REFS: 1
+  ToggleInfoBox: 1
+  STATS: 1
+  ProductionGestion: 1
+  ProximityGestion: 0

@@ -6,7 +6,6 @@ using UnityEngine;
 public enum StatsModificationType
 {
     Surproduction , 
-    ActionPerTick , 
     RejectForce , 
     StockageCapacity, 
     LinkCapacity ,

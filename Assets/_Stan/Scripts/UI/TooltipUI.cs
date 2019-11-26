@@ -15,7 +15,7 @@ public class TooltipUI : MonoBehaviour
     public void UpdateUI(CellMain cell)
     {
         cellName.text = cell.myCellTemplate.name;
-        cellDescription.text = "This cell produces " + cell.myCellTemplate.prodPerTick + " blobs per tick";
+        cellDescription.text = "This cell produces " + cell.myCellTemplate.prodPerTickBase + " blobs per tick";
 
         effects.text = "Effects are not implemented yet";
     }

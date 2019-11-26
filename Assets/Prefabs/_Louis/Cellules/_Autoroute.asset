@@ -14,15 +14,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cellsEnableToBuild: []
   blopPrefab: {fileID: 0}
+  buttonColor: {r: 0.7169812, g: 0.4398764, b: 0, a: 1}
+  cellTexture: {fileID: 0}
   type: 0
   EnergyCost: 5
-  range: 50
+  rangeBase: 50
   blobRatioAtDeath: 0
   impulseForce_Death: 10
-  prodPerTick: 0
-  rejectPower_RF: 0
+  prodPerTickBase: 0
+  rejectPowerBase: 0
   storageCapability: 10
   linkCapability: 6
-  proximityLevelMax: 0
+  proximityLevelMax: 1
   positivesInteractions: 
   negativesInteractions: 
+  SurproductionRate: 00000000
+  BlopPerTick:
+  - 0
+  stockageCapacity: 
+  LinkCapacity: 
+  Range: 
+  energyPerblop: 0
+  StatsModification: 5
+  REFS: 1
+  ToggleInfoBox: 1
+  STATS: 0
+  ProductionGestion: 0
+  ProximityGestion: 1

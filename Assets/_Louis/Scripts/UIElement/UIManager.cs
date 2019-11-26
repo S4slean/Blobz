@@ -55,19 +55,16 @@ public class UIManager : MonoBehaviour
 
 
 
-    public void InUICellSelection(Vector3 pos , CellMain originalCell , LineRenderer currentLine)
+    public void DisplayCellShop(CellMain originalCell)
     {
-        //c'est du debug
-        currentLine.startColor = Color.red;
-        currentLine.endColor = Color.red;
-
-        cellSelection.transform.position = pos;
+        cellSelection.transform.position = originalCell.transform.position;
         cellSelection.gameObject.SetActive(true);
         cellSelection.ButtonPositions(originalCell);
         InputManager.Instance.InCellSelection = true;
     }
-    public void DesactivateCellShop ()
+    public IEnumerator DesactivateCellShop ()
     {
+        yield return new WaitForEndOfFrame();
         cellSelection.DesactiveButton();
         InputManager.Instance.InCellSelection = false;
         ///CellManager2.Instance.SupressCurrentLink();
