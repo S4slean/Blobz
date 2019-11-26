@@ -33,6 +33,7 @@ public class CellMain : PoolableObjects
     #region DEBUG
     public bool showDebug;
     public bool showlinks;
+    public bool showRef;
     public List<LinkClass> links = new List<LinkClass>();
     public bool noMoreLink;
     public int BlobNumber;
@@ -279,6 +280,8 @@ public class CellMain : PoolableObjects
         {
             currentProximityTier = 0;
         }
+
+
         switch (myCellTemplate.StatsModification)
         {
             case StatsModificationType.Surproduction:
@@ -305,6 +308,7 @@ public class CellMain : PoolableObjects
                 break;
         }
 
+        UpdateCaract();
     }
     #endregion
 

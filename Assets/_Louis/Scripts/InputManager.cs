@@ -21,19 +21,18 @@ public class InputManager : MonoBehaviour
     public float clickCooldown;
 
     //bools concernant la pahse de dragging d'un lien 
-    public bool CellSelected;
-    public bool DraggingLink;
+    [HideInInspector]public bool CellSelected;
+    [HideInInspector] public bool DraggingLink;
 
     //Ui
-    public bool InCellSelection;
-    public bool InPauseMenu;
+    [HideInInspector] public bool InCellSelection;
+    [HideInInspector] public bool InPauseMenu;
 
     //LayerMask
     int layer_Mask_Cell; 
 
-    [HideInInspector]
-    public Vector3 posCell;
-    public Vector3 mousePos;
+    [HideInInspector] public Vector3 posCell;
+    [HideInInspector] public Vector3 mousePos;
 
     private float clickTime;
     #endregion
@@ -60,8 +59,8 @@ public class InputManager : MonoBehaviour
     private CellMain cellOver;
     private CellMain selectedCell;
 
-    public bool movingObject = false;
-    public CellMain objectMoved;
+    [HideInInspector] public bool movingObject = false;
+    [HideInInspector] public CellMain objectMoved;
 
     private void Update()
     {

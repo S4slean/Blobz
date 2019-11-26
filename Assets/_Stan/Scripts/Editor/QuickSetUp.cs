@@ -194,7 +194,7 @@ public class QuickSetUp : Editor
             GameObject objInstance = Instantiate(button);
             objInstance.name = lvlMng.availablesCells[i].name + "Button";
             RectTransform rect = objInstance.GetComponent<RectTransform>();
-
+            objInstance.GetComponent<Image>().color = lvlMng.availablesCells[i].GetComponent<CellMain>().myCellTemplate.buttonColor;
 
 
             uiManager.GetComponent<UIManager>().cellSelection.GetComponent<CellSelectionShop>().buttonTypes[i] = objInstance;

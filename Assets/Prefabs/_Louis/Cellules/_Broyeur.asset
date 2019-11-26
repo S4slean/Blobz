@@ -15,7 +15,7 @@ MonoBehaviour:
   cellsEnableToBuild: []
   blopPrefab: {fileID: 2596948755250502091, guid: 87d5b5a8fb0cf7442878829ab452a3bd,
     type: 3}
-  buttonColor: {r: 1, g: 0.9880785, b: 0, a: 0}
+  buttonColor: {r: 1, g: 0.9880785, b: 0, a: 1}
   cellTexture: {fileID: 0}
   type: 3
   EnergyCost: 10
@@ -30,15 +30,14 @@ MonoBehaviour:
   positivesInteractions: 
   negativesInteractions: 
   SurproductionRate: 00000000000000000000000000000000
-  targetDirection: {fileID: 0}
   BlopPerTick: []
   stockageCapacity: 
   LinkCapacity: 
   Range: 
   energyPerblop: 30
   StatsModification: 5
-  REFS: 0
+  REFS: 1
   ToggleInfoBox: 0
   STATS: 0
   ProductionGestion: 0
-  ProximityGestion: 0
+  ProximityGestion: 1
