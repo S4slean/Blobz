@@ -3,24 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using TMPro;
+using UnityEngine.EventSystems;
 
 //[RequireComponent(typeof(MeshCollider))]  //typeof(MeshRenderer), typeof(MeshFilter),
 public class CellMain : PoolableObjects
 {
     #region Variables
+    [Tooltip("glissé l'un des srcyptable object structure ici")]
     public CelluleTemplate myCellTemplate;
 
-    #region REFS
 
     // public List<CelulleMain> outputCell;
-    public bool showRef;
+    #region REFS
     public TextMeshPro NBlob;
     public TextMeshPro NLink;
     public TextMeshPro NCurrentProximity;
     public Transform graphTransform;
 
     public Transform TargetPos;
-
 
     //public MeshFilter mF;
     //public MeshRenderer mR;
@@ -29,9 +29,11 @@ public class CellMain : PoolableObjects
     public CellProximityDectection ProximityDectection;
     #endregion
 
-    #region Debug
+
+    #region DEBUG
     public bool showDebug;
     public bool showlinks;
+    public bool showRef;
     public List<LinkClass> links = new List<LinkClass>();
     public bool noMoreLink;
     public int BlobNumber;
@@ -46,21 +48,18 @@ public class CellMain : PoolableObjects
 
     protected int currentProximityLevel;
     protected int currentProximityTier;
+
     protected int currentLinkStockage;
     protected int currentBlobStockage;
+
     protected int currentSurproductionRate;
     protected float currentRejectPower;
     protected int currentRange;
-    /*
-    protected System.Object proximityVariable; 
-    public System.Type cast;
-    */
-    //public object Proximity { get { return proximityVariable; } }
-
 
     protected bool isDead = false;
     protected float velocity;
     #endregion
+
     #endregion
 
     public virtual void Awake()
@@ -71,23 +70,34 @@ public class CellMain : PoolableObjects
         //ProximityCheck();
 
     }
+
     public virtual void OnEnable()
     {
         //Pour le delegate qui gére le tick
         //TickManager.doTick += BlobsTick;
-        TickInscription();
-        setupVariable();
         //UI init 
-        NBlob.text = (BlobNumber + " / " + currentBlobStockage);
-        NLink.text = (links.Count + " / " + currentLinkStockage);
-        isDead = false;
+        NBlob.text = (BlobNumber + " / " + myCellTemplate.storageCapability);
+        NLink.text = (links.Count + " / " + myCellTemplate.linkCapability);
+        currentBlobStockage = myCellTemplate.storageCapability;
+        currentLinkStockage = myCellTemplate.linkCapability;
 
+        CellInitialisation();
 
     }
+
+    private void CellInitialisation()
+    {
+        TickInscription();
+        isDead = false;
+        cellAtProximity.Clear();
+        currentProximityLevel = 0;
+        ProximityCheck();
+        ProximityLevelModification(0);
+    }
+
     private void Start()
     {
         GraphSetup();
-
     }
 
 
@@ -132,12 +142,13 @@ public class CellMain : PoolableObjects
 
         }
         BlobNumber = 0;
-        setupVariable();
+        SetupVariable();
         Inpool();
     }
     public virtual void BlobsTick()
     {
         //AddBlob(myCellTemplate.prodPerTick);
+
         //ça marche bien mais à voir si quand 1 batiment meure la produciton saute avec ou pas
         for (int i = 0; i < currentRejectPower; i++)
         {
@@ -153,6 +164,8 @@ public class CellMain : PoolableObjects
             }
         }
         AddBlob(myCellTemplate.prodPerTickBase);
+
+
     }
     public virtual void StockageCapabilityVariation(int Amount)
     {
@@ -174,7 +187,8 @@ public class CellMain : PoolableObjects
 
     }
 
-    #region BlobGestion
+
+    #region BLOB_GESTION
     public void AddBlob(int Amount)
     {
         BlobNumber += Amount;
@@ -193,7 +207,7 @@ public class CellMain : PoolableObjects
     }
     #endregion
 
-    #region Proximité Gestion
+    #region PROXIMITE_GESTION
     public void ProximityCheck()
     {
         // ProximityDectection.myCollider.radius = Mathf.SmoothDamp(0, myCellTemplate.range / 2, ref velocity, 0.01f);
@@ -201,7 +215,7 @@ public class CellMain : PoolableObjects
     }
     public void AddToCellAtPromity(CellMain cellDetected)
     {
-        bool endFunction = false; 
+        bool endFunction = false;
         cellAtProximity.Add(cellDetected);
         CellType cellDetectedType = cellDetected.myCellTemplate.type;
         for (int i = 0; i < myCellTemplate.negativesInteractions.Length; i++)
@@ -266,6 +280,8 @@ public class CellMain : PoolableObjects
         {
             currentProximityTier = 0;
         }
+
+
         switch (myCellTemplate.StatsModification)
         {
             case StatsModificationType.Surproduction:
@@ -292,12 +308,11 @@ public class CellMain : PoolableObjects
                 break;
         }
 
-
+        UpdateCaract();
     }
-
     #endregion
 
-    #region LINK GESTION
+    #region LINK_GESTION
     public virtual void AddLink(LinkClass linkToAdd, bool output)
     {
         links.Add(linkToAdd);
@@ -313,7 +328,7 @@ public class CellMain : PoolableObjects
             linkToAdd.receivingCell = this;
         }
 
-        if (links.Count >= currentLinkStockage)
+        if (links.Count >= myCellTemplate.linkCapability)
         {
             noMoreLink = true;
         }
@@ -337,7 +352,22 @@ public class CellMain : PoolableObjects
     }
     #endregion
 
-    #region Utilitaire / Graph
+    #region UTILITAIRE/GRAPH
+
+
+
+
+    //public bool CheckLinkDistance(Vector3 pos)
+    //{
+    //    for (int i = 0; i < links.Count; i++)
+    //    {
+    //        if((links[i].originalCell.transform.position - pos).magnitude > links[i].originalCell.
+    //    }
+
+
+    //    return true;
+    //}
+
     public virtual void TickInscription()
     {
         TickManager.doTick += BlobsTick;
@@ -346,6 +376,8 @@ public class CellMain : PoolableObjects
     {
         TickManager.doTick -= BlobsTick;
     }
+
+
     //A changé au lieu de désactiver on peut juste désactiver les components ( c'est une micro opti ) 
     public override void Inpool()
     {
@@ -367,12 +399,14 @@ public class CellMain : PoolableObjects
         NBlob.text = (BlobNumber + " / " + currentBlobStockage);
         NLink.text = (links.Count + " / " + currentLinkStockage);
     }
+
     public virtual void GraphSetup()
     {
         Vector3 graphPos = transform.position + new Vector3(0, 0, 0);
         graphTransform.position = graphPos;
     }
-    private void setupVariable()
+
+    private void SetupVariable()
     {
         currentLinkStockage = myCellTemplate.linkCapability;
         currentBlobStockage = myCellTemplate.storageCapability;
