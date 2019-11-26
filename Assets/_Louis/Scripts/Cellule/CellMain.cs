@@ -14,40 +14,51 @@ public class CellMain : PoolableObjects
 
 
     // public List<CelulleMain> outputCell;
-    [Header("REF")]
+    #region REFS
     public TextMeshPro NBlob;
     public TextMeshPro NLink;
     public TextMeshPro NCurrentProximity;
     public Transform graphTransform;
+
+    public Transform TargetPos;
 
     //public MeshFilter mF;
     //public MeshRenderer mR;
     // public MeshCollider mC;
 
     public CellProximityDectection ProximityDectection;
+    #endregion
 
 
-    [Header("Debug")]
+    #region DEBUG
+    public bool showDebug;
+    public bool showlinks;
     public List<LinkClass> links = new List<LinkClass>();
     public bool noMoreLink;
     public int BlobNumber;
     public bool hasBeenDrop;
+    #endregion
 
+    #region STATS
     //Important for the communication into 
     protected List<LinkClass> outputLinks = new List<LinkClass>();
     protected List<CellMain> cellAtProximity = new List<CellMain>();
-    protected int currentLinkStockage;
-    protected int currentBlobStockage;
-    [SerializeField]
+    protected int currentIndex;
+
     protected int currentProximityLevel;
     protected int currentProximityTier;
 
-    // protected MeshCollider mC;
-    protected int currentIndex;
+    protected int currentLinkStockage;
+    protected int currentBlobStockage;
+
+    protected int currentSurproductionRate;
+    protected float currentRejectPower;
+    protected int currentRange;
+
     protected bool isDead = false;
-
-
     protected float velocity;
+    #endregion
+
     #endregion
 
     public virtual void Awake()
@@ -130,6 +141,7 @@ public class CellMain : PoolableObjects
 
         }
         BlobNumber = 0;
+        SetupVariable();
         Inpool();
     }
     public virtual void BlobsTick()
@@ -137,7 +149,7 @@ public class CellMain : PoolableObjects
         //AddBlob(myCellTemplate.prodPerTick);
 
         //ça marche bien mais à voir si quand 1 batiment meure la produciton saute avec ou pas
-        for (int i = 0; i < myCellTemplate.rejectPower_RF; i++)
+        for (int i = 0; i < currentRejectPower; i++)
         {
             if (BlobNumber > 0 && outputLinks.Count > 0)
             {
@@ -150,11 +162,32 @@ public class CellMain : PoolableObjects
                 currentIndex = Helper.LoopIndex(currentIndex, outputLinks.Count);
             }
         }
-        AddBlob(myCellTemplate.prodPerTick);
+        AddBlob(myCellTemplate.prodPerTickBase);
 
 
     }
+    public virtual void StockageCapabilityVariation(int Amount)
+    {
+        currentBlobStockage += Amount;
+        UpdateCaract();
+        if (BlobNumber > currentBlobStockage && !isDead)
+        {
+            Died(false);
+        }
+        UpdateCaract();
+    }
+    public virtual void ClickInteraction()
+    {
+        if (BlobNumber > 0)
+        {
+            RemoveBlob(1);
+            CellManager.Instance.EnergyVariation(10);
+        }
 
+    }
+
+
+    #region BLOB_GESTION
     public void AddBlob(int Amount)
     {
         BlobNumber += Amount;
@@ -171,80 +204,17 @@ public class CellMain : PoolableObjects
         //UI update
         UpdateCaract();
     }
+    #endregion
 
-    public virtual void StockageCapabilityVariation(int Amount)
-    {
-        currentBlobStockage += Amount;
-        UpdateCaract();
-        if (BlobNumber > currentBlobStockage && !isDead)
-        {
-            Died(false);
-        }
-        UpdateCaract();
-    }
-
-    public virtual void AddLink(LinkClass linkToAdd, bool output)
-    {
-        links.Add(linkToAdd);
-
-        if (output)
-        {
-            linkToAdd.Init(this);
-            outputLinks.Add(linkToAdd);
-            SortingLink();
-        }
-        else
-        {
-            linkToAdd.receivingCell = this;
-        }
-
-        if (links.Count >= myCellTemplate.linkCapability)
-        {
-            noMoreLink = true;
-        }
-        UpdateCaract();
-    }
-    public virtual void RemoveLink(LinkClass linkToRemove)
-    {
-        if (links.Count < myCellTemplate.linkCapability)
-        {
-            noMoreLink = false;
-        }
-        outputLinks.Remove(linkToRemove);
-        links.Remove(linkToRemove);
-
-        UpdateCaract();
-    }
-    //tri les output links
-    public virtual void SortingLink()
-    {
-        outputLinks = outputLinks.OrderBy(t => t.angle).ToList();
-    }
-
-
-    public virtual void UpdateCaract()
-    {
-        NBlob.text = (BlobNumber + " / " + currentBlobStockage);
-        NLink.text = (links.Count + " / " + currentLinkStockage);
-    }
-    public virtual void ClickInteraction()
-    {
-        if (BlobNumber > 0)
-        {
-            RemoveBlob(1);
-            CellManager.Instance.EnergyVariation(10);
-        }
-
-    }
-
-
+    #region PROXIMITE_GESTION
     public void ProximityCheck()
     {
         // ProximityDectection.myCollider.radius = Mathf.SmoothDamp(0, myCellTemplate.range / 2, ref velocity, 0.01f);
-        ProximityDectection.myCollider.radius = myCellTemplate.range / 2;
+        ProximityDectection.myCollider.radius = myCellTemplate.rangeBase / 2;
     }
     public void AddToCellAtPromity(CellMain cellDetected)
     {
+        bool endFunction = false;
         cellAtProximity.Add(cellDetected);
         CellType cellDetectedType = cellDetected.myCellTemplate.type;
         for (int i = 0; i < myCellTemplate.negativesInteractions.Length; i++)
@@ -252,9 +222,13 @@ public class CellMain : PoolableObjects
             if (cellDetectedType == myCellTemplate.negativesInteractions[i])
             {
                 ProximityLevelModification(-1);
-                // Ajouter L'UI 
-                return;
+                endFunction = true;
+                break;
             }
+        }
+        if (endFunction)
+        {
+            return;
         }
 
         for (int j = 0; j < myCellTemplate.positivesInteractions.Length; j++)
@@ -262,11 +236,7 @@ public class CellMain : PoolableObjects
             if (cellDetectedType == myCellTemplate.positivesInteractions[j])
             {
                 ProximityLevelModification(1);
-                return;
-            }
-            else
-            {
-                return;
+                break;
             }
         }
     }
@@ -296,7 +266,91 @@ public class CellMain : PoolableObjects
     {
         currentProximityLevel += Amout;
         NCurrentProximity.text = currentProximityLevel.ToString();
+
+        if (currentProximityLevel >= 0 && currentProximityLevel < myCellTemplate.proximityLevelMax)
+        {
+            currentProximityTier = currentProximityLevel;
+        }
+        else if (currentProximityLevel >= myCellTemplate.proximityLevelMax)
+        {
+            currentProximityTier = myCellTemplate.proximityLevelMax - 1;
+        }
+        else
+        {
+            currentProximityTier = 0;
+        }
+        switch (myCellTemplate.StatsModification)
+        {
+            case StatsModificationType.Surproduction:
+                currentSurproductionRate = myCellTemplate.SurproductionRate[currentProximityTier];
+                break;
+
+            case StatsModificationType.RejectForce:
+                currentRejectPower = myCellTemplate.BlopPerTick[currentProximityTier];
+                break;
+
+            case StatsModificationType.StockageCapacity:
+                currentBlobStockage = myCellTemplate.stockageCapacity[currentProximityTier];
+                break;
+
+            case StatsModificationType.LinkCapacity:
+                currentLinkStockage = myCellTemplate.LinkCapacity[currentProximityTier];
+                break;
+
+            case StatsModificationType.Range:
+                currentRange = myCellTemplate.Range[currentProximityTier];
+                break;
+
+            case StatsModificationType.Aucune:
+                break;
+        }
+
     }
+    #endregion
+
+    #region LINK_GESTION
+    public virtual void AddLink(LinkClass linkToAdd, bool output)
+    {
+        links.Add(linkToAdd);
+
+        if (output)
+        {
+            linkToAdd.Init(this);
+            outputLinks.Add(linkToAdd);
+            SortingLink();
+        }
+        else
+        {
+            linkToAdd.receivingCell = this;
+        }
+
+        if (links.Count >= myCellTemplate.linkCapability)
+        {
+            noMoreLink = true;
+        }
+        UpdateCaract();
+    }
+    public virtual void RemoveLink(LinkClass linkToRemove)
+    {
+        if (links.Count < currentLinkStockage)
+        {
+            noMoreLink = false;
+        }
+        outputLinks.Remove(linkToRemove);
+        links.Remove(linkToRemove);
+
+        UpdateCaract();
+    }
+    //tri les output links
+    public virtual void SortingLink()
+    {
+        outputLinks = outputLinks.OrderBy(t => t.angle).ToList();
+    }
+    #endregion
+
+    #region UTILITAIRE/GRAPH
+
+
 
 
     //public bool CheckLinkDistance(Vector3 pos)
@@ -336,6 +390,11 @@ public class CellMain : PoolableObjects
             StartCoroutine(DesactiveGameObject(0.02f));
         }
     }
+    public virtual void UpdateCaract()
+    {
+        NBlob.text = (BlobNumber + " / " + currentBlobStockage);
+        NLink.text = (links.Count + " / " + currentLinkStockage);
+    }
 
     public virtual void GraphSetup()
     {
@@ -343,5 +402,19 @@ public class CellMain : PoolableObjects
         graphTransform.position = graphPos;
     }
 
+    private void SetupVariable()
+    {
+        currentLinkStockage = myCellTemplate.linkCapability;
+        currentBlobStockage = myCellTemplate.storageCapability;
+        currentSurproductionRate = myCellTemplate.SurproductionRate[0];
+        currentRejectPower = myCellTemplate.rejectPowerBase;
+        currentRange = myCellTemplate.rangeBase;
+        currentProximityLevel = 0;
+        cellAtProximity.Clear();
+
+        ProximityCheck();
+        ProximityLevelModification(0);
+    }
+    #endregion
 
 }
