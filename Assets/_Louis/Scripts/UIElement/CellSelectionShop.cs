@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class CellSelectionShop : MonoBehaviour
 {
-    public Button[] buttonTypes;
+    public GameObject[] buttonTypes;
     [TextArea]
     public string Important;
     [Space(10f)]
@@ -29,9 +29,9 @@ public class CellSelectionShop : MonoBehaviour
 
     public void DesactiveButton()
     {
-        foreach (Button button in buttonTypes)
+        foreach (GameObject button in buttonTypes)
         {
-            button.gameObject.SetActive(false);
+            button.SetActive(false);
         }
     }
 
@@ -59,9 +59,9 @@ public class CellSelectionShop : MonoBehaviour
 
     private void ButtonChoosen(Vector3 pos, CellType cellType)
     {
-        Button currentButton = buttonTypes[(int)cellType];
+        GameObject currentButton = buttonTypes[(int)cellType];
         butTrans[(int)cellType].transform.localPosition = pos;
-        currentButton.gameObject.SetActive(true);
+        currentButton.SetActive(true);
     }
 
     public void CellConstruction(CellMain cellule)
@@ -77,9 +77,10 @@ public class CellSelectionShop : MonoBehaviour
         }
         else
         {
-            newCell.transform.position = transform.position;           
+            newCell.transform.position = InputManager.Instance.mousePos; ;           
             newCell.Outpool();
             CellManager.Instance.NewCellCreated(newCell);
+
         }
     }
 }

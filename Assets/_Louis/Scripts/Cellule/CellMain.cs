@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using TMPro;
+using UnityEngine.EventSystems;
 
 //[RequireComponent(typeof(MeshCollider))]  //typeof(MeshRenderer), typeof(MeshFilter),
 public class CellMain : PoolableObjects
@@ -62,16 +63,22 @@ public class CellMain : PoolableObjects
     {
         //Pour le delegate qui gére le tick
         //TickManager.doTick += BlobsTick;
-        TickInscription();
         //UI init 
         NBlob.text = (BlobNumber + " / " + myCellTemplate.storageCapability);
         NLink.text = (links.Count + " / " + myCellTemplate.linkCapability);
-        isDead = false;
         currentBlobStockage = myCellTemplate.storageCapability;
         currentLinkStockage = myCellTemplate.linkCapability;
+
+        CellInitialisation();
+
+    }
+
+    private void CellInitialisation()
+    {
+        TickInscription();
+        isDead = false;
         cellAtProximity.Clear();
         currentProximityLevel = 0;
-
         ProximityCheck();
         ProximityLevelModification(0);
     }
@@ -335,4 +342,6 @@ public class CellMain : PoolableObjects
         Vector3 graphPos = transform.position + new Vector3(0, 0, 0);
         graphTransform.position = graphPos;
     }
+
+
 }

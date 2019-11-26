@@ -56,6 +56,7 @@ public class CellManager : MonoBehaviour
         //selectedCell.AddLink(currentLink, true);
         currentLink.startPos = selectedCell.transform.position;
         currentLine.SetPosition(0, currentLink.startPos);
+        currentLine.SetPosition(1, InputManager.Instance.mousePos);
     }
     public void DragNewlink(RaycastHit hit)
     {
@@ -69,6 +70,24 @@ public class CellManager : MonoBehaviour
         else
         {
             Vector3 direction = (hit.point - currentLink.startPos);
+            direction = new Vector3(direction.x, 0, direction.z);
+            direction = direction.normalized;
+            currentLink.endPos = currentLink.startPos + direction * selectedCell.myCellTemplate.range / 2;
+            currentLine.SetPosition(1, currentLink.endPos);
+        }
+    }
+    public void DragNewlink(Vector3 pos)
+    {
+        // Permet de draw la line en runtime 
+        float distance = Vector3.Distance(currentLink.startPos, pos);
+        if (distance <= selectedCell.myCellTemplate.range / 2)
+        {
+            currentLink.endPos = new Vector3(pos.x, currentLink.startPos.y, pos.z);
+            currentLine.SetPosition(1, currentLink.endPos);
+        }
+        else
+        {
+            Vector3 direction = (pos - currentLink.startPos);
             direction = new Vector3(direction.x, 0, direction.z);
             direction = direction.normalized;
             currentLink.endPos = currentLink.startPos + direction * selectedCell.myCellTemplate.range / 2;
@@ -111,7 +130,7 @@ public class CellManager : MonoBehaviour
         }
         else
         {
-            UIManager.Instance.InUICellSelection(currentLink.endPos, selectedCell, currentLine);
+            
         }
 
 
@@ -119,18 +138,18 @@ public class CellManager : MonoBehaviour
     public void NewCellCreated(CellMain newCell)
     {
         createdCell = newCell;
+        CreatenewLink();
 
         EnergyVariation(-newCell.myCellTemplate.EnergyCost);
 
-        selectedCell.AddLink(currentLink, true);
-        createdCell.AddLink(currentLink, false);
+        //selectedCell.AddLink(currentLink, true);
+        //createdCell.AddLink(currentLink, false);
         currentLine.startColor = Color.green;
         currentLine.endColor = Color.cyan;
 
-        cleanLinkRef();
+        //cleanLinkRef();
         UIManager.Instance.cellSelection.DesactiveButton();
-        InputManager.Instance.DraggingLink = false;
-        InputManager.Instance.InCellSelection = false;
+        InputManager.Instance.StartMovingCell(newCell, false);
 
     }
 
@@ -174,11 +193,11 @@ public class CellManager : MonoBehaviour
     {
         selectedCell.ClickInteraction();
     }
-    public void CellDeplacement(Vector3 posToTest, CellMain cellToMove)
+    public void CellDeplacement(Vector3 posToTest, CellMain cellToMove, bool isNewCell)
     {
         bool shouldStop = false;
-        if (posToTest.y > 2)
-            return;
+        //if (posToTest.y > 2)
+        //    return;
 
 
         for (int i = 0; i < cellToMove.links.Count; i++)
@@ -196,10 +215,16 @@ public class CellManager : MonoBehaviour
         else
         {
             cellToMove.transform.position = posToTest;
+
+            if (isNewCell)
+                DragNewlink(posToTest);
+            
+
             for (int i = 0; i < cellToMove.links.Count; i++)
             {
                 cellToMove.links[i].UpdateLinks(cellToMove, posToTest);
             }
+
 
         }
 

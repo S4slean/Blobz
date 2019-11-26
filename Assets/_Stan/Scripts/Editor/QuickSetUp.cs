@@ -95,7 +95,7 @@ public class QuickSetUp : Editor
         if (FindObjectOfType<BlobManager>() != null)
             DestroyImmediate(FindObjectOfType<BlobManager>().gameObject);
 
-        if(GameObject.FindGameObjectWithTag("Ground") != null)
+        if (GameObject.FindGameObjectWithTag("Ground") != null)
             DestroyImmediate(GameObject.FindGameObjectWithTag("Ground"));
 
         Debug.Log("Scene Cleaned");
@@ -187,27 +187,38 @@ public class QuickSetUp : Editor
         #region CELLS_SHOP
         GameObject button = Resources.Load("QuickSetUp/Buttons/CellCreationButton") as GameObject;
 
-        uiScript.cellSelection.buttonTypes = new Button[levelManager.GetComponent<LevelManager>().availablesCells.Length];
+        uiScript.cellSelection.buttonTypes = new GameObject[levelManager.GetComponent<LevelManager>().availablesCells.Length];
 
         for (int i = 0; i < lvlMng.availablesCells.Length ; i++)
         {
             GameObject objInstance = Instantiate(button);
             objInstance.name = lvlMng.availablesCells[i].name + "Button";
             RectTransform rect = objInstance.GetComponent<RectTransform>();
-            Button btn = objInstance.GetComponent<Button>();
 
 
 
-            uiManager.GetComponent<UIManager>().cellSelection.GetComponent<CellSelectionShop>().buttonTypes[i] = btn;
+            uiManager.GetComponent<UIManager>().cellSelection.GetComponent<CellSelectionShop>().buttonTypes[i] = objInstance;
             rect.SetParent(uiManager.GetComponent<UIManager>().cellSelection.transform );
 
             //UnityEditor.Events.UnityEventTools.AddPersistentListener(btn.onClick, new UnityEngine.Events.UnityAction(CellConstructionEvent));
 
+            EventTrigger trigger = objInstance.GetComponent<EventTrigger>();
             CellSelectionShop shop = uiScript.cellSelection;
+
             CellMain cell = levelManager.GetComponent<LevelManager>().availablesCells[i].GetComponent<CellMain>();
             UnityAction<CellMain> action = new UnityAction<CellMain>(shop.CellConstruction);
 
-            UnityEventTools.AddObjectPersistentListener<CellMain>(btn.onClick, action, cell);
+            EventTrigger.Entry entry = new EventTrigger.Entry();
+            entry.eventID = EventTriggerType.PointerUp;
+
+            GraphicRaycaster raycaster = FindObjectOfType<GraphicRaycaster>();
+
+            
+
+            UnityEventTools.AddObjectPersistentListener<CellMain>(entry.callback, action, cell);
+
+            trigger.triggers.Add(entry);
+
         }
 
         #endregion
