@@ -1,5 +1,13 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
+<<<<<<< HEAD:Assets/_TerrainAutoUpgrade.meta
 guid: 44ec703df18f3934899b2089f37e0064
+=======
+guid: 775784158f2880840ae78e1c87502f02
+>>>>>>> c43db71bf0e565bf4e1d2dd3340dfb4e3092cf07:Assets/Graph/CellGraph.meta
+=======
+guid: 9896c1f44c50380458c406d62f6be3eb
+>>>>>>> c43db71bf0e565bf4e1d2dd3340dfb4e3092cf07
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
