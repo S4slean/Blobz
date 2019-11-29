@@ -89,10 +89,9 @@ public class CellMain : PoolableObjects
     {
         TickInscription();
         isDead = false;
-        cellAtProximity.Clear();
-        currentProximityLevel = 0;
-        ProximityCheck();
-        ProximityLevelModification(0);
+
+        SetupVariable();
+
     }
 
     private void Start()
@@ -413,8 +412,8 @@ public class CellMain : PoolableObjects
         currentSurproductionRate = myCellTemplate.SurproductionRate[0];
         currentRejectPower = myCellTemplate.rejectPowerBase;
         currentRange = myCellTemplate.rangeBase;
-        currentProximityLevel = 0;
         cellAtProximity.Clear();
+        currentProximityLevel = 0;
 
         ProximityCheck();
         ProximityLevelModification(0);

@@ -77,6 +77,12 @@ public class InputManager : MonoBehaviour
             if (DraggingLink)
             {
                 CellManager.Instance.DragNewlink(hit);
+
+                if (Input.GetMouseButtonUp(0))
+                {
+                    CellManager.Instance.ValidateNewLink(hit);
+                }
+
             }
 
 
@@ -111,6 +117,15 @@ public class InputManager : MonoBehaviour
                     Debug.Log("Display Cell Shop");
                     UIManager.Instance.DisplayCellShop(selectedCell);
 
+                }
+
+                float distanceFromCell = (hit.point - selectedCell.transform.position).magnitude;
+
+                if(CellSelected && clickTime > clickCooldown && leftClickedOnCell && !DraggingLink && distanceFromCell > distanceBeforeDrag )
+                {
+                    UIManager.Instance.DesactivateCellShop();
+                    CellManager.Instance.CreatenewLink();
+                    DraggingLink = true;
                 }
             }
 
@@ -224,6 +239,8 @@ public class InputManager : MonoBehaviour
 
             #endregion
         }
+
+        #region MOVING_CELL
         else
         {
 
@@ -265,6 +282,7 @@ public class InputManager : MonoBehaviour
                 Debug.Log("Cell returned to previous Pos");
             }
         }
+        #endregion
 
         #region CAMERA
 
