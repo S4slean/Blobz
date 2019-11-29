@@ -67,8 +67,12 @@ public class UIManager : MonoBehaviour
         yield return new WaitForEndOfFrame();
         cellSelection.DesactiveButton();
         InputManager.Instance.InCellSelection = false;
+        Debug.Log("cellShop hided");
         ///CellManager2.Instance.SupressCurrentLink();
     }
+
+
+
     public void CellSelected( Vector3 pos)
     {
         SelectedCellUI.transform.position = pos;

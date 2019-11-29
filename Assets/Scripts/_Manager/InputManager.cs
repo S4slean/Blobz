@@ -112,7 +112,7 @@ public class InputManager : MonoBehaviour
             {
                 clickTime += Time.deltaTime;
 
-                if (CellSelected && clickTime > clickCooldown && leftClickedOnCell && !InCellSelection)
+                if (CellSelected && clickTime > clickCooldown && leftClickedOnCell && !InCellSelection && !DraggingLink)
                 {
                     Debug.Log("Display Cell Shop");
                     UIManager.Instance.DisplayCellShop(selectedCell);
@@ -123,7 +123,7 @@ public class InputManager : MonoBehaviour
 
                 if(CellSelected && clickTime > clickCooldown && leftClickedOnCell && !DraggingLink && distanceFromCell > distanceBeforeDrag )
                 {
-                    UIManager.Instance.DesactivateCellShop();
+                    UIManager.Instance.StartCoroutine(UIManager.Instance.DesactivateCellShop());
                     CellManager.Instance.CreatenewLink();
                     DraggingLink = true;
                 }
