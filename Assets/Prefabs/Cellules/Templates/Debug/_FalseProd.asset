@@ -42,4 +42,4 @@ MonoBehaviour:
   ToggleInfoBox: 1
   STATS: 1
   ProductionGestion: 1
-  ProximityGestion: 0
+  ProximityGestion: 1
