@@ -15,6 +15,8 @@ public class CellMain : PoolableObjects
 
     // public List<CelulleMain> outputCell;
     #region REFS
+    public Material cellDefaultMat;
+
     public TextMeshPro NBlob;
     public TextMeshPro NLink;
     public TextMeshPro NCurrentProximity;
@@ -65,6 +67,7 @@ public class CellMain : PoolableObjects
     public virtual void Awake()
     {
         ProximityDectection.parent = this;
+
         //mR.material = myCellTemplate.mat;
         //mF.mesh = myCellTemplate.mesh;
         //ProximityCheck();
@@ -80,6 +83,8 @@ public class CellMain : PoolableObjects
         NLink.text = (links.Count + " / " + myCellTemplate.linkCapability);
         currentBlobStockage = myCellTemplate.storageCapability;
         currentLinkStockage = myCellTemplate.linkCapability;
+
+        hasBeenDrop = false;
 
         CellInitialisation();
 
