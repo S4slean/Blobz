@@ -114,7 +114,7 @@ public class InputManager : MonoBehaviour
 
                 if (CellSelected && clickTime > clickCooldown && leftClickedOnCell && !InCellSelection && !DraggingLink)
                 {
-                    Debug.Log("Display Cell Shop");
+
                     UIManager.Instance.DisplayCellShop(selectedCell);
 
                 }
@@ -279,7 +279,7 @@ public class InputManager : MonoBehaviour
                 movingObject = false;
                 objectMoved = null;
                 DraggingLink = false;
-                Debug.Log("Cell returned to previous Pos");
+
             }
         }
         #endregion

@@ -9,6 +9,10 @@ public class CellManager : MonoBehaviour
 
     public int Energy;
 
+    public Material allowedBuildingMat;
+    public Material refusedBuildingMat;
+
+
     [Header("Debug")]
     public CellMain selectedCell;
     [SerializeField]
