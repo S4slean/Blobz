@@ -10,7 +10,7 @@ public class QuestUI : MonoBehaviour
 
     private void OnEnable()
     {
-        TickManager.doTick += UpdateUI;    
+        TickManager.doTick += UpdateUI;
     }
 
     private void OnDisable()
@@ -20,35 +20,42 @@ public class QuestUI : MonoBehaviour
 
     public void UpdateUI()
     {
-        title.text = QuestManager.instance.currentQuest.QuestTitle;
+        title.text = QuestManager.instance.currentQuest.questTitle;
 
-        switch (QuestManager.instance.currentQuest.questType)
+        if (QuestManager.instance.currentQuest.questDescription != "")
         {
-            case QuestManager.QuestType.Batiments:
-                description.text = "Build " + QuestManager.instance.currentQuest.cellNbrToObtain + " " 
-                    + QuestManager.instance.currentQuest.cellType.ToString() + " Cell. " 
-                    + QuestManager.instance.questProgress + "/" + QuestManager.instance.currentQuest.cellNbrToObtain;
-                break;
+            description.text = QuestManager.instance.currentQuest.questDescription;
+        }
+        else
+        {
+            switch (QuestManager.instance.currentQuest.questType)
+            {
+                case QuestManager.QuestType.Batiments:
+                    description.text = "Build " + QuestManager.instance.currentQuest.cellNbrToObtain + " "
+                        + QuestManager.instance.currentQuest.cellType.ToString() + " Cell. "
+                        + QuestManager.instance.questProgress + "/" + QuestManager.instance.currentQuest.cellNbrToObtain;
+                    break;
 
-            case QuestManager.QuestType.Colonisation:
+                case QuestManager.QuestType.Colonisation:
 
-                string cellName;
-                if (QuestManager.instance.currentQuest.anyCells)
-                    cellName = "cell";
-                else
-                    cellName = QuestManager.instance.currentQuest.colonialCellType.ToString();
-                description.text = "Build 1 " + cellName + " in the designed area";
-                break;
+                    string cellName;
+                    if (QuestManager.instance.currentQuest.anyCells)
+                        cellName = "cell";
+                    else
+                        cellName = QuestManager.instance.currentQuest.colonialCellType.ToString();
+                    description.text = "Build 1 " + cellName + " in the designed area";
+                    break;
 
-            case QuestManager.QuestType.Destruction:
-                description.text = "Destroy all enemies. " + QuestManager.instance.questProgress + "/" 
-                    + QuestManager.instance.currentQuest.objectToDestroy.Length;
-                break;
+                case QuestManager.QuestType.Destruction:
+                    description.text = "Destroy all enemies. " + QuestManager.instance.questProgress + "/"
+                        + QuestManager.instance.currentQuest.objectToDestroy.Length;
+                    break;
 
-            case QuestManager.QuestType.Population:
-                description.text = "Reach a " + QuestManager.instance.currentQuest.populationObjective + " population. " 
-                    + RessourceTracker.instance.blobPop + "/" + QuestManager.instance.currentQuest.populationObjective;
-                break;
+                case QuestManager.QuestType.Population:
+                    description.text = "Reach a " + QuestManager.instance.currentQuest.populationObjective + " population. "
+                        + RessourceTracker.instance.blobPop + "/" + QuestManager.instance.currentQuest.populationObjective;
+                    break;
+            }
         }
 
     }
