@@ -6111,6 +6111,11 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 5336677369774388855, guid: b235cf5deb72a594ca3ac3352ab4b450,
+        type: 3}
+      propertyPath: fxPlayerInteraction
+      value: 
+      objectReference: {fileID: 7041524281203698387}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b235cf5deb72a594ca3ac3352ab4b450, type: 3}
 --- !u!4 &1065516467052029505 stripped
@@ -6122,6 +6127,12 @@ Transform:
 --- !u!95 &1065516467052029509 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 4126170009892429464, guid: b235cf5deb72a594ca3ac3352ab4b450,
+    type: 3}
+  m_PrefabInstance: {fileID: 4002117149449861341}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &7041524281203698387 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 6211278973496332814, guid: b235cf5deb72a594ca3ac3352ab4b450,
     type: 3}
   m_PrefabInstance: {fileID: 4002117149449861341}
   m_PrefabAsset: {fileID: 0}
