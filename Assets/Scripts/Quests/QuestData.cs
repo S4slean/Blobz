@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 [CreateAssetMenu(fileName = "QuestData.asset", menuName = "Blobz/Quest")]
 public class QuestData : ScriptableObject
@@ -8,7 +9,8 @@ public class QuestData : ScriptableObject
     
     public QuestManager.QuestType questType;
 
-    public string QuestTitle;
+    public string questTitle;
+    public string questDescription;
 
     [Header("Population")]
     [Range(0,10000)]public int populationObjective;
@@ -26,4 +28,30 @@ public class QuestData : ScriptableObject
 
     [Header("Destruction")]
     public GameObject[] objectToDestroy;
+
+    [Header("Events")]
+    public QuestEvent[] questEvents;
+}
+
+[System.Serializable]
+public struct QuestEvent
+{
+    public enum QuestEventType { Cinematic, PopUp, Weather, Function }
+
+    public QuestEventType eventType;
+
+    public Transform[] ObjectToWatch;
+
+    public string[] popUpsMsg;
+
+    public UnityEvent UEvent;
+
+    public bool foldout;
+
+    public int GetLength()
+    {
+        UEvent.GetPersistentEventCount();
+        return UEvent.GetPersistentEventCount();
+    }
+
 }
