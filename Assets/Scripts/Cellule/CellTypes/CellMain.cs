@@ -11,12 +11,14 @@ public class CellMain : PoolableObjects
     #region Variables
     [Tooltip("glissé l'un des srcyptable object structure ici")]
     public CelluleTemplate myCellTemplate;
+    public bool isNexus;
 
 
     // public List<CelulleMain> outputCell;
     #region REFS
     public Material cellDefaultMat;
 
+    public Animator anim;
     public TextMeshPro NBlob;
     public TextMeshPro NLink;
     public TextMeshPro NCurrentProximity;
@@ -86,10 +88,19 @@ public class CellMain : PoolableObjects
 
         hasBeenDrop = false;
 
-        
 
+        if (isNexus)
+        {
+            StartCoroutine(WaitForInit());
+
+        }
+
+    }
+
+    IEnumerator WaitForInit()
+    {
+        yield return new WaitForEndOfFrame();
         CellInitialisation();
-
     }
 
     private void CellInitialisation()
@@ -174,6 +185,12 @@ public class CellMain : PoolableObjects
                 currentIndex = Helper.LoopIndex(currentIndex, outputLinks.Count);
             }
         }
+
+        //TEMPORAIRE !!!!!!!
+        anim.Play("PlayerInteraction");
+        //!!!!!!!!!!!!
+
+
         AddBlob(myCellTemplate.prodPerTickBase);
 
 
@@ -195,6 +212,8 @@ public class CellMain : PoolableObjects
             RemoveBlob(1);
             CellManager.Instance.EnergyVariation(10);
         }
+            anim.Play("PlayerInteraction", 0, 0f);
+
 
     }
 

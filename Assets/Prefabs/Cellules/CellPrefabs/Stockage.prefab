@@ -579,7 +579,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canBePool: 0
   myCellTemplate: {fileID: 11400000, guid: df917586c15ca0c409f512efdab3a763, type: 2}
+  isNexus: 0
   cellDefaultMat: {fileID: 0}
+  anim: {fileID: 1236907593613512011}
   NBlob: {fileID: 4474176674694331671}
   NLink: {fileID: 5353293827010372031}
   NCurrentProximity: {fileID: 4580034776522669225}
@@ -899,6 +901,12 @@ PrefabInstance:
 --- !u!4 &1236907593613512015 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400314428079193252, guid: 74d7f2ad0af3d5644aa3194c57b18389,
+    type: 3}
+  m_PrefabInstance: {fileID: 1487405306405106155}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1236907593613512011 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 400314428079193248, guid: 74d7f2ad0af3d5644aa3194c57b18389,
     type: 3}
   m_PrefabInstance: {fileID: 1487405306405106155}
   m_PrefabAsset: {fileID: 0}

@@ -725,7 +725,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canBePool: 0
   myCellTemplate: {fileID: 11400000, guid: d35151efcdfd26345aee87cc67d97f88, type: 2}
+  isNexus: 0
   cellDefaultMat: {fileID: 0}
+  anim: {fileID: 1065516467052029509}
   NBlob: {fileID: 6169684921917453576}
   NLink: {fileID: 5654715456691700576}
   NCurrentProximity: {fileID: 8662841764924815970}
@@ -785,7 +787,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5664419171341515865
 Transform:
   m_ObjectHideFlags: 0
@@ -6104,11 +6106,22 @@ PrefabInstance:
       propertyPath: VelocityModule.z.maxCurve.m_Curve.Array.data[2].outWeight
       value: 0.33333334
       objectReference: {fileID: 0}
+    - target: {fileID: 6211278973496332816, guid: b235cf5deb72a594ca3ac3352ab4b450,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b235cf5deb72a594ca3ac3352ab4b450, type: 3}
 --- !u!4 &1065516467052029505 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4126170009892429468, guid: b235cf5deb72a594ca3ac3352ab4b450,
+    type: 3}
+  m_PrefabInstance: {fileID: 4002117149449861341}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1065516467052029509 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 4126170009892429464, guid: b235cf5deb72a594ca3ac3352ab4b450,
     type: 3}
   m_PrefabInstance: {fileID: 4002117149449861341}
   m_PrefabAsset: {fileID: 0}

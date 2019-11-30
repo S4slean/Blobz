@@ -7,7 +7,7 @@ using UnityEditor;
 [CustomEditor(typeof(CellMain), true)]
 public class CellMainInspector : Editor
 {
-    SerializedProperty myCellTemplateProp;
+    SerializedProperty myCellTemplateProp , isNexusProp;
 
     SerializedProperty NBlobProp, NLinkProp, NCurrentProximityProp, graphTransformProp, ProximityDectectionProp;
     //debugProperty 
@@ -17,11 +17,15 @@ public class CellMainInspector : Editor
 
     SerializedProperty TargetPosProp;
 
+    SerializedProperty animProp;
 
 
+
+    
     private void OnEnable()
     {
         myCellTemplateProp = serializedObject.FindProperty("myCellTemplate");
+        isNexusProp = serializedObject.FindProperty("isNexus");
 
         NBlobProp = serializedObject.FindProperty("NBlob");
         NLinkProp = serializedObject.FindProperty("NLink");
@@ -39,6 +43,8 @@ public class CellMainInspector : Editor
         showlinksProp = serializedObject.FindProperty("showlinks");
 
         TargetPosProp = serializedObject.FindProperty("TargetPos");
+
+        animProp = serializedObject.FindProperty("anim");
     }
 
     public override void OnInspectorGUI()
@@ -52,6 +58,10 @@ public class CellMainInspector : Editor
             EditorGUILayout.HelpBox("Glisser l'un des scriptable object CellTemplate ici", MessageType.Warning);
         }
         EditorGUILayout.PropertyField(myCellTemplateProp);
+        EditorGUI.indentLevel += 2;
+        EditorGUILayout.PropertyField(isNexusProp);
+        EditorGUI.indentLevel -= 2;
+       
 
         EditorGUILayout.PropertyField(showRefProp);
         //foldRef = EditorGUILayout.Foldout(foldRef, "Display REF VARIABLES", true);
@@ -65,6 +75,7 @@ public class CellMainInspector : Editor
             EditorGUILayout.PropertyField(graphTransformProp);
             EditorGUILayout.PropertyField(ProximityDectectionProp);
             EditorGUILayout.PropertyField(TargetPosProp);
+            EditorGUILayout.PropertyField(animProp);
          
 
             EditorGUI.indentLevel -= 1;
