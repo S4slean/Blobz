@@ -21,7 +21,7 @@ public class InputManager : MonoBehaviour
     public float clickCooldown;
 
     //bools concernant la pahse de dragging d'un lien 
-    [HideInInspector]public bool CellSelected;
+    [HideInInspector] public bool CellSelected;
     [HideInInspector] public bool DraggingLink;
 
     //Ui
@@ -29,7 +29,7 @@ public class InputManager : MonoBehaviour
     [HideInInspector] public bool InPauseMenu;
 
     //LayerMask
-    int layer_Mask_Cell; 
+    int layer_Mask_Cell;
 
     [HideInInspector] public Vector3 posCell;
     [HideInInspector] public Vector3 mousePos;
@@ -118,15 +118,18 @@ public class InputManager : MonoBehaviour
                     UIManager.Instance.DisplayCellShop(selectedCell);
 
                 }
-
-                float distanceFromCell = (hit.point - selectedCell.transform.position).magnitude;
-
-                if(CellSelected && clickTime > clickCooldown && leftClickedOnCell && !DraggingLink && distanceFromCell > distanceBeforeDrag )
+                if (selectedCell !=null)
                 {
-                    UIManager.Instance.StartCoroutine(UIManager.Instance.DesactivateCellShop());
-                    CellManager.Instance.CreatenewLink();
-                    DraggingLink = true;
+
+                    float distanceFromCell = (hit.point - selectedCell.transform.position).magnitude;
+                    if (clickTime > clickCooldown && leftClickedOnCell && !DraggingLink && distanceFromCell > distanceBeforeDrag)
+                    {
+                        UIManager.Instance.StartCoroutine(UIManager.Instance.DesactivateCellShop());
+                        CellManager.Instance.CreatenewLink();
+                        DraggingLink = true;
+                    }
                 }
+
             }
 
 
@@ -137,7 +140,7 @@ public class InputManager : MonoBehaviour
                 if (clickTime <= clickCooldown && isOverCell && cellOver == CellManager.Instance.selectedCell)
                 {
                     CellManager.Instance.InteractWithCell();
-                    
+
                 }
 
                 if (InCellSelection)
@@ -145,7 +148,7 @@ public class InputManager : MonoBehaviour
                     UIManager.Instance.StartCoroutine(UIManager.Instance.DesactivateCellShop());
                 }
 
-                
+
                 //if (InCellSelection)
                 //{
                 //    UIManager.Instance.DesactivateCellShop();
@@ -225,7 +228,7 @@ public class InputManager : MonoBehaviour
 
             if (!isOverCell && Input.GetMouseButtonDown(1) || Input.GetMouseButtonDown(0))
             {
-                
+
 
 
 
@@ -244,7 +247,7 @@ public class InputManager : MonoBehaviour
         else
         {
 
-            if(hit.transform != null && hit.transform.tag == "Ground")
+            if (hit.transform != null && hit.transform.tag == "Ground")
             {
                 if (CellManager.Instance.originalPosOfMovingCell == new Vector3(0, 100, 0))
                     CellManager.Instance.CellDeplacement(hit.point, objectMoved, true);
@@ -297,7 +300,7 @@ public class InputManager : MonoBehaviour
 
         //if (Input.GetKey(KeyCode.Space))
         //{
-           
+
         //    //Set up the new Pointer Event
         //    m_PointerEventData = new PointerEventData(m_EventSystem);
         //    //Set the Pointer Event Position to that of the mouse position
