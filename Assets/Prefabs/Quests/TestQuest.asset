@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac59c85db94beed47808c892abe2bae2, type: 3}
   m_Name: TestQuest
   m_EditorClassIdentifier: 
-  questType: 1
+  questType: 4
   questTitle: TestQuest
   questDescription: 
   eventDone: 0
   populationObjective: 200
-  cellType: 0
+  cellType: 1
   level: 1
   cellNbrToObtain: 10
   anyCells: 1
@@ -35,7 +35,7 @@ MonoBehaviour:
     popUpsMsg:
     - rpgStyle: 0
       anchor: {fileID: 0}
-      offset: {x: 0, y: 0, z: 0}
+      offset: {x: 2.12, y: 0, z: 0}
       usingSprite: 0
       sprite: {fileID: 2800000, guid: c2df8ed75567bf24a903a11d60e577b7, type: 3}
       Title: 
@@ -58,7 +58,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls: []
     foldout: 0
-  - eventType: 0
+  - eventType: 3
     eventDuration: 0
     ObjectToWatch: []
     popUpsMsg: []
