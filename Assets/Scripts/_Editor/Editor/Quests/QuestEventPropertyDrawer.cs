@@ -40,7 +40,7 @@ public class QuestEventPropertyDrawer : PropertyDrawer
                 if (!foldoutProp.boolValue)
                     return (EditorGUIUtility.singleLineHeight + 2) * 3;
                 else
-                    return (EditorGUIUtility.singleLineHeight + 2) * 3 + (EditorGUIUtility.singleLineHeight + 2) * popUpsMsgProp.arraySize * 2;
+                    return (EditorGUIUtility.singleLineHeight + 2) * 3 + (EditorGUIUtility.singleLineHeight + 2) * popUpsMsgProp.arraySize *10;
 
             case 3:
                 UEventProp = property.FindPropertyRelative("UEvent");
@@ -133,8 +133,19 @@ public class QuestEventPropertyDrawer : PropertyDrawer
                 {
                     for (int i = 0; i < popUpsMsgProp.arraySize; i++)
                     {
-                        EditorGUI.TextArea(new Rect(position.x + 5, position.y + 10 + 2 * line + i * line * 2, position.width - 10, line * 2),
-                            popUpsMsgProp.GetArrayElementAtIndex(i).stringValue);
+                        //EditorGUI.TextArea(new Rect(position.x + 5, position.y + 10 + 2 * line + i * line * 2, position.width - 10, line * 2),
+                        //    popUpsMsgProp.GetArrayElementAtIndex(i).stringValue);
+
+
+
+                        //QuestPopUpPropertyDrawer.Draw(
+                        //    new Rect(position.x + 15, position.y + 10 + line*2 + line * 11 * i, position.width - 30, line*10)
+                        //    , popUpsMsgProp, label);
+
+
+                        EditorGUI.PropertyField(
+                             new Rect(position.x + 15, position.y + 10 + line * 2 + line * 10 * i, position.width - 30, line * 9),
+                             popUpsMsgProp.GetArrayElementAtIndex(i));
 
                     }
                 }

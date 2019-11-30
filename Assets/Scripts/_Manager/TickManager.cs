@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class TickManager : MonoBehaviour
 {
+
+    public static TickManager instance;
+
     public delegate void Tick();
     public static Tick doTick;
     public static Tick doTick2;
@@ -11,12 +14,25 @@ public class TickManager : MonoBehaviour
     public static Tick doTick8;
     public static Tick doTick16;
 
+    public bool tickPaused;
+
     private float count = 0;
     private float ticksElapsed = 0;
     [SerializeField] [Range(0, 10)] private float tickDuration = 1;
 
+    private void Start()
+    {
+        if (instance == null)
+            instance = this;
+        else
+            Destroy(gameObject);
+    }
+
     private void Update()
     {
+        if (tickPaused)
+            return;
+
         count += Time.deltaTime;
         if(count > tickDuration)
         {
@@ -39,5 +55,16 @@ public class TickManager : MonoBehaviour
             if (ticksElapsed % 16 == 0 && doTick16 != null)
                 doTick16();
         }
+    }
+
+    public void PauseTick()
+    {
+        tickPaused = true;
+
+    }
+
+    public void RestartTick()
+    {
+        tickPaused = false;
     }
 }

@@ -494,12 +494,12 @@ MonoBehaviour:
   NBlob: {fileID: 2904753947209794517}
   NLink: {fileID: 1984579306425477977}
   NCurrentProximity: {fileID: 3821511113757510336}
-  graphTransform: {fileID: 0}
+  graphTransform: {fileID: 2421516202894469946}
   TargetPos: {fileID: 0}
   ProximityDectection: {fileID: 6767594726806389926}
   showDebug: 0
   showlinks: 0
-  showRef: 0
+  showRef: 1
   links: []
   noMoreLink: 0
   BlobNumber: 0

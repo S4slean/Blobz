@@ -130,7 +130,7 @@ public class CellManager : MonoBehaviour
             selectedCell.AddLink(currentLink, true);
             receivingCell.AddLink(currentLink, false);
             cleanLinkRef();
-            Debug.Log("Yo");
+
 
         }
         else

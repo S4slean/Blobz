@@ -257,7 +257,7 @@ public class InputManager : MonoBehaviour
             //si clic gauche, replacer la cell et update tous ses liens
             if (Input.GetMouseButtonDown(0))
             {
-                Debug.Log("Cell Placed");
+
                 CellManager.Instance.ValidateNewLink(hit);
                 objectMoved.TickInscription();
                 movingObject = false;

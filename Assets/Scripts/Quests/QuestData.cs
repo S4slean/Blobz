@@ -11,6 +11,7 @@ public class QuestData : ScriptableObject
 
     public string questTitle;
     public string questDescription;
+    public bool eventDone = false;
 
     [Header("Population")]
     [Range(0,10000)]public int populationObjective;
@@ -31,18 +32,21 @@ public class QuestData : ScriptableObject
 
     [Header("Events")]
     public QuestEvent[] questEvents;
+
+    
 }
 
 [System.Serializable]
 public struct QuestEvent
 {
-    public enum QuestEventType { Cinematic, PopUp, Weather, Function }
+    public enum QuestEventType { Cinematic, PopUp, Weather, Function}
 
     public QuestEventType eventType;
+    public float eventDuration;
 
     public Transform[] ObjectToWatch;
 
-    public string[] popUpsMsg;
+    public PopUp[] popUpsMsg;
 
     public UnityEvent UEvent;
 
@@ -54,4 +58,19 @@ public struct QuestEvent
         return UEvent.GetPersistentEventCount();
     }
 
+}
+
+[System.Serializable]
+public struct PopUp
+{
+    public bool rpgStyle;
+
+    public Transform anchor;
+    public Vector3 offset;
+
+    public bool usingSprite;
+    public Texture sprite;
+
+    public string Title;
+    public string Text;
 }

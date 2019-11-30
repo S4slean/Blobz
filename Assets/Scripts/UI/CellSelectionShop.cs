@@ -59,15 +59,25 @@ public class CellSelectionShop : MonoBehaviour
 
     private void ButtonChoosen(Vector3 pos, CellType cellType)
     {
-        GameObject currentButton = buttonTypes[(int)cellType];
-        butTrans[(int)cellType].transform.localPosition = pos;
-        currentButton.SetActive(true);
+        GameObject currentButton;
+
+        for (int i = 0; i < buttonTypes.Length; i++)
+        {
+            if (cellType.ToString() == buttonTypes[i].name.Replace("Button", ""))
+            {
+                currentButton = buttonTypes[i];
+                butTrans[i].transform.localPosition = pos;
+                currentButton.SetActive(true);
+                break;
+            }
+        }
+
     }
 
     public void CellConstruction(CellMain cellule)
     {
 
-        Debug.Log("cell Construction");
+
         System.Type cellType = cellule.GetType();
         CellMain newCell = ObjectPooler.poolingSystem.GetPooledObject(cellType) as CellMain;
         if (newCell.myCellTemplate.EnergyCost > RessourceTracker.instance.energy)

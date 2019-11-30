@@ -51,6 +51,8 @@ public class RessourceTracker : MonoBehaviour
                 break;
         }
 
+        UIManager.Instance.QuestUI.UpdateUI();
+
     }
 
     public void RemoveCell(CellMain cell)
@@ -79,6 +81,8 @@ public class RessourceTracker : MonoBehaviour
                 autorouteNbr--;
                 break;
         }
+
+        UIManager.Instance.QuestUI.UpdateUI();
 
     }
 }

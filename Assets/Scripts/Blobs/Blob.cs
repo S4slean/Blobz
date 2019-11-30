@@ -50,7 +50,7 @@ public class Blob : PoolableObjects
     {
         transform.LookAt(transform.position + direction);
         rb.AddForce(direction, ForceMode.Impulse);
-        Debug.Log("jump");
+
     }
 
     public void Fly()

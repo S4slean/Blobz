@@ -86,12 +86,15 @@ public class CellMain : PoolableObjects
 
         hasBeenDrop = false;
 
+        
+
         CellInitialisation();
 
     }
 
     private void CellInitialisation()
     {
+        RessourceTracker.instance.AddCell(this);
         TickInscription();
         isDead = false;
 
@@ -109,6 +112,7 @@ public class CellMain : PoolableObjects
     {
         isDead = true;
         //TickManager.doTick -= BlobsTick;
+        RessourceTracker.instance.RemoveCell(this);
         TickDesinscription();
         int I = links.Count;
         for (int i = 0; i < I; i++)
@@ -143,6 +147,9 @@ public class CellMain : PoolableObjects
             InputManager.Instance.CleanBoolsRelatedToCell();
             UIManager.Instance.DesactivateCellShop();
             UIManager.Instance.CellDeselected();
+
+            InputManager.Instance.objectMoved.Died(true);
+            InputManager.Instance.movingObject = false;
 
         }
         BlobNumber = 0;

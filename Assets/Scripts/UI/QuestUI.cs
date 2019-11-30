@@ -20,6 +20,9 @@ public class QuestUI : MonoBehaviour
 
     public void UpdateUI()
     {
+        if (QuestManager.instance == null)
+            return;
+
         title.text = QuestManager.instance.currentQuest.questTitle;
 
         if (QuestManager.instance.currentQuest.questDescription != "")
