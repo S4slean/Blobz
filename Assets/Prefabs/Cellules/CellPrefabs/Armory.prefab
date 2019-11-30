@@ -869,6 +869,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6049475817487512608}
     m_Modifications:
+    - target: {fileID: 9026544737214006021, guid: b4ccfa016bc91574ea6c86454bee0db2,
+        type: 3}
+      propertyPath: m_Name
+      value: Armor
+      objectReference: {fileID: 0}
     - target: {fileID: 9026544737214006016, guid: b4ccfa016bc91574ea6c86454bee0db2,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -944,16 +949,16 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 9026544737214006021, guid: b4ccfa016bc91574ea6c86454bee0db2,
-        type: 3}
-      propertyPath: m_Name
-      value: Armor
-      objectReference: {fileID: 0}
     - target: {fileID: 6855726535936874199, guid: b4ccfa016bc91574ea6c86454bee0db2,
         type: 3}
       propertyPath: looping
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7008738824108123254, guid: b4ccfa016bc91574ea6c86454bee0db2,
+        type: 3}
+      propertyPath: mainParent
+      value: 
+      objectReference: {fileID: 6049475817487512608}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b4ccfa016bc91574ea6c86454bee0db2, type: 3}
 --- !u!4 &2390025963806365032 stripped

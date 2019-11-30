@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8009261302443850914}
   - component: {fileID: 8009261302443850940}
   - component: {fileID: 8009261302443850915}
+  - component: {fileID: 5856641721600445981}
   m_Layer: 0
   m_Name: Fx_Sploutch
   m_TagString: Untagged
@@ -5135,3 +5136,16 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &5856641721600445981
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8009261302443850913}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a500e713bb36234facacdb5b9ca3ac2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainParent: {fileID: 0}
