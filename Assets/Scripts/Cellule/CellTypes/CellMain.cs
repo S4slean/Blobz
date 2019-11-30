@@ -103,7 +103,7 @@ public class CellMain : PoolableObjects
         CellInitialisation();
     }
 
-    private void CellInitialisation()
+    public void CellInitialisation()
     {
         RessourceTracker.instance.AddCell(this);
         TickInscription();
@@ -159,8 +159,11 @@ public class CellMain : PoolableObjects
             UIManager.Instance.DesactivateCellShop();
             UIManager.Instance.CellDeselected();
 
-            InputManager.Instance.objectMoved.Died(true);
-            InputManager.Instance.movingObject = false;
+            if (InputManager.Instance.objectMoved != null)
+            {
+                InputManager.Instance.objectMoved.Died(true);
+                InputManager.Instance.movingObject = false;
+            }
 
         }
         BlobNumber = 0;
