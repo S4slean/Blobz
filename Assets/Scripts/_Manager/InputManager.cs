@@ -262,7 +262,7 @@ public class InputManager : MonoBehaviour
             {
 
                 CellManager.Instance.ValidateNewLink(hit);
-                objectMoved.TickInscription();
+                //objectMoved.cell();
                 movingObject = false;
                 objectMoved = null;
                 DraggingLink = false;

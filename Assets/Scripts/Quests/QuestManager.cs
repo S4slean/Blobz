@@ -11,6 +11,7 @@ public class QuestManager : MonoBehaviour
 
     int currentQuestID;
     int currentQuestEventID;
+    int currentMsgID;
 
     public QuestData currentQuest;
     public List<QuestData> QuestList = new List<QuestData>();
@@ -147,6 +148,11 @@ public class QuestManager : MonoBehaviour
         currentQuestEventID = 0;
     }
 
+    public void ResetMsgCount()
+    {
+        currentMsgID = 0;
+    }
+
     public void PlayQuestEvent()
     {
         TickManager.instance.PauseTick();
@@ -161,6 +167,16 @@ public class QuestManager : MonoBehaviour
 
                 case QuestEvent.QuestEventType.PopUp:
 
+                    QuestPopUp popUp;
+
+
+                    if (currentQuest.questEvents[currentQuestEventID].popUpsMsg[currentMsgID].rpgStyle)
+                    {
+                        popUp = UIManager.Instance.questEventPopUpOverlay;
+                    }
+                    //UIManager.Instance.DisplayUI(UIManager.Instance.questEventPopUpWorld);
+
+
                     break;
 
                 case QuestEvent.QuestEventType.Weather:
@@ -170,11 +186,11 @@ public class QuestManager : MonoBehaviour
                 case QuestEvent.QuestEventType.Function:
 
                     currentQuest.questEvents[currentQuestEventID].UEvent.Invoke();
+                    StartCoroutine(WaitBeforeNextEvent());
 
                     break;
             }
 
-            StartCoroutine(WaitBeforeNextEvent());
         }
         else
         {
@@ -182,6 +198,11 @@ public class QuestManager : MonoBehaviour
         }
 
 
+    }
+
+    public void EndEvent()
+    {
+        UIManager.Instance.HideUI(UIManager.Instance.questEventPopUpWorld);
     }
 
     public IEnumerator WaitBeforeNextEvent()
