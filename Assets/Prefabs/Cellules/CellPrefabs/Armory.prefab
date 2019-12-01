@@ -564,7 +564,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myCollider: {fileID: 7800882582734605355}
-  parent: {fileID: 0}
+  parent: {fileID: 9095268931315420088}
 --- !u!1 &6760424054226889505
 GameObject:
   m_ObjectHideFlags: 0
@@ -869,11 +869,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6049475817487512608}
     m_Modifications:
-    - target: {fileID: 9026544737214006021, guid: b4ccfa016bc91574ea6c86454bee0db2,
-        type: 3}
-      propertyPath: m_Name
-      value: Armor
-      objectReference: {fileID: 0}
     - target: {fileID: 9026544737214006016, guid: b4ccfa016bc91574ea6c86454bee0db2,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -943,6 +938,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9026544737214006021, guid: b4ccfa016bc91574ea6c86454bee0db2,
+        type: 3}
+      propertyPath: m_Name
+      value: Armor
       objectReference: {fileID: 0}
     - target: {fileID: 6855726535936874185, guid: b4ccfa016bc91574ea6c86454bee0db2,
         type: 3}
