@@ -12,10 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac59c85db94beed47808c892abe2bae2, type: 3}
   m_Name: QuestTuto2
   m_EditorClassIdentifier: 
-  questType: 0
-  QuestTitle: 
-  populationObjective: 1000
-  cellType: 0
+  questType: 1
+  questTitle: Create your first Cell
+  questDescription: The "Crusher Cell" for kill Blobz.
+  eventDone: 0
+  populationObjective: 0
+  cellType: 3
   level: 1
   cellNbrToObtain: 1
   anyCells: 1
@@ -23,3 +25,19 @@ MonoBehaviour:
   placeToGet: {fileID: 0}
   range: 0
   objectToDestroy: []
+  questEvents:
+  - eventType: 1
+    eventDuration: 0
+    ObjectToWatch: []
+    popUpsMsg:
+    - rpgStyle: 0
+      anchor: {fileID: 0}
+      offset: {x: 0, y: 0, z: 0}
+      usingSprite: 0
+      sprite: {fileID: 0}
+      Title: Broyeur Cell
+      Text: "The \"Broyeur Cell\" help you to \ncollect more \"Energies\"."
+    UEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    foldout: 1
