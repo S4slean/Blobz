@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   questType: 0
   questTitle: Blobz are Coming
-  questDescription: Click for sploush (kill) them
+  questDescription: "Click to make a blob explode \nand earn his sploosh.\n"
   eventDone: 0
   populationObjective: 100
   cellType: 0
@@ -43,7 +43,7 @@ MonoBehaviour:
       offset: {x: 0, y: 0, z: 0}
       usingSprite: 0
       sprite: {fileID: 0}
-      Title: What is a Blobz?
+      Title: What's a Blobz?
       Text: 'Blobz are created to expend
 
         your population ("Energies").'

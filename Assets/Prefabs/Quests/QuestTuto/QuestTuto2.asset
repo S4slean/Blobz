@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   questType: 1
   questTitle: Create your first Cell
-  questDescription: The "Broyeur Cell" for kill Blobz.
+  questDescription: The "Crusher Cell" for kill Blobz.
   eventDone: 0
   populationObjective: 0
   cellType: 3
