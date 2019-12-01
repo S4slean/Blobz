@@ -461,6 +461,14 @@ public class CellMain : PoolableObjects
         ProximityCheck();
         ProximityLevelModification(0);
     }
+
+    public int GetCurrentRange()
+    {
+        return currentRange;
+    }
     #endregion
+
+
+
 
 }
