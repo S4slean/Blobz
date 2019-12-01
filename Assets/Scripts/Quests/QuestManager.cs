@@ -234,6 +234,15 @@ public class QuestManager : MonoBehaviour
             popUp.transform.position = popUpData.offset;
         }
 
+        if(popUpData.usingSprite == false || popUpData.sprite == null)
+        {
+            popUp.img.gameObject.SetActive(false);
+        }
+        else
+        {
+            popUp.img.gameObject.SetActive(true);
+        }
+
         popUp.UpdatePopUp(popUpData.Title, popUpData.Text, popUpData.sprite, popUpData.usingSprite);
     }
     public IEnumerator WaitBeforNextEvent()
