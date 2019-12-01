@@ -12,10 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac59c85db94beed47808c892abe2bae2, type: 3}
   m_Name: QuestTuto1
   m_EditorClassIdentifier: 
-  questType: 1
-  QuestTitle: 
-  populationObjective: 0
-  cellType: 3
+  questType: 0
+  questTitle: Blobz are Coming
+  questDescription: "Click to make a blob explode \nand earn his sploosh.\n"
+  eventDone: 0
+  populationObjective: 100
+  cellType: 0
   level: 1
   cellNbrToObtain: 1
   anyCells: 1
@@ -23,3 +25,29 @@ MonoBehaviour:
   placeToGet: {fileID: 0}
   range: 0
   objectToDestroy: []
+  questEvents:
+  - eventType: 0
+    eventDuration: 0
+    ObjectToWatch: []
+    popUpsMsg: []
+    UEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    foldout: 0
+  - eventType: 1
+    eventDuration: 0
+    ObjectToWatch: []
+    popUpsMsg:
+    - rpgStyle: 0
+      anchor: {fileID: 0}
+      offset: {x: 0, y: 0, z: 0}
+      usingSprite: 0
+      sprite: {fileID: 0}
+      Title: What's a Blobz?
+      Text: 'Blobz are created to expend
+
+        your population ("Energies").'
+    UEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    foldout: 1

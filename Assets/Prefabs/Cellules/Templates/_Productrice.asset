@@ -32,8 +32,8 @@ MonoBehaviour:
   storageCapability: 20
   linkCapability: 8
   proximityLevelMax: 4
-  positivesInteractions: 
-  negativesInteractions: 
+  positivesInteractions: 00000000
+  negativesInteractions: 0300000001000000
   SurproductionRate: 0f0000001e0000003c0000005a000000
   BlopPerTick: []
   stockageCapacity: 
@@ -41,8 +41,8 @@ MonoBehaviour:
   Range: 
   energyPerblop: 0
   StatsModification: 0
-  REFS: 1
+  REFS: 0
   ToggleInfoBox: 1
   STATS: 0
-  ProductionGestion: 1
+  ProductionGestion: 0
   ProximityGestion: 1

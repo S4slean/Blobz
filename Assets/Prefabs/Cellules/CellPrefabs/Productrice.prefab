@@ -828,7 +828,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myCollider: {fileID: 5618693311220691540}
-  parent: {fileID: 0}
+  parent: {fileID: 5338465575289603483}
 --- !u!1001 &4002117149449861341
 PrefabInstance:
   m_ObjectHideFlags: 0

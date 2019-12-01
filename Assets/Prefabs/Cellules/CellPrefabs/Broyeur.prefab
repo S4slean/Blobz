@@ -593,7 +593,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myCollider: {fileID: 7800882582734605355}
-  parent: {fileID: 0}
+  parent: {fileID: 5867697968191919761}
 --- !u!1 &6760424054226889505
 GameObject:
   m_ObjectHideFlags: 0

@@ -36,8 +36,8 @@ MonoBehaviour:
   Range: 
   energyPerblop: 30
   StatsModification: 5
-  REFS: 1
+  REFS: 0
   ToggleInfoBox: 0
   STATS: 0
   ProductionGestion: 0
-  ProximityGestion: 1
+  ProximityGestion: 0
