@@ -4,15 +4,9 @@ using UnityEngine;
 
 public class CellProductrice : CellMain
 {
-
-    // [Header("Proximity Level Modif")]
-    // [Range(0f, 100f)]
-    //// public int[] myCellTemplate.SurprodRate;
-
-
     public override void BlobsTick()
     {
-        //base.BlobsTick();
+        haveExpulse = false;
         //ça marche bien mais à voir si quand 1 batiment meure la produciton saute avec ou pas
         for (int i = 0; i < currentRejectPower; i++)
         {
@@ -25,6 +19,7 @@ public class CellProductrice : CellMain
                 outputLinks[currentIndex].Transmitt();
                 currentIndex++;
                 currentIndex = Helper.LoopIndex(currentIndex, outputLinks.Count);
+                haveExpulse = true;
             }
         }
         if ((int)Random.Range(0, 101) <= currentSurproductionRate)
@@ -35,47 +30,11 @@ public class CellProductrice : CellMain
         {
             AddBlob(myCellTemplate.prodPerTickBase);
         }
+
+        if (haveExpulse)
+        {
+            anim.Play("BlobExpulsion");
+        }
     }
 
-
-    public override void ProximityLevelModification(int Amout)
-    {
-        base.ProximityLevelModification(Amout);
-        //    if (currentProximityLevel > 0)
-        //    {
-
-        //        switch (currentProximityLevel)
-        //        {
-        //            case 0:
-        //                //c'est une variable de debug
-        //                currentProximityTier = 0;
-        //                currentSurproductionRate = myCellTemplate.SurproductionRate[0];
-        //                break;
-        //            case 1:
-        //                currentProximityTier = 1;
-        //                currentSurproductionRate = myCellTemplate.SurproductionRate[1];
-        //                break;
-        //            case 2:
-        //                currentProximityTier = 2;
-        //                currentSurproductionRate = myCellTemplate.SurproductionRate[2];
-        //                break;
-        //            case 3:
-        //                currentProximityTier = 3;
-        //                currentSurproductionRate = myCellTemplate.SurproductionRate[3];
-        //                break;
-        //            //si > 0 max tier (soit 4 ) 
-
-        //            default:
-        //                currentProximityTier = 3;
-        //                currentSurproductionRate = myCellTemplate.SurproductionRate[3];
-        //                break;
-
-        //        }
-        //    }
-        //    else
-        //    {
-        //        currentProximityTier = 0;
-        //        currentSurproductionRate = myCellTemplate.SurproductionRate[0];
-        //    }
-    }
 }

@@ -20,7 +20,7 @@ public class CellArmory : CellMain
     
     public override void BlobsTick()
     {
-        
+        haveExpulse = false;
         if (BlobNumber > 0)
         {
             currentTick++;
@@ -41,6 +41,7 @@ public class CellArmory : CellMain
                     newBlob.transform.position = TargetPos.transform.position + Helper.RandomVectorInUpSphere();
 
                     //newBlob.Jump(Helper.RandomVectorInUpSphere() * 1);
+                    haveExpulse = true;
                 }
                 currentTick = 0;
             }
@@ -50,6 +51,10 @@ public class CellArmory : CellMain
             currentTick = 0;
         }
         //}
+        if (haveExpulse)
+        {
+            anim.Play("BlobExpulsion");
+        }
     }
 
     public override void TickInscription()

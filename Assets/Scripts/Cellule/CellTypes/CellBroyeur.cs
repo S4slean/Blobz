@@ -7,14 +7,19 @@ public class CellBroyeur : CellMain
 
     public override void BlobsTick()
     {
-        
+        haveExpulse = false;
         if (BlobNumber > 0 )
         {
             for (int i = 0; i < currentRejectPower; i++)
             {
                 RemoveBlob(1);
                 CellManager.Instance.EnergyVariation(myCellTemplate.energyPerblop);
+                haveExpulse = true;
             }
+        }
+        if (haveExpulse)
+        {
+            anim.Play("BlobExpulsion");
         }
     }
     public override void TickInscription()

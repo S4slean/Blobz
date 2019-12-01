@@ -33,7 +33,6 @@ public class CellMain : PoolableObjects
     public CellProximityDectection ProximityDectection;
     #endregion
 
-
     #region DEBUG
     public bool showDebug;
     public bool showlinks;
@@ -62,6 +61,10 @@ public class CellMain : PoolableObjects
 
     protected bool isDead = false;
     protected float velocity;
+    #endregion
+
+    #region Anim Variable   
+    protected bool haveExpulse;
     #endregion
 
     #endregion
@@ -172,7 +175,8 @@ public class CellMain : PoolableObjects
     }
     public virtual void BlobsTick()
     {
-        //AddBlob(myCellTemplate.prodPerTick);
+        //ANIM
+        haveExpulse = false;
 
         //ça marche bien mais à voir si quand 1 batiment meure la produciton saute avec ou pas
         for (int i = 0; i < currentRejectPower; i++)
@@ -186,11 +190,16 @@ public class CellMain : PoolableObjects
                 outputLinks[currentIndex].Transmitt();
                 currentIndex++;
                 currentIndex = Helper.LoopIndex(currentIndex, outputLinks.Count);
+                haveExpulse = true;
             }
+        }
+        if (haveExpulse)
+        {
+            anim.Play("BlobExpulsion");
         }
 
         //TEMPORAIRE !!!!!!!
-        anim.Play("PlayerInteraction");
+        //anim.Play("PlayerInteraction");
         //!!!!!!!!!!!!
 
 
@@ -244,7 +253,7 @@ public class CellMain : PoolableObjects
     public void ProximityCheck()
     {
         // ProximityDectection.myCollider.radius = Mathf.SmoothDamp(0, myCellTemplate.range / 2, ref velocity, 0.01f);
-        ProximityDectection.myCollider.radius = myCellTemplate.rangeBase / 2;
+        ProximityDectection.myCollider.radius = currentRange / 2;
     }
     public void AddToCellAtPromity(CellMain cellDetected)
     {

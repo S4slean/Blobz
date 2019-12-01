@@ -49,7 +49,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _CellColorIntensity: 0.1945
-    - _DeformationValue: -0.373
+    - _DeformationValue: 0
     - _DeofrmationValue: 1.03
     - _DistortionValue: 0.0117
     - _Float0: 0.12
@@ -61,7 +61,7 @@ Material:
     - _Max: 0.683
     - _Min: 0.15
     - _SIzeratio: 0
-    - _ShapeFactor: 0.181
+    - _ShapeFactor: 0.295
     - _SideDeformation: 0
     - __dirty: 0
     m_Colors:
