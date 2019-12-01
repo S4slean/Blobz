@@ -15,6 +15,11 @@ public class RessourceTracker : MonoBehaviour
     public int broyeurNbr;
     public int autorouteNbr;
 
+    public int normalBlob;
+    public int soldierBlob;
+    public int chargedBlob;
+    public int madBlob;
+
     public int energy;
     public int blobProduced;
 
@@ -84,5 +89,133 @@ public class RessourceTracker : MonoBehaviour
 
         UIManager.Instance.QuestUI.UpdateUI();
 
+    }
+
+    public void AddBlob(Blob blob)
+    {
+        blobPop++;
+
+        switch (blob.blobType)
+        {
+            case BlobManager.BlobType.normal:
+
+                normalBlob++;
+
+                break;
+
+            case BlobManager.BlobType.soldier:
+
+                soldierBlob++;
+
+                break;
+
+            case BlobManager.BlobType.charged:
+
+                chargedBlob++;
+
+                break;
+
+            case BlobManager.BlobType.mad:
+
+                madBlob++;
+
+                break;
+        }
+    }
+
+    public void AddBlob(BlobManager.BlobType blobType)
+    {
+        blobPop++;
+
+        switch (blobType)
+        {
+            case BlobManager.BlobType.normal:
+
+                normalBlob++;
+
+                break;
+
+            case BlobManager.BlobType.soldier:
+
+                soldierBlob++;
+
+                break;
+
+            case BlobManager.BlobType.charged:
+
+                chargedBlob++;
+
+                break;
+
+            case BlobManager.BlobType.mad:
+
+                madBlob++;
+
+                break;
+        }
+    }
+
+    public void RemoveBlob(Blob blob)
+    {
+        blobPop--;
+
+        switch (blob.blobType)
+        {
+            case BlobManager.BlobType.normal:
+
+                normalBlob--;
+
+                break;
+
+            case BlobManager.BlobType.soldier:
+
+                soldierBlob--;
+
+                break;
+
+            case BlobManager.BlobType.charged:
+
+                chargedBlob--;
+
+                break;
+
+            case BlobManager.BlobType.mad:
+
+                madBlob--;
+
+                break;
+        }
+    }
+
+    public void RemoveBlob(BlobManager.BlobType blobType)
+    {
+        blobPop--;
+
+        switch (blobType)
+        {
+            case BlobManager.BlobType.normal:
+
+                normalBlob--;
+
+                break;
+
+            case BlobManager.BlobType.soldier:
+
+                soldierBlob--;
+
+                break;
+
+            case BlobManager.BlobType.charged:
+
+                chargedBlob--;
+
+                break;
+
+            case BlobManager.BlobType.mad:
+
+                madBlob--;
+
+                break;
+        }
     }
 }

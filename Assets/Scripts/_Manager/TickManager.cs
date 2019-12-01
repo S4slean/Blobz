@@ -20,7 +20,7 @@ public class TickManager : MonoBehaviour
     private float ticksElapsed = 0;
     [SerializeField] [Range(0, 10)] private float tickDuration = 1;
 
-    private void Start()
+    private void Awake()
     {
         if (instance == null)
             instance = this;

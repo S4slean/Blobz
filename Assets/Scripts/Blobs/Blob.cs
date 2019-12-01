@@ -25,7 +25,18 @@ public class Blob : PoolableObjects
 
         UpdateMat();
         //rajoute le blob à la liste des blobs actifs dans la scène
+
+        RessourceTracker.instance.AddBlob(this);
         BlobManager.blobList.Add(this);
+    }
+
+    public void ChangeType(BlobManager.BlobType newType)
+    {
+        RessourceTracker.instance.RemoveBlob(this);
+        blobType = newType;
+        UpdateMat();
+        RessourceTracker.instance.AddBlob(this);
+
     }
 
     public void UpdateMat()

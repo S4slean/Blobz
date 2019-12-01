@@ -10,7 +10,7 @@ using UnityEditor.Events;
 public class QuickSetUp : Editor
 {
 
-    static GameObject UI;
+
     static GameObject pools;
     static GameObject tickManager;
     static GameObject uiManager;
@@ -22,6 +22,8 @@ public class QuickSetUp : Editor
     static GameObject levelManager;
     static GameObject blobManager;
     static GameObject ground;
+    static GameObject cinematicManager;
+    
 
 
 
@@ -46,12 +48,12 @@ public class QuickSetUp : Editor
             || FindObjectOfType<QuestManager>() != null
             || FindObjectOfType<RessourceTracker>() != null
             || FindObjectOfType<CellManager>() != null
-            || GameObject.FindGameObjectWithTag("UI") != null
             || GameObject.Find("--Pools--") != null
             || FindObjectOfType<CameraController>() != null
             || FindObjectOfType<LevelManager>() != null
             || FindObjectOfType<BlobManager>() != null
-            || GameObject.FindGameObjectWithTag("Ground"))
+            || GameObject.FindGameObjectWithTag("Ground")
+            || FindObjectOfType<CinematicManager>() != null)
         {
             return false;
         }
@@ -80,14 +82,11 @@ public class QuickSetUp : Editor
         if (FindObjectOfType<CellManager>() != null)
             DestroyImmediate(FindObjectOfType<CellManager>().gameObject);
 
-        if (GameObject.FindGameObjectWithTag("UI") != null)
-            DestroyImmediate(GameObject.FindGameObjectWithTag("UI"));
-
         if (GameObject.FindGameObjectWithTag("Pools") != null)
             DestroyImmediate(GameObject.FindGameObjectWithTag("Pools"));
 
-        if (FindObjectOfType<Camera>() != null)
-            DestroyImmediate(FindObjectOfType<Camera>().gameObject);
+        if (FindObjectOfType<CameraController>() != null)
+            DestroyImmediate(FindObjectOfType<CameraController>().gameObject);
 
         if (FindObjectOfType<LevelManager>() != null)
             DestroyImmediate(FindObjectOfType<LevelManager>().gameObject);
@@ -98,12 +97,14 @@ public class QuickSetUp : Editor
         if (GameObject.FindGameObjectWithTag("Ground") != null)
             DestroyImmediate(GameObject.FindGameObjectWithTag("Ground"));
 
+        if (FindObjectOfType<CinematicManager>() != null)
+            DestroyImmediate(FindObjectOfType<CinematicManager>().gameObject);
+
         Debug.Log("Scene Cleaned");
     }
 
     static void GetResources()
     {
-        UI = Resources.Load("QuickSetUp/--UI--",typeof(GameObject)) as GameObject;
         pools = Resources.Load<GameObject>("QuickSetUp/--Pools--") ;
         tickManager = Resources.Load("QuickSetUp/TickManager") as GameObject;
         questManager = Resources.Load("QuickSetUp/QuestManager") as GameObject;
@@ -115,11 +116,11 @@ public class QuickSetUp : Editor
         levelManager = Resources.Load("QuickSetUp/LevelManager") as GameObject;
         blobManager = Resources.Load("QuickSetUp/BlobManager") as GameObject;
         ground = Resources.Load("QuickSetUp/Ground") as GameObject;
+        cinematicManager = Resources.Load("QuickSetUp/CinematicManager") as GameObject;
     }
 
     static void BuildNewScene()
     {
-        UI = Instantiate(UI);
         pools = Instantiate(pools);
         questManager = Instantiate(questManager);
         uiManager = Instantiate(uiManager);
@@ -131,6 +132,7 @@ public class QuickSetUp : Editor
         levelManager = Instantiate(levelManager);
         blobManager = Instantiate(blobManager);
         ground = Instantiate(ground);
+        cinematicManager = Instantiate(cinematicManager);
 
         ground.transform.position = Vector3.zero;
 
@@ -139,15 +141,9 @@ public class QuickSetUp : Editor
 
         UIManager uiScript = uiManager.GetComponent<UIManager>();
 
-        uiScript.cellSelection = FindObjectOfType<CellSelectionShop>();
-        uiScript.SelectedCellUI = GameObject.Find("SelectedCell");
+
         uiScript.SelectedCellUI.SetActive(false);
-        uiScript.QuestUI = FindObjectOfType<QuestUI>();
-        uiScript.TopBar = FindObjectOfType<TopBarUI>();
-        uiScript.tooltipUI = FindObjectOfType<TooltipUI>();
         uiScript.tooltipUI.gameObject.SetActive(false);
-       
-        uiScript.cellOptionsUI = FindObjectOfType<CellOptionsUI>();
         uiScript.cellOptionsUI.gameObject.SetActive(false);
 
         GameObject.Find("WorldSpace").GetComponent<Canvas>().worldCamera = camera.GetComponent<Camera>();

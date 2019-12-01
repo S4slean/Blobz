@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-[CustomPropertyDrawer(typeof(PopUp))]
+[CustomPropertyDrawer(typeof(PopUpData))]
 public class QuestPopUpPropertyDrawer : PropertyDrawer
 {
     float line = EditorGUIUtility.singleLineHeight + 2;
@@ -15,8 +15,8 @@ public class QuestPopUpPropertyDrawer : PropertyDrawer
 
     public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
     {
-        Rect box = new Rect(position.x +5 , position.y+5, position.width, position.height);
-        EditorGUI.DrawRect(box, new Color(.2f,.2f,.2f,1));
+        Rect box = new Rect(position.x + 5, position.y + 5, position.width, position.height);
+        EditorGUI.DrawRect(box, new Color(.2f, .2f, .2f, 1));
 
         float line = EditorGUIUtility.singleLineHeight + 2;
         SerializedProperty rpgStyleProp = property.FindPropertyRelative("rpgStyle");
@@ -29,31 +29,31 @@ public class QuestPopUpPropertyDrawer : PropertyDrawer
 
         if (sprite.objectReferenceValue == null)
         {
-            GUI.Button(new Rect(position.x + 10, position.y + 10, 64, 64), "none");     
+            GUI.Button(new Rect(position.x + 10, position.y + 10, 64, 64), "none");
 
         }
         else
         {
+            Sprite spr = sprite.objectReferenceValue as Sprite;
+
             GUI.Button(
-                new Rect(position.x + 10, position.y + 10, 64, 64),
-                sprite.objectReferenceValue as Texture
-                );
+                new Rect(position.x + 10, position.y + 10, 64, 64), spr.texture);
         }
 
         EditorGUI.LabelField(new Rect(position.x + 15 + 65, position.y + 10, 50, line),
            "Title");
 
-        Title.stringValue =  EditorGUI.TextField(new Rect(position.x + 15 + 65 + 35, position.y + 10, position.width - 15 - 65 - 25 -10, line),
+        Title.stringValue = EditorGUI.TextField(new Rect(position.x + 15 + 65 + 35, position.y + 10, position.width - 15 - 65 - 25 - 10, line),
             Title.stringValue);
 
         EditorGUI.LabelField(new Rect(position.x + 15 + 65, position.y + 10 + line, 50, line),
             "Text");
 
-        Text.stringValue =  EditorGUI.TextArea(new Rect(position.x + 15 + 65 + 35, position.y + 10 + line, position.width - 15 - 65 - 25 - 10, line * 2),
+        Text.stringValue = EditorGUI.TextArea(new Rect(position.x + 15 + 65 + 35, position.y + 10 + line, position.width - 15 - 65 - 25 - 10, line * 2),
             Text.stringValue);
 
         EditorGUI.PropertyField(
-            new Rect(position.x + 10, position.y + 10 + 64 , position.width -20, line)
+            new Rect(position.x + 10, position.y + 10 + 64, position.width - 20, line)
             , sprite);
 
         EditorGUI.PropertyField(
@@ -62,11 +62,11 @@ public class QuestPopUpPropertyDrawer : PropertyDrawer
 
 
         EditorGUI.PropertyField(
-               new Rect(position.x + 10, position.y + 10 + 64 +2*line, position.width - 20, line)
+               new Rect(position.x + 10, position.y + 10 + 64 + 2 * line, position.width - 20, line)
                , offset);
 
         EditorGUI.PropertyField(
-       new Rect(position.x + 10, position.y + 10 + 64 + 4 * line, (position.width - 20)/2, line)
+       new Rect(position.x + 10, position.y + 10 + 64 + 4 * line, (position.width - 20) / 2, line)
        , rpgStyleProp);
 
         EditorGUI.PropertyField(

@@ -7,11 +7,11 @@ using UnityEngine;
 public class QuestManager : MonoBehaviour
 {
 
-    public enum QuestType { Population, Batiments, Colonisation, Destruction , Empty};
+    public enum QuestType { Population, Batiments, Colonisation, Destruction, Empty };
 
-    int currentQuestID;
-    int currentQuestEventID;
-    int currentMsgID;
+    public int currentQuestID;
+    public int currentQuestEventID;
+    public int currentMsgID;
 
     public QuestData currentQuest;
     public List<QuestData> QuestList = new List<QuestData>();
@@ -36,20 +36,15 @@ public class QuestManager : MonoBehaviour
         else
             Destroy(gameObject);
 
-        if (QuestList.Count > 0 && !desactiveQuest)
-        {
-            currentQuest = QuestList[currentQuestID];
-            UIManager.Instance.DisplayUI(UIManager.Instance.QuestUI.gameObject);
-            TickManager.doTick += CheckQuestSuccess;
-        }
-        else
-        {
-            Debug.Log("no more Quest");
-            UIManager.Instance.HideUI(UIManager.Instance.QuestUI.gameObject);
-            TickManager.doTick -= CheckQuestSuccess;
-        }
+        CheckForInitialQuest();
     }
 
+    #region QUEST_HANDLING
+    public void DisplayCurrentQuest()
+    {
+        UIManager.Instance.DisplayUI(UIManager.Instance.QuestUI.gameObject);
+        UIManager.Instance.QuestUI.UpdateUI();
+    }
     public void ChangeQuest()
     {
         currentQuestID++;
@@ -65,16 +60,26 @@ public class QuestManager : MonoBehaviour
         {
             Debug.Log("no more Quest");
             UIManager.Instance.HideUI(UIManager.Instance.QuestUI.gameObject);
+            TickManager.doTick -= CheckQuestSuccess;
         }
 
     }
-
-    public void DisplayCurrentQuest()
+    private void CheckForInitialQuest()
     {
-        UIManager.Instance.DisplayUI(UIManager.Instance.QuestUI.gameObject);
-        UIManager.Instance.QuestUI.UpdateUI();
-    }
+        if (QuestList.Count > 0 && !desactiveQuest)
+        {
+            currentQuest = QuestList[currentQuestID];
+            UIManager.Instance.DisplayUI(UIManager.Instance.QuestUI.gameObject);
+            PlayQuestEvent();
+            TickManager.doTick += CheckQuestSuccess;
+        }
+        else
+        {
+            Debug.Log("no more Quest");
+            UIManager.Instance.HideUI(UIManager.Instance.QuestUI.gameObject);
 
+        }
+    }
     public void CheckQuestSuccess()
     {
         if (currentQuest == null && !currentQuest.eventDone)
@@ -116,7 +121,7 @@ public class QuestManager : MonoBehaviour
                 bool success = true;
                 questProgress = 0;
 
-                foreach(GameObject obj in currentQuest.objectToDestroy)
+                foreach (GameObject obj in currentQuest.objectToDestroy)
                 {
                     if (obj != null)
                     {
@@ -140,85 +145,10 @@ public class QuestManager : MonoBehaviour
             case QuestType.Empty:
                 QuestSuccess();
                 break;
-               
-        }
-
-    }
-
-    public void ResetQuestEventCount()
-    {
-        currentQuestEventID = 0;
-        ResetMsgCount();
-    }
-
-    public void ResetMsgCount()
-    {
-        currentMsgID = 0;
-    }
-
-    public void PlayQuestEvent()
-    {
-        TickManager.instance.PauseTick();
-
-        if(currentQuestEventID < currentQuest.questEvents.Length)
-        {
-            switch (currentQuest.questEvents[currentQuestEventID].eventType)
-            {
-                case QuestEvent.QuestEventType.Cinematic:
-
-                    break;
-
-                case QuestEvent.QuestEventType.PopUp:
-
-
-
-
-                    if (currentQuest.questEvents[currentQuestEventID].popUpsMsg[currentMsgID].rpgStyle)
-                    {
-                        popUp = UIManager.Instance.questEventPopUpOverlay;
-                    }
-                    else
-                    {
-                        popUp = UIManager.Instance.questEventPopUpWorld;
-                    }
-                    UIManager.Instance.DisplayUI(popUp.gameObject);
-
-
-                    break;
-
-                case QuestEvent.QuestEventType.Weather:
-
-                    break;
-
-                case QuestEvent.QuestEventType.Function:
-
-                    currentQuest.questEvents[currentQuestEventID].UEvent.Invoke();
-                    StartCoroutine(WaitBeforeNextEvent());
-
-                    break;
-            }
 
         }
-        else
-        {
-            currentQuest.eventDone = true;
-        }
-
 
     }
-
-    public void EndEvent()
-    {
-        UIManager.Instance.HideUI(popUp.gameObject);
-    }
-
-    public IEnumerator WaitBeforeNextEvent()
-    {
-        yield return new WaitForSeconds(currentQuest.questEvents[currentQuestEventID].eventDuration);
-        currentQuestEventID++;
-        PlayQuestEvent();
-    }
-
     public void QuestSuccess()
     {
 
@@ -230,11 +160,143 @@ public class QuestManager : MonoBehaviour
         ChangeQuest();
     }
 
+    #endregion
 
+
+    #region QUESTEVENTS_HANDLING
+
+    public void PlayQuestEvent()
+    {
+
+
+
+        QuestEventManager.instance.StartQuestEvent();
+
+        if (currentQuestEventID < currentQuest.questEvents.Length)
+        {
+
+            Debug.Log("Quest Event PLaying: " + currentQuestEventID);
+            QuestEventManager.instance.UpdateEventType();
+
+            switch (currentQuest.questEvents[currentQuestEventID].eventType)
+            {
+                case QuestEvent.QuestEventType.Cinematic:
+
+                    CinematicManager.instance.GoToCamOfIndex(currentQuest.questEvents[currentQuestEventID].virtualCamIndex);
+                    StartCoroutine(WaitBeforNextEvent());
+
+                    break;
+
+                case QuestEvent.QuestEventType.PopUp:
+
+                    DisplayPopUp();
+
+                    break;
+
+                case QuestEvent.QuestEventType.Weather:
+
+                    break;
+
+                case QuestEvent.QuestEventType.Function:
+
+                    currentQuest.questEvents[currentQuestEventID].UEvent.Invoke();
+                    StartCoroutine(WaitBeforNextEvent());
+
+                    break;
+            }
+
+        }
+        else
+        {
+            currentQuest.eventDone = true;
+            QuestEventManager.instance.EndQuestEvent();
+        }
+
+
+    }
+    private void DisplayPopUp()
+    {
+        PopUpData popUpData = currentQuest.questEvents[currentQuestEventID].popUpsMsg[currentMsgID];
+
+
+        if (popUpData.rpgStyle)
+        {
+            popUp = UIManager.Instance.questEventPopUpOverlay;
+            UIManager.Instance.DisplayUI(popUp.gameObject);
+        }
+        else
+        {
+            popUp = UIManager.Instance.questEventPopUpWorld;
+            UIManager.Instance.DisplayUI(popUp.gameObject);
+
+
+
+            popUp.transform.position = popUpData.offset;
+        }
+
+        popUp.UpdatePopUp(popUpData.Title, popUpData.Text, popUpData.sprite, popUpData.usingSprite);
+    }
+    public IEnumerator WaitBeforNextEvent()
+    {
+        yield return new WaitForSeconds(currentQuest.questEvents[currentQuestEventID].eventDuration);
+        EndEvent();
+    }
+    public void GoToNextEvent()
+    {
+        currentQuestEventID++;
+
+        PlayQuestEvent();
+    }
+    public void GoToNextMsg()
+    {
+        currentMsgID++;
+
+        if (currentMsgID < currentQuest.questEvents[currentQuestEventID].popUpsMsg.Length)
+        {
+            DisplayPopUp();
+
+        }
+        else
+        {
+            ResetMsgCount();
+            EndEvent();
+        }
+
+    }
+    public void EndEvent()
+    {
+        switch (currentQuest.questEvents[currentQuestEventID].eventType)
+        {
+
+            case QuestEvent.QuestEventType.PopUp:
+
+                UIManager.Instance.HideUI(popUp.gameObject);
+                break;
+        }
+
+        GoToNextEvent();
+    }
+    public void ResetQuestEventCount()
+    {
+        currentQuestEventID = 0;
+        ResetMsgCount();
+    }
+    public void ResetMsgCount()
+    {
+        currentMsgID = 0;
+    }
+
+    #endregion
+
+
+
+    #region UTILITY
 
     public void WriteQuestsFromCSV()
     {
 
     }
 
+
+    #endregion
 }

@@ -1,0 +1,129 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac59c85db94beed47808c892abe2bae2, type: 3}
+  m_Name: CineQuest
+  m_EditorClassIdentifier: 
+  questType: 0
+  questTitle: TestQuest
+  questDescription: 
+  eventDone: 1
+  populationObjective: 200
+  cellType: 2
+  level: 1
+  cellNbrToObtain: 2
+  anyCells: 1
+  colonialCellType: 0
+  placeToGet: {fileID: 0}
+  range: 0
+  objectToDestroy:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  questEvents:
+  - eventType: 0
+    eventDuration: 2
+    virtualCamIndex: 0
+    popUpsMsg:
+    - rpgStyle: 1
+      anchor: {fileID: 0}
+      offset: {x: 900, y: 500, z: 0}
+      usingSprite: 1
+      sprite: {fileID: 21300000, guid: 596678c53fd54a640bf95ba7dfafd092, type: 3}
+      Title: Yo
+      Text: Cette Quete marche
+    - rpgStyle: 1
+      anchor: {fileID: 0}
+      offset: {x: 0, y: 0, z: 0}
+      usingSprite: 0
+      sprite: {fileID: 0}
+      Title: Ouf
+      Text: Et les messages aussi !
+    - rpgStyle: 1
+      anchor: {fileID: 0}
+      offset: {x: 0, y: 0, z: 0}
+      usingSprite: 0
+      sprite: {fileID: 21300000, guid: 684c818bea0ae0f4e9d96fc3907b7502, type: 3}
+      Title: 
+      Text: "J'suis l\xE0 aussi !!"
+    UEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 412198583721461599, guid: f4977ad77028024489b871d608afbd15,
+            type: 3}
+          m_MethodName: 
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: 
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    foldout: 1
+  - eventType: 0
+    eventDuration: 2
+    virtualCamIndex: 1
+    popUpsMsg:
+    - rpgStyle: 0
+      anchor: {fileID: 0}
+      offset: {x: 900, y: 500, z: 0}
+      usingSprite: 0
+      sprite: {fileID: 0}
+      Title: Et moi donc
+      Text: 
+    UEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    foldout: 0
+  - eventType: 3
+    eventDuration: 0
+    virtualCamIndex: 0
+    popUpsMsg:
+    - rpgStyle: 0
+      anchor: {fileID: 0}
+      offset: {x: 900, y: 500, z: 0}
+      usingSprite: 0
+      sprite: {fileID: 0}
+      Title: Et moi donc
+      Text: 
+    UEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 2646702139101502359, guid: 593db43e34e6c8448aeac6d38f7e5c0a,
+            type: 3}
+          m_MethodName: ReturnToMainCam
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    foldout: 0
+  - eventType: 0
+    eventDuration: 2
+    virtualCamIndex: 0
+    popUpsMsg:
+    - rpgStyle: 0
+      anchor: {fileID: 0}
+      offset: {x: 900, y: 500, z: 0}
+      usingSprite: 0
+      sprite: {fileID: 0}
+      Title: Et moi donc
+      Text: 
+    UEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    foldout: 0

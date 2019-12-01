@@ -44,9 +44,9 @@ public struct QuestEvent
     public QuestEventType eventType;
     public float eventDuration;
 
-    public Transform[] ObjectToWatch;
+    public int virtualCamIndex;
 
-    public PopUp[] popUpsMsg;
+    public PopUpData[] popUpsMsg;
 
     public UnityEvent UEvent;
 
@@ -61,7 +61,7 @@ public struct QuestEvent
 }
 
 [System.Serializable]
-public struct PopUp
+public struct PopUpData
 {
     public bool rpgStyle;
 
@@ -69,7 +69,7 @@ public struct PopUp
     public Vector3 offset;
 
     public bool usingSprite;
-    public Texture sprite;
+    public Sprite sprite;
 
     public string Title;
     public string Text;

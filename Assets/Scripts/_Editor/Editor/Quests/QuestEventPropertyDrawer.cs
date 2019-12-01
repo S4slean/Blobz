@@ -10,6 +10,7 @@ public class QuestEventPropertyDrawer : PropertyDrawer
 {
 
     SerializedProperty eventTypeProp;
+    SerializedProperty eventDurationProp;
     SerializedProperty ObjectToWatchProp;
     SerializedProperty popUpsMsgProp;
     SerializedProperty UEventProp;
@@ -30,27 +31,27 @@ public class QuestEventPropertyDrawer : PropertyDrawer
             case 0:
                 ObjectToWatchProp = property.FindPropertyRelative("ObjectToWatch");
                 if (!foldoutProp.boolValue)
-                    return (EditorGUIUtility.singleLineHeight + 2) * 3;
+                    return (EditorGUIUtility.singleLineHeight + 2) * 4;
                 else
-                    return (EditorGUIUtility.singleLineHeight + 2) * 3 + (EditorGUIUtility.singleLineHeight + 2) * ObjectToWatchProp.arraySize;
+                    return (EditorGUIUtility.singleLineHeight + 2) * 4;
 
 
             case 1:
                 popUpsMsgProp = property.FindPropertyRelative("popUpsMsg");
                 if (!foldoutProp.boolValue)
-                    return (EditorGUIUtility.singleLineHeight + 2) * 3;
+                    return (EditorGUIUtility.singleLineHeight + 2) * 4;
                 else
-                    return (EditorGUIUtility.singleLineHeight + 2) * 3 + (EditorGUIUtility.singleLineHeight + 2) * popUpsMsgProp.arraySize *10;
+                    return (EditorGUIUtility.singleLineHeight + 2) * 4 + (EditorGUIUtility.singleLineHeight + 2) * popUpsMsgProp.arraySize *10;
 
             case 3:
                 UEventProp = property.FindPropertyRelative("UEvent");
                 SerializedProperty calls = UEventProp.FindPropertyRelative("m_PersistentCalls.m_Calls");
                 if (calls.arraySize < 2)
                 {
-                    return (EditorGUIUtility.singleLineHeight + 2) * 2 + (EditorGUIUtility.singleLineHeight + 2) * 4.5f;
+                    return (EditorGUIUtility.singleLineHeight + 2) * 3 + (EditorGUIUtility.singleLineHeight + 2) * 4.5f;
                 }
                 else
-                    return (EditorGUIUtility.singleLineHeight + 2 )*3.4f + (EditorGUIUtility.singleLineHeight + 2) * 2.5f * calls.arraySize ;
+                    return (EditorGUIUtility.singleLineHeight + 2 )*4.4f + (EditorGUIUtility.singleLineHeight + 2) * 2.5f * calls.arraySize ;
 
                 
 
@@ -73,7 +74,9 @@ public class QuestEventPropertyDrawer : PropertyDrawer
         float line = EditorGUIUtility.singleLineHeight + 2;
 
         eventTypeProp = property.FindPropertyRelative("eventType");
-        ObjectToWatchProp = property.FindPropertyRelative("ObjectToWatch");
+        eventDurationProp = property.FindPropertyRelative("eventDuration");
+
+        ObjectToWatchProp = property.FindPropertyRelative("virtualCamIndex");
         popUpsMsgProp = property.FindPropertyRelative("popUpsMsg");
         UEventProp = property.FindPropertyRelative("UEvent");
         type = eventTypeProp.intValue;
@@ -87,31 +90,31 @@ public class QuestEventPropertyDrawer : PropertyDrawer
             new Rect(position.x + 5, position.y + 10, position.width - 10, line),
             eventTypeProp);
 
+        EditorGUI.PropertyField(
+            new Rect(position.x + 15, position.y + 10 + line, position.width - 25, line - 2),
+            eventDurationProp);
+
 
         switch (eventTypeProp.intValue)
         {
             case 0:
 
 
-                ObjectToWatchProp.arraySize = EditorGUI.IntField(
-                     new Rect(position.x + 15, position.y + 10 + line, position.width - 25, line - 2),
-                     "Nbr of Object to go through",
-                     ObjectToWatchProp.arraySize);
+                //ObjectToWatchProp.arraySize = EditorGUI.IntField(
+                //     new Rect(position.x + 15, position.y + 10 +2*line, position.width - 25, line - 2),
+                //     "Nbr of Object to go through",
+                //     ObjectToWatchProp.arraySize);
 
-                foldoutProp.boolValue = EditorGUI.Foldout(
-                    new Rect(position.x + 15, position.y + 10 + line, position.width - 30, line - 2),
-                    foldoutProp.boolValue, "");
+                //foldoutProp.boolValue = EditorGUI.Foldout(
+                //    new Rect(position.x + 15, position.y + 10 + 2*line, position.width - 30, line - 2),
+                //    foldoutProp.boolValue, "");
 
-                if (foldoutProp.boolValue)
-                {
-                    for (int i = 0; i < ObjectToWatchProp.arraySize; i++)
-                    {
-                        EditorGUI.PropertyField(
-                            new Rect(position.x + 5, position.y + 10 + 2 * line + i * line, position.width - 10, line),
-                            ObjectToWatchProp.GetArrayElementAtIndex(i));
 
-                    }
-                }
+                EditorGUI.PropertyField(
+                            new Rect(position.x + 15, position.y + 10 + 2 * line, position.width - 25, line-2),
+                            ObjectToWatchProp);
+
+
 
 
                 break;
@@ -121,12 +124,12 @@ public class QuestEventPropertyDrawer : PropertyDrawer
             case 1:
 
                 popUpsMsgProp.arraySize = EditorGUI.IntField(
-                     new Rect(position.x + 15, position.y + 10 + line, position.width - 25, line - 2),
+                     new Rect(position.x + 15, position.y + 10 + 2*line, position.width - 25, line - 2),
                      "Nbr of Message",
                      popUpsMsgProp.arraySize);
 
                 foldoutProp.boolValue = EditorGUI.Foldout(
-                    new Rect(position.x + 15, position.y + 10 + line, position.width - 30, line - 2),
+                    new Rect(position.x + 15, position.y + 10 + 2* line, position.width - 30, line - 2),
                     foldoutProp.boolValue, "");
 
                 if (foldoutProp.boolValue)
@@ -144,7 +147,7 @@ public class QuestEventPropertyDrawer : PropertyDrawer
 
 
                         EditorGUI.PropertyField(
-                             new Rect(position.x + 15, position.y + 10 + line * 2 + line * 10 * i, position.width - 30, line * 9),
+                             new Rect(position.x + 15, position.y + 10 + line * 3 + line * 10 * i, position.width - 30, line * 9),
                              popUpsMsgProp.GetArrayElementAtIndex(i));
 
                     }
@@ -158,7 +161,7 @@ public class QuestEventPropertyDrawer : PropertyDrawer
             case 3:
 
                 EditorGUI.PropertyField(
-                    new Rect(position.x + 15, position.y + 10 + line, position.width - 25, line - 2),
+                    new Rect(position.x + 15, position.y + 10 + 2* line, position.width - 25, line - 2),
                     UEventProp);
 
                 break;
