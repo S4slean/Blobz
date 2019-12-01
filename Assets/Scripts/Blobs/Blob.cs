@@ -21,8 +21,37 @@ public class Blob : PoolableObjects
     {
         rb = GetComponent<Rigidbody>();
         rd = GetComponent<Renderer>();
+
+
+        UpdateMat();
         //rajoute le blob à la liste des blobs actifs dans la scène
         BlobManager.blobList.Add(this);
+    }
+
+    public void UpdateMat()
+    {
+        switch (blobType)
+        {
+            case BlobManager.BlobType.charged:
+
+                rd.material = BlobManager.instance.chargedMat;
+                break;
+
+            case BlobManager.BlobType.normal:
+
+                rd.material = BlobManager.instance.normalMat;
+                break;
+
+            case BlobManager.BlobType.mad:
+
+                rd.material = BlobManager.instance.angryMat;
+                break;
+
+            case BlobManager.BlobType.soldier:
+
+                rd.material = BlobManager.instance.soldierMat;
+                break;
+        }
     }
 
     private void Update()

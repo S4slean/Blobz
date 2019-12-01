@@ -265,7 +265,7 @@ MonoBehaviour:
   ProximityDectection: {fileID: 6767594726806389926}
   showDebug: 0
   showlinks: 0
-  showRef: 1
+  showRef: 0
   links: []
   noMoreLink: 0
   BlobNumber: 0

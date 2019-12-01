@@ -118,7 +118,7 @@ public class InputManager : MonoBehaviour
                     UIManager.Instance.DisplayCellShop(selectedCell);
 
                 }
-                if (selectedCell !=null)
+                if (selectedCell != null)
                 {
 
                     float distanceFromCell = (hit.point - selectedCell.transform.position).magnitude;
@@ -246,23 +246,28 @@ public class InputManager : MonoBehaviour
         #region MOVING_CELL
         else
         {
+            bool newCell = false;
+
+            if (CellManager.Instance.originalPosOfMovingCell == new Vector3(0, 100, 0))
+            {
+                newCell = true;
+            }
+            else
+            {
+                newCell = false;
+            }
 
             if (hit.transform != null && hit.transform.tag == "Ground")
             {
-                if (CellManager.Instance.originalPosOfMovingCell == new Vector3(0, 100, 0))
-                    CellManager.Instance.CellDeplacement(hit.point, objectMoved, true);
-                else
-                {
-                    CellManager.Instance.CellDeplacement(hit.point, objectMoved, false);
-                }
+                CellManager.Instance.CellDeplacement(hit.point, objectMoved, newCell);
             }
 
             //si clic gauche, replacer la cell et update tous ses liens
             if (Input.GetMouseButtonDown(0))
             {
-
-                CellManager.Instance.ValidateNewLink(hit);
-                //objectMoved.cell();
+                if (newCell)
+                    CellManager.Instance.ValidateNewLink(hit);
+                objectMoved.CellInitialisation();
                 movingObject = false;
                 objectMoved = null;
                 DraggingLink = false;

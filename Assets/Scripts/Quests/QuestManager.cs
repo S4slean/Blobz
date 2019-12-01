@@ -21,7 +21,9 @@ public class QuestManager : MonoBehaviour
 
     public bool desactiveQuest = false;
 
-    public PopUp[] Suce;
+
+    QuestPopUp popUp;
+
 
     // Start is called before the first frame update
     void Start()
@@ -146,6 +148,7 @@ public class QuestManager : MonoBehaviour
     public void ResetQuestEventCount()
     {
         currentQuestEventID = 0;
+        ResetMsgCount();
     }
 
     public void ResetMsgCount()
@@ -167,14 +170,18 @@ public class QuestManager : MonoBehaviour
 
                 case QuestEvent.QuestEventType.PopUp:
 
-                    QuestPopUp popUp;
+
 
 
                     if (currentQuest.questEvents[currentQuestEventID].popUpsMsg[currentMsgID].rpgStyle)
                     {
                         popUp = UIManager.Instance.questEventPopUpOverlay;
                     }
-                    //UIManager.Instance.DisplayUI(UIManager.Instance.questEventPopUpWorld);
+                    else
+                    {
+                        popUp = UIManager.Instance.questEventPopUpWorld;
+                    }
+                    UIManager.Instance.DisplayUI(popUp.gameObject);
 
 
                     break;
@@ -202,7 +209,7 @@ public class QuestManager : MonoBehaviour
 
     public void EndEvent()
     {
-        UIManager.Instance.HideUI(UIManager.Instance.questEventPopUpWorld);
+        UIManager.Instance.HideUI(popUp.gameObject);
     }
 
     public IEnumerator WaitBeforeNextEvent()
