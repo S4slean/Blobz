@@ -18,6 +18,8 @@ public class CinematicManager : MonoBehaviour
             instance = this;
         else
             Destroy(gameObject);
+
+        currentCam = mainCam;
     }
 
     public void ReturnToMainCam()
@@ -26,7 +28,8 @@ public class CinematicManager : MonoBehaviour
             return;
 
         instance.currentCam.Priority = 0;
-        instance.currentCam = null;
+        instance.currentCam = mainCam;
+        instance.mainCam.Priority = 11;
 
     }
 

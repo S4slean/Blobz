@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SceneStan.unity
-    guid: de3837e9c13e934469d27b609f2e80bb
+    path: "Assets/Scenes/Sc\xE8nes Plan\xE8tes/Plan\xE8te1/Planet1_Niveau1.unity"
+    guid: f29fcd3e097e7a5478ed16580bb7f671
+  - enabled: 1
+    path: Assets/Scenes/SceneLouis.unity
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
   m_configObjects: {}
