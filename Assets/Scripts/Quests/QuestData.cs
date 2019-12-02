@@ -16,6 +16,10 @@ public class QuestData : ScriptableObject
     [Header("Population")]
     [Range(0,10000)]public int populationObjective;
 
+
+    [Header("Energy")]
+    [Range(0, 1000000)] public int energyToObtain;
+
     [Header("Batiments")]
     public CellType cellType = CellType.Productrice;
     [Range(1,10)]public int level = 1;

@@ -13,6 +13,8 @@ public class QuestDataInspector : Editor
 
     SerializedProperty popObjProp;
 
+    SerializedProperty energyProp;
+
     SerializedProperty cellTypeProp;
     SerializedProperty cellNbrToObtProp;
 
@@ -34,13 +36,19 @@ public class QuestDataInspector : Editor
         questTitleProp = serializedObject.FindProperty("questTitle");
         questDescriptionProp = serializedObject.FindProperty("questDescription");
         popObjProp = serializedObject.FindProperty("populationObjective");
+
+        energyProp = serializedObject.FindProperty("energyToObtain");
+
         cellTypeProp = serializedObject.FindProperty("cellType");
         cellNbrToObtProp = serializedObject.FindProperty("cellNbrToObtain");
+
         anyCellsProp = serializedObject.FindProperty("anyCells");
         coloCellProp = serializedObject.FindProperty("colonialCellType");
         transformToGetProp = serializedObject.FindProperty("placeToGet");
         rangeProp = serializedObject.FindProperty("range");
+
         destroyListProp = serializedObject.FindProperty("objectToDestroy");
+
         questEventsProp = serializedObject.FindProperty("questEvents");
 
     }
@@ -60,6 +68,10 @@ public class QuestDataInspector : Editor
             case (int)QuestManager.QuestType.Batiments:
                 EditorGUILayout.PropertyField(cellTypeProp);
                 EditorGUILayout.PropertyField(cellNbrToObtProp);
+                break;
+
+            case (int)QuestManager.QuestType.Energy:
+                EditorGUILayout.PropertyField(energyProp);
                 break;
 
             case (int)QuestManager.QuestType.Colonisation:
