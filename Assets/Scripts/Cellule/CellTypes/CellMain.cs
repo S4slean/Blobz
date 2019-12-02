@@ -262,7 +262,6 @@ public class CellMain : PoolableObjects
 
         NBlob.text = (blobNumber + " / " + currentBlobStockage);
         if (blobNumber > currentBlobStockage && !isDead && !isNexus)
-        if (BlobNumber > currentBlobStockage && !isDead && !isNexus)
         {
             Died(false);
         }
