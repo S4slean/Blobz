@@ -35,13 +35,13 @@ MonoBehaviour:
       offset: {x: 830, y: 280, z: 0}
       usingSprite: 0
       sprite: {fileID: 0}
-      Title: How earns Energies??
-      Text: "For create a Cell you need energies ! \nFor this you have to click on
-        your Production Cell"
+      Title: Splootch
+      Text: "To create a Cell you need Sploosh ! \nClick on your Production Cell to
+        gain Sploosh"
     UEvent:
       m_PersistentCalls:
         m_Calls: []
-    foldout: 0
+    foldout: 1
   - eventType: 1
     eventDuration: 0
     virtualCamIndex: 0
@@ -51,9 +51,10 @@ MonoBehaviour:
       offset: {x: 830, y: 260, z: 0}
       usingSprite: 0
       sprite: {fileID: 0}
-      Title: And how create Cell??
-      Text: "Stay click on the cell and choose the cell you want build, \nhere choose
-        the Crusher Cell (yellow circle)."
+      Title: Creating a cell
+      Text: 'Hold click on the cell and choose the cell you want build.
+
+        Let''s build a Crusher Cell (yellow circle).'
     UEvent:
       m_PersistentCalls:
         m_Calls: []
