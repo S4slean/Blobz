@@ -125,8 +125,15 @@ public class CellMain : PoolableObjects
     public virtual void Died(bool intentionnalDeath)
     {
         isDead = true;
-        //TickManager.doTick -= BlobsTick;
-        RessourceTracker.instance.RemoveCell(this);
+
+
+        if (CellManager.Instance.originalPosOfMovingCell != new Vector3(0, 100, 0))
+            RessourceTracker.instance.RemoveCell(this);
+
+
+        RessourceTracker.instance.RemoveBlob(BlobManager.BlobType.normal, BlobNumber);
+
+
         TickDesinscription();
         int I = links.Count;
         for (int i = 0; i < I; i++)
@@ -225,6 +232,7 @@ public class CellMain : PoolableObjects
             CellManager.Instance.EnergyVariation(10);
         }
             anim.Play("PlayerInteraction", 0, 0f);
+        anim.Play("PlayerInteraction", 0, 0f);
 
 
     }
@@ -234,16 +242,31 @@ public class CellMain : PoolableObjects
     public void AddBlob(int Amount)
     {
         BlobNumber += Amount;
+
+        RessourceTracker.instance.AddBlob(BlobManager.BlobType.normal, Amount);
+
         NBlob.text = (BlobNumber + " / " + currentBlobStockage);
         if (BlobNumber > currentBlobStockage && !isDead)
+        if (BlobNumber > currentBlobStockage && !isDead && !isNexus)
         {
             Died(false);
+        }
+        if (BlobNumber > currentBlobStockage)
+        {
+            int blobToRemobe = BlobNumber - currentBlobStockage;
+
+            RessourceTracker.instance.RemoveBlob(BlobManager.BlobType.normal, blobToRemobe);
+
+
+            BlobNumber = currentBlobStockage;
         }
         UpdateCaract();
     }
     public void RemoveBlob(int Amount)
     {
         BlobNumber -= Amount;
+
+        RessourceTracker.instance.RemoveBlob(BlobManager.BlobType.normal, Amount);
         //UI update
         UpdateCaract();
     }
