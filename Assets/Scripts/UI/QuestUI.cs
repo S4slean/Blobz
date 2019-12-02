@@ -23,6 +23,17 @@ public class QuestUI : MonoBehaviour
         if (QuestManager.instance == null || QuestManager.instance.currentQuest == null)
             return;
 
+        StartCoroutine(WaitEnfOfFrameBeforeUpdates());
+
+    }
+
+     IEnumerator  WaitEnfOfFrameBeforeUpdates()
+    {
+        yield return new WaitForEndOfFrame();
+
+
+
+
         title.text = QuestManager.instance.currentQuest.questTitle;
 
         if (QuestManager.instance.currentQuest.questDescription != "")
@@ -60,7 +71,6 @@ public class QuestUI : MonoBehaviour
                     break;
             }
         }
-
     }
 
 }
