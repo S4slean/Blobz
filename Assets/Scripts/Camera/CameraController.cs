@@ -33,15 +33,9 @@ public class CameraController : MonoBehaviour
 
     public static CameraController instance;
 
-    private void Start()
+    public void Awake()
     {
-        originPos = new Vector3(transform.position.x, 0, transform.position.z);
-        camHeightGoal = minHeight;
-        camHeight = minHeight;
-        transform.position = originPos + new Vector3(0, camHeight, 0);
-        transform.LookAt(transform.position + Vector3.down);
-
-        if(instance == null)
+        if (instance == null)
         {
             instance = this;
         }
@@ -49,7 +43,15 @@ public class CameraController : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        originPos = new Vector3(transform.position.x, 0, transform.position.z);
+        camHeightGoal = minHeight;
+        camHeight = minHeight;
+        transform.position = originPos + new Vector3(0, camHeight, 0);
+        transform.LookAt(transform.position + Vector3.down);
     }
+
+
 
 
 

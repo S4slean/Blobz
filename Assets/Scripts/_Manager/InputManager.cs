@@ -27,6 +27,7 @@ public class InputManager : MonoBehaviour
     //Ui
     [HideInInspector] public bool InCellSelection;
     [HideInInspector] public bool InPauseMenu;
+    [HideInInspector] public bool InQuestEvent;
 
     //LayerMask
     int layer_Mask_Cell;
@@ -68,7 +69,6 @@ public class InputManager : MonoBehaviour
         mousePos = hit.point;
 
 
-
         if (!movingObject)
         {
             #region LINKS, INTERACTIONS AND CELL_CREATIONS
@@ -90,7 +90,6 @@ public class InputManager : MonoBehaviour
             if (Input.GetMouseButtonDown(0))
             {
 
-
                 if (hit.transform != null && hit.transform.tag == "Cell")
                 {
                     leftClickedOnCell = true;
@@ -101,8 +100,6 @@ public class InputManager : MonoBehaviour
 
                 if (!DraggingLink && !InCellSelection && isOverCell)
                 {
-
-                    //Debug.Log(hit.transform, hit.transform);
                     CellManager.Instance.SelectCell(hit);
                 }
             }
@@ -147,14 +144,6 @@ public class InputManager : MonoBehaviour
                 {
                     UIManager.Instance.StartCoroutine(UIManager.Instance.DesactivateCellShop());
                 }
-
-
-                //if (InCellSelection)
-                //{
-                //    UIManager.Instance.DesactivateCellShop();
-                //}
-
-
 
                 leftClickedOnCell = false;
                 clickTime = 0;
@@ -302,36 +291,6 @@ public class InputManager : MonoBehaviour
             CameraController.instance.DecreaseTiltCount();
 
         #endregion
-
-        //if (Input.GetKey(KeyCode.Space))
-        //{
-
-        //    //Set up the new Pointer Event
-        //    m_PointerEventData = new PointerEventData(m_EventSystem);
-        //    //Set the Pointer Event Position to that of the mouse position
-        //    m_PointerEventData.position = Input.mousePosition;
-
-        //    //Create a list of Raycast Results
-        //    List<RaycastResult> results = new List<RaycastResult>();
-
-        //    //Raycast using the Graphics Raycaster and mouse click position
-        //    m_Raycaster.Raycast(m_PointerEventData, results);
-
-        //    Debug.Log(results.Count);
-        //    //For every result returned, output the name of the GameObject on the Canvas hit by the Ray
-        //    foreach (RaycastResult result in results)
-        //    {
-        //        Debug.Log("Hit " + result.gameObject.name);
-        //    }
-
-        //    p_Raycaster.Raycast(m_PointerEventData, results);
-        //    Debug.Log(results.Count);
-        //    //For every result returned, output the name of the GameObject on the Canvas hit by the Ray
-        //    foreach (RaycastResult result in results)
-        //    {
-        //        Debug.Log("Hit " + result.gameObject.name);
-        //    }
-        //}
 
     }
 
