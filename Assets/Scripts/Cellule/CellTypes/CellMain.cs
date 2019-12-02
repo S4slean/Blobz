@@ -130,7 +130,7 @@ public class CellMain : PoolableObjects
         if (CellManager.Instance.originalPosOfMovingCell != new Vector3(0, 100, 0))
             RessourceTracker.instance.RemoveCell(this);
 
-        RessourceTracker.instance.RemoveCell(this);
+
         RessourceTracker.instance.RemoveBlob(BlobManager.BlobType.normal, BlobNumber);
 
 
