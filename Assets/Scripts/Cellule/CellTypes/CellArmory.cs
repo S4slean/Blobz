@@ -10,21 +10,16 @@ public class CellArmory : CellMain
     // public float[] myCellTemplate.BlopPerTick;
 
     [SerializeField]
-    private float tickForActivation;
-    private float currentTick;
-    [SerializeField]
     private float rfBonus = 0;
-
-
 
 
     public override void BlobsTick()
     {
         haveExpulse = false;
-        if (BlobNumber > 0)
+        if (blobNumber > 0)
         {
             currentTick++;
-            if (currentTick == tickForActivation)
+            if (currentTick == currentTickForActivation)
             {
                 //for (int i = 0; i < myCellTemplate.rejectPowerBase + rfBonus; i++) f
                 for (int i = 0; i < currentRejectPower + rfBonus; i++)
@@ -102,16 +97,16 @@ public class CellArmory : CellMain
 
         //    }
 
-        tickForActivation = (1 / myCellTemplate.BlopPerTick[currentProximityTier]);
-        if (tickForActivation < 1)
+        currentTickForActivation = (1 / myCellTemplate.tickForActivation[currentProximityTier]);
+        if (currentTickForActivation < 1)
         {
-            tickForActivation = 1;
+            currentTickForActivation = 1;
             rfBonus = myCellTemplate.BlopPerTick[currentProximityTier] - 1;
         }
         if (currentProximityLevel<0)
         {
             currentProximityTier = 0;
-            tickForActivation = (int) (1 / myCellTemplate.BlopPerTick[currentProximityTier]);
+            currentTickForActivation = (int) (1 / myCellTemplate.BlopPerTick[currentProximityTier]);
         }
     }
 }

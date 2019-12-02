@@ -12,7 +12,7 @@ public class CellTemplateCustomInspector : Editor
     SerializedProperty typeProp;
     SerializedProperty EnergyCostProp, rangeBaseProp, blobRatioAtDeathProp, impulseForce_DeathProp;
 
-    SerializedProperty prodPerTickProp, rejectPowerProp, storageCapabilityProp, linkCapabilityProp;
+    SerializedProperty prodPerTickProp, rejectPowerProp, storageCapabilityProp, linkCapabilityProp , tickForActivationBaseProp , energyPerClickProp;
 
     SerializedProperty proximityLevelMaxProp, positivesInteractionsProp, negativesInteractionsProp, StatsModificationProp;
 
@@ -23,11 +23,11 @@ public class CellTemplateCustomInspector : Editor
     //Broyeuse Spé
 
     //Stockage Spé
-    SerializedProperty stockageCapacityProp, LinkCapacityProp, RangeProp;
+    SerializedProperty stockageCapacityProp, LinkCapacityProp, RangeProp , tickForActivationProp;
 
     SerializedProperty InfoBoxToggleProp, refToggleProp, statToggleProp, ProductionGestionsProp, ProximityGestionProp;
 
-    SerializedProperty energyPerblop  ;
+    SerializedProperty energyPerblop;
 
     private float fieldWidthBase, labelWidthBase;
 
@@ -50,6 +50,8 @@ public class CellTemplateCustomInspector : Editor
         rejectPowerProp = serializedObject.FindProperty("rejectPowerBase");
         storageCapabilityProp = serializedObject.FindProperty("storageCapability");
         linkCapabilityProp = serializedObject.FindProperty("linkCapability");
+        tickForActivationBaseProp = serializedObject.FindProperty("tickForActivationBase");
+        energyPerClickProp = serializedObject.FindProperty("energyPerClick");
 
         proximityLevelMaxProp = serializedObject.FindProperty("proximityLevelMax");
         positivesInteractionsProp = serializedObject.FindProperty("positivesInteractions");
@@ -59,12 +61,12 @@ public class CellTemplateCustomInspector : Editor
 
 
         SurprodRateProp = serializedObject.FindProperty("SurproductionRate");
-
         BlopPerTickProp = serializedObject.FindProperty("BlopPerTick");
-
         stockageCapacityProp = serializedObject.FindProperty("stockageCapacity");
         LinkCapacityProp = serializedObject.FindProperty("LinkCapacity");
         RangeProp = serializedObject.FindProperty("Range");
+        tickForActivationProp = serializedObject.FindProperty("tickForActivation");
+
 
         InfoBoxToggleProp = serializedObject.FindProperty("ToggleInfoBox");
         refToggleProp = serializedObject.FindProperty("REFS");
@@ -176,6 +178,8 @@ public class CellTemplateCustomInspector : Editor
                 EditorGUILayout.PropertyField(rejectPowerProp);
                 EditorGUILayout.PropertyField(storageCapabilityProp);
                 EditorGUILayout.PropertyField(linkCapabilityProp);
+                EditorGUILayout.PropertyField(tickForActivationBaseProp);
+                EditorGUILayout.PropertyField(energyPerClickProp);
             }
             else
             {
@@ -194,7 +198,15 @@ public class CellTemplateCustomInspector : Editor
 
                 EditorGUILayout.PropertyField(storageCapabilityProp);
                 EditorGUILayout.PropertyField(linkCapabilityProp);
+
                 EditorGUILayout.EndHorizontal();
+
+                EditorGUILayout.BeginHorizontal();
+                EditorGUILayout.PropertyField(tickForActivationBaseProp);
+                EditorGUILayout.PropertyField(energyPerClickProp);
+                EditorGUILayout.EndHorizontal();
+
+                
 
                 EditorGUIUtility.labelWidth = labelWidthBase;
                 EditorGUIUtility.fieldWidth = fieldWidthBase;
@@ -333,8 +345,13 @@ public class CellTemplateCustomInspector : Editor
 
             case StatsModificationType.Range:
                 EditorGUILayout.HelpBox("Longueur maximum des liens venant de ce bâtiment ( aussi de la proximité pour l'instant ) ", MessageType.Info);
-                LinkCapacityProp.arraySize = proximityLevelMaxProp.intValue;
-                DisplayArray(LinkCapacityProp, "Level");
+                rangeBaseProp.arraySize = proximityLevelMaxProp.intValue;
+                DisplayArray(rangeBaseProp, "Level");
+                break;
+            case StatsModificationType.TickForActivation:
+                EditorGUILayout.HelpBox("Nombre de tick nécessaire avant l'action de la cellule ", MessageType.Info);
+                tickForActivationProp.arraySize = proximityLevelMaxProp.intValue;
+                DisplayArray(tickForActivationProp, "Level");
                 break;
 
             case StatsModificationType.Aucune:

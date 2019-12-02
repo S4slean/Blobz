@@ -110,6 +110,20 @@ public class LinkClass : PoolableObjects
         }
         
     }
-   
+    public void UpdatePoint(Vector3 lastPos)
+    {
+        endPos = lastPos;
+
+        trajectoir = endPos - startPos;
+        bendRatio = trajectoir.magnitude / range;
+
+        Vector3 posFrag = trajectoir / range;
+        for (int i = 0; i < range; i++)
+        {
+            line.SetPosition(i, startPos + i * posFrag);
+        }
+
+    }
+
 
 }

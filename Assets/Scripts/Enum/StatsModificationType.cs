@@ -10,6 +10,7 @@ public enum StatsModificationType
     StockageCapacity, 
     LinkCapacity ,
     Range , 
+    TickForActivation,
     Aucune
 
 }

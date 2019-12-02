@@ -39,8 +39,9 @@ public class CellMain : PoolableObjects
     public bool showRef;
     public List<LinkClass> links = new List<LinkClass>();
     public bool noMoreLink;
-    public int BlobNumber;
+    public int blobNumber;
     public bool hasBeenDrop;
+
     #endregion
 
     #region STATS
@@ -55,9 +56,16 @@ public class CellMain : PoolableObjects
     protected int currentLinkStockage;
     protected int currentBlobStockage;
 
+
+
+    protected int currentTickForActivation;
+    protected float currentTick;
+
+    protected int currentEnergyPerTick;
     protected int currentSurproductionRate;
     protected float currentRejectPower;
     protected int currentRange;
+
 
     protected bool isDead = false;
     protected float velocity;
@@ -84,7 +92,7 @@ public class CellMain : PoolableObjects
         //Pour le delegate qui gére le tick
         //TickManager.doTick += BlobsTick;
         //UI init 
-        NBlob.text = (BlobNumber + " / " + myCellTemplate.storageCapability);
+        NBlob.text = (blobNumber + " / " + myCellTemplate.storageCapability);
         NLink.text = (links.Count + " / " + myCellTemplate.linkCapability);
         currentBlobStockage = myCellTemplate.storageCapability;
         currentLinkStockage = myCellTemplate.linkCapability;
@@ -125,13 +133,15 @@ public class CellMain : PoolableObjects
     public virtual void Died(bool intentionnalDeath)
     {
         isDead = true;
+        //TickManager.doTick -= BlobsTick;
+        RessourceTracker.instance.RemoveCell(this);
+        RessourceTracker.instance.RemoveBlob(BlobManager.BlobType.normal, blobNumber);
 
 
         if (CellManager.Instance.originalPosOfMovingCell != new Vector3(0, 100, 0))
             RessourceTracker.instance.RemoveCell(this);
 
 
-        RessourceTracker.instance.RemoveBlob(BlobManager.BlobType.normal, BlobNumber);
 
 
         TickDesinscription();
@@ -148,7 +158,7 @@ public class CellMain : PoolableObjects
         if (!intentionnalDeath)
         {
             //Spawn les blobs
-            for (int i = 0; i < BlobNumber; i++)
+            for (int i = 0; i < blobNumber; i++)
             {
                 //Debug.Log("SI TU VOIS ÇA C'EST QUE LES BLOB SONT ENCORE INSTANCIE EN SALE AINSI QUE LEUR RIGIDBODY ");
                 //GameObject blob = Instantiate(myCellTemplate.blopPrefab, transform.position, Quaternion.identity);
@@ -176,7 +186,7 @@ public class CellMain : PoolableObjects
             }
 
         }
-        BlobNumber = 0;
+        blobNumber = 0;
         SetupVariable();
         Inpool();
     }
@@ -186,20 +196,28 @@ public class CellMain : PoolableObjects
         haveExpulse = false;
 
         //ça marche bien mais à voir si quand 1 batiment meure la produciton saute avec ou pas
-        for (int i = 0; i < currentRejectPower; i++)
+        if (blobNumber > 0)
         {
-            if (BlobNumber > 0 && outputLinks.Count > 0)
+            currentTick++;
+            if (currentTick == currentTickForActivation)
             {
-                if (currentIndex >= outputLinks.Count)
+                for (int i = 0; i < currentRejectPower; i++)
                 {
-                    return;
+                    if (blobNumber > 0 && outputLinks.Count > 0)
+                    {
+                        if (currentIndex >= outputLinks.Count)
+                        {
+                            return;
+                        }
+                        outputLinks[currentIndex].Transmitt();
+                        currentIndex++;
+                        currentIndex = Helper.LoopIndex(currentIndex, outputLinks.Count);
+                        haveExpulse = true;
+                    }
                 }
-                outputLinks[currentIndex].Transmitt();
-                currentIndex++;
-                currentIndex = Helper.LoopIndex(currentIndex, outputLinks.Count);
-                haveExpulse = true;
             }
         }
+
         if (haveExpulse)
         {
             anim.Play("BlobExpulsion");
@@ -215,7 +233,7 @@ public class CellMain : PoolableObjects
     {
         currentBlobStockage += Amount;
         UpdateCaract();
-        if (BlobNumber > currentBlobStockage && !isDead)
+        if (blobNumber > currentBlobStockage && !isDead)
         {
             Died(false);
         }
@@ -223,10 +241,10 @@ public class CellMain : PoolableObjects
     }
     public virtual void ClickInteraction()
     {
-        if (BlobNumber > 0)
+        if (blobNumber > 0)
         {
             RemoveBlob(1);
-            CellManager.Instance.EnergyVariation(10);
+            CellManager.Instance.EnergyVariation(currentEnergyPerTick);
         }
 
         anim.Play("PlayerInteraction", 0, 0f);
@@ -238,30 +256,29 @@ public class CellMain : PoolableObjects
     #region BLOB_GESTION
     public void AddBlob(int Amount)
     {
-        BlobNumber += Amount;
+        blobNumber += Amount;
 
         RessourceTracker.instance.AddBlob(BlobManager.BlobType.normal, Amount);
 
-        NBlob.text = (BlobNumber + " / " + currentBlobStockage);
-        if (BlobNumber > currentBlobStockage && !isDead)
-        if (BlobNumber > currentBlobStockage && !isDead && !isNexus)
+        NBlob.text = (blobNumber + " / " + currentBlobStockage);
+        if (blobNumber > currentBlobStockage && !isDead && !isNexus)
         {
             Died(false);
         }
-        if (BlobNumber > currentBlobStockage)
+        if (blobNumber > currentBlobStockage)
         {
-            int blobToRemobe = BlobNumber - currentBlobStockage;
+            int blobToRemobe = blobNumber - currentBlobStockage;
 
             RessourceTracker.instance.RemoveBlob(BlobManager.BlobType.normal, blobToRemobe);
 
 
-            BlobNumber = currentBlobStockage;
+            blobNumber = currentBlobStockage;
         }
         UpdateCaract();
     }
     public void RemoveBlob(int Amount)
     {
-        BlobNumber -= Amount;
+        blobNumber -= Amount;
 
         RessourceTracker.instance.RemoveBlob(BlobManager.BlobType.normal, Amount);
         //UI update
@@ -366,6 +383,10 @@ public class CellMain : PoolableObjects
                 currentRange = myCellTemplate.Range[currentProximityTier];
                 break;
 
+            case StatsModificationType.TickForActivation:
+                currentTickForActivation = myCellTemplate.tickForActivation[currentProximityTier];
+                break;
+
             case StatsModificationType.Aucune:
                 break;
         }
@@ -458,7 +479,7 @@ public class CellMain : PoolableObjects
     }
     public virtual void UpdateCaract()
     {
-        NBlob.text = (BlobNumber + " / " + currentBlobStockage);
+        NBlob.text = (blobNumber + " / " + currentBlobStockage);
         NLink.text = (links.Count + " / " + currentLinkStockage);
     }
 
@@ -475,6 +496,8 @@ public class CellMain : PoolableObjects
         currentSurproductionRate = myCellTemplate.SurproductionRate[0];
         currentRejectPower = myCellTemplate.rejectPowerBase;
         currentRange = myCellTemplate.rangeBase;
+        currentTickForActivation = myCellTemplate.tickForActivationBase;
+        currentEnergyPerTick = myCellTemplate.energyPerClick;
         cellAtProximity.Clear();
         currentProximityLevel = 0;
 
@@ -487,8 +510,5 @@ public class CellMain : PoolableObjects
         return currentRange;
     }
     #endregion
-
-
-
 
 }
