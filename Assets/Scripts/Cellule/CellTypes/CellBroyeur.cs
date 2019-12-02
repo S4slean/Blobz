@@ -8,13 +8,18 @@ public class CellBroyeur : CellMain
     public override void BlobsTick()
     {
         haveExpulse = false;
-        if (BlobNumber > 0 )
+
+        if (blobNumber > 0)
         {
-            for (int i = 0; i < currentRejectPower; i++)
+            currentTick++;
+            if (currentTick == currentTickForActivation)
             {
-                RemoveBlob(1);
-                CellManager.Instance.EnergyVariation(myCellTemplate.energyPerblop);
-                haveExpulse = true;
+                for (int i = 0; i < currentRejectPower; i++)
+                {
+                    RemoveBlob(1);
+                    CellManager.Instance.EnergyVariation(myCellTemplate.energyPerblop);
+                    haveExpulse = true;
+                }
             }
         }
         if (haveExpulse)

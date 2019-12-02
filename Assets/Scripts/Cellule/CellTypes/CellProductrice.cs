@@ -8,20 +8,29 @@ public class CellProductrice : CellMain
     {
         haveExpulse = false;
         //ça marche bien mais à voir si quand 1 batiment meure la produciton saute avec ou pas
-        for (int i = 0; i < currentRejectPower; i++)
+
+        if (blobNumber > 0)
         {
-            if (BlobNumber > 0 && outputLinks.Count > 0)
+            currentTick++;
+            if (currentTick == currentTickForActivation)
             {
-                if (currentIndex >= outputLinks.Count)
+                for (int i = 0; i < currentRejectPower; i++)
                 {
-                    return;
+                    if (blobNumber > 0 && outputLinks.Count > 0)
+                    {
+                        if (currentIndex >= outputLinks.Count)
+                        {
+                            return;
+                        }
+                        outputLinks[currentIndex].Transmitt();
+                        currentIndex++;
+                        currentIndex = Helper.LoopIndex(currentIndex, outputLinks.Count);
+                        haveExpulse = true;
+                    }
                 }
-                outputLinks[currentIndex].Transmitt();
-                currentIndex++;
-                currentIndex = Helper.LoopIndex(currentIndex, outputLinks.Count);
-                haveExpulse = true;
             }
         }
+
         if ((int)Random.Range(0, 101) <= currentSurproductionRate)
         {
             AddBlob(myCellTemplate.prodPerTickBase * 2);

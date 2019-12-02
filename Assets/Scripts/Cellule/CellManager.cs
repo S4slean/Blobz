@@ -74,12 +74,21 @@ public class CellManager : MonoBehaviour
         {
             currentLink.endPos = new Vector3(hit.point.x, currentLink.startPos.y, hit.point.z);
             currentLine.SetPosition(1, currentLink.endPos);
+
+
+
+            ///nouveau systeme de link
+            //Vector3 lastPos = new Vector3(hit.point.x, currentLink.startPos.y, hit.point.z);
+            //currentLink.UpdatePoint(lastPos);
+
         }
         else
         {
             Vector3 direction = (hit.point - currentLink.startPos);
             direction = new Vector3(direction.x, 0, direction.z);
             direction = direction.normalized;
+
+
             currentLink.endPos = currentLink.startPos + direction * selectedCell.myCellTemplate.rangeBase / 2;
             currentLine.SetPosition(1, currentLink.endPos);
         }
