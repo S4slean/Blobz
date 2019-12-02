@@ -198,9 +198,11 @@ public class CellMain : PoolableObjects
         //ça marche bien mais à voir si quand 1 batiment meure la produciton saute avec ou pas
         if (blobNumber > 0)
         {
+            
             currentTick++;
             if (currentTick == currentTickForActivation)
             {
+                Debug.Log("tickPass");
                 for (int i = 0; i < currentRejectPower; i++)
                 {
                     if (blobNumber > 0 && outputLinks.Count > 0)
@@ -214,6 +216,7 @@ public class CellMain : PoolableObjects
                         currentIndex = Helper.LoopIndex(currentIndex, outputLinks.Count);
                         haveExpulse = true;
                     }
+                    currentTick = 0;
                 }
             }
         }

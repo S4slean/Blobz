@@ -20,6 +20,7 @@ public class CellBroyeur : CellMain
                     CellManager.Instance.EnergyVariation(myCellTemplate.energyPerblop);
                     haveExpulse = true;
                 }
+                currentTick = 0;
             }
         }
         if (haveExpulse)
