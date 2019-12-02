@@ -8,12 +8,21 @@ public class CellProductrice : CellMain
     {
         haveExpulse = false;
         //ça marche bien mais à voir si quand 1 batiment meure la produciton saute avec ou pas
+        if ((int)Random.Range(0, 101) <= currentSurproductionRate)
+        {
+            AddBlob(myCellTemplate.prodPerTickBase * 2);
+        }
+        else
+        {
+            AddBlob(myCellTemplate.prodPerTickBase);
+        }
 
         if (blobNumber > 0)
         {
             currentTick++;
             if (currentTick == currentTickForActivation)
             {
+                Debug.Log("tickPass");
                 for (int i = 0; i < currentRejectPower; i++)
                 {
                     if (blobNumber > 0 && outputLinks.Count > 0)
@@ -28,22 +37,16 @@ public class CellProductrice : CellMain
                         haveExpulse = true;
                     }
                 }
+                currentTick = 0;
             }
-        }
-
-        if ((int)Random.Range(0, 101) <= currentSurproductionRate)
-        {
-            AddBlob(myCellTemplate.prodPerTickBase * 2);
-        }
-        else
-        {
-            AddBlob(myCellTemplate.prodPerTickBase);
         }
 
         if (haveExpulse)
         {
             anim.Play("BlobExpulsion");
         }
+
+
     }
 
 }
