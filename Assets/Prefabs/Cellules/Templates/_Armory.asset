@@ -18,7 +18,7 @@ MonoBehaviour:
   buttonColor: {r: 1, g: 0, b: 0, a: 1}
   cellTexture: {fileID: 0}
   type: 1
-  EnergyCost: 5
+  EnergyCost: 50
   rangeBase: 50
   blobRatioAtDeath: 0
   impulseForce_Death: 5
@@ -45,6 +45,6 @@ MonoBehaviour:
   StatsModification: 5
   REFS: 1
   ToggleInfoBox: 0
-  STATS: 0
+  STATS: 1
   ProductionGestion: 1
   ProximityGestion: 1
