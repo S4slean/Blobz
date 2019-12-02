@@ -35,10 +35,8 @@ MonoBehaviour:
       offset: {x: 830, y: 260, z: 0}
       usingSprite: 0
       sprite: {fileID: 0}
-      Title: With Crusher Cell your life is better !
-      Text: 'You see? The Crusher Cell help you to earns
-
-        Energies ! '
+      Title: Earning Sploosh
+      Text: 'You see? The Crusher Cell helps you earn ! '
     UEvent:
       m_PersistentCalls:
         m_Calls: []
@@ -52,8 +50,8 @@ MonoBehaviour:
       offset: {x: 830, y: 260, z: 0}
       usingSprite: 0
       sprite: {fileID: 0}
-      Title: Attention to Overproduction, stock your blobz !
-      Text: 'You can create stockage for stock your blobz on a
+      Title: Don't let the cell explode !
+      Text: 'You can create a stock cell to stock your blobz on a
 
         cell.'
     UEvent:

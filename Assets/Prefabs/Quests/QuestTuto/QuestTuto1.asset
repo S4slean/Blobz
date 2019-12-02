@@ -60,12 +60,10 @@ MonoBehaviour:
       offset: {x: 830, y: 260, z: 0}
       usingSprite: 0
       sprite: {fileID: 0}
-      Title: What's a Blobz?
+      Title: What's a Blob?
       Text: 'Blobz are created to expend your population.
 
-        More you have Blobz more it''s good !
-
-'
+        The more Blobz you have the better !'
     UEvent:
       m_PersistentCalls:
         m_Calls:
@@ -94,9 +92,8 @@ MonoBehaviour:
       Title: Production Cell
       Text: 'This Cell product Blobz and
 
-        expend your population, you just have
-
-        to wait...
+        expend your population. You can see the number of Blobz in the cell going
+        up
 
 '
     UEvent:
