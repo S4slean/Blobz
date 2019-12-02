@@ -202,8 +202,10 @@ public class CellTemplateCustomInspector : Editor
                 EditorGUILayout.EndHorizontal();
 
                 EditorGUILayout.BeginHorizontal();
+
                 EditorGUILayout.PropertyField(tickForActivationBaseProp);
                 EditorGUILayout.PropertyField(energyPerClickProp);
+
                 EditorGUILayout.EndHorizontal();
 
                 
