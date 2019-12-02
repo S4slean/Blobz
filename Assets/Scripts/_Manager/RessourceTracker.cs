@@ -60,6 +60,8 @@ public class RessourceTracker : MonoBehaviour
 
     }
 
+
+
     public void RemoveCell(CellMain cell)
     {
         cellNbr--;
@@ -155,6 +157,38 @@ public class RessourceTracker : MonoBehaviour
         }
     }
 
+    public void AddBlob(BlobManager.BlobType blobType, int nbr)
+    {
+        blobPop += nbr;
+
+        switch (blobType)
+        {
+            case BlobManager.BlobType.normal:
+
+                normalBlob += nbr;
+
+                break;
+
+            case BlobManager.BlobType.soldier:
+
+                soldierBlob += nbr;
+
+                break;
+
+            case BlobManager.BlobType.charged:
+
+                chargedBlob += nbr;
+
+                break;
+
+            case BlobManager.BlobType.mad:
+
+                madBlob += nbr;
+
+                break;
+        }
+    }
+
     public void RemoveBlob(Blob blob)
     {
         blobPop--;
@@ -214,6 +248,38 @@ public class RessourceTracker : MonoBehaviour
             case BlobManager.BlobType.mad:
 
                 madBlob--;
+
+                break;
+        }
+    }
+
+    public void RemoveBlob(BlobManager.BlobType blobType, int nbr)
+    {
+        blobPop -= nbr;
+
+        switch (blobType)
+        {
+            case BlobManager.BlobType.normal:
+
+                normalBlob -= nbr;
+
+                break;
+
+            case BlobManager.BlobType.soldier:
+
+                soldierBlob -= nbr;
+
+                break;
+
+            case BlobManager.BlobType.charged:
+
+                chargedBlob -= nbr;
+
+                break;
+
+            case BlobManager.BlobType.mad:
+
+                madBlob -= nbr;
 
                 break;
         }
