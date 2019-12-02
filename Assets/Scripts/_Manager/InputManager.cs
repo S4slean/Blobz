@@ -260,6 +260,7 @@ public class InputManager : MonoBehaviour
             {
                 if (CellManager.Instance.originalPosOfMovingCell == new Vector3(0, 100, 0))
                 {
+                    RessourceTracker.instance.energy += objectMoved.myCellTemplate.EnergyCost;
                     objectMoved.Died(true);
                     CellManager.Instance.SupressCurrentLink();
                 }
