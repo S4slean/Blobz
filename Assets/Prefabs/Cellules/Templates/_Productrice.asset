@@ -30,6 +30,8 @@ MonoBehaviour:
   prodPerTickBase: 1
   rejectPowerBase: 2
   storageCapability: 40
+  tickForActivationBase: 1
+  energyPerClick: 15
   linkCapability: 8
   proximityLevelMax: 4
   positivesInteractions: 00000000
@@ -39,9 +41,10 @@ MonoBehaviour:
   stockageCapacity: 
   LinkCapacity: 
   Range: 
+  tickForActivation: 
   energyPerblop: 0
   StatsModification: 0
-  REFS: 1
+  REFS: 0
   ToggleInfoBox: 1
   STATS: 1
   ProductionGestion: 1
