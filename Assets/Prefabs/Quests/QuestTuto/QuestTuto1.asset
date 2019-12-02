@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   questType: 0
   questTitle: Blobz are Coming
-  questDescription: Expend your population to 7
+  questDescription: 
   eventDone: 1
   populationObjective: 7
   cellType: 0
@@ -57,7 +57,7 @@ MonoBehaviour:
     popUpsMsg:
     - rpgStyle: 0
       anchor: {fileID: 0}
-      offset: {x: 830, y: 280, z: 0}
+      offset: {x: 830, y: 260, z: 0}
       usingSprite: 0
       sprite: {fileID: 0}
       Title: What's a Blobz?
@@ -88,13 +88,13 @@ MonoBehaviour:
     popUpsMsg:
     - rpgStyle: 0
       anchor: {fileID: 0}
-      offset: {x: 830, y: 280, z: 0}
+      offset: {x: 830, y: 260, z: 0}
       usingSprite: 0
       sprite: {fileID: 0}
       Title: Production Cell
       Text: 'This Cell product Blobz and
 
-        expend your population you just have
+        expend your population, you just have
 
         to wait...
 

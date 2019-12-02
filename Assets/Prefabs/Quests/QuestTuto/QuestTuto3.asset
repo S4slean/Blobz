@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   questType: 1
   questTitle: Stock your Blobz
-  questDescription: Blobz big house
-  eventDone: 0
+  questDescription: 
+  eventDone: 1
   populationObjective: 0
   cellType: 2
   level: 1
@@ -25,4 +25,38 @@ MonoBehaviour:
   placeToGet: {fileID: 0}
   range: 0
   objectToDestroy: []
-  questEvents: []
+  questEvents:
+  - eventType: 1
+    eventDuration: 0
+    virtualCamIndex: 0
+    popUpsMsg:
+    - rpgStyle: 0
+      anchor: {fileID: 0}
+      offset: {x: 830, y: 260, z: 0}
+      usingSprite: 0
+      sprite: {fileID: 0}
+      Title: With Crusher Cell your life is better !
+      Text: 'You see? The Crusher Cell help you to earns
+
+        Energies ! '
+    UEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    foldout: 1
+  - eventType: 1
+    eventDuration: 0
+    virtualCamIndex: 0
+    popUpsMsg:
+    - rpgStyle: 0
+      anchor: {fileID: 0}
+      offset: {x: 830, y: 260, z: 0}
+      usingSprite: 0
+      sprite: {fileID: 0}
+      Title: Attention to Overproduction, stock your blobz !
+      Text: 'You can create stockage for stock your blobz on a
+
+        cell.'
+    UEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    foldout: 1

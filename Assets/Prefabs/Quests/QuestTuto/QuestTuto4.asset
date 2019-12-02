@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: QuestTuto4
   m_EditorClassIdentifier: 
   questType: 0
-  questTitle: There are thousands of them
-  questDescription: Beware of overproduction!
-  eventDone: 0
-  populationObjective: 1500
+  questTitle: So much BLOBZ !
+  questDescription: 
+  eventDone: 1
+  populationObjective: 300
   cellType: 0
   level: 1
   cellNbrToObtain: 1
@@ -28,11 +28,11 @@ MonoBehaviour:
   questEvents:
   - eventType: 1
     eventDuration: 0
-    ObjectToWatch: []
+    virtualCamIndex: 0
     popUpsMsg:
     - rpgStyle: 0
       anchor: {fileID: 0}
-      offset: {x: 0, y: 0, z: 0}
+      offset: {x: 830, y: 260, z: 0}
       usingSprite: 0
       sprite: {fileID: 0}
       Title: Overproduction !
