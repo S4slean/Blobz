@@ -125,15 +125,14 @@ public class CellMain : PoolableObjects
     public virtual void Died(bool intentionnalDeath)
     {
         isDead = true;
-        //TickManager.doTick -= BlobsTick;
-<<<<<<< HEAD
+
 
         if (CellManager.Instance.originalPosOfMovingCell != new Vector3(0, 100, 0))
             RessourceTracker.instance.RemoveCell(this);
-=======
+
         RessourceTracker.instance.RemoveCell(this);
         RessourceTracker.instance.RemoveBlob(BlobManager.BlobType.normal, BlobNumber);
->>>>>>> 0bdcbb338e64eafcadb516624fd686335ad1411a
+
 
         TickDesinscription();
         int I = links.Count;
