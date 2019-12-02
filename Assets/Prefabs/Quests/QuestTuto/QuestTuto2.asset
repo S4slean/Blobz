@@ -38,7 +38,7 @@ MonoBehaviour:
       sprite: {fileID: 0}
       Title: Splootch
       Text: "To create a Cell you need Sploosh ! \nClick on your Production Cell to
-        gain Sploosh"
+        gain Sploosh."
     UEvent:
       m_PersistentCalls:
         m_Calls: []
@@ -55,7 +55,7 @@ MonoBehaviour:
       Title: Creating a cell
       Text: 'Hold click on the cell and choose the cell you want build.
 
-        Let''s build a Crusher Cell (purple)'
+        Let''s build a Crusher Cell (purple).'
     UEvent:
       m_PersistentCalls:
         m_Calls: []

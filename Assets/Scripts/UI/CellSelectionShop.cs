@@ -12,6 +12,7 @@ public class CellSelectionShop : MonoBehaviour
     [Header("TWEAKING")]
     [Range(0f, 5f)]
     public float buttonDistance = 2f;
+    public float yOffset = 1;
 
     [SerializeField]
     private RectTransform[] butTrans;
@@ -48,7 +49,9 @@ public class CellSelectionShop : MonoBehaviour
         {
             //calcule de l'angle en foncttion du nombre de point
             float angle = anglefrac * i;
-            Vector3 dir = new Vector3(Mathf.Sin(angle), 1, Mathf.Cos(angle));
+            Vector3 dir = new Vector3(Mathf.Sin(angle), yOffset, Mathf.Cos(angle));
+           // Vector3 dir = new Vector3(Mathf.Sin(angle), 0, Mathf.Cos(angle)) - transform.position;
+           // Vector3 pos = transform.position + (dir * buttonDistance) + new Vector3 (0 , yOffset , 0 );
             Vector3 pos = dir * buttonDistance;
             CellType actualType = select[i].GetComponent<CellMain>().myCellTemplate.type;
 
