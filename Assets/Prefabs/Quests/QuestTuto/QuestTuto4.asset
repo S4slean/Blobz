@@ -35,6 +35,21 @@ MonoBehaviour:
       offset: {x: 830, y: 260, z: 0}
       usingSprite: 0
       sprite: {fileID: 0}
+      Title: Production Cell
+      Text: You can create a production cell (green circle)
+    UEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    foldout: 1
+  - eventType: 1
+    eventDuration: 0
+    virtualCamIndex: 0
+    popUpsMsg:
+    - rpgStyle: 0
+      anchor: {fileID: 0}
+      offset: {x: 830, y: 260, z: 0}
+      usingSprite: 0
+      sprite: {fileID: 0}
       Title: Overproduction !
       Text: "If your cells are in overproduction they \nexplode and you don't want
         this to happen."
