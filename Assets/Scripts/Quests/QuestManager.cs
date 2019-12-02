@@ -7,7 +7,7 @@ using UnityEngine;
 public class QuestManager : MonoBehaviour
 {
 
-    public enum QuestType { Population, Batiments, Colonisation, Destruction, Empty };
+    public enum QuestType { Population, Energy, Batiments, Colonisation, Destruction, Empty };
 
     public int currentQuestID;
     public int currentQuestEventID;
@@ -119,6 +119,15 @@ public class QuestManager : MonoBehaviour
 
                 break;
 
+            case QuestType.Energy:
+
+                questProgress = RessourceTracker.instance.energy;
+
+                if (questProgress >= currentQuest.energyToObtain)
+                    QuestSuccess();
+
+                break;
+
             case QuestType.Colonisation:
 
                 //créer un préfab de detection en OntriggerEnter.
@@ -184,7 +193,7 @@ public class QuestManager : MonoBehaviour
         if (currentQuestEventID < currentQuest.questEvents.Length)
         {
 
-            Debug.Log("Quest Event PLaying: " + currentQuestEventID);
+
             QuestEventManager.instance.UpdateEventType();
 
             switch (currentQuest.questEvents[currentQuestEventID].eventType)
