@@ -60,6 +60,7 @@ public class InputManager : MonoBehaviour
     private CellMain cellOver;
     private CellMain selectedCell;
 
+    bool newCell = false;
     [HideInInspector] public bool movingObject = false;
     [HideInInspector] public CellMain objectMoved;
 
@@ -235,16 +236,9 @@ public class InputManager : MonoBehaviour
         #region MOVING_CELL
         else
         {
-            bool newCell = false;
 
-            if (CellManager.Instance.originalPosOfMovingCell == new Vector3(0, 100, 0))
-            {
-                newCell = true;
-            }
-            else
-            {
-                newCell = false;
-            }
+
+
 
             if (hit.transform != null && hit.transform.tag == "Ground")
             {
@@ -324,10 +318,21 @@ public class InputManager : MonoBehaviour
 
     public void StartMovingCell(CellMain cell, bool alreadyExistingCell)
     {
+
         if (!alreadyExistingCell)
             CellManager.Instance.originalPosOfMovingCell = new Vector3(0, 100, 0);
         else
             CellManager.Instance.originalPosOfMovingCell = cell.transform.position;
+
+        if (CellManager.Instance.originalPosOfMovingCell == new Vector3(0, 100, 0))
+        {
+            newCell = true;
+        }
+        else
+        {
+            newCell = false;
+        }
+
 
         cell.TickDesinscription();
         Instance.objectMoved = cell;

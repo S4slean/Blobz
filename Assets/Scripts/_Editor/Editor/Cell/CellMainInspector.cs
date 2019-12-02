@@ -35,7 +35,7 @@ public class CellMainInspector : Editor
 
         linksProp = serializedObject.FindProperty("links");
         noMoreLinkProp = serializedObject.FindProperty("noMoreLink");
-        BlobNumberProp = serializedObject.FindProperty("BlobNumber");
+        BlobNumberProp = serializedObject.FindProperty("blobNumber");
         hasBeenDropProp = serializedObject.FindProperty("hasBeenDrop");
 
         showRefProp = serializedObject.FindProperty("showRef");
