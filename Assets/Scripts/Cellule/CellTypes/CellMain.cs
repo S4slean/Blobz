@@ -491,7 +491,7 @@ public class CellMain : PoolableObjects
 
     public virtual void GraphSetup()
     {
-        Vector3 graphPos = transform.position + new Vector3(0, 0, 0);
+        Vector3 graphPos = transform.position + new Vector3(0, 0.1f, 0);
         graphTransform.position = graphPos;
     }
 
