@@ -36,9 +36,9 @@ MonoBehaviour:
   stockageCapacity: 
   LinkCapacity: 
   Range: 
-  tickForActivation: 
+  tickForActivation: 00000000000000000000000000000000
   energyPerblop: 5
-  StatsModification: 5
+  StatsModification: 6
   REFS: 1
   ToggleInfoBox: 0
   STATS: 1
