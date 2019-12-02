@@ -141,7 +141,10 @@ public class CellMain : PoolableObjects
         if (CellManager.Instance.originalPosOfMovingCell != new Vector3(0, 100, 0))
             RessourceTracker.instance.RemoveCell(this);
 
-
+        if(InputManager.Instance.CellSelected == this)
+        {
+            UIManager.Instance.DesactivateCellShop();
+        }
 
 
         TickDesinscription();
