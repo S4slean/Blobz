@@ -99,7 +99,7 @@ public class InputManager : MonoBehaviour
 
 
 
-                if (!DraggingLink && !InCellSelection && isOverCell)
+                if (!DraggingLink && !InCellSelection && isOverCell && !movingObject)
                 {
                     CellManager.Instance.SelectCell(hit);
                 }

@@ -510,7 +510,7 @@ public class CellMain : PoolableObjects
 
     public int GetCurrentRange()
     {
-        return currentRange;
+        return currentRange/2;
     }
     #endregion
 

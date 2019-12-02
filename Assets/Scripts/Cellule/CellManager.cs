@@ -221,14 +221,14 @@ public class CellManager : MonoBehaviour
     {
         bool shouldStop = false;
 
-        if (currentLink.CheckNewLinkLength(posToTest , selectedCell) == false)
+        if (currentLink.CheckNewLinkLength(posToTest, selectedCell) == false)
         {
             shouldStop = true;
         }
 
-        for (int i = 0; i < cellToMove.links.Count; i++ )
+        for (int i = 0; i < cellToMove.links.Count; i++)
         {
-            if (cellToMove.links[i].CheckLength(posToTest) == false )
+            if (cellToMove.links[i].CheckLength(posToTest) == false)
             {
                 shouldStop = true;
             }
@@ -237,6 +237,20 @@ public class CellManager : MonoBehaviour
 
         if (shouldStop)
         {
+            Vector3 refPoint;
+            if(originalPosOfMovingCell == new Vector3(0, 100, 0))
+            {
+                refPoint = selectedCell.transform.position;
+                cellToMove.transform.position = refPoint + (InputManager.Instance.mousePos - refPoint).normalized * selectedCell.GetCurrentRange();
+                DragNewlink(cellToMove.transform.position);
+            }
+            else
+            {
+                refPoint = originalPosOfMovingCell;
+            }
+
+
+
 
         }
         else
@@ -245,16 +259,13 @@ public class CellManager : MonoBehaviour
 
             if (isNewCell)
                 DragNewlink(posToTest);
-            
-
-            for (int i = 0; i < cellToMove.links.Count; i++)
-            {
-                cellToMove.links[i].UpdateLinks(cellToMove, posToTest);
-            }
-
 
         }
 
+        for (int i = 0; i < cellToMove.links.Count; i++)
+        {
+            cellToMove.links[i].UpdateLinks(cellToMove, posToTest);
+        }
     }
 
 
