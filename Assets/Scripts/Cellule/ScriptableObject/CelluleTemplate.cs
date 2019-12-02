@@ -31,12 +31,18 @@ public class CelluleTemplate : ScriptableObject
     [Range(5 ,100)]
     public int impulseForce_Death = 10;
 
+
     [Range(0, 10)]
     public int prodPerTickBase;
     [Range(0, 10)]
     public int rejectPowerBase;
     [Range(0f, 50f)]
     public int storageCapability = 10;
+    [Range(1, 5)]
+    public int tickForActivationBase;
+    [Range(1, 100)]
+    public int energyPerClick;
+
     [Range(0f, 12f)]
     public int linkCapability = 6;
 
@@ -54,6 +60,7 @@ public class CelluleTemplate : ScriptableObject
 
     public int[] LinkCapacity;
     public int[] Range;
+    public int[] tickForActivation;
 
     public int energyPerblop;
     #endregion
