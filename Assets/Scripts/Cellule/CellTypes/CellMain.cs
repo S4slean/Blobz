@@ -205,9 +205,6 @@ public class CellMain : PoolableObjects
             anim.Play("BlobExpulsion");
         }
 
-        //TEMPORAIRE !!!!!!!
-        //anim.Play("PlayerInteraction");
-        //!!!!!!!!!!!!
 
 
         AddBlob(myCellTemplate.prodPerTickBase);
@@ -231,7 +228,7 @@ public class CellMain : PoolableObjects
             RemoveBlob(1);
             CellManager.Instance.EnergyVariation(10);
         }
-            anim.Play("PlayerInteraction", 0, 0f);
+
         anim.Play("PlayerInteraction", 0, 0f);
 
 
