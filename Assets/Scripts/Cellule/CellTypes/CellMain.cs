@@ -134,7 +134,7 @@ public class CellMain : PoolableObjects
     {
         isDead = true;
         //TickManager.doTick -= BlobsTick;
-        RessourceTracker.instance.RemoveCell(this);
+
         RessourceTracker.instance.RemoveBlob(BlobManager.BlobType.normal, blobNumber);
 
 

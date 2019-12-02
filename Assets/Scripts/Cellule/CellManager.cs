@@ -172,6 +172,7 @@ public class CellManager : MonoBehaviour
         currentLine.endColor = Color.cyan;
 
         //cleanLinkRef();
+        originalPosOfMovingCell = new Vector3(0, 100, 0);
         UIManager.Instance.cellSelection.DesactiveButton();
         InputManager.Instance.StartMovingCell(newCell, false);
 
