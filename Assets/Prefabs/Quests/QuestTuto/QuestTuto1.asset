@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   questType: 0
   questTitle: Blobz are Coming
-  questDescription: "Click to make a blob explode \nand earn his sploosh.\n"
-  eventDone: 0
-  populationObjective: 100
+  questDescription: 
+  eventDone: 1
+  populationObjective: 7
   cellType: 0
   level: 1
   cellNbrToObtain: 1
@@ -27,16 +27,16 @@ MonoBehaviour:
   objectToDestroy: []
   questEvents:
   - eventType: 0
-    eventDuration: 0
-    ObjectToWatch: []
+    eventDuration: 1
+    virtualCamIndex: 0
     popUpsMsg: []
     UEvent:
       m_PersistentCalls:
         m_Calls: []
     foldout: 0
-  - eventType: 1
-    eventDuration: 0
-    ObjectToWatch: []
+  - eventType: 0
+    eventDuration: 2.5
+    virtualCamIndex: 1
     popUpsMsg:
     - rpgStyle: 0
       anchor: {fileID: 0}
@@ -50,4 +50,68 @@ MonoBehaviour:
     UEvent:
       m_PersistentCalls:
         m_Calls: []
+    foldout: 1
+  - eventType: 1
+    eventDuration: 5
+    virtualCamIndex: 1
+    popUpsMsg:
+    - rpgStyle: 0
+      anchor: {fileID: 0}
+      offset: {x: 830, y: 260, z: 0}
+      usingSprite: 0
+      sprite: {fileID: 0}
+      Title: What's a Blobz?
+      Text: 'Blobz are created to expend your population.
+
+        More you have Blobz more it''s good !
+
+'
+    UEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 6190842183759939533, guid: 7b934126b67bf7f44aabfd0ea1f12c2e,
+            type: 3}
+          m_MethodName: ReturnToMainCam
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    foldout: 1
+  - eventType: 1
+    eventDuration: 5
+    virtualCamIndex: 1
+    popUpsMsg:
+    - rpgStyle: 0
+      anchor: {fileID: 0}
+      offset: {x: 830, y: 260, z: 0}
+      usingSprite: 0
+      sprite: {fileID: 0}
+      Title: Production Cell
+      Text: 'This Cell product Blobz and
+
+        expend your population, you just have
+
+        to wait...
+
+'
+    UEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 6190842183759939533, guid: 7b934126b67bf7f44aabfd0ea1f12c2e,
+            type: 3}
+          m_MethodName: ReturnToMainCam
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
     foldout: 1

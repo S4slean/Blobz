@@ -103,6 +103,15 @@ public class QuestManager : MonoBehaviour
                     case CellType.Armory:
                         questProgress = RessourceTracker.instance.armoryNbr;
                         break;
+
+                    case CellType.Broyeur:
+                        questProgress = RessourceTracker.instance.broyeurNbr;
+                        break;
+
+                    case CellType.Passage:
+                        questProgress = RessourceTracker.instance.autorouteNbr;
+                        break;
+
                 }
 
                 if (questProgress >= currentQuest.cellNbrToObtain)

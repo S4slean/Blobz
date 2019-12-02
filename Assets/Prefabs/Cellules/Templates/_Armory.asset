@@ -43,7 +43,7 @@ MonoBehaviour:
   tickForActivation: 
   energyPerblop: 0
   StatsModification: 1
-  REFS: 0
+  REFS: 1
   ToggleInfoBox: 0
   STATS: 0
   ProductionGestion: 0

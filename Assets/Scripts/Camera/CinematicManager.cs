@@ -12,7 +12,7 @@ public class CinematicManager : MonoBehaviour
 
     public CinemachineVirtualCamera currentCam;
 
-    private void Start()
+    private void Awake()
     {
         if (instance == null)
             instance = this;

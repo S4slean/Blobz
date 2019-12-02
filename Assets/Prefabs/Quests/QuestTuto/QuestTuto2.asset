@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   questType: 1
   questTitle: Create your first Cell
-  questDescription: The "Crusher Cell" for kill Blobz.
-  eventDone: 0
+  questDescription: 
+  eventDone: 1
   populationObjective: 0
   cellType: 3
   level: 1
-  cellNbrToObtain: 1
+  cellNbrToObtain: 2
   anyCells: 1
   colonialCellType: 0
   placeToGet: {fileID: 0}
@@ -28,16 +28,60 @@ MonoBehaviour:
   questEvents:
   - eventType: 1
     eventDuration: 0
-    ObjectToWatch: []
+    virtualCamIndex: 0
+    popUpsMsg:
+    - rpgStyle: 0
+      anchor: {fileID: 0}
+      offset: {x: 830, y: 280, z: 0}
+      usingSprite: 0
+      sprite: {fileID: 0}
+      Title: How earns Energies??
+      Text: "For create a Cell you need energies ! \nFor this you have to click on
+        your Production Cell"
+    UEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    foldout: 0
+  - eventType: 1
+    eventDuration: 0
+    virtualCamIndex: 0
+    popUpsMsg:
+    - rpgStyle: 0
+      anchor: {fileID: 0}
+      offset: {x: 830, y: 260, z: 0}
+      usingSprite: 0
+      sprite: {fileID: 0}
+      Title: And how create Cell??
+      Text: "Stay click on the cell and choose the cell you want build, \nhere choose
+        the Crusher Cell (yellow circle)."
+    UEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    foldout: 1
+  - eventType: 3
+    eventDuration: 0
+    virtualCamIndex: 0
     popUpsMsg:
     - rpgStyle: 0
       anchor: {fileID: 0}
       offset: {x: 0, y: 0, z: 0}
       usingSprite: 0
       sprite: {fileID: 0}
-      Title: Broyeur Cell
-      Text: "The \"Broyeur Cell\" help you to \ncollect more \"Energies\"."
+      Title: 
+      Text: 
     UEvent:
       m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 6190842183759939533, guid: 7b934126b67bf7f44aabfd0ea1f12c2e,
+            type: 3}
+          m_MethodName: ReturnToMainCam
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
     foldout: 1

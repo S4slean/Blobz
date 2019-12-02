@@ -137,6 +137,13 @@ public class CellMain : PoolableObjects
         RessourceTracker.instance.RemoveCell(this);
         RessourceTracker.instance.RemoveBlob(BlobManager.BlobType.normal, blobNumber);
 
+
+        if (CellManager.Instance.originalPosOfMovingCell != new Vector3(0, 100, 0))
+            RessourceTracker.instance.RemoveCell(this);
+
+
+
+
         TickDesinscription();
         int I = links.Count;
         for (int i = 0; i < I; i++)
@@ -216,9 +223,6 @@ public class CellMain : PoolableObjects
             anim.Play("BlobExpulsion");
         }
 
-        //TEMPORAIRE !!!!!!!
-        //anim.Play("PlayerInteraction");
-        //!!!!!!!!!!!!
 
 
         AddBlob(myCellTemplate.prodPerTickBase);
@@ -242,6 +246,7 @@ public class CellMain : PoolableObjects
             RemoveBlob(1);
             CellManager.Instance.EnergyVariation(currentEnergyPerTick);
         }
+
         anim.Play("PlayerInteraction", 0, 0f);
 
 
@@ -257,6 +262,7 @@ public class CellMain : PoolableObjects
 
         NBlob.text = (blobNumber + " / " + currentBlobStockage);
         if (blobNumber > currentBlobStockage && !isDead && !isNexus)
+        if (BlobNumber > currentBlobStockage && !isDead && !isNexus)
         {
             Died(false);
         }
