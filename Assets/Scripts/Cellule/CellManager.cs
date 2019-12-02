@@ -220,10 +220,11 @@ public class CellManager : MonoBehaviour
 
         for (int i = 0; i < cellToMove.links.Count; i++)
         {
-            if (cellToMove.links[i].CheckLength(posToTest) == false)
+            if (cellToMove.links[i].CheckLength(posToTest) == false /* || currentLink.CheckLength(posToTest) == false*/)
             {
                 shouldStop = true;
             }
+
         }
 
         if (shouldStop)
