@@ -265,7 +265,10 @@ public class InputManager : MonoBehaviour
             else if (Input.GetMouseButtonDown(1))
             {
                 if (CellManager.Instance.originalPosOfMovingCell == new Vector3(0, 100, 0))
+                {
                     objectMoved.Died(true);
+                    CellManager.Instance.SupressCurrentLink();
+                }
                 else
                 {
                     CellManager.Instance.CellDeplacement(CellManager.Instance.originalPosOfMovingCell, objectMoved, false);

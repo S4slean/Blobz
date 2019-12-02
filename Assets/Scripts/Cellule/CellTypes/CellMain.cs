@@ -126,7 +126,10 @@ public class CellMain : PoolableObjects
     {
         isDead = true;
         //TickManager.doTick -= BlobsTick;
-        RessourceTracker.instance.RemoveCell(this);
+
+        if (CellManager.Instance.originalPosOfMovingCell != new Vector3(0, 100, 0))
+            RessourceTracker.instance.RemoveCell(this);
+
         TickDesinscription();
         int I = links.Count;
         for (int i = 0; i < I; i++)
