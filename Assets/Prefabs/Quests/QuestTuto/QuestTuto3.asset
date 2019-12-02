@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac59c85db94beed47808c892abe2bae2, type: 3}
   m_Name: QuestTuto3
   m_EditorClassIdentifier: 
-  questType: 1
+  questType: 2
   questTitle: Stock your Blobz
   questDescription: 
   eventDone: 1
   populationObjective: 0
+  energyToObtain: 0
   cellType: 2
   level: 1
   cellNbrToObtain: 2
@@ -36,7 +37,7 @@ MonoBehaviour:
       usingSprite: 0
       sprite: {fileID: 0}
       Title: Earning Sploosh
-      Text: 'You see? The Crusher Cell helps you earn ! '
+      Text: 'See? The Crusher Cell helps you earn Sploosh! '
     UEvent:
       m_PersistentCalls:
         m_Calls: []
@@ -51,7 +52,7 @@ MonoBehaviour:
       usingSprite: 0
       sprite: {fileID: 0}
       Title: Don't let the cell explode !
-      Text: 'You can create a stock cell to stock your blobz on a
+      Text: 'You can create a Stock cell to stock your blobz in a
 
         cell.'
     UEvent:

@@ -268,9 +268,8 @@ MonoBehaviour:
   showRef: 0
   links: []
   noMoreLink: 0
-  BlobNumber: 0
+  blobNumber: 0
   hasBeenDrop: 0
-  tickForActivation: 0
   rfBonus: 0
 --- !u!54 &5053171121655970789
 Rigidbody:
@@ -589,7 +588,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6760424054226889505}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2742505627752732921}
@@ -652,7 +651,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7629837164612804541}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.1}
+  m_LocalPosition: {x: 0, y: 0.05, z: 0.1}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 2390025963806365032}

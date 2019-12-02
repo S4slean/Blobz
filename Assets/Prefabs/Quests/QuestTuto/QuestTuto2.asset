@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac59c85db94beed47808c892abe2bae2, type: 3}
   m_Name: QuestTuto2
   m_EditorClassIdentifier: 
-  questType: 1
+  questType: 2
   questTitle: Create your first Cell
   questDescription: 
   eventDone: 1
   populationObjective: 0
+  energyToObtain: 0
   cellType: 3
   level: 1
   cellNbrToObtain: 2
@@ -37,7 +38,7 @@ MonoBehaviour:
       sprite: {fileID: 0}
       Title: Splootch
       Text: "To create a Cell you need Sploosh ! \nClick on your Production Cell to
-        gain Sploosh"
+        gain Sploosh."
     UEvent:
       m_PersistentCalls:
         m_Calls: []
@@ -54,7 +55,7 @@ MonoBehaviour:
       Title: Creating a cell
       Text: 'Hold click on the cell and choose the cell you want build.
 
-        Let''s build a Crusher Cell (purple)'
+        Let''s build a Crusher Cell (purple).'
     UEvent:
       m_PersistentCalls:
         m_Calls: []

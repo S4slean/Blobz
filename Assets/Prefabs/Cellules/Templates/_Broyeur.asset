@@ -23,8 +23,8 @@ MonoBehaviour:
   blobRatioAtDeath: 0
   impulseForce_Death: 10
   prodPerTickBase: 0
-  rejectPowerBase: 1
-  storageCapability: 8
+  rejectPowerBase: 6
+  storageCapability: 15
   tickForActivationBase: 1
   energyPerClick: 1
   linkCapability: 6
@@ -37,7 +37,7 @@ MonoBehaviour:
   LinkCapacity: 
   Range: 
   tickForActivation: 00000000000000000000000000000000
-  energyPerblop: 5
+  energyPerblop: 3
   StatsModification: 6
   REFS: 1
   ToggleInfoBox: 0
