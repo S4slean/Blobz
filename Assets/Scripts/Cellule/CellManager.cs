@@ -59,6 +59,8 @@ public class CellManager : MonoBehaviour
         InputManager.Instance.DraggingLink = true;
         //selectedCell.AddLink(currentLink, true);
         currentLink.startPos = selectedCell.transform.position;
+
+        ///nouveau systeme de link
        // currentLink.FirstSetup(currentLink.startPos, InputManager.Instance.mousePos, selectedCell.GetCurrentRange());
 
         currentLine.SetPosition(0, currentLink.startPos);
