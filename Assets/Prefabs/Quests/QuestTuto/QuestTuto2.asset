@@ -54,7 +54,7 @@ MonoBehaviour:
       Title: Creating a cell
       Text: 'Hold click on the cell and choose the cell you want build.
 
-        Let''s build a Crusher Cell (yellow circle).'
+        Let''s build a Crusher Cell (purple)'
     UEvent:
       m_PersistentCalls:
         m_Calls: []
