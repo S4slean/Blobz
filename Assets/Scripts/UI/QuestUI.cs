@@ -50,6 +50,12 @@ public class QuestUI : MonoBehaviour
                         + QuestManager.instance.questProgress + "/" + QuestManager.instance.currentQuest.cellNbrToObtain;
                     break;
 
+                case QuestManager.QuestType.Energy:
+                    description.text = "Get a total of " + QuestManager.instance.currentQuest.energyToObtain + " Splouch. "
+                        + QuestManager.instance.questProgress + "/" + QuestManager.instance.currentQuest.energyToObtain;
+                    break;
+
+
                 case QuestManager.QuestType.Colonisation:
 
                     string cellName;
