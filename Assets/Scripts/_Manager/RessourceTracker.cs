@@ -12,6 +12,13 @@ public class RessourceTracker : MonoBehaviour
     public int hatchNbr;
     public int stockNbr;
     public int armoryNbr;
+    public int broyeurNbr;
+    public int autorouteNbr;
+
+    public int normalBlob;
+    public int soldierBlob;
+    public int chargedBlob;
+    public int madBlob;
 
     public int energy;
     public int blobProduced;
@@ -19,5 +26,196 @@ public class RessourceTracker : MonoBehaviour
     private void Awake()
     {
         instance = this;
+    }
+
+
+    public void AddCell(CellMain cell)
+    {
+        cellNbr++;
+
+        switch (cell.myCellTemplate.type)
+        {
+            case (CellType.Productrice):
+                hatchNbr++;
+                break;
+
+            case (CellType.Stockage):
+                stockNbr++;
+                break;
+
+            case (CellType.Armory):
+                armoryNbr++;
+                break;
+
+            case (CellType.Broyeur):
+                broyeurNbr++;
+                break;
+
+            case (CellType.Passage):
+                autorouteNbr++;
+                break;
+        }
+
+        UIManager.Instance.QuestUI.UpdateUI();
+
+    }
+
+    public void RemoveCell(CellMain cell)
+    {
+        cellNbr--;
+
+        switch (cell.myCellTemplate.type)
+        {
+            case (CellType.Productrice):
+                hatchNbr--;
+                break;
+
+            case (CellType.Stockage):
+                stockNbr--;
+                break;
+
+            case (CellType.Armory):
+                armoryNbr--;
+                break;
+
+            case (CellType.Broyeur):
+                broyeurNbr--;
+                break;
+
+            case (CellType.Passage):
+                autorouteNbr--;
+                break;
+        }
+
+        UIManager.Instance.QuestUI.UpdateUI();
+
+    }
+
+    public void AddBlob(Blob blob)
+    {
+        blobPop++;
+
+        switch (blob.blobType)
+        {
+            case BlobManager.BlobType.normal:
+
+                normalBlob++;
+
+                break;
+
+            case BlobManager.BlobType.soldier:
+
+                soldierBlob++;
+
+                break;
+
+            case BlobManager.BlobType.charged:
+
+                chargedBlob++;
+
+                break;
+
+            case BlobManager.BlobType.mad:
+
+                madBlob++;
+
+                break;
+        }
+    }
+
+    public void AddBlob(BlobManager.BlobType blobType)
+    {
+        blobPop++;
+
+        switch (blobType)
+        {
+            case BlobManager.BlobType.normal:
+
+                normalBlob++;
+
+                break;
+
+            case BlobManager.BlobType.soldier:
+
+                soldierBlob++;
+
+                break;
+
+            case BlobManager.BlobType.charged:
+
+                chargedBlob++;
+
+                break;
+
+            case BlobManager.BlobType.mad:
+
+                madBlob++;
+
+                break;
+        }
+    }
+
+    public void RemoveBlob(Blob blob)
+    {
+        blobPop--;
+
+        switch (blob.blobType)
+        {
+            case BlobManager.BlobType.normal:
+
+                normalBlob--;
+
+                break;
+
+            case BlobManager.BlobType.soldier:
+
+                soldierBlob--;
+
+                break;
+
+            case BlobManager.BlobType.charged:
+
+                chargedBlob--;
+
+                break;
+
+            case BlobManager.BlobType.mad:
+
+                madBlob--;
+
+                break;
+        }
+    }
+
+    public void RemoveBlob(BlobManager.BlobType blobType)
+    {
+        blobPop--;
+
+        switch (blobType)
+        {
+            case BlobManager.BlobType.normal:
+
+                normalBlob--;
+
+                break;
+
+            case BlobManager.BlobType.soldier:
+
+                soldierBlob--;
+
+                break;
+
+            case BlobManager.BlobType.charged:
+
+                chargedBlob--;
+
+                break;
+
+            case BlobManager.BlobType.mad:
+
+                madBlob--;
+
+                break;
+        }
     }
 }

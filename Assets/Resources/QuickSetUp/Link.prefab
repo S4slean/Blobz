@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 391661775283504084}
   - component: {fileID: 7425387404508985536}
   - component: {fileID: 4272001989808297586}
+  - component: {fileID: 2984961048139210669}
   m_Layer: 0
   m_Name: Link
   m_TagString: Untagged
@@ -141,9 +142,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canBePool: 0
+  anim: {fileID: 2984961048139210669}
   angle: 0
-  outputCell: {fileID: 0}
-  inputCell: {fileID: 0}
+  originalCell: {fileID: 0}
+  receivingCell: {fileID: 0}
   line: {fileID: 7425387404508985536}
   startPos: {x: 0, y: 0, z: 0}
   endPos: {x: 0, y: 0, z: 0}
+--- !u!95 &2984961048139210669
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7846991435100773959}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3ac6827ae9bbda146a62c1bbe8d536c9, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

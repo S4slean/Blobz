@@ -89,6 +89,8 @@ public class UIManager : MonoBehaviour
 
     [Header("Quests")]
     public QuestUI QuestUI;
+    public QuestPopUp questEventPopUpWorld;
+    public QuestPopUp questEventPopUpOverlay;
 
     #endregion
 

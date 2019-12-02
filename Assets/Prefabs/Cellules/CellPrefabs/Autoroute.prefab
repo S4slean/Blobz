@@ -575,7 +575,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myCollider: {fileID: 6332160634703649920}
-  parent: {fileID: 0}
+  parent: {fileID: 5565576154424326082}
 --- !u!1 &8322403635272401023
 GameObject:
   m_ObjectHideFlags: 0
@@ -589,7 +589,7 @@ GameObject:
   - component: {fileID: 8777569679337227342}
   - component: {fileID: 6228141070681440028}
   m_Layer: 11
-  m_Name: Stockage
+  m_Name: Autoroute
   m_TagString: Cell
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -626,17 +626,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canBePool: 0
   myCellTemplate: {fileID: 11400000, guid: df917586c15ca0c409f512efdab3a763, type: 2}
+  isNexus: 0
+  cellDefaultMat: {fileID: 0}
+  anim: {fileID: 0}
   NBlob: {fileID: 4474176674694331671}
   NLink: {fileID: 5353293827010372031}
   NCurrentProximity: {fileID: 4580034776522669225}
   graphTransform: {fileID: 4611135374353505814}
+  TargetPos: {fileID: 0}
   ProximityDectection: {fileID: 8404008211773970808}
+  showDebug: 0
+  showlinks: 0
+  showRef: 0
   links: []
   noMoreLink: 0
   BlobNumber: 0
   hasBeenDrop: 0
-  currentProximityLevel: 0
-  stockageCapacity: 19000000320000005000000078000000
 --- !u!54 &8777569679337227342
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -14,25 +14,15 @@ public class CameraController : MonoBehaviour
     [Range(1,100)]public float heightStep = 1;
     float count;
 
-    public static CameraController instance;
 
-    private void Start()
-    {
-        originPos = new Vector3(0, 0, 0);
-        camHeightGoal = minHeight;
-        camHeight = minHeight;
-        transform.position = originPos + new Vector3(0, camHeight, 0);
-        transform.LookAt(Vector3.down);
+    Vector3 originPos;
+    Vector3 mouseDir;
+    Vector3 tiltDir;
+    [Range(0, 0.001f)] public float tiltToMaxSpeed = 1;
+    [Range(0, 0.001f)] public float tiltToZeroSpeed = 1;
+    float tiltCount;
+    public float tiltLength = 1;
 
-        if(instance == null)
-        {
-            instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
 
     Vector3 moveDir;
     float camHeight;
@@ -40,6 +30,30 @@ public class CameraController : MonoBehaviour
     float smoothCount;
     float currentVelocity;
     float camHeightSpeed = 1;
+
+    public static CameraController instance;
+
+    public void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+
+        originPos = new Vector3(transform.position.x, 0, transform.position.z);
+        camHeightGoal = minHeight;
+        camHeight = minHeight;
+        transform.position = originPos + new Vector3(0, camHeight, 0);
+        transform.LookAt(transform.position + Vector3.down);
+    }
+
+
+
+
 
     public void MoveCamera()
     {
@@ -89,13 +103,7 @@ public class CameraController : MonoBehaviour
 
     }
 
-    Vector3 originPos;
-    Vector3 mouseDir;
-    Vector3 tiltDir;
-    [Range(0,0.001f)]public float tiltToMaxSpeed = 1;
-    [Range(0, 0.001f)] public float tiltToZeroSpeed = 1;
-    float tiltCount;
-    public float tiltLength = 1;
+
 
     public void TiltCamera()
     {

@@ -21,15 +21,16 @@ public class InputManager : MonoBehaviour
     public float clickCooldown;
 
     //bools concernant la pahse de dragging d'un lien 
-    [HideInInspector]public bool CellSelected;
+    [HideInInspector] public bool CellSelected;
     [HideInInspector] public bool DraggingLink;
 
     //Ui
     [HideInInspector] public bool InCellSelection;
     [HideInInspector] public bool InPauseMenu;
+    [HideInInspector] public bool InQuestEvent;
 
     //LayerMask
-    int layer_Mask_Cell; 
+    int layer_Mask_Cell;
 
     [HideInInspector] public Vector3 posCell;
     [HideInInspector] public Vector3 mousePos;
@@ -68,7 +69,6 @@ public class InputManager : MonoBehaviour
         mousePos = hit.point;
 
 
-
         if (!movingObject)
         {
             #region LINKS, INTERACTIONS AND CELL_CREATIONS
@@ -90,7 +90,6 @@ public class InputManager : MonoBehaviour
             if (Input.GetMouseButtonDown(0))
             {
 
-
                 if (hit.transform != null && hit.transform.tag == "Cell")
                 {
                     leftClickedOnCell = true;
@@ -101,8 +100,6 @@ public class InputManager : MonoBehaviour
 
                 if (!DraggingLink && !InCellSelection && isOverCell)
                 {
-
-                    //Debug.Log(hit.transform, hit.transform);
                     CellManager.Instance.SelectCell(hit);
                 }
             }
@@ -118,15 +115,18 @@ public class InputManager : MonoBehaviour
                     UIManager.Instance.DisplayCellShop(selectedCell);
 
                 }
-
-                float distanceFromCell = (hit.point - selectedCell.transform.position).magnitude;
-
-                if(CellSelected && clickTime > clickCooldown && leftClickedOnCell && !DraggingLink && distanceFromCell > distanceBeforeDrag )
+                if (selectedCell != null)
                 {
-                    UIManager.Instance.StartCoroutine(UIManager.Instance.DesactivateCellShop());
-                    CellManager.Instance.CreatenewLink();
-                    DraggingLink = true;
+
+                    float distanceFromCell = (hit.point - selectedCell.transform.position).magnitude;
+                    if (clickTime > clickCooldown && leftClickedOnCell && !DraggingLink && distanceFromCell > distanceBeforeDrag)
+                    {
+                        UIManager.Instance.StartCoroutine(UIManager.Instance.DesactivateCellShop());
+                        CellManager.Instance.CreatenewLink();
+                        DraggingLink = true;
+                    }
                 }
+
             }
 
 
@@ -137,21 +137,13 @@ public class InputManager : MonoBehaviour
                 if (clickTime <= clickCooldown && isOverCell && cellOver == CellManager.Instance.selectedCell)
                 {
                     CellManager.Instance.InteractWithCell();
-                    
+
                 }
 
                 if (InCellSelection)
                 {
                     UIManager.Instance.StartCoroutine(UIManager.Instance.DesactivateCellShop());
                 }
-
-                
-                //if (InCellSelection)
-                //{
-                //    UIManager.Instance.DesactivateCellShop();
-                //}
-
-
 
                 leftClickedOnCell = false;
                 clickTime = 0;
@@ -225,7 +217,7 @@ public class InputManager : MonoBehaviour
 
             if (!isOverCell && Input.GetMouseButtonDown(1) || Input.GetMouseButtonDown(0))
             {
-                
+
 
 
 
@@ -243,23 +235,28 @@ public class InputManager : MonoBehaviour
         #region MOVING_CELL
         else
         {
+            bool newCell = false;
 
-            if(hit.transform != null && hit.transform.tag == "Ground")
+            if (CellManager.Instance.originalPosOfMovingCell == new Vector3(0, 100, 0))
             {
-                if (CellManager.Instance.originalPosOfMovingCell == new Vector3(0, 100, 0))
-                    CellManager.Instance.CellDeplacement(hit.point, objectMoved, true);
-                else
-                {
-                    CellManager.Instance.CellDeplacement(hit.point, objectMoved, false);
-                }
+                newCell = true;
+            }
+            else
+            {
+                newCell = false;
+            }
+
+            if (hit.transform != null && hit.transform.tag == "Ground")
+            {
+                CellManager.Instance.CellDeplacement(hit.point, objectMoved, newCell);
             }
 
             //si clic gauche, replacer la cell et update tous ses liens
             if (Input.GetMouseButtonDown(0))
             {
-                Debug.Log("Cell Placed");
-                CellManager.Instance.ValidateNewLink(hit);
-                objectMoved.TickInscription();
+                if (newCell)
+                    CellManager.Instance.ValidateNewLink(hit);
+                objectMoved.CellInitialisation();
                 movingObject = false;
                 objectMoved = null;
                 DraggingLink = false;
@@ -294,36 +291,6 @@ public class InputManager : MonoBehaviour
             CameraController.instance.DecreaseTiltCount();
 
         #endregion
-
-        //if (Input.GetKey(KeyCode.Space))
-        //{
-           
-        //    //Set up the new Pointer Event
-        //    m_PointerEventData = new PointerEventData(m_EventSystem);
-        //    //Set the Pointer Event Position to that of the mouse position
-        //    m_PointerEventData.position = Input.mousePosition;
-
-        //    //Create a list of Raycast Results
-        //    List<RaycastResult> results = new List<RaycastResult>();
-
-        //    //Raycast using the Graphics Raycaster and mouse click position
-        //    m_Raycaster.Raycast(m_PointerEventData, results);
-
-        //    Debug.Log(results.Count);
-        //    //For every result returned, output the name of the GameObject on the Canvas hit by the Ray
-        //    foreach (RaycastResult result in results)
-        //    {
-        //        Debug.Log("Hit " + result.gameObject.name);
-        //    }
-
-        //    p_Raycaster.Raycast(m_PointerEventData, results);
-        //    Debug.Log(results.Count);
-        //    //For every result returned, output the name of the GameObject on the Canvas hit by the Ray
-        //    foreach (RaycastResult result in results)
-        //    {
-        //        Debug.Log("Hit " + result.gameObject.name);
-        //    }
-        //}
 
     }
 

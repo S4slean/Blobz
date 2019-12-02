@@ -21,8 +21,48 @@ public class Blob : PoolableObjects
     {
         rb = GetComponent<Rigidbody>();
         rd = GetComponent<Renderer>();
+
+
+        UpdateMat();
         //rajoute le blob à la liste des blobs actifs dans la scène
+
+        RessourceTracker.instance.AddBlob(this);
         BlobManager.blobList.Add(this);
+    }
+
+    public void ChangeType(BlobManager.BlobType newType)
+    {
+        RessourceTracker.instance.RemoveBlob(this);
+        blobType = newType;
+        UpdateMat();
+        RessourceTracker.instance.AddBlob(this);
+
+    }
+
+    public void UpdateMat()
+    {
+        switch (blobType)
+        {
+            case BlobManager.BlobType.charged:
+
+                rd.material = BlobManager.instance.chargedMat;
+                break;
+
+            case BlobManager.BlobType.normal:
+
+                rd.material = BlobManager.instance.normalMat;
+                break;
+
+            case BlobManager.BlobType.mad:
+
+                rd.material = BlobManager.instance.angryMat;
+                break;
+
+            case BlobManager.BlobType.soldier:
+
+                rd.material = BlobManager.instance.soldierMat;
+                break;
+        }
     }
 
     private void Update()
@@ -50,7 +90,7 @@ public class Blob : PoolableObjects
     {
         transform.LookAt(transform.position + direction);
         rb.AddForce(direction, ForceMode.Impulse);
-        Debug.Log("jump");
+
     }
 
     public void Fly()

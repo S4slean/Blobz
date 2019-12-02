@@ -8,6 +8,7 @@ public class BlobManager : MonoBehaviour
 
 
     public static List<Blob> blobList = new List<Blob>();
+    public static BlobManager instance;
 
 
     [Header("Normal variables")]
@@ -38,8 +39,14 @@ public class BlobManager : MonoBehaviour
 
     private void Start()
     {
+        if (instance == null)
+            instance = this;
+        else
+            Destroy(gameObject);
+
         //ajoute la fonction onTick au delegate pour qu'elle s'effectue à chaque tick
         TickManager.doTick += onTick;
+
     }
 
     private void OnDestroy()

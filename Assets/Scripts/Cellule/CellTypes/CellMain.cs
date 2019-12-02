@@ -11,12 +11,14 @@ public class CellMain : PoolableObjects
     #region Variables
     [Tooltip("glissé l'un des srcyptable object structure ici")]
     public CelluleTemplate myCellTemplate;
+    public bool isNexus;
 
 
     // public List<CelulleMain> outputCell;
     #region REFS
     public Material cellDefaultMat;
 
+    public Animator anim;
     public TextMeshPro NBlob;
     public TextMeshPro NLink;
     public TextMeshPro NCurrentProximity;
@@ -30,7 +32,6 @@ public class CellMain : PoolableObjects
 
     public CellProximityDectection ProximityDectection;
     #endregion
-
 
     #region DEBUG
     public bool showDebug;
@@ -62,6 +63,10 @@ public class CellMain : PoolableObjects
     protected float velocity;
     #endregion
 
+    #region Anim Variable   
+    protected bool haveExpulse;
+    #endregion
+
     #endregion
 
     public virtual void Awake()
@@ -86,12 +91,24 @@ public class CellMain : PoolableObjects
 
         hasBeenDrop = false;
 
-        CellInitialisation();
+
+        if (isNexus)
+        {
+            StartCoroutine(WaitForInit());
+
+        }
 
     }
 
-    private void CellInitialisation()
+    IEnumerator WaitForInit()
     {
+        yield return new WaitForEndOfFrame();
+        CellInitialisation();
+    }
+
+    public void CellInitialisation()
+    {
+        RessourceTracker.instance.AddCell(this);
         TickInscription();
         isDead = false;
 
@@ -109,6 +126,7 @@ public class CellMain : PoolableObjects
     {
         isDead = true;
         //TickManager.doTick -= BlobsTick;
+        RessourceTracker.instance.RemoveCell(this);
         TickDesinscription();
         int I = links.Count;
         for (int i = 0; i < I; i++)
@@ -144,6 +162,12 @@ public class CellMain : PoolableObjects
             UIManager.Instance.DesactivateCellShop();
             UIManager.Instance.CellDeselected();
 
+            if (InputManager.Instance.objectMoved != null)
+            {
+                InputManager.Instance.objectMoved.Died(true);
+                InputManager.Instance.movingObject = false;
+            }
+
         }
         BlobNumber = 0;
         SetupVariable();
@@ -151,7 +175,8 @@ public class CellMain : PoolableObjects
     }
     public virtual void BlobsTick()
     {
-        //AddBlob(myCellTemplate.prodPerTick);
+        //ANIM
+        haveExpulse = false;
 
         //ça marche bien mais à voir si quand 1 batiment meure la produciton saute avec ou pas
         for (int i = 0; i < currentRejectPower; i++)
@@ -165,8 +190,19 @@ public class CellMain : PoolableObjects
                 outputLinks[currentIndex].Transmitt();
                 currentIndex++;
                 currentIndex = Helper.LoopIndex(currentIndex, outputLinks.Count);
+                haveExpulse = true;
             }
         }
+        if (haveExpulse)
+        {
+            anim.Play("BlobExpulsion");
+        }
+
+        //TEMPORAIRE !!!!!!!
+        //anim.Play("PlayerInteraction");
+        //!!!!!!!!!!!!
+
+
         AddBlob(myCellTemplate.prodPerTickBase);
 
 
@@ -188,6 +224,8 @@ public class CellMain : PoolableObjects
             RemoveBlob(1);
             CellManager.Instance.EnergyVariation(10);
         }
+            anim.Play("PlayerInteraction", 0, 0f);
+
 
     }
 
@@ -215,7 +253,7 @@ public class CellMain : PoolableObjects
     public void ProximityCheck()
     {
         // ProximityDectection.myCollider.radius = Mathf.SmoothDamp(0, myCellTemplate.range / 2, ref velocity, 0.01f);
-        ProximityDectection.myCollider.radius = myCellTemplate.rangeBase / 2;
+        ProximityDectection.myCollider.radius = currentRange / 2;
     }
     public void AddToCellAtPromity(CellMain cellDetected)
     {
@@ -423,6 +461,14 @@ public class CellMain : PoolableObjects
         ProximityCheck();
         ProximityLevelModification(0);
     }
+
+    public int GetCurrentRange()
+    {
+        return currentRange;
+    }
     #endregion
+
+
+
 
 }
