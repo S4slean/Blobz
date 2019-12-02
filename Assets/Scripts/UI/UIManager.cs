@@ -183,4 +183,16 @@ public class UIManager : MonoBehaviour
     }
 
     #endregion
+
+    #region NotEnoughEnergy
+
+    [Header("NRJ")]
+    public Animator nENRJ;
+
+    public void DisplayNotEnoughNRJ()
+    {
+        nENRJ.Play("Show");
+    }
+
+    #endregion
 }

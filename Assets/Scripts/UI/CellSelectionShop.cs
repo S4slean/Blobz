@@ -83,6 +83,7 @@ public class CellSelectionShop : MonoBehaviour
         if (newCell.myCellTemplate.EnergyCost > RessourceTracker.instance.energy)
         {
             Debug.Log("pas assez d'énergie");
+            UIManager.Instance.DisplayNotEnoughNRJ();
             newCell = null;
         }
         else
