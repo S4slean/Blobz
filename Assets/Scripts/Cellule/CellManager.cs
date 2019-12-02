@@ -58,14 +58,18 @@ public class CellManager : MonoBehaviour
         //Setup 
         InputManager.Instance.DraggingLink = true;
         //selectedCell.AddLink(currentLink, true);
+
         currentLink.startPos = selectedCell.transform.position;
 
         ///nouveau systeme de link
        // currentLink.FirstSetup(currentLink.startPos, InputManager.Instance.mousePos, selectedCell.GetCurrentRange());
 
         currentLine.SetPosition(0, currentLink.startPos);
-        currentLine.SetPosition(1, InputManager.Instance.mousePos);
+        currentLink.endPos = InputManager.Instance.mousePos;
+        currentLine.SetPosition(1, currentLink.endPos);
     }
+
+
     public void DragNewlink(RaycastHit hit)
     {
         // Permet de draw la line en runtime 
@@ -156,6 +160,8 @@ public class CellManager : MonoBehaviour
     public void NewCellCreated(CellMain newCell)
     {
         createdCell = newCell;
+
+
         CreatenewLink();
 
         EnergyVariation(-newCell.myCellTemplate.EnergyCost);
@@ -214,13 +220,15 @@ public class CellManager : MonoBehaviour
     public void CellDeplacement(Vector3 posToTest, CellMain cellToMove, bool isNewCell)
     {
         bool shouldStop = false;
-        //if (posToTest.y > 2)
-        //    return;
 
-
-        for (int i = 0; i < cellToMove.links.Count; i++)
+        if (currentLink.CheckNewLinkLength(posToTest , selectedCell) == false)
         {
-            if (cellToMove.links[i].CheckLength(posToTest) == false || currentLink.CheckLength(posToTest) == false)
+            shouldStop = true;
+        }
+
+        for (int i = 0; i < cellToMove.links.Count; i++ )
+        {
+            if (cellToMove.links[i].CheckLength(posToTest) == false )
             {
                 shouldStop = true;
             }

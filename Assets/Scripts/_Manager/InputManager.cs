@@ -318,6 +318,12 @@ public class InputManager : MonoBehaviour
 
     public void StartMovingCell(CellMain cell, bool alreadyExistingCell)
     {
+
+        if (!alreadyExistingCell)
+            CellManager.Instance.originalPosOfMovingCell = new Vector3(0, 100, 0);
+        else
+            CellManager.Instance.originalPosOfMovingCell = cell.transform.position;
+
         if (CellManager.Instance.originalPosOfMovingCell == new Vector3(0, 100, 0))
         {
             newCell = true;
@@ -327,11 +333,6 @@ public class InputManager : MonoBehaviour
             newCell = false;
         }
 
-
-        if (!alreadyExistingCell)
-            CellManager.Instance.originalPosOfMovingCell = new Vector3(0, 100, 0);
-        else
-            CellManager.Instance.originalPosOfMovingCell = cell.transform.position;
 
         cell.TickDesinscription();
         Instance.objectMoved = cell;
