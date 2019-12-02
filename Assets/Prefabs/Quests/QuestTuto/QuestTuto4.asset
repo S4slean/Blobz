@@ -16,7 +16,7 @@ MonoBehaviour:
   questTitle: So much BLOBZ !
   questDescription: 
   eventDone: 1
-  populationObjective: 300
+  populationObjective: 100
   cellType: 0
   level: 1
   cellNbrToObtain: 1
