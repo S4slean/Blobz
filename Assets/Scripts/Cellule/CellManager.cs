@@ -117,8 +117,14 @@ public class CellManager : MonoBehaviour
     }
     public void ValidateNewLink(RaycastHit hit)
     {
-        receivingCell = hit.transform.GetComponent<CellMain>();
+        if (InputManager.Instance.newCell)
+            receivingCell = InputManager.Instance.objectMoved;
+        else
+            receivingCell = hit.transform.GetComponent<CellMain>();
+
         //permet de check si c'est bien une cellule et pas la meme cellule
+        selectedCell = InputManager.Instance.selectedCell;
+
         if (receivingCell != null && receivingCell != selectedCell)
         {
             bool check1 = false;
@@ -127,8 +133,12 @@ public class CellManager : MonoBehaviour
             //si il n'y pas de lien la boucle for ne se lance pas c'est pas grave
             for (int i = 0; i < selectedCell.links.Count; i++)
             {
-                if (selectedCell.links[i].originalCell == receivingCell) check1 = true; else check1 = false;
-                if (selectedCell.links[i].receivingCell == receivingCell) check2 = true; else check2 = false;
+                if (originalPosOfMovingCell != new Vector3(0, 100, 0))
+                {
+                    if (selectedCell.links[i].originalCell == receivingCell) check1 = true; else check1 = false;
+                    if (selectedCell.links[i].receivingCell == receivingCell) check2 = true; else check2 = false;
+                }
+
                 if (check1 || check2)
                 {
                     SupressCurrentLink();
@@ -140,10 +150,13 @@ public class CellManager : MonoBehaviour
                 SupressCurrentLink();
                 return;
             }
+
             currentLine.startColor = Color.green;
             currentLine.endColor = Color.cyan;
+
             currentLink.endPos = receivingCell.transform.position;
             currentLine.SetPosition(1, currentLink.endPos);
+
             selectedCell.AddLink(currentLink, true);
             receivingCell.AddLink(currentLink, false);
             cleanLinkRef();
@@ -239,11 +252,11 @@ public class CellManager : MonoBehaviour
         if (shouldStop)
         {
             Vector3 refPoint;
-            if(originalPosOfMovingCell == new Vector3(0, 100, 0))
+            if (originalPosOfMovingCell == new Vector3(0, 100, 0))
             {
                 refPoint = selectedCell.transform.position;
                 cellToMove.transform.position = refPoint + (InputManager.Instance.mousePos - refPoint).normalized * selectedCell.GetCurrentRange();
-                DragNewlink(cellToMove.transform.position);
+                DragNewlink(cellToMove.transform.position + Vector3.up * .1f);
             }
             else
             {

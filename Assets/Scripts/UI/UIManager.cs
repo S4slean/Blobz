@@ -25,11 +25,14 @@ public class UIManager : MonoBehaviour
             Debug.LogError("Il faut rajouter , CellSelecetion sur Choose a Cell  ", cellSelection.transform);
         }
 
+        QuestUI.gameObject.SetActive(true);
+
     }
 
     private void Start()
     {
         TickManager.doTick += TopBar.UpdateUI;
+        
     }
 
     #region GENERICS
