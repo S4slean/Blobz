@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: QuestLv2_01
   m_EditorClassIdentifier: 
   questType: 2
-  questTitle: 
+  questTitle: Build the Hasher
   questDescription: 
   eventDone: 1
   populationObjective: 0
