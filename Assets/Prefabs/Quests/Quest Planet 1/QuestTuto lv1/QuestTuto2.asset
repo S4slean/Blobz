@@ -1,0 +1,89 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac59c85db94beed47808c892abe2bae2, type: 3}
+  m_Name: QuestTuto2
+  m_EditorClassIdentifier: 
+  questType: 2
+  questTitle: Create your first Cell
+  questDescription: 
+  eventDone: 1
+  populationObjective: 0
+  energyToObtain: 0
+  cellType: 3
+  level: 1
+  cellNbrToObtain: 2
+  anyCells: 1
+  colonialCellType: 0
+  placeToGet: {fileID: 0}
+  range: 0
+  objectToDestroy: []
+  questEvents:
+  - eventType: 1
+    eventDuration: 0
+    virtualCamIndex: 0
+    popUpsMsg:
+    - rpgStyle: 0
+      anchor: {fileID: 0}
+      offset: {x: 830, y: 280, z: 0}
+      usingSprite: 0
+      sprite: {fileID: 0}
+      Title: Splootch
+      Text: "To create a Cell you need Sploosh ! \nClick on your Production Cell to
+        gain Sploosh."
+    UEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    foldout: 1
+  - eventType: 1
+    eventDuration: 0
+    virtualCamIndex: 0
+    popUpsMsg:
+    - rpgStyle: 0
+      anchor: {fileID: 0}
+      offset: {x: 830, y: 260, z: 0}
+      usingSprite: 0
+      sprite: {fileID: 0}
+      Title: Creating a cell
+      Text: 'Hold click on the cell and choose the cell you want build.
+
+        Let''s build a Crusher Cell (purple).'
+    UEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    foldout: 1
+  - eventType: 3
+    eventDuration: 0
+    virtualCamIndex: 0
+    popUpsMsg:
+    - rpgStyle: 0
+      anchor: {fileID: 0}
+      offset: {x: 0, y: 0, z: 0}
+      usingSprite: 0
+      sprite: {fileID: 0}
+      Title: 
+      Text: 
+    UEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 6190842183759939533, guid: 7b934126b67bf7f44aabfd0ea1f12c2e,
+            type: 3}
+          m_MethodName: ReturnToMainCam
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    foldout: 1
