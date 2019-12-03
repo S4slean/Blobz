@@ -58,9 +58,9 @@ public class InputManager : MonoBehaviour
     private bool rightClickedOnCell;
     private bool leftClickedOnCell;
     private CellMain cellOver;
-    private CellMain selectedCell;
+    public CellMain selectedCell;
 
-    bool newCell = false;
+    public bool newCell = false;
     [HideInInspector] public bool movingObject = false;
     [HideInInspector] public CellMain objectMoved;
 
