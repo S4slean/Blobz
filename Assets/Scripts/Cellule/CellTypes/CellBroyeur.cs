@@ -16,9 +16,13 @@ public class CellBroyeur : CellMain
             {
                 for (int i = 0; i < currentRejectPower; i++)
                 {
-                    RemoveBlob(1);
-                    CellManager.Instance.EnergyVariation(myCellTemplate.energyPerblop);
-                    haveExpulse = true;
+                    if (blobNumber > 0)
+                    {
+
+                        RemoveBlob(1);
+                        CellManager.Instance.EnergyVariation(myCellTemplate.energyPerblop);
+                        haveExpulse = true;
+                    }
                 }
                 currentTick = 0;
             }

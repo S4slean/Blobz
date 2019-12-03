@@ -28,7 +28,7 @@ MonoBehaviour:
   blobRatioAtDeath: 0
   impulseForce_Death: 0
   prodPerTickBase: 0
-  rejectPowerBase: 1
+  rejectPowerBase: 2
   storageCapability: 20
   tickForActivationBase: 1
   energyPerClick: 1

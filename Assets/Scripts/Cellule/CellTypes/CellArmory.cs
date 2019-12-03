@@ -24,19 +24,22 @@ public class CellArmory : CellMain
                 //for (int i = 0; i < myCellTemplate.rejectPowerBase + rfBonus; i++) f
                 for (int i = 0; i < currentRejectPower + rfBonus; i++)
                 {
-                    RemoveBlob(1);
-                    // Debug.LogWarning("PENSEZ à REGLER le sy")
-                    Blob newBlob = ObjectPooler.poolingSystem.GetPooledObject<Blob>() as Blob;
-                    BlobManager.blobList.Add(newBlob);
+                    if (blobNumber > 0)
+                    {
+                        RemoveBlob(1);
+                        // Debug.LogWarning("PENSEZ à REGLER le sy")
+                        Blob newBlob = ObjectPooler.poolingSystem.GetPooledObject<Blob>() as Blob;
+                        BlobManager.blobList.Add(newBlob);
 
-                    newBlob.blobType = BlobManager.BlobType.soldier;
+                        newBlob.blobType = BlobManager.BlobType.soldier;
 
-                    newBlob.Outpool();
+                        newBlob.Outpool();
 
-                    newBlob.transform.position = TargetPos.transform.position + Helper.RandomVectorInUpSphere();
+                        newBlob.transform.position = TargetPos.transform.position + Helper.RandomVectorInUpSphere();
 
-                    //newBlob.Jump(Helper.RandomVectorInUpSphere() * 1);
-                    haveExpulse = true;
+                        //newBlob.Jump(Helper.RandomVectorInUpSphere() * 1);
+                        haveExpulse = true;
+                    }
                 }
                 currentTick = 0;
             }
@@ -103,10 +106,10 @@ public class CellArmory : CellMain
             currentTickForActivation = 1;
             rfBonus = myCellTemplate.BlopPerTick[currentProximityTier] - 1;
         }
-        if (currentProximityLevel<0)
+        if (currentProximityLevel < 0)
         {
             currentProximityTier = 0;
-            currentTickForActivation = (int) (1 / myCellTemplate.BlopPerTick[currentProximityTier]);
+            currentTickForActivation = (int)(1 / myCellTemplate.BlopPerTick[currentProximityTier]);
         }
     }
 }

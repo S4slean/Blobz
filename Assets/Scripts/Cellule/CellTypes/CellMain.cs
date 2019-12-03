@@ -134,14 +134,17 @@ public class CellMain : PoolableObjects
     {
         isDead = true;
         //TickManager.doTick -= BlobsTick;
-        RessourceTracker.instance.RemoveCell(this);
+
         RessourceTracker.instance.RemoveBlob(BlobManager.BlobType.normal, blobNumber);
 
 
         if (CellManager.Instance.originalPosOfMovingCell != new Vector3(0, 100, 0))
             RessourceTracker.instance.RemoveCell(this);
 
-
+        if(InputManager.Instance.CellSelected == this)
+        {
+            UIManager.Instance.DesactivateCellShop();
+        }
 
 
         TickDesinscription();
@@ -488,7 +491,7 @@ public class CellMain : PoolableObjects
 
     public virtual void GraphSetup()
     {
-        Vector3 graphPos = transform.position + new Vector3(0, 0, 0);
+        Vector3 graphPos = transform.position + new Vector3(0, 0.1f, 0);
         graphTransform.position = graphPos;
     }
 
