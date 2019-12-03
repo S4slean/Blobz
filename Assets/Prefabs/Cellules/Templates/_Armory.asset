@@ -46,5 +46,5 @@ MonoBehaviour:
   REFS: 1
   ToggleInfoBox: 0
   STATS: 0
-  ProductionGestion: 1
-  ProximityGestion: 1
+  ProductionGestion: 0
+  ProximityGestion: 0
