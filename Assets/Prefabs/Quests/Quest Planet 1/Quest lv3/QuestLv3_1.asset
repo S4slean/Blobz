@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac59c85db94beed47808c892abe2bae2, type: 3}
   m_Name: QuestLv3_1
   m_EditorClassIdentifier: 
-  questType: 0
+  questType: 2
   questTitle: 
   questDescription: 
   eventDone: 0
