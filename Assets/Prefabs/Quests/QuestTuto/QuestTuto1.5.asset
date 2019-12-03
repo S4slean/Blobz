@@ -36,10 +36,10 @@ MonoBehaviour:
       offset: {x: 830, y: 260, z: 0}
       usingSprite: 0
       sprite: {fileID: 0}
-      Title: Earns Sploush
-      Text: 'Click on the production cell for colect
+      Title: Earn Sploush
+      Text: 'Click on the production cell to collect
 
-        the sploush !'
+        the sploosh !'
     UEvent:
       m_PersistentCalls:
         m_Calls: []

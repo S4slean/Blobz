@@ -76,6 +76,7 @@ public class CellManager : MonoBehaviour
         float distance = Vector3.Distance(currentLink.startPos, hit.point);
         if (distance <= selectedCell.myCellTemplate.rangeBase / 2)
         {
+            //Ancien Systeme link 
             currentLink.endPos = new Vector3(hit.point.x, currentLink.startPos.y, hit.point.z);
             currentLine.SetPosition(1, currentLink.endPos);
 
@@ -92,9 +93,14 @@ public class CellManager : MonoBehaviour
             direction = new Vector3(direction.x, 0, direction.z);
             direction = direction.normalized;
 
+            ////Ancien System 
+            //currentLink.endPos = currentLink.startPos + direction * selectedCell.myCellTemplate.rangeBase / 2;
+            //currentLine.SetPosition(1, currentLink.endPos);
 
-            currentLink.endPos = currentLink.startPos + direction * selectedCell.myCellTemplate.rangeBase / 2;
-            currentLine.SetPosition(1, currentLink.endPos);
+
+            //nouveau systeme de link
+            Vector3 lastPos = currentLink.startPos + direction * selectedCell.GetCurrentRange();
+            currentLink.UpdatePoint(lastPos);
         }
     }
     public void DragNewlink(Vector3 pos)
@@ -115,6 +121,8 @@ public class CellManager : MonoBehaviour
             currentLine.SetPosition(1, currentLink.endPos);
         }
     }
+
+
     public void ValidateNewLink(RaycastHit hit)
     {
         if (InputManager.Instance.newCell)
@@ -167,6 +175,7 @@ public class CellManager : MonoBehaviour
         {
             SupressCurrentLink();
         }
+
 
 
     }
