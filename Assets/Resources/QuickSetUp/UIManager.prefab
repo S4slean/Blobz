@@ -2518,7 +2518,7 @@ MonoBehaviour:
   Important: 'L''ordre des button doit respecter l''ordre de l''enum Structure Type
 
 '
-  buttonDistance: 1
+  buttonDistance: 1.5
   yOffset: 1
   butTrans: []
 --- !u!1 &2288747769223980559
