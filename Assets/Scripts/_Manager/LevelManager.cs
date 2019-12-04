@@ -9,6 +9,14 @@ public class LevelManager : MonoBehaviour
 
     public GameObject[] availablesCells;
 
+
+    [Header("Features Unlocked")]
+    public bool Quests;
+    public bool TopBar;
+    public bool CellStockage;
+    public bool CellArmory;
+    public bool CellBroyeur;
+
     private void Start()
     {
         if (instance == null)
@@ -34,5 +42,27 @@ public class LevelManager : MonoBehaviour
         {
             SceneManager.LoadScene(1);
         }
+    }
+
+
+    public void UnlockNewCell(CelluleTemplate newCellTemplate)
+    {
+        //Créer nouveau bouton, lui associer le template, sprite, la bonne fonction;
+
+        //Ajouter à l'ui le boutton
+
+        //le référencer dans availableCells
+
+        //cocher le bon booléens
+    }
+
+    public void SaveUnlockedFeatures()
+    {
+
+    }
+
+    public void LoadUnlockedFeatures()
+    {
+
     }
 }

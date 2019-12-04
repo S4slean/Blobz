@@ -8,15 +8,7 @@ public class QuestUI : MonoBehaviour
     public TextMeshProUGUI title;
     public TextMeshProUGUI description;
 
-    private void OnEnable()
-    {
-        TickManager.doTick += UpdateUI;
-    }
 
-    private void OnDisable()
-    {
-        TickManager.doTick -= UpdateUI;
-    }
 
     public void UpdateUI()
     {
