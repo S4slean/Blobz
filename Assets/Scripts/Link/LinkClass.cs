@@ -59,12 +59,10 @@ public class LinkClass : PoolableObjects
         //check la distance en fonction de la range des 2 cellules
         if (length1 <= originalCell.myCellTemplate.rangeBase / 2 && length2 <= receivingCell.myCellTemplate.rangeBase / 2)
         {
-            Debug.Log(" Lien ok");
             return true;
         }
         else
         {
-            Debug.Log(" l'un des lien est trop court");
             return false;
         }
     }

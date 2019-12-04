@@ -22,8 +22,12 @@ public class CelluleTemplate : ScriptableObject
     [Space(20f)]
 
     public CellType type;
+
     [Range(0f, 50f)]
     public int EnergyCost = 5;
+    [Range(1 , 150)]
+    public int energyCap = 10; 
+
     [Range(0f, 300f)]
     public int rangeBase = 50;
     [Range(0, 1)]
@@ -39,9 +43,9 @@ public class CelluleTemplate : ScriptableObject
     [Range(0f, 50f)]
     public int storageCapability = 10;
     [Range(1, 5)]
-    public int tickForActivationBase;
+    public int tickForActivationBase = 1;
     [Range(1, 100)]
-    public int energyPerClick;
+    public int energyPerClick = 2;
 
     [Range(0f, 12f)]
     public int linkCapability = 6;

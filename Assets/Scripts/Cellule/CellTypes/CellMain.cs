@@ -117,6 +117,8 @@ public class CellMain : PoolableObjects
     public void CellInitialisation()
     {
         RessourceTracker.instance.AddCell(this);
+        //RessourceTracker.instance.EnergyCapVariation();
+
         TickInscription();
         isDead = false;
 
@@ -251,6 +253,7 @@ public class CellMain : PoolableObjects
         {
             RemoveBlob(1);
             CellManager.Instance.EnergyVariation(currentEnergyPerTick);
+            //RessourceTracker.instance.EnergyVariation(currentEnergyPerTick);
         }
 
         anim.Play("PlayerInteraction", 0, 0f);
