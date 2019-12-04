@@ -117,7 +117,7 @@ public class CellMain : PoolableObjects
     public void CellInitialisation()
     {
         RessourceTracker.instance.AddCell(this);
-        //RessourceTracker.instance.EnergyCapVariation();
+        RessourceTracker.instance.EnergyCapVariation();
 
         TickInscription();
         isDead = false;
