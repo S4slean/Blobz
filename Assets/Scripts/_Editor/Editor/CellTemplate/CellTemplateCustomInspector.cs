@@ -10,7 +10,7 @@ public class CellTemplateCustomInspector : Editor
 {
     SerializedProperty cellsEnableToBuildProp, blopPrefabProp, buttonColorProp, cellTextureProp;
     SerializedProperty typeProp;
-    SerializedProperty EnergyCostProp, rangeBaseProp, blobRatioAtDeathProp, impulseForce_DeathProp;
+    SerializedProperty energyCostProp , energyCapBaseProp, rangeBaseProp, blobRatioAtDeathProp, impulseForce_DeathProp;
 
     SerializedProperty prodPerTickProp, rejectPowerProp, storageCapabilityProp, linkCapabilityProp , tickForActivationBaseProp , energyPerClickProp;
 
@@ -27,7 +27,7 @@ public class CellTemplateCustomInspector : Editor
 
     SerializedProperty InfoBoxToggleProp, refToggleProp, statToggleProp, ProductionGestionsProp, ProximityGestionProp;
 
-    SerializedProperty energyPerblop;
+    SerializedProperty energyPerblop , energyCapProp;
 
     private float fieldWidthBase, labelWidthBase;
 
@@ -41,7 +41,9 @@ public class CellTemplateCustomInspector : Editor
 
         typeProp = serializedObject.FindProperty("type");
 
-        EnergyCostProp = serializedObject.FindProperty("EnergyCost");
+        energyCostProp = serializedObject.FindProperty("energyCost");
+        energyCapBaseProp = serializedObject.FindProperty("energyCapBase");
+
         rangeBaseProp = serializedObject.FindProperty("rangeBase");
         blobRatioAtDeathProp = serializedObject.FindProperty("blobRatioAtDeath");
         impulseForce_DeathProp = serializedObject.FindProperty("impulseForce_Death");
@@ -76,6 +78,7 @@ public class CellTemplateCustomInspector : Editor
 
 
         energyPerblop = serializedObject.FindProperty("energyPerblop");
+        energyCapProp = serializedObject.FindProperty("energyCap");
 
         fieldWidthBase = EditorGUIUtility.fieldWidth;
         labelWidthBase = EditorGUIUtility.labelWidth;
@@ -136,13 +139,17 @@ public class CellTemplateCustomInspector : Editor
         {
             EditorGUILayout.BeginVertical("Box");
             EditorGUI.indentLevel += 1;
-            EditorGUILayout.PropertyField(EnergyCostProp);
+            EditorGUILayout.PropertyField(energyCostProp);
             EditorGUILayout.PropertyField(rangeBaseProp);
 
             if (EditorGUIUtility.currentViewWidth < 485)
             {
                 EditorGUILayout.PropertyField(blobRatioAtDeathProp);
                 EditorGUILayout.PropertyField(impulseForce_DeathProp);
+                EditorGUILayout.Space();
+                EditorGUILayout.PropertyField(energyPerClickProp);
+                EditorGUILayout.PropertyField(energyCapBaseProp);
+
             }
             else
             {
@@ -156,6 +163,17 @@ public class CellTemplateCustomInspector : Editor
                 EditorGUIUtility.labelWidth = labelWidthBase;
                 EditorGUIUtility.fieldWidth = fieldWidthBase;
                 EditorGUILayout.EndHorizontal();
+
+                EditorGUILayout.BeginHorizontal();
+                EditorGUIUtility.fieldWidth = 30;
+                EditorGUIUtility.labelWidth = 140;
+                EditorGUILayout.PropertyField(energyPerClickProp);
+                EditorGUILayout.PropertyField(energyCapBaseProp);
+                EditorGUIUtility.labelWidth = labelWidthBase;
+                EditorGUIUtility.fieldWidth = fieldWidthBase;
+                EditorGUILayout.EndHorizontal();
+
+                
             }
 
             EditorGUI.indentLevel -= 1;
@@ -179,7 +197,7 @@ public class CellTemplateCustomInspector : Editor
                 EditorGUILayout.PropertyField(storageCapabilityProp);
                 EditorGUILayout.PropertyField(linkCapabilityProp);
                 EditorGUILayout.PropertyField(tickForActivationBaseProp);
-                EditorGUILayout.PropertyField(energyPerClickProp);
+
             }
             else
             {
@@ -204,7 +222,6 @@ public class CellTemplateCustomInspector : Editor
                 EditorGUILayout.BeginHorizontal();
 
                 EditorGUILayout.PropertyField(tickForActivationBaseProp);
-                EditorGUILayout.PropertyField(energyPerClickProp);
 
                 EditorGUILayout.EndHorizontal();
 
@@ -312,8 +329,6 @@ public class CellTemplateCustomInspector : Editor
             EditorGUI.indentLevel -= 1;
         }
     }
-
-
     private void StatsModifDisplay(SerializedProperty statsModif)
     {
         switch ((StatsModificationType)statsModif.enumValueIndex)
@@ -350,10 +365,17 @@ public class CellTemplateCustomInspector : Editor
                 rangeBaseProp.arraySize = proximityLevelMaxProp.intValue;
                 DisplayArray(rangeBaseProp, "Level");
                 break;
+
             case StatsModificationType.TickForActivation:
                 EditorGUILayout.HelpBox("Nombre de tick nécessaire avant l'action de la cellule ", MessageType.Info);
                 tickForActivationProp.arraySize = proximityLevelMaxProp.intValue;
                 DisplayArray(tickForActivationProp, "Level");
+                break;
+
+            case StatsModificationType.EnergyCap:
+                EditorGUILayout.HelpBox("Modifie l'energie Cap en fonction de la proximité", MessageType.Info);
+                energyCapProp.arraySize = proximityLevelMaxProp.intValue;
+                DisplayArray(energyCapProp, "Level");
                 break;
 
             case StatsModificationType.Aucune:

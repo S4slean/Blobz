@@ -24,9 +24,28 @@ public class CellBroyeur : CellMain
                         haveExpulse = true;
                     }
                 }
+
+                for (int i = 0; i < outputLinks.Count; i++)
+                {
+                    if (blobNumber <= 0)
+                    {
+                        break;
+                    }
+                    //Pour l'instant il y a moyen que si une cellule creve la prochaine 
+                    //soit sauté mai squand il y aura les anim , ce sera plus possible
+                    outputLinks[i].Transmitt(1);
+                    haveExpulse = true;
+
+                }
+
                 currentTick = 0;
             }
         }
+        else
+        {
+            currentTick = 0;
+        }
+
         if (haveExpulse)
         {
             anim.Play("BlobExpulsion");

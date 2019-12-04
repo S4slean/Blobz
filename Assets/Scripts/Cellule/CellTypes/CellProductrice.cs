@@ -17,29 +17,58 @@ public class CellProductrice : CellMain
             AddBlob(myCellTemplate.prodPerTickBase);
         }
 
+
+        #region Ancien Systeme de Tick 
+        //if (blobNumber > 0)
+        //{
+        //    currentTick++;
+        //    if (currentTick == currentTickForActivation)
+        //    {
+        //        Debug.Log("tickPass");
+        //        for (int i = 0; i < currentRejectPower; i++)
+        //        {
+        //            if (blobNumber > 0 && outputLinks.Count > 0)
+        //            {
+        //                if (currentIndex >= outputLinks.Count)
+        //                {
+        //                    return;
+        //                }
+        //                outputLinks[currentIndex].Transmitt(1);
+        //                currentIndex++;
+        //                currentIndex = Helper.LoopIndex(currentIndex, outputLinks.Count);
+        //                haveExpulse = true;
+        //            }
+        //        }
+        //        currentTick = 0;
+        //    }
+        //}
+        #endregion
         if (blobNumber > 0)
         {
             currentTick++;
             if (currentTick == currentTickForActivation)
             {
-                Debug.Log("tickPass");
-                for (int i = 0; i < currentRejectPower; i++)
+
+                for (int i = 0; i < outputLinks.Count; i++)
                 {
-                    if (blobNumber > 0 && outputLinks.Count > 0)
+                    if (blobNumber <= 0)
                     {
-                        if (currentIndex >= outputLinks.Count)
-                        {
-                            return;
-                        }
-                        outputLinks[currentIndex].Transmitt();
-                        currentIndex++;
-                        currentIndex = Helper.LoopIndex(currentIndex, outputLinks.Count);
-                        haveExpulse = true;
+                        break;
                     }
+                    //Pour l'instant il y a moyen que si une cellule creve la prochaine 
+                    //soit sauté mai squand il y aura les anim , ce sera plus possible
+                    outputLinks[i].Transmitt(1);
+                    haveExpulse = true;
+
                 }
                 currentTick = 0;
             }
         }
+        else
+        {
+            currentTick = 0;
+        }
+
 
         if (haveExpulse)
         {

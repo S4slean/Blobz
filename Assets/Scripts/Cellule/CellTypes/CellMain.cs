@@ -57,12 +57,12 @@ public class CellMain : PoolableObjects
     protected int currentLinkStockage;
     protected int currentBlobStockage;
 
-
-
     protected int currentTickForActivation;
     protected float currentTick;
 
-    protected int currentEnergyPerTick;
+    protected int currentEnergyPerClick;
+    protected int currentEnergyCap;
+
     protected int currentSurproductionRate;
     protected float currentRejectPower;
     protected int currentRange;
@@ -117,12 +117,12 @@ public class CellMain : PoolableObjects
     public void CellInitialisation()
     {
         RessourceTracker.instance.AddCell(this);
-        RessourceTracker.instance.EnergyCapVariation();
 
         TickInscription();
         isDead = false;
 
         SetupVariable();
+        RessourceTracker.instance.EnergyCapVariation(currentEnergyCap);
 
     }
 
@@ -130,7 +130,6 @@ public class CellMain : PoolableObjects
     {
         GraphSetup();
     }
-
 
     public virtual void Died(bool intentionnalDeath)
     {
@@ -143,7 +142,7 @@ public class CellMain : PoolableObjects
         if (CellManager.Instance.originalPosOfMovingCell != new Vector3(0, 100, 0))
             RessourceTracker.instance.RemoveCell(this);
 
-        if(InputManager.Instance.CellSelected == this)
+        if (InputManager.Instance.CellSelected == this)
         {
             UIManager.Instance.DesactivateCellShop();
         }
@@ -197,33 +196,58 @@ public class CellMain : PoolableObjects
     }
     public virtual void BlobsTick()
     {
+        AddBlob(myCellTemplate.prodPerTickBase);
+
         //ANIM
         haveExpulse = false;
+        #region Ancienne Distribution
 
-        //ça marche bien mais à voir si quand 1 batiment meure la produciton saute avec ou pas
+        //if (blobNumber > 0)
+        //{
+
+        //    currentTick++;
+        //    if (currentTick == currentTickForActivation)
+        //    {
+        //        for (int i = 0; i < currentRejectPower; i++)
+        //        {
+        //            if (blobNumber > 0 && outputLinks.Count > 0)
+        //            {
+        //                if (currentIndex >= outputLinks.Count)
+        //                {
+        //                    return;
+        //                }
+        //                outputLinks[currentIndex].Transmitt();
+        //                currentIndex++;
+        //                currentIndex = Helper.LoopIndex(currentIndex, outputLinks.Count);
+        //                haveExpulse = true;
+        //            }
+        //        }
+        //        currentTick = 0;
+        //    }
+        //}
+        #endregion
         if (blobNumber > 0)
         {
-            
             currentTick++;
             if (currentTick == currentTickForActivation)
             {
-                Debug.Log("tickPass");
-                for (int i = 0; i < currentRejectPower; i++)
+                for (int i = 0; i < outputLinks.Count; i++)
                 {
-                    if (blobNumber > 0 && outputLinks.Count > 0)
+                    if (blobNumber <= 0)
                     {
-                        if (currentIndex >= outputLinks.Count)
-                        {
-                            return;
-                        }
-                        outputLinks[currentIndex].Transmitt();
-                        currentIndex++;
-                        currentIndex = Helper.LoopIndex(currentIndex, outputLinks.Count);
-                        haveExpulse = true;
+                        break;
                     }
-                    currentTick = 0;
+                    //Pour l'instant il y a moyen que si une cellule creve la prochaine 
+                    //soit sauté mai squand il y aura les anim , ce sera plus possible
+                    outputLinks[i].Transmitt(1);
+                    haveExpulse = true;
                 }
+                currentTick = 0;
             }
+        }
+        else
+        {
+            currentTick = 0;
         }
 
         if (haveExpulse)
@@ -232,8 +256,6 @@ public class CellMain : PoolableObjects
         }
 
 
-
-        AddBlob(myCellTemplate.prodPerTickBase);
 
 
     }
@@ -252,8 +274,8 @@ public class CellMain : PoolableObjects
         if (blobNumber > 0)
         {
             RemoveBlob(1);
-            CellManager.Instance.EnergyVariation(currentEnergyPerTick);
-            //RessourceTracker.instance.EnergyVariation(currentEnergyPerTick);
+            //CellManager.Instance.EnergyVariation(currentEnergyPerClick);
+            RessourceTracker.instance.EnergyVariation(currentEnergyPerClick);
         }
 
         anim.Play("PlayerInteraction", 0, 0f);
@@ -353,6 +375,9 @@ public class CellMain : PoolableObjects
     }
     public virtual void ProximityLevelModification(int Amout)
     {
+        int LastProximityTier = currentProximityTier;
+        int lastEnergyCap = currentEnergyCap;
+
         currentProximityLevel += Amout;
         NCurrentProximity.text = currentProximityLevel.ToString();
 
@@ -369,37 +394,43 @@ public class CellMain : PoolableObjects
             currentProximityTier = 0;
         }
 
-
-        switch (myCellTemplate.StatsModification)
+        if (currentProximityTier != LastProximityTier)
         {
-            case StatsModificationType.Surproduction:
-                currentSurproductionRate = myCellTemplate.SurproductionRate[currentProximityTier];
-                break;
+            switch (myCellTemplate.StatsModification)
+            {
+                case StatsModificationType.Surproduction:
+                    currentSurproductionRate = myCellTemplate.SurproductionRate[currentProximityTier];
+                    break;
 
-            case StatsModificationType.RejectForce:
-                currentRejectPower = myCellTemplate.BlopPerTick[currentProximityTier];
-                break;
+                case StatsModificationType.RejectForce:
+                    currentRejectPower = myCellTemplate.BlopPerTick[currentProximityTier];
+                    break;
 
-            case StatsModificationType.StockageCapacity:
-                currentBlobStockage = myCellTemplate.stockageCapacity[currentProximityTier];
-                break;
+                case StatsModificationType.StockageCapacity:
+                    currentBlobStockage = myCellTemplate.stockageCapacity[currentProximityTier];
+                    break;
 
-            case StatsModificationType.LinkCapacity:
-                currentLinkStockage = myCellTemplate.LinkCapacity[currentProximityTier];
-                break;
+                case StatsModificationType.LinkCapacity:
+                    currentLinkStockage = myCellTemplate.LinkCapacity[currentProximityTier];
+                    break;
 
-            case StatsModificationType.Range:
-                currentRange = myCellTemplate.Range[currentProximityTier];
-                break;
+                case StatsModificationType.Range:
+                    currentRange = myCellTemplate.Range[currentProximityTier];
+                    break;
 
-            case StatsModificationType.TickForActivation:
-                currentTickForActivation = myCellTemplate.tickForActivation[currentProximityTier];
-                break;
+                case StatsModificationType.TickForActivation:
+                    currentTickForActivation = myCellTemplate.tickForActivation[currentProximityTier];
+                    break;
 
-            case StatsModificationType.Aucune:
-                break;
+                case StatsModificationType.EnergyCap:
+                    currentEnergyCap = myCellTemplate.energyCap[currentProximityTier];
+                    RessourceTracker.instance.EnergyCapVariation(currentEnergyCap - lastEnergyCap);
+                    break;
+
+                case StatsModificationType.Aucune:
+                    break;
+            }
         }
-
         UpdateCaract();
     }
     #endregion
@@ -506,17 +537,21 @@ public class CellMain : PoolableObjects
         currentRejectPower = myCellTemplate.rejectPowerBase;
         currentRange = myCellTemplate.rangeBase;
         currentTickForActivation = myCellTemplate.tickForActivationBase;
-        currentEnergyPerTick = myCellTemplate.energyPerClick;
+
+        currentEnergyPerClick = myCellTemplate.energyPerClick;
+        currentEnergyCap = myCellTemplate.energyCapBase;
+
         cellAtProximity.Clear();
         currentProximityLevel = 0;
 
+        RessourceTracker.instance.EnergyCapVariation(currentEnergyCap);
         ProximityCheck();
         ProximityLevelModification(0);
     }
 
     public int GetCurrentRange()
     {
-        return currentRange/2;
+        return currentRange / 2;
     }
     #endregion
 

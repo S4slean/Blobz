@@ -44,10 +44,10 @@ public class LinkClass : PoolableObjects
         //angle = Mathf.Atan2(relative.x, relative.z) * Mathf.Rad2Deg;
     }
 
-    public void Transmitt()
+    public void Transmitt(int blobAmount)
     {
-        originalCell.RemoveBlob(1);
-        receivingCell.AddBlob(1);
+        originalCell.RemoveBlob(blobAmount);
+        receivingCell.AddBlob(blobAmount);
         // on pourra lancer une anim ici 
         anim.Play("Transfer");
     }

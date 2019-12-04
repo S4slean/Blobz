@@ -11,8 +11,8 @@ public enum StatsModificationType
     LinkCapacity ,
     Range , 
     TickForActivation,
+    EnergyCap,
     Aucune
-
 }
 
 //[System.Flags]

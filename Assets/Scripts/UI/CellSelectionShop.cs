@@ -83,7 +83,7 @@ public class CellSelectionShop : MonoBehaviour
 
         System.Type cellType = cellule.GetType();
         CellMain newCell = ObjectPooler.poolingSystem.GetPooledObject(cellType) as CellMain;
-        if (newCell.myCellTemplate.EnergyCost > RessourceTracker.instance.energy)
+        if (newCell.myCellTemplate.energyCost > RessourceTracker.instance.energy)
         {
             Debug.Log("pas assez d'énergie");
             UIManager.Instance.DisplayNotEnoughNRJ();
