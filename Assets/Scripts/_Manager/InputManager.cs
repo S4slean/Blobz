@@ -64,12 +64,18 @@ public class InputManager : MonoBehaviour
     [HideInInspector] public bool movingObject = false;
     [HideInInspector] public CellMain objectMoved;
 
+    private void Start()
+    {
+        m_Raycaster = FindObjectOfType<GraphicRaycaster>();
+        m_EventSystem = FindObjectOfType<EventSystem>();
+        p_Raycaster = FindObjectOfType<PhysicsRaycaster>();
+    }
     private void Update()
     {
         RaycastHit hit = Helper.ReturnHit(Input.mousePosition, CellManager.mainCamera, maskLeftCLick);
         mousePos = hit.point;
 
-
+        #region STANDARD_STATE
         if (!movingObject)
         {
             #region LINKS, INTERACTIONS AND CELL_CREATIONS
@@ -232,6 +238,7 @@ public class InputManager : MonoBehaviour
 
             #endregion
         }
+        #endregion
 
         #region MOVING_CELL
         else
@@ -292,31 +299,24 @@ public class InputManager : MonoBehaviour
 
     }
 
-    private void Start()
-    {
-        m_Raycaster = FindObjectOfType<GraphicRaycaster>();
-        m_EventSystem = FindObjectOfType<EventSystem>();
-        p_Raycaster = FindObjectOfType<PhysicsRaycaster>();
-    }
 
     PhysicsRaycaster p_Raycaster;
     GraphicRaycaster m_Raycaster;
     PointerEventData m_PointerEventData;
     EventSystem m_EventSystem;
 
+
     public void DesactivateLinkWhileDragging()
     {
         DraggingLink = false;
         CellManager.Instance.SupressCurrentLink();
     }
-
     public void CleanBoolsRelatedToCell()
     {
         CellSelected = false;
         DraggingLink = false;
         InCellSelection = false;
     }
-
     public void StartMovingCell(CellMain cell, bool alreadyExistingCell)
     {
 
@@ -341,4 +341,5 @@ public class InputManager : MonoBehaviour
         Instance.DraggingLink = true;
         Instance.InCellSelection = false;
     }
+
 }

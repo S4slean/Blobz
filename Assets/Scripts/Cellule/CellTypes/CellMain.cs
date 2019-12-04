@@ -41,6 +41,7 @@ public class CellMain : PoolableObjects
     public bool noMoreLink;
     public int blobNumber;
     public bool hasBeenDrop;
+    public bool canBeBuild;
 
     #endregion
 
@@ -103,7 +104,6 @@ public class CellMain : PoolableObjects
         if (isNexus)
         {
             StartCoroutine(WaitForInit());
-
         }
 
     }

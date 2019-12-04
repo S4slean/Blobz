@@ -29,11 +29,11 @@ public class UIManager : MonoBehaviour
 
     }
 
-    private void Start()
+    private void Update()
     {
-        TickManager.doTick += TopBar.UpdateUI;
-        
+        UpdateAllUI();
     }
+
 
     #region GENERICS
 
@@ -47,6 +47,11 @@ public class UIManager : MonoBehaviour
         go.SetActive(false);
     }
 
+    public void UpdateAllUI()
+    {
+        TopBar.UpdateUI();
+        QuestUI.UpdateUI();
+    }
     #endregion
 
     #region CELL_SELECTION
@@ -65,7 +70,7 @@ public class UIManager : MonoBehaviour
         cellSelection.ButtonPositions(originalCell);
         InputManager.Instance.InCellSelection = true;
     }
-    public IEnumerator DesactivateCellShop ()
+    public IEnumerator DesactivateCellShop()
     {
         yield return new WaitForEndOfFrame();
         cellSelection.DesactiveButton();
@@ -76,7 +81,7 @@ public class UIManager : MonoBehaviour
 
 
 
-    public void CellSelected( Vector3 pos)
+    public void CellSelected(Vector3 pos)
     {
         SelectedCellUI.transform.position = pos;
         SelectedCellUI.SetActive(true);
@@ -110,7 +115,7 @@ public class UIManager : MonoBehaviour
     [Header("ToolTip")]
     public TooltipUI tooltipUI;
     public CellOptionsUI cellOptionsUI;
-    
+
 
     private float tooltipCount = 0;
     public float firstTooltipDelay = .4f;
@@ -122,12 +127,12 @@ public class UIManager : MonoBehaviour
     {
         tooltipCount += Time.deltaTime;
 
-        if(tooltipCount > firstTooltipDelay && !firstTooltipDisplayed)
+        if (tooltipCount > firstTooltipDelay && !firstTooltipDisplayed)
         {
-            DisplayTooltip(pos, cell) ;
+            DisplayTooltip(pos, cell);
         }
 
-        if(tooltipCount > secondTooltipDelay && !secondTooltipDisplayed)
+        if (tooltipCount > secondTooltipDelay && !secondTooltipDisplayed)
         {
             DisplaySecondToolTip();
         }
@@ -187,7 +192,7 @@ public class UIManager : MonoBehaviour
 
     #endregion
 
-    #region NotEnoughEnergy
+    #region NOT_ENOUGH_NRJ
 
     [Header("NRJ")]
     public Animator nENRJ;
@@ -198,4 +203,34 @@ public class UIManager : MonoBehaviour
     }
 
     #endregion
+
+    #region ALERT
+
+    [Header("CellExplosionAlert")]
+    [Range(0, 1000)] public float alertRadius = 200;
+    public Transform alertHolder;
+    [Range(0, 20)] public float offsetPercentage;
+
+    public void DisplayCellAlert(Transform transform, CellAlert alert)
+    {
+        //CellAlert alert;
+        //alert = ObjectPooler.poolingSystem.GetPooledObject<CellAlert>() as CellAlert;
+        //alert.Outpool();
+        if (alert.transform.parent != alertHolder)
+            alert.transform.parent = alertHolder;
+
+        RectTransform rect =  alert.GetComponent<RectTransform>();
+        Vector3 screenCenter = new Vector3(Screen.width / 2, Screen.height / 2, 0);
+        Vector3 screenObjPos = Camera.main.WorldToScreenPoint(transform.position);
+
+        Vector3 dir = (screenObjPos - screenCenter).normalized;
+
+        rect.anchoredPosition = new Vector2((dir.x * Screen.width/2) - (Mathf.Sign(dir.x) * Screen.width * offsetPercentage) , (dir.y * Screen.height / 2) - (Mathf.Sign(dir.y) * Screen.height * offsetPercentage)); 
+    }
+
+
+    #endregion
+
+
+
 }

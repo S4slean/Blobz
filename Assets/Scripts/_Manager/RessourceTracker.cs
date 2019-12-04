@@ -20,6 +20,7 @@ public class RessourceTracker : MonoBehaviour
     public int chargedBlob;
     public int madBlob;
 
+    public int energyCap;
     public int energy;
     public int blobProduced;
 
@@ -29,6 +30,8 @@ public class RessourceTracker : MonoBehaviour
     }
 
 
+
+    #region CELLS
     public void AddCell(CellMain cell)
     {
         cellNbr++;
@@ -59,9 +62,6 @@ public class RessourceTracker : MonoBehaviour
         UIManager.Instance.QuestUI.UpdateUI();
 
     }
-
-
-
     public void RemoveCell(CellMain cell)
     {
         cellNbr--;
@@ -92,7 +92,9 @@ public class RessourceTracker : MonoBehaviour
         UIManager.Instance.QuestUI.UpdateUI();
 
     }
+    #endregion
 
+    #region BLOB
     public void AddBlob(Blob blob)
     {
         blobPop++;
@@ -124,7 +126,6 @@ public class RessourceTracker : MonoBehaviour
                 break;
         }
     }
-
     public void AddBlob(BlobManager.BlobType blobType)
     {
         blobPop++;
@@ -156,7 +157,6 @@ public class RessourceTracker : MonoBehaviour
                 break;
         }
     }
-
     public void AddBlob(BlobManager.BlobType blobType, int nbr)
     {
         blobPop += nbr;
@@ -188,7 +188,7 @@ public class RessourceTracker : MonoBehaviour
                 break;
         }
     }
-
+       
     public void RemoveBlob(Blob blob)
     {
         blobPop--;
@@ -220,7 +220,6 @@ public class RessourceTracker : MonoBehaviour
                 break;
         }
     }
-
     public void RemoveBlob(BlobManager.BlobType blobType)
     {
         blobPop--;
@@ -252,7 +251,6 @@ public class RessourceTracker : MonoBehaviour
                 break;
         }
     }
-
     public void RemoveBlob(BlobManager.BlobType blobType, int nbr)
     {
         blobPop -= nbr;
@@ -284,4 +282,28 @@ public class RessourceTracker : MonoBehaviour
                 break;
         }
     }
+    #endregion
+
+    #region ENERGY
+    public void EnergyVariation(int amount)
+    {
+        energy += amount;
+        EnergyCheckIfInCap();
+    }
+
+    public void EnergyCapVariation(int amount)
+    {
+        energyCap += amount;
+        EnergyCheckIfInCap();
+    }
+
+    public void EnergyCheckIfInCap()
+    {
+        if (energy > energyCap)
+        {
+            energy = energyCap;
+        }
+    }
+
+    #endregion
 }
