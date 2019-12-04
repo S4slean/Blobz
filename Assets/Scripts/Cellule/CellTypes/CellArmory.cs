@@ -26,7 +26,7 @@ public class CellArmory : CellMain
                 {
                     if (blobNumber > 0)
                     {
-                        RemoveBlob(1);
+                        BlobNumberVariation(-1);
                         // Debug.LogWarning("PENSEZ à REGLER le sy")
                         Blob newBlob = ObjectPooler.poolingSystem.GetPooledObject<Blob>() as Blob;
                         BlobManager.blobList.Add(newBlob);

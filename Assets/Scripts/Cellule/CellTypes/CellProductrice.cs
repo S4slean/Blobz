@@ -10,11 +10,11 @@ public class CellProductrice : CellMain
         //ça marche bien mais à voir si quand 1 batiment meure la produciton saute avec ou pas
         if ((int)Random.Range(0, 101) <= currentSurproductionRate)
         {
-            AddBlob(myCellTemplate.prodPerTickBase * 2);
+            BlobNumberVariation(myCellTemplate.prodPerTickBase * 2);
         }
         else
         {
-            AddBlob(myCellTemplate.prodPerTickBase);
+            BlobNumberVariation(myCellTemplate.prodPerTickBase);
         }
 
 

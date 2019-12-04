@@ -19,7 +19,7 @@ public class CellBroyeur : CellMain
                     if (blobNumber > 0)
                     {
 
-                        RemoveBlob(1);
+                        BlobNumberVariation(-1);
                         CellManager.Instance.EnergyVariation(myCellTemplate.energyPerblop);
                         haveExpulse = true;
                     }

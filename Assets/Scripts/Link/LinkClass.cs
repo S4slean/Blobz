@@ -46,8 +46,8 @@ public class LinkClass : PoolableObjects
 
     public void Transmitt(int blobAmount)
     {
-        originalCell.RemoveBlob(blobAmount);
-        receivingCell.AddBlob(blobAmount);
+        originalCell.BlobNumberVariation(-blobAmount);
+        receivingCell.BlobNumberVariation(blobAmount);
         // on pourra lancer une anim ici 
         anim.Play("Transfer");
     }

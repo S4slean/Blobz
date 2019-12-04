@@ -43,13 +43,14 @@ public class CellMain : PoolableObjects
     public bool hasBeenDrop;
     public bool canBeBuild;
 
+    protected List<LinkClass> outputLinks = new List<LinkClass>();
+    protected List<CellMain> cellAtProximity = new List<CellMain>();
+    protected int currentIndex;
+
     #endregion
 
     #region STATS
     //Important for the communication into 
-    protected List<LinkClass> outputLinks = new List<LinkClass>();
-    protected List<CellMain> cellAtProximity = new List<CellMain>();
-    protected int currentIndex;
 
     protected int currentProximityLevel;
     protected int currentProximityTier;
@@ -68,8 +69,13 @@ public class CellMain : PoolableObjects
     protected int currentRange;
 
 
+    #endregion
+
+    #region Etats/Boolean
+
+    protected bool inDanger;
     protected bool isDead = false;
-    protected float velocity;
+    protected bool isVisible;
     #endregion
 
     #region Anim Variable   
@@ -196,7 +202,7 @@ public class CellMain : PoolableObjects
     }
     public virtual void BlobsTick()
     {
-        AddBlob(myCellTemplate.prodPerTickBase);
+        BlobNumberVariation(myCellTemplate.prodPerTickBase);
 
         //ANIM
         haveExpulse = false;
@@ -273,7 +279,7 @@ public class CellMain : PoolableObjects
     {
         if (blobNumber > 0)
         {
-            RemoveBlob(1);
+            BlobNumberVariation(-1);
             //CellManager.Instance.EnergyVariation(currentEnergyPerClick);
             RessourceTracker.instance.EnergyVariation(currentEnergyPerClick);
         }
@@ -285,36 +291,87 @@ public class CellMain : PoolableObjects
 
 
     #region BLOB_GESTION
-    public void AddBlob(int Amount)
+    //public void AddBlob(int Amount)
+    //{
+    //    blobNumber += Amount;
+
+    //    RessourceTracker.instance.AddBlob(BlobManager.BlobType.normal, Amount);
+
+    //    NBlob.text = (blobNumber + " / " + currentBlobStockage);
+    //    if (blobNumber > currentBlobStockage && !isDead && !isNexus)
+    //    {
+    //        Died(false);
+    //    }
+    //    if (blobNumber > currentBlobStockage)
+    //    {
+    //        int blobToRemobe = blobNumber - currentBlobStockage;
+
+    //        RessourceTracker.instance.RemoveBlob(BlobManager.BlobType.normal, blobToRemobe);
+
+
+    //        blobNumber = currentBlobStockage;
+    //    }
+    //    UpdateCaract();
+    //}
+    //public void RemoveBlob(int Amount)
+    //{
+    //    blobNumber -= Amount;
+
+    //    RessourceTracker.instance.RemoveBlob(BlobManager.BlobType.normal, Amount);
+    //    //UI update
+    //    UpdateCaract();
+    //}
+    public void BlobNumberVariation(int amount)
     {
-        blobNumber += Amount;
+        blobNumber += amount;
 
-        RessourceTracker.instance.AddBlob(BlobManager.BlobType.normal, Amount);
+        RessourceTracker.instance.AddBlob(BlobManager.BlobType.normal, amount);
 
-        NBlob.text = (blobNumber + " / " + currentBlobStockage);
+        if (currentBlobStockage <= 0)
+        {
+            Died(false);
+        }
+        else
+        {
+            float ratio = (float)blobNumber / (float)currentBlobStockage;
+            int pourcentage = Mathf.FloorToInt(ratio * 100f);
+            if (pourcentage >= 80)
+            {
+                inDanger = true;
+                if (!isVisible)
+                {
+                    //ANIM UI 
+                }
+                //ANIM DANGER CELL 
+            }
+            else
+            {
+                inDanger = false;
+            }
+            NBlob.text = (pourcentage +" %");
+            Debug.Log("allo");
+        }
+        //NBlob.text = (blobNumber + " / " + currentBlobStockage);
+
         if (blobNumber > currentBlobStockage && !isDead && !isNexus)
         {
             Died(false);
         }
+
+        //Nexus 
         if (blobNumber > currentBlobStockage)
         {
             int blobToRemobe = blobNumber - currentBlobStockage;
-
             RessourceTracker.instance.RemoveBlob(BlobManager.BlobType.normal, blobToRemobe);
-
-
             blobNumber = currentBlobStockage;
         }
-        UpdateCaract();
+        //UpdateCaract();
     }
-    public void RemoveBlob(int Amount)
-    {
-        blobNumber -= Amount;
+    //en prévision 
+    //public void BlobNumberVariation(int amount , BlobManager.BlobType blobType)
+    //{
 
-        RessourceTracker.instance.RemoveBlob(BlobManager.BlobType.normal, Amount);
-        //UI update
-        UpdateCaract();
-    }
+    //}
     #endregion
 
     #region PROXIMITE_GESTION
@@ -543,6 +600,8 @@ public class CellMain : PoolableObjects
 
         cellAtProximity.Clear();
         currentProximityLevel = 0;
+        inDanger = false;
+        isDead = false;
 
         RessourceTracker.instance.EnergyCapVariation(currentEnergyCap);
         ProximityCheck();
@@ -554,5 +613,14 @@ public class CellMain : PoolableObjects
         return currentRange / 2;
     }
     #endregion
+
+    private void OnBecameInvisible()
+    {
+        isVisible = false;
+    }
+    private void OnBecameVisible()
+    {
+        isVisible = true;
+    }
 
 }
