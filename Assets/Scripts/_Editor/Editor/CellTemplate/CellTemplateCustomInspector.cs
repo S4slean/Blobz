@@ -10,9 +10,9 @@ public class CellTemplateCustomInspector : Editor
 {
     SerializedProperty cellsEnableToBuildProp, blopPrefabProp, buttonColorProp, cellTextureProp;
     SerializedProperty typeProp;
-    SerializedProperty energyCostProp , energyCapBaseProp, rangeBaseProp, blobRatioAtDeathProp, impulseForce_DeathProp;
+    SerializedProperty energyCostProp, energyCapBaseProp, rangeBaseProp, blobRatioAtDeathProp, impulseForce_DeathProp;
 
-    SerializedProperty prodPerTickProp, rejectPowerProp, storageCapabilityProp, linkCapabilityProp , tickForActivationBaseProp , energyPerClickProp;
+    SerializedProperty prodPerTickProp, rejectPowerProp, storageCapabilityProp, linkCapabilityProp, tickForActivationBaseProp, energyPerClickProp;
 
     SerializedProperty proximityLevelMaxProp, positivesInteractionsProp, negativesInteractionsProp, StatsModificationProp;
 
@@ -23,44 +23,60 @@ public class CellTemplateCustomInspector : Editor
     //Broyeuse Spé
 
     //Stockage Spé
-    SerializedProperty stockageCapacityProp, LinkCapacityProp, RangeProp , tickForActivationProp;
+    SerializedProperty stockageCapacityProp, LinkCapacityProp, RangeProp, tickForActivationProp;
 
     SerializedProperty InfoBoxToggleProp, refToggleProp, statToggleProp, ProductionGestionsProp, ProximityGestionProp;
 
-    SerializedProperty energyPerblop , energyCapProp;
+    SerializedProperty energyPerblop, energyCapProp;
+
+    SerializedProperty genererateProximityProp, proximityColliderNumberProp, proximityCollidersProp;
 
     private float fieldWidthBase, labelWidthBase;
 
 
     private void OnEnable()
     {
+        #region REFS
         cellsEnableToBuildProp = serializedObject.FindProperty("cellsEnableToBuild");
         blopPrefabProp = serializedObject.FindProperty("blopPrefab");
         buttonColorProp = serializedObject.FindProperty("buttonColor");
         cellTextureProp = serializedObject.FindProperty("cellTexture");
-
+        #endregion
         typeProp = serializedObject.FindProperty("type");
 
+        #region Proximity Initialisation 
+        genererateProximityProp = serializedObject.FindProperty("generateProximity");
+        proximityColliderNumberProp = serializedObject.FindProperty("proximityColliderNumber");
+        proximityCollidersProp = serializedObject.FindProperty("proximityColliders");
+        #endregion
+
+        #region STATS
         energyCostProp = serializedObject.FindProperty("energyCost");
         energyCapBaseProp = serializedObject.FindProperty("energyCapBase");
 
         rangeBaseProp = serializedObject.FindProperty("rangeBase");
         blobRatioAtDeathProp = serializedObject.FindProperty("blobRatioAtDeath");
         impulseForce_DeathProp = serializedObject.FindProperty("impulseForce_Death");
+        #endregion
 
+        #region Production Gestion 
         prodPerTickProp = serializedObject.FindProperty("prodPerTickBase");
         rejectPowerProp = serializedObject.FindProperty("rejectPowerBase");
         storageCapabilityProp = serializedObject.FindProperty("storageCapability");
         linkCapabilityProp = serializedObject.FindProperty("linkCapability");
         tickForActivationBaseProp = serializedObject.FindProperty("tickForActivationBase");
         energyPerClickProp = serializedObject.FindProperty("energyPerClick");
+        #endregion
+
+        #region Proximity Gestion
 
         proximityLevelMaxProp = serializedObject.FindProperty("proximityLevelMax");
         positivesInteractionsProp = serializedObject.FindProperty("positivesInteractions");
         negativesInteractionsProp = serializedObject.FindProperty("negativesInteractions");
         StatsModificationProp = serializedObject.FindProperty("StatsModification");
+        #endregion
 
-
+        #region Variable affectées par la proximité
 
         SurprodRateProp = serializedObject.FindProperty("SurproductionRate");
         BlopPerTickProp = serializedObject.FindProperty("BlopPerTick");
@@ -68,17 +84,22 @@ public class CellTemplateCustomInspector : Editor
         LinkCapacityProp = serializedObject.FindProperty("LinkCapacity");
         RangeProp = serializedObject.FindProperty("Range");
         tickForActivationProp = serializedObject.FindProperty("tickForActivation");
+        energyCapProp = serializedObject.FindProperty("energyCap");
 
+        #endregion
 
+        #region Boolean Inspector
         InfoBoxToggleProp = serializedObject.FindProperty("ToggleInfoBox");
         refToggleProp = serializedObject.FindProperty("REFS");
         statToggleProp = serializedObject.FindProperty("STATS");
         ProductionGestionsProp = serializedObject.FindProperty("ProductionGestion");
         ProximityGestionProp = serializedObject.FindProperty("ProximityGestion");
+        #endregion
 
-
+        #region Specificité
+        //Broyeur
         energyPerblop = serializedObject.FindProperty("energyPerblop");
-        energyCapProp = serializedObject.FindProperty("energyCap");
+        #endregion
 
         fieldWidthBase = EditorGUIUtility.fieldWidth;
         labelWidthBase = EditorGUIUtility.labelWidth;
@@ -115,6 +136,21 @@ public class CellTemplateCustomInspector : Editor
         }
         EditorGUILayout.EndVertical();
         EditorGUILayout.Space();
+        EditorGUILayout.Space();
+
+        EditorGUILayout.BeginVertical("Box");
+        EditorGUILayout.PropertyField(genererateProximityProp);
+        if (genererateProximityProp.boolValue)
+        {
+            EditorGUILayout.HelpBox("Il s'agit du pourcentage de chance de surproduction", MessageType.Info);
+            EditorGUILayout.PropertyField(proximityColliderNumberProp);
+
+            proximityCollidersProp.arraySize = proximityColliderNumberProp.intValue;
+            DisplayArray(proximityCollidersProp, "Proximity Collider n°");
+        }
+
+        EditorGUILayout.EndVertical();
+
 
 
         EditorGUILayout.PropertyField(refToggleProp);
@@ -132,6 +168,7 @@ public class CellTemplateCustomInspector : Editor
             EditorGUI.indentLevel -= 1;
             EditorGUILayout.EndVertical();
         }
+        EditorGUILayout.Space();
         EditorGUILayout.Space();
 
         EditorGUILayout.PropertyField(statToggleProp);
@@ -173,13 +210,14 @@ public class CellTemplateCustomInspector : Editor
                 EditorGUIUtility.fieldWidth = fieldWidthBase;
                 EditorGUILayout.EndHorizontal();
 
-                
+
             }
 
             EditorGUI.indentLevel -= 1;
             EditorGUILayout.EndVertical();
 
         }
+        EditorGUILayout.Space();
         EditorGUILayout.Space();
 
         EditorGUILayout.PropertyField(ProductionGestionsProp);
@@ -225,7 +263,7 @@ public class CellTemplateCustomInspector : Editor
 
                 EditorGUILayout.EndHorizontal();
 
-                
+
 
                 EditorGUIUtility.labelWidth = labelWidthBase;
                 EditorGUIUtility.fieldWidth = fieldWidthBase;
@@ -234,6 +272,7 @@ public class CellTemplateCustomInspector : Editor
             EditorGUILayout.EndVertical();
 
         }
+        EditorGUILayout.Space();
         EditorGUILayout.Space();
 
 

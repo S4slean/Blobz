@@ -8,12 +8,12 @@ public class CelluleTemplate : ScriptableObject
 {
 
 
-   // [Header ("REF IMPORTANT")]
+    // [Header ("REF IMPORTANT")]
     public GameObject[] cellsEnableToBuild;
     public GameObject blopPrefab;
     public Color buttonColor;
     public Texture cellTexture;
-    
+
     [Space(20f)]
 
     //public Mesh mesh;
@@ -22,17 +22,20 @@ public class CelluleTemplate : ScriptableObject
     [Space(20f)]
 
     public CellType type;
+    public bool generateProximity;
+    [Range(1, 5)]
+    public int proximityColliderNumber = 1;
+    public ProximityCollider[] proximityColliders;
 
     [Range(0f, 50f)]
     public int energyCost = 5;
-    [Range(1 , 150)]
-    public int energyCapBase = 10; 
-
+    [Range(1, 150)]
+    public int energyCapBase = 10;
     [Range(0f, 300f)]
     public int rangeBase = 50;
     [Range(0, 1)]
     public float blobRatioAtDeath;
-    [Range(5 ,100)]
+    [Range(5, 100)]
     public int impulseForce_Death = 10;
 
 
@@ -51,7 +54,7 @@ public class CelluleTemplate : ScriptableObject
     public int linkCapability = 6;
 
 
-    [Range(0 , 5)]
+    [Range(0, 5)]
     public int proximityLevelMax = 0;
     public CellType[] positivesInteractions;
     public CellType[] negativesInteractions;
@@ -65,7 +68,7 @@ public class CelluleTemplate : ScriptableObject
     public int[] LinkCapacity;
     public int[] Range;
     public int[] tickForActivation;
-    public int[] energyCap; 
+    public int[] energyCap;
 
     public int energyPerblop;
     #endregion
@@ -81,4 +84,12 @@ public class CelluleTemplate : ScriptableObject
     public bool ProximityGestion;
 
     #endregion
+}
+
+[System.Serializable]
+public struct ProximityCollider
+{
+    public int proximityLevel;
+    public int range; 
+
 }
