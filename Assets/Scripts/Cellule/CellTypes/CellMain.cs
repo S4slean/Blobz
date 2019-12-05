@@ -349,7 +349,6 @@ public class CellMain : PoolableObjects
                 inDanger = false;
             }
             NBlob.text = (pourcentage +" %");
-            Debug.Log("allo");
         }
         //NBlob.text = (blobNumber + " / " + currentBlobStockage);
 
@@ -603,6 +602,13 @@ public class CellMain : PoolableObjects
         inDanger = false;
         isDead = false;
 
+        if (myCellTemplate.generateProximity)
+        {
+            for (int i = 0; i < myCellTemplate.proximityColliders.Length; i++)
+            {
+                Debug.Log(myCellTemplate.proximityColliders[i].proximityLevel + " "+ myCellTemplate.proximityColliders[i].range);
+            }
+        }
         RessourceTracker.instance.EnergyCapVariation(currentEnergyCap);
         ProximityCheck();
         ProximityLevelModification(0);

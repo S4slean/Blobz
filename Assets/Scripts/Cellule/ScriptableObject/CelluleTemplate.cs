@@ -91,5 +91,4 @@ public struct ProximityCollider
 {
     public int proximityLevel;
     public int range; 
-
 }

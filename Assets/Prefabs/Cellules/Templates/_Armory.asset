@@ -23,9 +23,9 @@ MonoBehaviour:
   proximityColliders:
   - proximityLevel: 0
     range: 0
-  energyCost: 5
+  energyCost: 10
   energyCapBase: 10
-  rangeBase: 50
+  rangeBase: 16
   blobRatioAtDeath: 0
   impulseForce_Death: 5
   prodPerTickBase: 0
@@ -53,5 +53,5 @@ MonoBehaviour:
   REFS: 0
   ToggleInfoBox: 0
   STATS: 1
-  ProductionGestion: 1
+  ProductionGestion: 0
   ProximityGestion: 1

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using UnityEditorInternal;
 
 
 [CanEditMultipleObjects]
@@ -31,6 +32,8 @@ public class CellTemplateCustomInspector : Editor
 
     SerializedProperty genererateProximityProp, proximityColliderNumberProp, proximityCollidersProp;
 
+    ReorderableList proximityColliderList; 
+
     private float fieldWidthBase, labelWidthBase;
 
 
@@ -48,6 +51,9 @@ public class CellTemplateCustomInspector : Editor
         genererateProximityProp = serializedObject.FindProperty("generateProximity");
         proximityColliderNumberProp = serializedObject.FindProperty("proximityColliderNumber");
         proximityCollidersProp = serializedObject.FindProperty("proximityColliders");
+
+        proximityColliderList = new ReorderableList(serializedObject, proximityCollidersProp, true, false, false, false);
+        proximityColliderList.drawElementCallback += ElementCallBack;
         #endregion
 
         #region STATS
@@ -146,7 +152,8 @@ public class CellTemplateCustomInspector : Editor
             EditorGUILayout.PropertyField(proximityColliderNumberProp);
 
             proximityCollidersProp.arraySize = proximityColliderNumberProp.intValue;
-            DisplayArray(proximityCollidersProp, "Proximity Collider n°");
+            //DisplayArray(proximityCollidersProp, "Proximity Collider n°", true);
+            DisplayProximityCollider(proximityCollidersProp, "Proximity Collider");
         }
 
         EditorGUILayout.EndVertical();
@@ -305,7 +312,7 @@ public class CellTemplateCustomInspector : Editor
     {
         EditorGUILayout.BeginHorizontal();
         array.arraySize = EditorGUILayout.IntField(array.name, array.arraySize);
-        if (cellsEnableToBuildProp.arraySize <= 0 && InfoBoxToggleProp.boolValue)
+        if (array.arraySize <= 0 && InfoBoxToggleProp.boolValue)
         {
             EditorGUILayout.HelpBox("Aucun(e)" + Label, MessageType.Info);
             EditorGUILayout.EndHorizontal();
@@ -335,6 +342,7 @@ public class CellTemplateCustomInspector : Editor
 
             EditorGUI.indentLevel -= 1;
         }
+        serializedObject.ApplyModifiedProperties();
     }
     private void InteractionArrayDisplay(SerializedProperty array, string interactionType)
     {
@@ -428,10 +436,57 @@ public class CellTemplateCustomInspector : Editor
 
     }
 
+    private void ElementCallBack(Rect rect , int index  , bool isActive , bool isFocused)
+    {
+        rect.yMin += 2;
+        rect.xMax -= 4;
+        EditorGUI.PropertyField(rect, proximityCollidersProp.GetArrayElementAtIndex(index), new GUIContent("ProximityCollider n°" + index.ToString()) );
+    }
 
     private void ResetStats()
     {
 
     }
 
+    private void DisplayProximityCollider(SerializedProperty array, string Label)
+    {
+        EditorGUILayout.BeginHorizontal();
+        array.arraySize = EditorGUILayout.IntField(array.name, array.arraySize);
+        if (array.arraySize <= 0 && InfoBoxToggleProp.boolValue)
+        {
+            EditorGUILayout.HelpBox("Aucun(e)" + Label, MessageType.Info);
+            EditorGUILayout.EndHorizontal();
+        }
+        else
+        {
+            EditorGUILayout.EndHorizontal();
+            EditorGUI.indentLevel += 1;
+            for (int i = 0; i < array.arraySize; i++)
+            {
+
+                EditorGUIUtility.labelWidth = 0.01f;
+                SerializedProperty currentElement = array.GetArrayElementAtIndex(i);
+                EditorGUILayout.BeginHorizontal("Box");
+                EditorGUILayout.LabelField(Label + " " + (i).ToString());
+
+                EditorGUILayout.PropertyField(currentElement);
+                SerializedProperty currentElementProximityLevel =  currentElement.FindPropertyRelative("proximityLevel");
+                SerializedProperty currentElementRange =  currentElement.FindPropertyRelative("range");
+                currentElementProximityLevel.intValue = EditorGUILayout.IntField(currentElementProximityLevel.intValue);
+                currentElementRange.intValue = EditorGUILayout.IntField(currentElementRange.intValue);
+
+
+                if (currentElement == null && InfoBoxToggleProp.boolValue)
+                {
+                    EditorGUILayout.HelpBox("Le Label est vide", MessageType.Warning);
+                }
+
+                EditorGUILayout.EndHorizontal();
+                EditorGUIUtility.labelWidth = labelWidthBase;
+            }
+
+            EditorGUI.indentLevel -= 1;
+        }
+        serializedObject.ApplyModifiedProperties();
+    }
 }
