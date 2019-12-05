@@ -24,12 +24,10 @@ MonoBehaviour:
   cellTexture: {fileID: 0}
   type: 0
   generateProximity: 1
-  proximityColliderNumber: 2
+  proximityColliderNumber: 1
   proximityColliders:
   - proximityLevel: 4
     range: 10
-  - proximityLevel: 1
-    range: 30
   energyCost: 5
   energyCapBase: 10
   rangeBase: 15
