@@ -145,6 +145,8 @@ public class CellManager : MonoBehaviour
         else
             receivingCell = hit.transform.GetComponent<CellMain>();
 
+
+
         //permet de check si c'est bien une cellule et pas la meme cellule
         selectedCell = InputManager.Instance.selectedCell;
 

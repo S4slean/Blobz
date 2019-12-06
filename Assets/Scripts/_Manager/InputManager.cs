@@ -131,6 +131,7 @@ public class InputManager : MonoBehaviour
                         UIManager.Instance.StartCoroutine(UIManager.Instance.DesactivateCellShop());
                         CellManager.Instance.CreatenewLink();
                         DraggingLink = true;
+                        newCell = false;
                     }
                 }
 
@@ -140,6 +141,8 @@ public class InputManager : MonoBehaviour
             //Click Gauche Out
             if (Input.GetMouseButtonUp(0))
             {
+
+
                 //pour interagir avec la cellule
                 if (clickTime <= clickCooldown && isOverCell && cellOver == CellManager.Instance.selectedCell)
                 {

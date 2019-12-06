@@ -91,6 +91,7 @@ public class CellSelectionShop : MonoBehaviour
         }
         else
         {
+            InputManager.Instance.newCell = true;
             newCell.transform.position = InputManager.Instance.mousePos; ;           
             newCell.Outpool();
             CellManager.Instance.NewCellCreated(newCell);
