@@ -4,16 +4,29 @@ using UnityEngine;
 
 public class Blob : PoolableObjects
 {
+
+    #region REFS
     public Rigidbody rb;
+    public Renderer rd;
+    #endregion
+
+    #region GENERAL
     public int tickCount = 0; 
     public BlobManager.BlobType blobType = BlobManager.BlobType.normal;
-    public Renderer rd;
+    #endregion
+
+    #region ENNEMIES
     public Transform tagetTransform;
     public bool isStuck = false;
     public CellMain infectedCell;
     public int infectionAmount = 1;
+    #endregion
+
+    #region SOLDIER
     public float flyTime = 3;
     public float flySpeed = 5;
+    public bool canExplode = false;
+    #endregion
 
 
 
@@ -107,6 +120,9 @@ public class Blob : PoolableObjects
             infectedCell.StockageCapabilityVariation( - infectionAmount);
             BlobManager.blobList.Remove(this);
         }
+
+        if (blobType == BlobManager.BlobType.soldier && canExplode)
+            BlobManager.instance.Explode(this);
     }
 
 

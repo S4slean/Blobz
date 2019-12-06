@@ -21,7 +21,6 @@ public class QuickSetUp : Editor
     static GameObject camera;
     static GameObject levelManager;
     static GameObject blobManager;
-    static GameObject ground;
     static GameObject cinematicManager;
     
 
@@ -52,7 +51,6 @@ public class QuickSetUp : Editor
             || FindObjectOfType<CameraController>() != null
             || FindObjectOfType<LevelManager>() != null
             || FindObjectOfType<BlobManager>() != null
-            || GameObject.FindGameObjectWithTag("Ground")
             || FindObjectOfType<CinematicManager>() != null)
         {
             return false;
@@ -94,8 +92,6 @@ public class QuickSetUp : Editor
         if (FindObjectOfType<BlobManager>() != null)
             DestroyImmediate(FindObjectOfType<BlobManager>().gameObject);
 
-        if (GameObject.FindGameObjectWithTag("Ground") != null)
-            DestroyImmediate(GameObject.FindGameObjectWithTag("Ground"));
 
         if (FindObjectOfType<CinematicManager>() != null)
             DestroyImmediate(FindObjectOfType<CinematicManager>().gameObject);
@@ -115,7 +111,6 @@ public class QuickSetUp : Editor
         camera = Resources.Load("QuickSetUp/--MainCamera--") as GameObject;
         levelManager = Resources.Load("QuickSetUp/LevelManager") as GameObject;
         blobManager = Resources.Load("QuickSetUp/BlobManager") as GameObject;
-        ground = Resources.Load("QuickSetUp/Ground") as GameObject;
         cinematicManager = Resources.Load("QuickSetUp/CinematicManager") as GameObject;
     }
 
@@ -131,10 +126,8 @@ public class QuickSetUp : Editor
         camera = Instantiate(camera);
         levelManager = Instantiate(levelManager);
         blobManager = Instantiate(blobManager);
-        ground = Instantiate(ground);
         cinematicManager = Instantiate(cinematicManager);
 
-        ground.transform.position = Vector3.zero;
 
 
         #region UI
@@ -175,6 +168,11 @@ public class QuickSetUp : Editor
             cellPoolItem.AmountToPool = 100;
             pooler.poolItems.Add(cellPoolItem);
         }
+
+        ObjectPoolItem proximityPoolItem = new ObjectPoolItem();
+        proximityPoolItem.objectToPool = Resources.Load("QuickSetUp/ProximityCollider") as GameObject;
+        proximityPoolItem.AmountToPool = 200;
+        pooler.poolItems.Add(proximityPoolItem);
 
         PoolCustomInpector.GeneratePools();
 
