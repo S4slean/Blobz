@@ -112,13 +112,18 @@ public class Blob : PoolableObjects
         flyTime -= Time.deltaTime;
     }
 
+    public void ReduceCapacity()
+    {
+        infectedCell.StockageCapabilityVariation(-infectionAmount);
+        infectionAmount++;
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         if(blobType == BlobManager.BlobType.mad && collision.transform.tag == "Cell")
         {
             infectedCell = collision.transform.GetComponent<CellMain>();
             infectedCell.StockageCapabilityVariation( - infectionAmount);
-            BlobManager.blobList.Remove(this);
         }
 
         if (blobType == BlobManager.BlobType.soldier && canExplode)
