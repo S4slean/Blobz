@@ -176,6 +176,11 @@ public class QuickSetUp : Editor
             pooler.poolItems.Add(cellPoolItem);
         }
 
+        ObjectPoolItem proximityPoolItem = new ObjectPoolItem();
+        proximityPoolItem.objectToPool = Resources.Load("QuickSetUp/ProximityCollider") as GameObject;
+        proximityPoolItem.AmountToPool = 200;
+        pooler.poolItems.Add(proximityPoolItem);
+
         PoolCustomInpector.GeneratePools();
 
         #endregion

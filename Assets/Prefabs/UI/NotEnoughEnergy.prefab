@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3153117244740922824}
   - component: {fileID: 2511724587462335132}
   m_Layer: 5
-  m_Name: NotEnoughEnergy
+  m_Name: NotEnoughEnergy2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

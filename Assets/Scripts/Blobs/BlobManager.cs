@@ -78,7 +78,7 @@ public class BlobManager : MonoBehaviour
                     if (blob.tickCount > ticksBeforeMad)
                     {
                         blob.tickCount = 0;
-                        ChangeBlobTypeTo(blob, BlobType.mad);
+                        blob.ChangeType(BlobType.mad);
                     }
 
 
@@ -90,36 +90,36 @@ public class BlobManager : MonoBehaviour
 
                 case BlobType.soldier:
 
-                    blob.tickCount++;
-                    //Check si le blob doit agir sur ce tick
-                    if (blob.tickCount > ticksBtwnJumps)
-                    {
-                        blob.tickCount = 0;
+                    //blob.tickCount++;
+                    ////Check si le blob doit agir sur ce tick
+                    //if (blob.tickCount > ticksBtwnJumps)
+                    //{
+                    //    blob.tickCount = 0;
 
-                        //si le blob detecte un ennemi proche
-                        if (CheckNearbyEnemies(blob))
-                        {
+                    //    //si le blob detecte un ennemi proche
+                    //    if (CheckNearbyEnemies(blob))
+                    //    {
 
-                            //il calcule la bonne direction
-                            Vector3 directionToTarget = targetTransform.position - blob.transform.position;
+                    //        //il calcule la bonne direction
+                    //        Vector3 directionToTarget = targetTransform.position - blob.transform.position;
 
-                            //si il est assez près: BOOM!
-                            if (directionToTarget.magnitude < explosionTriggerRadius)
-                            {
-                                Explode(blob);
-                            }
-                            //sinon  il se rapproche
-                            else
-                            {
-                                Jump(blob, targetTransform);
-                            }
-                        }
-                        //si il ne detecte rien il se dépace de manière aléatoire
-                        else
-                        {
-                            Jump(blob);
-                        }
-                    }
+                    //        //si il est assez près: BOOM!
+                    //        if (directionToTarget.magnitude < explosionTriggerRadius)
+                    //        {
+                    //            Explode(blob);
+                    //        }
+                    //        //sinon  il se rapproche
+                    //        else
+                    //        {
+                    //            Jump(blob, targetTransform);
+                    //        }
+                    //    }
+                    //    //si il ne detecte rien il se dépace de manière aléatoire
+                    //    else
+                    //    {
+                    //        Jump(blob);
+                    //    }
+                    //}
                    
 
                     break;
@@ -241,33 +241,6 @@ public class BlobManager : MonoBehaviour
     //si le joueur click sur le blob on fait ça
    
 
-    //permet de changer le type de Blob
-    public void ChangeBlobTypeTo(Blob blob , BlobType newBlobType)
-    {
-
-        switch (newBlobType)
-        {
-            case BlobType.normal:
-                blob.rd.material = normalMat;
-                break;
-
-            case BlobType.charged:
-                blob.rd.material = chargedMat;
-                break;
-
-            case BlobType.soldier:
-                blob.rd.material = soldierMat;
-                break;
-
-            case BlobType.mad:
-                blob.rd.material = angryMat;
-                break;
-        }
-
-
-        blob.blobType = newBlobType;
-        //Debug.Log("Blob changed into " + blob.blobType);
-    }
 
     public void Jump(Blob blob)
     {
