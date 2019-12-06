@@ -534,7 +534,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &336654237016533570
 Transform:
   m_ObjectHideFlags: 0
@@ -574,8 +574,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc514b38bf0dc2a48871bdfb34ee22e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canBePool: 0
   myCollider: {fileID: 6332160634703649920}
   parent: {fileID: 5565576154424326082}
+  mR: {fileID: 0}
+  proximityColor: []
 --- !u!1 &8322403635272401023
 GameObject:
   m_ObjectHideFlags: 0
@@ -640,8 +643,9 @@ MonoBehaviour:
   showRef: 0
   links: []
   noMoreLink: 0
-  BlobNumber: 0
+  blobNumber: 0
   hasBeenDrop: 0
+  canBePlaced: 0
 --- !u!54 &8777569679337227342
 Rigidbody:
   m_ObjectHideFlags: 0

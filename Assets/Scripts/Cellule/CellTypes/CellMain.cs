@@ -41,7 +41,6 @@ public class CellMain : PoolableObjects
     public bool noMoreLink;
     public int blobNumber;
     public bool hasBeenDrop;
-    public bool canBeBuild;
 
     protected List<LinkClass> outputLinks = new List<LinkClass>();
     protected List<CellMain> cellAtProximity = new List<CellMain>();
@@ -75,6 +74,7 @@ public class CellMain : PoolableObjects
 
     protected bool inDanger;
     protected bool isDead = false;
+    public bool canBePlaced;
     protected bool isVisible;
     #endregion
 
@@ -348,7 +348,7 @@ public class CellMain : PoolableObjects
             {
                 inDanger = false;
             }
-            NBlob.text = (pourcentage +" %");
+            NBlob.text = (pourcentage + " %");
         }
         //NBlob.text = (blobNumber + " / " + currentBlobStockage);
 
@@ -377,6 +377,18 @@ public class CellMain : PoolableObjects
     public void ProximityCheck()
     {
         // ProximityDectection.myCollider.radius = Mathf.SmoothDamp(0, myCellTemplate.range / 2, ref velocity, 0.01f);
+        if (myCellTemplate.generateProximity)
+        {
+            for (int i = 0; i < myCellTemplate.proximityColliderNumber; i++)
+            {
+                CellProximityDectection newProximityCollider = ObjectPooler.poolingSystem.GetPooledObject<CellProximityDectection>() as CellProximityDectection;
+                newProximityCollider.transform.localScale = new Vector3(1, 1, 1) * (myCellTemplate.proximityColliders[i].range / 2);
+                newProximityCollider.transform.SetParent(transform);
+                newProximityCollider.Init(myCellTemplate.proximityColliders[i].proximityLevel);
+
+                newProximityCollider.Outpool();
+            }
+        }
         ProximityDectection.myCollider.radius = currentRange / 2;
     }
     public void AddToCellAtPromity(CellMain cellDetected)
@@ -606,7 +618,7 @@ public class CellMain : PoolableObjects
         {
             for (int i = 0; i < myCellTemplate.proximityColliders.Length; i++)
             {
-                Debug.Log(myCellTemplate.proximityColliders[i].proximityLevel + " "+ myCellTemplate.proximityColliders[i].range);
+                // Debug.Log(myCellTemplate.proximityColliders[i].proximityLevel + " "+ myCellTemplate.proximityColliders[i].range);
             }
         }
         RessourceTracker.instance.EnergyCapVariation(currentEnergyCap);

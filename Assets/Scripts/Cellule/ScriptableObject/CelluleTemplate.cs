@@ -89,6 +89,8 @@ public class CelluleTemplate : ScriptableObject
 [System.Serializable]
 public struct ProximityCollider
 {
+    [Range(1 , 5)]
     public int proximityLevel;
+    [Range (5 , 100)]
     public int range; 
 }

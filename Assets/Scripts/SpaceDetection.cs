@@ -11,13 +11,13 @@ public class SpaceDetection : MonoBehaviour
     {
         nbrOfObjetsInArea++;
         if (nbrOfObjetsInArea > 0)
-            cell.canBeBuild = false;
+            cell.canBePlaced = false;
     }
 
     private void OnTriggerExit(Collider other)
     {
         nbrOfObjetsInArea--;
         if (nbrOfObjetsInArea < 1)
-            cell.canBeBuild = true;
+            cell.canBePlaced = true;
     }
 }
