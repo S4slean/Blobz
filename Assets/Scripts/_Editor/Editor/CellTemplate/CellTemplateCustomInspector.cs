@@ -466,14 +466,25 @@ public class CellTemplateCustomInspector : Editor
 
                 EditorGUIUtility.labelWidth = 0.01f;
                 SerializedProperty currentElement = array.GetArrayElementAtIndex(i);
-                EditorGUILayout.BeginHorizontal("Box");
-                EditorGUILayout.LabelField(Label + " " + (i).ToString());
+                EditorGUILayout.BeginVertical("Box");
 
                 EditorGUILayout.PropertyField(currentElement);
+
+
+                EditorGUILayout.BeginHorizontal("Box");
+                EditorGUILayout.LabelField("Collider Proximity Level");
                 SerializedProperty currentElementProximityLevel =  currentElement.FindPropertyRelative("proximityLevel");
-                SerializedProperty currentElementRange =  currentElement.FindPropertyRelative("range");
                 currentElementProximityLevel.intValue = EditorGUILayout.IntField(currentElementProximityLevel.intValue);
+                EditorGUILayout.EndHorizontal();
+
+
+                EditorGUILayout.BeginHorizontal("Box");
+                EditorGUILayout.LabelField("Collider Range");
+                SerializedProperty currentElementRange =  currentElement.FindPropertyRelative("range");
                 currentElementRange.intValue = EditorGUILayout.IntField(currentElementRange.intValue);
+                EditorGUILayout.EndHorizontal();
+
+
 
 
                 if (currentElement == null && InfoBoxToggleProp.boolValue)
@@ -481,7 +492,7 @@ public class CellTemplateCustomInspector : Editor
                     EditorGUILayout.HelpBox("Le Label est vide", MessageType.Warning);
                 }
 
-                EditorGUILayout.EndHorizontal();
+                EditorGUILayout.EndVertical();
                 EditorGUIUtility.labelWidth = labelWidthBase;
             }
 

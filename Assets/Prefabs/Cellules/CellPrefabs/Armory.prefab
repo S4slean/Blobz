@@ -221,7 +221,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5711269901007850592
 Transform:
   m_ObjectHideFlags: 0
@@ -270,6 +270,7 @@ MonoBehaviour:
   noMoreLink: 0
   blobNumber: 0
   hasBeenDrop: 0
+  canBePlaced: 0
   rfBonus: 0
 --- !u!54 &5053171121655970789
 Rigidbody:
@@ -522,7 +523,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6037105782138153820
 Transform:
   m_ObjectHideFlags: 0
@@ -562,8 +563,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc514b38bf0dc2a48871bdfb34ee22e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canBePool: 0
   myCollider: {fileID: 7800882582734605355}
   parent: {fileID: 9095268931315420088}
+  mR: {fileID: 0}
+  proximityColor: []
 --- !u!1 &6760424054226889505
 GameObject:
   m_ObjectHideFlags: 0
@@ -868,6 +872,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6049475817487512608}
     m_Modifications:
+    - target: {fileID: 9026544737214006021, guid: b4ccfa016bc91574ea6c86454bee0db2,
+        type: 3}
+      propertyPath: m_Name
+      value: Armor
+      objectReference: {fileID: 0}
     - target: {fileID: 9026544737214006016, guid: b4ccfa016bc91574ea6c86454bee0db2,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -937,11 +946,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9026544737214006021, guid: b4ccfa016bc91574ea6c86454bee0db2,
-        type: 3}
-      propertyPath: m_Name
-      value: Armor
       objectReference: {fileID: 0}
     - target: {fileID: 6855726535936874185, guid: b4ccfa016bc91574ea6c86454bee0db2,
         type: 3}
