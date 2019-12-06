@@ -384,7 +384,7 @@ public class CellMain : PoolableObjects
                 CellProximityDectection newProximityCollider = ObjectPooler.poolingSystem.GetPooledObject<CellProximityDectection>() as CellProximityDectection;
                 newProximityCollider.transform.localScale = new Vector3(1, 1, 1) * (myCellTemplate.proximityColliders[i].range / 2);
                 newProximityCollider.transform.SetParent(transform);
-                newProximityCollider.Init(myCellTemplate.proximityColliders[i].proximityLevel);
+                newProximityCollider.Init(myCellTemplate.proximityColliders[i].proximityLevel, transform);
 
                 newProximityCollider.Outpool();
             }

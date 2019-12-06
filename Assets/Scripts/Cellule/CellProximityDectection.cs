@@ -11,11 +11,12 @@ public class CellProximityDectection : PoolableObjects
 
     private int proximityLevel; 
 
-    public void Init(int proximityLevel)
+    public void Init(int proximityLevel , Transform targetTransform)
     {
 
         Color matColor = proximityColor[proximityLevel - 1];
         mR.material.SetColor("_Color", matColor);
+        transform.position = targetTransform.position + new Vector3(0f, 0.01f * (float)proximityLevel, 0f);
     }
 
 
