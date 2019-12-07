@@ -73,7 +73,7 @@ public class CellMainInspector : Editor
             EditorGUILayout.PropertyField(NLinkProp);
             EditorGUILayout.PropertyField(NCurrentProximityProp);
             EditorGUILayout.PropertyField(graphTransformProp);
-            EditorGUILayout.PropertyField(ProximityDectectionProp);
+           // EditorGUILayout.PropertyField(ProximityDectectionProp);
             EditorGUILayout.PropertyField(TargetPosProp);
             EditorGUILayout.PropertyField(animProp);
          

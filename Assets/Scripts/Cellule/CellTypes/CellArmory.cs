@@ -81,9 +81,9 @@ public class CellArmory : CellMain
         TickManager.doTick -= BlobsTick;
     }
 
-    public override void ProximityLevelModification(int Amout)
+    public override void ProximityLevelModification()
     {
-        base.ProximityLevelModification(Amout);
+        base.ProximityLevelModification();
 
         //if (currentProximityLevel > 0)
         //{

@@ -23,27 +23,31 @@ public class CellMain : PoolableObjects
     public TextMeshPro NLink;
     public TextMeshPro NCurrentProximity;
     public Transform graphTransform;
-
     public Transform TargetPos;
+
+    public List<LinkClass> links = new List<LinkClass>();
+    protected List<LinkClass> outputLinks = new List<LinkClass>();
+
+    public List<CellProximityDectection> inThoseCellProximity = new List<CellProximityDectection>();
+    public List<CellProximityDectection> influencedByThoseCellProximity = new List<CellProximityDectection>();
+
 
     //public MeshFilter mF;
     //public MeshRenderer mR;
     // public MeshCollider mC;
 
-    public CellProximityDectection ProximityDectection;
+    //public CellProximityDectection ProximityDectection;
     #endregion
 
     #region DEBUG
     public bool showDebug;
+
     public bool showlinks;
     public bool showRef;
-    public List<LinkClass> links = new List<LinkClass>();
     public bool noMoreLink;
     public int blobNumber;
     public bool hasBeenDrop;
 
-    protected List<LinkClass> outputLinks = new List<LinkClass>();
-    protected List<CellMain> cellAtProximity = new List<CellMain>();
     protected int currentIndex;
 
     #endregion
@@ -86,7 +90,7 @@ public class CellMain : PoolableObjects
 
     public virtual void Awake()
     {
-        ProximityDectection.parent = this;
+        //ProximityDectection.parent = this;
 
         //mR.material = myCellTemplate.mat;
         //mF.mesh = myCellTemplate.mesh;
@@ -385,68 +389,138 @@ public class CellMain : PoolableObjects
                 newProximityCollider.transform.localScale = new Vector3(1, 1, 1) * (myCellTemplate.proximityColliders[i].range / 2);
                 newProximityCollider.transform.SetParent(transform);
                 newProximityCollider.Init(myCellTemplate.proximityColliders[i].proximityLevel, transform);
+                newProximityCollider.parent = this;
 
                 newProximityCollider.Outpool();
             }
         }
-        ProximityDectection.myCollider.radius = currentRange / 2;
+        //ProximityDectection.myCollider.radius = currentRange / 2;
     }
-    public void AddToCellAtPromity(CellMain cellDetected)
+
+    public void AddProximityInfluence(CellProximityDectection proximityToAdd)
     {
-        bool endFunction = false;
-        cellAtProximity.Add(cellDetected);
-        CellType cellDetectedType = cellDetected.myCellTemplate.type;
-        for (int i = 0; i < myCellTemplate.negativesInteractions.Length; i++)
+        bool becomeInfluenced = true;
+        bool checkEnd = false;
+        for (int i = 0; i < influencedByThoseCellProximity.Count; i++)
         {
-            if (cellDetectedType == myCellTemplate.negativesInteractions[i])
+            if (proximityToAdd.parent == influencedByThoseCellProximity[i].parent && !checkEnd)
             {
-                ProximityLevelModification(-1);
-                endFunction = true;
-                break;
+                if (Mathf.Abs(proximityToAdd.proximityLevel) <= Mathf.Abs(influencedByThoseCellProximity[i].proximityLevel))
+                {
+                    becomeInfluenced = false;
+                    checkEnd = true;
+                }
+                else
+                {
+                    becomeInfluenced = true;
+                    influencedByThoseCellProximity.Remove(influencedByThoseCellProximity[i]);
+                }
             }
         }
-        if (endFunction)
+        if (becomeInfluenced)
         {
-            return;
-        }
+            influencedByThoseCellProximity.Add(proximityToAdd);
 
-        for (int j = 0; j < myCellTemplate.positivesInteractions.Length; j++)
-        {
-            if (cellDetectedType == myCellTemplate.positivesInteractions[j])
-            {
-                ProximityLevelModification(1);
-                break;
-            }
         }
+        ProximityLevelModification();
     }
-    public void RemoveToCellAtPromity(CellMain cellDetected)
+
+    public void RemoveProximityInfluence(CellProximityDectection proximityToRemove)
     {
-        cellAtProximity.Remove(cellDetected);
-        CellType cellDetectedType = cellDetected.myCellTemplate.type;
-
-        for (int i = 0; i < myCellTemplate.negativesInteractions.Length; i++)
+        inThoseCellProximity.Remove(proximityToRemove);
+        for (int i = 0; i < influencedByThoseCellProximity.Count; i++)
         {
-            if (cellDetectedType == myCellTemplate.negativesInteractions[i])
+            if (proximityToRemove == influencedByThoseCellProximity[i])
             {
-                ProximityLevelModification(+1);
-                // Ajouter L'UI 
-            }
-
-        }
-        for (int j = 0; j < myCellTemplate.positivesInteractions.Length; j++)
-        {
-            if (cellDetectedType == myCellTemplate.positivesInteractions[j])
-            {
-                ProximityLevelModification(-1);
+                influencedByThoseCellProximity.Remove(proximityToRemove);
+                for (int y = 0; y < inThoseCellProximity.Count; y++)
+                {
+                    if (inThoseCellProximity[y].parent == proximityToRemove.parent)
+                    {
+                        AddProximityInfluence(inThoseCellProximity[y]);
+                    }
+                }
             }
         }
+        //influencedByThoseCellProximity.Remove(proximityToRemove);
+        //for (int y = 0; y < inThoseCellProximity.Count; y++)
+        //{
+        //    if (inThoseCellProximity[y].parent == proximityToRemove.parent)
+        //    {
+        //        AddProximityInfluence(inThoseCellProximity[y]);
+        //    }
+        //}
+
+        ProximityLevelModification();
     }
-    public virtual void ProximityLevelModification(int Amout)
+
+
+
+
+    #region Ancien Système de proximité
+
+    //public void AddToCellAtPromity(CellMain cellDetected)
+    //{
+    //    bool endFunction = false;
+    //    //cellAtProximity.Add(cellDetected);
+    //    CellType cellDetectedType = cellDetected.myCellTemplate.type;
+    //    for (int i = 0; i < myCellTemplate.negativesInteractions.Length; i++)
+    //    {
+    //        if (cellDetectedType == myCellTemplate.negativesInteractions[i])
+    //        {
+    //            ProximityLevelModification(-1);
+    //            endFunction = true;
+    //            break;
+    //        }
+    //    }
+    //    if (endFunction)
+    //    {
+    //        return;
+    //    }
+
+    //    for (int j = 0; j < myCellTemplate.positivesInteractions.Length; j++)
+    //    {
+    //        if (cellDetectedType == myCellTemplate.positivesInteractions[j])
+    //        {
+    //            ProximityLevelModification(1);
+    //            break;
+    //        }
+    //    }
+    //}
+    //public void RemoveToCellAtPromity(CellMain cellDetected)
+    //{
+    //    //cellAtProximity.Remove(cellDetected);
+    //    CellType cellDetectedType = cellDetected.myCellTemplate.type;
+
+    //    for (int i = 0; i < myCellTemplate.negativesInteractions.Length; i++)
+    //    {
+    //        if (cellDetectedType == myCellTemplate.negativesInteractions[i])
+    //        {
+    //            ProximityLevelModification(+1);
+    //            // Ajouter L'UI 
+    //        }
+
+    //    }
+    //    for (int j = 0; j < myCellTemplate.positivesInteractions.Length; j++)
+    //    {
+    //        if (cellDetectedType == myCellTemplate.positivesInteractions[j])
+    //        {
+    //            ProximityLevelModification(-1);
+    //        }
+    //    }
+    //}
+    #endregion
+    public virtual void ProximityLevelModification()
     {
         int LastProximityTier = currentProximityTier;
         int lastEnergyCap = currentEnergyCap;
 
-        currentProximityLevel += Amout;
+        currentProximityLevel = 0;
+        for (int i = 0; i < influencedByThoseCellProximity.Count; i++)
+        {
+            currentProximityLevel += influencedByThoseCellProximity[i].proximityLevel;
+        }
+
         NCurrentProximity.text = currentProximityLevel.ToString();
 
         if (currentProximityLevel >= 0 && currentProximityLevel < myCellTemplate.proximityLevelMax)
@@ -609,7 +683,8 @@ public class CellMain : PoolableObjects
         currentEnergyPerClick = myCellTemplate.energyPerClick;
         currentEnergyCap = myCellTemplate.energyCapBase;
 
-        cellAtProximity.Clear();
+        //cellAtProximity.Clear();
+
         currentProximityLevel = 0;
         inDanger = false;
         isDead = false;
@@ -623,7 +698,7 @@ public class CellMain : PoolableObjects
         }
         RessourceTracker.instance.EnergyCapVariation(currentEnergyCap);
         ProximityCheck();
-        ProximityLevelModification(0);
+        ProximityLevelModification();
     }
 
     public int GetCurrentRange()
