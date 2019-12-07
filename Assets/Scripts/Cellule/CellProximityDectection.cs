@@ -9,7 +9,8 @@ public class CellProximityDectection : PoolableObjects
     public MeshRenderer mR;
     public Color[] proximityColor;
 
-    private int proximityLevel; 
+    private int proximityLevel;
+    private List<CellMain> cellDetected = new List<CellMain>();
 
     public void Init(int proximityLevel , Transform targetTransform)
     {
@@ -23,9 +24,10 @@ public class CellProximityDectection : PoolableObjects
     private void OnTriggerEnter(Collider other)
     {
         CellMain cell = other.GetComponent<CellMain>();
-        if (cell != null)
+        if (cell != null )
         {
-            parent.AddToCellAtPromity(cell);
+            //parent.AddToCellAtPromity(cell);
+            cellDetected.Add(cell);
         }
     }
     private void OnTriggerExit(Collider other)
@@ -33,7 +35,7 @@ public class CellProximityDectection : PoolableObjects
         CellMain cell = other.GetComponent<CellMain>();
         if (cell != null)
         {
-            parent.RemoveToCellAtPromity(cell);
+            cellDetected.Remove(cell);
         }
 
     }
