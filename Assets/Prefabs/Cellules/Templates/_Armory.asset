@@ -34,6 +34,10 @@ MonoBehaviour:
   tickForActivationBase: 4
   energyPerClick: 1
   linkCapability: 4
+  limitedInLinks: 0
+  slotDistance: 10
+  numberOfOuputLinks: 0
+  numberOfInputLinks: 0
   proximityLevelMax: 4
   positivesInteractions: 02000000
   negativesInteractions: 03000000
@@ -52,6 +56,6 @@ MonoBehaviour:
   StatsModification: 5
   REFS: 0
   ToggleInfoBox: 0
-  STATS: 1
+  STATS: 0
   ProductionGestion: 0
-  ProximityGestion: 1
+  ProximityGestion: 0

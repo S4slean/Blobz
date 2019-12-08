@@ -47,8 +47,10 @@ public class CellMain : PoolableObjects
     public bool noMoreLink;
     public int blobNumber;
     public bool hasBeenDrop;
+    public bool limitedInLink;
 
     protected int currentIndex;
+
 
     #endregion
 
@@ -696,6 +698,11 @@ public class CellMain : PoolableObjects
                 // Debug.Log(myCellTemplate.proximityColliders[i].proximityLevel + " "+ myCellTemplate.proximityColliders[i].range);
             }
         }
+        if (myCellTemplate.limitedInLinks)
+        {
+            limitedInLink = true;
+            GenerateLinkSlot();
+        }
         RessourceTracker.instance.EnergyCapVariation(currentEnergyCap);
         ProximityCheck();
         ProximityLevelModification();
@@ -716,4 +723,47 @@ public class CellMain : PoolableObjects
         isVisible = true;
     }
 
+    private void GenerateLinkSlot()
+    {
+        int currentSlot = 0;
+        float yOffset = 0.5f;
+        if (myCellTemplate.numberOfOuputLinks < 4)
+        {
+            for (int i = 0; i < myCellTemplate.numberOfOuputLinks; i++)
+            {
+                float anglefrac = 2 * Mathf.PI / 8;
+
+                //calcule de l'angle en foncttion du nombre de point
+                float angle = anglefrac * currentSlot;
+                Vector3 dir = new Vector3(Mathf.Sin(angle), yOffset, Mathf.Cos(angle));
+                Vector3 pos = dir * myCellTemplate.slotDistance;
+
+                LinkJointClass newSlot = ObjectPooler.poolingSystem.GetPooledObject<LinkJointClass>() as LinkJointClass;
+                newSlot.Init(true);
+                newSlot.transform.parent = this.transform;
+                newSlot.transform.localPosition = pos;
+                currentSlot++;
+            }
+        }
+        if (myCellTemplate.numberOfInputLinks < 4)
+        {
+            for (int i = 0; i < myCellTemplate.numberOfInputLinks; i++)
+            {
+
+                float anglefrac = 2 * Mathf.PI / 8;
+
+                //calcule de l'angle en foncttion du nombre de point
+                float angle = anglefrac * currentSlot;
+                Vector3 dir = new Vector3(Mathf.Sin(angle), yOffset, Mathf.Cos(angle));
+                Vector3 pos = dir * myCellTemplate.slotDistance;
+
+                LinkJointClass newSlot = ObjectPooler.poolingSystem.GetPooledObject<LinkJointClass>() as LinkJointClass;
+                newSlot.Init(false);
+                newSlot.transform.parent = this.transform;
+                newSlot.transform.localPosition = pos;
+                currentSlot++;
+            }
+        }
+
+    }
 }
