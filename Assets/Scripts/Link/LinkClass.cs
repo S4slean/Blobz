@@ -13,16 +13,19 @@ public class LinkClass : PoolableObjects
     #region INFO
     public float angle;
     public CellMain originalCell, receivingCell;
+    public LinkJointClass startJoint, endJoint;
     public LineRenderer line;
 
     public Vector3 startPos, endPos;
+
+    private bool canSwitch;
 
     //Gestion du graph 
     private int range;
     private float bendRatio;
     //direction non normaliser
     private Vector3 trajectoir;
-    
+
     #endregion
 
     public void Init(CellMain OutputCell)
@@ -67,15 +70,15 @@ public class LinkClass : PoolableObjects
         }
     }
 
-    public bool CheckNewLinkLength (Vector3 posToTest , CellMain startCell)
+    public bool CheckNewLinkLength(Vector3 posToTest, CellMain startCell)
     {
         float length1 = Vector3.Distance(startPos, posToTest);
         //a modifier par rappport à la proximité
-        if (length1 <= startCell.myCellTemplate.rangeBase/2)
+        if (length1 <= startCell.GetCurrentRange())
         {
             Debug.Log(" Lien ok");
             endPos = posToTest;
-            return true; 
+            return true;
         }
         else
         {
@@ -107,33 +110,35 @@ public class LinkClass : PoolableObjects
         gameObject.SetActive(false);
     }
 
-    public void FirstSetup(Vector3 firstPos, Vector3 lastPos , int cellRange)
+    public void FirstSetup(Vector3 firstPos, Vector3 lastPos, int cellRange)
     {
-        range = cellRange;
+        range = cellRange * 2;
         line.positionCount = range;
         startPos = firstPos;
         endPos = lastPos;
         UpdatePoint();
     }
 
+
+
     private void UpdatePoint()
     {
         trajectoir = endPos - startPos;
         bendRatio = trajectoir.magnitude / range;
 
-        Vector3 posFrag = trajectoir / range; 
+        Vector3 posFrag = trajectoir / (range/2);
         for (int i = 0; i < range; i++)
         {
             line.SetPosition(i, startPos + i * posFrag);
         }
-        
+
     }
     public void UpdatePoint(Vector3 lastPos)
     {
         endPos = lastPos;
 
         trajectoir = endPos - startPos;
-        bendRatio = trajectoir.magnitude / range;
+        bendRatio = trajectoir.magnitude / (range/2);
 
         Vector3 posFrag = trajectoir / range;
         for (int i = 0; i < range; i++)
@@ -142,6 +147,5 @@ public class LinkClass : PoolableObjects
         }
 
     }
-
 
 }
