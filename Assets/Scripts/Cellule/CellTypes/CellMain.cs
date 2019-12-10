@@ -30,6 +30,7 @@ public class CellMain : PoolableObjects
 
     public List<CellProximityDectection> inThoseCellProximity = new List<CellProximityDectection>();
     public List<CellProximityDectection> influencedByThoseCellProximity = new List<CellProximityDectection>();
+    private CellProximityDectection[] myProximityCollider;
 
 
     //public MeshFilter mF;
@@ -202,8 +203,16 @@ public class CellMain : PoolableObjects
             }
 
         }
+
+        //Mret dans la pull les enfants
+        for (int i = 0; i < myProximityCollider.Length; i++)
+        {
+            myProximityCollider[i].transform.parent = null;
+            myProximityCollider[i].Inpool();
+        }
+
         blobNumber = 0;
-        SetupVariable();
+        //SetupVariable();
         Inpool();
     }
     public virtual void BlobsTick()
@@ -385,9 +394,11 @@ public class CellMain : PoolableObjects
         // ProximityDectection.myCollider.radius = Mathf.SmoothDamp(0, myCellTemplate.range / 2, ref velocity, 0.01f);
         if (myCellTemplate.generateProximity)
         {
+            myProximityCollider = new CellProximityDectection[myCellTemplate.proximityColliderNumber];
             for (int i = 0; i < myCellTemplate.proximityColliderNumber; i++)
             {
                 CellProximityDectection newProximityCollider = ObjectPooler.poolingSystem.GetPooledObject<CellProximityDectection>() as CellProximityDectection;
+                myProximityCollider.SetValue(newProximityCollider, i);
                 newProximityCollider.transform.localScale = new Vector3(1, 1, 1) * (myCellTemplate.proximityColliders[i].range / 2);
                 newProximityCollider.transform.SetParent(transform);
                 newProximityCollider.Init(myCellTemplate.proximityColliders[i].proximityLevel, transform);
@@ -735,10 +746,13 @@ public class CellMain : PoolableObjects
 
                 //calcule de l'angle en foncttion du nombre de point
                 float angle = anglefrac * currentSlot;
-                Vector3 dir = new Vector3(Mathf.Sin(angle), yOffset, Mathf.Cos(angle));
-                Vector3 pos = dir * myCellTemplate.slotDistance;
+                Vector3 dir = new Vector3(Mathf.Sin(angle), 0, Mathf.Cos(angle));
+                Vector3 pos = dir * myCellTemplate.slotDistance + new Vector3(0, yOffset, 0);
 
                 LinkJointClass newSlot = ObjectPooler.poolingSystem.GetPooledObject<LinkJointClass>() as LinkJointClass;
+
+                newSlot.Outpool();
+                newSlot.transform.localRotation = Quaternion.Euler(90, 0, 0);
                 newSlot.Init(true);
                 newSlot.transform.parent = this.transform;
                 newSlot.transform.localPosition = pos;
@@ -754,10 +768,13 @@ public class CellMain : PoolableObjects
 
                 //calcule de l'angle en foncttion du nombre de point
                 float angle = anglefrac * currentSlot;
-                Vector3 dir = new Vector3(Mathf.Sin(angle), yOffset, Mathf.Cos(angle));
-                Vector3 pos = dir * myCellTemplate.slotDistance;
+                Vector3 dir = new Vector3(Mathf.Sin(angle), 0, Mathf.Cos(angle));
+                Vector3 pos = dir * myCellTemplate.slotDistance + new Vector3(0, yOffset, 0);
+
 
                 LinkJointClass newSlot = ObjectPooler.poolingSystem.GetPooledObject<LinkJointClass>() as LinkJointClass;
+                newSlot.Outpool();
+                newSlot.transform.localRotation = Quaternion.Euler(90, 0, 0);
                 newSlot.Init(false);
                 newSlot.transform.parent = this.transform;
                 newSlot.transform.localPosition = pos;

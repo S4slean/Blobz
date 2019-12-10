@@ -5,6 +5,7 @@ using UnityEngine;
 public class PoolableObjects : MonoBehaviour
 {
     public bool canBePool;
+    public GameObject initialPool;
 
 
     public void Outpool()

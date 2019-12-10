@@ -5,11 +5,14 @@ using UnityEngine;
 public class LinkJointClass : PoolableObjects
 {
     public LinkClass link;
-    public bool isOutput;
     public Color outputColor;
     public Color InputColor;
 
+
     public MeshRenderer mF;
+
+    public bool isOutput;
+    public bool isLock;
 
 
     public void Init(bool _isOuput)
@@ -25,15 +28,22 @@ public class LinkJointClass : PoolableObjects
 
     private void Switch()
     {
-        if (isOutput)
+        if (!isLock)
         {
-            isOutput = false;
+            if (isOutput)
+            {
+                isOutput = false;
+            }
+            else
+            {
+                isOutput = true;
+            }
+            GraphUpdate();
         }
         else
         {
-            isOutput = true; 
+            Debug.Log("Le joint est lock");
         }
-        GraphUpdate();
     }
 
     private void GraphUpdate()
@@ -44,7 +54,7 @@ public class LinkJointClass : PoolableObjects
         }
         else
         {
-            mF.material.SetColor("_Color", outputColor);
+            mF.material.SetColor("_Color", InputColor);
         }
     }
 }

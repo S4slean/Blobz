@@ -77,7 +77,6 @@ public class PoolCustomInpector : Editor
             }
             #region MyRegion
 
-            #endregion
             //for (int i = 0; i < item.AmountToPool; i++)
             //{
             //    //GameObject obj = (GameObject)Instantiate(item.objectToPool, item.poolParent.transform);
@@ -86,18 +85,19 @@ public class PoolCustomInpector : Editor
             //    po.Inpool();
             //    objPooler.pooledObjects.Add(po);
             //}
+            #endregion
             for (int i = 0; i < objPooler.poolItems[j].AmountToPool; i++)
             {
                 //GameObject obj = (GameObject)Instantiate(item.objectToPool, item.poolParent.transform);
                 GameObject obj = (GameObject)PrefabUtility.InstantiatePrefab(objPooler.poolItems[j].objectToPool, objPooler.poolItems[j].poolParent.transform);
                 if (obj == null)
-                {
-                    
+                {                 
                     return;
                 }
 
                 PoolableObjects po = obj.GetComponent<PoolableObjects>();
                 po.Inpool();
+                po.initialPool = objPooler.poolItems[j].poolParent;
                 objPooler.pooledObjects.Add(po);
             }
         }
