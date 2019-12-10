@@ -207,12 +207,12 @@ public class CellMain : PoolableObjects
         //Mret dans la pull les enfants
         for (int i = 0; i < myProximityCollider.Length; i++)
         {
-            myProximityCollider[i].transform.parent = null;
             myProximityCollider[i].Inpool();
         }
 
         blobNumber = 0;
         //SetupVariable();
+
         Inpool();
     }
     public virtual void BlobsTick()
@@ -657,21 +657,23 @@ public class CellMain : PoolableObjects
 
 
     //A changé au lieu de désactiver on peut juste désactiver les components ( c'est une micro opti ) 
-    public override void Inpool()
-    {
-        if (Application.isEditor)
-        {
-            canBePool = true;
-            gameObject.SetActive(false);
-        }
-        else
-        {
 
-            canBePool = true;
-            transform.position = ObjectPooler.poolingSystem.transform.position;
-            StartCoroutine(DesactiveGameObject(0.02f));
-        }
-    }
+    //public override void Inpool()
+    //{
+    //    if (Application.isEditor)
+    //    {
+    //        canBePool = true;
+    //        gameObject.SetActive(false);
+    //    }
+    //    else
+    //    {
+
+    //        canBePool = true;
+    //        transform.position = ObjectPooler.poolingSystem.transform.position;
+    //        StartCoroutine(DesactiveGameObject());
+    //    }
+    //}
+
     public virtual void UpdateCaract()
     {
         NBlob.text = (blobNumber + " / " + currentBlobStockage);

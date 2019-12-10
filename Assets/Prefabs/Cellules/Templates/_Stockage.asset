@@ -37,7 +37,7 @@ MonoBehaviour:
   tickForActivationBase: 1
   energyPerClick: 1
   linkCapability: 8
-  limitedInLinks: 1
+  limitedInLinks: 0
   slotDistance: 1.5
   numberOfOuputLinks: 2
   numberOfInputLinks: 1
