@@ -60,23 +60,23 @@ public class CellManager : MonoBehaviour
         InputManager.Instance.DraggingLink = true;
         //selectedCell.AddLink(currentLink, true);
 
-        currentLink.startPos = selectedCell.transform.position;
-
-
         //Ancien Systeme de Link 
+        //currentLink.startPos = selectedCell.transform.position;
         //currentLine.SetPosition(0, currentLink.startPos);
         //currentLink.endPos = InputManager.Instance.mousePos;
         //currentLine.SetPosition(1, currentLink.endPos);
 
 
         ///nouveau systeme de link
-        currentLink.FirstSetup(currentLink.startPos, InputManager.Instance.mousePos, selectedCell.GetCurrentRange());
+        Vector3 dir = (InputManager.Instance.mousePos - selectedCell.transform.position).normalized;
+        Vector3 startPos = selectedCell.transform.position + dir * 1.3f;
+        currentLink.FirstSetup(startPos, InputManager.Instance.mousePos, selectedCell.GetCurrentRange());
     }
 
     public void DragNewlink(RaycastHit hit)
     {
         // Permet de draw la line en runtime 
-        float distance = Vector3.Distance(currentLink.startPos, hit.point);
+        float distance = Vector3.Distance(currentLink.extremityPos[0], hit.point);
         if (distance <= selectedCell.myCellTemplate.rangeBase / 2)
         {
             //Ancien Systeme link 
@@ -86,13 +86,13 @@ public class CellManager : MonoBehaviour
 
 
             //nouveau systeme de link
-            Vector3 lastPos = new Vector3(hit.point.x, currentLink.startPos.y, hit.point.z);
+            Vector3 lastPos = new Vector3(hit.point.x, currentLink.extremityPos[0].y, hit.point.z);
             currentLink.UpdatePoint(lastPos);
 
         }
         else
         {
-            Vector3 direction = (hit.point - currentLink.startPos);
+            Vector3 direction = (hit.point - currentLink.extremityPos[0]);
             direction = new Vector3(direction.x, 0, direction.z);
             direction = direction.normalized;
 
@@ -102,7 +102,7 @@ public class CellManager : MonoBehaviour
 
 
             //nouveau systeme de link
-            Vector3 lastPos = currentLink.startPos + direction * selectedCell.GetCurrentRange();
+            Vector3 lastPos = currentLink.extremityPos[0] + direction * selectedCell.GetCurrentRange();
             currentLink.UpdatePoint(lastPos);
         }
     }
@@ -110,7 +110,7 @@ public class CellManager : MonoBehaviour
     public void DragNewlink(Vector3 pos)
     {
         // Permet de draw la line en runtime 
-        float distance = Vector3.Distance(currentLink.startPos, pos);
+        float distance = Vector3.Distance(currentLink.extremityPos[0], pos);
         if (distance <= selectedCell.myCellTemplate.rangeBase / 2)
         {
             //Ancien Systeme
@@ -119,12 +119,12 @@ public class CellManager : MonoBehaviour
 
 
             //nouveau systeme de link
-            Vector3 lastPos = new Vector3(pos.x, currentLink.startPos.y, pos.z);
+            Vector3 lastPos = new Vector3(pos.x, currentLink.extremityPos[0].y, pos.z);
             currentLink.UpdatePoint(lastPos);
         }
         else
         {
-            Vector3 direction = (pos - currentLink.startPos);
+            Vector3 direction = (pos - currentLink.extremityPos[0]);
             direction = new Vector3(direction.x, 0, direction.z);
             direction = direction.normalized;
 
@@ -133,7 +133,7 @@ public class CellManager : MonoBehaviour
             //currentLine.SetPosition(1, currentLink.endPos);
 
             //Nouveau System
-            Vector3 lastPos = currentLink.startPos + direction * selectedCell.myCellTemplate.rangeBase / 2;
+            Vector3 lastPos = currentLink.extremityPos[0] + direction * selectedCell.myCellTemplate.rangeBase / 2;
             currentLink.UpdatePoint(lastPos);
         }
     }
@@ -188,8 +188,8 @@ public class CellManager : MonoBehaviour
             Vector3 lastPos = receivingCell.transform.position;
             currentLink.UpdatePoint(lastPos);
 
-            selectedCell.AddLink(currentLink, true);
-            receivingCell.AddLink(currentLink, false);
+            selectedCell.AddLinkReferenceToCell(currentLink, true);
+            receivingCell.AddLinkReferenceToCell(currentLink, false);
             cleanLinkRef();
 
 

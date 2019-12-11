@@ -5,14 +5,18 @@ using UnityEngine;
 public class LinkJointClass : PoolableObjects
 {
     public LinkClass link;
+    public List<CellMain> cellsAttach = new List<CellMain>() ; 
     public Color outputColor;
     public Color InputColor;
 
 
     public MeshRenderer mF;
 
+
+    public bool nextToACell;
     public bool isOutput;
     public bool isLock;
+    public bool canBeDropEveryWhere;
 
 
     public void Init(bool _isOuput)
@@ -23,30 +27,13 @@ public class LinkJointClass : PoolableObjects
 
     public void PlayerInteraction()
     {
-        Switch();
-    }
-
-    private void Switch()
-    {
         if (!isLock)
         {
-            if (isOutput)
-            {
-                isOutput = false;
-            }
-            else
-            {
-                isOutput = true;
-            }
-            GraphUpdate();
-        }
-        else
-        {
-            Debug.Log("Le joint est lock");
+            link.SensSwitch();
         }
     }
 
-    private void GraphUpdate()
+    public void GraphUpdate()
     {
         if (isOutput)
         {
@@ -55,6 +42,25 @@ public class LinkJointClass : PoolableObjects
         else
         {
             mF.material.SetColor("_Color", InputColor);
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        CellMain cell = other.GetComponent<CellMain>();
+        if (cell)
+        {
+            nextToACell = true;
+            cellsAttach.Add(cell);
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        CellMain cell = other.GetComponent<CellMain>();
+        if (cell)
+        {
+            nextToACell = false;
+            cellsAttach.Remove(cell);
         }
     }
 }

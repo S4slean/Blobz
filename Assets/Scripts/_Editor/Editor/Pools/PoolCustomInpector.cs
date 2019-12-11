@@ -6,7 +6,7 @@ using UnityEditor;
 [CustomEditor(typeof(ObjectPooler))]
 public class PoolCustomInpector : Editor
 {
-    static ObjectPooler objPooler;
+    public static ObjectPooler objPooler;
 
 
 
@@ -69,6 +69,7 @@ public class PoolCustomInpector : Editor
                 GameObject obj = new GameObject(objPooler.poolItems[j].objectToPool.name + "_Pool");
                 Undo.RegisterCreatedObjectUndo(obj, "CreatedObj");
                 obj.transform.SetParent(objPooler.transform);
+                obj.transform.localPosition = Vector3.zero;
                 ObjectPoolItem currentPoolItem = objPooler.poolItems[j];
                 //objPooler.poolItems.Remove(objPooler.poolItems[j]);
                 currentPoolItem.poolParent = obj;
@@ -96,7 +97,7 @@ public class PoolCustomInpector : Editor
                 }
 
                 PoolableObjects po = obj.GetComponent<PoolableObjects>();
-                po.Inpool();
+                po.InpoolEditor();
                 po.initialPool = objPooler.poolItems[j].poolParent;
                 objPooler.pooledObjects.Add(po);
             }

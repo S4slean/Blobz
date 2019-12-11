@@ -14,8 +14,15 @@ public class PoolableObjects : MonoBehaviour
         gameObject.SetActive(true);
     }
 
+    public virtual void InpoolEditor()
+    {
+        canBePool = true;
+        gameObject.SetActive(false);
+    }
+
     public virtual void Inpool()
     {
+
         transform.position = initialPool.transform.position;
         transform.SetParent(initialPool.transform);
         canBePool = true;
@@ -28,7 +35,6 @@ public class PoolableObjects : MonoBehaviour
     {
         //A changé mais c'est pour test
         yield return new WaitForFixedUpdate();
-        Debug.Log(transform.name);
         gameObject.SetActive(false);      
     }
 }

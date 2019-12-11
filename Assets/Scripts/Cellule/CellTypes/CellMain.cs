@@ -591,13 +591,13 @@ public class CellMain : PoolableObjects
     #endregion
 
     #region LINK_GESTION
-    public virtual void AddLink(LinkClass linkToAdd, bool output)
+    public virtual void AddLinkReferenceToCell(LinkClass linkToAdd, bool output)
     {
         links.Add(linkToAdd);
 
         if (output)
         {
-            linkToAdd.Init(this);
+            linkToAdd.AngleFromCell(this);
             outputLinks.Add(linkToAdd);
             SortingLink();
         }
