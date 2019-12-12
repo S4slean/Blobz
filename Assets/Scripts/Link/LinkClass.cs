@@ -46,13 +46,13 @@ public class LinkClass : PoolableObjects
                 joints[i].Inpool();
             }
         }
-        
+
 
         gameObject.SetActive(false);
     }
     public void FirstSetup(Vector3 firstPos, Vector3 lastPos, int cellRange)
     {
-        range = cellRange;
+        range = cellRange * 2;
         line.positionCount = range;
         extremityPos[0] = firstPos;
         extremityPos[1] = lastPos;
@@ -67,6 +67,37 @@ public class LinkClass : PoolableObjects
         }
         UpdatePoint();
     }
+
+    public void FirstSetupWithSlot(Vector3 firstPos, Vector3 lastPos, int cellRange, LinkJointClass baseJoint, bool isOutput)
+    {
+        range = cellRange * 2;
+        line.positionCount = range;
+        extremityPos[0] = firstPos;
+        extremityPos[1] = lastPos;
+
+        LinkJointClass createdJoint = ObjectPooler.poolingSystem.GetPooledObject<LinkJointClass>() as LinkJointClass; ;
+        if (isOutput)
+        {
+            baseJoint.transform.position = extremityPos[0];
+            joints[0] = baseJoint;
+            createdJoint.transform.position = extremityPos[1];
+            createdJoint.isOutput = false;
+        }
+        else
+        {
+            baseJoint.transform.position = extremityPos[1];
+            joints[1] = baseJoint;
+            createdJoint.transform.position = extremityPos[0];
+            createdJoint.isOutput = true;
+        }
+
+        createdJoint.GraphUpdate();
+        createdJoint.Outpool();
+
+        UpdatePoint();
+
+    }
+
     public void UpdateLinks(CellMain cellInDeplacement, Vector3 posToTest)
     {
         //Updata la position du lien en fonction de la cellules déplacée
@@ -87,28 +118,50 @@ public class LinkClass : PoolableObjects
         trajectoir = extremityPos[1] - extremityPos[0];
         bendRatio = trajectoir.magnitude / range;
 
-        Vector3 posFrag = trajectoir / (range/2);
-        for (int i = 0; i < range; i++)
+        Vector3 posFrag = trajectoir / range;
+        for (int i = 0; i < range - 1; i++)
         {
             line.SetPosition(i, extremityPos[0] + i * posFrag);
         }
-
+        line.SetPosition(range - 1, extremityPos[1]);
     }
     public void UpdatePoint(Vector3 lastPos)
     {
         extremityPos[1] = lastPos;
+        joints[1].transform.position = extremityPos[1];
 
         trajectoir = extremityPos[1] - extremityPos[0];
-        bendRatio = trajectoir.magnitude / (range/2);
+        bendRatio = trajectoir.magnitude / range;
 
         Vector3 posFrag = trajectoir / range;
-        for (int i = 0; i < range; i++)
+        for (int i = 0; i < range - 1; i++)
         {
             line.SetPosition(i, extremityPos[0] + i * posFrag);
         }
-        joints[1].transform.position = extremityPos[1];
+        line.SetPosition(range - 1, extremityPos[1]);
+    }
 
+    public void UpdatePointFromJoint(Vector3 lastPos, bool isOutpul)
+    {
+        if (isOutpul)
+        {
+            extremityPos[1] = lastPos;
+            //joints[1].transform.position = extremityPos[1];
+        }
+        else
+        {
+            extremityPos[0] = lastPos;
+        }
 
+        trajectoir = extremityPos[1] - extremityPos[0];
+        bendRatio = trajectoir.magnitude / range;
+
+        Vector3 posFrag = trajectoir / range;
+        for (int i = 0; i < range - 1; i++)
+        {
+            line.SetPosition(i, extremityPos[0] + i * posFrag);
+        }
+        line.SetPosition(range - 1, extremityPos[1]);
     }
     #endregion
 
@@ -201,7 +254,7 @@ public class LinkClass : PoolableObjects
         {
             LinkJointClass tJoint = joints[0];
             joints[0] = joints[1];
-            joints[1] = tJoint; 
+            joints[1] = tJoint;
 
         }
 

@@ -51,26 +51,36 @@ public class CellManager : MonoBehaviour
             Debug.Log("Trop de lien sur la cellule de base");
             return;
         }
-        //Referencing in script
-        LinkClass newLink = ObjectPooler.poolingSystem.GetPooledObject<LinkClass>() as LinkClass;
-        currentLink = newLink;
-        currentLine = newLink.line;
-        currentLink.Outpool();
-        //Setup 
-        InputManager.Instance.DraggingLink = true;
-        //selectedCell.AddLink(currentLink, true);
 
-        //Ancien Systeme de Link 
-        //currentLink.startPos = selectedCell.transform.position;
-        //currentLine.SetPosition(0, currentLink.startPos);
-        //currentLink.endPos = InputManager.Instance.mousePos;
-        //currentLine.SetPosition(1, currentLink.endPos);
+        if (selectedCell.myCellTemplate.limitedInLinks)
+        {
+            selectedCell.CheckRestritedSlot();
+        }
+        else
+        {
+            #region SANS RESTRICTION 
+            //Referencing in script
+            LinkClass newLink = ObjectPooler.poolingSystem.GetPooledObject<LinkClass>() as LinkClass;
+            currentLink = newLink;
+            currentLine = newLink.line;
+            currentLink.Outpool();
+            //Setup 
+            InputManager.Instance.DraggingLink = true;
+            //selectedCell.AddLink(currentLink, true);
+
+            //Ancien Systeme de Link 
+            //currentLink.startPos = selectedCell.transform.position;
+            //currentLine.SetPosition(0, currentLink.startPos);
+            //currentLink.endPos = InputManager.Instance.mousePos;
+            //currentLine.SetPosition(1, currentLink.endPos);
 
 
-        ///nouveau systeme de link
-        Vector3 dir = (InputManager.Instance.mousePos - selectedCell.transform.position).normalized;
-        Vector3 startPos = selectedCell.transform.position + dir * 1.3f;
-        currentLink.FirstSetup(startPos, InputManager.Instance.mousePos, selectedCell.GetCurrentRange());
+            ///nouveau systeme de link
+            Vector3 dir = (InputManager.Instance.mousePos - selectedCell.transform.position).normalized;
+            Vector3 startPos = selectedCell.transform.position + dir * 1.3f;
+            currentLink.FirstSetup(startPos, InputManager.Instance.mousePos, selectedCell.GetCurrentRange());
+            #endregion
+        }
     }
 
     public void DragNewlink(RaycastHit hit)
@@ -266,6 +276,7 @@ public class CellManager : MonoBehaviour
     {
         selectedCell.ClickInteraction();
     }
+
     public void CellDeplacement(Vector3 posToTest, CellMain cellToMove, bool isNewCell)
     {
         bool shouldStop = false;

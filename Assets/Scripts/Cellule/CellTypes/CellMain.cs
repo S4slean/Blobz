@@ -6,7 +6,7 @@ using TMPro;
 using UnityEngine.EventSystems;
 
 //[RequireComponent(typeof(MeshCollider))]  //typeof(MeshRenderer), typeof(MeshFilter),
-public class CellMain : PoolableObjects
+public class CellMain : PoolableObjects, PlayerAction
 {
     #region Variables
     [Tooltip("glissé l'un des srcyptable object structure ici")]
@@ -32,6 +32,8 @@ public class CellMain : PoolableObjects
     public List<CellProximityDectection> influencedByThoseCellProximity = new List<CellProximityDectection>();
     private CellProximityDectection[] myProximityCollider;
 
+    public LinkJointClass[] outPutJoint;
+    public LinkJointClass[] InputJoint;
 
     //public MeshFilter mF;
     //public MeshRenderer mR;
@@ -290,19 +292,19 @@ public class CellMain : PoolableObjects
         }
         UpdateCaract();
     }
-    public virtual void ClickInteraction()
-    {
-        if (blobNumber > 0)
-        {
-            BlobNumberVariation(-1);
-            //CellManager.Instance.EnergyVariation(currentEnergyPerClick);
-            RessourceTracker.instance.EnergyVariation(currentEnergyPerClick);
-        }
+    //public virtual void ClickInteraction()
+    //{
+    //    if (blobNumber > 0)
+    //    {
+    //        BlobNumberVariation(-1);
+    //        //CellManager.Instance.EnergyVariation(currentEnergyPerClick);
+    //        RessourceTracker.instance.EnergyVariation(currentEnergyPerClick);
+    //    }
 
-        anim.Play("PlayerInteraction", 0, 0f);
+    //    anim.Play("PlayerInteraction", 0, 0f);
 
 
-    }
+    //}
 
 
     #region BLOB_GESTION
@@ -727,6 +729,28 @@ public class CellMain : PoolableObjects
     }
     #endregion
 
+    public LinkJointClass CheckRestritedSlot()
+    {
+        for (int i = 0; i < outPutJoint.Length ; i++)
+        {
+            if (outPutJoint[i].link == null)
+            {
+                return outPutJoint[i];
+            }
+           
+        }
+        for (int i = 0; i < InputJoint.Length; i++)
+        {
+            if (InputJoint[i].link == null)
+            {
+                return InputJoint[i];
+            }
+        }
+
+        return null;
+
+    }
+
     private void OnBecameInvisible()
     {
         isVisible = false;
@@ -740,8 +764,10 @@ public class CellMain : PoolableObjects
     {
         int currentSlot = 0;
         float yOffset = 0.5f;
-        if (myCellTemplate.numberOfOuputLinks < 4)
+        int maxJoint = 4;
+        if (myCellTemplate.numberOfOuputLinks < maxJoint)
         {
+            outPutJoint = new LinkJointClass[maxJoint];
             for (int i = 0; i < myCellTemplate.numberOfOuputLinks; i++)
             {
                 float anglefrac = 2 * Mathf.PI / 8;
@@ -752,6 +778,7 @@ public class CellMain : PoolableObjects
                 Vector3 pos = dir * myCellTemplate.slotDistance + new Vector3(0, yOffset, 0);
 
                 LinkJointClass newSlot = ObjectPooler.poolingSystem.GetPooledObject<LinkJointClass>() as LinkJointClass;
+                outPutJoint[i] = newSlot;
 
                 newSlot.Outpool();
                 newSlot.transform.localRotation = Quaternion.Euler(90, 0, 0);
@@ -763,6 +790,7 @@ public class CellMain : PoolableObjects
         }
         if (myCellTemplate.numberOfInputLinks < 4)
         {
+            InputJoint = new LinkJointClass[maxJoint];
             for (int i = 0; i < myCellTemplate.numberOfInputLinks; i++)
             {
 
@@ -773,8 +801,8 @@ public class CellMain : PoolableObjects
                 Vector3 dir = new Vector3(Mathf.Sin(angle), 0, Mathf.Cos(angle));
                 Vector3 pos = dir * myCellTemplate.slotDistance + new Vector3(0, yOffset, 0);
 
-
                 LinkJointClass newSlot = ObjectPooler.poolingSystem.GetPooledObject<LinkJointClass>() as LinkJointClass;
+                InputJoint[i] = newSlot;
                 newSlot.Outpool();
                 newSlot.transform.localRotation = Quaternion.Euler(90, 0, 0);
                 newSlot.Init(false);
@@ -785,4 +813,25 @@ public class CellMain : PoolableObjects
         }
 
     }
+
+
+    #region PLAYER ACTION INTERFACE
+
+    public virtual void ClickInteraction()
+    {
+        if (blobNumber > 0)
+        {
+            BlobNumberVariation(-1);
+            //CellManager.Instance.EnergyVariation(currentEnergyPerClick);
+            RessourceTracker.instance.EnergyVariation(currentEnergyPerClick);
+        }
+
+        anim.Play("PlayerInteraction", 0, 0f);
+    }
+
+    public  virtual void PlayerDrag()
+    {
+        throw new System.NotImplementedException();
+    }
+    #endregion
 }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LinkJointClass : PoolableObjects
+public class LinkJointClass : PoolableObjects 
 {
     public LinkClass link;
     public List<CellMain> cellsAttach = new List<CellMain>() ; 
@@ -63,4 +63,6 @@ public class LinkJointClass : PoolableObjects
             cellsAttach.Remove(cell);
         }
     }
+
+
 }
