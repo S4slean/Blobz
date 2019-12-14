@@ -713,11 +713,11 @@ public class CellMain : PoolableObjects, PlayerAction
                 // Debug.Log(myCellTemplate.proximityColliders[i].proximityLevel + " "+ myCellTemplate.proximityColliders[i].range);
             }
         }
-        if (myCellTemplate.limitedInLinks)
-        {
-            limitedInLink = true;
-            GenerateLinkSlot();
-        }
+        //if (myCellTemplate.limitedInLinks)
+        //{
+        //    limitedInLink = true;
+        //    GenerateLinkSlot();
+        //}
         RessourceTracker.instance.EnergyCapVariation(currentEnergyCap);
         ProximityCheck();
         ProximityLevelModification();
@@ -729,88 +729,91 @@ public class CellMain : PoolableObjects, PlayerAction
     }
     #endregion
 
-    public LinkJointClass CheckRestritedSlot()
-    {
-        int maxJoint = 4;
-        if (myCellTemplate.numberOfOuputLinks <=maxJoint)
-        {
+    #region SLOT 
 
-        }
-        for (int i = 0; i < outPutJoint.Length ; i++)
-        {
+    //public LinkJointClass CheckRestritedSlot()
+    //{
+    //    int maxJoint = 4;
+    //    if (myCellTemplate.numberOfOuputLinks <=maxJoint)
+    //    {
 
-            if (outPutJoint[i].link == null)
-            {
-                return outPutJoint[i];
-            }
-           
-        }
-        for (int i = 0; i < InputJoint.Length; i++)
-        {
-            if (InputJoint[i].link == null)
-            {
-                return InputJoint[i];
-            }
-        }
+    //    }
+    //    for (int i = 0; i < outPutJoint.Length ; i++)
+    //    {
 
-        return null;
+    //        if (outPutJoint[i].link == null)
+    //        {
+    //            return outPutJoint[i];
+    //        }
 
-    }
-    private void GenerateLinkSlot()
-    {
-        int currentSlot = 0;
-        float yOffset = 0.1f;
-        int maxJoint = 4;
-        if (myCellTemplate.numberOfOuputLinks <= maxJoint)
-        {
-            outPutJoint = new LinkJointClass[maxJoint];
-            for (int i = 0; i < myCellTemplate.numberOfOuputLinks; i++)
-            {
-                float anglefrac = 2 * Mathf.PI / (maxJoint*2);
+    //    }
+    //    for (int i = 0; i < InputJoint.Length; i++)
+    //    {
+    //        if (InputJoint[i].link == null)
+    //        {
+    //            return InputJoint[i];
+    //        }
+    //    }
 
-                //calcule de l'angle en foncttion du nombre de point
-                float angle = anglefrac * currentSlot;
-                Vector3 dir = new Vector3(Mathf.Sin(angle), 0, Mathf.Cos(angle));
-                Vector3 pos = dir * myCellTemplate.slotDistance + new Vector3(0, yOffset, 0);
-         
+    //    return null;
 
-                LinkJointClass newSlot = ObjectPooler.poolingSystem.GetPooledObject<LinkJointClass>() as LinkJointClass;
-                outPutJoint[i] = newSlot;
+    //}
+    //private void GenerateLinkSlot()
+    //{
+    //    int currentSlot = 0;
+    //    float yOffset = 0.1f;
+    //    int maxJoint = 4;
+    //    if (myCellTemplate.numberOfOuputLinks <= maxJoint)
+    //    {
+    //        outPutJoint = new LinkJointClass[maxJoint];
+    //        for (int i = 0; i < myCellTemplate.numberOfOuputLinks; i++)
+    //        {
+    //            float anglefrac = 2 * Mathf.PI / (maxJoint*2);
 
-                newSlot.Outpool();
-                newSlot.transform.parent = this.transform;
-                newSlot.transform.localPosition = pos;
-                newSlot.transform.localRotation = Quaternion.Euler(90, 0, 0);
-                newSlot.Init(true);
-                currentSlot++;
-            }
-        }
-        if (myCellTemplate.numberOfInputLinks <= maxJoint)
-        {
-            InputJoint = new LinkJointClass[maxJoint];
-            for (int i = 0; i < myCellTemplate.numberOfInputLinks; i++)
-            {
+    //            //calcule de l'angle en foncttion du nombre de point
+    //            float angle = anglefrac * currentSlot;
+    //            Vector3 dir = new Vector3(Mathf.Sin(angle), 0, Mathf.Cos(angle));
+    //            Vector3 pos = dir * myCellTemplate.slotDistance + new Vector3(0, yOffset, 0);
 
-                float anglefrac = 2 * Mathf.PI / (maxJoint*2);
 
-                //calcule de l'angle en foncttion du nombre de point
+    //            LinkJointClass newSlot = ObjectPooler.poolingSystem.GetPooledObject<LinkJointClass>() as LinkJointClass;
+    //            outPutJoint[i] = newSlot;
 
-                float angle = anglefrac * currentSlot;
-                Vector3 dir = new Vector3(Mathf.Sin(angle), 0, Mathf.Cos(angle));
-                Vector3 pos = dir * myCellTemplate.slotDistance + new Vector3(0, yOffset, 0);
- 
-                LinkJointClass newSlot = ObjectPooler.poolingSystem.GetPooledObject<LinkJointClass>() as LinkJointClass;
-                InputJoint[i] = newSlot;
-                newSlot.Outpool();
-                newSlot.transform.localRotation = Quaternion.Euler(90, 0, 0);
-                newSlot.Init(false);
-                newSlot.transform.parent = this.transform;
-                newSlot.transform.localPosition = pos;
-                currentSlot++;
-            }
-        }
+    //            newSlot.Outpool();
+    //            newSlot.transform.parent = this.transform;
+    //            newSlot.transform.localPosition = pos;
+    //            newSlot.transform.localRotation = Quaternion.Euler(90, 0, 0);
+    //            newSlot.Init(true);
+    //            currentSlot++;
+    //        }
+    //    }
+    //    if (myCellTemplate.numberOfInputLinks <= maxJoint)
+    //    {
+    //        InputJoint = new LinkJointClass[maxJoint];
+    //        for (int i = 0; i < myCellTemplate.numberOfInputLinks; i++)
+    //        {
 
-    }
+    //            float anglefrac = 2 * Mathf.PI / (maxJoint*2);
+
+    //            //calcule de l'angle en foncttion du nombre de point
+
+    //            float angle = anglefrac * currentSlot;
+    //            Vector3 dir = new Vector3(Mathf.Sin(angle), 0, Mathf.Cos(angle));
+    //            Vector3 pos = dir * myCellTemplate.slotDistance + new Vector3(0, yOffset, 0);
+
+    //            LinkJointClass newSlot = ObjectPooler.poolingSystem.GetPooledObject<LinkJointClass>() as LinkJointClass;
+    //            InputJoint[i] = newSlot;
+    //            newSlot.Outpool();
+    //            newSlot.transform.localRotation = Quaternion.Euler(90, 0, 0);
+    //            newSlot.Init(false);
+    //            newSlot.transform.parent = this.transform;
+    //            newSlot.transform.localPosition = pos;
+    //            currentSlot++;
+    //        }
+    //    }
+
+    //}
+    #endregion
 
     private void OnBecameInvisible()
     {

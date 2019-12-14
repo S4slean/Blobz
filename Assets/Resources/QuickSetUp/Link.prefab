@@ -50,7 +50,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 4269f9a2c9f8e184488d9dcee3cb7089, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -142,13 +142,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canBePool: 0
+  initialPool: {fileID: 0}
   anim: {fileID: 2984961048139210669}
   angle: 0
   originalCell: {fileID: 0}
   receivingCell: {fileID: 0}
+  joints:
+  - {fileID: 0}
+  - {fileID: 0}
   line: {fileID: 7425387404508985536}
-  startPos: {x: 0, y: 0, z: 0}
-  endPos: {x: 0, y: 0, z: 0}
+  extremityPos:
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
 --- !u!95 &2984961048139210669
 Animator:
   serializedVersion: 3

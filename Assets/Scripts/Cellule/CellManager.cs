@@ -52,34 +52,35 @@ public class CellManager : MonoBehaviour
             return;
         }
 
-        if (selectedCell.myCellTemplate.limitedInLinks)
-        {
-            //
-            LinkJointClass joint = selectedCell.CheckRestritedSlot();
-            if (joint != null)
-            {
-                LinkClass newLink = ObjectPooler.poolingSystem.GetPooledObject<LinkClass>() as LinkClass;
-                currentLink = newLink;
-                currentLine = newLink.line;
-                currentLink.Outpool();
-                //Setup 
-                InputManager.Instance.DraggingLink = true;
-                //surement utiles pour l'anim de replacment du lien 
-                Vector3 dir = (InputManager.Instance.mousePos - selectedCell.transform.position).normalized;
-                Vector3 firstPos = selectedCell.transform.position + dir * 1.3f;
+        //RESTRICTION
+        //if (selectedCell.myCellTemplate.limitedInLinks)
+        //{
+        //    //
+        //    LinkJointClass joint = selectedCell.CheckRestritedSlot();
+        //    if (joint != null)
+        //    {
+        //        LinkClass newLink = ObjectPooler.poolingSystem.GetPooledObject<LinkClass>() as LinkClass;
+        //        currentLink = newLink;
+        //        currentLine = newLink.line;
+        //        currentLink.Outpool();
+        //        //Setup 
+        //        InputManager.Instance.DraggingLink = true;
+        //        //surement utiles pour l'anim de replacment du lien 
+        //        Vector3 dir = (InputManager.Instance.mousePos - selectedCell.transform.position).normalized;
+        //        Vector3 firstPos = selectedCell.transform.position + dir * 1.3f;
 
-                currentLink.FirstSetupWithSlot(firstPos, InputManager.Instance.mousePos, selectedCell.GetCurrentRange(), joint, joint.isOutput);
-            }
-            else
-            {
-                Debug.Log("plus de slot dispo");
-            }
-        }
+        //        currentLink.FirstSetupWithSlot(firstPos, InputManager.Instance.mousePos, selectedCell.GetCurrentRange(), joint, joint.isOutput);
+        //    }
+        //    else
+        //    {
+        //        Debug.Log("plus de slot dispo");
+        //    }
+        //}
 
 
 
-        else
-        {
+        //else
+        //{
             #region SANS RESTRICTION 
             //Referencing in script
             LinkClass newLink = ObjectPooler.poolingSystem.GetPooledObject<LinkClass>() as LinkClass;
@@ -102,7 +103,7 @@ public class CellManager : MonoBehaviour
             Vector3 startPos = selectedCell.transform.position + dir * 1.3f;
             currentLink.FirstSetup(startPos, InputManager.Instance.mousePos, selectedCell.GetCurrentRange());
             #endregion
-        }
+        //}
     }
 
     public void DragNewlink(RaycastHit hit)
@@ -346,6 +347,7 @@ public class CellManager : MonoBehaviour
 
         for (int i = 0; i < cellToMove.links.Count; i++)
         {
+            //A REMPLACER PAR updatePoints
             cellToMove.links[i].UpdateLinks(cellToMove, posToTest);
         }
     }

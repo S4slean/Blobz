@@ -5,6 +5,8 @@ using UnityEngine;
 [RequireComponent(typeof(LineRenderer))]
 public class LinkClass : PoolableObjects
 {
+    #region VARIABLES
+
     #region REFS
     public Animator anim;
 
@@ -33,6 +35,7 @@ public class LinkClass : PoolableObjects
 
     #endregion
 
+    #endregion
 
     #region COMMUN
     public void Break()
@@ -67,6 +70,7 @@ public class LinkClass : PoolableObjects
         }
         UpdatePoint();
     }
+     
 
     public void FirstSetupWithSlot(Vector3 firstPos, Vector3 lastPos, int cellRange, LinkJointClass baseJoint, bool isOutput)
     {
@@ -98,6 +102,7 @@ public class LinkClass : PoolableObjects
 
     }
 
+    //A remplacée surement 
     public void UpdateLinks(CellMain cellInDeplacement, Vector3 posToTest)
     {
         //Updata la position du lien en fonction de la cellules déplacée
@@ -116,7 +121,10 @@ public class LinkClass : PoolableObjects
     private void UpdatePoint()
     {
         trajectoir = extremityPos[1] - extremityPos[0];
-        bendRatio = trajectoir.magnitude / range;
+        bendRatio = (range - trajectoir.magnitude*2) / range;
+
+
+        line.material.SetFloat("_bendRatio", bendRatio);
 
         Vector3 posFrag = trajectoir / range;
         for (int i = 0; i < range - 1; i++)
@@ -131,7 +139,10 @@ public class LinkClass : PoolableObjects
         joints[1].transform.position = extremityPos[1];
 
         trajectoir = extremityPos[1] - extremityPos[0];
-        bendRatio = trajectoir.magnitude / range;
+        bendRatio = (range - trajectoir.magnitude*2) / range;
+
+        line.material.SetFloat("_bendRatio", bendRatio);
+
 
         Vector3 posFrag = trajectoir / range;
         for (int i = 0; i < range - 1; i++)
