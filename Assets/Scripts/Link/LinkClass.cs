@@ -141,16 +141,16 @@ public class LinkClass : PoolableObjects
         line.SetPosition(range - 1, extremityPos[1]);
     }
 
-    public void UpdatePointFromJoint(Vector3 lastPos, bool isOutpul)
+    public void UpdatePointFromJoint(Vector3 targetPos, bool isOutpul)
     {
         if (isOutpul)
         {
-            extremityPos[1] = lastPos;
+            extremityPos[1] = targetPos;
             //joints[1].transform.position = extremityPos[1];
         }
         else
         {
-            extremityPos[0] = lastPos;
+            extremityPos[0] = targetPos;
         }
 
         trajectoir = extremityPos[1] - extremityPos[0];
@@ -255,7 +255,7 @@ public class LinkClass : PoolableObjects
             LinkJointClass tJoint = joints[0];
             joints[0] = joints[1];
             joints[1] = tJoint;
-
+            
         }
 
     }

@@ -55,8 +55,10 @@ public class CelluleTemplate : ScriptableObject
     public bool limitedInLinks;
     [Range(1 , 40)]
     public float slotDistance = 3; 
-    public int numberOfOuputLinks;
-    public int numberOfInputLinks;
+    [Range(1 , 4)]
+    public int numberOfOuputLinks =1;
+    [Range(1 , 4)]
+    public int numberOfInputLinks =1;
 
 
     [Range(0, 5)]

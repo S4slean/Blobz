@@ -54,8 +54,30 @@ public class CellManager : MonoBehaviour
 
         if (selectedCell.myCellTemplate.limitedInLinks)
         {
-            selectedCell.CheckRestritedSlot();
+            //
+            LinkJointClass joint = selectedCell.CheckRestritedSlot();
+            if (joint != null)
+            {
+                LinkClass newLink = ObjectPooler.poolingSystem.GetPooledObject<LinkClass>() as LinkClass;
+                currentLink = newLink;
+                currentLine = newLink.line;
+                currentLink.Outpool();
+                //Setup 
+                InputManager.Instance.DraggingLink = true;
+                //surement utiles pour l'anim de replacment du lien 
+                Vector3 dir = (InputManager.Instance.mousePos - selectedCell.transform.position).normalized;
+                Vector3 firstPos = selectedCell.transform.position + dir * 1.3f;
+
+                currentLink.FirstSetupWithSlot(firstPos, InputManager.Instance.mousePos, selectedCell.GetCurrentRange(), joint, joint.isOutput);
+            }
+            else
+            {
+                Debug.Log("plus de slot dispo");
+            }
         }
+
+
+
         else
         {
             #region SANS RESTRICTION 
