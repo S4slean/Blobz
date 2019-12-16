@@ -94,12 +94,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canBePool: 0
   initialPool: {fileID: 0}
-  link: {fileID: 0}
   outputColor: {r: 0, g: 1, b: 0.8881693, a: 1}
   InputColor: {r: 1, g: 0, b: 0.39831352, a: 1}
+  flexColor: {r: 0.34715417, g: 0.9716981, b: 0.28875935, a: 1}
   mF: {fileID: 1333727830831465604}
-  isOutput: 0
-  isLock: 0
+  typeOfJoint: 0
+  disponible: 1
 --- !u!135 &2924456396815193217
 SphereCollider:
   m_ObjectHideFlags: 0

@@ -32,8 +32,9 @@ public class CellMain : PoolableObjects, PlayerAction
     public List<CellProximityDectection> influencedByThoseCellProximity = new List<CellProximityDectection>();
     private CellProximityDectection[] myProximityCollider;
 
-    public LinkJointClass[] outPutJoint;
-    public LinkJointClass[] InputJoint;
+    public LinkJointClass[] linkJoints;
+    //public LinkJointClass[] inputJoint;
+    //public LinkJointClass[] flexJoint;
 
     //public MeshFilter mF;
     //public MeshRenderer mR;
@@ -63,7 +64,7 @@ public class CellMain : PoolableObjects, PlayerAction
     protected int currentProximityLevel;
     protected int currentProximityTier;
 
-    protected int currentLinkStockage;
+    //  protected int currentLinkStockage;
     protected int currentBlobStockage;
 
     protected int currentTickForActivation;
@@ -109,9 +110,11 @@ public class CellMain : PoolableObjects, PlayerAction
         //TickManager.doTick += BlobsTick;
         //UI init 
         NBlob.text = (blobNumber + " / " + myCellTemplate.storageCapability);
-        NLink.text = (links.Count + " / " + myCellTemplate.linkCapability);
         currentBlobStockage = myCellTemplate.storageCapability;
-        currentLinkStockage = myCellTemplate.linkCapability;
+
+        //Ancien Lien
+        //NLink.text = (links.Count + " / " + myCellTemplate.linkCapability);
+        //currentLinkStockage = myCellTemplate.linkCapability;
 
         hasBeenDrop = false;
 
@@ -137,8 +140,8 @@ public class CellMain : PoolableObjects, PlayerAction
         isDead = false;
 
         SetupVariable();
+        GenerateLinkSlot();
         RessourceTracker.instance.EnergyCapVariation(currentEnergyCap);
-
     }
 
     private void Start()
@@ -172,6 +175,12 @@ public class CellMain : PoolableObjects, PlayerAction
                 break;
             }
             links[I - i - 1].Break();
+        }
+        for (int i = 0; i < linkJoints.Length; i++)
+        {
+            linkJoints[i].Inpool();
+            linkJoints[i] = null;
+
         }
 
         if (!intentionnalDeath)
@@ -567,9 +576,9 @@ public class CellMain : PoolableObjects, PlayerAction
                     currentBlobStockage = myCellTemplate.stockageCapacity[currentProximityTier];
                     break;
 
-                case StatsModificationType.LinkCapacity:
-                    currentLinkStockage = myCellTemplate.LinkCapacity[currentProximityTier];
-                    break;
+                //case StatsModificationType.LinkCapacity:
+                //    currentLinkStockage = myCellTemplate.LinkCapacity[currentProximityTier];
+                //    break;
 
                 case StatsModificationType.Range:
                     currentRange = myCellTemplate.Range[currentProximityTier];
@@ -600,26 +609,32 @@ public class CellMain : PoolableObjects, PlayerAction
         if (output)
         {
             linkToAdd.AngleFromCell(this);
+            linkToAdd.joints[0] = CheckForAvailableJointOfType(linkJointType.output);
             outputLinks.Add(linkToAdd);
             SortingLink();
         }
         else
         {
+            linkToAdd.joints[1] = CheckForAvailableJointOfType(linkJointType.input);
             linkToAdd.receivingCell = this;
-        }
 
-        if (links.Count >= myCellTemplate.linkCapability)
-        {
-            noMoreLink = true;
         }
+        Debug.Log("FUNCTION POUR RESET TYPE de JOINT  ");
+        //Ancien Link
+        //if (links.Count >= myCellTemplate.linkCapability)
+        //{
+        //    noMoreLink = true;
+        //}
         UpdateCaract();
     }
     public virtual void RemoveLink(LinkClass linkToRemove)
     {
-        if (links.Count < currentLinkStockage)
-        {
-            noMoreLink = false;
-        }
+        //if (links.Count < currentLinkStockage)
+        //{
+        //    noMoreLink = false;
+        //}
+
+        Debug.Log("FUNCTION POUR RESET TYPE de JOINT  ");
         outputLinks.Remove(linkToRemove);
         links.Remove(linkToRemove);
 
@@ -679,7 +694,7 @@ public class CellMain : PoolableObjects, PlayerAction
     public virtual void UpdateCaract()
     {
         NBlob.text = (blobNumber + " / " + currentBlobStockage);
-        NLink.text = (links.Count + " / " + currentLinkStockage);
+        //NLink.text = (links.Count + " / " + currentLinkStockage);
     }
 
     public virtual void GraphSetup()
@@ -690,7 +705,7 @@ public class CellMain : PoolableObjects, PlayerAction
 
     private void SetupVariable()
     {
-        currentLinkStockage = myCellTemplate.linkCapability;
+        // currentLinkStockage = myCellTemplate.linkCapability;
         currentBlobStockage = myCellTemplate.storageCapability;
         currentSurproductionRate = myCellTemplate.SurproductionRate[0];
         currentRejectPower = myCellTemplate.rejectPowerBase;
@@ -731,86 +746,76 @@ public class CellMain : PoolableObjects, PlayerAction
 
     #region SLOT 
 
-    public LinkJointClass CheckRestritedSlot()
+    public LinkJointClass CheckForAvailableJointOfType(linkJointType checkType)
     {
-
-        for (int i = 0; i < outPutJoint.Length; i++)
+        for (int i = 0; i < linkJoints.Length; i++)
         {
 
-            if (!outPutJoint[i].gotALink )
+            if (linkJoints[i].typeOfJoint == checkType && linkJoints[i].disponible)
             {
-                return outPutJoint[i];
+                return linkJoints[i];
             }
 
+            if (linkJoints[i].typeOfJoint == linkJointType.flex && linkJoints[i].disponible)
+            {
+                return linkJoints[i];
+            }
         }
-        //for (int i = 0; i < InputJoint.Length; i++)
-        //{
-        //    if (InputJoint[i].link == null)
-        //    {
-        //        return InputJoint[i];
-        //    }
-        //}
-        
-
         return null;
-
     }
 
-    //private void GenerateLinkSlot()
-    //{
-    //    int currentSlot = 0;
-    //    float yOffset = 0.1f;
-    //    int maxJoint = 4;
-    //    if (myCellTemplate.numberOfOuputLinks <= maxJoint)
-    //    {
-    //        outPutJoint = new LinkJointClass[maxJoint];
-    //        for (int i = 0; i < myCellTemplate.numberOfOuputLinks; i++)
-    //        {
-    //            float anglefrac = 2 * Mathf.PI / (maxJoint*2);
 
-    //            //calcule de l'angle en foncttion du nombre de point
-    //            float angle = anglefrac * currentSlot;
-    //            Vector3 dir = new Vector3(Mathf.Sin(angle), 0, Mathf.Cos(angle));
-    //            Vector3 pos = dir * myCellTemplate.slotDistance + new Vector3(0, yOffset, 0);
+    private void GenerateLinkSlot()
+    {
+        int currentSlot = 0;
+        float yOffset = 0.1f;
+        int maxJoint = myCellTemplate.numberOfFlexLinks;
+        linkJoints = new LinkJointClass[maxJoint];
+
+        if (myCellTemplate.limitedInLinks)
+        {
+            maxJoint += myCellTemplate.numberOfOuputLinks + myCellTemplate.numberOfInputLinks;
+            linkJoints = new LinkJointClass[maxJoint];
 
 
-    //            LinkJointClass newSlot = ObjectPooler.poolingSystem.GetPooledObject<LinkJointClass>() as LinkJointClass;
-    //            outPutJoint[i] = newSlot;
+            for (int i = 0; i < myCellTemplate.numberOfOuputLinks; i++)
+            {
+                currentSlot = SlotGeneration(currentSlot, yOffset, maxJoint,  linkJointType.output);
+            }
 
-    //            newSlot.Outpool();
-    //            newSlot.transform.parent = this.transform;
-    //            newSlot.transform.localPosition = pos;
-    //            newSlot.transform.localRotation = Quaternion.Euler(90, 0, 0);
-    //            newSlot.Init(true);
-    //            currentSlot++;
-    //        }
-    //    }
-    //    if (myCellTemplate.numberOfInputLinks <= maxJoint)
-    //    {
-    //        InputJoint = new LinkJointClass[maxJoint];
-    //        for (int i = 0; i < myCellTemplate.numberOfInputLinks; i++)
-    //        {
+            for (int y = 0; y < myCellTemplate.numberOfInputLinks; y++)
+            {
+                currentSlot = SlotGeneration(currentSlot, yOffset, maxJoint,  linkJointType.input);
+            }
+        }
 
-    //            float anglefrac = 2 * Mathf.PI / (maxJoint*2);
+        for (int x = 0; x < myCellTemplate.numberOfFlexLinks; x++)
+        {
+            currentSlot = SlotGeneration(currentSlot, yOffset, maxJoint,  linkJointType.flex);
+        }
+    }
 
-    //            //calcule de l'angle en foncttion du nombre de point
+    private int SlotGeneration(int currentSlot, float yOffset, int maxJoint, linkJointType _type)
+    {
+        float anglefrac = 2 * Mathf.PI / (maxJoint);
 
-    //            float angle = anglefrac * currentSlot;
-    //            Vector3 dir = new Vector3(Mathf.Sin(angle), 0, Mathf.Cos(angle));
-    //            Vector3 pos = dir * myCellTemplate.slotDistance + new Vector3(0, yOffset, 0);
+        //calcule de l'angle en foncttion du nombre de point
+        float angle = anglefrac * currentSlot;
+        Vector3 dir = new Vector3(Mathf.Sin(angle), 0, Mathf.Cos(angle));
+        Vector3 pos = dir * myCellTemplate.slotDistance + new Vector3(0, yOffset, 0);
 
-    //            LinkJointClass newSlot = ObjectPooler.poolingSystem.GetPooledObject<LinkJointClass>() as LinkJointClass;
-    //            InputJoint[i] = newSlot;
-    //            newSlot.Outpool();
-    //            newSlot.transform.localRotation = Quaternion.Euler(90, 0, 0);
-    //            newSlot.Init(false);
-    //            newSlot.transform.parent = this.transform;
-    //            newSlot.transform.localPosition = pos;
-    //            currentSlot++;
-    //        }
-    //    }
 
-    //}
+        LinkJointClass newSlot = ObjectPooler.poolingSystem.GetPooledObject<LinkJointClass>() as LinkJointClass;
+        linkJoints[currentSlot] = newSlot;
+
+        newSlot.Outpool();
+        newSlot.transform.parent = this.transform;
+        newSlot.transform.localPosition = pos;
+        newSlot.transform.localRotation = Quaternion.Euler(90, 0, 0);
+        newSlot.Init(_type);
+        currentSlot++;
+        return currentSlot;
+    }
     #endregion
 
     private void OnBecameInvisible()
@@ -821,8 +826,6 @@ public class CellMain : PoolableObjects, PlayerAction
     {
         isVisible = true;
     }
-
-
 
     #region PLAYER ACTION INTERFACE
 
@@ -838,7 +841,7 @@ public class CellMain : PoolableObjects, PlayerAction
         anim.Play("PlayerInteraction", 0, 0f);
     }
 
-    public  virtual void PlayerDrag()
+    public virtual void PlayerDrag()
     {
         throw new System.NotImplementedException();
     }

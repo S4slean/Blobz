@@ -53,9 +53,12 @@ public class CellManager : MonoBehaviour
         //}
 
         #region RESTRICTION
-        LinkJointClass joint = selectedCell.CheckRestritedSlot();
+        selectedCell = InputManager.Instance.selectedCell;
+        LinkJointClass joint = selectedCell.CheckForAvailableJointOfType(linkJointType.output);
+        Debug.Log(joint);
         if (joint == null)
         {
+
             Debug.Log("Plus assez d'output");
         }
         else
@@ -76,27 +79,27 @@ public class CellManager : MonoBehaviour
         #endregion
         //else
         //{
-        #region SANS RESTRICTION 
-        //Referencing in script
-        LinkClass newLink = ObjectPooler.poolingSystem.GetPooledObject<LinkClass>() as LinkClass;
-        currentLink = newLink;
-        currentLine = newLink.line;
-        currentLink.Outpool();
-        //Setup 
-        InputManager.Instance.DraggingLink = true;
-        //selectedCell.AddLink(currentLink, true);
+        //#region SANS RESTRICTION 
+        ////Referencing in script
+        //LinkClass newLink = ObjectPooler.poolingSystem.GetPooledObject<LinkClass>() as LinkClass;
+        //currentLink = newLink;
+        //currentLine = newLink.line;
+        //currentLink.Outpool();
+        ////Setup 
+        //InputManager.Instance.DraggingLink = true;
+        ////selectedCell.AddLink(currentLink, true);
 
-        //Ancien Systeme de Link 
-        //currentLink.startPos = selectedCell.transform.position;
-        //currentLine.SetPosition(0, currentLink.startPos);
-        //currentLink.endPos = InputManager.Instance.mousePos;
-        //currentLine.SetPosition(1, currentLink.endPos);
+        ////Ancien Systeme de Link 
+        ////currentLink.startPos = selectedCell.transform.position;
+        ////currentLine.SetPosition(0, currentLink.startPos);
+        ////currentLink.endPos = InputManager.Instance.mousePos;
+        ////currentLine.SetPosition(1, currentLink.endPos);
 
-        ///nouveau systeme de link
-        Vector3 dir = (InputManager.Instance.mouseWorldPos - selectedCell.transform.position).normalized;
-        Vector3 startPos = selectedCell.transform.position + dir * 1.3f;
-        currentLink.FirstSetup(startPos, InputManager.Instance.mouseWorldPos, selectedCell.GetCurrentRange());
-        #endregion
+        /////nouveau systeme de link
+        //Vector3 dir = (InputManager.Instance.mouseWorldPos - selectedCell.transform.position).normalized;
+        //Vector3 startPos = selectedCell.transform.position + dir * 1.3f;
+        //currentLink.FirstSetup(startPos, InputManager.Instance.mouseWorldPos, selectedCell.GetCurrentRange());
+        //#endregion
 
 
 
@@ -117,7 +120,9 @@ public class CellManager : MonoBehaviour
 
             //nouveau systeme de link
             Vector3 lastPos = new Vector3(hit.point.x, currentLink.extremityPos[0].y, hit.point.z);
-            currentLink.UpdatePoint(lastPos);
+            Vector3 _dir = (lastPos - selectedCell.transform.position).normalized;
+            Vector3 firstPos = selectedCell.transform.position +_dir * selectedCell.myCellTemplate.slotDistance;
+            currentLink.UpdatePoint(firstPos, lastPos);
 
         }
         else
@@ -133,7 +138,9 @@ public class CellManager : MonoBehaviour
 
             //nouveau systeme de link
             Vector3 lastPos = currentLink.extremityPos[0] + direction * selectedCell.GetCurrentRange();
-            currentLink.UpdatePoint(lastPos);
+            Vector3 _dir = (lastPos - selectedCell.transform.position).normalized;
+            Vector3 firstPos = selectedCell.transform.position + _dir * selectedCell.myCellTemplate.slotDistance;
+            currentLink.UpdatePoint(firstPos, lastPos);
         }
     }
 
@@ -150,7 +157,9 @@ public class CellManager : MonoBehaviour
 
             //nouveau systeme de link
             Vector3 lastPos = new Vector3(pos.x, currentLink.extremityPos[0].y, pos.z);
-            currentLink.UpdatePoint(lastPos);
+            Vector3 _dir = (lastPos - selectedCell.transform.position).normalized;
+            Vector3 firstPos = selectedCell.transform.position + _dir * selectedCell.myCellTemplate.slotDistance;
+            currentLink.UpdatePoint(firstPos, lastPos);
         }
         else
         {
@@ -164,7 +173,9 @@ public class CellManager : MonoBehaviour
 
             //Nouveau System
             Vector3 lastPos = currentLink.extremityPos[0] + direction * selectedCell.myCellTemplate.rangeBase / 2;
-            currentLink.UpdatePoint(lastPos);
+            Vector3 _dir = (lastPos - selectedCell.transform.position).normalized;
+            Vector3 firstPos = selectedCell.transform.position + _dir * selectedCell.myCellTemplate.slotDistance;
+            currentLink.UpdatePoint(firstPos, lastPos);
         }
     }
 
@@ -222,8 +233,11 @@ public class CellManager : MonoBehaviour
             //currentLine.SetPosition(1, currentLink.endPos);
 
             //Nouveau System
-            Vector3 lastPos = receivingCell.transform.position;
-            currentLink.UpdatePoint(lastPos);
+            Vector3 cellPos = receivingCell.transform.position;
+            Vector3 _dir = (cellPos - selectedCell.transform.position).normalized;
+            Vector3 lastPos = cellPos - _dir*receivingCell.myCellTemplate.slotDistance;
+            Vector3 firstPos = selectedCell.transform.position + _dir * selectedCell.myCellTemplate.slotDistance;
+            currentLink.UpdatePoint(firstPos, lastPos);
 
             selectedCell.AddLinkReferenceToCell(currentLink, true);
             receivingCell.AddLinkReferenceToCell(currentLink, false);

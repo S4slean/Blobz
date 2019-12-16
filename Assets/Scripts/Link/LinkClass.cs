@@ -24,7 +24,6 @@ public class LinkClass : PoolableObjects
 
     private bool canSwitch;
     private bool WantToSwitch;
-
     private bool InTransmission;
 
     //Gestion du graph 
@@ -42,16 +41,14 @@ public class LinkClass : PoolableObjects
     {
         receivingCell.RemoveLink(this);
         originalCell.RemoveLink(this);
-        for (int i = 0; i < joints.Length; i++)
-        {
-            if (!joints[i].isLock)
-            {
-                joints[i].Inpool();
-            }
-        }
-
-
         gameObject.SetActive(false);
+        //for (int i = 0; i < joints.Length; i++)
+        //{
+        //    if (!joints[i].isLock)
+        //    {
+        //        joints[i].Inpool();
+        //    }
+        //}
     }
     public void FirstSetup(Vector3 firstPos, Vector3 lastPos, int cellRange)
     {
@@ -64,16 +61,15 @@ public class LinkClass : PoolableObjects
             joints[i] = ObjectPooler.poolingSystem.GetPooledObject<LinkJointClass>() as LinkJointClass;
             joints[i].transform.position = extremityPos[i];
             //joints[i].isOutput  = (bool)i;
-            joints[i].isOutput = i > 0 ? false : true;
+            //joints[i].isOutput = i > 0 ? false : true;
             joints[i].GraphUpdate();
             joints[i].Outpool();
         }
         UpdatePoint();
     }
-
-
     public void FirstSetupWithSlot(Vector3 firstPos, Vector3 lastPos, int cellRange, LinkJointClass baseJoint/*, bool isOutput*/)
     {
+        Debug.Log("yop");
         range = cellRange * 2;
         line.positionCount = range;
         extremityPos[0] = firstPos;
@@ -85,7 +81,8 @@ public class LinkClass : PoolableObjects
         baseJoint.transform.position = extremityPos[0];
         joints[0] = baseJoint;
         createdJoint.transform.position = extremityPos[1];
-        createdJoint.isOutput = false;
+        createdJoint.typeOfJoint = linkJointType.input;
+        joints[1] = createdJoint;
         //}
         //else
         //{
@@ -133,39 +130,18 @@ public class LinkClass : PoolableObjects
         }
         line.SetPosition(range - 1, extremityPos[1]);
     }
-    public void UpdatePoint(Vector3 lastPos)
+    public void UpdatePoint(Vector3 firstPos ,Vector3 lastPos)
     {
+        extremityPos[0] = firstPos;
         extremityPos[1] = lastPos;
         joints[1].transform.position = extremityPos[1];
+        joints[0].transform.position = extremityPos[0];
 
         trajectoir = extremityPos[1] - extremityPos[0];
         bendRatio = (range - trajectoir.magnitude * 2) / range;
 
         line.material.SetFloat("_bendRatio", bendRatio);
 
-
-        Vector3 posFrag = trajectoir / range;
-        for (int i = 0; i < range - 1; i++)
-        {
-            line.SetPosition(i, extremityPos[0] + i * posFrag);
-        }
-        line.SetPosition(range - 1, extremityPos[1]);
-    }
-
-    public void UpdatePointFromJoint(Vector3 targetPos, bool isOutpul)
-    {
-        if (isOutpul)
-        {
-            extremityPos[1] = targetPos;
-            //joints[1].transform.position = extremityPos[1];
-        }
-        else
-        {
-            extremityPos[0] = targetPos;
-        }
-
-        trajectoir = extremityPos[1] - extremityPos[0];
-        bendRatio = trajectoir.magnitude / range;
 
         Vector3 posFrag = trajectoir / range;
         for (int i = 0; i < range - 1; i++)
@@ -248,29 +224,51 @@ public class LinkClass : PoolableObjects
 
     #region LINK JOINT
 
-    public void SensSwitch()
-    {
+    //public void UpdatePointFromJoint(Vector3 targetPos, bool isOutpul)
+    //{
+    //    if (isOutpul)
+    //    {
+    //        extremityPos[1] = targetPos;
+    //        //joints[1].transform.position = extremityPos[1];
+    //    }
+    //    else
+    //    {
+    //        extremityPos[0] = targetPos;
+    //    }
 
-        for (int i = 0; i < joints.Length; i++)
-        {
-            if (joints[i].isLock)
-            {
-                return;
-            }
-        }
-        if (InTransmission)
-        {
-            WantToSwitch = true;
-        }
-        else
-        {
-            LinkJointClass tJoint = joints[0];
-            joints[0] = joints[1];
-            joints[1] = tJoint;
+    //    trajectoir = extremityPos[1] - extremityPos[0];
+    //    bendRatio = trajectoir.magnitude / range;
 
-        }
+    //    Vector3 posFrag = trajectoir / range;
+    //    for (int i = 0; i < range - 1; i++)
+    //    {
+    //        line.SetPosition(i, extremityPos[0] + i * posFrag);
+    //    }
+    //    line.SetPosition(range - 1, extremityPos[1]);
+    //}
+    //public void SensSwitch()
+    //{
 
-    }
+    //    for (int i = 0; i < joints.Length; i++)
+    //    {
+    //        if (joints[i].isLock)
+    //        {
+    //            return;
+    //        }
+    //    }
+    //    if (InTransmission)
+    //    {
+    //        WantToSwitch = true;
+    //    }
+    //    else
+    //    {
+    //        LinkJointClass tJoint = joints[0];
+    //        joints[0] = joints[1];
+    //        joints[1] = tJoint;
+
+    //    }
+
+    //}
 
     #endregion
 
