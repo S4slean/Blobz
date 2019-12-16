@@ -89,36 +89,36 @@ public class BlobManager : MonoBehaviour
 
                 case BlobType.soldier:
 
-                    //blob.tickCount++;
-                    ////Check si le blob doit agir sur ce tick
-                    //if (blob.tickCount > ticksBtwnJumps)
-                    //{
-                    //    blob.tickCount = 0;
+                    blob.tickCount++;
+                    //Check si le blob doit agir sur ce tick
+                    if (blob.tickCount > ticksBtwnJumps)
+                    {
+                        blob.tickCount = 0;
 
-                    //    //si le blob detecte un ennemi proche
-                    //    if (CheckNearbyEnemies(blob))
-                    //    {
+                        //si le blob detecte un ennemi proche
+                        if (CheckNearbyEnemies(blob))
+                        {
 
-                    //        //il calcule la bonne direction
-                    //        Vector3 directionToTarget = targetTransform.position - blob.transform.position;
+                            //il calcule la bonne direction
+                            Vector3 directionToTarget = targetTransform.position - blob.transform.position;
 
-                    //        //si il est assez près: BOOM!
-                    //        if (directionToTarget.magnitude < explosionTriggerRadius)
-                    //        {
-                    //            Explode(blob);
-                    //        }
-                    //        //sinon  il se rapproche
-                    //        else
-                    //        {
-                    //            Jump(blob, targetTransform);
-                    //        }
-                    //    }
-                    //    //si il ne detecte rien il se dépace de manière aléatoire
-                    //    else
-                    //    {
-                    //        Jump(blob);
-                    //    }
-                    //}
+                            //si il est assez près: BOOM!
+                            if (directionToTarget.magnitude < explosionRadius / 2)
+                            {
+                                Explode(blob, 1);
+                            }
+                            //sinon  il se rapproche
+                            else
+                            {
+                                Jump(blob, targetTransform);
+                            }
+                        }
+                        //si il ne detecte rien il se dépace de manière aléatoire
+                        else
+                        {
+                            Jump(blob);
+                        }
+                    }
 
 
                     break;
@@ -148,7 +148,20 @@ public class BlobManager : MonoBehaviour
                             else
                             {
                                 ticksBtwnJumps = 4;
-                                Jump(blob);
+
+                                if (blob.knowsNexus)
+                                {
+                                    Jump(blob, LevelManager.instance.nexus.transform);
+                                }
+                                else if (blob.CheckIfOutOfVillage())
+                                {
+                                    Jump(blob, blob.village.transform);
+                                }
+                                else
+                                {
+                                    Jump(blob);
+                                }
+
                             }
                         }
 
@@ -266,16 +279,29 @@ public class BlobManager : MonoBehaviour
         Debug.Log("Jump towards target " + targetTransform.name);
     }
 
-    public void Explode(Blob blob)
+    public void Explode(Blob blob, int dmg)
     {
         Collider[] touchedBlobs;
         touchedBlobs = Physics.OverlapSphere(blob.transform.position, explosionRadius, 1 << 12);
+
+        Collider[] touchedDestructibles;
+        touchedDestructibles = Physics.OverlapSphere(blob.transform.position, explosionRadius, 1 << 11);
+
         foreach (Collider blobCol in touchedBlobs)
         {
             if (blobCol.GetComponent<Blob>().blobType == BlobType.mad)
                 Destroy(blobCol.gameObject);
         }
         //Debug.Log("Soldier Explosed " + touchedBlobs.Length + " blobs");
+
+        foreach (Collider destructiblesCol in touchedDestructibles)
+        {
+            if (TryGetComponent<Destructible>(out Destructible destructible))
+            {
+                destructible.ReceiveDamage(dmg);
+            }
+        }
+
         Destroy(blob.gameObject);
     }
 

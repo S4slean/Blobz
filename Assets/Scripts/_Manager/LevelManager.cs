@@ -6,8 +6,12 @@ using UnityEngine.SceneManagement;
 public class LevelManager : MonoBehaviour
 {
     public static LevelManager instance;
+    public CellMain nexus;
 
     public GameObject[] availablesCells;
+
+
+    
 
 
     [Header("Features Unlocked")]
@@ -24,8 +28,6 @@ public class LevelManager : MonoBehaviour
         else
             Destroy(gameObject);
     }
-
-
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.R))
@@ -45,6 +47,18 @@ public class LevelManager : MonoBehaviour
     }
 
 
+    public void SpawnEnemyWave(int nbrOfEnemy, Vector3 pos)
+    {
+        
+    }
+
+    public void SpawnEnemyWave(int nbrOfEnemy, Transform transform)
+    {
+
+    }
+
+
+    #region PLAYER_PROGRESS & SAVE
     public void UnlockNewCell(CelluleTemplate newCellTemplate)
     {
         //Créer nouveau bouton, lui associer le template, sprite, la bonne fonction;
@@ -55,14 +69,13 @@ public class LevelManager : MonoBehaviour
 
         //cocher le bon booléens
     }
-
     public void SaveUnlockedFeatures()
     {
 
     }
-
     public void LoadUnlockedFeatures()
     {
 
     }
+    #endregion
 }
