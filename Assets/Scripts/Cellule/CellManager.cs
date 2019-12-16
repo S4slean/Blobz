@@ -67,10 +67,10 @@ public class CellManager : MonoBehaviour
             //Setup 
             InputManager.Instance.DraggingLink = true;
             //surement utiles pour l'anim de replacment du lien 
-            Vector3 _dir = (InputManager.Instance.mousePos - selectedCell.transform.position).normalized;
+            Vector3 _dir = (InputManager.Instance.mouseWorldPos - selectedCell.transform.position).normalized;
             Vector3 firstPos = selectedCell.transform.position + _dir * selectedCell.myCellTemplate.slotDistance;
 
-            currentLink.FirstSetupWithSlot(firstPos, InputManager.Instance.mousePos, selectedCell.GetCurrentRange(), joint/*, joint.isOutput*/);
+            currentLink.FirstSetupWithSlot(firstPos, InputManager.Instance.mouseWorldPos, selectedCell.GetCurrentRange(), joint/*, joint.isOutput*/);
         }
 
         #endregion
@@ -92,20 +92,14 @@ public class CellManager : MonoBehaviour
         //currentLink.endPos = InputManager.Instance.mousePos;
         //currentLine.SetPosition(1, currentLink.endPos);
 
-
-<<<<<<< HEAD
         ///nouveau systeme de link
-        Vector3 dir = (InputManager.Instance.mousePos - selectedCell.transform.position).normalized;
+        Vector3 dir = (InputManager.Instance.mouseWorldPos - selectedCell.transform.position).normalized;
         Vector3 startPos = selectedCell.transform.position + dir * 1.3f;
-        currentLink.FirstSetup(startPos, InputManager.Instance.mousePos, selectedCell.GetCurrentRange());
+        currentLink.FirstSetup(startPos, InputManager.Instance.mouseWorldPos, selectedCell.GetCurrentRange());
         #endregion
-=======
-            ///nouveau systeme de link
-            Vector3 dir = (InputManager.Instance.mouseWorldPos - selectedCell.transform.position).normalized;
-            Vector3 startPos = selectedCell.transform.position + dir * 1.3f;
-            currentLink.FirstSetup(startPos, InputManager.Instance.mouseWorldPos, selectedCell.GetCurrentRange());
-            #endregion
->>>>>>> 0aa172f3eb1a7e73d5306d423a9e3d2f6fb9ab13
+
+
+
         //}
     }
 
@@ -334,7 +328,6 @@ public class CellManager : MonoBehaviour
             if (originalPosOfMovingCell == new Vector3(0, 100, 0))
             {
                 refPoint = selectedCell.transform.position;
-                cellToMove.transform.position = refPoint + (InputManager.Instance.mousePos - refPoint).normalized * selectedCell.GetCurrentRange();
                 cellToMove.transform.position = refPoint + (InputManager.Instance.mouseWorldPos - refPoint).normalized * selectedCell.GetCurrentRange();
                 DragNewlink(cellToMove.transform.position + Vector3.up * .1f);
             }
