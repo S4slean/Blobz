@@ -731,33 +731,31 @@ public class CellMain : PoolableObjects, PlayerAction
 
     #region SLOT 
 
-    //public LinkJointClass CheckRestritedSlot()
-    //{
-    //    int maxJoint = 4;
-    //    if (myCellTemplate.numberOfOuputLinks <=maxJoint)
-    //    {
+    public LinkJointClass CheckRestritedSlot()
+    {
 
-    //    }
-    //    for (int i = 0; i < outPutJoint.Length ; i++)
-    //    {
+        for (int i = 0; i < outPutJoint.Length; i++)
+        {
 
-    //        if (outPutJoint[i].link == null)
-    //        {
-    //            return outPutJoint[i];
-    //        }
+            if (!outPutJoint[i].gotALink )
+            {
+                return outPutJoint[i];
+            }
 
-    //    }
-    //    for (int i = 0; i < InputJoint.Length; i++)
-    //    {
-    //        if (InputJoint[i].link == null)
-    //        {
-    //            return InputJoint[i];
-    //        }
-    //    }
+        }
+        //for (int i = 0; i < InputJoint.Length; i++)
+        //{
+        //    if (InputJoint[i].link == null)
+        //    {
+        //        return InputJoint[i];
+        //    }
+        //}
+        
 
-    //    return null;
+        return null;
 
-    //}
+    }
+
     //private void GenerateLinkSlot()
     //{
     //    int currentSlot = 0;

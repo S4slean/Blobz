@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class LinkJointClass : PoolableObjects 
 {
-    public LinkClass link;
-    public List<CellMain> cellsAttach = new List<CellMain>() ; 
+    //public LinkClass link;
+    //public List<CellMain> cellsAttach = new List<CellMain>() ; 
     public Color outputColor;
     public Color InputColor;
 
@@ -14,6 +14,7 @@ public class LinkJointClass : PoolableObjects
 
 
     public bool nextToACell;
+    public bool gotALink; 
     public bool isOutput;
     public bool isLock;
     public bool canBeDropEveryWhere;
@@ -25,13 +26,13 @@ public class LinkJointClass : PoolableObjects
         GraphUpdate();
     }
 
-    public void PlayerInteraction()
-    {
-        if (!isLock)
-        {
-            link.SensSwitch();
-        }
-    }
+    //public void PlayerInteraction()
+    //{
+    //    if (!isLock)
+    //    {
+    //        link.SensSwitch();
+    //    }
+    //}
 
     public void GraphUpdate()
     {
@@ -45,24 +46,24 @@ public class LinkJointClass : PoolableObjects
         }
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        CellMain cell = other.GetComponent<CellMain>();
-        if (cell)
-        {
-            nextToACell = true;
-            cellsAttach.Add(cell);
-        }
-    }
-    private void OnTriggerExit(Collider other)
-    {
-        CellMain cell = other.GetComponent<CellMain>();
-        if (cell)
-        {
-            nextToACell = false;
-            cellsAttach.Remove(cell);
-        }
-    }
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    CellMain cell = other.GetComponent<CellMain>();
+    //    if (cell)
+    //    {
+    //        nextToACell = true;
+    //        cellsAttach.Add(cell);
+    //    }
+    //}
+    //private void OnTriggerExit(Collider other)
+    //{
+    //    CellMain cell = other.GetComponent<CellMain>();
+    //    if (cell)
+    //    {
+    //        nextToACell = false;
+    //        cellsAttach.Remove(cell);
+    //    }
+    //}
 
 
 }

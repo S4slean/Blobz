@@ -70,9 +70,9 @@ public class LinkClass : PoolableObjects
         }
         UpdatePoint();
     }
-     
 
-    public void FirstSetupWithSlot(Vector3 firstPos, Vector3 lastPos, int cellRange, LinkJointClass baseJoint, bool isOutput)
+
+    public void FirstSetupWithSlot(Vector3 firstPos, Vector3 lastPos, int cellRange, LinkJointClass baseJoint/*, bool isOutput*/)
     {
         range = cellRange * 2;
         line.positionCount = range;
@@ -80,20 +80,20 @@ public class LinkClass : PoolableObjects
         extremityPos[1] = lastPos;
 
         LinkJointClass createdJoint = ObjectPooler.poolingSystem.GetPooledObject<LinkJointClass>() as LinkJointClass; ;
-        if (isOutput)
-        {
-            baseJoint.transform.position = extremityPos[0];
-            joints[0] = baseJoint;
-            createdJoint.transform.position = extremityPos[1];
-            createdJoint.isOutput = false;
-        }
-        else
-        {
-            baseJoint.transform.position = extremityPos[1];
-            joints[1] = baseJoint;
-            createdJoint.transform.position = extremityPos[0];
-            createdJoint.isOutput = true;
-        }
+        //if (isOutput)
+        //{
+        baseJoint.transform.position = extremityPos[0];
+        joints[0] = baseJoint;
+        createdJoint.transform.position = extremityPos[1];
+        createdJoint.isOutput = false;
+        //}
+        //else
+        //{
+        //    baseJoint.transform.position = extremityPos[1];
+        //    joints[1] = baseJoint;
+        //    createdJoint.transform.position = extremityPos[0];
+        //    createdJoint.isOutput = true;
+        //}
 
         createdJoint.GraphUpdate();
         createdJoint.Outpool();
@@ -121,7 +121,7 @@ public class LinkClass : PoolableObjects
     private void UpdatePoint()
     {
         trajectoir = extremityPos[1] - extremityPos[0];
-        bendRatio = (range - trajectoir.magnitude*2) / range;
+        bendRatio = (range - trajectoir.magnitude * 2) / range;
 
 
         line.material.SetFloat("_bendRatio", bendRatio);
@@ -139,7 +139,7 @@ public class LinkClass : PoolableObjects
         joints[1].transform.position = extremityPos[1];
 
         trajectoir = extremityPos[1] - extremityPos[0];
-        bendRatio = (range - trajectoir.magnitude*2) / range;
+        bendRatio = (range - trajectoir.magnitude * 2) / range;
 
         line.material.SetFloat("_bendRatio", bendRatio);
 
@@ -179,7 +179,7 @@ public class LinkClass : PoolableObjects
     #region CHECKLENGTH
     public bool CheckNewLinkLength(Vector3 posToTest, CellMain startCell)
     {
-        float length1 = Vector3.Distance(extremityPos[0], posToTest);
+        float length1 = Vector3.Distance(startCell.transform.position, posToTest);
         //a modifier par rappport à la proximité
         if (length1 <= startCell.GetCurrentRange())
         {
@@ -193,6 +193,7 @@ public class LinkClass : PoolableObjects
             return false;
         }
 
+        
     }
     public bool CheckLength(Vector3 posToTest)
     {
@@ -266,7 +267,7 @@ public class LinkClass : PoolableObjects
             LinkJointClass tJoint = joints[0];
             joints[0] = joints[1];
             joints[1] = tJoint;
-            
+
         }
 
     }

@@ -46,63 +46,58 @@ public class CellManager : MonoBehaviour
     #region LINK GESTION
     public void CreatenewLink()
     {
-        if (selectedCell.noMoreLink)
-        {
-            Debug.Log("Trop de lien sur la cellule de base");
-            return;
-        }
-
-        //RESTRICTION
-        //if (selectedCell.myCellTemplate.limitedInLinks)
+        //if (selectedCell.noMoreLink)
         //{
-        //    //
-        //    LinkJointClass joint = selectedCell.CheckRestritedSlot();
-        //    if (joint != null)
-        //    {
-        //        LinkClass newLink = ObjectPooler.poolingSystem.GetPooledObject<LinkClass>() as LinkClass;
-        //        currentLink = newLink;
-        //        currentLine = newLink.line;
-        //        currentLink.Outpool();
-        //        //Setup 
-        //        InputManager.Instance.DraggingLink = true;
-        //        //surement utiles pour l'anim de replacment du lien 
-        //        Vector3 dir = (InputManager.Instance.mousePos - selectedCell.transform.position).normalized;
-        //        Vector3 firstPos = selectedCell.transform.position + dir * 1.3f;
-
-        //        currentLink.FirstSetupWithSlot(firstPos, InputManager.Instance.mousePos, selectedCell.GetCurrentRange(), joint, joint.isOutput);
-        //    }
-        //    else
-        //    {
-        //        Debug.Log("plus de slot dispo");
-        //    }
+        //    Debug.Log("Trop de lien sur la cellule de base");
+        //    return;
         //}
 
-
-
-        //else
-        //{
-            #region SANS RESTRICTION 
-            //Referencing in script
-            LinkClass newLink = ObjectPooler.poolingSystem.GetPooledObject<LinkClass>() as LinkClass;
-            currentLink = newLink;
-            currentLine = newLink.line;
+        #region RESTRICTION
+        LinkJointClass joint = selectedCell.CheckRestritedSlot();
+        if (joint == null)
+        {
+            Debug.Log("Plus assez d'output");
+        }
+        else
+        {
+            LinkClass _newLink = ObjectPooler.poolingSystem.GetPooledObject<LinkClass>() as LinkClass;
+            currentLink = _newLink;
+            currentLine = _newLink.line;
             currentLink.Outpool();
             //Setup 
             InputManager.Instance.DraggingLink = true;
-            //selectedCell.AddLink(currentLink, true);
+            //surement utiles pour l'anim de replacment du lien 
+            Vector3 _dir = (InputManager.Instance.mousePos - selectedCell.transform.position).normalized;
+            Vector3 firstPos = selectedCell.transform.position + _dir * selectedCell.myCellTemplate.slotDistance;
 
-            //Ancien Systeme de Link 
-            //currentLink.startPos = selectedCell.transform.position;
-            //currentLine.SetPosition(0, currentLink.startPos);
-            //currentLink.endPos = InputManager.Instance.mousePos;
-            //currentLine.SetPosition(1, currentLink.endPos);
+            currentLink.FirstSetupWithSlot(firstPos, InputManager.Instance.mousePos, selectedCell.GetCurrentRange(), joint/*, joint.isOutput*/);
+        }
+
+        #endregion
+        //else
+        //{
+        #region SANS RESTRICTION 
+        //Referencing in script
+        LinkClass newLink = ObjectPooler.poolingSystem.GetPooledObject<LinkClass>() as LinkClass;
+        currentLink = newLink;
+        currentLine = newLink.line;
+        currentLink.Outpool();
+        //Setup 
+        InputManager.Instance.DraggingLink = true;
+        //selectedCell.AddLink(currentLink, true);
+
+        //Ancien Systeme de Link 
+        //currentLink.startPos = selectedCell.transform.position;
+        //currentLine.SetPosition(0, currentLink.startPos);
+        //currentLink.endPos = InputManager.Instance.mousePos;
+        //currentLine.SetPosition(1, currentLink.endPos);
 
 
-            ///nouveau systeme de link
-            Vector3 dir = (InputManager.Instance.mousePos - selectedCell.transform.position).normalized;
-            Vector3 startPos = selectedCell.transform.position + dir * 1.3f;
-            currentLink.FirstSetup(startPos, InputManager.Instance.mousePos, selectedCell.GetCurrentRange());
-            #endregion
+        ///nouveau systeme de link
+        Vector3 dir = (InputManager.Instance.mousePos - selectedCell.transform.position).normalized;
+        Vector3 startPos = selectedCell.transform.position + dir * 1.3f;
+        currentLink.FirstSetup(startPos, InputManager.Instance.mousePos, selectedCell.GetCurrentRange());
+        #endregion
         //}
     }
 
@@ -174,6 +169,7 @@ public class CellManager : MonoBehaviour
 
     public void ValidateNewLink(RaycastHit hit)
     {
+        //Nouveau Cellules en cours de placement 
         if (InputManager.Instance.newCell)
             receivingCell = InputManager.Instance.objectMoved;
         else
@@ -183,6 +179,7 @@ public class CellManager : MonoBehaviour
 
         //permet de check si c'est bien une cellule et pas la meme cellule
         selectedCell = InputManager.Instance.selectedCell;
+
 
         if (receivingCell != null && receivingCell != selectedCell)
         {
@@ -205,6 +202,11 @@ public class CellManager : MonoBehaviour
                 }
             }
             if (receivingCell.noMoreLink)
+            {
+                SupressCurrentLink();
+                return;
+            }
+            if (!currentLink.CheckNewLinkLength(receivingCell.transform.position, selectedCell))
             {
                 SupressCurrentLink();
                 return;

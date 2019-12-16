@@ -10,7 +10,7 @@ public class TopBarUI : MonoBehaviour
 
     public void UpdateUI()
     {
-        energy.text = "Sploosh : " + RessourceTracker.instance.energy;
+        energy.text = "Sploosh : " + RessourceTracker.instance.energy + "/ " + RessourceTracker.instance.energyCap;
     }
 
 }
