@@ -174,6 +174,13 @@ public class QuickSetUp : Editor
         proximityPoolItem.AmountToPool = 200;
         pooler.poolItems.Add(proximityPoolItem);
 
+        //j'ai rajouté ça 
+        ObjectPoolItem linkJointItem = new ObjectPoolItem();
+        linkJointItem.objectToPool = Resources.Load("QuickSetUp/LinkJoint") as GameObject;
+        linkJointItem.AmountToPool = 200;
+        pooler.poolItems.Add(linkJointItem);
+
+
         PoolCustomInpector.GeneratePools();
 
         #endregion

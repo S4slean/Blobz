@@ -141,8 +141,6 @@ public class InputManager : MonoBehaviour
             //Click Gauche Out
             if (Input.GetMouseButtonUp(0))
             {
-
-
                 //pour interagir avec la cellule
                 if (clickTime <= clickCooldown && isOverCell && cellOver == CellManager.Instance.selectedCell)
                 {
@@ -157,7 +155,6 @@ public class InputManager : MonoBehaviour
 
                 leftClickedOnCell = false;
                 clickTime = 0;
-
             }
 
             //Click Droit In
@@ -166,7 +163,6 @@ public class InputManager : MonoBehaviour
                 if (InCellSelection)
                 {
                     UIManager.Instance.DesactivateCellShop();
-
                 }
                 //Deselectionne la cellule si sélectionné 
                 else if (CellSelected && DraggingLink)
@@ -186,12 +182,12 @@ public class InputManager : MonoBehaviour
 
             if (!DraggingLink && !InCellSelection)
             {
-
+                
                 if (hit.transform != null && hit.transform.tag == "Cell" && !isOverCell)
                 {
                     isOverCell = true;
                     cellOver = hit.transform.GetComponent<CellMain>();
-                }
+                } 
             }
 
             if (hit.transform == null || hit.transform.tag != "Cell")
@@ -246,10 +242,6 @@ public class InputManager : MonoBehaviour
         #region MOVING_CELL
         else
         {
-
-
-
-
             if (hit.transform != null && hit.transform.tag == "Ground")
             {
                 CellManager.Instance.CellDeplacement(hit.point, objectMoved, newCell);

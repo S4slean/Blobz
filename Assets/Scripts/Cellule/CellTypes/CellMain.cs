@@ -6,7 +6,7 @@ using TMPro;
 using UnityEngine.EventSystems;
 
 //[RequireComponent(typeof(MeshCollider))]  //typeof(MeshRenderer), typeof(MeshFilter),
-public class CellMain : PoolableObjects
+public class CellMain : PoolableObjects, PlayerAction
 {
     #region Variables
     [Tooltip("glissé l'un des srcyptable object structure ici")]
@@ -23,28 +23,37 @@ public class CellMain : PoolableObjects
     public TextMeshPro NLink;
     public TextMeshPro NCurrentProximity;
     public Transform graphTransform;
-
     public Transform TargetPos;
+
+    public List<LinkClass> links = new List<LinkClass>();
+    protected List<LinkClass> outputLinks = new List<LinkClass>();
+
+    public List<CellProximityDectection> inThoseCellProximity = new List<CellProximityDectection>();
+    public List<CellProximityDectection> influencedByThoseCellProximity = new List<CellProximityDectection>();
+    private CellProximityDectection[] myProximityCollider;
+
+    public LinkJointClass[] outPutJoint;
+    public LinkJointClass[] InputJoint;
 
     //public MeshFilter mF;
     //public MeshRenderer mR;
     // public MeshCollider mC;
 
-    public CellProximityDectection ProximityDectection;
+    //public CellProximityDectection ProximityDectection;
     #endregion
 
     #region DEBUG
     public bool showDebug;
+
     public bool showlinks;
     public bool showRef;
-    public List<LinkClass> links = new List<LinkClass>();
     public bool noMoreLink;
     public int blobNumber;
     public bool hasBeenDrop;
+    public bool limitedInLink;
 
-    protected List<LinkClass> outputLinks = new List<LinkClass>();
-    protected List<CellMain> cellAtProximity = new List<CellMain>();
     protected int currentIndex;
+
 
     #endregion
 
@@ -86,7 +95,7 @@ public class CellMain : PoolableObjects
 
     public virtual void Awake()
     {
-        ProximityDectection.parent = this;
+        //ProximityDectection.parent = this;
 
         //mR.material = myCellTemplate.mat;
         //mF.mesh = myCellTemplate.mesh;
@@ -196,8 +205,16 @@ public class CellMain : PoolableObjects
             }
 
         }
+
+        //Mret dans la pull les enfants
+        for (int i = 0; i < myProximityCollider.Length; i++)
+        {
+            myProximityCollider[i].Inpool();
+        }
+
         blobNumber = 0;
-        SetupVariable();
+        //SetupVariable();
+
         Inpool();
     }
     public virtual void BlobsTick()
@@ -275,19 +292,19 @@ public class CellMain : PoolableObjects
         }
         UpdateCaract();
     }
-    public virtual void ClickInteraction()
-    {
-        if (blobNumber > 0)
-        {
-            BlobNumberVariation(-1);
-            //CellManager.Instance.EnergyVariation(currentEnergyPerClick);
-            RessourceTracker.instance.EnergyVariation(currentEnergyPerClick);
-        }
+    //public virtual void ClickInteraction()
+    //{
+    //    if (blobNumber > 0)
+    //    {
+    //        BlobNumberVariation(-1);
+    //        //CellManager.Instance.EnergyVariation(currentEnergyPerClick);
+    //        RessourceTracker.instance.EnergyVariation(currentEnergyPerClick);
+    //    }
 
-        anim.Play("PlayerInteraction", 0, 0f);
+    //    anim.Play("PlayerInteraction", 0, 0f);
 
 
-    }
+    //}
 
 
     #region BLOB_GESTION
@@ -379,74 +396,146 @@ public class CellMain : PoolableObjects
         // ProximityDectection.myCollider.radius = Mathf.SmoothDamp(0, myCellTemplate.range / 2, ref velocity, 0.01f);
         if (myCellTemplate.generateProximity)
         {
+            myProximityCollider = new CellProximityDectection[myCellTemplate.proximityColliderNumber];
             for (int i = 0; i < myCellTemplate.proximityColliderNumber; i++)
             {
                 CellProximityDectection newProximityCollider = ObjectPooler.poolingSystem.GetPooledObject<CellProximityDectection>() as CellProximityDectection;
+                myProximityCollider.SetValue(newProximityCollider, i);
                 newProximityCollider.transform.localScale = new Vector3(1, 1, 1) * (myCellTemplate.proximityColliders[i].range / 2);
                 newProximityCollider.transform.SetParent(transform);
-                newProximityCollider.Init(myCellTemplate.proximityColliders[i].proximityLevel);
+                newProximityCollider.Init(myCellTemplate.proximityColliders[i].proximityLevel, transform);
+                newProximityCollider.parent = this;
 
                 newProximityCollider.Outpool();
             }
         }
-        ProximityDectection.myCollider.radius = currentRange / 2;
+        //ProximityDectection.myCollider.radius = currentRange / 2;
     }
-    public void AddToCellAtPromity(CellMain cellDetected)
+
+    public void AddProximityInfluence(CellProximityDectection proximityToAdd)
     {
-        bool endFunction = false;
-        cellAtProximity.Add(cellDetected);
-        CellType cellDetectedType = cellDetected.myCellTemplate.type;
-        for (int i = 0; i < myCellTemplate.negativesInteractions.Length; i++)
+        bool becomeInfluenced = true;
+        bool checkEnd = false;
+        for (int i = 0; i < influencedByThoseCellProximity.Count; i++)
         {
-            if (cellDetectedType == myCellTemplate.negativesInteractions[i])
+            if (proximityToAdd.parent == influencedByThoseCellProximity[i].parent && !checkEnd)
             {
-                ProximityLevelModification(-1);
-                endFunction = true;
-                break;
+                if (Mathf.Abs(proximityToAdd.proximityLevel) <= Mathf.Abs(influencedByThoseCellProximity[i].proximityLevel))
+                {
+                    becomeInfluenced = false;
+                    checkEnd = true;
+                }
+                else
+                {
+                    becomeInfluenced = true;
+                    influencedByThoseCellProximity.Remove(influencedByThoseCellProximity[i]);
+                }
             }
         }
-        if (endFunction)
+        if (becomeInfluenced)
         {
-            return;
-        }
+            influencedByThoseCellProximity.Add(proximityToAdd);
 
-        for (int j = 0; j < myCellTemplate.positivesInteractions.Length; j++)
-        {
-            if (cellDetectedType == myCellTemplate.positivesInteractions[j])
-            {
-                ProximityLevelModification(1);
-                break;
-            }
         }
+        ProximityLevelModification();
     }
-    public void RemoveToCellAtPromity(CellMain cellDetected)
+
+    public void RemoveProximityInfluence(CellProximityDectection proximityToRemove)
     {
-        cellAtProximity.Remove(cellDetected);
-        CellType cellDetectedType = cellDetected.myCellTemplate.type;
-
-        for (int i = 0; i < myCellTemplate.negativesInteractions.Length; i++)
+        inThoseCellProximity.Remove(proximityToRemove);
+        for (int i = 0; i < influencedByThoseCellProximity.Count; i++)
         {
-            if (cellDetectedType == myCellTemplate.negativesInteractions[i])
+            if (proximityToRemove == influencedByThoseCellProximity[i])
             {
-                ProximityLevelModification(+1);
-                // Ajouter L'UI 
-            }
-
-        }
-        for (int j = 0; j < myCellTemplate.positivesInteractions.Length; j++)
-        {
-            if (cellDetectedType == myCellTemplate.positivesInteractions[j])
-            {
-                ProximityLevelModification(-1);
+                influencedByThoseCellProximity.Remove(proximityToRemove);
+                for (int y = 0; y < inThoseCellProximity.Count; y++)
+                {
+                    if (inThoseCellProximity[y].parent == proximityToRemove.parent)
+                    {
+                        AddProximityInfluence(inThoseCellProximity[y]);
+                    }
+                }
             }
         }
+        //influencedByThoseCellProximity.Remove(proximityToRemove);
+        //for (int y = 0; y < inThoseCellProximity.Count; y++)
+        //{
+        //    if (inThoseCellProximity[y].parent == proximityToRemove.parent)
+        //    {
+        //        AddProximityInfluence(inThoseCellProximity[y]);
+        //    }
+        //}
+
+        ProximityLevelModification();
     }
-    public virtual void ProximityLevelModification(int Amout)
+
+
+
+
+    #region Ancien Système de proximité
+
+    //public void AddToCellAtPromity(CellMain cellDetected)
+    //{
+    //    bool endFunction = false;
+    //    //cellAtProximity.Add(cellDetected);
+    //    CellType cellDetectedType = cellDetected.myCellTemplate.type;
+    //    for (int i = 0; i < myCellTemplate.negativesInteractions.Length; i++)
+    //    {
+    //        if (cellDetectedType == myCellTemplate.negativesInteractions[i])
+    //        {
+    //            ProximityLevelModification(-1);
+    //            endFunction = true;
+    //            break;
+    //        }
+    //    }
+    //    if (endFunction)
+    //    {
+    //        return;
+    //    }
+
+    //    for (int j = 0; j < myCellTemplate.positivesInteractions.Length; j++)
+    //    {
+    //        if (cellDetectedType == myCellTemplate.positivesInteractions[j])
+    //        {
+    //            ProximityLevelModification(1);
+    //            break;
+    //        }
+    //    }
+    //}
+    //public void RemoveToCellAtPromity(CellMain cellDetected)
+    //{
+    //    //cellAtProximity.Remove(cellDetected);
+    //    CellType cellDetectedType = cellDetected.myCellTemplate.type;
+
+    //    for (int i = 0; i < myCellTemplate.negativesInteractions.Length; i++)
+    //    {
+    //        if (cellDetectedType == myCellTemplate.negativesInteractions[i])
+    //        {
+    //            ProximityLevelModification(+1);
+    //            // Ajouter L'UI 
+    //        }
+
+    //    }
+    //    for (int j = 0; j < myCellTemplate.positivesInteractions.Length; j++)
+    //    {
+    //        if (cellDetectedType == myCellTemplate.positivesInteractions[j])
+    //        {
+    //            ProximityLevelModification(-1);
+    //        }
+    //    }
+    //}
+    #endregion
+    public virtual void ProximityLevelModification()
     {
         int LastProximityTier = currentProximityTier;
         int lastEnergyCap = currentEnergyCap;
 
-        currentProximityLevel += Amout;
+        currentProximityLevel = 0;
+        for (int i = 0; i < influencedByThoseCellProximity.Count; i++)
+        {
+            currentProximityLevel += influencedByThoseCellProximity[i].proximityLevel;
+        }
+
         NCurrentProximity.text = currentProximityLevel.ToString();
 
         if (currentProximityLevel >= 0 && currentProximityLevel < myCellTemplate.proximityLevelMax)
@@ -504,13 +593,13 @@ public class CellMain : PoolableObjects
     #endregion
 
     #region LINK_GESTION
-    public virtual void AddLink(LinkClass linkToAdd, bool output)
+    public virtual void AddLinkReferenceToCell(LinkClass linkToAdd, bool output)
     {
         links.Add(linkToAdd);
 
         if (output)
         {
-            linkToAdd.Init(this);
+            linkToAdd.AngleFromCell(this);
             outputLinks.Add(linkToAdd);
             SortingLink();
         }
@@ -570,21 +659,23 @@ public class CellMain : PoolableObjects
 
 
     //A changé au lieu de désactiver on peut juste désactiver les components ( c'est une micro opti ) 
-    public override void Inpool()
-    {
-        if (Application.isEditor)
-        {
-            canBePool = true;
-            gameObject.SetActive(false);
-        }
-        else
-        {
 
-            canBePool = true;
-            transform.position = ObjectPooler.poolingSystem.transform.position;
-            StartCoroutine(DesactiveGameObject(0.02f));
-        }
-    }
+    //public override void Inpool()
+    //{
+    //    if (Application.isEditor)
+    //    {
+    //        canBePool = true;
+    //        gameObject.SetActive(false);
+    //    }
+    //    else
+    //    {
+
+    //        canBePool = true;
+    //        transform.position = ObjectPooler.poolingSystem.transform.position;
+    //        StartCoroutine(DesactiveGameObject());
+    //    }
+    //}
+
     public virtual void UpdateCaract()
     {
         NBlob.text = (blobNumber + " / " + currentBlobStockage);
@@ -609,7 +700,8 @@ public class CellMain : PoolableObjects
         currentEnergyPerClick = myCellTemplate.energyPerClick;
         currentEnergyCap = myCellTemplate.energyCapBase;
 
-        cellAtProximity.Clear();
+        //cellAtProximity.Clear();
+
         currentProximityLevel = 0;
         inDanger = false;
         isDead = false;
@@ -621,15 +713,106 @@ public class CellMain : PoolableObjects
                 // Debug.Log(myCellTemplate.proximityColliders[i].proximityLevel + " "+ myCellTemplate.proximityColliders[i].range);
             }
         }
+        //if (myCellTemplate.limitedInLinks)
+        //{
+        //    limitedInLink = true;
+        //    GenerateLinkSlot();
+        //}
         RessourceTracker.instance.EnergyCapVariation(currentEnergyCap);
         ProximityCheck();
-        ProximityLevelModification(0);
+        ProximityLevelModification();
     }
 
     public int GetCurrentRange()
     {
         return currentRange / 2;
     }
+    #endregion
+
+    #region SLOT 
+
+    //public LinkJointClass CheckRestritedSlot()
+    //{
+    //    int maxJoint = 4;
+    //    if (myCellTemplate.numberOfOuputLinks <=maxJoint)
+    //    {
+
+    //    }
+    //    for (int i = 0; i < outPutJoint.Length ; i++)
+    //    {
+
+    //        if (outPutJoint[i].link == null)
+    //        {
+    //            return outPutJoint[i];
+    //        }
+
+    //    }
+    //    for (int i = 0; i < InputJoint.Length; i++)
+    //    {
+    //        if (InputJoint[i].link == null)
+    //        {
+    //            return InputJoint[i];
+    //        }
+    //    }
+
+    //    return null;
+
+    //}
+    //private void GenerateLinkSlot()
+    //{
+    //    int currentSlot = 0;
+    //    float yOffset = 0.1f;
+    //    int maxJoint = 4;
+    //    if (myCellTemplate.numberOfOuputLinks <= maxJoint)
+    //    {
+    //        outPutJoint = new LinkJointClass[maxJoint];
+    //        for (int i = 0; i < myCellTemplate.numberOfOuputLinks; i++)
+    //        {
+    //            float anglefrac = 2 * Mathf.PI / (maxJoint*2);
+
+    //            //calcule de l'angle en foncttion du nombre de point
+    //            float angle = anglefrac * currentSlot;
+    //            Vector3 dir = new Vector3(Mathf.Sin(angle), 0, Mathf.Cos(angle));
+    //            Vector3 pos = dir * myCellTemplate.slotDistance + new Vector3(0, yOffset, 0);
+
+
+    //            LinkJointClass newSlot = ObjectPooler.poolingSystem.GetPooledObject<LinkJointClass>() as LinkJointClass;
+    //            outPutJoint[i] = newSlot;
+
+    //            newSlot.Outpool();
+    //            newSlot.transform.parent = this.transform;
+    //            newSlot.transform.localPosition = pos;
+    //            newSlot.transform.localRotation = Quaternion.Euler(90, 0, 0);
+    //            newSlot.Init(true);
+    //            currentSlot++;
+    //        }
+    //    }
+    //    if (myCellTemplate.numberOfInputLinks <= maxJoint)
+    //    {
+    //        InputJoint = new LinkJointClass[maxJoint];
+    //        for (int i = 0; i < myCellTemplate.numberOfInputLinks; i++)
+    //        {
+
+    //            float anglefrac = 2 * Mathf.PI / (maxJoint*2);
+
+    //            //calcule de l'angle en foncttion du nombre de point
+
+    //            float angle = anglefrac * currentSlot;
+    //            Vector3 dir = new Vector3(Mathf.Sin(angle), 0, Mathf.Cos(angle));
+    //            Vector3 pos = dir * myCellTemplate.slotDistance + new Vector3(0, yOffset, 0);
+
+    //            LinkJointClass newSlot = ObjectPooler.poolingSystem.GetPooledObject<LinkJointClass>() as LinkJointClass;
+    //            InputJoint[i] = newSlot;
+    //            newSlot.Outpool();
+    //            newSlot.transform.localRotation = Quaternion.Euler(90, 0, 0);
+    //            newSlot.Init(false);
+    //            newSlot.transform.parent = this.transform;
+    //            newSlot.transform.localPosition = pos;
+    //            currentSlot++;
+    //        }
+    //    }
+
+    //}
     #endregion
 
     private void OnBecameInvisible()
@@ -641,4 +824,25 @@ public class CellMain : PoolableObjects
         isVisible = true;
     }
 
+
+
+    #region PLAYER ACTION INTERFACE
+
+    public virtual void ClickInteraction()
+    {
+        if (blobNumber > 0)
+        {
+            BlobNumberVariation(-1);
+            //CellManager.Instance.EnergyVariation(currentEnergyPerClick);
+            RessourceTracker.instance.EnergyVariation(currentEnergyPerClick);
+        }
+
+        anim.Play("PlayerInteraction", 0, 0f);
+    }
+
+    public  virtual void PlayerDrag()
+    {
+        throw new System.NotImplementedException();
+    }
+    #endregion
 }

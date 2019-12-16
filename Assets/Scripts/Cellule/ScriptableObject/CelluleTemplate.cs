@@ -52,6 +52,13 @@ public class CelluleTemplate : ScriptableObject
 
     [Range(0f, 12f)]
     public int linkCapability = 6;
+    public bool limitedInLinks;
+    [Range(1 , 40)]
+    public float slotDistance = 3; 
+    [Range(1 , 4)]
+    public int numberOfOuputLinks =1;
+    [Range(1 , 4)]
+    public int numberOfInputLinks =1;
 
 
     [Range(0, 5)]

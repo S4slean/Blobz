@@ -23,7 +23,15 @@ MonoBehaviour:
   buttonColor: {r: 0, g: 0.5594101, b: 1, a: 1}
   cellTexture: {fileID: 0}
   type: 2
-  EnergyCost: 20
+  generateProximity: 0
+  proximityColliderNumber: 2
+  proximityColliders:
+  - proximityLevel: 0
+    range: 0
+  - proximityLevel: 0
+    range: 0
+  energyCost: 5
+  energyCapBase: 10
   rangeBase: 40
   blobRatioAtDeath: 0
   impulseForce_Death: 0
@@ -33,6 +41,10 @@ MonoBehaviour:
   tickForActivationBase: 1
   energyPerClick: 1
   linkCapability: 8
+  limitedInLinks: 1
+  slotDistance: 1.5
+  numberOfOuputLinks: 4
+  numberOfInputLinks: 2
   proximityLevelMax: 4
   positivesInteractions: 0100000000000000
   negativesInteractions: 03000000
@@ -42,10 +54,11 @@ MonoBehaviour:
   LinkCapacity: 00000000000000000000000000000000
   Range: 
   tickForActivation: 
+  energyCap: 
   energyPerblop: 0
   StatsModification: 2
-  REFS: 1
+  REFS: 0
   ToggleInfoBox: 1
-  STATS: 1
+  STATS: 0
   ProductionGestion: 1
-  ProximityGestion: 1
+  ProximityGestion: 0
