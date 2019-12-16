@@ -93,11 +93,19 @@ public class CellManager : MonoBehaviour
         //currentLine.SetPosition(1, currentLink.endPos);
 
 
+<<<<<<< HEAD
         ///nouveau systeme de link
         Vector3 dir = (InputManager.Instance.mousePos - selectedCell.transform.position).normalized;
         Vector3 startPos = selectedCell.transform.position + dir * 1.3f;
         currentLink.FirstSetup(startPos, InputManager.Instance.mousePos, selectedCell.GetCurrentRange());
         #endregion
+=======
+            ///nouveau systeme de link
+            Vector3 dir = (InputManager.Instance.mouseWorldPos - selectedCell.transform.position).normalized;
+            Vector3 startPos = selectedCell.transform.position + dir * 1.3f;
+            currentLink.FirstSetup(startPos, InputManager.Instance.mouseWorldPos, selectedCell.GetCurrentRange());
+            #endregion
+>>>>>>> 0aa172f3eb1a7e73d5306d423a9e3d2f6fb9ab13
         //}
     }
 
@@ -327,6 +335,7 @@ public class CellManager : MonoBehaviour
             {
                 refPoint = selectedCell.transform.position;
                 cellToMove.transform.position = refPoint + (InputManager.Instance.mousePos - refPoint).normalized * selectedCell.GetCurrentRange();
+                cellToMove.transform.position = refPoint + (InputManager.Instance.mouseWorldPos - refPoint).normalized * selectedCell.GetCurrentRange();
                 DragNewlink(cellToMove.transform.position + Vector3.up * .1f);
             }
             else

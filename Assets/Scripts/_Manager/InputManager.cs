@@ -33,9 +33,22 @@ public class InputManager : MonoBehaviour
     int layer_Mask_Cell;
 
     [HideInInspector] public Vector3 posCell;
-    [HideInInspector] public Vector3 mousePos;
+    [HideInInspector] public Vector3 mouseWorldPos;
+    [HideInInspector] public Vector3 mouseScreenPos;
 
     private float clickTime;
+
+    
+    //permet d'éviter un getComponent à chaque frame lors du raycast de mouse Over
+    private bool isOverCell;
+    private bool rightClickedOnCell;
+    private bool leftClickedOnCell;
+    private CellMain cellOver;
+    public CellMain selectedCell;
+
+    public bool newCell = false;
+    [HideInInspector] public bool movingObject = false;
+    [HideInInspector] public CellMain objectMoved;
     #endregion
 
 
@@ -53,27 +66,18 @@ public class InputManager : MonoBehaviour
         layer_Mask_Cell = LayerMask.GetMask("Cell");
     }
 
-    //permet d'éviter un getComponent à chaque frame lors du raycast de mouse Over
-    private bool isOverCell;
-    private bool rightClickedOnCell;
-    private bool leftClickedOnCell;
-    private CellMain cellOver;
-    public CellMain selectedCell;
-
-    public bool newCell = false;
-    [HideInInspector] public bool movingObject = false;
-    [HideInInspector] public CellMain objectMoved;
-
     private void Start()
     {
         m_Raycaster = FindObjectOfType<GraphicRaycaster>();
         m_EventSystem = FindObjectOfType<EventSystem>();
         p_Raycaster = FindObjectOfType<PhysicsRaycaster>();
     }
+
     private void Update()
     {
         RaycastHit hit = Helper.ReturnHit(Input.mousePosition, CellManager.mainCamera, maskLeftCLick);
-        mousePos = hit.point;
+        mouseWorldPos = hit.point;
+        mouseScreenPos = new Vector3(Input.mousePosition.x, 0, Input.mousePosition.y);
 
         #region STANDARD_STATE
         if (!movingObject)
