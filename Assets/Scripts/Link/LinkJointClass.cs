@@ -2,27 +2,29 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LinkJointClass : PoolableObjects 
+public class LinkJointClass : PoolableObjects
 {
     //public LinkClass link;
     //public List<CellMain> cellsAttach = new List<CellMain>() ; 
     public Color outputColor;
     public Color InputColor;
+    public Color flexColor;
 
 
     public MeshRenderer mF;
 
+    public linkJointType typeOfJoint;
 
-    public bool nextToACell;
-    public bool gotALink; 
-    public bool isOutput;
-    public bool isLock;
-    public bool canBeDropEveryWhere;
+    //public bool nextToACell;
+    public bool disponible = true;
+    //public bool isOutput;
+    //public bool isLock;
+    //public bool canBeDropEveryWhere;
 
 
-    public void Init(bool _isOuput)
+    public void Init(linkJointType type)
     {
-        isOutput = _isOuput;
+        typeOfJoint = type;
         GraphUpdate();
     }
 
@@ -36,14 +38,34 @@ public class LinkJointClass : PoolableObjects
 
     public void GraphUpdate()
     {
-        if (isOutput)
+        //if (isOutput)
+        //{
+        //    mF.material.SetColor("_Color", outputColor);
+        //}
+        //else
+        //{
+        //    mF.material.SetColor("_Color", InputColor);
+        //}
+
+        switch (typeOfJoint)
         {
-            mF.material.SetColor("_Color", outputColor);
+            case linkJointType.flex:
+                mF.material.SetColor("_Color", flexColor);
+                break;
+            case linkJointType.output:
+                mF.material.SetColor("_Color", outputColor);
+                break;
+            case linkJointType.input:
+                mF.material.SetColor("_Color", InputColor);
+                break;
+
         }
-        else
-        {
-            mF.material.SetColor("_Color", InputColor);
-        }
+    }
+
+    public override void Inpool()
+    {
+        base.Inpool();
+        disponible = true;
     }
 
     //private void OnTriggerEnter(Collider other)
@@ -64,6 +86,14 @@ public class LinkJointClass : PoolableObjects
     //        cellsAttach.Remove(cell);
     //    }
     //}
+}
 
+
+
+public enum linkJointType
+{
+    flex,
+    output,
+    input
 
 }

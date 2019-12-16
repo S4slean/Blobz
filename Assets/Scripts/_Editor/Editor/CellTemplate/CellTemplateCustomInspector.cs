@@ -13,7 +13,7 @@ public class CellTemplateCustomInspector : Editor
     SerializedProperty typeProp;
     SerializedProperty energyCostProp, energyCapBaseProp, rangeBaseProp, blobRatioAtDeathProp, impulseForce_DeathProp;
 
-    SerializedProperty prodPerTickProp, rejectPowerProp, storageCapabilityProp, linkCapabilityProp, tickForActivationBaseProp, energyPerClickProp;
+    SerializedProperty prodPerTickProp, rejectPowerProp, storageCapabilityProp/*, linkCapabilityProp*/, tickForActivationBaseProp, energyPerClickProp;
 
     SerializedProperty proximityLevelMaxProp, positivesInteractionsProp, negativesInteractionsProp, StatsModificationProp;
 
@@ -32,7 +32,7 @@ public class CellTemplateCustomInspector : Editor
 
     SerializedProperty genererateProximityProp, proximityColliderNumberProp, proximityCollidersProp;
 
-    SerializedProperty limitedInLinksProp, numberOfOuputLinksProp, numberOfInputLinksProp , slotDistanceProp;
+    SerializedProperty limitedInLinksProp, numberOfOuputLinksProp, numberOfInputLinksProp, slotDistanceProp, numberOfFlexLinksProp;
 
     //ReorderableList proximityColliderList; 
 
@@ -72,7 +72,7 @@ public class CellTemplateCustomInspector : Editor
         prodPerTickProp = serializedObject.FindProperty("prodPerTickBase");
         rejectPowerProp = serializedObject.FindProperty("rejectPowerBase");
         storageCapabilityProp = serializedObject.FindProperty("storageCapability");
-        linkCapabilityProp = serializedObject.FindProperty("linkCapability");
+        //linkCapabilityProp = serializedObject.FindProperty("linkCapability");
         tickForActivationBaseProp = serializedObject.FindProperty("tickForActivationBase");
         energyPerClickProp = serializedObject.FindProperty("energyPerClick");
         #endregion
@@ -115,6 +115,7 @@ public class CellTemplateCustomInspector : Editor
         numberOfOuputLinksProp = serializedObject.FindProperty("numberOfOuputLinks");
         numberOfInputLinksProp = serializedObject.FindProperty("numberOfInputLinks");
         slotDistanceProp = serializedObject.FindProperty("slotDistance");
+        numberOfFlexLinksProp = serializedObject.FindProperty("numberOfFlexLinks");
         #endregion
 
         fieldWidthBase = EditorGUIUtility.fieldWidth;
@@ -219,6 +220,10 @@ public class CellTemplateCustomInspector : Editor
         #endregion
 
         #region LINKS   
+
+        EditorGUILayout.BeginVertical("box");
+        EditorGUILayout.PropertyField(slotDistanceProp);
+        EditorGUILayout.PropertyField(numberOfFlexLinksProp);
         EditorGUILayout.PropertyField(limitedInLinksProp);
         if (limitedInLinksProp.boolValue)
         {
@@ -227,11 +232,11 @@ public class CellTemplateCustomInspector : Editor
             EditorGUILayout.BeginVertical("box");
             EditorGUILayout.PropertyField(numberOfOuputLinksProp);
             EditorGUILayout.PropertyField(numberOfInputLinksProp);
-            EditorGUILayout.PropertyField(slotDistanceProp);
             EditorGUILayout.EndVertical();
             EditorGUIUtility.labelWidth = labelWidthBase;
             EditorGUIUtility.fieldWidth = fieldWidthBase;
         }
+        EditorGUILayout.EndHorizontal();
         EditorGUILayout.Space();
         EditorGUILayout.Space();
         #endregion
@@ -303,7 +308,7 @@ public class CellTemplateCustomInspector : Editor
                 EditorGUILayout.PropertyField(prodPerTickProp);
                 EditorGUILayout.PropertyField(rejectPowerProp);
                 EditorGUILayout.PropertyField(storageCapabilityProp);
-                EditorGUILayout.PropertyField(linkCapabilityProp);
+                //EditorGUILayout.PropertyField(linkCapabilityProp);
                 EditorGUILayout.PropertyField(tickForActivationBaseProp);
 
             }
@@ -323,7 +328,7 @@ public class CellTemplateCustomInspector : Editor
                 EditorGUILayout.BeginHorizontal();
 
                 EditorGUILayout.PropertyField(storageCapabilityProp);
-                EditorGUILayout.PropertyField(linkCapabilityProp);
+                //EditorGUILayout.PropertyField(linkCapabilityProp);
 
                 EditorGUILayout.EndHorizontal();
 
