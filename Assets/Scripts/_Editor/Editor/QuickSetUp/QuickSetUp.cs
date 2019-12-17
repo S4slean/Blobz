@@ -71,9 +71,6 @@ public class QuickSetUp : Editor
         if (FindObjectOfType<InputManager>() != null)
             DestroyImmediate(FindObjectOfType<InputManager>().gameObject);
 
-        if (FindObjectOfType<QuestManager>() != null)
-            DestroyImmediate(FindObjectOfType<QuestManager>().gameObject);
-
         if (FindObjectOfType<RessourceTracker>() != null)
             DestroyImmediate(FindObjectOfType<RessourceTracker>().gameObject);
 
@@ -117,7 +114,10 @@ public class QuickSetUp : Editor
     static void BuildNewScene()
     {
         pools = Instantiate(pools);
-        questManager = Instantiate(questManager);
+
+        if (FindObjectOfType<BlobManager>() == null)
+            questManager = Instantiate(questManager);
+
         uiManager = Instantiate(uiManager);
         tickManager = Instantiate(tickManager);
         cellManager = Instantiate(cellManager);

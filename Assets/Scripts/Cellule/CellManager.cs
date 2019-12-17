@@ -233,8 +233,10 @@ public class CellManager : MonoBehaviour
             //currentLine.SetPosition(1, currentLink.endPos);
 
             //Nouveau System
+            //currentLink.CheckLength(hit)
             Vector3 cellPos = receivingCell.transform.position;
             Vector3 _dir = (cellPos - selectedCell.transform.position).normalized;
+            Debug.Log("dir:"+ _dir + "slotdistance:" + receivingCell.myCellTemplate.slotDistance);
             Vector3 lastPos = cellPos - _dir*receivingCell.myCellTemplate.slotDistance;
             Vector3 firstPos = selectedCell.transform.position + _dir * selectedCell.myCellTemplate.slotDistance;
             currentLink.UpdatePoint(firstPos, lastPos);
