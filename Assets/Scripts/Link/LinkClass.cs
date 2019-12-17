@@ -39,16 +39,10 @@ public class LinkClass : PoolableObjects
     #region COMMUN
     public void Break()
     {
-        receivingCell.RemoveLink(this);
-        originalCell.RemoveLink(this);
-        gameObject.SetActive(false);
-        //for (int i = 0; i < joints.Length; i++)
-        //{
-        //    if (!joints[i].isLock)
-        //    {
-        //        joints[i].Inpool();
-        //    }
-        //}
+        receivingCell.RemoveLink(this , false);
+        originalCell.RemoveLink(this , true);
+
+        Inpool();
     }
     public void FirstSetup(Vector3 firstPos, Vector3 lastPos, int cellRange)
     {
@@ -69,7 +63,6 @@ public class LinkClass : PoolableObjects
     }
     public void FirstSetupWithSlot(Vector3 firstPos, Vector3 lastPos, int cellRange, LinkJointClass baseJoint/*, bool isOutput*/)
     {
-        Debug.Log("yop");
         range = cellRange * 2;
         line.positionCount = range;
         extremityPos[0] = firstPos;
@@ -80,6 +73,7 @@ public class LinkClass : PoolableObjects
         //{
         baseJoint.transform.position = extremityPos[0];
         joints[0] = baseJoint;
+        joints[0].disponible = false;
         createdJoint.transform.position = extremityPos[1];
         createdJoint.typeOfJoint = linkJointType.input;
         joints[1] = createdJoint;

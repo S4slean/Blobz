@@ -58,8 +58,8 @@ public class CellManager : MonoBehaviour
         Debug.Log(joint);
         if (joint == null)
         {
-
             Debug.Log("Plus assez d'output");
+            return;
         }
         else
         {

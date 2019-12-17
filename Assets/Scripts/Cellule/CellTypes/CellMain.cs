@@ -119,6 +119,7 @@ public class CellMain : PoolableObjects, PlayerAction
         hasBeenDrop = false;
 
 
+
         if (isNexus)
         {
             StartCoroutine(WaitForInit());
@@ -130,6 +131,7 @@ public class CellMain : PoolableObjects, PlayerAction
     {
         yield return new WaitForEndOfFrame();
         CellInitialisation();
+        GenerateLinkSlot();
     }
 
     public void CellInitialisation()
@@ -140,7 +142,6 @@ public class CellMain : PoolableObjects, PlayerAction
         isDead = false;
 
         SetupVariable();
-        GenerateLinkSlot();
         RessourceTracker.instance.EnergyCapVariation(currentEnergyCap);
     }
 
@@ -618,15 +619,25 @@ public class CellMain : PoolableObjects, PlayerAction
             Transform jointtransform = linkToAdd.joints[1].transform;
             linkToAdd.joints[1].Inpool();
             linkToAdd.joints[1] = null;
-            linkToAdd.joints[1] = CheckForAvailableJointOfType(linkJointType.input);
 
-            linkToAdd.joints[1].transform.position = linkToAdd.extremityPos[1] ;
+            linkToAdd.joints[1] = CheckForAvailableJointOfType(linkJointType.input);
+            if (linkToAdd.joints[1] == null)
+            {
+                Debug.Log("Plus assez de lien input");
+                linkToAdd.Break();
+            }
+
+            linkToAdd.joints[1].transform.position = linkToAdd.extremityPos[1];
             linkToAdd.joints[1].transform.localRotation = jointtransform.localRotation;
+            linkToAdd.joints[1].typeOfJoint = linkJointType.input;
+            linkToAdd.joints[1].disponible = false;
+
+            linkToAdd.joints[1].GraphUpdate();
+
             linkToAdd.UpdatePoint(linkToAdd.extremityPos[0], linkToAdd.extremityPos[1]);
             linkToAdd.receivingCell = this;
 
         }
-        Debug.Log("FUNCTION POUR RESET TYPE de JOINT  ");
         //Ancien Link
         //if (links.Count >= myCellTemplate.linkCapability)
         //{
@@ -634,7 +645,7 @@ public class CellMain : PoolableObjects, PlayerAction
         //}
         UpdateCaract();
     }
-    public virtual void RemoveLink(LinkClass linkToRemove)
+    public virtual void RemoveLink(LinkClass linkToRemove, bool isOutput)
     {
         //if (links.Count < currentLinkStockage)
         //{
@@ -642,9 +653,17 @@ public class CellMain : PoolableObjects, PlayerAction
         //}
 
         Debug.Log("FUNCTION POUR RESET TYPE de JOINT  ");
-        outputLinks.Remove(linkToRemove);
-        links.Remove(linkToRemove);
+        if (isOutput)
+        {
+            jointReset(linkToRemove.joints[0]);
+            outputLinks.Remove(linkToRemove);
+        }
+        else
+        {
+            jointReset(linkToRemove.joints[1]);
 
+        }
+        links.Remove(linkToRemove);
         UpdateCaract();
     }
     //tri les output links
@@ -770,9 +789,7 @@ public class CellMain : PoolableObjects, PlayerAction
         }
         return null;
     }
-
-
-    private void GenerateLinkSlot()
+    public void GenerateLinkSlot()
     {
         int currentSlot = 0;
         float yOffset = 0.1f;
@@ -801,7 +818,6 @@ public class CellMain : PoolableObjects, PlayerAction
             currentSlot = SlotGeneration(currentSlot, yOffset, maxJoint, linkJointType.flex);
         }
     }
-
     private int SlotGeneration(int currentSlot, float yOffset, int maxJoint, linkJointType _type)
     {
         float anglefrac = 2 * Mathf.PI / (maxJoint);
@@ -823,6 +839,24 @@ public class CellMain : PoolableObjects, PlayerAction
         currentSlot++;
         return currentSlot;
     }
+
+    private void jointReset(LinkJointClass joint)
+    {
+        int flexDetected = 0;
+        for (int i = 0; i < linkJoints.Length; i++)
+        {
+            if (linkJoints[i].typeOfJoint == linkJointType.flex)
+            {
+                flexDetected++;
+            }
+        }
+        if (flexDetected < myCellTemplate.numberOfFlexLinks)
+        {
+            joint.typeOfJoint = linkJointType.flex;
+            joint.GraphUpdate();
+        }
+    }
+
     #endregion
 
     private void OnBecameInvisible()
