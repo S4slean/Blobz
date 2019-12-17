@@ -200,19 +200,8 @@ public class CellMain : PoolableObjects, PlayerAction
 
         if (this == CellManager.Instance.selectedCell)
         {
-            if (InputManager.Instance.DraggingLink)
-            {
-                CellManager.Instance.SupressCurrentLink();
-            }
-            InputManager.Instance.CleanBoolsRelatedToCell();
-            UIManager.Instance.DesactivateCellShop();
-            UIManager.Instance.CellDeselected();
 
-            if (InputManager.Instance.objectMoved != null)
-            {
-                InputManager.Instance.objectMoved.Died(true);
-                InputManager.Instance.movingObject = false;
-            }
+            InputManager.Instance.StopCellActions();
 
         }
 
@@ -370,7 +359,8 @@ public class CellMain : PoolableObjects, PlayerAction
                 inDanger = true;
                 if (!isVisible)
                 {
-                    //ANIM UI 
+                    CellAlert alert = ObjectPooler.poolingSystem.GetPooledObject<CellAlert>() as CellAlert;
+                    UIManager.Instance.DisplayCellAlert(transform, alert ); 
                 }
                 //ANIM DANGER CELL 
             }

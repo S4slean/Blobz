@@ -213,11 +213,9 @@ public class UIManager : MonoBehaviour
 
     public void DisplayCellAlert(Transform transform, CellAlert alert)
     {
-        //CellAlert alert;
-        //alert = ObjectPooler.poolingSystem.GetPooledObject<CellAlert>() as CellAlert;
-        //alert.Outpool();
+
         if (alert.transform.parent != alertHolder)
-            alert.transform.parent = alertHolder;
+            alert.transform.SetParent(alertHolder);
 
         RectTransform rect =  alert.GetComponent<RectTransform>();
         Vector3 screenCenter = new Vector3(Screen.width / 2, Screen.height / 2, 0);

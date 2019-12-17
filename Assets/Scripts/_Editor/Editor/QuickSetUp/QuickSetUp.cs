@@ -176,6 +176,10 @@ public class QuickSetUp : Editor
         linkJointItem.AmountToPool = 200;
         pooler.poolItems.Add(linkJointItem);
 
+        ObjectPoolItem cellAlertPoolItem = new ObjectPoolItem();
+        cellAlertPoolItem.objectToPool = Resources.Load("QuickSetUp/CellAlert") as GameObject;
+        cellAlertPoolItem.AmountToPool = 10;
+        pooler.poolItems.Add(cellAlertPoolItem);
 
         PoolCustomInpector.GeneratePools();
 

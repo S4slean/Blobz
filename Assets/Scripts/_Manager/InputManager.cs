@@ -270,7 +270,7 @@ public class InputManager : MonoBehaviour
                 if (CellManager.Instance.originalPosOfMovingCell == new Vector3(0, 100, 0))
                 {
                     RessourceTracker.instance.energy += objectMoved.myCellTemplate.energyCost;
-                    objectMoved.Died(true);
+                    objectMoved.Inpool();
                     CellManager.Instance.SupressCurrentLink();
                 }
                 else
@@ -344,4 +344,24 @@ public class InputManager : MonoBehaviour
         Instance.InCellSelection = false;
     }
 
+
+    public void StopCellActions()
+    {
+        UIManager.Instance.DesactivateCellShop();
+        UIManager.Instance.CellDeselected();
+
+        if (DraggingLink)
+        {
+            CellManager.Instance.SupressCurrentLink();
+            DraggingLink = false;
+        }
+        if (movingObject)
+        {
+            CellManager.Instance.SupressCurrentLink();
+            objectMoved.Inpool();
+            movingObject = false;
+        }
+
+        CleanBoolsRelatedToCell();
+    }
 }
