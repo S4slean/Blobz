@@ -38,7 +38,7 @@ public class InputManager : MonoBehaviour
 
     private float clickTime;
 
-    
+
     //permet d'éviter un getComponent à chaque frame lors du raycast de mouse Over
     private bool isOverCell;
     private bool rightClickedOnCell;
@@ -133,9 +133,12 @@ public class InputManager : MonoBehaviour
                     if (clickTime > clickCooldown && leftClickedOnCell && !DraggingLink && distanceFromCell > distanceBeforeDrag)
                     {
                         UIManager.Instance.StartCoroutine(UIManager.Instance.DesactivateCellShop());
-                        CellManager.Instance.CreatenewLink();
-                        DraggingLink = true;
-                        newCell = false;
+
+                        DraggingLink = CellManager.Instance.CreatenewLink();
+                        if (DraggingLink)
+                        {
+                            newCell = false;
+                        }
                     }
                 }
 
@@ -186,12 +189,12 @@ public class InputManager : MonoBehaviour
 
             if (!DraggingLink && !InCellSelection)
             {
-                
+
                 if (hit.transform != null && hit.transform.tag == "Cell" && !isOverCell)
                 {
                     isOverCell = true;
                     cellOver = hit.transform.GetComponent<CellMain>();
-                } 
+                }
             }
 
             if (hit.transform == null || hit.transform.tag != "Cell")

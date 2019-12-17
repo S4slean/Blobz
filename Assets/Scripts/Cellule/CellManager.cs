@@ -44,7 +44,7 @@ public class CellManager : MonoBehaviour
     }
 
     #region LINK GESTION
-    public void CreatenewLink()
+    public bool CreatenewLink()
     {
         //if (selectedCell.noMoreLink)
         //{
@@ -59,21 +59,23 @@ public class CellManager : MonoBehaviour
         if (joint == null)
         {
             Debug.Log("Plus assez d'output");
-            return;
+            return false;
         }
         else
         {
             LinkClass _newLink = ObjectPooler.poolingSystem.GetPooledObject<LinkClass>() as LinkClass;
+            joint.disponible = false;
+            joint.typeOfJoint = linkJointType.output;
+            joint.GraphUpdate();
             currentLink = _newLink;
             currentLine = _newLink.line;
             currentLink.Outpool();
-            //Setup 
-            InputManager.Instance.DraggingLink = true;
             //surement utiles pour l'anim de replacment du lien 
             Vector3 _dir = (InputManager.Instance.mouseWorldPos - selectedCell.transform.position).normalized;
             Vector3 firstPos = selectedCell.transform.position + _dir * selectedCell.myCellTemplate.slotDistance;
 
             currentLink.FirstSetupWithSlot(firstPos, InputManager.Instance.mouseWorldPos, selectedCell.GetCurrentRange(), joint/*, joint.isOutput*/);
+            return true;
         }
 
         #endregion
@@ -146,6 +148,7 @@ public class CellManager : MonoBehaviour
 
     public void DragNewlink(Vector3 pos)
     {
+
         // Permet de draw la line en runtime 
         float distance = Vector3.Distance(currentLink.extremityPos[0], pos);
         if (distance <= selectedCell.myCellTemplate.rangeBase / 2)
@@ -236,7 +239,6 @@ public class CellManager : MonoBehaviour
             //currentLink.CheckLength(hit)
             Vector3 cellPos = receivingCell.transform.position;
             Vector3 _dir = (cellPos - selectedCell.transform.position).normalized;
-            Debug.Log("dir:"+ _dir + "slotdistance:" + receivingCell.myCellTemplate.slotDistance);
             Vector3 lastPos = cellPos - _dir*receivingCell.myCellTemplate.slotDistance;
             Vector3 firstPos = selectedCell.transform.position + _dir * selectedCell.myCellTemplate.slotDistance;
             currentLink.UpdatePoint(firstPos, lastPos);
@@ -265,6 +267,9 @@ public class CellManager : MonoBehaviour
     }
     public void SupressCurrentLink()
     {
+        currentLink.joints[0].disponible = true;
+        selectedCell.jointReset(currentLink.joints[0]);
+        currentLink.joints[1].Inpool();
         currentLink.Inpool();
         cleanLinkRef();
     }

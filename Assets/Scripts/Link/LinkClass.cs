@@ -153,13 +153,11 @@ public class LinkClass : PoolableObjects
         //a modifier par rappport à la proximité
         if (length1 <= startCell.GetCurrentRange())
         {
-            Debug.Log(" Lien ok");
             extremityPos[1] = posToTest;
             return true;
         }
         else
         {
-            Debug.Log(" l'un des lien est trop court");
             return false;
         }
 
