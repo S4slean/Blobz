@@ -120,7 +120,7 @@ public class CameraController : MonoBehaviour
         if (isPanning)
         {
             panningRatio = (((camHeight - minHeight) / (maxHeight - minHeight)) * (farthestPanningMultiplier - closesetPanningMultiplier)) + closesetPanningMultiplier;
-            Debug.Log(panningRatio);
+
             originPos = panningCamStart + (panningStart - InputManager.Instance.mouseScreenPos)  / panningSpeed * panningRatio;
         }
         else
