@@ -23,7 +23,7 @@ MonoBehaviour:
   buttonColor: {r: 1, g: 0.42438906, b: 0, a: 1}
   cellTexture: {fileID: 0}
   type: 0
-  generateProximity: 1
+  generateProximity: 0
   proximityColliderNumber: 3
   proximityColliders:
   - proximityLevel: 4
@@ -42,7 +42,11 @@ MonoBehaviour:
   storageCapability: 40
   tickForActivationBase: 1
   energyPerClick: 1
-  linkCapability: 8
+  limitedInLinks: 1
+  slotDistance: 1.5
+  numberOfOuputLinks: 3
+  numberOfInputLinks: 1
+  numberOfFlexLinks: 1
   proximityLevelMax: 4
   positivesInteractions: 00000000
   negativesInteractions: 0300000001000000

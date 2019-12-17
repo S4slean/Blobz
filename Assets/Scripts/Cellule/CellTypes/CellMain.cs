@@ -609,13 +609,20 @@ public class CellMain : PoolableObjects, PlayerAction
         if (output)
         {
             linkToAdd.AngleFromCell(this);
-            linkToAdd.joints[0] = CheckForAvailableJointOfType(linkJointType.output);
+            // linkToAdd.joints[0] = CheckForAvailableJointOfType(linkJointType.output);
             outputLinks.Add(linkToAdd);
             SortingLink();
         }
         else
         {
+            Transform jointtransform = linkToAdd.joints[1].transform;
+            linkToAdd.joints[1].Inpool();
+            linkToAdd.joints[1] = null;
             linkToAdd.joints[1] = CheckForAvailableJointOfType(linkJointType.input);
+
+            linkToAdd.joints[1].transform.position = linkToAdd.extremityPos[1] ;
+            linkToAdd.joints[1].transform.localRotation = jointtransform.localRotation;
+            linkToAdd.UpdatePoint(linkToAdd.extremityPos[0], linkToAdd.extremityPos[1]);
             linkToAdd.receivingCell = this;
 
         }
@@ -780,18 +787,18 @@ public class CellMain : PoolableObjects, PlayerAction
 
             for (int i = 0; i < myCellTemplate.numberOfOuputLinks; i++)
             {
-                currentSlot = SlotGeneration(currentSlot, yOffset, maxJoint,  linkJointType.output);
+                currentSlot = SlotGeneration(currentSlot, yOffset, maxJoint, linkJointType.output);
             }
 
             for (int y = 0; y < myCellTemplate.numberOfInputLinks; y++)
             {
-                currentSlot = SlotGeneration(currentSlot, yOffset, maxJoint,  linkJointType.input);
+                currentSlot = SlotGeneration(currentSlot, yOffset, maxJoint, linkJointType.input);
             }
         }
 
         for (int x = 0; x < myCellTemplate.numberOfFlexLinks; x++)
         {
-            currentSlot = SlotGeneration(currentSlot, yOffset, maxJoint,  linkJointType.flex);
+            currentSlot = SlotGeneration(currentSlot, yOffset, maxJoint, linkJointType.flex);
         }
     }
 

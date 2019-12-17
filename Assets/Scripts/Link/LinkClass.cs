@@ -144,7 +144,7 @@ public class LinkClass : PoolableObjects
 
 
         Vector3 posFrag = trajectoir / range;
-        for (int i = 0; i < range - 1; i++)
+        for (int i = 0; i < range ; i++)
         {
             line.SetPosition(i, extremityPos[0] + i * posFrag);
         }

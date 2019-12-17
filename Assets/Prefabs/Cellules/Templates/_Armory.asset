@@ -33,11 +33,11 @@ MonoBehaviour:
   storageCapability: 15
   tickForActivationBase: 4
   energyPerClick: 1
-  linkCapability: 4
-  limitedInLinks: 0
-  slotDistance: 10
+  limitedInLinks: 1
+  slotDistance: 1.5
   numberOfOuputLinks: 0
-  numberOfInputLinks: 0
+  numberOfInputLinks: 2
+  numberOfFlexLinks: 0
   proximityLevelMax: 4
   positivesInteractions: 02000000
   negativesInteractions: 03000000
