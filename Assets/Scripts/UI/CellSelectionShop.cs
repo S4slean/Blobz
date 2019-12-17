@@ -95,6 +95,7 @@ public class CellSelectionShop : MonoBehaviour
             newCell.transform.position = InputManager.Instance.mouseWorldPos; ;           
             newCell.Outpool();
             CellManager.Instance.NewCellCreated(newCell);
+            newCell.GenerateLinkSlot();
 
         }
     }
