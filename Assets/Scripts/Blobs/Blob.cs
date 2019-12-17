@@ -87,7 +87,7 @@ public class Blob : PoolableObjects
             Fly();
     }
 
-    private void OnDestroy()
+    public void Destruct()
     {
         if(infectedCell != null)
         {

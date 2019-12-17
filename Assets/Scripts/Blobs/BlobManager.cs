@@ -302,7 +302,7 @@ public class BlobManager : MonoBehaviour
             }
         }
 
-        Destroy(blob.gameObject);
+        blob.Destruct(); ;
     }
 
 
