@@ -216,10 +216,13 @@ public class CellMain : PoolableObjects, PlayerAction
 
         }
 
-        //Mret dans la pull les enfants
-        for (int i = 0; i < myProximityCollider.Length; i++)
+        if (myCellTemplate.generateProximity)
         {
-            myProximityCollider[i].Inpool();
+            //Met dans la pull les enfants
+            for (int i = 0; i < myProximityCollider.Length; i++)
+            {
+                myProximityCollider[i].Inpool();
+            }
         }
 
         blobNumber = 0;
@@ -652,7 +655,6 @@ public class CellMain : PoolableObjects, PlayerAction
         //    noMoreLink = false;
         //}
 
-        Debug.Log("FUNCTION POUR RESET TYPE de JOINT  ");
         if (isOutput)
         {
             jointReset(linkToRemove.joints[0]);
@@ -840,7 +842,7 @@ public class CellMain : PoolableObjects, PlayerAction
         return currentSlot;
     }
 
-    private void jointReset(LinkJointClass joint)
+    public void jointReset(LinkJointClass joint)
     {
         int flexDetected = 0;
         for (int i = 0; i < linkJoints.Length; i++)
