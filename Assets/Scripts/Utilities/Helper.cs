@@ -39,4 +39,10 @@ public class Helper : MonoBehaviour
         Physics.Raycast(ray, out originhit ,1000 , LayerMask);
         return originhit;
     }
+
+    public static bool CheckAvailableSpace(Vector3 pos, float radius)
+    {
+        return !Physics.CheckSphere(pos, radius, 1<<12 | 1<<11 | 1<<15);
+        
+    }
 }

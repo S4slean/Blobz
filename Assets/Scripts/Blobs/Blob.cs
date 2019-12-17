@@ -20,6 +20,9 @@ public class Blob : PoolableObjects
     public bool isStuck = false;
     public CellMain infectedCell;
     public int infectionAmount = 1;
+    public bool knowsNexus = false;
+    public bool cameFromVillage = false;
+    public EnemyVillage village;
     #endregion
 
     #region SOLDIER
@@ -127,8 +130,20 @@ public class Blob : PoolableObjects
         }
 
         if (blobType == BlobManager.BlobType.soldier && canExplode)
-            BlobManager.instance.Explode(this);
+            BlobManager.instance.Explode(this, 1);
     }
 
+    public void SetOrigin(EnemyVillage newVillage)
+    {
+        cameFromVillage = true;
+        village = newVillage;
+    }
 
+    public bool CheckIfOutOfVillage()
+    {
+        if ((transform.position - village.transform.position).sqrMagnitude > Mathf.Pow( village.boundariesRange,2))
+            return true;
+        else
+            return false;
+    }
 }
