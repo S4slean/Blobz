@@ -6,7 +6,10 @@ public class QuestEventManager : MonoBehaviour
 {
     public static QuestEventManager instance;
 
-    public bool inQuestEvent;
+    [HideInInspector]public bool inQuestEvent;
+
+    [Header("EventPositions")]
+    Transform[] eventsPos;
 
     QuestEvent.QuestEventType currentEventType;
 
