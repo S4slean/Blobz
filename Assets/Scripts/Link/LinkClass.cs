@@ -147,13 +147,15 @@ public class LinkClass : PoolableObjects
     #endregion
 
     #region CHECKLENGTH
-    public bool CheckNewLinkLength(Vector3 posToTest, CellMain startCell)
+    public bool CheckNewLinkLength(Vector3 posToTest, CellMain startCell, CellMain newCell)
     {
         float length1 = Vector3.Distance(startCell.transform.position, posToTest);
+        Debug.Log(length1 + "/" + startCell.GetCurrentRange() + startCell.myCellTemplate.slotDistance);
         //a modifier par rappport à la proximité
-        if (length1 <= startCell.GetCurrentRange())
+        if (length1 <= startCell.GetCurrentRange() + startCell.myCellTemplate.slotDistance)
         {
-            extremityPos[1] = posToTest;
+            Vector3 _dir = (posToTest - startCell.transform.position).normalized;
+            extremityPos[1] =  posToTest - _dir*newCell.myCellTemplate.slotDistance;
             return true;
         }
         else
@@ -169,7 +171,10 @@ public class LinkClass : PoolableObjects
         float length1 = Vector3.Distance(extremityPos[0], posToTest);
         float length2 = Vector3.Distance(extremityPos[1], posToTest);
         //check la distance en fonction de la range des 2 cellules
-        if (length1 <= originalCell.myCellTemplate.rangeBase / 2 && length2 <= receivingCell.myCellTemplate.rangeBase / 2)
+        if (length1 <= originalCell.GetCurrentRange()
+            &&
+            length2 <= receivingCell.GetCurrentRange()
+            )
         {
             return true;
         }

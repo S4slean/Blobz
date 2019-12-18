@@ -23,7 +23,7 @@ MonoBehaviour:
   buttonColor: {r: 1, g: 0.42438906, b: 0, a: 1}
   cellTexture: {fileID: 0}
   type: 0
-  generateProximity: 0
+  generateProximity: 1
   proximityColliderNumber: 3
   proximityColliders:
   - proximityLevel: 4
