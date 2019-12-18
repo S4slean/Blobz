@@ -122,7 +122,7 @@ public class InputManager : MonoBehaviour
 
                 if (CellSelected && clickTime > clickCooldown && leftClickedOnCell && !InCellSelection && !DraggingLink)
                 {
-                        UIManager.Instance.DisplayCellShop(selectedCell);
+                    UIManager.Instance.DisplayCellShop(selectedCell);
                 }
                 if (selectedCell != null)
                 {
@@ -255,12 +255,21 @@ public class InputManager : MonoBehaviour
             //si clic gauche, replacer la cell et update tous ses liens
             if (Input.GetMouseButtonDown(0))
             {
-                if (newCell)
-                    CellManager.Instance.ValidateNewLink(hit);
-                objectMoved.CellInitialisation();
-                movingObject = false;
-                objectMoved = null;
-                DraggingLink = false;
+                if (CellManager.Instance.terrainIsBuildable)
+                {
+
+                    if (newCell)
+                        CellManager.Instance.ValidateNewLink(hit);
+
+                    objectMoved.CellInitialisation();
+                    movingObject = false;
+                    objectMoved = null;
+                    DraggingLink = false;
+                }
+                else
+                {
+                    Debug.Log("You can't build there");
+                }
             }
 
             else if (Input.GetMouseButtonDown(1))
