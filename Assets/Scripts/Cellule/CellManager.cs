@@ -63,14 +63,15 @@ public class CellManager : MonoBehaviour
         }
         else
         {
-            LinkClass _newLink = ObjectPooler.poolingSystem.GetPooledObject<LinkClass>() as LinkClass;
             joint.disponible = false;
             joint.typeOfJoint = linkJointType.output;
             joint.GraphUpdate();
+
+            LinkClass _newLink = ObjectPooler.poolingSystem.GetPooledObject<LinkClass>() as LinkClass;
             currentLink = _newLink;
             currentLine = _newLink.line;
             currentLink.Outpool();
-            //surement utiles pour l'anim de replacment du lien 
+
             Vector3 _dir = (InputManager.Instance.mouseWorldPos - selectedCell.transform.position).normalized;
             Vector3 firstPos = selectedCell.transform.position + _dir * selectedCell.myCellTemplate.slotDistance;
 
@@ -107,12 +108,12 @@ public class CellManager : MonoBehaviour
 
         //}
     }
-
+    //Sans Cell
     public void DragNewlink(RaycastHit hit)
     {
         // Permet de draw la line en runtime 
         float distance = Vector3.Distance(selectedCell.transform.position, hit.point);
-        if (distance <= selectedCell.GetCurrentRange())
+        if (distance <= (selectedCell.GetCurrentRange() + selectedCell.myCellTemplate.slotDistance))
         {
             //Ancien Systeme link 
             //currentLink.endPos = new Vector3(hit.point.x, currentLink.startPos.y, hit.point.z);
@@ -146,12 +147,13 @@ public class CellManager : MonoBehaviour
         }
     }
 
-    public void DragNewlink(Vector3 pos)
+    //Avec Cell
+    public void DragNewlink(Vector3 pos, CellMain cellMoved)
     {
 
         // Permet de draw la line en runtime 
         float distance = Vector3.Distance(selectedCell.transform.position, pos);
-        if (distance <= selectedCell.GetCurrentRange())
+        if (distance <= (selectedCell.GetCurrentRange() + selectedCell.myCellTemplate.slotDistance + cellMoved.myCellTemplate.slotDistance))
         {
             //Ancien Systeme
             //currentLink.endPos = new Vector3(pos.x, currentLink.startPos.y, pos.z);
@@ -223,24 +225,52 @@ public class CellManager : MonoBehaviour
                 SupressCurrentLink();
                 return;
             }
-            if (InputManager.Instance.newCell)
+
+            if (!currentLink.CheckNewLinkLength(currentLink.extremityPos[1], selectedCell, receivingCell))
             {
-                //if (!currentLink.CheckNewLinkLength(receivingCell.transform.position, selectedCell, receivingCell))
-                //{
-                //    Debug.Log("Coucou c moi ki fé chié");
-                //    SupressCurrentLink();
-                //    return;
-                //}
+                Debug.Log("Coucou c moi ki fé chié Old " + receivingCell.name);
+                SupressCurrentLink();
+                return;
+            }
+            //if (InputManager.Instance.newCell)
+            //{
+            //    //if (!currentLink.CheckNewLinkLength(receivingCell.transform.position, selectedCell, receivingCell))
+            //    //{
+            //    //    Debug.Log("Coucou c moi ki fé chié");
+            //    //    SupressCurrentLink();
+            //    //    return;
+            //    //}
+            //}
+            //else
+            //{
+            //}
+            Debug.Log("SECTION CHIANTE");
+
+            //currentLink.joints[1].Inpool();
+            //currentLink.joints[1] = null;
+
+            LinkJointClass cellJoint = receivingCell.CheckForAvailableJointOfType(linkJointType.input);
+            if (cellJoint == null)
+            {
+                Debug.Log("Plus assez de lien input");
+                SupressCurrentLink();
+                return;
             }
             else
             {
-                if (!currentLink.CheckNewLinkLength(currentLink.extremityPos[1], selectedCell, receivingCell));
-                {
-                    Debug.Log("Coucou c moi ki fé chié Old " + receivingCell.name);
-                    SupressCurrentLink();
-                    return;
-                }
+                currentLink.joints[1].Inpool();
+                currentLink.joints[1] = cellJoint;
+
             }
+
+            currentLink.joints[1].Outpool();
+            currentLink.joints[1].transform.position = currentLink.extremityPos[1];
+            currentLink.joints[1].typeOfJoint = linkJointType.input;
+            currentLink.joints[1].disponible = false;
+            currentLink.joints[1].GraphUpdate();
+
+            currentLink.UpdatePoint(currentLink.extremityPos[0], currentLink.extremityPos[1]);
+            currentLink.receivingCell = receivingCell;
 
             currentLine.startColor = Color.green;
             currentLine.endColor = Color.cyan;
@@ -248,7 +278,6 @@ public class CellManager : MonoBehaviour
             //Ancien Systeme de lien 
             //currentLink.endPos = receivingCell.transform.position;
             //currentLine.SetPosition(1, currentLink.endPos);
-
             //Nouveau System
             //currentLink.CheckLength(hit)
             Vector3 cellPos = receivingCell.transform.position;
@@ -256,6 +285,8 @@ public class CellManager : MonoBehaviour
             Vector3 lastPos = cellPos - _dir * receivingCell.myCellTemplate.slotDistance;
             Vector3 firstPos = selectedCell.transform.position + _dir * selectedCell.myCellTemplate.slotDistance;
             currentLink.UpdatePoint(firstPos, lastPos);
+
+
 
             selectedCell.AddLinkReferenceToCell(currentLink, true);
             receivingCell.AddLinkReferenceToCell(currentLink, false);
@@ -354,7 +385,6 @@ public class CellManager : MonoBehaviour
             {
                 shouldStop = true;
             }
-
         }
 
         if (shouldStop)
@@ -364,7 +394,7 @@ public class CellManager : MonoBehaviour
             {
                 refPoint = selectedCell.transform.position;
                 cellToMove.transform.position = refPoint + (InputManager.Instance.mouseWorldPos - refPoint).normalized * (selectedCell.GetCurrentRange() + selectedCell.myCellTemplate.slotDistance);
-                DragNewlink(cellToMove.transform.position + Vector3.up * .1f);
+                DragNewlink(cellToMove.transform.position /*+ Vector3.up * .1f */, cellToMove);
             }
             else
             {
@@ -378,7 +408,7 @@ public class CellManager : MonoBehaviour
             cellToMove.transform.position = posToTest;
 
             if (isNewCell)
-                DragNewlink(posToTest);
+                DragNewlink(posToTest, cellToMove);
 
         }
 

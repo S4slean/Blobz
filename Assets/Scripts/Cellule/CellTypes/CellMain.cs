@@ -607,30 +607,7 @@ public class CellMain : PoolableObjects, PlayerAction
             outputLinks.Add(linkToAdd);
             SortingLink();
         }
-        else
-        {
-            Transform jointtransform = linkToAdd.joints[1].transform;
-            linkToAdd.joints[1].Inpool();
-            linkToAdd.joints[1] = null;
 
-            linkToAdd.joints[1] = CheckForAvailableJointOfType(linkJointType.input);
-            if (linkToAdd.joints[1] == null)
-            {
-                Debug.Log("Plus assez de lien input");
-                linkToAdd.Break();
-            }
-
-            linkToAdd.joints[1].transform.position = linkToAdd.extremityPos[1];
-            linkToAdd.joints[1].transform.localRotation = jointtransform.localRotation;
-            linkToAdd.joints[1].typeOfJoint = linkJointType.input;
-            linkToAdd.joints[1].disponible = false;
-
-            linkToAdd.joints[1].GraphUpdate();
-
-            linkToAdd.UpdatePoint(linkToAdd.extremityPos[0], linkToAdd.extremityPos[1]);
-            linkToAdd.receivingCell = this;
-
-        }
         //Ancien Link
         //if (links.Count >= myCellTemplate.linkCapability)
         //{

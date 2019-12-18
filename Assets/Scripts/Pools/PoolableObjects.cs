@@ -8,7 +8,7 @@ public class PoolableObjects : MonoBehaviour
     public GameObject initialPool;
 
 
-    public void Outpool()
+    public virtual void Outpool()
     {
         canBePool = false;
         gameObject.SetActive(true);
