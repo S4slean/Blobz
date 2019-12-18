@@ -824,6 +824,7 @@ public class CellMain : PoolableObjects, PlayerAction
             joint.typeOfJoint = linkJointType.flex;
             joint.GraphUpdate();
         }
+        joint.disponible = true;
     }
 
     #endregion
