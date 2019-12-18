@@ -122,15 +122,7 @@ public class InputManager : MonoBehaviour
 
                 if (CellSelected && clickTime > clickCooldown && leftClickedOnCell && !InCellSelection && !DraggingLink)
                 {
-                    if (selectedCell.CheckForAvailableJointOfType(linkJointType.output) != null)
-                    {
                         UIManager.Instance.DisplayCellShop(selectedCell);
-                    }
-                    else
-                    {
-                        UIManager.Instance.DisplayNotEnoughLink();
-                    }
-
                 }
                 if (selectedCell != null)
                 {
