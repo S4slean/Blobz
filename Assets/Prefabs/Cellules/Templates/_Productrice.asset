@@ -42,7 +42,7 @@ MonoBehaviour:
   storageCapability: 40
   tickForActivationBase: 1
   energyPerClick: 1
-  limitedInLinks: 1
+  limitedInLinks: 0
   slotDistance: 1.5
   numberOfOuputLinks: 3
   numberOfInputLinks: 1
