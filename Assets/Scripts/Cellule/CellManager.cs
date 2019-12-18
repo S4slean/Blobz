@@ -10,11 +10,14 @@ public class CellManager : MonoBehaviour
 
     public int Energy;
 
+    [Header("Placement Materials")]
     public Material allowedBuildingMat;
+    public Material allowedBuildingSpriteMat;
     public Material refusedBuildingMat;
+    public Material refusedBuldingSpriteMask;
 
     bool shouldStop = false;
-    public bool terrainIsBuildable = false;
+    [HideInInspector]public bool terrainIsBuildable = false;
     bool terrainWasBuildable = false;
 
 
