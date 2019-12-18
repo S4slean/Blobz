@@ -9,7 +9,7 @@ public class CellMainInspector : Editor
 {
     SerializedProperty myCellTemplateProp , isNexusProp;
 
-    SerializedProperty NBlobProp, NLinkProp, NCurrentProximityProp, graphTransformProp, ProximityDectectionProp;
+    SerializedProperty NBlobProp, NLinkProp, NCurrentProximityProp, graphTransformProp, ProximityDectectionProp , domeMRProp, spriteMRProp;
     //debugProperty 
     SerializedProperty linksProp, noMoreLinkProp, BlobNumberProp, hasBeenDropProp;
 
@@ -32,6 +32,9 @@ public class CellMainInspector : Editor
         NCurrentProximityProp = serializedObject.FindProperty("NCurrentProximity");
         graphTransformProp = serializedObject.FindProperty("graphTransform");
         ProximityDectectionProp = serializedObject.FindProperty("ProximityDectection");
+        domeMRProp = serializedObject.FindProperty("domeMR");
+        spriteMRProp = serializedObject.FindProperty("spriteMR");
+
 
         linksProp = serializedObject.FindProperty("links");
         noMoreLinkProp = serializedObject.FindProperty("noMoreLink");
@@ -76,6 +79,9 @@ public class CellMainInspector : Editor
            // EditorGUILayout.PropertyField(ProximityDectectionProp);
             EditorGUILayout.PropertyField(TargetPosProp);
             EditorGUILayout.PropertyField(animProp);
+
+            EditorGUILayout.PropertyField(domeMRProp);
+            EditorGUILayout.PropertyField(spriteMRProp);
          
 
             EditorGUI.indentLevel -= 1;

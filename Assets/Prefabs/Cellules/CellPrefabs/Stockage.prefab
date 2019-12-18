@@ -528,6 +528,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canBePool: 0
+  initialPool: {fileID: 0}
+  proximityLevel: 0
   myCollider: {fileID: 6332160634703649920}
   parent: {fileID: 5565576154424326082}
   mR: {fileID: 0}
@@ -581,6 +583,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canBePool: 0
+  initialPool: {fileID: 0}
   myCellTemplate: {fileID: 11400000, guid: df917586c15ca0c409f512efdab3a763, type: 2}
   isNexus: 0
   cellDefaultMat: {fileID: 0}
@@ -590,14 +593,19 @@ MonoBehaviour:
   NCurrentProximity: {fileID: 4580034776522669225}
   graphTransform: {fileID: 347336514114222625}
   TargetPos: {fileID: 0}
-  ProximityDectection: {fileID: 8404008211773970808}
+  domeMR: {fileID: 1236907594294021660}
+  spriteMR: {fileID: 1236907593613512009}
+  links: []
+  inThoseCellProximity: []
+  influencedByThoseCellProximity: []
+  linkJoints: []
   showDebug: 0
   showlinks: 0
   showRef: 1
-  links: []
   noMoreLink: 0
   blobNumber: 0
   hasBeenDrop: 0
+  limitedInLink: 0
   canBePlaced: 0
 --- !u!54 &8777569679337227342
 Rigidbody:
@@ -913,9 +921,21 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1487405306405106155}
   m_PrefabAsset: {fileID: 0}
+--- !u!23 &1236907593613512009 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 400314428079193250, guid: 74d7f2ad0af3d5644aa3194c57b18389,
+    type: 3}
+  m_PrefabInstance: {fileID: 1487405306405106155}
+  m_PrefabAsset: {fileID: 0}
 --- !u!95 &1236907593613512011 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 400314428079193248, guid: 74d7f2ad0af3d5644aa3194c57b18389,
+    type: 3}
+  m_PrefabInstance: {fileID: 1487405306405106155}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &1236907594294021660 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 400314426343718903, guid: 74d7f2ad0af3d5644aa3194c57b18389,
     type: 3}
   m_PrefabInstance: {fileID: 1487405306405106155}
   m_PrefabAsset: {fileID: 0}
