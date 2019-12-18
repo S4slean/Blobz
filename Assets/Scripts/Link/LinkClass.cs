@@ -150,10 +150,11 @@ public class LinkClass : PoolableObjects
     public bool CheckNewLinkLength(Vector3 posToTest, CellMain startCell, CellMain newCell)
     {
         float length1 = Vector3.Distance(startCell.transform.position, posToTest);
-        Debug.Log(length1 + "/" + startCell.GetCurrentRange() + startCell.myCellTemplate.slotDistance);
+        Debug.Log(length1 + "/" + (startCell.GetCurrentRange() + startCell.myCellTemplate.slotDistance + newCell.myCellTemplate.slotDistance));
         //a modifier par rappport à la proximité
-        if (length1 <= startCell.GetCurrentRange() + startCell.myCellTemplate.slotDistance)
+        if (length1 <=(startCell.GetCurrentRange() + startCell.myCellTemplate.slotDistance + newCell.myCellTemplate.slotDistance))
         {
+            Debug.Log("cok");
             Vector3 _dir = (posToTest - startCell.transform.position).normalized;
             extremityPos[1] =  posToTest - _dir*newCell.myCellTemplate.slotDistance;
             return true;

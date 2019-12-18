@@ -68,6 +68,11 @@ public class LinkJointClass : PoolableObjects
         disponible = true;
     }
 
+    public override void Outpool()
+    {
+        base.Outpool();
+    }
+
     //private void OnTriggerEnter(Collider other)
     //{
     //    CellMain cell = other.GetComponent<CellMain>();
