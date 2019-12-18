@@ -25,6 +25,10 @@ public class CellMain : PoolableObjects, PlayerAction
     public Transform graphTransform;
     public Transform TargetPos;
 
+
+    public MeshRenderer domeMR, spriteMR;
+    private Material domeInitialMat, spriteInitialMat;
+
     public List<LinkClass> links = new List<LinkClass>();
     protected List<LinkClass> outputLinks = new List<LinkClass>();
 
@@ -101,7 +105,7 @@ public class CellMain : PoolableObjects, PlayerAction
         //mR.material = myCellTemplate.mat;
         //mF.mesh = myCellTemplate.mesh;
         //ProximityCheck();
-
+        GetInitialMat();
     }
 
     public virtual void OnEnable()
@@ -294,20 +298,6 @@ public class CellMain : PoolableObjects, PlayerAction
         }
         UpdateCaract();
     }
-    //public virtual void ClickInteraction()
-    //{
-    //    if (blobNumber > 0)
-    //    {
-    //        BlobNumberVariation(-1);
-    //        //CellManager.Instance.EnergyVariation(currentEnergyPerClick);
-    //        RessourceTracker.instance.EnergyVariation(currentEnergyPerClick);
-    //    }
-
-    //    anim.Play("PlayerInteraction", 0, 0f);
-
-
-    //}
-
 
     #region BLOB_GESTION
     //public void AddBlob(int Amount)
@@ -360,7 +350,7 @@ public class CellMain : PoolableObjects, PlayerAction
                 if (!isVisible)
                 {
                     CellAlert alert = ObjectPooler.poolingSystem.GetPooledObject<CellAlert>() as CellAlert;
-                    UIManager.Instance.DisplayCellAlert(transform, alert ); 
+                    UIManager.Instance.DisplayCellAlert(transform, alert);
                 }
                 //ANIM DANGER CELL 
             }
@@ -421,8 +411,11 @@ public class CellMain : PoolableObjects, PlayerAction
         bool checkEnd = false;
         for (int i = 0; i < influencedByThoseCellProximity.Count; i++)
         {
-            if (proximityToAdd.parent == influencedByThoseCellProximity[i].parent && !checkEnd)
+            //if (proximityToAdd.parent == influencedByThoseCellProximity[i].parent && !checkEnd)
+            //{
+            if (!checkEnd)
             {
+
                 if (Mathf.Abs(proximityToAdd.proximityLevel) <= Mathf.Abs(influencedByThoseCellProximity[i].proximityLevel))
                 {
                     becomeInfluenced = false;
@@ -435,6 +428,7 @@ public class CellMain : PoolableObjects, PlayerAction
                 }
             }
         }
+
         if (becomeInfluenced)
         {
             influencedByThoseCellProximity.Add(proximityToAdd);
@@ -471,9 +465,6 @@ public class CellMain : PoolableObjects, PlayerAction
 
         ProximityLevelModification();
     }
-
-
-
 
     #region Ancien Système de proximité
 
@@ -829,15 +820,6 @@ public class CellMain : PoolableObjects, PlayerAction
 
     #endregion
 
-    private void OnBecameInvisible()
-    {
-        isVisible = false;
-    }
-    private void OnBecameVisible()
-    {
-        isVisible = true;
-    }
-
     #region PLAYER ACTION INTERFACE
 
     public virtual void ClickInteraction()
@@ -857,4 +839,44 @@ public class CellMain : PoolableObjects, PlayerAction
         throw new System.NotImplementedException();
     }
     #endregion
+    private void OnBecameInvisible()
+    {
+        isVisible = false;
+    }
+    private void OnBecameVisible()
+    {
+        isVisible = true;
+    }
+
+    #region Graph MODIFICATION 
+
+    private void GetInitialMat()
+    {
+        domeInitialMat = domeMR.material;
+        spriteInitialMat = spriteMR.material;
+
+    }
+
+    public void RestoreInitialMat()
+    {
+        domeMR.material = domeInitialMat;
+        spriteMR.material = spriteInitialMat;
+    }
+
+    public void ChangeDeplacementMat(bool canBePlaced)
+    {
+        if (canBePlaced)
+        {
+            domeMR.material = CellManager.Instance.allowedBuildingMat;
+            //spriteMR.material = CellManager.Instance.;
+        }
+        else
+        {
+            domeMR.material = CellManager.Instance.refusedBuildingMat;
+            //spriteMR.material = CellManager.Instance.;
+        }
+    }
+
+    #endregion
+
 }

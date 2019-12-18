@@ -33,15 +33,11 @@ public class CellProximityDectection : PoolableObjects
         }
     }
 
-
-
-
     private void OnTriggerExit(Collider other)
     {
         CellMain cell = other.GetComponent<CellMain>();
         if (cell != null && cell != parent)
         {
-            Debug.Log("ça sort");
             cell.RemoveProximityInfluence(this);
         }
 
