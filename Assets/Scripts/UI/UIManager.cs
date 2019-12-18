@@ -204,6 +204,14 @@ public class UIManager : MonoBehaviour
 
     #endregion
 
+    #region NOT ENOUGH LINK 
+    public void DisplayNotEnoughLink()
+    {
+        Debug.Log("Pas assez de link");
+    }
+
+    #endregion
+
     #region ALERT
 
     [Header("CellExplosionAlert")]
