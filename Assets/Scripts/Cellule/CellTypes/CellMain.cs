@@ -35,6 +35,7 @@ public class CellMain : PoolableObjects, PlayerAction
     public List<CellProximityDectection> inThoseCellProximity = new List<CellProximityDectection>();
     public List<CellProximityDectection> influencedByThoseCellProximity = new List<CellProximityDectection>();
     private CellProximityDectection[] myProximityCollider;
+    public Collider ownCollider;
 
     public LinkJointClass[] linkJoints;
     //public LinkJointClass[] inputJoint;
@@ -106,6 +107,7 @@ public class CellMain : PoolableObjects, PlayerAction
         //mF.mesh = myCellTemplate.mesh;
         //ProximityCheck();
         GetInitialMat();
+        ownCollider = GetComponent<Collider>();
     }
 
     public virtual void OnEnable()
@@ -146,6 +148,7 @@ public class CellMain : PoolableObjects, PlayerAction
         isDead = false;
 
         SetupVariable();
+        RestoreInitialMat();
         RessourceTracker.instance.EnergyCapVariation(currentEnergyCap);
     }
 
@@ -868,12 +871,12 @@ public class CellMain : PoolableObjects, PlayerAction
         if (canBePlaced)
         {
             domeMR.material = CellManager.Instance.allowedBuildingMat;
-            //spriteMR.material = CellManager.Instance.;
+            spriteMR.material = CellManager.Instance.allowedBuildingSpriteMat;
         }
         else
         {
             domeMR.material = CellManager.Instance.refusedBuildingMat;
-            //spriteMR.material = CellManager.Instance.;
+            spriteMR.material = CellManager.Instance.refusedBuldingSpriteMask;
         }
     }
 

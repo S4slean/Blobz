@@ -276,7 +276,7 @@ public class BlobManager : MonoBehaviour
         jumpDir = jumpDir.normalized;
         jumpDir = new Vector3(jumpDir.x, jumpHeight, jumpDir.z);
         blob.Jump(jumpDir * jumpForce);
-        Debug.Log("Jump towards target " + target.name);
+
     }
 
     public void Explode(Blob blob, int dmg)

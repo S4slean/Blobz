@@ -16,7 +16,7 @@ public class CellManager : MonoBehaviour
     public Material refusedBuildingMat;
     public Material refusedBuldingSpriteMask;
 
-    bool shouldStop = false;
+    bool shouldStop;
     [HideInInspector]public bool terrainIsBuildable = false;
     bool terrainWasBuildable = false;
 
@@ -55,7 +55,7 @@ public class CellManager : MonoBehaviour
     {
         selectedCell = InputManager.Instance.selectedCell;
         LinkJointClass joint = selectedCell.CheckForAvailableJointOfType(linkJointType.output);
-        Debug.Log(joint);
+
         if (joint == null)
         {
             Debug.Log("Plus assez d'output");
@@ -245,6 +245,9 @@ public class CellManager : MonoBehaviour
     {
         createdCell = newCell;
 
+        newCell.ChangeDeplacementMat(false);
+        terrainIsBuildable = false;
+        terrainWasBuildable = true;
 
         CreatenewLink();
 
@@ -288,32 +291,28 @@ public class CellManager : MonoBehaviour
 
     public void CellDeplacement(Vector3 posToTest, CellMain cellToMove, bool isNewCell)
     {
-
+        shouldStop = false;
 
         if (currentLink.CheckNewLinkLength(posToTest, selectedCell, cellToMove) == false)
         {
             shouldStop = true;
         }
 
-        terrainIsBuildable = Helper.CheckAvailableSpace(posToTest, cellToMove.myCellTemplate.slotDistance);
+        terrainIsBuildable = Helper.CheckAvailableSpace(cellToMove.transform.position, cellToMove.myCellTemplate.slotDistance, cellToMove.ownCollider);
 
         if (terrainIsBuildable && !terrainWasBuildable)
         {
-            //cellToMove.ChangeDeplacementMat(true);
+            cellToMove.ChangeDeplacementMat(true);
         }
         else if(!terrainIsBuildable && terrainWasBuildable)
         {
-            //cellToMove.ChangeDeplacementMat(false);
+            cellToMove.ChangeDeplacementMat(false);
         }
 
-        
 
         for (int i = 0; i < cellToMove.links.Count; i++)
         {
-            if (cellToMove.links[i].CheckLength(posToTest) == false)
-            {
-                shouldStop = true;
-            }
+                shouldStop = !cellToMove.links[i].CheckLength(posToTest);     
         }
 
         if (shouldStop)
@@ -346,6 +345,8 @@ public class CellManager : MonoBehaviour
             //A REMPLACER PAR updatePoints
             cellToMove.links[i].UpdateLinks(cellToMove, posToTest);
         }
+
+        terrainWasBuildable = terrainIsBuildable;
     }
 
     #endregion
@@ -354,7 +355,6 @@ public class CellManager : MonoBehaviour
 
     public void EnergyVariation(int Variation)
     {
-        Debug.Log("A enlever des que l'energy sera set up ");
         RessourceTracker.instance.energy += Variation;
         UIManager.Instance.TopBar.UpdateUI();
     }
