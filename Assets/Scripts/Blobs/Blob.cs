@@ -98,6 +98,11 @@ public class Blob : PoolableObjects
             //retire le blob de la liste des blobs actifs dans la scène
             BlobManager.blobList.Remove(this);
         }
+
+        if (cameFromVillage)
+        {
+            village.RemoveBlobFromVillageList(this);
+        }
         Inpool();
     }
 

@@ -11,6 +11,11 @@ public class Destructible : MonoBehaviour
     public float spawnRange;
 
 
+    private void Start()
+    {
+        remainingLife = maxLife;
+    }
+
     public void ReceiveDamage(int dmg)
     {
         remainingLife -= dmg;
