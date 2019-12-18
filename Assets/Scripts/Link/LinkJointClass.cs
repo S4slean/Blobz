@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class LinkJointClass : PoolableObjects
 {
-    //public LinkClass link;
-    //public List<CellMain> cellsAttach = new List<CellMain>() ; 
     public Color outputColor;
     public Color InputColor;
     public Color flexColor;
@@ -15,11 +13,7 @@ public class LinkJointClass : PoolableObjects
 
     public linkJointType typeOfJoint;
 
-    //public bool nextToACell;
     public bool disponible = true;
-    //public bool isOutput;
-    //public bool isLock;
-    //public bool canBeDropEveryWhere;
 
 
     public void Init(linkJointType type)
@@ -38,15 +32,6 @@ public class LinkJointClass : PoolableObjects
 
     public void GraphUpdate()
     {
-        //if (isOutput)
-        //{
-        //    mF.material.SetColor("_Color", outputColor);
-        //}
-        //else
-        //{
-        //    mF.material.SetColor("_Color", InputColor);
-        //}
-
         switch (typeOfJoint)
         {
             case linkJointType.flex:
@@ -72,25 +57,6 @@ public class LinkJointClass : PoolableObjects
     {
         base.Outpool();
     }
-
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    CellMain cell = other.GetComponent<CellMain>();
-    //    if (cell)
-    //    {
-    //        nextToACell = true;
-    //        cellsAttach.Add(cell);
-    //    }
-    //}
-    //private void OnTriggerExit(Collider other)
-    //{
-    //    CellMain cell = other.GetComponent<CellMain>();
-    //    if (cell)
-    //    {
-    //        nextToACell = false;
-    //        cellsAttach.Remove(cell);
-    //    }
-    //}
 }
 
 

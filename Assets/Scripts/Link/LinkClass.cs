@@ -39,8 +39,8 @@ public class LinkClass : PoolableObjects
     #region COMMUN
     public void Break()
     {
-        receivingCell.RemoveLink(this , false);
-        originalCell.RemoveLink(this , true);
+        receivingCell.RemoveLink(this, false);
+        originalCell.RemoveLink(this, true);
 
         Inpool();
     }
@@ -54,8 +54,6 @@ public class LinkClass : PoolableObjects
         {
             joints[i] = ObjectPooler.poolingSystem.GetPooledObject<LinkJointClass>() as LinkJointClass;
             joints[i].transform.position = extremityPos[i];
-            //joints[i].isOutput  = (bool)i;
-            //joints[i].isOutput = i > 0 ? false : true;
             joints[i].GraphUpdate();
             joints[i].Outpool();
         }
@@ -69,22 +67,14 @@ public class LinkClass : PoolableObjects
         extremityPos[1] = lastPos;
 
         LinkJointClass createdJoint = ObjectPooler.poolingSystem.GetPooledObject<LinkJointClass>() as LinkJointClass; ;
-        //if (isOutput)
-        //{
+
         baseJoint.transform.position = extremityPos[0];
         joints[0] = baseJoint;
         joints[0].disponible = false;
         createdJoint.transform.position = extremityPos[1];
         createdJoint.typeOfJoint = linkJointType.input;
         joints[1] = createdJoint;
-        //}
-        //else
-        //{
-        //    baseJoint.transform.position = extremityPos[1];
-        //    joints[1] = baseJoint;
-        //    createdJoint.transform.position = extremityPos[0];
-        //    createdJoint.isOutput = true;
-        //}
+
 
         createdJoint.GraphUpdate();
         createdJoint.Outpool();
@@ -124,7 +114,7 @@ public class LinkClass : PoolableObjects
         }
         line.SetPosition(range - 1, extremityPos[1]);
     }
-    public void UpdatePoint(Vector3 firstPos ,Vector3 lastPos)
+    public void UpdatePoint(Vector3 firstPos, Vector3 lastPos)
     {
         extremityPos[0] = firstPos;
         extremityPos[1] = lastPos;
@@ -138,7 +128,7 @@ public class LinkClass : PoolableObjects
 
 
         Vector3 posFrag = trajectoir / range;
-        for (int i = 0; i < range ; i++)
+        for (int i = 0; i < range; i++)
         {
             line.SetPosition(i, extremityPos[0] + i * posFrag);
         }
@@ -150,13 +140,11 @@ public class LinkClass : PoolableObjects
     public bool CheckNewLinkLength(Vector3 posToTest, CellMain startCell, CellMain newCell)
     {
         float length1 = Vector3.Distance(startCell.transform.position, posToTest);
-        Debug.Log(length1 + "/" + (startCell.GetCurrentRange() + startCell.myCellTemplate.slotDistance + newCell.myCellTemplate.slotDistance));
         //a modifier par rappport à la proximité
-        if (length1 <=(startCell.GetCurrentRange() + startCell.myCellTemplate.slotDistance + newCell.myCellTemplate.slotDistance))
+        if (length1 <= (startCell.GetCurrentRange() + startCell.myCellTemplate.slotDistance + newCell.myCellTemplate.slotDistance))
         {
-            Debug.Log("cok");
             Vector3 _dir = (posToTest - startCell.transform.position).normalized;
-            extremityPos[1] =  posToTest - _dir*newCell.myCellTemplate.slotDistance;
+            extremityPos[1] = posToTest - _dir * newCell.myCellTemplate.slotDistance;
             return true;
         }
         else
@@ -164,7 +152,7 @@ public class LinkClass : PoolableObjects
             return false;
         }
 
-        
+
     }
     public bool CheckLength(Vector3 posToTest)
     {
@@ -217,57 +205,19 @@ public class LinkClass : PoolableObjects
         //angle = Mathf.Atan2(relative.x, relative.z) * Mathf.Rad2Deg;
     }
 
+    public void GetInputSlot(CellMain _receivingCell)
+    {
+        joints[1].Outpool();
+        joints[1].transform.position = extremityPos[1];
+        joints[1].typeOfJoint = linkJointType.input;
+        joints[1].disponible = false;
+        joints[1].GraphUpdate();
+
+        UpdatePoint(extremityPos[0], extremityPos[1]);
+        receivingCell = _receivingCell;
+    }
 
     #endregion
 
-    #region LINK JOINT
-
-    //public void UpdatePointFromJoint(Vector3 targetPos, bool isOutpul)
-    //{
-    //    if (isOutpul)
-    //    {
-    //        extremityPos[1] = targetPos;
-    //        //joints[1].transform.position = extremityPos[1];
-    //    }
-    //    else
-    //    {
-    //        extremityPos[0] = targetPos;
-    //    }
-
-    //    trajectoir = extremityPos[1] - extremityPos[0];
-    //    bendRatio = trajectoir.magnitude / range;
-
-    //    Vector3 posFrag = trajectoir / range;
-    //    for (int i = 0; i < range - 1; i++)
-    //    {
-    //        line.SetPosition(i, extremityPos[0] + i * posFrag);
-    //    }
-    //    line.SetPosition(range - 1, extremityPos[1]);
-    //}
-    //public void SensSwitch()
-    //{
-
-    //    for (int i = 0; i < joints.Length; i++)
-    //    {
-    //        if (joints[i].isLock)
-    //        {
-    //            return;
-    //        }
-    //    }
-    //    if (InTransmission)
-    //    {
-    //        WantToSwitch = true;
-    //    }
-    //    else
-    //    {
-    //        LinkJointClass tJoint = joints[0];
-    //        joints[0] = joints[1];
-    //        joints[1] = tJoint;
-
-    //    }
-
-    //}
-
-    #endregion
 
 }
