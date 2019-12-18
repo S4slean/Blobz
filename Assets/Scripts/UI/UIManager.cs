@@ -65,10 +65,19 @@ public class UIManager : MonoBehaviour
 
     public void DisplayCellShop(CellMain originalCell)
     {
-        cellSelection.transform.position = originalCell.transform.position;
-        cellSelection.gameObject.SetActive(true);
-        cellSelection.ButtonPositions(originalCell);
-        InputManager.Instance.InCellSelection = true;
+
+        if (originalCell.CheckForAvailableJointOfType(linkJointType.output) == null)
+        {
+            UIManager.Instance.DisplayNotEnoughLink();
+        }
+        else
+        {
+
+            cellSelection.transform.position = originalCell.transform.position;
+            cellSelection.gameObject.SetActive(true);
+            cellSelection.ButtonPositions(originalCell);
+            InputManager.Instance.InCellSelection = true;
+        }
     }
     public IEnumerator DesactivateCellShop()
     {
@@ -205,9 +214,14 @@ public class UIManager : MonoBehaviour
     #endregion
 
     #region NOT ENOUGH LINK 
+    [Header("NotEnoughLinks")]
+    public Animator nELink;
     public void DisplayNotEnoughLink()
     {
-        Debug.Log("Pas assez de link");
+        if (nELink.GetCurrentAnimatorStateInfo(0).IsName("invisible")) ;
+        {
+            nELink.Play("Show");
+        }
     }
 
     #endregion
@@ -225,13 +239,13 @@ public class UIManager : MonoBehaviour
         if (alert.transform.parent != alertHolder)
             alert.transform.SetParent(alertHolder);
 
-        RectTransform rect =  alert.GetComponent<RectTransform>();
+        RectTransform rect = alert.GetComponent<RectTransform>();
         Vector3 screenCenter = new Vector3(Screen.width / 2, Screen.height / 2, 0);
         Vector3 screenObjPos = Camera.main.WorldToScreenPoint(transform.position);
 
         Vector3 dir = (screenObjPos - screenCenter).normalized;
 
-        rect.anchoredPosition = new Vector2((dir.x * Screen.width/2) - (Mathf.Sign(dir.x) * Screen.width * offsetPercentage) , (dir.y * Screen.height / 2) - (Mathf.Sign(dir.y) * Screen.height * offsetPercentage)); 
+        rect.anchoredPosition = new Vector2((dir.x * Screen.width / 2) - (Mathf.Sign(dir.x) * Screen.width * offsetPercentage), (dir.y * Screen.height / 2) - (Mathf.Sign(dir.y) * Screen.height * offsetPercentage));
     }
 
 

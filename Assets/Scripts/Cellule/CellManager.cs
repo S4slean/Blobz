@@ -10,8 +10,15 @@ public class CellManager : MonoBehaviour
 
     public int Energy;
 
+    [Header("Placement Materials")]
     public Material allowedBuildingMat;
+    public Material allowedBuildingSpriteMat;
     public Material refusedBuildingMat;
+    public Material refusedBuldingSpriteMask;
+
+    bool shouldStop = false;
+    [HideInInspector]public bool terrainIsBuildable = false;
+    bool terrainWasBuildable = false;
 
 
     [Header("Debug")]
@@ -281,12 +288,25 @@ public class CellManager : MonoBehaviour
 
     public void CellDeplacement(Vector3 posToTest, CellMain cellToMove, bool isNewCell)
     {
-        bool shouldStop = false;
+
 
         if (currentLink.CheckNewLinkLength(posToTest, selectedCell, cellToMove) == false)
         {
             shouldStop = true;
         }
+
+        terrainIsBuildable = Helper.CheckAvailableSpace(posToTest, cellToMove.myCellTemplate.slotDistance);
+
+        if (terrainIsBuildable && !terrainWasBuildable)
+        {
+            //cellToMove.ChangeDeplacementMat(true);
+        }
+        else if(!terrainIsBuildable && terrainWasBuildable)
+        {
+            //cellToMove.ChangeDeplacementMat(false);
+        }
+
+        
 
         for (int i = 0; i < cellToMove.links.Count; i++)
         {
