@@ -36,7 +36,7 @@ public class CellMain : PoolableObjects, PlayerAction
     public List<CellProximityDectection> influencedByThoseCellProximity = new List<CellProximityDectection>();
 
     public List<Blob> stuckBlobs = new List<Blob>();
-       
+
     private CellProximityDectection[] myProximityCollider;
     public Collider ownCollider;
 
@@ -173,7 +173,7 @@ public class CellMain : PoolableObjects, PlayerAction
         TickDesinscription();
 
         int B = stuckBlobs.Count;
-        for (int y = 0; y < B ; y++)
+        for (int y = 0; y < B; y++)
         {
             //if (y > B)
             //{
@@ -836,9 +836,6 @@ public class CellMain : PoolableObjects, PlayerAction
 
     #endregion
 
-
-
-
     #region Graph MODIFICATION 
 
     private void GetInitialMat()
@@ -870,6 +867,8 @@ public class CellMain : PoolableObjects, PlayerAction
 
 
     #endregion
+
+    #region VISIBILITE OU PAS
     private void OnBecameInvisible()
     {
         isVisible = false;
@@ -878,6 +877,8 @@ public class CellMain : PoolableObjects, PlayerAction
     {
         isVisible = true;
     }
+
+    #endregion
 
     #region PLAYER ACTION INTERFACE
     public void OnLeftClickDown()
@@ -911,5 +912,10 @@ public class CellMain : PoolableObjects, PlayerAction
         throw new System.NotImplementedException();
     }
     #endregion
+
+    public virtual void ProductriceProximityGestion(CellProximityDectection colliders)
+    {
+
+    }
 
 }

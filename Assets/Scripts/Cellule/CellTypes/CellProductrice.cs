@@ -68,13 +68,16 @@ public class CellProductrice : CellMain
         {
             currentTick = 0;
         }
-
-
         if (haveExpulse)
         {
             anim.Play("BlobExpulsion");
         }
 
+
+    }
+
+    public override void ProductriceProximityGestion(CellProximityDectection colliders)
+    {
 
     }
 
