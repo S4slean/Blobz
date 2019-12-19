@@ -20,8 +20,8 @@ MonoBehaviour:
   - {fileID: 8322403635272401023, guid: cf6843133c307224196e57962e7f5179, type: 3}
   blopPrefab: {fileID: 2596948755250502091, guid: 87d5b5a8fb0cf7442878829ab452a3bd,
     type: 3}
-  buttonColor: {r: 1, g: 0.42438906, b: 0, a: 1}
-  cellTexture: {fileID: 0}
+  buttonColor: {r: 1, g: 1, b: 1, a: 1}
+  cellTexture: {fileID: 2800000, guid: fa8a025f4698212438823fbaf9a5967d, type: 3}
   type: 0
   generateProximity: 1
   proximityColliderNumber: 3
@@ -33,7 +33,7 @@ MonoBehaviour:
   - proximityLevel: 1
     range: 40
   energyCost: 5
-  energyCapBase: 10
+  energyCapBase: 50
   rangeBase: 15
   blobRatioAtDeath: 0
   impulseForce_Death: 0
@@ -46,7 +46,7 @@ MonoBehaviour:
   slotDistance: 1.5
   numberOfOuputLinks: 3
   numberOfInputLinks: 1
-  numberOfFlexLinks: 1
+  numberOfFlexLinks: 4
   proximityLevelMax: 4
   positivesInteractions: 00000000
   negativesInteractions: 0300000001000000

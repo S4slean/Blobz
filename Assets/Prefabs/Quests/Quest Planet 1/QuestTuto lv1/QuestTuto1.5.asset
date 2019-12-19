@@ -17,7 +17,7 @@ MonoBehaviour:
   questDescription: 
   eventDone: 1
   populationObjective: 100
-  energyToObtain: 125
+  energyToObtain: 25
   cellType: 0
   level: 1
   cellNbrToObtain: 1
@@ -36,11 +36,39 @@ MonoBehaviour:
       offset: {x: 830, y: 260, z: 0}
       usingSprite: 0
       sprite: {fileID: 0}
-      Title: Earn Sploush
+      Title: Earn Sploosh
       Text: 'Click on the production cell to collect
 
         the sploosh !'
     UEvent:
       m_PersistentCalls:
         m_Calls: []
+    foldout: 1
+  - eventType: 3
+    eventDuration: 0
+    virtualCamIndex: 0
+    popUpsMsg:
+    - rpgStyle: 0
+      anchor: {fileID: 0}
+      offset: {x: 830, y: 260, z: 0}
+      usingSprite: 0
+      sprite: {fileID: 0}
+      Title: Earn Sploosh
+      Text: 'Click on the production cell to collect
+
+        the sploosh !'
+    UEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 0}
+          m_MethodName: 
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: 
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
     foldout: 1
