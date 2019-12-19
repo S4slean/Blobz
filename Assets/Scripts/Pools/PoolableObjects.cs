@@ -5,29 +5,36 @@ using UnityEngine;
 public class PoolableObjects : MonoBehaviour
 {
     public bool canBePool;
+    public GameObject initialPool;
 
 
-    public void Outpool()
+    public virtual void Outpool()
     {
         canBePool = false;
         gameObject.SetActive(true);
     }
 
-    public virtual void Inpool()
+    public virtual void InpoolEditor()
     {
-        //Vector3 pos = transform.position;
-        //pos =Vector3.Lerp(transform.position , ObjectPooler.poolingSystem.transform.position , 0.01f);
-        //transform.position = pos;
-        //transform.position = ObjectPooler.poolingSystem.transform.position;
         canBePool = true;
         gameObject.SetActive(false);
-        
     }
-    protected IEnumerator DesactiveGameObject (float delay)
+
+    public virtual void Inpool()
+    {
+
+        transform.position = initialPool.transform.position;
+        transform.SetParent(initialPool.transform);
+        canBePool = true;
+        // gameObject.SetActive(false);
+        StartCoroutine(DesactiveGameObject());
+        
+;        
+    }
+    protected IEnumerator DesactiveGameObject ( )
     {
         //A changé mais c'est pour test
-        yield return new WaitForSeconds(delay);
-        gameObject.SetActive(false);
-       
+        yield return new WaitForFixedUpdate();
+        gameObject.SetActive(false);      
     }
 }

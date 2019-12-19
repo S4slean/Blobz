@@ -13,7 +13,7 @@ public class BlobManager : MonoBehaviour
 
     [Header("Normal variables")]
     public Material normalMat;
-    [SerializeField][Range(0, 128)] private int ticksBeforeMad = 4;
+    [SerializeField] [Range(0, 128)] private int ticksBeforeMad = 4;
 
     [Header("Charged variables")]
     public Material chargedMat;
@@ -22,9 +22,8 @@ public class BlobManager : MonoBehaviour
 
     [Header("Soldier variables")]
     public Material soldierMat;
-    [SerializeField] [Range(0,1000)] private float explosionTriggerRadius = 10;
     [SerializeField] [Range(0, 1000)] private float explosionRadius = 20;
-    [SerializeField] [Range(0,1000)] private float detectionRadius = 10;
+    [SerializeField] [Range(0, 1000)] private float detectionRadius = 10;
     private Transform targetTransform;
 
 
@@ -78,7 +77,7 @@ public class BlobManager : MonoBehaviour
                     if (blob.tickCount > ticksBeforeMad)
                     {
                         blob.tickCount = 0;
-                        ChangeBlobTypeTo(blob, BlobType.mad);
+                        blob.ChangeType(BlobType.mad);
                     }
 
 
@@ -104,9 +103,9 @@ public class BlobManager : MonoBehaviour
                             Vector3 directionToTarget = targetTransform.position - blob.transform.position;
 
                             //si il est assez près: BOOM!
-                            if (directionToTarget.magnitude < explosionTriggerRadius)
+                            if (directionToTarget.magnitude < explosionRadius / 2)
                             {
-                                Explode(blob);
+                                Explode(blob, 1);
                             }
                             //sinon  il se rapproche
                             else
@@ -120,32 +119,53 @@ public class BlobManager : MonoBehaviour
                             Jump(blob);
                         }
                     }
-                   
+
 
                     break;
 
                 case BlobType.mad:
 
+                    blob.tickCount++;
+
                     //Si le blob est déjà accroché à une cell il ne fait rien
                     if (blob.isStuck)
-                        return;
-
-                    blob.tickCount++;
-                    //Check si le blob doit agir sur ce tick
-                    if (blob.tickCount > ticksBtwnJumps)
                     {
-                        blob.tickCount = 0;
-
-                        if (CheckNearbyCells(blob))
-                        {
-                            Jump(blob, targetTransform);
-                        }
-                        else
-                        {
-                            Jump(blob);
-                        }
+                        blob.ReduceCapacity();
                     }
+                    else
+                    {
 
+                        //Check si le blob doit agir sur ce tick
+                        if (blob.tickCount > ticksBtwnJumps)
+                        {
+                            blob.tickCount = 0;
+
+                            if (CheckNearbyCells(blob))
+                            {
+                                ticksBtwnJumps = 2;
+                                Jump(blob, targetTransform);
+                            }
+                            else
+                            {
+                                ticksBtwnJumps = 4;
+
+                                if (blob.knowsNexus)
+                                {
+                                    Jump(blob, LevelManager.instance.nexus.transform);
+                                }
+                                else if (blob.CheckIfOutOfVillage())
+                                {
+                                    Jump(blob, blob.village.transform);
+                                }
+                                else
+                                {
+                                    Jump(blob);
+                                }
+
+                            }
+                        }
+
+                    }
                     break;
             }
         }
@@ -165,7 +185,7 @@ public class BlobManager : MonoBehaviour
 
             //il récupère tout les blobs dans la sphere de detection
             Collider[] detectedColliders;
-            detectedColliders = Physics.OverlapSphere(currentPos, detectionRadius, 1<<12);
+            detectedColliders = Physics.OverlapSphere(currentPos, detectionRadius, 1 << 12);
             //Debug.Log(detectedColliders.Length + " enemy detected");
 
             //il check lequel est le plus près
@@ -209,7 +229,7 @@ public class BlobManager : MonoBehaviour
 
             //il récupère tout les cells dans la sphere de detection
             Collider[] detectedColliders;
-            detectedColliders = Physics.OverlapSphere(currentPos, aggroRange, 1<<11);
+            detectedColliders = Physics.OverlapSphere(currentPos, aggroRange, 1 << 11);
             //Debug.Log(detectedColliders.Length + " cells detected");
 
             //il check laquelle est la plus près
@@ -239,35 +259,8 @@ public class BlobManager : MonoBehaviour
 
 
     //si le joueur click sur le blob on fait ça
-   
-
-    //permet de changer le type de Blob
-    public void ChangeBlobTypeTo(Blob blob , BlobType newBlobType)
-    {
-
-        switch (newBlobType)
-        {
-            case BlobType.normal:
-                blob.rd.material = normalMat;
-                break;
-
-            case BlobType.charged:
-                blob.rd.material = chargedMat;
-                break;
-
-            case BlobType.soldier:
-                blob.rd.material = soldierMat;
-                break;
-
-            case BlobType.mad:
-                blob.rd.material = angryMat;
-                break;
-        }
 
 
-        blob.blobType = newBlobType;
-        //Debug.Log("Blob changed into " + blob.blobType);
-    }
 
     public void Jump(Blob blob)
     {
@@ -283,20 +276,33 @@ public class BlobManager : MonoBehaviour
         jumpDir = jumpDir.normalized;
         jumpDir = new Vector3(jumpDir.x, jumpHeight, jumpDir.z);
         blob.Jump(jumpDir * jumpForce);
-        Debug.Log("Jump towards target "+ targetTransform.name);
+
     }
 
-    public void Explode(Blob blob)
+    public void Explode(Blob blob, int dmg)
     {
         Collider[] touchedBlobs;
         touchedBlobs = Physics.OverlapSphere(blob.transform.position, explosionRadius, 1 << 12);
-        foreach(Collider blobCol in touchedBlobs)
+
+        Collider[] touchedDestructibles;
+        touchedDestructibles = Physics.OverlapSphere(blob.transform.position, explosionRadius, 1 << 11);
+
+        foreach (Collider blobCol in touchedBlobs)
         {
-            if(blobCol.GetComponent<Blob>().blobType == BlobType.mad)
-            Destroy(blobCol.gameObject);
+            if (blobCol.GetComponent<Blob>().blobType == BlobType.mad)
+                Destroy(blobCol.gameObject);
         }
         //Debug.Log("Soldier Explosed " + touchedBlobs.Length + " blobs");
-        Destroy(blob.gameObject);
+
+        foreach (Collider destructiblesCol in touchedDestructibles)
+        {
+            if (TryGetComponent<Destructible>(out Destructible destructible))
+            {
+                destructible.ReceiveDamage(dmg);
+            }
+        }
+
+        blob.Destruct(); ;
     }
 
 

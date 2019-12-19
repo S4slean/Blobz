@@ -31,7 +31,11 @@ MonoBehaviour:
   storageCapability: 15
   tickForActivationBase: 1
   energyPerClick: 1
-  linkCapability: 6
+  limitedInLinks: 1
+  slotDistance: 1.5
+  numberOfOuputLinks: 0
+  numberOfInputLinks: 1
+  numberOfFlexLinks: 1
   proximityLevelMax: 0
   positivesInteractions: 
   negativesInteractions: 
@@ -44,8 +48,8 @@ MonoBehaviour:
   energyCap: 
   energyPerblop: 3
   StatsModification: 7
-  REFS: 1
+  REFS: 0
   ToggleInfoBox: 0
-  STATS: 1
-  ProductionGestion: 1
-  ProximityGestion: 1
+  STATS: 0
+  ProductionGestion: 0
+  ProximityGestion: 0

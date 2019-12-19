@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Helper : MonoBehaviour
 {
@@ -8,7 +6,7 @@ public class Helper : MonoBehaviour
     {
         if (currentIndex >= maxIndex)
         {
-            if (maxIndex <= 0 )
+            if (maxIndex <= 0)
             {
                 return 0;
             }
@@ -25,18 +23,33 @@ public class Helper : MonoBehaviour
         Vector3 dir = new Vector3(Random.Range(-1f, 1f), Random.Range(0.5f, 1f), Random.Range(-1f, 1f)).normalized;
         return dir;
     }
-    public static RaycastHit ReturnHit(Vector3 pos , Camera cam)
+    public static RaycastHit ReturnHit(Vector3 pos, Camera cam)
     {
         RaycastHit originhit;
         Ray ray = cam.ScreenPointToRay(pos);
         Physics.Raycast(ray, out originhit);
         return originhit;
     }
-    public static RaycastHit ReturnHit(Vector3 pos, Camera cam , int LayerMask)
+    public static RaycastHit ReturnHit(Vector3 pos, Camera cam, int LayerMask)
     {
         RaycastHit originhit;
         Ray ray = cam.ScreenPointToRay(pos);
-        Physics.Raycast(ray, out originhit ,1000 , LayerMask);
+        Physics.Raycast(ray, out originhit, 1000, LayerMask);
         return originhit;
+    }
+
+    public static bool CheckAvailableSpace(Vector3 pos, float radius, Collider colliderToIgnore)
+    {
+
+        Collider[] objects = Physics.OverlapSphere(pos, radius, 1 << 12 | 1 << 11 | 1 << 15);
+
+        for (int i = 0; i < objects.Length; i++)
+        {
+            if (objects[i] != colliderToIgnore)
+                return false;
+        }
+
+        return true;
+
     }
 }

@@ -6,7 +6,7 @@ using UnityEditor;
 [CustomEditor(typeof(ObjectPooler))]
 public class PoolCustomInpector : Editor
 {
-    static ObjectPooler objPooler;
+    public static ObjectPooler objPooler;
 
 
 
@@ -69,6 +69,7 @@ public class PoolCustomInpector : Editor
                 GameObject obj = new GameObject(objPooler.poolItems[j].objectToPool.name + "_Pool");
                 Undo.RegisterCreatedObjectUndo(obj, "CreatedObj");
                 obj.transform.SetParent(objPooler.transform);
+                obj.transform.localPosition = Vector3.zero;
                 ObjectPoolItem currentPoolItem = objPooler.poolItems[j];
                 //objPooler.poolItems.Remove(objPooler.poolItems[j]);
                 currentPoolItem.poolParent = obj;
@@ -77,7 +78,6 @@ public class PoolCustomInpector : Editor
             }
             #region MyRegion
 
-            #endregion
             //for (int i = 0; i < item.AmountToPool; i++)
             //{
             //    //GameObject obj = (GameObject)Instantiate(item.objectToPool, item.poolParent.transform);
@@ -86,18 +86,19 @@ public class PoolCustomInpector : Editor
             //    po.Inpool();
             //    objPooler.pooledObjects.Add(po);
             //}
+            #endregion
             for (int i = 0; i < objPooler.poolItems[j].AmountToPool; i++)
             {
                 //GameObject obj = (GameObject)Instantiate(item.objectToPool, item.poolParent.transform);
                 GameObject obj = (GameObject)PrefabUtility.InstantiatePrefab(objPooler.poolItems[j].objectToPool, objPooler.poolItems[j].poolParent.transform);
                 if (obj == null)
-                {
-                    
+                {                 
                     return;
                 }
 
                 PoolableObjects po = obj.GetComponent<PoolableObjects>();
-                po.Inpool();
+                po.InpoolEditor();
+                po.initialPool = objPooler.poolItems[j].poolParent;
                 objPooler.pooledObjects.Add(po);
             }
         }

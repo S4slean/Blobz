@@ -5,8 +5,4 @@ using UnityEngine;
 public class CellHighWay : CellMain
 {
 
-    public override void ProximityLevelModification(int Amout)
-    {
-        base.ProximityLevelModification(Amout);
-    }
 }

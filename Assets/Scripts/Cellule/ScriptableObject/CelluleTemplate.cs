@@ -50,8 +50,17 @@ public class CelluleTemplate : ScriptableObject
     [Range(1, 100)]
     public int energyPerClick = 2;
 
-    [Range(0f, 12f)]
-    public int linkCapability = 6;
+    //[Range(0f, 12f)]
+    //public int linkCapability = 6;
+    public bool limitedInLinks;
+    [Range(0.5f , 5f)]
+    public float slotDistance = 3; 
+    [Range(0 , 5)]
+    public int numberOfOuputLinks =1;
+    [Range(0 , 5)]
+    public int numberOfInputLinks =1;
+    [Range(0, 5)]
+    public int numberOfFlexLinks = 1;
 
 
     [Range(0, 5)]
@@ -89,6 +98,8 @@ public class CelluleTemplate : ScriptableObject
 [System.Serializable]
 public struct ProximityCollider
 {
+    [Range(1 , 5)]
     public int proximityLevel;
+    [Range (5 , 100)]
     public int range; 
 }

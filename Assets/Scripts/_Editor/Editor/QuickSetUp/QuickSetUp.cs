@@ -21,9 +21,8 @@ public class QuickSetUp : Editor
     static GameObject camera;
     static GameObject levelManager;
     static GameObject blobManager;
-    static GameObject ground;
     static GameObject cinematicManager;
-    
+
 
 
 
@@ -52,7 +51,6 @@ public class QuickSetUp : Editor
             || FindObjectOfType<CameraController>() != null
             || FindObjectOfType<LevelManager>() != null
             || FindObjectOfType<BlobManager>() != null
-            || GameObject.FindGameObjectWithTag("Ground")
             || FindObjectOfType<CinematicManager>() != null)
         {
             return false;
@@ -73,9 +71,6 @@ public class QuickSetUp : Editor
         if (FindObjectOfType<InputManager>() != null)
             DestroyImmediate(FindObjectOfType<InputManager>().gameObject);
 
-        if (FindObjectOfType<QuestManager>() != null)
-            DestroyImmediate(FindObjectOfType<QuestManager>().gameObject);
-
         if (FindObjectOfType<RessourceTracker>() != null)
             DestroyImmediate(FindObjectOfType<RessourceTracker>().gameObject);
 
@@ -85,27 +80,16 @@ public class QuickSetUp : Editor
         if (GameObject.FindGameObjectWithTag("Pools") != null)
             DestroyImmediate(GameObject.FindGameObjectWithTag("Pools"));
 
-        if (FindObjectOfType<CameraController>() != null)
-            DestroyImmediate(FindObjectOfType<CameraController>().gameObject);
-
-        if (FindObjectOfType<LevelManager>() != null)
-            DestroyImmediate(FindObjectOfType<LevelManager>().gameObject);
-
         if (FindObjectOfType<BlobManager>() != null)
             DestroyImmediate(FindObjectOfType<BlobManager>().gameObject);
 
-        if (GameObject.FindGameObjectWithTag("Ground") != null)
-            DestroyImmediate(GameObject.FindGameObjectWithTag("Ground"));
-
-        if (FindObjectOfType<CinematicManager>() != null)
-            DestroyImmediate(FindObjectOfType<CinematicManager>().gameObject);
 
         Debug.Log("Scene Cleaned");
     }
 
     static void GetResources()
     {
-        pools = Resources.Load<GameObject>("QuickSetUp/--Pools--") ;
+        pools = Resources.Load<GameObject>("QuickSetUp/--Pools--");
         tickManager = Resources.Load("QuickSetUp/TickManager") as GameObject;
         questManager = Resources.Load("QuickSetUp/QuestManager") as GameObject;
         uiManager = Resources.Load("QuickSetUp/UIManager") as GameObject;
@@ -115,26 +99,31 @@ public class QuickSetUp : Editor
         camera = Resources.Load("QuickSetUp/--MainCamera--") as GameObject;
         levelManager = Resources.Load("QuickSetUp/LevelManager") as GameObject;
         blobManager = Resources.Load("QuickSetUp/BlobManager") as GameObject;
-        ground = Resources.Load("QuickSetUp/Ground") as GameObject;
         cinematicManager = Resources.Load("QuickSetUp/CinematicManager") as GameObject;
     }
 
     static void BuildNewScene()
     {
         pools = Instantiate(pools);
-        questManager = Instantiate(questManager);
         uiManager = Instantiate(uiManager);
         tickManager = Instantiate(tickManager);
         cellManager = Instantiate(cellManager);
         inputManager = Instantiate(inputManager);
         resourceTracker = Instantiate(resourceTracker);
-        camera = Instantiate(camera);
-        levelManager = Instantiate(levelManager);
         blobManager = Instantiate(blobManager);
-        ground = Instantiate(ground);
-        cinematicManager = Instantiate(cinematicManager);
 
-        ground.transform.position = Vector3.zero;
+        if (FindObjectOfType<CameraController>() == null)
+            camera = Instantiate(camera);
+
+        if (FindObjectOfType<LevelManager>() == null)
+            levelManager = Instantiate(levelManager);
+
+
+        if (FindObjectOfType<CinematicManager>() == null)
+            cinematicManager = Instantiate(cinematicManager);
+
+        if (FindObjectOfType<BlobManager>() == null)
+            questManager = Instantiate(questManager);
 
 
         #region UI
@@ -176,6 +165,22 @@ public class QuickSetUp : Editor
             pooler.poolItems.Add(cellPoolItem);
         }
 
+        ObjectPoolItem proximityPoolItem = new ObjectPoolItem();
+        proximityPoolItem.objectToPool = Resources.Load("QuickSetUp/ProximityCollider") as GameObject;
+        proximityPoolItem.AmountToPool = 200;
+        pooler.poolItems.Add(proximityPoolItem);
+
+        //j'ai rajouté ça 
+        ObjectPoolItem linkJointItem = new ObjectPoolItem();
+        linkJointItem.objectToPool = Resources.Load("QuickSetUp/LinkJoint") as GameObject;
+        linkJointItem.AmountToPool = 200;
+        pooler.poolItems.Add(linkJointItem);
+
+        ObjectPoolItem cellAlertPoolItem = new ObjectPoolItem();
+        cellAlertPoolItem.objectToPool = Resources.Load("QuickSetUp/CellAlert") as GameObject;
+        cellAlertPoolItem.AmountToPool = 10;
+        pooler.poolItems.Add(cellAlertPoolItem);
+
         PoolCustomInpector.GeneratePools();
 
         #endregion
@@ -185,7 +190,7 @@ public class QuickSetUp : Editor
 
         uiScript.cellSelection.buttonTypes = new GameObject[levelManager.GetComponent<LevelManager>().availablesCells.Length];
 
-        for (int i = 0; i < lvlMng.availablesCells.Length ; i++)
+        for (int i = 0; i < lvlMng.availablesCells.Length; i++)
         {
             GameObject objInstance = Instantiate(button);
             objInstance.name = lvlMng.availablesCells[i].name + "Button";
@@ -194,7 +199,7 @@ public class QuickSetUp : Editor
 
 
             uiManager.GetComponent<UIManager>().cellSelection.GetComponent<CellSelectionShop>().buttonTypes[i] = objInstance;
-            rect.SetParent(uiManager.GetComponent<UIManager>().cellSelection.transform );
+            rect.SetParent(uiManager.GetComponent<UIManager>().cellSelection.transform);
 
             //UnityEditor.Events.UnityEventTools.AddPersistentListener(btn.onClick, new UnityEngine.Events.UnityAction(CellConstructionEvent));
 
@@ -209,7 +214,7 @@ public class QuickSetUp : Editor
 
             GraphicRaycaster raycaster = FindObjectOfType<GraphicRaycaster>();
 
-            
+
 
             UnityEventTools.AddObjectPersistentListener<CellMain>(entry.callback, action, cell);
 

@@ -4,16 +4,32 @@ using UnityEngine;
 
 public class Blob : PoolableObjects
 {
+
+    #region REFS
     public Rigidbody rb;
+    public Renderer rd;
+    #endregion
+
+    #region GENERAL
     public int tickCount = 0; 
     public BlobManager.BlobType blobType = BlobManager.BlobType.normal;
-    public Renderer rd;
+    #endregion
+
+    #region ENNEMIES
     public Transform tagetTransform;
     public bool isStuck = false;
     public CellMain infectedCell;
     public int infectionAmount = 1;
+    public bool knowsNexus = false;
+    public bool cameFromVillage = false;
+    public EnemyVillage village;
+    #endregion
+
+    #region SOLDIER
     public float flyTime = 3;
     public float flySpeed = 5;
+    public bool canExplode = false;
+    #endregion
 
 
 
@@ -71,7 +87,7 @@ public class Blob : PoolableObjects
             Fly();
     }
 
-    private void OnDestroy()
+    public void Destruct()
     {
         if(infectedCell != null)
         {
@@ -81,6 +97,11 @@ public class Blob : PoolableObjects
         {
             //retire le blob de la liste des blobs actifs dans la scène
             BlobManager.blobList.Remove(this);
+        }
+
+        if (cameFromVillage)
+        {
+            village.RemoveBlobFromVillageList(this);
         }
         Inpool();
     }
@@ -99,15 +120,35 @@ public class Blob : PoolableObjects
         flyTime -= Time.deltaTime;
     }
 
+    public void ReduceCapacity()
+    {
+        infectedCell.StockageCapabilityVariation(-infectionAmount);
+        infectionAmount++;
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         if(blobType == BlobManager.BlobType.mad && collision.transform.tag == "Cell")
         {
             infectedCell = collision.transform.GetComponent<CellMain>();
             infectedCell.StockageCapabilityVariation( - infectionAmount);
-            BlobManager.blobList.Remove(this);
         }
+
+        if (blobType == BlobManager.BlobType.soldier && canExplode)
+            BlobManager.instance.Explode(this, 1);
     }
 
+    public void SetOrigin(EnemyVillage newVillage)
+    {
+        cameFromVillage = true;
+        village = newVillage;
+    }
 
+    public bool CheckIfOutOfVillage()
+    {
+        if ((transform.position - village.transform.position).sqrMagnitude > Mathf.Pow( village.boundariesRange,2))
+            return true;
+        else
+            return false;
+    }
 }

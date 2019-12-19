@@ -487,7 +487,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &336654237016533570
 Transform:
   m_ObjectHideFlags: 0
@@ -527,8 +527,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc514b38bf0dc2a48871bdfb34ee22e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canBePool: 0
+  initialPool: {fileID: 0}
+  proximityLevel: 0
   myCollider: {fileID: 6332160634703649920}
   parent: {fileID: 5565576154424326082}
+  mR: {fileID: 0}
+  proximityColor: []
 --- !u!1 &8322403635272401023
 GameObject:
   m_ObjectHideFlags: 0
@@ -547,7 +552,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8620706792611696404
 Transform:
   m_ObjectHideFlags: 0
@@ -578,6 +583,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canBePool: 0
+  initialPool: {fileID: 0}
   myCellTemplate: {fileID: 11400000, guid: df917586c15ca0c409f512efdab3a763, type: 2}
   isNexus: 0
   cellDefaultMat: {fileID: 0}
@@ -587,14 +593,20 @@ MonoBehaviour:
   NCurrentProximity: {fileID: 4580034776522669225}
   graphTransform: {fileID: 347336514114222625}
   TargetPos: {fileID: 0}
-  ProximityDectection: {fileID: 8404008211773970808}
+  domeMR: {fileID: 1236907594294021660}
+  spriteMR: {fileID: 1236907593613512009}
+  links: []
+  inThoseCellProximity: []
+  influencedByThoseCellProximity: []
+  linkJoints: []
   showDebug: 0
   showlinks: 0
   showRef: 1
-  links: []
   noMoreLink: 0
   blobNumber: 0
   hasBeenDrop: 0
+  limitedInLink: 0
+  canBePlaced: 0
 --- !u!54 &8777569679337227342
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -836,6 +848,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 347336514114222625}
     m_Modifications:
+    - target: {fileID: 400314428079193311, guid: 74d7f2ad0af3d5644aa3194c57b18389,
+        type: 3}
+      propertyPath: m_Name
+      value: Stock
+      objectReference: {fileID: 0}
     - target: {fileID: 400314428079193252, guid: 74d7f2ad0af3d5644aa3194c57b18389,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -891,11 +908,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 400314428079193311, guid: 74d7f2ad0af3d5644aa3194c57b18389,
-        type: 3}
-      propertyPath: m_Name
-      value: Stock
-      objectReference: {fileID: 0}
     - target: {fileID: 26032503570507822, guid: 74d7f2ad0af3d5644aa3194c57b18389,
         type: 3}
       propertyPath: mainParent
@@ -909,9 +921,21 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1487405306405106155}
   m_PrefabAsset: {fileID: 0}
+--- !u!23 &1236907593613512009 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 400314428079193250, guid: 74d7f2ad0af3d5644aa3194c57b18389,
+    type: 3}
+  m_PrefabInstance: {fileID: 1487405306405106155}
+  m_PrefabAsset: {fileID: 0}
 --- !u!95 &1236907593613512011 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 400314428079193248, guid: 74d7f2ad0af3d5644aa3194c57b18389,
+    type: 3}
+  m_PrefabInstance: {fileID: 1487405306405106155}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &1236907594294021660 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 400314426343718903, guid: 74d7f2ad0af3d5644aa3194c57b18389,
     type: 3}
   m_PrefabInstance: {fileID: 1487405306405106155}
   m_PrefabAsset: {fileID: 0}

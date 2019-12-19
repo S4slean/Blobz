@@ -4,13 +4,21 @@ using UnityEngine;
 
 public class CellManager : MonoBehaviour
 {
+    #region VARIABLES
     public static CellManager Instance;
     public static Camera mainCamera;
 
     public int Energy;
 
+    [Header("Placement Materials")]
     public Material allowedBuildingMat;
+    public Material allowedBuildingSpriteMat;
     public Material refusedBuildingMat;
+    public Material refusedBuldingSpriteMask;
+
+    bool shouldStop;
+    [HideInInspector] public bool terrainIsBuildable = false;
+    bool terrainWasBuildable = false;
 
 
     [Header("Debug")]
@@ -25,7 +33,7 @@ public class CellManager : MonoBehaviour
     private CellMain receivingCell;
 
     public Vector3 originalPosOfMovingCell;
-
+    #endregion
 
     private void Awake()
     {
@@ -42,111 +50,98 @@ public class CellManager : MonoBehaviour
         mainCamera = Camera.main;
     }
 
-
-    public void CreatenewLink()
+    #region LINK GESTION
+    public bool CreatenewLink()
     {
-        if (selectedCell.noMoreLink)
+        selectedCell = InputManager.Instance.selectedCell;
+        LinkJointClass joint = selectedCell.CheckForAvailableJointOfType(linkJointType.output);
+
+        if (joint == null)
         {
-            Debug.Log("Trop de lien sur la cellule de base");
-            return;
+            Debug.Log("Plus assez d'output");
+            return false;
         }
-        //Referencing in script
-        LinkClass newLink = ObjectPooler.poolingSystem.GetPooledObject<LinkClass>() as LinkClass;
-        currentLink = newLink;
-        currentLine = newLink.line;
-        currentLink.Outpool();
-        //Setup 
-        InputManager.Instance.DraggingLink = true;
-        //selectedCell.AddLink(currentLink, true);
+        else
+        {
+            joint.disponible = false;
+            joint.typeOfJoint = linkJointType.output;
+            joint.GraphUpdate();
 
-        currentLink.startPos = selectedCell.transform.position;
+            LinkClass _newLink = ObjectPooler.poolingSystem.GetPooledObject<LinkClass>() as LinkClass;
+            currentLink = _newLink;
+            currentLine = _newLink.line;
+            currentLink.Outpool();
 
+            Vector3 _dir = (InputManager.Instance.mouseWorldPos - selectedCell.transform.position).normalized;
+            Vector3 firstPos = selectedCell.transform.position + _dir * selectedCell.myCellTemplate.slotDistance;
 
-        //Ancien Systeme de Link 
-        currentLine.SetPosition(0, currentLink.startPos);
-        currentLink.endPos = InputManager.Instance.mousePos;
-        currentLine.SetPosition(1, currentLink.endPos);
-
-
-        ///nouveau systeme de link
-        //currentLink.FirstSetup(currentLink.startPos, InputManager.Instance.mousePos, selectedCell.GetCurrentRange());
+            currentLink.FirstSetupWithSlot(firstPos, InputManager.Instance.mouseWorldPos, selectedCell.GetCurrentRange(), joint/*, joint.isOutput*/);
+            return true;
+        }
     }
-
-
+    //Sans Cell
     public void DragNewlink(RaycastHit hit)
     {
+        Vector3 direction = (hit.point - selectedCell.transform.position);
+        direction = new Vector3(direction.x, 0, direction.z);
+        direction = direction.normalized;
+
         // Permet de draw la line en runtime 
-        float distance = Vector3.Distance(currentLink.startPos, hit.point);
-        if (distance <= selectedCell.myCellTemplate.rangeBase / 2)
+        float distance = Vector3.Distance(selectedCell.transform.position, hit.point);
+        if (distance <= (selectedCell.GetCurrentRange() + selectedCell.myCellTemplate.slotDistance))
         {
-            //Ancien Systeme link 
-            currentLink.endPos = new Vector3(hit.point.x, currentLink.startPos.y, hit.point.z);
-            currentLine.SetPosition(1, currentLink.endPos);
-
-
-
-            //nouveau systeme de link
-            //Vector3 lastPos = new Vector3(hit.point.x, currentLink.startPos.y, hit.point.z);
-            //currentLink.UpdatePoint(lastPos);
+            Vector3 lastPos = new Vector3(hit.point.x, currentLink.extremityPos[0].y, hit.point.z);
+            Vector3 firstPos = selectedCell.transform.position + direction * selectedCell.myCellTemplate.slotDistance;
+            currentLink.UpdatePoint(firstPos, lastPos);
 
         }
         else
         {
-            Vector3 direction = (hit.point - currentLink.startPos);
-            direction = new Vector3(direction.x, 0, direction.z);
-            direction = direction.normalized;
 
-            ////Ancien System 
-            currentLink.endPos = currentLink.startPos + direction * selectedCell.myCellTemplate.rangeBase / 2;
-            currentLine.SetPosition(1, currentLink.endPos);
-
-
-            //nouveau systeme de link
-            //Vector3 lastPos = currentLink.startPos + direction * selectedCell.GetCurrentRange();
-            //currentLink.UpdatePoint(lastPos);
+            Vector3 firstPos = selectedCell.transform.position + direction * selectedCell.myCellTemplate.slotDistance;
+            Vector3 lastPos = selectedCell.transform.position + (direction * selectedCell.GetCurrentRange() + direction * selectedCell.myCellTemplate.slotDistance);
+            currentLink.UpdatePoint(firstPos, lastPos);
         }
     }
-    public void DragNewlink(Vector3 pos)
+
+    //Avec Cell
+    public void DragNewlink(Vector3 pos, CellMain cellMoved)
     {
+        Vector3 direction = (pos - selectedCell.transform.position);
+        direction = new Vector3(direction.x, 0, direction.z);
+        direction = direction.normalized;
+
         // Permet de draw la line en runtime 
-        float distance = Vector3.Distance(currentLink.startPos, pos);
-        if (distance <= selectedCell.myCellTemplate.rangeBase / 2)
+        float distance = Vector3.Distance(selectedCell.transform.position, pos);
+        if (distance <= (selectedCell.GetCurrentRange() + selectedCell.myCellTemplate.slotDistance + cellMoved.myCellTemplate.slotDistance))
         {
-            //Ancien Systeme
-            currentLink.endPos = new Vector3(pos.x, currentLink.startPos.y, pos.z);
-            currentLine.SetPosition(1, currentLink.endPos);
+            Vector3 firstPos = selectedCell.transform.position + direction * selectedCell.myCellTemplate.slotDistance;
 
-
-            //nouveau systeme de link
-            //Vector3 lastPos = new Vector3(pos.x, currentLink.startPos.y, pos.z);         
-            //currentLink.UpdatePoint(lastPos);
+            Vector3 lastPos = new Vector3(pos.x, currentLink.extremityPos[0].y, pos.z) - (direction * cellMoved.myCellTemplate.slotDistance);
+            currentLink.UpdatePoint(firstPos, lastPos);
         }
         else
         {
-            Vector3 direction = (pos - currentLink.startPos);
-            direction = new Vector3(direction.x, 0, direction.z);
-            direction = direction.normalized;
-
-            //Ancien Systeme
-            currentLink.endPos = currentLink.startPos + direction * selectedCell.myCellTemplate.rangeBase / 2;
-            currentLine.SetPosition(1, currentLink.endPos);
-
-            //Nouveau System
-            //Vector3 lastPos = currentLink.startPos + direction * selectedCell.myCellTemplate.rangeBase / 2;
-            //currentLink.UpdatePoint(lastPos);
+            Vector3 lastPos = selectedCell.transform.position + (direction * selectedCell.GetCurrentRange() + direction * selectedCell.myCellTemplate.slotDistance);
+            Vector3 firstPos = selectedCell.transform.position + direction * selectedCell.myCellTemplate.slotDistance;
+            currentLink.UpdatePoint(firstPos, lastPos);
         }
     }
-
 
     public void ValidateNewLink(RaycastHit hit)
     {
+
+        //Nouveau Cellules en cours de placement 
         if (InputManager.Instance.newCell)
             receivingCell = InputManager.Instance.objectMoved;
         else
             receivingCell = hit.transform.GetComponent<CellMain>();
 
+
+
         //permet de check si c'est bien une cellule et pas la meme cellule
         selectedCell = InputManager.Instance.selectedCell;
+
 
         if (receivingCell != null && receivingCell != selectedCell)
         {
@@ -174,16 +169,45 @@ public class CellManager : MonoBehaviour
                 return;
             }
 
+            Debug.Log(Vector3.Distance(selectedCell.transform.position, receivingCell.transform.position) + "/" + (selectedCell.GetCurrentRange() + selectedCell.myCellTemplate.slotDistance + receivingCell.myCellTemplate.slotDistance));
+            if (!currentLink.CheckNewLinkLength(receivingCell.transform.position, selectedCell, receivingCell))
+            {
+                Debug.Log("Coucou c moi ki fé chié Old " + receivingCell.name);
+                SupressCurrentLink();
+                return;
+            }
+
+
+            LinkJointClass cellJoint = receivingCell.CheckForAvailableJointOfType(linkJointType.input);
+            if (cellJoint == null)
+            {
+                Debug.Log("Plus assez de lien input");
+                SupressCurrentLink();
+                return;
+            }
+            else
+            {
+                currentLink.joints[1].Inpool();
+                currentLink.joints[1] = cellJoint;
+
+            }
+
+            currentLink.GetInputSlot(receivingCell);
+
             currentLine.startColor = Color.green;
             currentLine.endColor = Color.cyan;
 
-            currentLink.endPos = receivingCell.transform.position;
-            currentLine.SetPosition(1, currentLink.endPos);
 
-            selectedCell.AddLink(currentLink, true);
-            receivingCell.AddLink(currentLink, false);
+            Vector3 cellPos = receivingCell.transform.position;
+            Vector3 _dir = (cellPos - selectedCell.transform.position).normalized;
+            Vector3 lastPos = cellPos - _dir * receivingCell.myCellTemplate.slotDistance;
+            Vector3 firstPos = selectedCell.transform.position + _dir * selectedCell.myCellTemplate.slotDistance;
+            currentLink.UpdatePoint(firstPos, lastPos);
+
+
+            selectedCell.AddLinkReferenceToCell(currentLink, true);
+            receivingCell.AddLinkReferenceToCell(currentLink, false);
             cleanLinkRef();
-
 
         }
         else
@@ -194,26 +218,8 @@ public class CellManager : MonoBehaviour
 
 
     }
-    public void NewCellCreated(CellMain newCell)
-    {
-        createdCell = newCell;
 
 
-        CreatenewLink();
-
-        EnergyVariation(-newCell.myCellTemplate.energyCost);
-
-        //selectedCell.AddLink(currentLink, true);
-        //createdCell.AddLink(currentLink, false);
-        currentLine.startColor = Color.green;
-        currentLine.endColor = Color.cyan;
-
-        //cleanLinkRef();
-        originalPosOfMovingCell = new Vector3(0, 100, 0);
-        UIManager.Instance.cellSelection.DesactiveButton();
-        InputManager.Instance.StartMovingCell(newCell, false);
-
-    }
 
     public void cleanLinkRef()
     {
@@ -223,11 +229,36 @@ public class CellManager : MonoBehaviour
     }
     public void SupressCurrentLink()
     {
+        currentLink.joints[0].disponible = true;
+        selectedCell.jointReset(currentLink.joints[0]);
+        currentLink.joints[1].Inpool();
         currentLink.Inpool();
         cleanLinkRef();
     }
+    #endregion
 
+    #region CELL GESTION
 
+    public void NewCellCreated(CellMain newCell)
+    {
+        createdCell = newCell;
+
+        newCell.ChangeDeplacementMat(false);
+        terrainIsBuildable = false;
+        terrainWasBuildable = true;
+
+        CreatenewLink();
+
+        EnergyVariation(-newCell.myCellTemplate.energyCost);
+
+        currentLine.startColor = Color.green;
+        currentLine.endColor = Color.cyan;
+
+        originalPosOfMovingCell = new Vector3(0, 100, 0);
+        UIManager.Instance.cellSelection.DesactiveButton();
+        InputManager.Instance.StartMovingCell(newCell, false);
+
+    }
     public void DeselectCell()
     {
         selectedCell = null;
@@ -255,22 +286,31 @@ public class CellManager : MonoBehaviour
     {
         selectedCell.ClickInteraction();
     }
+
     public void CellDeplacement(Vector3 posToTest, CellMain cellToMove, bool isNewCell)
     {
-        bool shouldStop = false;
+        shouldStop = false;
 
-        if (currentLink.CheckNewLinkLength(posToTest, selectedCell) == false)
+        if (currentLink.CheckNewLinkLength(posToTest, selectedCell, cellToMove) == false)
         {
             shouldStop = true;
         }
 
+        terrainIsBuildable = Helper.CheckAvailableSpace(cellToMove.transform.position, cellToMove.myCellTemplate.slotDistance, cellToMove.ownCollider);
+
+        if (terrainIsBuildable && !terrainWasBuildable)
+        {
+            cellToMove.ChangeDeplacementMat(true);
+        }
+        else if (!terrainIsBuildable && terrainWasBuildable)
+        {
+            cellToMove.ChangeDeplacementMat(false);
+        }
+
+
         for (int i = 0; i < cellToMove.links.Count; i++)
         {
-            if (cellToMove.links[i].CheckLength(posToTest) == false)
-            {
-                shouldStop = true;
-            }
-
+            shouldStop = !cellToMove.links[i].CheckLength(posToTest);
         }
 
         if (shouldStop)
@@ -279,15 +319,13 @@ public class CellManager : MonoBehaviour
             if (originalPosOfMovingCell == new Vector3(0, 100, 0))
             {
                 refPoint = selectedCell.transform.position;
-                cellToMove.transform.position = refPoint + (InputManager.Instance.mousePos - refPoint).normalized * selectedCell.GetCurrentRange();
-                DragNewlink(cellToMove.transform.position + Vector3.up * .1f);
+                cellToMove.transform.position = refPoint + (InputManager.Instance.mouseWorldPos - refPoint).normalized * (selectedCell.GetCurrentRange() + selectedCell.myCellTemplate.slotDistance + cellToMove.myCellTemplate.slotDistance);
+                DragNewlink(cellToMove.transform.position /*+ Vector3.up * .1f */, cellToMove);
             }
             else
             {
                 refPoint = originalPosOfMovingCell;
             }
-
-
 
 
         }
@@ -296,21 +334,28 @@ public class CellManager : MonoBehaviour
             cellToMove.transform.position = posToTest;
 
             if (isNewCell)
-                DragNewlink(posToTest);
+                DragNewlink(posToTest, cellToMove);
 
         }
 
         for (int i = 0; i < cellToMove.links.Count; i++)
         {
+            //A REMPLACER PAR updatePoints
             cellToMove.links[i].UpdateLinks(cellToMove, posToTest);
         }
+
+        terrainWasBuildable = terrainIsBuildable;
     }
 
+    #endregion
+
+    #region UTILITAIRE
 
     public void EnergyVariation(int Variation)
     {
-        Debug.Log("A enlever des que l'energy sera set up ");
         RessourceTracker.instance.energy += Variation;
         UIManager.Instance.TopBar.UpdateUI();
     }
+    #endregion
+
 }

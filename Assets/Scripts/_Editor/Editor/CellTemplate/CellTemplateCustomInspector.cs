@@ -13,7 +13,7 @@ public class CellTemplateCustomInspector : Editor
     SerializedProperty typeProp;
     SerializedProperty energyCostProp, energyCapBaseProp, rangeBaseProp, blobRatioAtDeathProp, impulseForce_DeathProp;
 
-    SerializedProperty prodPerTickProp, rejectPowerProp, storageCapabilityProp, linkCapabilityProp, tickForActivationBaseProp, energyPerClickProp;
+    SerializedProperty prodPerTickProp, rejectPowerProp, storageCapabilityProp/*, linkCapabilityProp*/, tickForActivationBaseProp, energyPerClickProp;
 
     SerializedProperty proximityLevelMaxProp, positivesInteractionsProp, negativesInteractionsProp, StatsModificationProp;
 
@@ -32,7 +32,10 @@ public class CellTemplateCustomInspector : Editor
 
     SerializedProperty genererateProximityProp, proximityColliderNumberProp, proximityCollidersProp;
 
-    ReorderableList proximityColliderList; 
+    SerializedProperty limitedInLinksProp, numberOfOuputLinksProp, numberOfInputLinksProp, slotDistanceProp, numberOfFlexLinksProp;
+
+    //ReorderableList proximityColliderList; 
+
 
     private float fieldWidthBase, labelWidthBase;
 
@@ -52,8 +55,8 @@ public class CellTemplateCustomInspector : Editor
         proximityColliderNumberProp = serializedObject.FindProperty("proximityColliderNumber");
         proximityCollidersProp = serializedObject.FindProperty("proximityColliders");
 
-        proximityColliderList = new ReorderableList(serializedObject, proximityCollidersProp, true, false, false, false);
-        proximityColliderList.drawElementCallback += ElementCallBack;
+        //proximityColliderList = new ReorderableList(serializedObject, proximityCollidersProp, true, false, false, false);
+        //proximityColliderList.drawElementCallback += ElementCallBack;
         #endregion
 
         #region STATS
@@ -69,7 +72,7 @@ public class CellTemplateCustomInspector : Editor
         prodPerTickProp = serializedObject.FindProperty("prodPerTickBase");
         rejectPowerProp = serializedObject.FindProperty("rejectPowerBase");
         storageCapabilityProp = serializedObject.FindProperty("storageCapability");
-        linkCapabilityProp = serializedObject.FindProperty("linkCapability");
+        //linkCapabilityProp = serializedObject.FindProperty("linkCapability");
         tickForActivationBaseProp = serializedObject.FindProperty("tickForActivationBase");
         energyPerClickProp = serializedObject.FindProperty("energyPerClick");
         #endregion
@@ -107,6 +110,14 @@ public class CellTemplateCustomInspector : Editor
         energyPerblop = serializedObject.FindProperty("energyPerblop");
         #endregion
 
+        #region LINK
+        limitedInLinksProp = serializedObject.FindProperty("limitedInLinks");
+        numberOfOuputLinksProp = serializedObject.FindProperty("numberOfOuputLinks");
+        numberOfInputLinksProp = serializedObject.FindProperty("numberOfInputLinks");
+        slotDistanceProp = serializedObject.FindProperty("slotDistance");
+        numberOfFlexLinksProp = serializedObject.FindProperty("numberOfFlexLinks");
+        #endregion
+
         fieldWidthBase = EditorGUIUtility.fieldWidth;
         labelWidthBase = EditorGUIUtility.labelWidth;
 
@@ -122,6 +133,7 @@ public class CellTemplateCustomInspector : Editor
         EditorGUI.indentLevel -= 2;
 
 
+        #region TYPE
 
         EditorGUILayout.BeginVertical("Box");
         EditorGUILayout.PropertyField(typeProp);
@@ -143,22 +155,9 @@ public class CellTemplateCustomInspector : Editor
         EditorGUILayout.EndVertical();
         EditorGUILayout.Space();
         EditorGUILayout.Space();
+        #endregion
 
-        EditorGUILayout.BeginVertical("Box");
-        EditorGUILayout.PropertyField(genererateProximityProp);
-        if (genererateProximityProp.boolValue)
-        {
-            EditorGUILayout.HelpBox("Il s'agit du pourcentage de chance de surproduction", MessageType.Info);
-            EditorGUILayout.PropertyField(proximityColliderNumberProp);
-
-            proximityCollidersProp.arraySize = proximityColliderNumberProp.intValue;
-            //DisplayArray(proximityCollidersProp, "Proximity Collider n°", true);
-            DisplayProximityCollider(proximityCollidersProp, "Proximity Collider");
-        }
-
-        EditorGUILayout.EndVertical();
-
-
+        #region REFS
 
         EditorGUILayout.PropertyField(refToggleProp);
         if (refToggleProp.boolValue)
@@ -177,6 +176,72 @@ public class CellTemplateCustomInspector : Editor
         }
         EditorGUILayout.Space();
         EditorGUILayout.Space();
+        #endregion
+
+        #region PROXIMITY
+
+        EditorGUILayout.PropertyField(genererateProximityProp);
+        if (genererateProximityProp.boolValue)
+        {
+            EditorGUILayout.BeginVertical("Box");
+            EditorGUILayout.HelpBox("Il s'agit du pourcentage de chance de surproduction", MessageType.Info);
+            EditorGUILayout.PropertyField(proximityColliderNumberProp);
+
+            proximityCollidersProp.arraySize = proximityColliderNumberProp.intValue;
+            //DisplayArray(proximityCollidersProp, "Proximity Collider n°", true);
+            DisplayProximityCollider(proximityCollidersProp, "Proximity Collider");
+            EditorGUILayout.EndVertical();
+        }
+        EditorGUILayout.Space();
+        EditorGUILayout.Space();
+
+        EditorGUILayout.PropertyField(ProximityGestionProp);
+        if (ProximityGestionProp.boolValue)
+        {
+            EditorGUILayout.BeginVertical("Box");//1
+            EditorGUI.indentLevel += 1;
+
+            EditorGUILayout.PropertyField(proximityLevelMaxProp);
+            InteractionArrayDisplay(positivesInteractionsProp, "Positve");
+            InteractionArrayDisplay(negativesInteractionsProp, "Negative");
+
+            EditorGUI.BeginChangeCheck();
+            EditorGUILayout.PropertyField(StatsModificationProp);
+            if (EditorGUI.EndChangeCheck()) ResetStats();
+            StatsModifDisplay(StatsModificationProp);
+
+
+            EditorGUI.indentLevel -= 1;
+            EditorGUILayout.EndVertical();//1
+        }
+        EditorGUILayout.Space();
+        EditorGUILayout.Space();
+
+        #endregion
+
+        #region LINKS   
+
+        EditorGUILayout.BeginVertical("box");
+        EditorGUILayout.PropertyField(slotDistanceProp);
+        EditorGUILayout.PropertyField(numberOfFlexLinksProp);
+        EditorGUILayout.PropertyField(limitedInLinksProp);
+        if (limitedInLinksProp.boolValue)
+        {
+            EditorGUIUtility.fieldWidth = 30;
+            EditorGUIUtility.labelWidth = 200;
+            EditorGUILayout.BeginVertical("box");
+            EditorGUILayout.PropertyField(numberOfOuputLinksProp);
+            EditorGUILayout.PropertyField(numberOfInputLinksProp);
+            EditorGUILayout.EndVertical();
+            EditorGUIUtility.labelWidth = labelWidthBase;
+            EditorGUIUtility.fieldWidth = fieldWidthBase;
+        }
+        EditorGUILayout.EndHorizontal();
+        EditorGUILayout.Space();
+        EditorGUILayout.Space();
+        #endregion
+
+        #region STATS
 
         EditorGUILayout.PropertyField(statToggleProp);
         if (statToggleProp.boolValue)
@@ -226,6 +291,9 @@ public class CellTemplateCustomInspector : Editor
         }
         EditorGUILayout.Space();
         EditorGUILayout.Space();
+        #endregion
+
+        #region PRODUCTIONS GESTION
 
         EditorGUILayout.PropertyField(ProductionGestionsProp);
         // EditorGUILayout.LabelField(EditorGUIUtility.currentViewWidth.ToString());
@@ -240,7 +308,7 @@ public class CellTemplateCustomInspector : Editor
                 EditorGUILayout.PropertyField(prodPerTickProp);
                 EditorGUILayout.PropertyField(rejectPowerProp);
                 EditorGUILayout.PropertyField(storageCapabilityProp);
-                EditorGUILayout.PropertyField(linkCapabilityProp);
+                //EditorGUILayout.PropertyField(linkCapabilityProp);
                 EditorGUILayout.PropertyField(tickForActivationBaseProp);
 
             }
@@ -260,7 +328,7 @@ public class CellTemplateCustomInspector : Editor
                 EditorGUILayout.BeginHorizontal();
 
                 EditorGUILayout.PropertyField(storageCapabilityProp);
-                EditorGUILayout.PropertyField(linkCapabilityProp);
+                //EditorGUILayout.PropertyField(linkCapabilityProp);
 
                 EditorGUILayout.EndHorizontal();
 
@@ -281,27 +349,9 @@ public class CellTemplateCustomInspector : Editor
         }
         EditorGUILayout.Space();
         EditorGUILayout.Space();
+        #endregion
 
 
-        EditorGUILayout.PropertyField(ProximityGestionProp);
-        if (ProximityGestionProp.boolValue)
-        {
-            EditorGUILayout.BeginVertical("Box");//1
-            EditorGUI.indentLevel += 1;
-
-            EditorGUILayout.PropertyField(proximityLevelMaxProp);
-            InteractionArrayDisplay(positivesInteractionsProp, "Positve");
-            InteractionArrayDisplay(negativesInteractionsProp, "Negative");
-
-            EditorGUI.BeginChangeCheck();
-            EditorGUILayout.PropertyField(StatsModificationProp);
-            if (EditorGUI.EndChangeCheck()) ResetStats();
-            StatsModifDisplay(StatsModificationProp);
-
-
-            EditorGUI.indentLevel -= 1;
-            EditorGUILayout.EndVertical();//1
-        }
 
 
         serializedObject.ApplyModifiedProperties();
@@ -436,12 +486,12 @@ public class CellTemplateCustomInspector : Editor
 
     }
 
-    private void ElementCallBack(Rect rect , int index  , bool isActive , bool isFocused)
-    {
-        rect.yMin += 2;
-        rect.xMax -= 4;
-        EditorGUI.PropertyField(rect, proximityCollidersProp.GetArrayElementAtIndex(index), new GUIContent("ProximityCollider n°" + index.ToString()) );
-    }
+    //private void ElementCallBack(Rect rect , int index  , bool isActive , bool isFocused)
+    //{
+    //    rect.yMin += 2;
+    //    rect.xMax -= 4;
+    //    EditorGUI.PropertyField(rect, proximityCollidersProp.GetArrayElementAtIndex(index), new GUIContent("ProximityCollider n°" + index.ToString()) );
+    //}
 
     private void ResetStats()
     {
@@ -466,14 +516,25 @@ public class CellTemplateCustomInspector : Editor
 
                 EditorGUIUtility.labelWidth = 0.01f;
                 SerializedProperty currentElement = array.GetArrayElementAtIndex(i);
-                EditorGUILayout.BeginHorizontal("Box");
-                EditorGUILayout.LabelField(Label + " " + (i).ToString());
+                EditorGUILayout.BeginVertical("Box");
 
                 EditorGUILayout.PropertyField(currentElement);
-                SerializedProperty currentElementProximityLevel =  currentElement.FindPropertyRelative("proximityLevel");
-                SerializedProperty currentElementRange =  currentElement.FindPropertyRelative("range");
+
+
+                EditorGUILayout.BeginHorizontal("Box");
+                EditorGUILayout.LabelField("Collider Proximity Level");
+                SerializedProperty currentElementProximityLevel = currentElement.FindPropertyRelative("proximityLevel");
                 currentElementProximityLevel.intValue = EditorGUILayout.IntField(currentElementProximityLevel.intValue);
+                EditorGUILayout.EndHorizontal();
+
+
+                EditorGUILayout.BeginHorizontal("Box");
+                EditorGUILayout.LabelField("Collider Range");
+                SerializedProperty currentElementRange = currentElement.FindPropertyRelative("range");
                 currentElementRange.intValue = EditorGUILayout.IntField(currentElementRange.intValue);
+                EditorGUILayout.EndHorizontal();
+
+
 
 
                 if (currentElement == null && InfoBoxToggleProp.boolValue)
@@ -481,7 +542,7 @@ public class CellTemplateCustomInspector : Editor
                     EditorGUILayout.HelpBox("Le Label est vide", MessageType.Warning);
                 }
 
-                EditorGUILayout.EndHorizontal();
+                EditorGUILayout.EndVertical();
                 EditorGUIUtility.labelWidth = labelWidthBase;
             }
 

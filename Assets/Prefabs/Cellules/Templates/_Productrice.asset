@@ -24,10 +24,14 @@ MonoBehaviour:
   cellTexture: {fileID: 0}
   type: 0
   generateProximity: 1
-  proximityColliderNumber: 1
+  proximityColliderNumber: 3
   proximityColliders:
   - proximityLevel: 4
     range: 10
+  - proximityLevel: 2
+    range: 20
+  - proximityLevel: 1
+    range: 40
   energyCost: 5
   energyCapBase: 10
   rangeBase: 15
@@ -38,7 +42,11 @@ MonoBehaviour:
   storageCapability: 40
   tickForActivationBase: 1
   energyPerClick: 1
-  linkCapability: 8
+  limitedInLinks: 0
+  slotDistance: 1.5
+  numberOfOuputLinks: 3
+  numberOfInputLinks: 1
+  numberOfFlexLinks: 1
   proximityLevelMax: 4
   positivesInteractions: 00000000
   negativesInteractions: 0300000001000000

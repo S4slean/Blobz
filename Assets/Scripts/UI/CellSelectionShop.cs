@@ -91,9 +91,11 @@ public class CellSelectionShop : MonoBehaviour
         }
         else
         {
-            newCell.transform.position = InputManager.Instance.mousePos; ;           
+            InputManager.Instance.newCell = true;
+            newCell.transform.position = InputManager.Instance.mouseWorldPos; ;           
             newCell.Outpool();
             CellManager.Instance.NewCellCreated(newCell);
+            newCell.GenerateLinkSlot();
 
         }
     }

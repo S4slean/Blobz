@@ -23,8 +23,8 @@ TagManager:
   - Cell
   - Blob
   - DetectionProximite
-  - 
-  - 
+  - LinkJoint
+  - BuildingNotAllowed
   - 
   - 
   - 

@@ -1,16 +1,6 @@
 fileFormatVersion: 2
-<<<<<<< HEAD
-<<<<<<< HEAD:Assets/Prefabs/UI/NotEnoughEnergy.prefab.meta
-guid: cae9db998192ae6449a959bfa7a6fff9
+guid: f400214b853188647b4c0f7521427bbd
 PrefabImporter:
-=======
-guid: 6153e325ec1039246a126febeef94f2c
-DefaultImporter:
->>>>>>> 03ba19f065aef952e16675c4f1db9b5740944c52:Assets/Prefabs/UI/NotEnoughEnergy.prefab.meta~5233a6646265c0179ab64af1c7c64c3c6096222a.meta
-=======
-guid: d44b091ba68108e42ac1bd9652d9c4f8
-PrefabImporter:
->>>>>>> 03ba19f065aef952e16675c4f1db9b5740944c52
   externalObjects: {}
   userData: 
   assetBundleName: 
