@@ -297,8 +297,12 @@ public class CellMain : PoolableObjects, PlayerAction
         UpdateCaract();
         if (blobNumber > currentBlobStockage && !isDead)
         {
-            Died(false);
+            if(!isNexus)
+                Died(false);
+            
         }
+        if (currentBlobStockage < 0)
+            currentBlobStockage = 0;
         UpdateCaract();
     }
 
@@ -361,7 +365,7 @@ public class CellMain : PoolableObjects, PlayerAction
             {
                 inDanger = false;
             }
-            NBlob.text = (pourcentage + " %");
+            UpdateCaract();
         }
         //NBlob.text = (blobNumber + " / " + currentBlobStockage);
 
