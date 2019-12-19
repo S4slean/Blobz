@@ -151,25 +151,17 @@ public class CellManager : MonoBehaviour
             //si il n'y pas de lien la boucle for ne se lance pas c'est pas grave
             for (int i = 0; i < selectedCell.links.Count; i++)
             {
-                if (originalPosOfMovingCell != new Vector3(0, 100, 0))
-                {
-                    if (selectedCell.links[i].originalCell == receivingCell) check1 = true; else check1 = false;
-                    if (selectedCell.links[i].receivingCell == receivingCell) check2 = true; else check2 = false;
-                }
-
+                if (selectedCell.links[i].originalCell == receivingCell) check1 = true; else check1 = false;
+                if (selectedCell.links[i].receivingCell == receivingCell) check2 = true; else check2 = false;
+                //if (originalPosOfMovingCell != new Vector3(0, 100, 0))
+                //{
+                //}
                 if (check1 || check2)
                 {
                     SupressCurrentLink();
                     return;
                 }
             }
-            if (receivingCell.noMoreLink)
-            {
-                SupressCurrentLink();
-                return;
-            }
-
-            Debug.Log(Vector3.Distance(selectedCell.transform.position, receivingCell.transform.position) + "/" + (selectedCell.GetCurrentRange() + selectedCell.myCellTemplate.slotDistance + receivingCell.myCellTemplate.slotDistance));
             if (!currentLink.CheckNewLinkLength(receivingCell.transform.position, selectedCell, receivingCell))
             {
                 Debug.Log("Coucou c moi ki fé chié Old " + receivingCell.name);

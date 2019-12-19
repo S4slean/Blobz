@@ -300,7 +300,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2033545884005878624
 RectTransform:
   m_ObjectHideFlags: 0
@@ -575,6 +575,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canBePool: 0
+  initialPool: {fileID: 0}
+  proximityLevel: 0
   myCollider: {fileID: 6332160634703649920}
   parent: {fileID: 5565576154424326082}
   mR: {fileID: 0}
@@ -628,6 +630,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canBePool: 0
+  initialPool: {fileID: 0}
   myCellTemplate: {fileID: 11400000, guid: df917586c15ca0c409f512efdab3a763, type: 2}
   isNexus: 0
   cellDefaultMat: {fileID: 0}
@@ -637,14 +640,20 @@ MonoBehaviour:
   NCurrentProximity: {fileID: 4580034776522669225}
   graphTransform: {fileID: 4611135374353505814}
   TargetPos: {fileID: 0}
-  ProximityDectection: {fileID: 8404008211773970808}
+  domeMR: {fileID: 0}
+  spriteMR: {fileID: 0}
+  links: []
+  inThoseCellProximity: []
+  influencedByThoseCellProximity: []
+  ownCollider: {fileID: 0}
+  linkJoints: []
   showDebug: 0
   showlinks: 0
   showRef: 0
-  links: []
   noMoreLink: 0
   blobNumber: 0
   hasBeenDrop: 0
+  limitedInLink: 0
   canBePlaced: 0
 --- !u!54 &8777569679337227342
 Rigidbody:

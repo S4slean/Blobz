@@ -59,8 +59,8 @@ MonoBehaviour:
   energyCap: 
   energyPerblop: 0
   StatsModification: 0
-  REFS: 0
+  REFS: 1
   ToggleInfoBox: 1
-  STATS: 0
+  STATS: 1
   ProductionGestion: 0
   ProximityGestion: 0

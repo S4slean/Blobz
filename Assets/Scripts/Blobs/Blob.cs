@@ -132,6 +132,7 @@ public class Blob : PoolableObjects
         {
             infectedCell = collision.transform.GetComponent<CellMain>();
             infectedCell.StockageCapabilityVariation( - infectionAmount);
+            isStuck = true;
         }
 
         if (blobType == BlobManager.BlobType.soldier && canExplode)
