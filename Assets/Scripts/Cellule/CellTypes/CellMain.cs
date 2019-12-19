@@ -34,18 +34,14 @@ public class CellMain : PoolableObjects, PlayerAction
 
     public List<CellProximityDectection> inThoseCellProximity = new List<CellProximityDectection>();
     public List<CellProximityDectection> influencedByThoseCellProximity = new List<CellProximityDectection>();
+
+    public List<Blob> stuckBlobs = new List<Blob>();
+       
     private CellProximityDectection[] myProximityCollider;
     public Collider ownCollider;
 
     public LinkJointClass[] linkJoints;
-    //public LinkJointClass[] inputJoint;
-    //public LinkJointClass[] flexJoint;
 
-    //public MeshFilter mF;
-    //public MeshRenderer mR;
-    // public MeshCollider mC;
-
-    //public CellProximityDectection ProximityDectection;
     #endregion
 
     #region DEBUG
@@ -175,6 +171,17 @@ public class CellMain : PoolableObjects, PlayerAction
 
 
         TickDesinscription();
+
+        int B = stuckBlobs.Count;
+        for (int y = 0; y < B ; y++)
+        {
+            //if (y > B)
+            //{
+            //    break;
+            //}
+            stuckBlobs[0].Unstuck();
+        }
+
         int I = links.Count;
         for (int i = 0; i < I; i++)
         {
@@ -182,7 +189,7 @@ public class CellMain : PoolableObjects, PlayerAction
             {
                 break;
             }
-            links[I - i - 1].Break();
+            links[0].Break();
         }
         for (int i = 0; i < linkJoints.Length; i++)
         {
@@ -228,7 +235,10 @@ public class CellMain : PoolableObjects, PlayerAction
             transform.position += new Vector3(0, -200, 0);
             Destroy(gameObject);
         }
-        Inpool();
+        else
+        {
+            Inpool();
+        }
     }
     public virtual void BlobsTick()
     {
@@ -303,11 +313,13 @@ public class CellMain : PoolableObjects, PlayerAction
         if (currentBlobStockage <= 0)
         {
             Died(false);
+            return;
         }
 
         if (blobNumber > currentBlobStockage && !isDead && !isNexus)
         {
             Died(false);
+            return;
         }
 
         if (currentBlobStockage < 0)
@@ -463,7 +475,7 @@ public class CellMain : PoolableObjects, PlayerAction
                 influencedByThoseCellProximity.Remove(proximityToRemove);
                 for (int y = 0; y < inThoseCellProximity.Count; y++)
                 {
-                        AddProximityInfluence(inThoseCellProximity[y]);
+                    AddProximityInfluence(inThoseCellProximity[y]);
                 }
             }
         }
