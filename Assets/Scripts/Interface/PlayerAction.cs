@@ -4,6 +4,7 @@ using UnityEngine;
 
 public interface PlayerAction 
 {
+    void OnmouseOver();
     void OnLeftClickDown();
 
     void OnShortLeftClickUp();

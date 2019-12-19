@@ -23,6 +23,7 @@ public class CellManager : MonoBehaviour
 
     [Header("Debug")]
     public CellMain selectedCell;
+    public PlayerAction selectedElement;
     [SerializeField]
     private CellMain createdCell;
     [SerializeField]
@@ -274,10 +275,7 @@ public class CellManager : MonoBehaviour
     //}
 
 
-    public void InteractWithCell()
-    {
-        selectedCell.OnShortLeftClickUp();
-    }
+
 
     public void CellDeplacement(Vector3 posToTest, CellMain cellToMove, bool isNewCell)
     {

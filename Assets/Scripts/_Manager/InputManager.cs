@@ -40,10 +40,11 @@ public class InputManager : MonoBehaviour
 
 
     //permet d'éviter un getComponent à chaque frame lors du raycast de mouse Over
-    private bool isOverCell;
+    private bool isOverInteractiveElement;
     private bool rightClickedOnCell;
     private bool leftClickedOnCell;
-    private CellMain cellOver;
+    private PlayerAction elementOver;
+    private PlayerAction selectedElement;
     public CellMain selectedCell;
 
     public bool newCell = false;
@@ -103,10 +104,11 @@ public class InputManager : MonoBehaviour
             //Click Gauche In
             if (Input.GetMouseButtonDown(0))
             {
-                currentPlayerAction = CurrentHit.transform.GetComponent<PlayerAction>();
+                currentPlayerAction = CurrentHit.transform.GetComponent<PlayerAction>(); //------------------------
                 if (CurrentHit.transform != null && currentPlayerAction != null)
                 {
                     currentPlayerAction.OnLeftClickDown();
+                    SelectElement();
                 }
 
 
@@ -148,11 +150,12 @@ public class InputManager : MonoBehaviour
             //Click Gauche Out
             if (Input.GetMouseButtonUp(0))
             {
-                //pour interagir avec la cellule
-                if (clickTime <= clickCooldown && isOverCell && cellOver == CellManager.Instance.selectedCell)
-                {
-                    CellManager.Instance.InteractWithCell();
+                currentPlayerAction = CurrentHit.transform.GetComponent<PlayerAction>();
 
+                //pour interagir avec la cellule
+                if (clickTime <= clickCooldown && isOverInteractiveElement && elementOver == selectedElement)
+                {
+                    currentPlayerAction.OnShortLeftClickUp();
                 }
 
                 if (InCellShop)
@@ -190,22 +193,22 @@ public class InputManager : MonoBehaviour
             if (!DraggingLink && !InCellShop)
             {
 
-                if (CurrentHit.transform != null && CurrentHit.transform.tag == "Cell" && !isOverCell)
+                if (CurrentHit.transform != null && !isOverInteractiveElement && CurrentHit.transform.GetComponent<PlayerAction>() != null )
                 {
-                    isOverCell = true;
-                    cellOver = CurrentHit.transform.GetComponent<CellMain>();
+                    isOverInteractiveElement = true;
+                    elementOver = CurrentHit.transform.GetComponent<PlayerAction>();
                 }
             }
 
             if (CurrentHit.transform == null || CurrentHit.transform.tag != "Cell")
             {
-                isOverCell = false;
-                cellOver = null;
+                isOverInteractiveElement = false;
+                elementOver = null;
             }
 
-            if (isOverCell)
+            if (isOverInteractiveElement)
             {
-                UIManager.Instance.LoadToolTip(cellOver.transform.position, cellOver);
+                currentPlayerAction.OnmouseOver();
             }
             else
             {
@@ -218,17 +221,17 @@ public class InputManager : MonoBehaviour
 
             #region CELL_OPTIONS
 
-            if (isOverCell && Input.GetMouseButtonDown(1))
+            if (isOverInteractiveElement && Input.GetMouseButtonDown(1))
             {
                 rightClickedOnCell = true;
             }
 
             if (rightClickedOnCell && Input.GetMouseButtonUp(1))
             {
-                UIManager.Instance.DisplayCellOptions(cellOver);
+                UIManager.Instance.DisplayCellOptions(elementOver);
             }
 
-            if (!isOverCell && Input.GetMouseButtonDown(1) || Input.GetMouseButtonDown(0))
+            if (!isOverInteractiveElement && Input.GetMouseButtonDown(1) || Input.GetMouseButtonDown(0))
             {
 
 
@@ -363,6 +366,11 @@ public class InputManager : MonoBehaviour
         Instance.InCellShop = false;
     }
 
+
+    public void SelectElement()
+    {
+        selectedElement = currentPlayerAction;
+    }
 
     public void StopCellActions()
     {
