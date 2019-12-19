@@ -141,8 +141,9 @@ public class LinkClass : PoolableObjects
     {
         float length1 = Vector3.Distance(startCell.transform.position, posToTest);
         //a modifier par rappport à la proximité
-        if (length1 <= (startCell.GetCurrentRange() + startCell.myCellTemplate.slotDistance + newCell.myCellTemplate.slotDistance))
+        if (length1 - 0.01f <= (startCell.GetCurrentRange() + startCell.myCellTemplate.slotDistance + newCell.myCellTemplate.slotDistance))
         {
+
             Vector3 _dir = (posToTest - startCell.transform.position).normalized;
             extremityPos[1] = posToTest - _dir * newCell.myCellTemplate.slotDistance;
             return true;

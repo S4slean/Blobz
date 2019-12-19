@@ -17,7 +17,7 @@ public class CellManager : MonoBehaviour
     public Material refusedBuldingSpriteMask;
 
     bool shouldStop;
-    [HideInInspector]public bool terrainIsBuildable = false;
+    [HideInInspector] public bool terrainIsBuildable = false;
     bool terrainWasBuildable = false;
 
 
@@ -82,25 +82,24 @@ public class CellManager : MonoBehaviour
     //Sans Cell
     public void DragNewlink(RaycastHit hit)
     {
+        Vector3 direction = (hit.point - selectedCell.transform.position);
+        direction = new Vector3(direction.x, 0, direction.z);
+        direction = direction.normalized;
+
         // Permet de draw la line en runtime 
         float distance = Vector3.Distance(selectedCell.transform.position, hit.point);
         if (distance <= (selectedCell.GetCurrentRange() + selectedCell.myCellTemplate.slotDistance))
         {
             Vector3 lastPos = new Vector3(hit.point.x, currentLink.extremityPos[0].y, hit.point.z);
-            Vector3 _dir = (lastPos - selectedCell.transform.position).normalized;
-            Vector3 firstPos = selectedCell.transform.position + _dir * selectedCell.myCellTemplate.slotDistance;
+            Vector3 firstPos = selectedCell.transform.position + direction * selectedCell.myCellTemplate.slotDistance;
             currentLink.UpdatePoint(firstPos, lastPos);
 
         }
         else
         {
-            Vector3 direction = (hit.point - currentLink.extremityPos[0]);
-            direction = new Vector3(direction.x, 0, direction.z);
-            direction = direction.normalized;
 
-            Vector3 lastPos = currentLink.extremityPos[0] + direction * selectedCell.GetCurrentRange();
-            Vector3 _dir = (lastPos - selectedCell.transform.position).normalized;
-            Vector3 firstPos = selectedCell.transform.position + _dir * selectedCell.myCellTemplate.slotDistance;
+            Vector3 firstPos = selectedCell.transform.position + direction * selectedCell.myCellTemplate.slotDistance;
+            Vector3 lastPos = selectedCell.transform.position + (direction * selectedCell.GetCurrentRange() + direction * selectedCell.myCellTemplate.slotDistance);
             currentLink.UpdatePoint(firstPos, lastPos);
         }
     }
@@ -108,25 +107,23 @@ public class CellManager : MonoBehaviour
     //Avec Cell
     public void DragNewlink(Vector3 pos, CellMain cellMoved)
     {
+        Vector3 direction = (pos - selectedCell.transform.position);
+        direction = new Vector3(direction.x, 0, direction.z);
+        direction = direction.normalized;
 
         // Permet de draw la line en runtime 
         float distance = Vector3.Distance(selectedCell.transform.position, pos);
         if (distance <= (selectedCell.GetCurrentRange() + selectedCell.myCellTemplate.slotDistance + cellMoved.myCellTemplate.slotDistance))
         {
-            Vector3 lastPos = new Vector3(pos.x, currentLink.extremityPos[0].y, pos.z);
-            Vector3 _dir = (lastPos - selectedCell.transform.position).normalized;
-            Vector3 firstPos = selectedCell.transform.position + _dir * selectedCell.myCellTemplate.slotDistance;
+            Vector3 firstPos = selectedCell.transform.position + direction * selectedCell.myCellTemplate.slotDistance;
+
+            Vector3 lastPos = new Vector3(pos.x, currentLink.extremityPos[0].y, pos.z) - (direction * cellMoved.myCellTemplate.slotDistance);
             currentLink.UpdatePoint(firstPos, lastPos);
         }
         else
         {
-            Vector3 direction = (pos - currentLink.extremityPos[0]);
-            direction = new Vector3(direction.x, 0, direction.z);
-            direction = direction.normalized;
-
-            Vector3 lastPos = currentLink.extremityPos[0] + direction * selectedCell.myCellTemplate.rangeBase / 2;
-            Vector3 _dir = (lastPos - selectedCell.transform.position).normalized;
-            Vector3 firstPos = selectedCell.transform.position + _dir * selectedCell.myCellTemplate.slotDistance;
+            Vector3 lastPos = selectedCell.transform.position + (direction * selectedCell.GetCurrentRange() + direction * selectedCell.myCellTemplate.slotDistance);
+            Vector3 firstPos = selectedCell.transform.position + direction * selectedCell.myCellTemplate.slotDistance;
             currentLink.UpdatePoint(firstPos, lastPos);
         }
     }
@@ -172,6 +169,7 @@ public class CellManager : MonoBehaviour
                 return;
             }
 
+            Debug.Log(Vector3.Distance(selectedCell.transform.position, receivingCell.transform.position) + "/" + (selectedCell.GetCurrentRange() + selectedCell.myCellTemplate.slotDistance + receivingCell.myCellTemplate.slotDistance));
             if (!currentLink.CheckNewLinkLength(receivingCell.transform.position, selectedCell, receivingCell))
             {
                 Debug.Log("Coucou c moi ki fé chié Old " + receivingCell.name);
@@ -304,7 +302,7 @@ public class CellManager : MonoBehaviour
         {
             cellToMove.ChangeDeplacementMat(true);
         }
-        else if(!terrainIsBuildable && terrainWasBuildable)
+        else if (!terrainIsBuildable && terrainWasBuildable)
         {
             cellToMove.ChangeDeplacementMat(false);
         }
@@ -312,7 +310,7 @@ public class CellManager : MonoBehaviour
 
         for (int i = 0; i < cellToMove.links.Count; i++)
         {
-                shouldStop = !cellToMove.links[i].CheckLength(posToTest);     
+            shouldStop = !cellToMove.links[i].CheckLength(posToTest);
         }
 
         if (shouldStop)
