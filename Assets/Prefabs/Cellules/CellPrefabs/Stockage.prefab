@@ -253,7 +253,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2033545884005878624
 RectTransform:
   m_ObjectHideFlags: 0
@@ -598,6 +598,7 @@ MonoBehaviour:
   links: []
   inThoseCellProximity: []
   influencedByThoseCellProximity: []
+  ownCollider: {fileID: 0}
   linkJoints: []
   showDebug: 0
   showlinks: 0
