@@ -37,7 +37,7 @@ public class CellMain : PoolableObjects, PlayerAction
 
     public List<Blob> stuckBlobs = new List<Blob>();
 
-    private CellProximityDectection[] myProximityCollider;
+    protected CellProximityDectection[] myProximityCollider;
     public Collider ownCollider;
 
     public LinkJointClass[] linkJoints;

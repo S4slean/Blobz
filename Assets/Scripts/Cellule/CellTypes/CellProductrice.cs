@@ -4,18 +4,20 @@ using UnityEngine;
 
 public class CellProductrice : CellMain
 {
+    public int[] zoneBonusPerCell;
+    private int productionBonusRatio;
+    private int productionBonusPacket;
+
     public override void BlobsTick()
     {
         haveExpulse = false;
         //ça marche bien mais à voir si quand 1 batiment meure la produciton saute avec ou pas
-        if ((int)Random.Range(0, 101) <= currentSurproductionRate)
-        {
-            BlobNumberVariation(myCellTemplate.prodPerTickBase * 2);
-        }
-        else
+        if ((int)Random.Range(0, 101) <= productionBonusRatio)
         {
             BlobNumberVariation(myCellTemplate.prodPerTickBase);
         }
+
+        BlobNumberVariation(myCellTemplate.prodPerTickBase * productionBonusPacket);
 
 
         #region Ancien Systeme de Tick 
@@ -72,12 +74,40 @@ public class CellProductrice : CellMain
         {
             anim.Play("BlobExpulsion");
         }
-
-
     }
 
-    public override void ProductriceProximityGestion(CellProximityDectection colliders)
+    public override void ProductriceProximityGestion(CellProximityDectection collider)
     {
+        for (int i = 0; i < myProximityCollider.Length; i++)
+        {
+            if (collider == myProximityCollider[i])
+            {
+                ProductionVariationByProximity(i, true);
+            }
+        }
+    }
+
+    private void ProductionVariationByProximity(int index, bool addition)
+    {
+        int multiplier;
+        multiplier = (addition == true) ? 1 : -1;
+
+        productionBonusRatio += multiplier * zoneBonusPerCell[index];
+
+        if (productionBonusRatio >= 100)
+        {
+            productionBonusPacket++;
+            int reste = productionBonusRatio - 100;
+            productionBonusRatio = 0;
+            productionBonusRatio += reste;
+        }
+        if (productionBonusRatio < 0)
+        {
+            productionBonusPacket--;
+            int reste = -productionBonusRatio;
+            productionBonusRatio = 100;
+            productionBonusRatio -= reste;
+        }
 
     }
 
