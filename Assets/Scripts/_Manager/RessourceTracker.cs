@@ -70,6 +70,10 @@ public class RessourceTracker : MonoBehaviour
         {
             case (CellType.Productrice):
                 hatchNbr--;
+                if(hatchNbr < 1)
+                {
+
+                }
                 break;
 
             case (CellType.Stockage):
