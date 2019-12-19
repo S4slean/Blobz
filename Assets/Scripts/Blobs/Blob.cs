@@ -132,6 +132,7 @@ public class Blob : PoolableObjects
         {
             infectedCell = collision.transform.GetComponent<CellMain>();
             infectedCell.StockageCapabilityVariation( - infectionAmount);
+            rb.isKinematic = true;
             isStuck = true;
         }
 

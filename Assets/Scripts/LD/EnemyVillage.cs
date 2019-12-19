@@ -9,11 +9,12 @@ public class EnemyVillage : MonoBehaviour
 
     public float boundariesRange = 10;
     public float detectionRange = 20;
+
     public int maxSoldiers = 20;
     public float spawnRange = 2;
     public float spawnRate = 4;
-    public int nbrOfBuildings = 6;
 
+    [Tooltip("(in ticks")] public int repairDelay = 40;
     private int count = 0;
 
     public Destructible[] buildings;
@@ -23,8 +24,13 @@ public class EnemyVillage : MonoBehaviour
     private void Start()
     {
         boundaries = GetComponent<SphereCollider>();
-
         boundaries.radius = boundariesRange;
+
+        for (int i = 0; i < buildings.Length; i++)
+        {
+            buildings[i].village = this;
+        }
+
         TickManager.doTick += OnTick;
     }
 
@@ -51,7 +57,7 @@ public class EnemyVillage : MonoBehaviour
 
     public void SpawnBlob()
     {
-        int rand = Random.Range(0, nbrOfBuildings);
+        int rand = Random.Range(0, buildings.Length);
         Blob blob = ObjectPooler.poolingSystem.GetPooledObject<Blob>() as Blob;
         blob.Outpool();
         blob.ChangeType(BlobManager.BlobType.mad);

@@ -4,13 +4,19 @@ using UnityEngine;
 
 public class Destructible : MonoBehaviour
 {
-    public int remainingLife;
+    public GameObject goodGraph;
+    public GameObject brokenGraph;
+
+    private int remainingLife;
     public int maxLife = 5;
+
     public bool spawnEnemiesOnDestruction = false;
     public int nbrOfEnemiesOnDestruction = 5;
     public float spawnRange;
-    public GameObject goodGraph;
-    public GameObject brokenGraph;
+
+    [HideInInspector]public EnemyVillage village;
+    private int count = 0;
+    private bool isRuin = false;
 
 
     private void Start()
@@ -21,7 +27,7 @@ public class Destructible : MonoBehaviour
     public void ReceiveDamage(int dmg)
     {
         remainingLife -= dmg;
-        if(remainingLife < 1)
+        if (remainingLife < 1)
         {
             Destruction();
         }
@@ -29,13 +35,18 @@ public class Destructible : MonoBehaviour
 
     public void Repair()
     {
+        TickManager.doTick -= RepairTick;
         remainingLife = maxLife;
+        isRuin = false;
         //remettre le bon graph
     }
 
     public void Destruction()
     {
+        if (isRuin)
+            return;
 
+        isRuin = true;
         //Play destruction Fx
         //PlayDestruction Sound
         SwapGraph();
@@ -52,8 +63,23 @@ public class Destructible : MonoBehaviour
             }
         }
 
+        TickManager.doTick += RepairTick;
         //Play Destruction Anim
     }
+
+    public void RepairTick()
+    {
+        if (count > village.repairDelay)
+        {
+            Repair();
+            count = 0;
+        }
+        else
+        {
+            count++;
+        }
+    }
+
 
     public void SwapGraph()
     {
