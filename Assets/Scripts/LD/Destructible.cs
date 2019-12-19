@@ -9,6 +9,8 @@ public class Destructible : MonoBehaviour
     public bool spawnEnemiesOnDestruction = false;
     public int nbrOfEnemiesOnDestruction = 5;
     public float spawnRange;
+    public GameObject goodGraph;
+    public GameObject brokenGraph;
 
 
     private void Start()
@@ -25,8 +27,18 @@ public class Destructible : MonoBehaviour
         }
     }
 
+    public void Repair()
+    {
+        remainingLife = maxLife;
+        //remettre le bon graph
+    }
+
     public void Destruction()
     {
+
+        //Play destruction Fx
+        //PlayDestruction Sound
+        SwapGraph();
         if (spawnEnemiesOnDestruction)
         {
             for (int i = 0; i < nbrOfEnemiesOnDestruction; i++)
@@ -41,5 +53,11 @@ public class Destructible : MonoBehaviour
         }
 
         //Play Destruction Anim
+    }
+
+    public void SwapGraph()
+    {
+        goodGraph.SetActive(!goodGraph.activeSelf);
+        brokenGraph.SetActive(!brokenGraph.activeSelf);
     }
 }

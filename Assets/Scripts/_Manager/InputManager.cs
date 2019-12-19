@@ -318,6 +318,7 @@ public class InputManager : MonoBehaviour
     public void DesactivateLinkWhileDragging()
     {
         DraggingLink = false;
+        CellManager.Instance.DeselectCell();
         CellManager.Instance.SupressCurrentLink();
     }
     public void CleanBoolsRelatedToCell()
