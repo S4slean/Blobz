@@ -11,7 +11,7 @@ public class Blob : PoolableObjects
     #endregion
 
     #region GENERAL
-    public int tickCount = 0; 
+    public int tickCount = 0;
     public BlobManager.BlobType blobType = BlobManager.BlobType.normal;
     #endregion
 
@@ -89,7 +89,7 @@ public class Blob : PoolableObjects
 
     public void Destruct()
     {
-        if(infectedCell != null)
+        if (infectedCell != null)
         {
             infectedCell.StockageCapabilityVariation(infectionAmount);
         }
@@ -122,16 +122,20 @@ public class Blob : PoolableObjects
 
     public void ReduceCapacity()
     {
-        infectedCell.StockageCapabilityVariation(-infectionAmount);
-        infectionAmount++;
+        if (infectedCell != null)
+        {
+            infectedCell.StockageCapabilityVariation(-infectionAmount);
+            infectionAmount++;
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(blobType == BlobManager.BlobType.mad && collision.transform.tag == "Cell")
+        if (blobType == BlobManager.BlobType.mad && collision.transform.tag == "Cell")
         {
             infectedCell = collision.transform.GetComponent<CellMain>();
-            infectedCell.StockageCapabilityVariation( - infectionAmount);
+            infectedCell.stuckBlobs.Add(this);
+            infectedCell.StockageCapabilityVariation(-infectionAmount);
             rb.isKinematic = true;
             isStuck = true;
         }
@@ -146,9 +150,18 @@ public class Blob : PoolableObjects
         village = newVillage;
     }
 
+    public void Unstuck()
+    {
+        infectedCell.stuckBlobs.Remove(this);
+        infectedCell = null;
+        infectionAmount = 0;
+        rb.isKinematic = false;
+        isStuck = false;
+    }
+
     public bool CheckIfOutOfVillage()
     {
-        if ((transform.position - village.transform.position).sqrMagnitude > Mathf.Pow( village.boundariesRange,2))
+        if ((transform.position - village.transform.position).sqrMagnitude > Mathf.Pow(village.boundariesRange, 2))
             return true;
         else
             return false;
