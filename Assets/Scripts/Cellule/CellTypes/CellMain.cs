@@ -294,15 +294,23 @@ public class CellMain : PoolableObjects, PlayerAction
     public virtual void StockageCapabilityVariation(int Amount)
     {
         currentBlobStockage += Amount;
-        UpdateCaract();
-        if (blobNumber > currentBlobStockage && !isDead)
+
+
+        if (currentBlobStockage <= 0)
         {
-            if(!isNexus)
-                Died(false);
-            
+            Died(false);
         }
+
+        if (blobNumber > currentBlobStockage && !isDead && !isNexus)
+        {
+            Died(false);
+        }
+
         if (currentBlobStockage < 0)
+        {
             currentBlobStockage = 0;
+        }
+
         UpdateCaract();
     }
 
@@ -343,30 +351,27 @@ public class CellMain : PoolableObjects, PlayerAction
 
         RessourceTracker.instance.AddBlob(BlobManager.BlobType.normal, amount);
 
-        if (currentBlobStockage <= 0)
+
+
+
+        float ratio = (float)blobNumber / (float)currentBlobStockage;
+        int pourcentage = Mathf.FloorToInt(ratio * 100f);
+        if (pourcentage >= 80)
         {
-            Died(false);
+            inDanger = true;
+            if (!isVisible)
+            {
+                CellAlert alert = ObjectPooler.poolingSystem.GetPooledObject<CellAlert>() as CellAlert;
+                UIManager.Instance.DisplayCellAlert(transform, alert);
+            }
+            //ANIM DANGER CELL 
         }
         else
         {
-            float ratio = (float)blobNumber / (float)currentBlobStockage;
-            int pourcentage = Mathf.FloorToInt(ratio * 100f);
-            if (pourcentage >= 80)
-            {
-                inDanger = true;
-                if (!isVisible)
-                {
-                    CellAlert alert = ObjectPooler.poolingSystem.GetPooledObject<CellAlert>() as CellAlert;
-                    UIManager.Instance.DisplayCellAlert(transform, alert);
-                }
-                //ANIM DANGER CELL 
-            }
-            else
-            {
-                inDanger = false;
-            }
-            UpdateCaract();
+            inDanger = false;
         }
+        UpdateCaract();
+
         //NBlob.text = (blobNumber + " / " + currentBlobStockage);
 
         if (blobNumber > currentBlobStockage && !isDead && !isNexus)

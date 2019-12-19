@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8778029636872178404}
   - component: {fileID: 3824505264436008469}
   - component: {fileID: 3824505264436008468}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: SoldierBlob
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -56,16 +56,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canBePool: 0
+  initialPool: {fileID: 0}
   rb: {fileID: 0}
+  rd: {fileID: 0}
   tickCount: 0
   blobType: 2
-  rd: {fileID: 0}
   tagetTransform: {fileID: 0}
   isStuck: 0
   infectedCell: {fileID: 0}
   infectionAmount: 1
+  knowsNexus: 0
+  cameFromVillage: 0
+  village: {fileID: 0}
   flyTime: 3
   flySpeed: 5
+  canExplode: 0
 --- !u!23 &8778029636872178404
 MeshRenderer:
   m_ObjectHideFlags: 0
