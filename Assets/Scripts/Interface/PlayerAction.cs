@@ -4,8 +4,14 @@ using UnityEngine;
 
 public interface PlayerAction 
 {
-     void ClickInteraction();
+    void OnLeftClickDown();
 
-    void PlayerDrag();
+    void OnShortLeftClickUp();
+
+    void OnLongLeftClickUp();
+
+    void OnLeftClickHolding();
+
+    void OnShortRightClick();
 
 }

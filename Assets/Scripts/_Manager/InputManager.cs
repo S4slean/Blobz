@@ -25,7 +25,7 @@ public class InputManager : MonoBehaviour
     [HideInInspector] public bool DraggingLink;
 
     //Ui
-    [HideInInspector] public bool InCellSelection;
+    [HideInInspector] public bool InCellShop;
     [HideInInspector] public bool InPauseMenu;
     [HideInInspector] public bool InQuestEvent;
 
@@ -49,6 +49,9 @@ public class InputManager : MonoBehaviour
     public bool newCell = false;
     [HideInInspector] public bool movingObject = false;
     [HideInInspector] public CellMain objectMoved;
+
+    private RaycastHit CurrentHit;
+    private PlayerAction currentPlayerAction;
     #endregion
 
 
@@ -75,8 +78,8 @@ public class InputManager : MonoBehaviour
 
     private void Update()
     {
-        RaycastHit hit = Helper.ReturnHit(Input.mousePosition, CellManager.mainCamera, maskLeftCLick);
-        mouseWorldPos = hit.point;
+        CurrentHit = Helper.ReturnHit(Input.mousePosition, CellManager.mainCamera, maskLeftCLick);
+        mouseWorldPos = CurrentHit.point;
         mouseScreenPos = new Vector3(Input.mousePosition.x, 0, Input.mousePosition.y);
 
         #region STANDARD_STATE
@@ -87,11 +90,11 @@ public class InputManager : MonoBehaviour
             //En train de drag le lien 
             if (DraggingLink)
             {
-                CellManager.Instance.DragNewlink(hit);
+                CellManager.Instance.DragNewlink(CurrentHit);
 
                 if (Input.GetMouseButtonUp(0))
                 {
-                    CellManager.Instance.ValidateNewLink(hit);
+                    CellManager.Instance.ValidateNewLink(CurrentHit);
                 }
 
             }
@@ -100,19 +103,18 @@ public class InputManager : MonoBehaviour
             //Click Gauche In
             if (Input.GetMouseButtonDown(0))
             {
-
-                if (hit.transform != null && hit.transform.tag == "Cell")
+                currentPlayerAction = CurrentHit.transform.GetComponent<PlayerAction>();
+                if (CurrentHit.transform != null && currentPlayerAction != null)
                 {
-                    leftClickedOnCell = true;
-                    selectedCell = hit.transform.GetComponent<CellMain>();
+                    currentPlayerAction.OnLeftClickDown();
                 }
 
 
 
-                if (!DraggingLink && !InCellSelection && isOverCell && !movingObject)
-                {
-                    CellManager.Instance.SelectCell(hit);
-                }
+                //if (!DraggingLink && !InCellShop && isOverCell && !movingObject)
+                //{
+                //    CellManager.Instance.SelectCell(CurrentHit);
+                //}
             }
 
             //Click Gauche Maintient
@@ -120,14 +122,14 @@ public class InputManager : MonoBehaviour
             {
                 clickTime += Time.deltaTime;
 
-                if (CellSelected && clickTime > clickCooldown && leftClickedOnCell && !InCellSelection && !DraggingLink)
+                if (CellSelected && clickTime > clickCooldown && leftClickedOnCell && !InCellShop && !DraggingLink)
                 {
                     UIManager.Instance.DisplayCellShop(selectedCell);
                 }
                 if (selectedCell != null)
                 {
 
-                    float distanceFromCell = (hit.point - selectedCell.transform.position).magnitude;
+                    float distanceFromCell = (CurrentHit.point - selectedCell.transform.position).magnitude;
                     if (clickTime > clickCooldown && leftClickedOnCell && !DraggingLink && distanceFromCell > distanceBeforeDrag)
                     {
                         UIManager.Instance.StartCoroutine(UIManager.Instance.DesactivateCellShop());
@@ -153,7 +155,7 @@ public class InputManager : MonoBehaviour
 
                 }
 
-                if (InCellSelection)
+                if (InCellShop)
                 {
                     UIManager.Instance.StartCoroutine(UIManager.Instance.DesactivateCellShop());
                 }
@@ -165,7 +167,7 @@ public class InputManager : MonoBehaviour
             //Click Droit In
             if (Input.GetMouseButtonDown(1))
             {
-                if (InCellSelection)
+                if (InCellShop)
                 {
                     UIManager.Instance.DesactivateCellShop();
                 }
@@ -185,17 +187,17 @@ public class InputManager : MonoBehaviour
             #region MOUSEOVER_CELLS - TOOLTIP
 
 
-            if (!DraggingLink && !InCellSelection)
+            if (!DraggingLink && !InCellShop)
             {
 
-                if (hit.transform != null && hit.transform.tag == "Cell" && !isOverCell)
+                if (CurrentHit.transform != null && CurrentHit.transform.tag == "Cell" && !isOverCell)
                 {
                     isOverCell = true;
-                    cellOver = hit.transform.GetComponent<CellMain>();
+                    cellOver = CurrentHit.transform.GetComponent<CellMain>();
                 }
             }
 
-            if (hit.transform == null || hit.transform.tag != "Cell")
+            if (CurrentHit.transform == null || CurrentHit.transform.tag != "Cell")
             {
                 isOverCell = false;
                 cellOver = null;
@@ -247,9 +249,9 @@ public class InputManager : MonoBehaviour
         #region MOVING_CELL
         else
         {
-            if (hit.transform != null && hit.transform.tag == "Ground")
+            if (CurrentHit.transform != null && CurrentHit.transform.tag == "Ground")
             {
-                CellManager.Instance.CellDeplacement(hit.point, objectMoved, newCell);
+                CellManager.Instance.CellDeplacement(CurrentHit.point, objectMoved, newCell);
             }
 
             //si clic gauche, replacer la cell et update tous ses liens
@@ -259,7 +261,7 @@ public class InputManager : MonoBehaviour
                 {
 
                     if (newCell)
-                        CellManager.Instance.ValidateNewLink(hit);
+                        CellManager.Instance.ValidateNewLink(CurrentHit);
 
                     objectMoved.CellInitialisation();
                     movingObject = false;
@@ -284,7 +286,7 @@ public class InputManager : MonoBehaviour
                 {
                     CellManager.Instance.CellDeplacement(CellManager.Instance.originalPosOfMovingCell, objectMoved, false);
                     objectMoved.TickInscription();
-                    CellManager.Instance.ValidateNewLink(hit);
+                    CellManager.Instance.ValidateNewLink(CurrentHit);
                 }
 
                 movingObject = false;
@@ -315,6 +317,14 @@ public class InputManager : MonoBehaviour
     EventSystem m_EventSystem;
 
 
+    public void SelectCell()
+    {
+        leftClickedOnCell = true;
+        selectedCell = CurrentHit.transform.GetComponent<CellMain>();
+        UIManager.Instance.CellSelected(selectedCell.transform.position);
+        CellManager.Instance.selectedCell = selectedCell;
+    }
+
     public void DesactivateLinkWhileDragging()
     {
         DraggingLink = false;
@@ -326,7 +336,7 @@ public class InputManager : MonoBehaviour
     {
         CellSelected = false;
         DraggingLink = false;
-        InCellSelection = false;
+        InCellShop = false;
     }
     public void StartMovingCell(CellMain cell, bool alreadyExistingCell)
     {
@@ -350,7 +360,7 @@ public class InputManager : MonoBehaviour
         Instance.objectMoved = cell;
         Instance.movingObject = true;
         Instance.DraggingLink = true;
-        Instance.InCellSelection = false;
+        Instance.InCellShop = false;
     }
 
 

@@ -257,26 +257,26 @@ public class CellManager : MonoBehaviour
         InputManager.Instance.CellSelected = false;
         UIManager.Instance.CellDeselected();
     }
-    public void SelectCell(RaycastHit hit)
-    {
-        CellMain hitCell = hit.transform.GetComponent<CellMain>();
-        if (hitCell != null)
-        {
-            if (hitCell != selectedCell)
-            {
-                selectedCell = hitCell;
-                InputManager.Instance.CellSelected = true;
-                InputManager.Instance.posCell = selectedCell.transform.position;
-                UIManager.Instance.CellSelected(selectedCell.transform.position);
+    //public void SelectCell(RaycastHit hit)
+    //{
+    //    CellMain hitCell = hit.transform.GetComponent<CellMain>();
+    //    if (hitCell != null)
+    //    {
+    //        if (hitCell != selectedCell)
+    //        {
+    //            selectedCell = hitCell;
+    //            InputManager.Instance.CellSelected = true;
+    //            InputManager.Instance.posCell = selectedCell.transform.position;
+    //            UIManager.Instance.CellSelected(selectedCell.transform.position);
 
-            }
-        }
-    }
+    //        }
+    //    }
+    //}
 
 
     public void InteractWithCell()
     {
-        selectedCell.ClickInteraction();
+        selectedCell.OnShortLeftClickUp();
     }
 
     public void CellDeplacement(Vector3 posToTest, CellMain cellToMove, bool isNewCell)

@@ -76,14 +76,14 @@ public class UIManager : MonoBehaviour
             cellSelection.transform.position = originalCell.transform.position;
             cellSelection.gameObject.SetActive(true);
             cellSelection.ButtonPositions(originalCell);
-            InputManager.Instance.InCellSelection = true;
+            InputManager.Instance.InCellShop = true;
         }
     }
     public IEnumerator DesactivateCellShop()
     {
         yield return new WaitForEndOfFrame();
         cellSelection.DesactiveButton();
-        InputManager.Instance.InCellSelection = false;
+        InputManager.Instance.InCellShop = false;
 
         ///CellManager2.Instance.SupressCurrentLink();
     }

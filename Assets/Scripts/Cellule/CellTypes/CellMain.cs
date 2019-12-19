@@ -836,33 +836,8 @@ public class CellMain : PoolableObjects, PlayerAction
 
     #endregion
 
-    #region PLAYER ACTION INTERFACE
 
-    public virtual void ClickInteraction()
-    {
-        if (blobNumber > 0)
-        {
-            BlobNumberVariation(-1);
-            //CellManager.Instance.EnergyVariation(currentEnergyPerClick);
-            RessourceTracker.instance.EnergyVariation(currentEnergyPerClick);
-        }
 
-        anim.Play("PlayerInteraction", 0, 0f);
-    }
-
-    public virtual void PlayerDrag()
-    {
-        throw new System.NotImplementedException();
-    }
-    #endregion
-    private void OnBecameInvisible()
-    {
-        isVisible = false;
-    }
-    private void OnBecameVisible()
-    {
-        isVisible = true;
-    }
 
     #region Graph MODIFICATION 
 
@@ -893,6 +868,48 @@ public class CellMain : PoolableObjects, PlayerAction
         }
     }
 
+
+    #endregion
+    private void OnBecameInvisible()
+    {
+        isVisible = false;
+    }
+    private void OnBecameVisible()
+    {
+        isVisible = true;
+    }
+
+    #region PLAYER ACTION INTERFACE
+    public void OnLeftClickDown()
+    {
+        InputManager.Instance.SelectCell();
+    }
+
+    public virtual void OnShortLeftClickUp()
+    {
+        if (blobNumber > 0)
+        {
+            BlobNumberVariation(-1);
+            //CellManager.Instance.EnergyVariation(currentEnergyPerClick);
+            RessourceTracker.instance.EnergyVariation(currentEnergyPerClick);
+        }
+
+        anim.Play("PlayerInteraction", 0, 0f);
+    }
+    public void OnLongLeftClickUp()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public virtual void OnLeftClickHolding()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void OnShortRightClick()
+    {
+        throw new System.NotImplementedException();
+    }
     #endregion
 
 }
