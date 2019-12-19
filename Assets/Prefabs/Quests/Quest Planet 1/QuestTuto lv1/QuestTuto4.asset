@@ -16,7 +16,7 @@ MonoBehaviour:
   questTitle: So much BLOBZ !
   questDescription: 
   eventDone: 1
-  populationObjective: 100
+  populationObjective: 50
   energyToObtain: 0
   cellType: 0
   level: 1
@@ -26,19 +26,4 @@ MonoBehaviour:
   placeToGet: {fileID: 0}
   range: 0
   objectToDestroy: []
-  questEvents:
-  - eventType: 1
-    eventDuration: 0
-    virtualCamIndex: 0
-    popUpsMsg:
-    - rpgStyle: 0
-      anchor: {fileID: 0}
-      offset: {x: 830, y: 260, z: 0}
-      usingSprite: 0
-      sprite: {fileID: 0}
-      Title: Production Cell
-      Text: You can create a production cell (orange)
-    UEvent:
-      m_PersistentCalls:
-        m_Calls: []
-    foldout: 1
+  questEvents: []
