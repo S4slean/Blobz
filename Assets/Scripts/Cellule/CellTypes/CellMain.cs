@@ -223,7 +223,11 @@ public class CellMain : PoolableObjects, PlayerAction
 
         blobNumber = 0;
         //SetupVariable();
-
+        if (initialPool == null)
+        {
+            transform.position += new Vector3(0, -200, 0);
+            Destroy(gameObject);
+        }
         Inpool();
     }
     public virtual void BlobsTick()
@@ -370,9 +374,6 @@ public class CellMain : PoolableObjects, PlayerAction
         {
             inDanger = false;
         }
-        UpdateCaract();
-
-        //NBlob.text = (blobNumber + " / " + currentBlobStockage);
 
         if (blobNumber > currentBlobStockage && !isDead && !isNexus)
         {
@@ -386,6 +387,9 @@ public class CellMain : PoolableObjects, PlayerAction
             RessourceTracker.instance.RemoveBlob(BlobManager.BlobType.normal, blobToRemobe);
             blobNumber = currentBlobStockage;
         }
+        UpdateCaract();
+
+        //NBlob.text = (blobNumber + " / " + currentBlobStockage);
         //UpdateCaract();
     }
     //en prévision 
@@ -459,22 +463,10 @@ public class CellMain : PoolableObjects, PlayerAction
                 influencedByThoseCellProximity.Remove(proximityToRemove);
                 for (int y = 0; y < inThoseCellProximity.Count; y++)
                 {
-                    if (inThoseCellProximity[y].parent == proximityToRemove.parent)
-                    {
                         AddProximityInfluence(inThoseCellProximity[y]);
-                    }
                 }
             }
         }
-        //influencedByThoseCellProximity.Remove(proximityToRemove);
-        //for (int y = 0; y < inThoseCellProximity.Count; y++)
-        //{
-        //    if (inThoseCellProximity[y].parent == proximityToRemove.parent)
-        //    {
-        //        AddProximityInfluence(inThoseCellProximity[y]);
-        //    }
-        //}
-
         ProximityLevelModification();
     }
 

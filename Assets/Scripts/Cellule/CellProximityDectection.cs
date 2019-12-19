@@ -30,6 +30,10 @@ public class CellProximityDectection : PoolableObjects
             cell.inThoseCellProximity.Add(this);
             //parent.AddToCellAtPromity(cell);
             cell.AddProximityInfluence(this);
+            if (parent.myCellTemplate.type == CellType.Productrice)
+            {
+
+            }
         }
     }
 
