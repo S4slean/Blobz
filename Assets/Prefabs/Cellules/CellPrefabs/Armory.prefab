@@ -302,7 +302,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5449206648009261835}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: e277263082fb7da4096ac7dee83d093f, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -881,11 +881,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6049475817487512608}
     m_Modifications:
-    - target: {fileID: 9026544737214006021, guid: b4ccfa016bc91574ea6c86454bee0db2,
-        type: 3}
-      propertyPath: m_Name
-      value: Armor
-      objectReference: {fileID: 0}
     - target: {fileID: 9026544737214006016, guid: b4ccfa016bc91574ea6c86454bee0db2,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -955,6 +950,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9026544737214006021, guid: b4ccfa016bc91574ea6c86454bee0db2,
+        type: 3}
+      propertyPath: m_Name
+      value: Armor
       objectReference: {fileID: 0}
     - target: {fileID: 6855726535936874185, guid: b4ccfa016bc91574ea6c86454bee0db2,
         type: 3}

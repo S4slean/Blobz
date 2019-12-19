@@ -69,6 +69,11 @@ public class LevelManager : MonoBehaviour
 
         //cocher le bon booléens
     }
+    public void GameOver()
+    {
+        //GameOver
+        Debug.Log("GameOver");
+    }
     public void SaveUnlockedFeatures()
     {
 

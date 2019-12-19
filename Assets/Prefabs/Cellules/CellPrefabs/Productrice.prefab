@@ -772,7 +772,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6972052367257400834}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: e277263082fb7da4096ac7dee83d093f, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -785,11 +785,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3454063361185357364}
     m_Modifications:
-    - target: {fileID: 4126170009892429465, guid: b235cf5deb72a594ca3ac3352ab4b450,
-        type: 3}
-      propertyPath: m_Name
-      value: Prod
-      objectReference: {fileID: 0}
     - target: {fileID: 4126170009892429468, guid: b235cf5deb72a594ca3ac3352ab4b450,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -845,6 +840,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4126170009892429465, guid: b235cf5deb72a594ca3ac3352ab4b450,
+        type: 3}
+      propertyPath: m_Name
+      value: Prod
+      objectReference: {fileID: 0}
     - target: {fileID: 7517213066972537007, guid: b235cf5deb72a594ca3ac3352ab4b450,
         type: 3}
       propertyPath: mainParent
@@ -883,16 +883,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7213726001769118057}
     m_Modifications:
-    - target: {fileID: 6169709992549907209, guid: 8f72773e234f83546bad256e72fe966c,
-        type: 3}
-      propertyPath: m_Name
-      value: ProximityCollider
-      objectReference: {fileID: 0}
-    - target: {fileID: 6169709992549907209, guid: 8f72773e234f83546bad256e72fe966c,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4198768438038794474, guid: 8f72773e234f83546bad256e72fe966c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -946,6 +936,16 @@ PrefabInstance:
     - target: {fileID: 4198768438038794474, guid: 8f72773e234f83546bad256e72fe966c,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6169709992549907209, guid: 8f72773e234f83546bad256e72fe966c,
+        type: 3}
+      propertyPath: m_Name
+      value: ProximityCollider
+      objectReference: {fileID: 0}
+    - target: {fileID: 6169709992549907209, guid: 8f72773e234f83546bad256e72fe966c,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5091180007203697255, guid: 8f72773e234f83546bad256e72fe966c,
