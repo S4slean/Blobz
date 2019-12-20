@@ -76,14 +76,14 @@ public class UIManager : MonoBehaviour
             cellSelection.transform.position = originalCell.transform.position;
             cellSelection.gameObject.SetActive(true);
             cellSelection.ButtonPositions(originalCell);
-            InputManager.Instance.InCellShop = true;
+            InputManager.Instance.holdingLeftClick = true;
         }
     }
     public IEnumerator DesactivateCellShop()
     {
         yield return new WaitForEndOfFrame();
         cellSelection.DesactiveButton();
-        InputManager.Instance.InCellShop = false;
+        InputManager.Instance.holdingLeftClick = false;
 
         ///CellManager2.Instance.SupressCurrentLink();
     }
@@ -95,7 +95,7 @@ public class UIManager : MonoBehaviour
         SelectedCellUI.transform.position = pos;
         SelectedCellUI.SetActive(true);
     }
-    public void CellDeselected()
+    public void DeselectElement()
     {
         SelectedCellUI.SetActive(false);
     }
@@ -199,6 +199,11 @@ public class UIManager : MonoBehaviour
         //cellOptionsUI.anim.Play("Display");
     }
 
+    public void HideCellOptions()
+    {
+        HideUI(UIManager.Instance.cellOptionsUI.gameObject);
+    }
+
     #endregion
 
     #region NOT_ENOUGH_NRJ
@@ -218,7 +223,7 @@ public class UIManager : MonoBehaviour
     public Animator nELink;
     public void DisplayNotEnoughLink()
     {
-        if (nELink.GetCurrentAnimatorStateInfo(0).IsName("invisible")) ;
+        if (nELink.GetCurrentAnimatorStateInfo(0).IsName("invisible"))
         {
             nELink.Play("Show");
         }

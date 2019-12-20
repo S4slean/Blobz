@@ -17,7 +17,7 @@ public class CellProductrice : CellMain
             BlobNumberVariation(myCellTemplate.prodPerTickBase);
         }
 
-        BlobNumberVariation(myCellTemplate.prodPerTickBase * productionBonusPacket);
+        BlobNumberVariation(myCellTemplate.prodPerTickBase * (1 + productionBonusPacket));
 
 
         #region Ancien Systeme de Tick 
@@ -76,7 +76,7 @@ public class CellProductrice : CellMain
         }
     }
 
-    public override void ProductriceProximityGestion(CellProximityDectection collider)
+    public  void ProductriceProximityGestion(CellProximityDectection collider)
     {
         for (int i = 0; i < myProximityCollider.Length; i++)
         {

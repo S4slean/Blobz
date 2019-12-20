@@ -32,7 +32,8 @@ public class CellProximityDectection : PoolableObjects
             cell.AddProximityInfluence(this);
             if (parent.myCellTemplate.type == CellType.Productrice)
             {
-                parent.ProductriceProximityGestion(this);
+                //CellProductrice _parent = parent as CellProductrice;
+                //_parent.ProductriceProximityGestion(this);
             }
         }
     }
@@ -45,7 +46,8 @@ public class CellProximityDectection : PoolableObjects
             cell.RemoveProximityInfluence(this);
             if (parent.myCellTemplate.type == CellType.Productrice)
             {
-                parent.ProductriceProximityGestion(this);
+                //CellProductrice _parent = parent as CellProductrice;
+                //_parent.ProductriceProximityGestion(this);
             }
         }
 

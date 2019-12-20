@@ -27,14 +27,17 @@ public class PoolableObjects : MonoBehaviour
         transform.SetParent(initialPool.transform);
         canBePool = true;
         // gameObject.SetActive(false);
-        StartCoroutine(DesactiveGameObject());
-        
-;        
+        if (gameObject.activeInHierarchy)
+        {
+            StartCoroutine(DesactiveGameObject());
+        }
+
+;
     }
-    protected IEnumerator DesactiveGameObject ( )
+    protected IEnumerator DesactiveGameObject()
     {
         //A changé mais c'est pour test
         yield return new WaitForFixedUpdate();
-        gameObject.SetActive(false);      
+        gameObject.SetActive(false);
     }
 }
