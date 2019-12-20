@@ -918,4 +918,8 @@ public class CellMain : PoolableObjects, PlayerAction
 
     }
 
+    public void OnmouseOver()
+    {
+        throw new System.NotImplementedException();
+    }
 }

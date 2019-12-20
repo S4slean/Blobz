@@ -228,7 +228,7 @@ public class InputManager : MonoBehaviour
 
             if (rightClickedOnCell && Input.GetMouseButtonUp(1))
             {
-                UIManager.Instance.DisplayCellOptions(elementOver);
+               // UIManager.Instance.DisplayCellOptions(elementOver);
             }
 
             if (!isOverInteractiveElement && Input.GetMouseButtonDown(1) || Input.GetMouseButtonDown(0))
