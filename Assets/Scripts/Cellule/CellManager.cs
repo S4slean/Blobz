@@ -267,6 +267,9 @@ public class CellManager : MonoBehaviour
     }
     public void DeselectElement()
     {
+        if (selectedElement == null)
+            return;
+
         selectedElement.OnDeselect();
         selectedElement = null;
         

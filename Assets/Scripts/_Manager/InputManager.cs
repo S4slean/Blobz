@@ -90,12 +90,12 @@ public class InputManager : MonoBehaviour
             if (dragging)
             {
 
-                currentPlayerAction.OnLeftDrag(CurrentHit);
+                selectedElement.OnLeftDrag(CurrentHit);
 
 
                 if (Input.GetMouseButtonUp(0))
                 {
-                    currentPlayerAction.OnDragEnd(CurrentHit);
+                    selectedElement.OnDragEnd(CurrentHit);
                     dragging = false;
                 }
 
@@ -170,10 +170,12 @@ public class InputManager : MonoBehaviour
                 if (holdingLeftClick)
                 {
                     selectedElement.OnRightClickWhileHolding(CurrentHit);
+                    holdingLeftClick = false;
                 }
                 else if (dragging)
                 {
                     selectedElement.OnRightClickWhileDragging(CurrentHit);
+                    dragging = false;
                 }
                 else if (selectedElement != null)
                 {

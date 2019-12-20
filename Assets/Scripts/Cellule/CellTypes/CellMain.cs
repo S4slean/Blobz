@@ -37,7 +37,7 @@ public class CellMain : PoolableObjects, PlayerAction
 
     public List<Blob> stuckBlobs = new List<Blob>();
 
-    private CellProximityDectection[] myProximityCollider;
+    protected CellProximityDectection[] myProximityCollider;
     public Collider ownCollider;
 
     public LinkJointClass[] linkJoints;
@@ -706,13 +706,11 @@ public class CellMain : PoolableObjects, PlayerAction
         NBlob.text = (blobNumber + " / " + currentBlobStockage);
         //NLink.text = (links.Count + " / " + currentLinkStockage);
     }
-
     public virtual void GraphSetup()
     {
         Vector3 graphPos = transform.position + new Vector3(0, 0.1f, 0);
         graphTransform.position = graphPos;
     }
-
     private void SetupVariable()
     {
         // currentLinkStockage = myCellTemplate.linkCapability;
@@ -747,7 +745,6 @@ public class CellMain : PoolableObjects, PlayerAction
         ProximityCheck();
         ProximityLevelModification();
     }
-
     public int GetCurrentRange()
     {
         return currentRange / 2;
@@ -823,7 +820,6 @@ public class CellMain : PoolableObjects, PlayerAction
         currentSlot++;
         return currentSlot;
     }
-
     public void jointReset(LinkJointClass joint)
     {
         int flexDetected = 0;
@@ -844,24 +840,18 @@ public class CellMain : PoolableObjects, PlayerAction
 
     #endregion
 
-
-
-
     #region Graph MODIFICATION 
-
     private void GetInitialMat()
     {
         domeInitialMat = domeMR.material;
         spriteInitialMat = spriteMR.material;
 
     }
-
     public void RestoreInitialMat()
     {
         domeMR.material = domeInitialMat;
         spriteMR.material = spriteInitialMat;
     }
-
     public void ChangeDeplacementMat(bool canBePlaced)
     {
         if (canBePlaced)
@@ -875,9 +865,9 @@ public class CellMain : PoolableObjects, PlayerAction
             spriteMR.material = CellManager.Instance.refusedBuldingSpriteMask;
         }
     }
-
-
     #endregion
+
+    #region VISIBLE
     private void OnBecameInvisible()
     {
         isVisible = false;
@@ -886,6 +876,7 @@ public class CellMain : PoolableObjects, PlayerAction
     {
         isVisible = true;
     }
+    #endregion
 
     #region PLAYER ACTION INTERFACE
 
@@ -934,7 +925,7 @@ public class CellMain : PoolableObjects, PlayerAction
 
     public void OnShortRightClick(RaycastHit hit)
     {
-        UIManager.Instance.DisplayCellOptions(this);
+        //UIManager.Instance.DisplayCellOptions(this);
     }
     public void OnRightClickWhileHolding(RaycastHit hit)
     {
