@@ -21,11 +21,10 @@ public class InputManager : MonoBehaviour
     public float clickCooldown;
 
     //bools concernant la pahse de dragging d'un lien 
-    [HideInInspector] public bool CellSelected;
-    [HideInInspector] public bool DraggingLink;
+    [HideInInspector] public bool dragging;
 
     //Ui
-    [HideInInspector] public bool InCellShop;
+    [HideInInspector] public bool holdingLeftClick;
     [HideInInspector] public bool InPauseMenu;
     [HideInInspector] public bool InQuestEvent;
 
@@ -42,12 +41,11 @@ public class InputManager : MonoBehaviour
     //permet d'éviter un getComponent à chaque frame lors du raycast de mouse Over
     private bool isOverInteractiveElement;
     private bool rightClickedOnCell;
-    private bool leftClickedOnCell;
     private PlayerAction elementOver;
-    private PlayerAction selectedElement;
+    public PlayerAction selectedElement;
     public CellMain selectedCell;
 
-    public bool newCell = false;
+ 
     [HideInInspector] public bool movingObject = false;
     [HideInInspector] public CellMain objectMoved;
 
@@ -89,13 +87,16 @@ public class InputManager : MonoBehaviour
             #region LINKS, INTERACTIONS AND CELL_CREATIONS
 
             //En train de drag le lien 
-            if (DraggingLink)
+            if (dragging)
             {
-                CellManager.Instance.DragNewlink(CurrentHit);
+
+                currentPlayerAction.OnLeftDrag(CurrentHit);
+
 
                 if (Input.GetMouseButtonUp(0))
                 {
-                    CellManager.Instance.ValidateNewLink(CurrentHit);
+                    currentPlayerAction.OnDragEnd(CurrentHit);
+                    dragging = false;
                 }
 
             }
@@ -104,11 +105,14 @@ public class InputManager : MonoBehaviour
             //Click Gauche In
             if (Input.GetMouseButtonDown(0))
             {
-                currentPlayerAction = CurrentHit.transform.GetComponent<PlayerAction>(); //------------------------
-                if (CurrentHit.transform != null && currentPlayerAction != null)
+                if (CurrentHit.transform != null)
+                    currentPlayerAction = CurrentHit.transform.GetComponent<PlayerAction>(); //------------------------
+
+                if (currentPlayerAction != null)
                 {
-                    currentPlayerAction.OnLeftClickDown();
                     SelectElement();
+                    selectedElement.OnLeftClickDown(CurrentHit);
+                    selectedElement.OnDeselect();
                 }
 
 
@@ -124,64 +128,56 @@ public class InputManager : MonoBehaviour
             {
                 clickTime += Time.deltaTime;
 
-                if (CellSelected && clickTime > clickCooldown && leftClickedOnCell && !InCellShop && !DraggingLink)
+                if (selectedElement != null && clickTime > clickCooldown && !holdingLeftClick && !dragging)
                 {
-                    UIManager.Instance.DisplayCellShop(selectedCell);
+                    selectedElement.OnLeftClickHolding(CurrentHit);
+                    holdingLeftClick = true;
+
                 }
-                if (selectedCell != null)
+                if (selectedElement != null)
                 {
+                    float distanceFromElement = (CurrentHit.point - ((Component)selectedElement).transform.position).magnitude;
 
-                    float distanceFromCell = (CurrentHit.point - selectedCell.transform.position).magnitude;
-                    if (clickTime > clickCooldown && leftClickedOnCell && !DraggingLink && distanceFromCell > distanceBeforeDrag)
+                    if (clickTime > clickCooldown && selectedElement != null && !dragging && distanceFromElement > distanceBeforeDrag)
                     {
-                        UIManager.Instance.StartCoroutine(UIManager.Instance.DesactivateCellShop());
-
-                        DraggingLink = CellManager.Instance.CreatenewLink();
-                        if (DraggingLink)
-                        {
-                            newCell = false;
-                        }
+                        selectedElement.OnDragStart(CurrentHit);
+                        dragging = true;
                     }
                 }
-
             }
 
 
             //Click Gauche Out
             if (Input.GetMouseButtonUp(0))
             {
-                currentPlayerAction = CurrentHit.transform.GetComponent<PlayerAction>();
-
                 //pour interagir avec la cellule
                 if (clickTime <= clickCooldown && isOverInteractiveElement && elementOver == selectedElement)
                 {
-                    currentPlayerAction.OnShortLeftClickUp();
+                    selectedElement.OnShortLeftClickUp(CurrentHit);
                 }
 
-                if (InCellShop)
+                if (holdingLeftClick)
                 {
-                    UIManager.Instance.StartCoroutine(UIManager.Instance.DesactivateCellShop());
+                    selectedElement.OnLongLeftClickUp(CurrentHit);
                 }
 
-                leftClickedOnCell = false;
                 clickTime = 0;
             }
 
             //Click Droit In
             if (Input.GetMouseButtonDown(1))
             {
-                if (InCellShop)
+                if (holdingLeftClick)
                 {
-                    UIManager.Instance.DesactivateCellShop();
+                    selectedElement.OnRightClickWhileHolding(CurrentHit);
                 }
-                //Deselectionne la cellule si sélectionné 
-                else if (CellSelected && DraggingLink)
+                else if (dragging)
                 {
-                    DesactivateLinkWhileDragging();
+                    selectedElement.OnRightClickWhileDragging(CurrentHit);
                 }
-                else if (CellSelected)
+                else if (selectedElement != null)
                 {
-                    CellManager.Instance.DeselectCell();
+                    CellManager.Instance.DeselectElement();
                 }
             }
 
@@ -189,31 +185,38 @@ public class InputManager : MonoBehaviour
 
             #region MOUSEOVER_CELLS - TOOLTIP
 
-
-            if (!DraggingLink && !InCellShop)
+            //PERMET DE NE PAS AFFICHE LE TOOLTIP DANS CES DEUX CONDITIONS
+            if (!dragging && !holdingLeftClick)
             {
 
-                if (CurrentHit.transform != null && !isOverInteractiveElement && CurrentHit.transform.GetComponent<PlayerAction>() != null )
+                if (CurrentHit.transform != null && !isOverInteractiveElement)
                 {
-                    isOverInteractiveElement = true;
-                    elementOver = CurrentHit.transform.GetComponent<PlayerAction>();
+                    if (CurrentHit.transform.GetComponent<PlayerAction>() != null)
+                    {
+                        isOverInteractiveElement = true;
+                        elementOver = CurrentHit.transform.GetComponent<PlayerAction>();
+                        elementOver.OnmouseIn(CurrentHit);
+
+                    }
+
                 }
             }
 
-            if (CurrentHit.transform == null || CurrentHit.transform.tag != "Cell")
+            if (CurrentHit.transform != null && isOverInteractiveElement)
+            {
+                if (CurrentHit.transform.GetComponent<PlayerAction>() != selectedElement)
+                {
+                    isOverInteractiveElement = false;
+                    elementOver.OnMouseOut(CurrentHit);
+                    elementOver = null;
+                }
+            }
+
+            else if(CurrentHit.transform == null && isOverInteractiveElement)
             {
                 isOverInteractiveElement = false;
                 elementOver = null;
-            }
-
-            if (isOverInteractiveElement)
-            {
-                currentPlayerAction.OnmouseOver();
-            }
-            else
-            {
-                UIManager.Instance.UnloadToolTip();
-                rightClickedOnCell = false;
+                selectedElement.OnMouseOut(CurrentHit);
             }
 
 
@@ -228,21 +231,13 @@ public class InputManager : MonoBehaviour
 
             if (rightClickedOnCell && Input.GetMouseButtonUp(1))
             {
-                UIManager.Instance.DisplayCellOptions(elementOver);
+                selectedElement.OnShortRightClick(CurrentHit);
             }
 
-            if (!isOverInteractiveElement && Input.GetMouseButtonDown(1) || Input.GetMouseButtonDown(0))
+            if (!isOverInteractiveElement && (Input.GetMouseButtonDown(1) || Input.GetMouseButtonDown(0)))
             {
-
-
-
-
-                if (!UIManager.Instance.cellOptionsUI.mouseIsOver)
-                {
-
-                    if (UIManager.Instance.cellOptionsUI.gameObject.activeSelf)
-                        UIManager.Instance.HideUI(UIManager.Instance.cellOptionsUI.gameObject);
-                }
+                if(selectedElement != null)
+                    selectedElement.StopAction();
             }
 
             #endregion
@@ -254,7 +249,7 @@ public class InputManager : MonoBehaviour
         {
             if (CurrentHit.transform != null && CurrentHit.transform.tag == "Ground")
             {
-                CellManager.Instance.CellDeplacement(CurrentHit.point, objectMoved, newCell);
+                CellManager.Instance.CellDeplacement(CurrentHit.point, objectMoved);
             }
 
             //si clic gauche, replacer la cell et update tous ses liens
@@ -263,13 +258,13 @@ public class InputManager : MonoBehaviour
                 if (CellManager.Instance.terrainIsBuildable)
                 {
 
-                    if (newCell)
+                    if (CellManager.Instance.newCell)
                         CellManager.Instance.ValidateNewLink(CurrentHit);
 
                     objectMoved.CellInitialisation();
                     movingObject = false;
                     objectMoved = null;
-                    DraggingLink = false;
+                    //dragging = false;
                 }
                 else
                 {
@@ -287,14 +282,14 @@ public class InputManager : MonoBehaviour
                 }
                 else
                 {
-                    CellManager.Instance.CellDeplacement(CellManager.Instance.originalPosOfMovingCell, objectMoved, false);
+                    CellManager.Instance.CellDeplacement(CellManager.Instance.originalPosOfMovingCell, objectMoved);
                     objectMoved.TickInscription();
                     CellManager.Instance.ValidateNewLink(CurrentHit);
                 }
 
                 movingObject = false;
                 objectMoved = null;
-                DraggingLink = false;
+                //dragging = false;
 
             }
         }
@@ -322,48 +317,24 @@ public class InputManager : MonoBehaviour
 
     public void SelectCell()
     {
-        leftClickedOnCell = true;
         selectedCell = CurrentHit.transform.GetComponent<CellMain>();
         UIManager.Instance.CellSelected(selectedCell.transform.position);
         CellManager.Instance.selectedCell = selectedCell;
     }
 
-    public void DesactivateLinkWhileDragging()
+    public void ResetInputs()
     {
-        DraggingLink = false;
-        leftClickedOnCell = false;
-        CellManager.Instance.SupressCurrentLink();
-        CellManager.Instance.DeselectCell();
+        dragging = false;
+        holdingLeftClick = false;
     }
-    public void CleanBoolsRelatedToCell()
+
+    public void StartMovingCell(CellMain cell)
     {
-        CellSelected = false;
-        DraggingLink = false;
-        InCellShop = false;
-    }
-    public void StartMovingCell(CellMain cell, bool alreadyExistingCell)
-    {
-
-        if (!alreadyExistingCell)
-            CellManager.Instance.originalPosOfMovingCell = new Vector3(0, 100, 0);
-        else
-            CellManager.Instance.originalPosOfMovingCell = cell.transform.position;
-
-        if (CellManager.Instance.originalPosOfMovingCell == new Vector3(0, 100, 0))
-        {
-            newCell = true;
-        }
-        else
-        {
-            newCell = false;
-        }
-
-
         cell.TickDesinscription();
         Instance.objectMoved = cell;
         Instance.movingObject = true;
-        Instance.DraggingLink = true;
-        Instance.InCellShop = false;
+        Instance.dragging = false;
+        Instance.holdingLeftClick = false;
     }
 
 
@@ -372,16 +343,18 @@ public class InputManager : MonoBehaviour
         selectedElement = currentPlayerAction;
     }
 
-    public void StopCellActions()
+    public void DeselectElement()
     {
-        UIManager.Instance.DesactivateCellShop();
-        UIManager.Instance.CellDeselected();
+        UIManager.Instance.DeselectElement();
+        selectedElement = null;
+    }
 
-        if (DraggingLink)
-        {
-            CellManager.Instance.SupressCurrentLink();
-            DraggingLink = false;
-        }
+    public void StopCurrentAction()
+    {
+
+        UIManager.Instance.DeselectElement();
+
+
         if (movingObject)
         {
             CellManager.Instance.SupressCurrentLink();
@@ -389,6 +362,8 @@ public class InputManager : MonoBehaviour
             movingObject = false;
         }
 
-        CleanBoolsRelatedToCell();
+        ResetInputs();
     }
+
+    
 }

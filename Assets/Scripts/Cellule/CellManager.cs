@@ -22,6 +22,7 @@ public class CellManager : MonoBehaviour
 
 
     [Header("Debug")]
+    public bool newCell;
     public CellMain selectedCell;
     public PlayerAction selectedElement;
     [SerializeField]
@@ -133,7 +134,7 @@ public class CellManager : MonoBehaviour
     {
 
         //Nouveau Cellules en cours de placement 
-        if (InputManager.Instance.newCell)
+        if (CellManager.Instance.newCell)
             receivingCell = InputManager.Instance.objectMoved;
         else
             receivingCell = hit.transform.GetComponent<CellMain>();
@@ -218,7 +219,7 @@ public class CellManager : MonoBehaviour
     {
         currentLink = null;
         currentLine = null;
-        InputManager.Instance.DraggingLink = false;
+        InputManager.Instance.dragging = false;
     }
     public void SupressCurrentLink()
     {
@@ -231,7 +232,20 @@ public class CellManager : MonoBehaviour
     #endregion
 
     #region CELL GESTION
+    public void SetIfNewCell(bool isNew)
+    {
+        if (isNew)
+        {
+            originalPosOfMovingCell = new Vector3(0, 100, 0);
+            newCell = true;
+        }
+        else
+        {
+            originalPosOfMovingCell = selectedCell.transform.position;
+            newCell = false;
+        }
 
+    }
     public void NewCellCreated(CellMain newCell)
     {
         createdCell = newCell;
@@ -244,19 +258,19 @@ public class CellManager : MonoBehaviour
 
         EnergyVariation(-newCell.myCellTemplate.energyCost);
 
-        currentLine.startColor = Color.green;
-        currentLine.endColor = Color.cyan;
 
-        originalPosOfMovingCell = new Vector3(0, 100, 0);
         UIManager.Instance.cellSelection.DesactiveButton();
-        InputManager.Instance.StartMovingCell(newCell, false);
+
+        SetIfNewCell(true);
+        InputManager.Instance.StartMovingCell(newCell);
 
     }
-    public void DeselectCell()
+    public void DeselectElement()
     {
-        selectedCell = null;
-        InputManager.Instance.CellSelected = false;
-        UIManager.Instance.CellDeselected();
+        selectedElement.OnDeselect();
+        selectedElement = null;
+        
+       
     }
     //public void SelectCell(RaycastHit hit)
     //{
@@ -277,7 +291,7 @@ public class CellManager : MonoBehaviour
 
 
 
-    public void CellDeplacement(Vector3 posToTest, CellMain cellToMove, bool isNewCell)
+    public void CellDeplacement(Vector3 posToTest, CellMain cellToMove)
     {
         shouldStop = false;
 
@@ -323,7 +337,7 @@ public class CellManager : MonoBehaviour
         {
             cellToMove.transform.position = posToTest;
 
-            if (isNewCell)
+            if (newCell)
                 DragNewlink(posToTest, cellToMove);
 
         }

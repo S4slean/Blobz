@@ -79,21 +79,22 @@ public class CellSelectionShop : MonoBehaviour
 
     public void CellConstruction(CellMain cellule)
     {
-
+        
 
         System.Type cellType = cellule.GetType();
-        CellMain newCell = ObjectPooler.poolingSystem.GetPooledObject(cellType) as CellMain;
-        if (newCell.myCellTemplate.energyCost > RessourceTracker.instance.energy)
+        if (cellule.myCellTemplate.energyCost > RessourceTracker.instance.energy)
         {
-            Debug.Log("pas assez d'énergie");
             UIManager.Instance.DisplayNotEnoughNRJ();
-            newCell = null;
+            CellManager.Instance.SetIfNewCell(false);
         }
         else
         {
-            InputManager.Instance.newCell = true;
-            newCell.transform.position = InputManager.Instance.mouseWorldPos; ;           
+            CellManager.Instance.SetIfNewCell(true);
+
+            CellMain newCell = ObjectPooler.poolingSystem.GetPooledObject(cellType) as CellMain;
+            newCell.transform.position = InputManager.Instance.mouseWorldPos;         
             newCell.Outpool();
+
             CellManager.Instance.NewCellCreated(newCell);
             newCell.GenerateLinkSlot();
 

@@ -36,7 +36,7 @@ public class CellMain : PoolableObjects, PlayerAction
     public List<CellProximityDectection> influencedByThoseCellProximity = new List<CellProximityDectection>();
 
     public List<Blob> stuckBlobs = new List<Blob>();
-       
+
     private CellProximityDectection[] myProximityCollider;
     public Collider ownCollider;
 
@@ -104,6 +104,7 @@ public class CellMain : PoolableObjects, PlayerAction
         //ProximityCheck();
         GetInitialMat();
         ownCollider = GetComponent<Collider>();
+        ownCollider.enabled = false;
     }
 
     public virtual void OnEnable()
@@ -139,7 +140,7 @@ public class CellMain : PoolableObjects, PlayerAction
     public void CellInitialisation()
     {
         RessourceTracker.instance.AddCell(this);
-
+        ownCollider.enabled = true;
         TickInscription();
         isDead = false;
 
@@ -155,8 +156,10 @@ public class CellMain : PoolableObjects, PlayerAction
 
     public virtual void Died(bool intentionnalDeath)
     {
+
         isDead = true;
         //TickManager.doTick -= BlobsTick;
+        ownCollider.enabled = false;
 
         RessourceTracker.instance.RemoveBlob(BlobManager.BlobType.normal, blobNumber);
 
@@ -164,16 +167,21 @@ public class CellMain : PoolableObjects, PlayerAction
         if (CellManager.Instance.originalPosOfMovingCell != new Vector3(0, 100, 0))
             RessourceTracker.instance.RemoveCell(this);
 
-        if (InputManager.Instance.CellSelected == this)
+        if (CellManager.Instance.selectedCell == this)
         {
             UIManager.Instance.DesactivateCellShop();
         }
+        if (InputManager.Instance.selectedElement == this as PlayerAction )
+        {
+            InputManager.Instance.DeselectElement();
+        }
+
 
 
         TickDesinscription();
 
         int B = stuckBlobs.Count;
-        for (int y = 0; y < B ; y++)
+        for (int y = 0; y < B; y++)
         {
             //if (y > B)
             //{
@@ -215,7 +223,7 @@ public class CellMain : PoolableObjects, PlayerAction
         if (this == CellManager.Instance.selectedCell)
         {
 
-            InputManager.Instance.StopCellActions();
+            InputManager.Instance.StopCurrentAction();
 
         }
 
@@ -880,12 +888,12 @@ public class CellMain : PoolableObjects, PlayerAction
     }
 
     #region PLAYER ACTION INTERFACE
-    public void OnLeftClickDown()
+
+    public void OnLeftClickDown(RaycastHit hit)
     {
         InputManager.Instance.SelectCell();
     }
-
-    public virtual void OnShortLeftClickUp()
+    public virtual void OnShortLeftClickUp(RaycastHit hit)
     {
         if (blobNumber > 0)
         {
@@ -896,19 +904,77 @@ public class CellMain : PoolableObjects, PlayerAction
 
         anim.Play("PlayerInteraction", 0, 0f);
     }
-    public void OnLongLeftClickUp()
+
+
+    public virtual void OnLeftClickHolding(RaycastHit hit)
     {
-        throw new System.NotImplementedException();
+        UIManager.Instance.DisplayCellShop(InputManager.Instance.selectedCell);
+    }
+    public void OnLongLeftClickUp(RaycastHit hit)
+    {
+        UIManager.Instance.StartCoroutine(UIManager.Instance.DesactivateCellShop());
     }
 
-    public virtual void OnLeftClickHolding()
+
+    public void OnDragStart(RaycastHit hit)
     {
-        throw new System.NotImplementedException();
+        UIManager.Instance.StartCoroutine(UIManager.Instance.DesactivateCellShop());
+        if (CellManager.Instance.CreatenewLink())
+            CellManager.Instance.newCell = false;
+    }
+    public void OnLeftDrag(RaycastHit hit)
+    {
+        CellManager.Instance.DragNewlink(hit);
+    }
+    public void OnDragEnd(RaycastHit hit)
+    {
+        CellManager.Instance.ValidateNewLink(hit);
     }
 
-    public void OnShortRightClick()
+
+    public void OnShortRightClick(RaycastHit hit)
     {
-        throw new System.NotImplementedException();
+        UIManager.Instance.DisplayCellOptions(this);
+    }
+    public void OnRightClickWhileHolding(RaycastHit hit)
+    {
+        UIManager.Instance.DesactivateCellShop();
+    }
+    public void OnRightClickWhileDragging(RaycastHit hit)
+    {
+        CellManager.Instance.SupressCurrentLink();
+        CellManager.Instance.DeselectElement();
+    }
+
+    public void OnmouseIn(RaycastHit hit)
+    {
+        UIManager.Instance.LoadToolTip(transform.position, this);
+    }
+    public void OnMouseOut(RaycastHit hit)
+    {
+        UIManager.Instance.UnloadToolTip();
+    }
+
+    public void OnSelect()
+    {
+        CellManager.Instance.selectedCell = this;
+    }
+
+    public void OnDeselect()
+    {
+        UIManager.Instance.DeselectElement();
+    }
+
+    public void StopAction()
+    {
+        UIManager.Instance.DesactivateCellShop();
+        UIManager.Instance.HideCellOptions();
+
+        if (InputManager.Instance.dragging)
+        {
+            CellManager.Instance.SupressCurrentLink();
+        }
+
     }
     #endregion
 
