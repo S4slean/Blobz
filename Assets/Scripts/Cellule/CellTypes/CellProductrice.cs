@@ -7,6 +7,7 @@ public class CellProductrice : CellMain
     public int[] zoneBonusPerCell;
     private int productionBonusRatio;
     private int productionBonusPacket;
+    private List<CellMain> cellsInProximity = new List<CellMain>();
 
     public override void BlobsTick()
     {
@@ -76,8 +77,35 @@ public class CellProductrice : CellMain
         }
     }
 
-    public  void ProductriceProximityGestion(CellProximityDectection collider)
+
+    public void ProductriceProximityGestion(CellProximityDectection collider, CellMain cell)
     {
+        //Detect si la cell est déja dans un proximity 
+        bool cellAlreadyDetected = false;
+        for (int i = 0; i < cellsInProximity.Count; i++)
+        {
+            if (cell == cellsInProximity[i])
+            {
+                cellAlreadyDetected = true;
+            }
+        }
+        if (!cellAlreadyDetected)
+        { 
+            cellsInProximity.Add(cell);
+        }
+
+        for (int i = 0; i < cell.inThoseCellProximity.Count; i++)
+        {
+            if (cell.inThoseCellProximity[i].parent == collider.parent)
+            {
+                if (collider)
+                {
+
+                }
+            }
+        }
+
+        //Il faut choisir le plus grand 
         for (int i = 0; i < myProximityCollider.Length; i++)
         {
             if (collider == myProximityCollider[i])
@@ -86,6 +114,7 @@ public class CellProductrice : CellMain
             }
         }
     }
+
 
     private void ProductionVariationByProximity(int index, bool addition)
     {

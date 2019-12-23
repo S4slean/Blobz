@@ -10,6 +10,8 @@ public class CellProximityDectection : PoolableObjects
     public MeshRenderer mR;
     public Color[] proximityColor;
 
+    public List<CellMain> cellsInfluence = new List<CellMain>();
+
 
 
     public void Init(int proxLevel, Transform targetTransform)
@@ -32,8 +34,8 @@ public class CellProximityDectection : PoolableObjects
             cell.AddProximityInfluence(this);
             if (parent.myCellTemplate.type == CellType.Productrice)
             {
-                //CellProductrice _parent = parent as CellProductrice;
-                //_parent.ProductriceProximityGestion(this);
+                CellProductrice _parent = parent as CellProductrice;
+                _parent.ProductriceProximityGestion(this , cell);
             }
         }
     }
@@ -46,8 +48,8 @@ public class CellProximityDectection : PoolableObjects
             cell.RemoveProximityInfluence(this);
             if (parent.myCellTemplate.type == CellType.Productrice)
             {
-                //CellProductrice _parent = parent as CellProductrice;
-                //_parent.ProductriceProximityGestion(this);
+                CellProductrice _parent = parent as CellProductrice;
+               //parent.ProductriceProximityGestion(this);
             }
         }
 
