@@ -184,7 +184,19 @@ public class CellTemplateCustomInspector : Editor
         if (genererateProximityProp.boolValue)
         {
             EditorGUILayout.BeginVertical("Box");
-            EditorGUILayout.HelpBox("Il s'agit du pourcentage de chance de surproduction", MessageType.Info);
+            EditorGUILayout.HelpBox("Chaque Collider à :" +
+                "" + "\n" + "- Un Proximity Level  correspondant au level de proximité donné à la cell dedans"
+                + "\n" + "- Une Range au rayon du collider"
+                , MessageType.Info);
+
+            if (((CellType)typeProp.enumValueIndex) == CellType.Productrice)
+            {
+                EditorGUILayout.HelpBox("- Le Production Ratio Bonus est l'augmentation de la production en pourcentage " +
+                    "de la productrice " +
+                    ", les Bonus de chaque collider se cumule pour la meme Productrice", MessageType.Info);
+            }
+
+
             EditorGUILayout.PropertyField(proximityColliderNumberProp);
 
             proximityCollidersProp.arraySize = proximityColliderNumberProp.intValue;
@@ -195,27 +207,29 @@ public class CellTemplateCustomInspector : Editor
         EditorGUILayout.Space();
         EditorGUILayout.Space();
 
-        EditorGUILayout.PropertyField(ProximityGestionProp);
-        if (ProximityGestionProp.boolValue)
+        if (((CellType)typeProp.enumValueIndex) != CellType.Productrice)
         {
-            EditorGUILayout.BeginVertical("Box");//1
-            EditorGUI.indentLevel += 1;
+            EditorGUILayout.PropertyField(ProximityGestionProp);
+            if (ProximityGestionProp.boolValue)
+            {
+                EditorGUILayout.BeginVertical("Box");//1
+                EditorGUI.indentLevel += 1;
 
-            EditorGUILayout.PropertyField(proximityLevelMaxProp);
-            InteractionArrayDisplay(positivesInteractionsProp, "Positve");
-            InteractionArrayDisplay(negativesInteractionsProp, "Negative");
+                EditorGUILayout.PropertyField(proximityLevelMaxProp);
+                //InteractionArrayDisplay(positivesInteractionsProp, "Positve");
+                //InteractionArrayDisplay(negativesInteractionsProp, "Negative");
+                EditorGUI.BeginChangeCheck();
+                EditorGUILayout.PropertyField(StatsModificationProp);
+                if (EditorGUI.EndChangeCheck()) ResetStats();
+                StatsModifDisplay(StatsModificationProp);
 
-            EditorGUI.BeginChangeCheck();
-            EditorGUILayout.PropertyField(StatsModificationProp);
-            if (EditorGUI.EndChangeCheck()) ResetStats();
-            StatsModifDisplay(StatsModificationProp);
 
-
-            EditorGUI.indentLevel -= 1;
-            EditorGUILayout.EndVertical();//1
+                EditorGUI.indentLevel -= 1;
+                EditorGUILayout.EndVertical();//1
+            }
+            EditorGUILayout.Space();
+            EditorGUILayout.Space();
         }
-        EditorGUILayout.Space();
-        EditorGUILayout.Space();
 
         #endregion
 
@@ -350,8 +364,6 @@ public class CellTemplateCustomInspector : Editor
         EditorGUILayout.Space();
         EditorGUILayout.Space();
         #endregion
-
-
 
 
         serializedObject.ApplyModifiedProperties();
@@ -534,6 +546,15 @@ public class CellTemplateCustomInspector : Editor
                 currentElementRange.intValue = EditorGUILayout.IntField(currentElementRange.intValue);
                 EditorGUILayout.EndHorizontal();
 
+                if (((CellType)typeProp.enumValueIndex) == CellType.Productrice)
+                {
+                    EditorGUILayout.BeginHorizontal("Box");
+                    EditorGUILayout.LabelField("Collider Production Ratio Bonus");
+                    SerializedProperty currentElementProductionBonus = currentElement.FindPropertyRelative("productionBonusRatio");
+                    currentElementProductionBonus.intValue = EditorGUILayout.IntField(currentElementProductionBonus.intValue);
+                    EditorGUILayout.EndHorizontal();
+
+                }
 
 
 

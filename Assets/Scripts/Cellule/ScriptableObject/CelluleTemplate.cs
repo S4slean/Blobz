@@ -22,6 +22,7 @@ public class CelluleTemplate : ScriptableObject
     [Space(20f)]
 
     public CellType type;
+
     public bool generateProximity;
     [Range(1, 5)]
     public int proximityColliderNumber = 1;
@@ -65,6 +66,9 @@ public class CelluleTemplate : ScriptableObject
 
     [Range(0, 5)]
     public int proximityLevelMax = 0;
+    [Range(-3, 3)]
+    public int proximityInfluenceMultiplier = 1;
+
     public CellType[] positivesInteractions;
     public CellType[] negativesInteractions;
 
@@ -101,5 +105,7 @@ public struct ProximityCollider
     [Range(1 , 5)]
     public int proximityLevel;
     [Range (5 , 100)]
-    public int range; 
+    public int range;
+    [Range (0 , 25)]
+    public int productionBonusRatio;
 }

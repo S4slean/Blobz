@@ -420,7 +420,62 @@ public class CellMain : PoolableObjects, PlayerAction
     #endregion
 
     #region PROXIMITE_GESTION
-    public void ProximityCheck()
+
+    #region ANCIEN SYSTEM
+
+    //public void AddToCellAtPromity(CellMain cellDetected)
+    //{
+    //    bool endFunction = false;
+    //    //cellAtProximity.Add(cellDetected);
+    //    CellType cellDetectedType = cellDetected.myCellTemplate.type;
+    //    for (int i = 0; i < myCellTemplate.negativesInteractions.Length; i++)
+    //    {
+    //        if (cellDetectedType == myCellTemplate.negativesInteractions[i])
+    //        {
+    //            ProximityLevelModification(-1);
+    //            endFunction = true;
+    //            break;
+    //        }
+    //    }
+    //    if (endFunction)
+    //    {
+    //        return;
+    //    }
+
+    //    for (int j = 0; j < myCellTemplate.positivesInteractions.Length; j++)
+    //    {
+    //        if (cellDetectedType == myCellTemplate.positivesInteractions[j])
+    //        {
+    //            ProximityLevelModification(1);
+    //            break;
+    //        }
+    //    }
+    //}
+    //public void RemoveToCellAtPromity(CellMain cellDetected)
+    //{
+    //    //cellAtProximity.Remove(cellDetected);
+    //    CellType cellDetectedType = cellDetected.myCellTemplate.type;
+
+    //    for (int i = 0; i < myCellTemplate.negativesInteractions.Length; i++)
+    //    {
+    //        if (cellDetectedType == myCellTemplate.negativesInteractions[i])
+    //        {
+    //            ProximityLevelModification(+1);
+    //            // Ajouter L'UI 
+    //        }
+
+    //    }
+    //    for (int j = 0; j < myCellTemplate.positivesInteractions.Length; j++)
+    //    {
+    //        if (cellDetectedType == myCellTemplate.positivesInteractions[j])
+    //        {
+    //            ProximityLevelModification(-1);
+    //        }
+    //    }
+    //}
+    #endregion
+
+    public void GenerateProximity()
     {
         // ProximityDectection.myCollider.radius = Mathf.SmoothDamp(0, myCellTemplate.range / 2, ref velocity, 0.01f);
         if (myCellTemplate.generateProximity)
@@ -430,8 +485,10 @@ public class CellMain : PoolableObjects, PlayerAction
             {
                 CellProximityDectection newProximityCollider = ObjectPooler.poolingSystem.GetPooledObject<CellProximityDectection>() as CellProximityDectection;
                 myProximityCollider.SetValue(newProximityCollider, i);
+
                 newProximityCollider.transform.localScale = new Vector3(1, 1, 1) * (myCellTemplate.proximityColliders[i].range / 2);
                 newProximityCollider.transform.SetParent(transform);
+                newProximityCollider.productionBonusRatio = myCellTemplate.proximityColliders[i].productionBonusRatio;
                 newProximityCollider.Init(myCellTemplate.proximityColliders[i].proximityLevel, transform);
                 newProximityCollider.parent = this;
 
@@ -490,59 +547,6 @@ public class CellMain : PoolableObjects, PlayerAction
         ProximityLevelModification();
     }
 
-    #region Ancien Système de proximité
-
-    //public void AddToCellAtPromity(CellMain cellDetected)
-    //{
-    //    bool endFunction = false;
-    //    //cellAtProximity.Add(cellDetected);
-    //    CellType cellDetectedType = cellDetected.myCellTemplate.type;
-    //    for (int i = 0; i < myCellTemplate.negativesInteractions.Length; i++)
-    //    {
-    //        if (cellDetectedType == myCellTemplate.negativesInteractions[i])
-    //        {
-    //            ProximityLevelModification(-1);
-    //            endFunction = true;
-    //            break;
-    //        }
-    //    }
-    //    if (endFunction)
-    //    {
-    //        return;
-    //    }
-
-    //    for (int j = 0; j < myCellTemplate.positivesInteractions.Length; j++)
-    //    {
-    //        if (cellDetectedType == myCellTemplate.positivesInteractions[j])
-    //        {
-    //            ProximityLevelModification(1);
-    //            break;
-    //        }
-    //    }
-    //}
-    //public void RemoveToCellAtPromity(CellMain cellDetected)
-    //{
-    //    //cellAtProximity.Remove(cellDetected);
-    //    CellType cellDetectedType = cellDetected.myCellTemplate.type;
-
-    //    for (int i = 0; i < myCellTemplate.negativesInteractions.Length; i++)
-    //    {
-    //        if (cellDetectedType == myCellTemplate.negativesInteractions[i])
-    //        {
-    //            ProximityLevelModification(+1);
-    //            // Ajouter L'UI 
-    //        }
-
-    //    }
-    //    for (int j = 0; j < myCellTemplate.positivesInteractions.Length; j++)
-    //    {
-    //        if (cellDetectedType == myCellTemplate.positivesInteractions[j])
-    //        {
-    //            ProximityLevelModification(-1);
-    //        }
-    //    }
-    //}
-    #endregion
     public virtual void ProximityLevelModification()
     {
         int LastProximityTier = currentProximityTier;
@@ -742,7 +746,7 @@ public class CellMain : PoolableObjects, PlayerAction
         //    GenerateLinkSlot();
         //}
         RessourceTracker.instance.EnergyCapVariation(currentEnergyCap);
-        ProximityCheck();
+        GenerateProximity();
         ProximityLevelModification();
     }
     public int GetCurrentRange()

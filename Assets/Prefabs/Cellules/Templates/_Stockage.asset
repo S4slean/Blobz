@@ -28,8 +28,10 @@ MonoBehaviour:
   proximityColliders:
   - proximityLevel: 0
     range: 0
+    productionBonusRatio: 0
   - proximityLevel: 0
     range: 0
+    productionBonusRatio: 0
   energyCost: 15
   energyCapBase: 10
   rangeBase: 40
@@ -46,6 +48,7 @@ MonoBehaviour:
   numberOfInputLinks: 0
   numberOfFlexLinks: 3
   proximityLevelMax: 4
+  proximityInfluenceMultiplier: 1
   positivesInteractions: 0100000000000000
   negativesInteractions: 03000000
   SurproductionRate: 00000000000000000000000000000000
@@ -59,6 +62,6 @@ MonoBehaviour:
   StatsModification: 2
   REFS: 0
   ToggleInfoBox: 1
-  STATS: 1
-  ProductionGestion: 1
-  ProximityGestion: 0
+  STATS: 0
+  ProductionGestion: 0
+  ProximityGestion: 1

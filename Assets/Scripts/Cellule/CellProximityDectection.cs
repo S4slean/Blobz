@@ -5,13 +5,11 @@ using UnityEngine;
 public class CellProximityDectection : PoolableObjects
 {
     public int proximityLevel;
+    public int productionBonusRatio;
     public SphereCollider myCollider;
     public CellMain parent;
     public MeshRenderer mR;
     public Color[] proximityColor;
-
-    public List<CellMain> cellsInfluence = new List<CellMain>();
-
 
 
     public void Init(int proxLevel, Transform targetTransform)
@@ -35,7 +33,7 @@ public class CellProximityDectection : PoolableObjects
             if (parent.myCellTemplate.type == CellType.Productrice)
             {
                 CellProductrice _parent = parent as CellProductrice;
-                _parent.ProductriceProximityGestion(this , cell);
+                _parent.ProductriceProximityGestion(this , true);
             }
         }
     }
@@ -49,7 +47,7 @@ public class CellProximityDectection : PoolableObjects
             if (parent.myCellTemplate.type == CellType.Productrice)
             {
                 CellProductrice _parent = parent as CellProductrice;
-               //parent.ProductriceProximityGestion(this);
+                _parent.ProductriceProximityGestion(this , false);
             }
         }
 

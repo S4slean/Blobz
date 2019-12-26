@@ -4,10 +4,8 @@ using UnityEngine;
 
 public class CellProductrice : CellMain
 {
-    public int[] zoneBonusPerCell;
     private int productionBonusRatio;
     private int productionBonusPacket;
-    private List<CellMain> cellsInProximity = new List<CellMain>();
 
     public override void BlobsTick()
     {
@@ -18,7 +16,10 @@ public class CellProductrice : CellMain
             BlobNumberVariation(myCellTemplate.prodPerTickBase);
         }
 
-        BlobNumberVariation(myCellTemplate.prodPerTickBase * (1 + productionBonusPacket));
+        int productionPerTick = myCellTemplate.prodPerTickBase * (1 + productionBonusPacket);
+        Debug.Log("production stable: " + productionPerTick + "chance de production en plus : " + productionBonusRatio + "%");
+
+        BlobNumberVariation(productionPerTick);
 
 
         #region Ancien Systeme de Tick 
@@ -78,50 +79,25 @@ public class CellProductrice : CellMain
     }
 
 
-    public void ProductriceProximityGestion(CellProximityDectection collider, CellMain cell)
+    public void ProductriceProximityGestion(CellProximityDectection collider, bool enter)
     {
-        //Detect si la cell est déja dans un proximity 
-        bool cellAlreadyDetected = false;
-        for (int i = 0; i < cellsInProximity.Count; i++)
-        {
-            if (cell == cellsInProximity[i])
-            {
-                cellAlreadyDetected = true;
-            }
-        }
-        if (!cellAlreadyDetected)
-        { 
-            cellsInProximity.Add(cell);
-        }
-
-        for (int i = 0; i < cell.inThoseCellProximity.Count; i++)
-        {
-            if (cell.inThoseCellProximity[i].parent == collider.parent)
-            {
-                if (collider)
-                {
-
-                }
-            }
-        }
-
         //Il faut choisir le plus grand 
         for (int i = 0; i < myProximityCollider.Length; i++)
         {
             if (collider == myProximityCollider[i])
             {
-                ProductionVariationByProximity(i, true);
+                ProductionVariationByProximity(collider.productionBonusRatio, enter);
             }
         }
     }
 
 
-    private void ProductionVariationByProximity(int index, bool addition)
+    private void ProductionVariationByProximity(int amount, bool addition)
     {
         int multiplier;
         multiplier = (addition == true) ? 1 : -1;
 
-        productionBonusRatio += multiplier * zoneBonusPerCell[index];
+        productionBonusRatio += multiplier * amount;
 
         if (productionBonusRatio >= 100)
         {
@@ -133,9 +109,9 @@ public class CellProductrice : CellMain
         if (productionBonusRatio < 0)
         {
             productionBonusPacket--;
-            int reste = -productionBonusRatio;
+            int reste = productionBonusRatio;
             productionBonusRatio = 100;
-            productionBonusRatio -= reste;
+            productionBonusRatio += reste;
         }
 
     }
