@@ -176,8 +176,6 @@ public class CellMain : PoolableObjects, PlayerAction
             InputManager.Instance.DeselectElement();
         }
 
-
-
         TickDesinscription();
 
         int B = stuckBlobs.Count;
@@ -199,6 +197,7 @@ public class CellMain : PoolableObjects, PlayerAction
             }
             links[0].Break();
         }
+
         for (int i = 0; i < linkJoints.Length; i++)
         {
             linkJoints[i].Inpool();
@@ -222,9 +221,7 @@ public class CellMain : PoolableObjects, PlayerAction
 
         if (this == CellManager.Instance.selectedCell)
         {
-
             InputManager.Instance.StopCurrentAction();
-
         }
 
         if (myCellTemplate.generateProximity)
@@ -248,6 +245,7 @@ public class CellMain : PoolableObjects, PlayerAction
             Inpool();
         }
     }
+
     public virtual void BlobsTick()
     {
         BlobNumberVariation(myCellTemplate.prodPerTickBase);
@@ -651,9 +649,11 @@ public class CellMain : PoolableObjects, PlayerAction
             jointReset(linkToRemove.joints[1]);
 
         }
+
         links.Remove(linkToRemove);
         UpdateCaract();
     }
+
     //tri les output links
     public virtual void SortingLink()
     {
@@ -774,6 +774,7 @@ public class CellMain : PoolableObjects, PlayerAction
         }
         return null;
     }
+
     public void GenerateLinkSlot()
     {
         int currentSlot = 0;
@@ -803,6 +804,7 @@ public class CellMain : PoolableObjects, PlayerAction
             currentSlot = SlotGeneration(currentSlot, yOffset, maxJoint, linkJointType.flex);
         }
     }
+
     private int SlotGeneration(int currentSlot, float yOffset, int maxJoint, linkJointType _type)
     {
         float anglefrac = 2 * Mathf.PI / (maxJoint);
@@ -810,7 +812,7 @@ public class CellMain : PoolableObjects, PlayerAction
         //calcule de l'angle en foncttion du nombre de point
         float angle = anglefrac * currentSlot;
         Vector3 dir = new Vector3(Mathf.Sin(angle), 0, Mathf.Cos(angle));
-        Vector3 pos = dir * myCellTemplate.slotDistance + new Vector3(0, yOffset, 0);
+        Vector3 pos =  dir * myCellTemplate.slotDistance + graphTransform.transform.position;
 
 
         LinkJointClass newSlot = ObjectPooler.poolingSystem.GetPooledObject<LinkJointClass>() as LinkJointClass;
@@ -818,12 +820,13 @@ public class CellMain : PoolableObjects, PlayerAction
 
         newSlot.Outpool();
         newSlot.transform.parent = this.transform;
-        newSlot.transform.localPosition = pos;
+        newSlot.transform.position = pos;
         newSlot.transform.localRotation = Quaternion.Euler(90, 0, 0);
         newSlot.Init(_type);
         currentSlot++;
         return currentSlot;
     }
+
     public void jointReset(LinkJointClass joint)
     {
         int flexDetected = 0;

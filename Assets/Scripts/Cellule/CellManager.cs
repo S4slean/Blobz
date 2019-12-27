@@ -93,15 +93,15 @@ public class CellManager : MonoBehaviour
         if (distance <= (selectedCell.GetCurrentRange() + selectedCell.myCellTemplate.slotDistance))
         {
             Vector3 lastPos = new Vector3(hit.point.x, currentLink.extremityPos[0].y, hit.point.z);
-            Vector3 firstPos = selectedCell.transform.position + direction * selectedCell.myCellTemplate.slotDistance;
+            Vector3 firstPos = selectedCell.graphTransform.transform.position + direction * selectedCell.myCellTemplate.slotDistance;
             currentLink.UpdatePoint(firstPos, lastPos);
 
         }
         else
         {
 
-            Vector3 firstPos = selectedCell.transform.position + direction * selectedCell.myCellTemplate.slotDistance;
-            Vector3 lastPos = selectedCell.transform.position + (direction * selectedCell.GetCurrentRange() + direction * selectedCell.myCellTemplate.slotDistance);
+            Vector3 firstPos = selectedCell.graphTransform.transform.position + direction * selectedCell.myCellTemplate.slotDistance;
+            Vector3 lastPos = selectedCell.graphTransform.transform.position + (direction * selectedCell.GetCurrentRange() + direction * selectedCell.myCellTemplate.slotDistance);
             currentLink.UpdatePoint(firstPos, lastPos);
         }
     }
@@ -117,15 +117,15 @@ public class CellManager : MonoBehaviour
         float distance = Vector3.Distance(selectedCell.transform.position, pos);
         if (distance <= (selectedCell.GetCurrentRange() + selectedCell.myCellTemplate.slotDistance + cellMoved.myCellTemplate.slotDistance))
         {
-            Vector3 firstPos = selectedCell.transform.position + direction * selectedCell.myCellTemplate.slotDistance;
+            Vector3 firstPos = selectedCell.graphTransform.transform.position + direction * selectedCell.myCellTemplate.slotDistance;
 
             Vector3 lastPos = new Vector3(pos.x, currentLink.extremityPos[0].y, pos.z) - (direction * cellMoved.myCellTemplate.slotDistance);
             currentLink.UpdatePoint(firstPos, lastPos);
         }
         else
         {
-            Vector3 lastPos = selectedCell.transform.position + (direction * selectedCell.GetCurrentRange() + direction * selectedCell.myCellTemplate.slotDistance);
-            Vector3 firstPos = selectedCell.transform.position + direction * selectedCell.myCellTemplate.slotDistance;
+            Vector3 lastPos = selectedCell.graphTransform.transform.position + (direction * selectedCell.GetCurrentRange() + direction * selectedCell.myCellTemplate.slotDistance);
+            Vector3 firstPos = selectedCell.graphTransform.transform.position + direction * selectedCell.myCellTemplate.slotDistance;
             currentLink.UpdatePoint(firstPos, lastPos);
         }
     }
@@ -192,10 +192,10 @@ public class CellManager : MonoBehaviour
             currentLine.endColor = Color.cyan;
 
 
-            Vector3 cellPos = receivingCell.transform.position;
+            Vector3 cellPos = receivingCell.graphTransform.transform.position;
             Vector3 _dir = (cellPos - selectedCell.transform.position).normalized;
             Vector3 lastPos = cellPos - _dir * receivingCell.myCellTemplate.slotDistance;
-            Vector3 firstPos = selectedCell.transform.position + _dir * selectedCell.myCellTemplate.slotDistance;
+            Vector3 firstPos = selectedCell.graphTransform.transform.position + _dir * selectedCell.myCellTemplate.slotDistance;
             currentLink.UpdatePoint(firstPos, lastPos);
 
 

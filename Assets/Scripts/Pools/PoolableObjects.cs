@@ -25,7 +25,6 @@ public class PoolableObjects : MonoBehaviour
 
         transform.position = initialPool.transform.position;
         transform.SetParent(initialPool.transform);
-        canBePool = true;
         // gameObject.SetActive(false);
         if (gameObject.activeInHierarchy)
         {
@@ -39,5 +38,6 @@ public class PoolableObjects : MonoBehaviour
         //A changé mais c'est pour test
         yield return new WaitForFixedUpdate();
         gameObject.SetActive(false);
+        canBePool = true;
     }
 }

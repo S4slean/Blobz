@@ -53,7 +53,7 @@ MonoBehaviour:
   negativesInteractions: 03000000
   SurproductionRate: 00000000000000000000000000000000
   BlopPerTick: []
-  stockageCapacity: 0f0000003c0000005000000078000000
+  stockageCapacity: 0f000000140000001e00000032000000
   LinkCapacity: 00000000000000000000000000000000
   Range: 
   tickForActivation: 

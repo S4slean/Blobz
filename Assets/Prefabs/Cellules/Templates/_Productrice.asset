@@ -28,7 +28,7 @@ MonoBehaviour:
   proximityColliders:
   - proximityLevel: 3
     range: 20
-    productionBonusRatio: 10
+    productionBonusRatio: 70
   - proximityLevel: 2
     range: 30
     productionBonusRatio: 4

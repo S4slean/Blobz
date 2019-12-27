@@ -24,6 +24,7 @@ public class CellProximityDectection : PoolableObjects
 
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log("ça rentre");
         CellMain cell = other.GetComponent<CellMain>();
         if (cell != null && cell != parent)
         {
@@ -40,6 +41,7 @@ public class CellProximityDectection : PoolableObjects
 
     private void OnTriggerExit(Collider other)
     {
+        Debug.Log("sa sort");
         CellMain cell = other.GetComponent<CellMain>();
         if (cell != null && cell != parent)
         {
