@@ -568,6 +568,7 @@ public class CellMain : PoolableObjects, PlayerAction
 
         NCurrentProximity.text = currentProximityLevel.ToString();
 
+
         if (currentProximityLevel >= 0 && currentProximityLevel < myCellTemplate.proximityLevelMax)
         {
             currentProximityTier = currentProximityLevel;
@@ -581,42 +582,42 @@ public class CellMain : PoolableObjects, PlayerAction
             currentProximityTier = 0;
         }
 
-        if (currentProximityTier != LastProximityTier)
+        //if (currentProximityTier != LastProximityTier)
+        //{
+        switch (myCellTemplate.StatsModification)
         {
-            switch (myCellTemplate.StatsModification)
-            {
-                case StatsModificationType.Surproduction:
-                    currentSurproductionRate = myCellTemplate.SurproductionRate[currentProximityTier];
-                    break;
+            case StatsModificationType.Surproduction:
+                currentSurproductionRate = myCellTemplate.SurproductionRate[currentProximityTier];
+                break;
 
-                case StatsModificationType.RejectForce:
-                    currentRejectPower = myCellTemplate.BlopPerTick[currentProximityTier];
-                    break;
+            case StatsModificationType.RejectForce:
+                currentRejectPower = myCellTemplate.BlopPerTick[currentProximityTier];
+                break;
 
-                case StatsModificationType.StockageCapacity:
-                    currentBlobStockage = myCellTemplate.stockageCapacity[currentProximityTier];
-                    break;
+            case StatsModificationType.StockageCapacity:
+                currentBlobStockage = myCellTemplate.stockageCapacity[currentProximityTier];
+                break;
 
-                //case StatsModificationType.LinkCapacity:
-                //    currentLinkStockage = myCellTemplate.LinkCapacity[currentProximityTier];
-                //    break;
+            //case StatsModificationType.LinkCapacity:
+            //    currentLinkStockage = myCellTemplate.LinkCapacity[currentProximityTier];
+            //    break;
 
-                case StatsModificationType.Range:
-                    currentRange = myCellTemplate.Range[currentProximityTier];
-                    break;
+            case StatsModificationType.Range:
+                currentRange = myCellTemplate.Range[currentProximityTier];
+                break;
 
-                case StatsModificationType.TickForActivation:
-                    currentTickForActivation = myCellTemplate.tickForActivation[currentProximityTier];
-                    break;
+            case StatsModificationType.TickForActivation:
+                currentTickForActivation = myCellTemplate.tickForActivation[currentProximityTier];
+                break;
 
-                case StatsModificationType.EnergyCap:
-                    currentEnergyCap = myCellTemplate.energyCap[currentProximityTier];
-                    RessourceTracker.instance.EnergyCapVariation(currentEnergyCap - lastEnergyCap);
-                    break;
+            case StatsModificationType.EnergyCap:
+                currentEnergyCap = myCellTemplate.energyCap[currentProximityTier];
+                RessourceTracker.instance.EnergyCapVariation(currentEnergyCap - lastEnergyCap);
+                break;
 
-                case StatsModificationType.Aucune:
-                    break;
-            }
+            case StatsModificationType.Aucune:
+                break;
+                //}
         }
         UpdateCaract();
     }
@@ -985,6 +986,10 @@ public class CellMain : PoolableObjects, PlayerAction
 
     }
     #endregion
+
+
+
+
 
 
 
