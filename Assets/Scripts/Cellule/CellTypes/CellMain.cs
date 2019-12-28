@@ -159,7 +159,7 @@ public class CellMain : PoolableObjects, PlayerAction
 
         isDead = true;
         //TickManager.doTick -= BlobsTick;
-        ownCollider.enabled = false;
+        //ownCollider.enabled = false;
 
         RessourceTracker.instance.RemoveBlob(BlobManager.BlobType.normal, blobNumber);
 
@@ -171,7 +171,7 @@ public class CellMain : PoolableObjects, PlayerAction
         {
             UIManager.Instance.DesactivateCellShop();
         }
-        if (InputManager.Instance.selectedElement == this as PlayerAction )
+        if (InputManager.Instance.selectedElement == this as PlayerAction)
         {
             InputManager.Instance.DeselectElement();
         }
@@ -232,6 +232,10 @@ public class CellMain : PoolableObjects, PlayerAction
                 myProximityCollider[i].Inpool();
             }
         }
+
+
+        inThoseCellProximity.Clear();
+        influencedByThoseCellProximity.Clear();
 
         blobNumber = 0;
         //SetupVariable();
@@ -531,16 +535,22 @@ public class CellMain : PoolableObjects, PlayerAction
     public void RemoveProximityInfluence(CellProximityDectection proximityToRemove)
     {
         inThoseCellProximity.Remove(proximityToRemove);
-        for (int i = 0; i < influencedByThoseCellProximity.Count; i++)
+        //for (int i = 0; i < influencedByThoseCellProximity.Count; i++)
+        //{
+        //    if (proximityToRemove == influencedByThoseCellProximity[i])
+        //    {
+        //        influencedByThoseCellProximity.Remove(proximityToRemove);
+        //        for (int y = 0; y < inThoseCellProximity.Count; y++)
+        //        {
+        //            AddProximityInfluence(inThoseCellProximity[y]);
+        //        }
+        //    }
+        //}
+
+        influencedByThoseCellProximity.Remove(proximityToRemove);
+        for (int y = 0; y < inThoseCellProximity.Count; y++)
         {
-            if (proximityToRemove == influencedByThoseCellProximity[i])
-            {
-                influencedByThoseCellProximity.Remove(proximityToRemove);
-                for (int y = 0; y < inThoseCellProximity.Count; y++)
-                {
-                    AddProximityInfluence(inThoseCellProximity[y]);
-                }
-            }
+            AddProximityInfluence(inThoseCellProximity[y]);
         }
         ProximityLevelModification();
     }
@@ -812,7 +822,7 @@ public class CellMain : PoolableObjects, PlayerAction
         //calcule de l'angle en foncttion du nombre de point
         float angle = anglefrac * currentSlot;
         Vector3 dir = new Vector3(Mathf.Sin(angle), 0, Mathf.Cos(angle));
-        Vector3 pos =  dir * myCellTemplate.slotDistance + graphTransform.transform.position;
+        Vector3 pos = dir * myCellTemplate.slotDistance + graphTransform.transform.position;
 
 
         LinkJointClass newSlot = ObjectPooler.poolingSystem.GetPooledObject<LinkJointClass>() as LinkJointClass;
@@ -975,5 +985,60 @@ public class CellMain : PoolableObjects, PlayerAction
 
     }
     #endregion
+
+
+
+    // A METTRE SUR UN AUTRE SCRIPT SECONDAIRE PLUS TARD
+
+    #region Collider Proximity
+
+    #endregion
+
+    private void OnTriggerEnter(Collider other)
+    {
+        CellProximityDectection collider = other.GetComponent<CellProximityDectection>();
+        if (collider != null && collider.parent != this)
+        {
+            Debug.Log("ça rentre", transform);
+            inThoseCellProximity.Add(collider);
+            //parent.AddToCellAtPromity(cell);
+            AddProximityInfluence(collider);
+            //OVERRIDE POSSIBLE 
+            if (collider.parent.myCellTemplate.type == CellType.Productrice)
+            {
+                CellProductrice prod = collider.parent as CellProductrice;
+                prod.ProductriceProximityGestion(collider, true);
+            }
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        CellProximityDectection collider = other.GetComponent<CellProximityDectection>();
+        if (collider != null && collider.parent != this)
+        {
+            Debug.Log("sa sort", transform);
+            RemoveProximityInfluence(collider);
+            //OVERRIDE POSSIBLE 
+            if (collider.parent.myCellTemplate.type == CellType.Productrice)
+            {
+                CellProductrice prod = collider.parent as CellProductrice;
+                prod.ProductriceProximityGestion(collider, false);
+            }
+        }
+
+    }
+
+    public override void Inpool()
+    {
+        base.Inpool();
+        StartCoroutine(WaitFixUpdate());
+    }
+    //ON DEVRA REGLER ça
+    protected IEnumerator WaitFixUpdate()
+    {
+        yield return new WaitForFixedUpdate();
+        ownCollider.enabled = false;
+    }
 
 }

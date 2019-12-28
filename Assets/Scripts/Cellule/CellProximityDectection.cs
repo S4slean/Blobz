@@ -22,37 +22,37 @@ public class CellProximityDectection : PoolableObjects
     }
 
 
-    private void OnTriggerEnter(Collider other)
-    {
-        Debug.Log("ça rentre");
-        CellMain cell = other.GetComponent<CellMain>();
-        if (cell != null && cell != parent)
-        {
-            cell.inThoseCellProximity.Add(this);
-            //parent.AddToCellAtPromity(cell);
-            cell.AddProximityInfluence(this);
-            if (parent.myCellTemplate.type == CellType.Productrice)
-            {
-                CellProductrice _parent = parent as CellProductrice;
-                _parent.ProductriceProximityGestion(this , true);
-            }
-        }
-    }
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    Debug.Log("ça rentre" + parent.transform);
+    //    CellMain cell = other.GetComponent<CellMain>();
+    //    if (cell != null && cell != parent)
+    //    {
+    //        cell.inThoseCellProximity.Add(this);
+    //        //parent.AddToCellAtPromity(cell);
+    //        cell.AddProximityInfluence(this);
+    //        if (parent.myCellTemplate.type == CellType.Productrice)
+    //        {
+    //            CellProductrice _parent = parent as CellProductrice;
+    //            _parent.ProductriceProximityGestion(this, true);
+    //        }
+    //    }
+    //}
 
-    private void OnTriggerExit(Collider other)
-    {
-        Debug.Log("sa sort");
-        CellMain cell = other.GetComponent<CellMain>();
-        if (cell != null && cell != parent)
-        {
-            cell.RemoveProximityInfluence(this);
-            if (parent.myCellTemplate.type == CellType.Productrice)
-            {
-                CellProductrice _parent = parent as CellProductrice;
-                _parent.ProductriceProximityGestion(this , false);
-            }
-        }
+    //private void OnTriggerExit(Collider other)
+    //{
+    //    Debug.Log("sa sort", parent);
+    //    CellMain cell = other.GetComponent<CellMain>();
+    //    if (cell != null && cell != parent)
+    //    {
+    //        cell.RemoveProximityInfluence(this);
+    //        if (parent.myCellTemplate.type == CellType.Productrice)
+    //        {
+    //            CellProductrice _parent = parent as CellProductrice;
+    //            _parent.ProductriceProximityGestion(this, false);
+    //        }
+    //    }
 
-    }
+    //}
 }
 

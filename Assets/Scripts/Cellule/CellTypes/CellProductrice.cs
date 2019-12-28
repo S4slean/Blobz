@@ -17,7 +17,7 @@ public class CellProductrice : CellMain
         }
 
         int productionPerTick = myCellTemplate.prodPerTickBase * (1 + productionBonusPacket);
-        Debug.Log("production stable: " + productionPerTick + "chance de production en plus : " + productionBonusRatio + "%");
+        Debug.Log("production stable: " + productionPerTick + "chance de production en plus : " + productionBonusRatio + "%" , transform);
 
         BlobNumberVariation(productionPerTick);
 
@@ -81,16 +81,25 @@ public class CellProductrice : CellMain
 
     public void ProductriceProximityGestion(CellProximityDectection collider, bool enter)
     {
+        ProductionVariationByProximity(collider.productionBonusRatio, enter);
         //Il faut choisir le plus grand 
-        for (int i = 0; i < myProximityCollider.Length; i++)
-        {
-            if (collider == myProximityCollider[i])
-            {
-                ProductionVariationByProximity(collider.productionBonusRatio, enter);
-            }
-        }
+        //for (int i = 0; i < myProximityCollider.Length; i++)
+        //{
+        //    if (collider == myProximityCollider[i])
+        //    {
+        //        ProductionVariationByProximity(collider.productionBonusRatio, enter);
+        //    }
+        //}
     }
 
+    public override void Died(bool intentionnalDeath)
+    {
+
+        productionBonusPacket = 0;
+        productionBonusPacket = 0;
+        base.Died(intentionnalDeath);
+
+    }
 
     private void ProductionVariationByProximity(int amount, bool addition)
     {
