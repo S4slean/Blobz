@@ -59,6 +59,7 @@ public class CellFlipFlop : CellMain
 
     private void SwitchLink()
     {
+
         if (outputLinks.Count == 0)
         {
             currentOutputLink = null;
@@ -92,7 +93,6 @@ public class CellFlipFlop : CellMain
         }
         // outputLinks[switchCount] //un close celui là 
         currentOutputLink = outputLinks[switchCount];
-
 
         switchCount++;
 
