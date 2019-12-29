@@ -898,10 +898,12 @@ public class CellMain : PoolableObjects, PlayerAction
 
     #region PLAYER ACTION INTERFACE
 
-    public void OnLeftClickDown(RaycastHit hit)
+    public virtual void OnLeftClickDown(RaycastHit hit)
     {
         InputManager.Instance.SelectCell();
     }
+
+    //Interaction 
     public virtual void OnShortLeftClickUp(RaycastHit hit)
     {
         if (blobNumber > 0)
@@ -919,62 +921,62 @@ public class CellMain : PoolableObjects, PlayerAction
     {
         UIManager.Instance.DisplayCellShop(InputManager.Instance.selectedCell);
     }
-    public void OnLongLeftClickUp(RaycastHit hit)
+    public virtual void OnLongLeftClickUp(RaycastHit hit)
     {
         UIManager.Instance.StartCoroutine(UIManager.Instance.DesactivateCellShop());
     }
 
 
-    public void OnDragStart(RaycastHit hit)
+    public virtual void OnDragStart(RaycastHit hit)
     {
         UIManager.Instance.StartCoroutine(UIManager.Instance.DesactivateCellShop());
         if (CellManager.Instance.CreatenewLink())
             CellManager.Instance.newCell = false;
     }
-    public void OnLeftDrag(RaycastHit hit)
+    public virtual void OnLeftDrag(RaycastHit hit)
     {
         CellManager.Instance.DragNewlink(hit);
     }
-    public void OnDragEnd(RaycastHit hit)
+    public virtual void OnDragEnd(RaycastHit hit)
     {
         CellManager.Instance.ValidateNewLink(hit);
     }
 
 
-    public void OnShortRightClick(RaycastHit hit)
+    public virtual void OnShortRightClick(RaycastHit hit)
     {
         //UIManager.Instance.DisplayCellOptions(this);
     }
-    public void OnRightClickWhileHolding(RaycastHit hit)
+    public virtual void OnRightClickWhileHolding(RaycastHit hit)
     {
         UIManager.Instance.DesactivateCellShop();
     }
-    public void OnRightClickWhileDragging(RaycastHit hit)
+    public virtual void OnRightClickWhileDragging(RaycastHit hit)
     {
         CellManager.Instance.SupressCurrentLink();
         CellManager.Instance.DeselectElement();
     }
 
-    public void OnmouseIn(RaycastHit hit)
+    public virtual void OnmouseIn(RaycastHit hit)
     {
         UIManager.Instance.LoadToolTip(transform.position, this);
     }
-    public void OnMouseOut(RaycastHit hit)
+    public virtual void OnMouseOut(RaycastHit hit)
     {
         UIManager.Instance.UnloadToolTip();
     }
 
-    public void OnSelect()
+    public virtual void OnSelect()
     {
         CellManager.Instance.selectedCell = this;
     }
 
-    public void OnDeselect()
+    public virtual void OnDeselect()
     {
         UIManager.Instance.DeselectElement();
     }
 
-    public void StopAction()
+    public virtual void StopAction()
     {
         UIManager.Instance.DesactivateCellShop();
         UIManager.Instance.HideCellOptions();
@@ -991,13 +993,9 @@ public class CellMain : PoolableObjects, PlayerAction
 
 
 
-
-
     // A METTRE SUR UN AUTRE SCRIPT SECONDAIRE PLUS TARD
 
     #region Collider Proximity
-
-    #endregion
 
     private void OnTriggerEnter(Collider other)
     {
@@ -1033,6 +1031,7 @@ public class CellMain : PoolableObjects, PlayerAction
         }
 
     }
+    #endregion
 
     public override void Inpool()
     {

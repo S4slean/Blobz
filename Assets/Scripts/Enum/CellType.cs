@@ -10,5 +10,14 @@ public enum CellType
     Armory,
     Stockage,
     Broyeur,
-    Passage
+    Passage,
+
+    BlipBlop, 
+    Divine,
+    Tourelle, 
+    LaSalle,
+    Pilone , 
+    Decharge
+
+
 }

@@ -10,46 +10,49 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5d07d45a74266e347a6c0f35a3488ad7, type: 3}
-  m_Name: _Autoroute
+  m_Name: _BlipBlop
   m_EditorClassIdentifier: 
   cellsEnableToBuild: []
   blopPrefab: {fileID: 0}
-  buttonColor: {r: 0.7169812, g: 0.4398764, b: 0, a: 1}
+  buttonColor: {r: 0, g: 0, b: 0, a: 0}
   cellTexture: {fileID: 0}
-  type: 0
+  type: 5
   generateProximity: 0
   proximityColliderNumber: 1
-  proximityColliders: []
-  energyCost: 5
+  proximityColliders:
+  - proximityLevel: 0
+    range: 0
+    productionBonusRatio: 0
+  energyCost: 10
   energyCapBase: 10
   rangeBase: 50
   blobRatioAtDeath: 0
   impulseForce_Death: 10
   prodPerTickBase: 0
-  rejectPowerBase: 0
-  storageCapability: 10
+  rejectPowerBase: 1
+  storageCapability: 5
   tickForActivationBase: 1
-  energyPerClick: 1
-  limitedInLinks: 0
-  slotDistance: 1.5
-  numberOfOuputLinks: 0
-  numberOfInputLinks: 0
-  numberOfFlexLinks: 5
-  proximityLevelMax: 1
+  energyPerClick: 2
+  limitedInLinks: 1
+  slotDistance: 0.5
+  numberOfOuputLinks: 2
+  numberOfInputLinks: 1
+  numberOfFlexLinks: 0
+  proximityLevelMax: 0
+  proximityInfluenceMultiplier: 1
   positivesInteractions: 
   negativesInteractions: 
-  SurproductionRate: 00000000
-  BlopPerTick:
-  - 0
+  SurproductionRate: 
+  BlopPerTick: []
   stockageCapacity: 
   LinkCapacity: 
   Range: 
-  tickForActivation: 00000000
+  tickForActivation: 
   energyCap: 
   energyPerblop: 0
-  StatsModification: 5
+  StatsModification: 7
   REFS: 0
   ToggleInfoBox: 1
   STATS: 0
-  ProductionGestion: 1
+  ProductionGestion: 0
   ProximityGestion: 0
