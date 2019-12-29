@@ -5,6 +5,8 @@ using UnityEngine;
 public class CellPilone : CellMain
 {
     private int energie;
+
+    //Faudra mettre ça en cell Template
     private int MaxEnergie;
 
     public override void BlobsTick()
