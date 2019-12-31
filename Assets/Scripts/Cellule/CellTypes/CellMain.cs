@@ -906,14 +906,15 @@ public class CellMain : PoolableObjects, PlayerAction
     //Interaction 
     public virtual void OnShortLeftClickUp(RaycastHit hit)
     {
-        if (blobNumber > 0)
-        {
-            BlobNumberVariation(-1);
-            //CellManager.Instance.EnergyVariation(currentEnergyPerClick);
-            RessourceTracker.instance.EnergyVariation(currentEnergyPerClick);
-        }
+        //if (blobNumber > 0)
+        //{
+        //    BlobNumberVariation(-1);
+        //    //CellManager.Instance.EnergyVariation(currentEnergyPerClick);
+        //    RessourceTracker.instance.EnergyVariation(currentEnergyPerClick);
+        //}
 
-        anim.Play("PlayerInteraction", 0, 0f);
+        //anim.Play("PlayerInteraction", 0, 0f);
+        Debug.Log("interaction non définie");
     }
 
 

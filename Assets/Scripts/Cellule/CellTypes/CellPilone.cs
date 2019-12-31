@@ -11,7 +11,7 @@ public class CellPilone : CellMain
 
     public override void BlobsTick()
     {
-        if (blobNumber > 0 )
+        if (blobNumber > 0)
         {
             BlobNumberVariation(-1);
             ChargeEnergie();
@@ -19,9 +19,15 @@ public class CellPilone : CellMain
         else
         {
             energie--;
-            if (energie <= 0 )
+            if (energie <= 0)
             {
-                myProximityCollider[0].gameObject.SetActive(false);
+                //Possible probleme avec les colliders 
+                // myProximityCollider[0].gameObject.SetActive(false);
+                for (int i = 0; i < myProximityCollider.Length; i++)
+                {
+                    myProximityCollider[i].gameObject.SetActive(false);
+                    // myProximityCollider[i].transform.position = myProximityCollider[i].initialPool.transform.position;
+                }
             }
         }
         BlobNumberVariation(myCellTemplate.prodPerTickBase);
@@ -63,7 +69,13 @@ public class CellPilone : CellMain
     private void ChargeEnergie()
     {
         energie = MaxEnergie;
-        myProximityCollider[0].gameObject.SetActive(true);
+
+
+        for (int i = 0; i < myProximityCollider.Length; i++)
+        {
+            myProximityCollider[i].gameObject.SetActive(true);
+            // myProximityCollider[i].transform.position = transform.position;
+        }
     }
 
 }

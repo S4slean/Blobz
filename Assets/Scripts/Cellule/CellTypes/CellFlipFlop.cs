@@ -11,15 +11,9 @@ public class CellFlipFlop : CellMain
 
     public override void BlobsTick()
     {
-        BlobNumberVariation(myCellTemplate.prodPerTickBase);
-        if (currentOutputLink != null)
-        {
-            return;
-        }
-
         //ANIM
         haveExpulse = false;
-        if (blobNumber > 0)
+        if (blobNumber > 0 && currentOutputLink != null)
         {
             currentTick++;
             if (currentTick == currentTickForActivation)
@@ -59,14 +53,12 @@ public class CellFlipFlop : CellMain
 
     private void SwitchLink()
     {
-
         if (outputLinks.Count == 0)
         {
             currentOutputLink = null;
             return;
         }
-
-        if (outputLinks.Count == 1)
+        else if (outputLinks.Count == 1)
         {
             if (!isToggle)
             {
@@ -82,6 +74,8 @@ public class CellFlipFlop : CellMain
         }
 
 
+        isToggle = false; 
+
         if (switchCount == outputLinks.Count)
         {
             switchCount = 0;
@@ -89,13 +83,12 @@ public class CellFlipFlop : CellMain
 
         for (int i = 0; i < outputLinks.Count; i++)
         {
-            //METTRE un truc qui close
+            outputLinks[i].isCLosed(true);
         }
-        // outputLinks[switchCount] //un close celui là 
+        outputLinks[switchCount].isCLosed(false); //Unclose celui là 
         currentOutputLink = outputLinks[switchCount];
 
         switchCount++;
-
     }
 
 

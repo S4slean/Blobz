@@ -177,6 +177,8 @@ public class LinkClass : PoolableObjects
     #endregion
 
     #region CELL RELATIVE
+
+
     public void Transmitt(int blobAmount)
     {
         //Ancienne Version 
@@ -188,6 +190,7 @@ public class LinkClass : PoolableObjects
         // on pourra lancer une anim ici 
         anim.Play("Transfer");
     }
+
     public void AngleFromCell(CellMain OutputCell)
     {
         originalCell = OutputCell;
@@ -218,7 +221,20 @@ public class LinkClass : PoolableObjects
         receivingCell = _receivingCell;
     }
 
+    public void isCLosed(bool toggle)
+    {
+        if (toggle)
+        {
+            Debug.Log("this link got closed", gameObject);
+        }
+        else
+        {
+            Debug.Log("this link got opened", gameObject);
+        }
+    }
+
     #endregion
+
 
 
 }
