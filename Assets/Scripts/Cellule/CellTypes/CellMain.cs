@@ -906,15 +906,15 @@ public class CellMain : PoolableObjects, PlayerAction
     //Interaction 
     public virtual void OnShortLeftClickUp(RaycastHit hit)
     {
-        //if (blobNumber > 0)
-        //{
-        //    BlobNumberVariation(-1);
-        //    //CellManager.Instance.EnergyVariation(currentEnergyPerClick);
-        //    RessourceTracker.instance.EnergyVariation(currentEnergyPerClick);
-        //}
+        if (blobNumber > 0)
+        {
+            BlobNumberVariation(-1);
+            //CellManager.Instance.EnergyVariation(currentEnergyPerClick);
+            RessourceTracker.instance.EnergyVariation(currentEnergyPerClick);
+        }
 
-        //anim.Play("PlayerInteraction", 0, 0f);
-        Debug.Log("interaction non définie");
+        anim.Play("PlayerInteraction", 0, 0f);
+        //  Debug.Log("interaction non définie");
     }
 
 
@@ -1034,16 +1034,16 @@ public class CellMain : PoolableObjects, PlayerAction
     }
     #endregion
 
-    public override void Inpool()
-    {
-        base.Inpool();
-        StartCoroutine(WaitFixUpdate());
-    }
-    //ON DEVRA REGLER ça
-    protected IEnumerator WaitFixUpdate()
-    {
-        yield return new WaitForFixedUpdate();
-        ownCollider.enabled = false;
-    }
+    //public override void Inpool()
+    //{
+    //    base.Inpool();
+    //    StartCoroutine(WaitFixUpdate());
+    //}
+    ////ON DEVRA REGLER ça
+    //protected IEnumerator WaitFixUpdate()
+    //{
+    //    yield return new WaitForFixedUpdate();
+    //    ownCollider.enabled = false;
+    //}
 
 }
