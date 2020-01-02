@@ -23,7 +23,6 @@ public class CellTemplateCustomInspector : Editor
     SerializedProperty BlopPerTickProp;
     //Broyeuse Spé
 
-    //Stockage Spé
     SerializedProperty stockageCapacityProp, LinkCapacityProp, RangeProp, tickForActivationProp;
 
     SerializedProperty InfoBoxToggleProp, refToggleProp, statToggleProp, ProductionGestionsProp, ProximityGestionProp;
@@ -36,6 +35,12 @@ public class CellTemplateCustomInspector : Editor
 
     //ReorderableList proximityColliderList; 
 
+    #region VARIABLES SPE 
+
+    SerializedProperty piloneMaxEnergieProp, tourelleMaxMunProp; 
+    SerializedProperty tourelleDamageProp , tourelleAttackRadiusProp; 
+
+    #endregion
 
     private float fieldWidthBase, labelWidthBase;
 
@@ -108,6 +113,12 @@ public class CellTemplateCustomInspector : Editor
         #region Specificité
         //Broyeur
         energyPerblop = serializedObject.FindProperty("energyPerblop");
+        piloneMaxEnergieProp = serializedObject.FindProperty("piloneMaxEnergie");
+        tourelleMaxMunProp = serializedObject.FindProperty("tourelleMaxMun");
+        tourelleAttackRadiusProp = serializedObject.FindProperty("tourelleAttackRadius");
+        tourelleDamageProp = serializedObject.FindProperty("tourelleDamage");
+
+
         #endregion
 
         #region LINK
@@ -147,9 +158,23 @@ public class CellTemplateCustomInspector : Editor
                 break;
             case CellType.Broyeur:
                 EditorGUILayout.PropertyField(energyPerblop);
-
                 break;
             case CellType.Passage:
+                break;
+
+            case CellType.BlipBlop:
+                break;
+            case CellType.Divine:
+                break;
+            case CellType.Tourelle:
+                EditorGUILayout.PropertyField(tourelleMaxMunProp);
+                break;
+            case CellType.LaSalle:
+                break;
+            case CellType.Pilone:
+                EditorGUILayout.PropertyField(piloneMaxEnergieProp);
+                break;
+            case CellType.Decharge:
                 break;
         }
         EditorGUILayout.EndVertical();

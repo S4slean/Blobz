@@ -6,9 +6,6 @@ public class CellPilone : CellMain
 {
     private int energie;
 
-    //Faudra mettre ça en cell Template
-    private int MaxEnergie;
-
     public override void BlobsTick()
     {
         if (blobNumber > 0)
@@ -65,10 +62,9 @@ public class CellPilone : CellMain
         }
 
     }
-
     private void ChargeEnergie()
     {
-        energie = MaxEnergie;
+        energie = myCellTemplate.piloneMaxEnergie;
 
 
         for (int i = 0; i < myProximityCollider.Length; i++)
@@ -76,6 +72,12 @@ public class CellPilone : CellMain
             myProximityCollider[i].gameObject.SetActive(true);
             // myProximityCollider[i].transform.position = transform.position;
         }
+    }
+
+    public override void SetupVariable()
+    {
+        energie = 0; 
+        base.SetupVariable();
     }
 
 }

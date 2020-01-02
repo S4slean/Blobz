@@ -726,7 +726,7 @@ public class CellMain : PoolableObjects, PlayerAction
         Vector3 graphPos = transform.position + new Vector3(0, 0.1f, 0);
         graphTransform.position = graphPos;
     }
-    private void SetupVariable()
+    public virtual void SetupVariable()
     {
         // currentLinkStockage = myCellTemplate.linkCapability;
         currentBlobStockage = myCellTemplate.storageCapability;

@@ -91,5 +91,12 @@ public class CellFlipFlop : CellMain
         switchCount++;
     }
 
+    public override void SetupVariable()
+    {
+        currentOutputLink = null;
+        isToggle = false;
+        switchCount = 0; 
+        base.SetupVariable();
+    }
 
 }
