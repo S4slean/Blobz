@@ -37,13 +37,12 @@ public class CellTemplateCustomInspector : Editor
 
     #region VARIABLES SPE 
 
-    SerializedProperty piloneMaxEnergieProp, tourelleMaxMunProp; 
-    SerializedProperty tourelleDamageProp , tourelleAttackRadiusProp; 
+    SerializedProperty piloneMaxEnergieProp, tourelleMaxMunProp;
+    SerializedProperty tourelleDamageProp, tourelleAttackRadiusProp;
 
     #endregion
 
     private float fieldWidthBase, labelWidthBase;
-
 
     private void OnEnable()
     {
@@ -133,7 +132,6 @@ public class CellTemplateCustomInspector : Editor
         labelWidthBase = EditorGUIUtility.labelWidth;
 
     }
-
     public override void OnInspectorGUI()
     {
         serializedObject.Update();
@@ -168,6 +166,8 @@ public class CellTemplateCustomInspector : Editor
                 break;
             case CellType.Tourelle:
                 EditorGUILayout.PropertyField(tourelleMaxMunProp);
+                EditorGUILayout.PropertyField(tourelleDamageProp);
+                EditorGUILayout.PropertyField(tourelleAttackRadiusProp);
                 break;
             case CellType.LaSalle:
                 break;
@@ -394,7 +394,6 @@ public class CellTemplateCustomInspector : Editor
         serializedObject.ApplyModifiedProperties();
         // base.OnInspectorGUI();
     }
-
     private void DisplayArray(SerializedProperty array, string Label)
     {
         EditorGUILayout.BeginHorizontal();
@@ -522,19 +521,16 @@ public class CellTemplateCustomInspector : Editor
         }
 
     }
-
     //private void ElementCallBack(Rect rect , int index  , bool isActive , bool isFocused)
     //{
     //    rect.yMin += 2;
     //    rect.xMax -= 4;
     //    EditorGUI.PropertyField(rect, proximityCollidersProp.GetArrayElementAtIndex(index), new GUIContent("ProximityCollider n°" + index.ToString()) );
     //}
-
     private void ResetStats()
     {
 
     }
-
     private void DisplayProximityCollider(SerializedProperty array, string Label)
     {
         EditorGUILayout.BeginHorizontal();

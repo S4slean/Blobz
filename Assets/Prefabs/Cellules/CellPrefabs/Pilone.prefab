@@ -528,9 +528,9 @@ GameObject:
   - component: {fileID: 8620706792611696404}
   - component: {fileID: 8777569679337227342}
   - component: {fileID: 6228141070681440028}
-  - component: {fileID: 139674739730614379}
+  - component: {fileID: 2143087143611155690}
   m_Layer: 11
-  m_Name: Autoroute
+  m_Name: Pilone
   m_TagString: Cell
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -582,7 +582,7 @@ CapsuleCollider:
   m_Height: 2.4
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &139674739730614379
+--- !u!114 &2143087143611155690
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -591,12 +591,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 8322403635272401023}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 462e59fcde547934ea662668fe6efad2, type: 3}
+  m_Script: {fileID: 11500000, guid: 1db2b4c48e2988c4faf2253b32352ede, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   canBePool: 0
   initialPool: {fileID: 0}
-  myCellTemplate: {fileID: 11400000, guid: ed90205435e77e64b94b32bb0cb82197, type: 2}
+  myCellTemplate: {fileID: 11400000, guid: b4f7bf27198ee764893a66c16c3f488b, type: 2}
   isNexus: 0
   cellDefaultMat: {fileID: 0}
   anim: {fileID: 0}
@@ -615,7 +615,7 @@ MonoBehaviour:
   linkJoints: []
   showDebug: 0
   showlinks: 0
-  showRef: 0
+  showRef: 1
   noMoreLink: 0
   blobNumber: 0
   hasBeenDrop: 0

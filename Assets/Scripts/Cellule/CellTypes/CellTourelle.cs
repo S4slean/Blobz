@@ -25,7 +25,7 @@ public class CellTourelle : CellMain
         if (blobNumber > 0)
         {
             currentTick++;
-            if (currentTick == currentTickForActivation)
+            if (currentTick == currentTickForActivation && isLoaded)
             {
                 //TIR
                 tourelleCollider.Fire();

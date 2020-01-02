@@ -527,10 +527,10 @@ GameObject:
   m_Component:
   - component: {fileID: 8620706792611696404}
   - component: {fileID: 8777569679337227342}
+  - component: {fileID: 2662053712485358760}
   - component: {fileID: 6228141070681440028}
-  - component: {fileID: 139674739730614379}
   m_Layer: 11
-  m_Name: Autoroute
+  m_Name: BlipBlop
   m_TagString: Cell
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -568,21 +568,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 1
---- !u!136 &6228141070681440028
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8322403635272401023}
-  m_Material: {fileID: 13400000, guid: e277263082fb7da4096ac7dee83d093f, type: 2}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2.4
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &139674739730614379
+--- !u!114 &2662053712485358760
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -591,12 +577,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 8322403635272401023}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 462e59fcde547934ea662668fe6efad2, type: 3}
+  m_Script: {fileID: 11500000, guid: 7643403a19d61384fbf724d898d3ee9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   canBePool: 0
   initialPool: {fileID: 0}
-  myCellTemplate: {fileID: 11400000, guid: ed90205435e77e64b94b32bb0cb82197, type: 2}
+  myCellTemplate: {fileID: 11400000, guid: 0e3801dc06bde76458b404ca3a81e7db, type: 2}
   isNexus: 0
   cellDefaultMat: {fileID: 0}
   anim: {fileID: 0}
@@ -615,12 +601,26 @@ MonoBehaviour:
   linkJoints: []
   showDebug: 0
   showlinks: 0
-  showRef: 0
+  showRef: 1
   noMoreLink: 0
   blobNumber: 0
   hasBeenDrop: 0
   limitedInLink: 0
   canBePlaced: 0
+--- !u!136 &6228141070681440028
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8322403635272401023}
+  m_Material: {fileID: 13400000, guid: e277263082fb7da4096ac7dee83d093f, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 2.4
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8859783543846015379
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CellHighWay : CellMain
+public class CellPassage : CellMain
 {
 
 }
