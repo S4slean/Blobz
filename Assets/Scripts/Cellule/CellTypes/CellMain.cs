@@ -730,7 +730,7 @@ public class CellMain : PoolableObjects, PlayerAction
     {
         // currentLinkStockage = myCellTemplate.linkCapability;
         currentBlobStockage = myCellTemplate.storageCapability;
-        currentSurproductionRate = myCellTemplate.SurproductionRate[0];
+       // currentSurproductionRate = myCellTemplate.SurproductionRate[0];
         currentRejectPower = myCellTemplate.rejectPowerBase;
         currentRange = myCellTemplate.rangeBase;
         currentTickForActivation = myCellTemplate.tickForActivationBase;

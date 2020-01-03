@@ -9,6 +9,7 @@ public class LinkClass : PoolableObjects
 
     #region REFS
     public Animator anim;
+    public GameObject[] lockIcon = new GameObject[2];
 
     #endregion
 
@@ -225,10 +226,19 @@ public class LinkClass : PoolableObjects
     {
         if (toggle)
         {
+            for (int i = 0; i < lockIcon.Length; i++)
+            {
+                lockIcon[i].SetActive(true);
+                lockIcon[i].transform.position = extremityPos[i] + new Vector3(0, 0.02f, 0);
+            }
             Debug.Log("this link got closed", gameObject);
         }
         else
         {
+            for (int i = 0; i < lockIcon.Length; i++)
+            {
+                lockIcon[i].SetActive(false);
+            }
             Debug.Log("this link got opened", gameObject);
         }
     }

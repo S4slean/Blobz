@@ -53,6 +53,7 @@ public class CellFlipFlop : CellMain
 
     private void SwitchLink()
     {
+        Debug.Log(outputLinks.Count);
         if (outputLinks.Count == 0)
         {
             currentOutputLink = null;
@@ -63,10 +64,12 @@ public class CellFlipFlop : CellMain
             if (!isToggle)
             {
                 currentOutputLink = outputLinks[0];
+                outputLinks[0].isCLosed(false);
                 isToggle = true;
             }
             else
             {
+                outputLinks[0].isCLosed(true);
                 currentOutputLink = null;
                 isToggle = false;
             }
