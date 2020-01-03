@@ -55,3 +55,5 @@ MonoBehaviour:
   ProximityGestion: 1
   piloneMaxEnergie: 0
   tourelleMaxMun: 5
+  tourelleDamage: 5
+  tourelleAttackRadius: 6

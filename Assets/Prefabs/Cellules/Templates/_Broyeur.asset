@@ -15,7 +15,7 @@ MonoBehaviour:
   cellsEnableToBuild: []
   blopPrefab: {fileID: 2596948755250502091, guid: 87d5b5a8fb0cf7442878829ab452a3bd,
     type: 3}
-  buttonColor: {r: 1, g: 1, b: 1, a: 1}
+  buttonColor: {r: 0.990566, g: 0.18222679, b: 0.82150006, a: 1}
   cellTexture: {fileID: 2800000, guid: 87b9dbfc141638846a4a3bcaeee3ec94, type: 3}
   type: 3
   generateProximity: 0
@@ -49,8 +49,12 @@ MonoBehaviour:
   energyCap: 
   energyPerblop: 3
   StatsModification: 7
-  REFS: 0
+  REFS: 1
   ToggleInfoBox: 0
   STATS: 1
   ProductionGestion: 0
   ProximityGestion: 0
+  piloneMaxEnergie: 5
+  tourelleMaxMun: 3
+  tourelleDamage: 5
+  tourelleAttackRadius: 6

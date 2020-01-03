@@ -56,3 +56,7 @@ MonoBehaviour:
   STATS: 0
   ProductionGestion: 0
   ProximityGestion: 0
+  piloneMaxEnergie: 5
+  tourelleMaxMun: 3
+  tourelleDamage: 5
+  tourelleAttackRadius: 6
