@@ -1003,6 +1003,13 @@ public class CellMain : PoolableObjects, PlayerAction
         CellProximityDectection collider = other.GetComponent<CellProximityDectection>();
         if (collider != null && collider.parent != this)
         {
+            for (int i = 0; i < inThoseCellProximity.Count; i++)
+            {
+                if (inThoseCellProximity[i] == collider)
+                {
+                    return;
+                }
+            }
             Debug.Log("ça rentre", transform);
             inThoseCellProximity.Add(collider);
             //parent.AddToCellAtPromity(cell);

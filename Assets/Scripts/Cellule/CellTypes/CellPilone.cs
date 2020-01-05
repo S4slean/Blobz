@@ -22,8 +22,8 @@ public class CellPilone : CellMain
                 // myProximityCollider[0].gameObject.SetActive(false);
                 for (int i = 0; i < myProximityCollider.Length; i++)
                 {
-                    myProximityCollider[i].gameObject.SetActive(false);
-                    // myProximityCollider[i].transform.position = myProximityCollider[i].initialPool.transform.position;
+                    myProximityCollider[i].transform.position = myProximityCollider[i].initialPool.transform.position;
+                    StartCoroutine(Desactive(myProximityCollider[i].gameObject));
                 }
             }
         }
@@ -70,14 +70,22 @@ public class CellPilone : CellMain
         for (int i = 0; i < myProximityCollider.Length; i++)
         {
             myProximityCollider[i].gameObject.SetActive(true);
-            // myProximityCollider[i].transform.position = transform.position;
+            myProximityCollider[i].transform.position = transform.position;
         }
     }
 
     public override void SetupVariable()
     {
-        energie = 0; 
         base.SetupVariable();
+        energie = 0;
+        myProximityCollider[0].gameObject.SetActive(false);
     }
 
+    //c'est ok avec ça ? 
+    protected IEnumerator Desactive(GameObject _gameObject)
+    {
+        //A changé mais c'est pour test
+        yield return new WaitForFixedUpdate();
+        _gameObject.SetActive(false);
+    }
 }
