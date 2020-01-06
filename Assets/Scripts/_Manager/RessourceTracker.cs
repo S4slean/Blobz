@@ -19,6 +19,7 @@ public class RessourceTracker : MonoBehaviour
     public int soldierBlob;
     public int chargedBlob;
     public int madBlob;
+    public int coachBlob;
 
     public int energyCap;
     public int energy;
@@ -190,6 +191,14 @@ public class RessourceTracker : MonoBehaviour
                 madBlob += nbr;
 
                 break;
+
+            case BlobManager.BlobType.coach:
+
+                coachBlob += nbr;
+
+                break;
+
+
         }
     }
        
