@@ -180,11 +180,11 @@ public class LinkClass : PoolableObjects
     #region CELL RELATIVE
 
 
-    public void Transmitt(int blobAmount)
+    public void Transmitt(int blobAmount , BlobManager.BlobType _blobType)
     {
         //Ancienne Version 
-        originalCell.BlobNumberVariation(-blobAmount);
-        receivingCell.BlobNumberVariation(blobAmount);
+        originalCell.BlobNumberVariation(-blobAmount , _blobType);
+        receivingCell.BlobNumberVariation(blobAmount , _blobType);
         //New Version
         //joints[0].cellsAttach[0].BlobNumberVariation(-blobAmount);
         //joints[1].cellsAttach[0].BlobNumberVariation(blobAmount);

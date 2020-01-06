@@ -9,7 +9,7 @@ public class CellDecharge : CellMain
     {
         if (blobNumber > 0)
         {
-            BlobNumberVariation(-1);
+            BlobNumberVariation(-1 , BlobManager.BlobType.normal);
             //CellManager.Instance.EnergyVariation(currentEnergyPerClick);
             RessourceTracker.instance.EnergyVariation(currentEnergyPerClick);
         }

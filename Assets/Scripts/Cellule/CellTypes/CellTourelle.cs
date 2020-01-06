@@ -14,10 +14,10 @@ public class CellTourelle : CellMain
     {
         if (blobNumber > 0)
         {
-            BlobNumberVariation(-1);
+            BlobNumberVariation(-1 , BlobManager.BlobType.normal);
             MunitionVariation(1);
         }
-        BlobNumberVariation(myCellTemplate.prodPerTickBase);
+        BlobNumberVariation(myCellTemplate.prodPerTickBase , BlobManager.BlobType.normal);
 
         //ANIM
         haveExpulse = false;
@@ -39,7 +39,7 @@ public class CellTourelle : CellMain
                 }
                 //Pour l'instant il y a moyen que si une cellule creve la prochaine 
                 //soit sauté mai squand il y aura les anim , ce sera plus possible
-                outputLinks[i].Transmitt(1);
+                outputLinks[i].Transmitt(1 , BlobManager.BlobType.normal);
                 haveExpulse = true;
             }
             currentTick = 0;

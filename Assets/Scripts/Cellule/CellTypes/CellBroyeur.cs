@@ -19,7 +19,7 @@ public class CellBroyeur : CellMain
                     if (blobNumber > 0)
                     {
 
-                        BlobNumberVariation(-1);
+                        BlobNumberVariation(-1, BlobManager.BlobType.normal) ;
                         CellManager.Instance.EnergyVariation(myCellTemplate.energyPerblop);
                         haveExpulse = true;
                     }
@@ -33,7 +33,7 @@ public class CellBroyeur : CellMain
                     }
                     //Pour l'instant il y a moyen que si une cellule creve la prochaine 
                     //soit sauté mai squand il y aura les anim , ce sera plus possible
-                    outputLinks[i].Transmitt(1);
+                    outputLinks[i].Transmitt(1 , BlobManager.BlobType.normal);
                     haveExpulse = true;
 
                 }

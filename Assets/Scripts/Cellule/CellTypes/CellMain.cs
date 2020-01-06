@@ -258,7 +258,7 @@ public class CellMain : PoolableObjects, PlayerAction
 
     public virtual void BlobsTick()
     {
-        BlobNumberVariation(myCellTemplate.prodPerTickBase);
+        BlobNumberVariation(myCellTemplate.prodPerTickBase , BlobManager.BlobType.normal);
 
         //ANIM
         haveExpulse = false;
@@ -301,7 +301,7 @@ public class CellMain : PoolableObjects, PlayerAction
                     }
                     //Pour l'instant il y a moyen que si une cellule creve la prochaine 
                     //soit sauté mai squand il y aura les anim , ce sera plus possible
-                    outputLinks[i].Transmitt(1);
+                    outputLinks[i].Transmitt(1 , BlobManager.BlobType.normal);
                     haveExpulse = true;
                 }
                 currentTick = 0;
@@ -921,7 +921,7 @@ public class CellMain : PoolableObjects, PlayerAction
     {
         if (blobNumber > 0)
         {
-            BlobNumberVariation(-1);
+            BlobNumberVariation(-1 , BlobManager.BlobType.normal);
             //CellManager.Instance.EnergyVariation(currentEnergyPerClick);
             RessourceTracker.instance.EnergyVariation(currentEnergyPerClick);
         }

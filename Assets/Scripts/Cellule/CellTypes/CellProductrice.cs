@@ -13,13 +13,13 @@ public class CellProductrice : CellMain
         //ça marche bien mais à voir si quand 1 batiment meure la produciton saute avec ou pas
         if ((int)Random.Range(0, 101) <= productionBonusRatio)
         {
-            BlobNumberVariation(myCellTemplate.prodPerTickBase);
+            BlobNumberVariation(myCellTemplate.prodPerTickBase , BlobManager.BlobType.normal);
         }
 
         int productionPerTick = myCellTemplate.prodPerTickBase * (1 + productionBonusPacket);
         Debug.Log("production stable: " + productionPerTick + "chance de production en plus : " + productionBonusRatio + "%" , transform);
 
-        BlobNumberVariation(productionPerTick);
+        BlobNumberVariation(productionPerTick , BlobManager.BlobType.normal);
 
 
         #region Ancien Systeme de Tick 
@@ -61,7 +61,7 @@ public class CellProductrice : CellMain
                     }
                     //Pour l'instant il y a moyen que si une cellule creve la prochaine 
                     //soit sauté mai squand il y aura les anim , ce sera plus possible
-                    outputLinks[i].Transmitt(1);
+                    outputLinks[i].Transmitt(1 , BlobManager.BlobType.normal);
                     haveExpulse = true;
 
                 }
