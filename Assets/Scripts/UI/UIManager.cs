@@ -233,11 +233,11 @@ public class UIManager : MonoBehaviour
 
     public void DisplayColonyBtn(NexusAera area)
     {
-        ColonyBtn colonyBtn = ObjectPooler.poolingSystem.GetPooledObject<ColonyBtn>() as ColonyBtn;
-        
+        ColonyBtn colonyBtn = GameObject.Instantiate(Resources.Load("QuickSetUp/ColonyBtn") as GameObject).GetComponent<ColonyBtn>() ;
 
         colonyBtn.cost = area.splouchCost;
         colonyBtn.point = area.transform.position;
+        colonyBtn.transform.SetParent(colonyCreation);
         colonyBtn.transform.position = area.transform.position + Vector3.up * 2;
         colonyBtn.Outpool();
         area.btn = colonyBtn;

@@ -36,6 +36,8 @@ public class InputManager : MonoBehaviour
     [HideInInspector] public Vector3 mouseScreenPos;
 
     private float clickTime;
+    public enum InputMode {normal, movingCell, divineShot };
+    private InputMode inputMode = InputMode.normal;
 
 
     //permet d'éviter un getComponent à chaque frame lors du raycast de mouse Over
@@ -45,8 +47,7 @@ public class InputManager : MonoBehaviour
     public PlayerAction selectedElement;
     public CellMain selectedCell;
 
- 
-    [HideInInspector] public bool movingObject = false;
+
     [HideInInspector] public CellMain objectMoved;
 
     private RaycastHit CurrentHit;
@@ -81,225 +82,239 @@ public class InputManager : MonoBehaviour
         mouseWorldPos = CurrentHit.point;
         mouseScreenPos = new Vector3(Input.mousePosition.x, 0, Input.mousePosition.y);
 
-        #region STANDARD_STATE
-        if (!movingObject)
+        switch (inputMode)
         {
-            #region LINKS, INTERACTIONS AND CELL_CREATIONS
+            #region STANDARD_STATE
+            case InputMode.normal:
 
-            //En train de drag le lien 
-            if (dragging)
-            {
+                #region LINKS, INTERACTIONS AND CELL_CREATIONS
 
-                selectedElement.OnLeftDrag(CurrentHit);
+                //En train de drag le lien 
+                if (dragging)
+                {
+
+                    selectedElement.OnLeftDrag(CurrentHit);
 
 
+                    if (Input.GetMouseButtonUp(0))
+                    {
+                        selectedElement.OnDragEnd(CurrentHit);
+                        dragging = false;
+                    }
+
+                }
+
+
+                //Click Gauche In
+                if (Input.GetMouseButtonDown(0))
+                {
+                    if (CurrentHit.transform != null)
+                    {
+
+                        currentPlayerAction = CurrentHit.transform.GetComponent<PlayerAction>(); //------------------------
+                        Debug.Log(currentPlayerAction);
+                    }
+
+                    if (currentPlayerAction != null)
+                    {
+                        SelectElement();
+                        selectedElement.OnLeftClickDown(CurrentHit);
+                        selectedElement.OnDeselect();
+                    }
+
+
+
+                    //if (!DraggingLink && !InCellShop && isOverCell && !movingObject)
+                    //{
+                    //    CellManager.Instance.SelectCell(CurrentHit);
+                    //}
+                }
+
+                //Click Gauche Maintient
+                if (Input.GetMouseButton(0))
+                {
+                    clickTime += Time.deltaTime;
+
+                    if (selectedElement != null && clickTime > clickCooldown && !holdingLeftClick && !dragging)
+                    {
+                        selectedElement.OnLeftClickHolding(CurrentHit);
+                        holdingLeftClick = true;
+
+                    }
+                    if (selectedElement != null)
+                    {
+                        float distanceFromElement = (CurrentHit.point - ((Component)selectedElement).transform.position).magnitude;
+
+                        if (clickTime > clickCooldown && selectedElement != null && !dragging && distanceFromElement > distanceBeforeDrag)
+                        {
+                            selectedElement.OnDragStart(CurrentHit);
+                            dragging = true;
+                        }
+                    }
+                }
+
+
+                //Click Gauche Out
                 if (Input.GetMouseButtonUp(0))
                 {
-                    selectedElement.OnDragEnd(CurrentHit);
-                    dragging = false;
-                }
-
-            }
-
-
-            //Click Gauche In
-            if (Input.GetMouseButtonDown(0))
-            {
-                if (CurrentHit.transform != null)
-                {
-
-                    currentPlayerAction = CurrentHit.transform.GetComponent<PlayerAction>(); //------------------------
-                    Debug.Log(currentPlayerAction);
-                }
-
-                if (currentPlayerAction != null)
-                {
-                    SelectElement();
-                    selectedElement.OnLeftClickDown(CurrentHit);
-                    selectedElement.OnDeselect();
-                }
-
-
-
-                //if (!DraggingLink && !InCellShop && isOverCell && !movingObject)
-                //{
-                //    CellManager.Instance.SelectCell(CurrentHit);
-                //}
-            }
-
-            //Click Gauche Maintient
-            if (Input.GetMouseButton(0))
-            {
-                clickTime += Time.deltaTime;
-
-                if (selectedElement != null && clickTime > clickCooldown && !holdingLeftClick && !dragging)
-                {
-                    selectedElement.OnLeftClickHolding(CurrentHit);
-                    holdingLeftClick = true;
-
-                }
-                if (selectedElement != null)
-                {
-                    float distanceFromElement = (CurrentHit.point - ((Component)selectedElement).transform.position).magnitude;
-
-                    if (clickTime > clickCooldown && selectedElement != null && !dragging && distanceFromElement > distanceBeforeDrag)
+                    //pour interagir avec la cellule
+                    if (clickTime <= clickCooldown && isOverInteractiveElement && elementOver == selectedElement)
                     {
-                        selectedElement.OnDragStart(CurrentHit);
-                        dragging = true;
-                    }
-                }
-            }
-
-
-            //Click Gauche Out
-            if (Input.GetMouseButtonUp(0))
-            {
-                //pour interagir avec la cellule
-                if (clickTime <= clickCooldown && isOverInteractiveElement && elementOver == selectedElement)
-                {
-                    selectedElement.OnShortLeftClickUp(CurrentHit);
-                }
-
-                if (holdingLeftClick)
-                {
-                    selectedElement.OnLongLeftClickUp(CurrentHit);
-                }
-
-                clickTime = 0;
-            }
-
-            //Click Droit In
-            if (Input.GetMouseButtonDown(1))
-            {
-                if (holdingLeftClick)
-                {
-                    selectedElement.OnRightClickWhileHolding(CurrentHit);
-                    holdingLeftClick = false;
-                }
-                else if (dragging)
-                {
-                    selectedElement.OnRightClickWhileDragging(CurrentHit);
-                    dragging = false;
-                }
-                else if (selectedElement != null)
-                {
-                    CellManager.Instance.DeselectElement();
-                }
-            }
-
-            #endregion
-
-            #region MOUSEOVER_CELLS - TOOLTIP
-
-            //PERMET DE NE PAS AFFICHE LE TOOLTIP DANS CES DEUX CONDITIONS
-            if (!dragging && !holdingLeftClick)
-            {
-
-                if (CurrentHit.transform != null && !isOverInteractiveElement)
-                {
-                    if (CurrentHit.transform.GetComponent<PlayerAction>() != null)
-                    {
-                        isOverInteractiveElement = true;
-                        elementOver = CurrentHit.transform.GetComponent<PlayerAction>();
-                        elementOver.OnmouseIn(CurrentHit);
-
+                        selectedElement.OnShortLeftClickUp(CurrentHit);
                     }
 
-                }
-            }
+                    if (holdingLeftClick)
+                    {
+                        selectedElement.OnLongLeftClickUp(CurrentHit);
+                    }
 
-            if (CurrentHit.transform != null && isOverInteractiveElement)
-            {
-                if (CurrentHit.transform.GetComponent<PlayerAction>() != selectedElement)
+                    clickTime = 0;
+                }
+
+                //Click Droit In
+                if (Input.GetMouseButtonDown(1))
+                {
+                    if (holdingLeftClick)
+                    {
+                        selectedElement.OnRightClickWhileHolding(CurrentHit);
+                        holdingLeftClick = false;
+                    }
+                    else if (dragging)
+                    {
+                        selectedElement.OnRightClickWhileDragging(CurrentHit);
+                        dragging = false;
+                    }
+                    else if (selectedElement != null)
+                    {
+                        CellManager.Instance.DeselectElement();
+                    }
+                }
+
+                #endregion
+
+                #region MOUSEOVER_CELLS - TOOLTIP
+
+                //PERMET DE NE PAS AFFICHE LE TOOLTIP DANS CES DEUX CONDITIONS
+                if (!dragging && !holdingLeftClick)
+                {
+
+                    if (CurrentHit.transform != null && !isOverInteractiveElement)
+                    {
+                        if (CurrentHit.transform.GetComponent<PlayerAction>() != null)
+                        {
+                            isOverInteractiveElement = true;
+                            elementOver = CurrentHit.transform.GetComponent<PlayerAction>();
+                            elementOver.OnmouseIn(CurrentHit);
+
+                        }
+
+                    }
+                }
+
+                if (CurrentHit.transform != null && isOverInteractiveElement)
+                {
+                    if (CurrentHit.transform.GetComponent<PlayerAction>() != selectedElement)
+                    {
+                        isOverInteractiveElement = false;
+                        elementOver.OnMouseOut(CurrentHit);
+                        elementOver = null;
+                    }
+                }
+
+                else if (CurrentHit.transform == null && isOverInteractiveElement)
                 {
                     isOverInteractiveElement = false;
-                    elementOver.OnMouseOut(CurrentHit);
                     elementOver = null;
+                    selectedElement.OnMouseOut(CurrentHit);
                 }
-            }
-
-            else if(CurrentHit.transform == null && isOverInteractiveElement)
-            {
-                isOverInteractiveElement = false;
-                elementOver = null;
-                selectedElement.OnMouseOut(CurrentHit);
-            }
 
 
-            #endregion
+                #endregion
 
-            #region CELL_OPTIONS
+                #region CELL_OPTIONS
 
-            if (isOverInteractiveElement && Input.GetMouseButtonDown(1))
-            {
-                rightClickedOnCell = true;
-            }
-
-            if (rightClickedOnCell && Input.GetMouseButtonUp(1))
-            {
-                selectedElement.OnShortRightClick(CurrentHit);
-            }
-
-            if (!isOverInteractiveElement && (Input.GetMouseButtonDown(1) || Input.GetMouseButtonDown(0)))
-            {
-                if(selectedElement != null)
-                    selectedElement.StopAction();
-            }
-
-            #endregion
-        }
-        #endregion
-
-        #region MOVING_CELL
-        else
-        {
-            if (CurrentHit.transform != null && CurrentHit.transform.tag == "Ground")
-            {
-                CellManager.Instance.CellDeplacement(CurrentHit.point, objectMoved);
-            }
-
-            //si clic gauche, replacer la cell et update tous ses liens
-            if (Input.GetMouseButtonDown(0))
-            {
-                if (CellManager.Instance.terrainIsBuildable)
+                if (isOverInteractiveElement && Input.GetMouseButtonDown(1))
                 {
+                    rightClickedOnCell = true;
+                }
 
-                    if (CellManager.Instance.newCell)
+                if (rightClickedOnCell && Input.GetMouseButtonUp(1))
+                {
+                    selectedElement.OnShortRightClick(CurrentHit);
+                }
+
+                if (!isOverInteractiveElement && (Input.GetMouseButtonDown(1) || Input.GetMouseButtonDown(0)))
+                {
+                    if (selectedElement != null)
+                        selectedElement.StopAction();
+                }
+
+                #endregion
+
+                break;
+            #endregion
+
+            #region MOVING_STATE
+            case InputMode.movingCell:
+
+                
+                if (CurrentHit.transform != null && CurrentHit.transform.tag == "Ground")
+                {
+                    CellManager.Instance.CellDeplacement(CurrentHit.point, objectMoved);
+                }
+
+                //si clic gauche, replacer la cell et update tous ses liens
+                if (Input.GetMouseButtonDown(0))
+                {
+                    if (CellManager.Instance.terrainIsBuildable)
+                    {
+
+                        if (CellManager.Instance.newCell)
+                            CellManager.Instance.ValidateNewLink(CurrentHit);
+
+                        objectMoved.CellInitialisation();
+                        SwitchInputMode(InputMode.normal);
+                        objectMoved = null;
+                        //dragging = false;
+                    }
+                    else
+                    {
+                        Debug.Log("You can't build there");
+                    }
+                }
+
+                else if (Input.GetMouseButtonDown(1))
+                {
+                    if (CellManager.Instance.originalPosOfMovingCell == new Vector3(0, 100, 0))
+                    {
+                        RessourceTracker.instance.energy += objectMoved.myCellTemplate.energyCost;
+                        objectMoved.Inpool();
+                        CellManager.Instance.SupressCurrentLink();
+                    }
+                    else
+                    {
+                        CellManager.Instance.CellDeplacement(CellManager.Instance.originalPosOfMovingCell, objectMoved);
+                        objectMoved.TickInscription();
                         CellManager.Instance.ValidateNewLink(CurrentHit);
+                    }
 
-                    objectMoved.CellInitialisation();
-                    movingObject = false;
+                    SwitchInputMode(InputMode.normal);
                     objectMoved = null;
                     //dragging = false;
-                }
-                else
-                {
-                    Debug.Log("You can't build there");
-                }
-            }
 
-            else if (Input.GetMouseButtonDown(1))
-            {
-                if (CellManager.Instance.originalPosOfMovingCell == new Vector3(0, 100, 0))
-                {
-                    RessourceTracker.instance.energy += objectMoved.myCellTemplate.energyCost;
-                    objectMoved.Inpool();
-                    CellManager.Instance.SupressCurrentLink();
-                }
-                else
-                {
-                    CellManager.Instance.CellDeplacement(CellManager.Instance.originalPosOfMovingCell, objectMoved);
-                    objectMoved.TickInscription();
-                    CellManager.Instance.ValidateNewLink(CurrentHit);
                 }
 
-                movingObject = false;
-                objectMoved = null;
-                //dragging = false;
+                break;
+            #endregion
 
-            }
+            #region SHOOTING_STATE
+            case InputMode.divineShot:
+                break;
+                #endregion
         }
-        #endregion
+
+
+
 
         #region CAMERA
 
@@ -338,7 +353,7 @@ public class InputManager : MonoBehaviour
     {
         cell.TickDesinscription();
         Instance.objectMoved = cell;
-        Instance.movingObject = true;
+        SwitchInputMode(InputMode.movingCell);
         Instance.dragging = false;
         Instance.holdingLeftClick = false;
     }
@@ -361,15 +376,18 @@ public class InputManager : MonoBehaviour
         UIManager.Instance.DeselectElement();
 
 
-        if (movingObject)
+        if (inputMode == InputMode.movingCell)
         {
             CellManager.Instance.SupressCurrentLink();
             objectMoved.Inpool();
-            movingObject = false;
+            SwitchInputMode(InputMode.normal);
         }
 
         ResetInputs();
     }
 
-    
+    public static void SwitchInputMode(InputMode newInputMode)
+    {
+        Instance.inputMode = newInputMode;
+    }
 }
