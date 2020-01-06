@@ -55,10 +55,10 @@ public class CellDivine : CellMain
         if (!isLoaded)
         {
             energie += amount;
-            if (energie >= myCellTemplate.MaxEnergie)
+            if (energie >= myCellTemplate.maxEnergie)
             {
                 isLoaded = true;
-                energie = myCellTemplate.MaxEnergie;
+                energie = myCellTemplate.maxEnergie;
                 //
                 Debug.Log("Loaded , anim à déclencher ");
             }
@@ -80,7 +80,7 @@ public class CellDivine : CellMain
     {
         if (isLoaded)
         {
-            //InputManager.Instance
+            InputManager.SwitchInputMode(InputManager.InputMode.divineShot);
             //passer la reference de l'input de tir 
         }
         else
