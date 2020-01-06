@@ -251,6 +251,7 @@ public class UIManager : MonoBehaviour
     #endregion
 
     #region DIVINE_CELL
+    [Header("Divine Cell")]
     public GameObject divineCellTArget;
     #endregion
 
