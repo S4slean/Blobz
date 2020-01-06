@@ -66,7 +66,7 @@ public class CellMainInspector : Editor
         EditorGUI.indentLevel -= 2;
        
 
-        EditorGUILayout.PropertyField(showRefProp);
+        EditorGUILayout.PropertyField(showRefProp );
         //foldRef = EditorGUILayout.Foldout(foldRef, "Display REF VARIABLES", true);
         if (showRefProp.boolValue)
         {

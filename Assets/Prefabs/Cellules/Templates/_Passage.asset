@@ -53,7 +53,7 @@ MonoBehaviour:
   ToggleInfoBox: 1
   STATS: 0
   ProductionGestion: 0
-  ProximityGestion: 1
+  ProximityGestion: 0
   MaxEnergie: 5
   tourelleMaxMun: 3
   tourelleDamage: 5
