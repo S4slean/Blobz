@@ -10,6 +10,7 @@ public class EnemyVillage : MonoBehaviour
     public float boundariesRange = 10;
     public float detectionRange = 20;
 
+    public int splouchOnDestruction = 0;
     public int maxSoldiers = 20;
     public float spawnRange = 2;
     public float spawnRate = 4;
@@ -75,6 +76,28 @@ public class EnemyVillage : MonoBehaviour
         blobs.Remove(blob);
     }
 
+    public void StopVillageRepair()
+    {
+        for (int i = 0; i < buildings.Length; i++)
+        {
+            if (buildings[i].isRuin && !buildings[i].isVillageNexus)
+            {
+                buildings[i].PauseRepair();
+            }
+        }
+    }
+
+    public void RestartVillageRepair()
+    {
+        for (int i = 0; i < buildings.Length; i++)
+        {
+            if (buildings[i].isRuin && !buildings[i].isVillageNexus)
+            {
+                buildings[i].RestartRepair();
+            }
+        }
+    }
+
     public void AlertBlobs()
     {
         for (int i = 0; i < blobs.Count; i++)
@@ -90,6 +113,18 @@ public class EnemyVillage : MonoBehaviour
         {
             blobs[i].knowsNexus = true;
         }
+    }
+
+    public void DeleteVillage()
+    {
+        //Anim
+        
+        Kill(); //Retire MOI !!!
+    }
+
+    public void Kill()
+    {
+        Destroy(gameObject);
     }
 
     //Pense à mettre le bon layer de collision pour ne détecter que les cells du joueur
