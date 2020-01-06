@@ -181,6 +181,13 @@ public class QuickSetUp : Editor
         cellAlertPoolItem.AmountToPool = 10;
         pooler.poolItems.Add(cellAlertPoolItem);
 
+        ObjectPoolItem colonyBtnPoolItem = new ObjectPoolItem();
+        colonyBtnPoolItem.objectToPool = Resources.Load("QuickSetUp/ColonyBtn") as GameObject;
+        colonyBtnPoolItem.AmountToPool = 10;
+        pooler.poolItems.Add(colonyBtnPoolItem);
+
+
+
         PoolCustomInpector.GeneratePools();
 
         #endregion

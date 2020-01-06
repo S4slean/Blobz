@@ -35,8 +35,7 @@ public class BlobManager : MonoBehaviour
     [SerializeField] [Range(0, 100)] private int ticksBtwnJumps = 4;
 
 
-
-    private void Start()
+    public void Awake()
     {
         if (instance == null)
             instance = this;
@@ -45,8 +44,8 @@ public class BlobManager : MonoBehaviour
 
         //ajoute la fonction onTick au delegate pour qu'elle s'effectue à chaque tick
         TickManager.doTick += onTick;
-
     }
+
 
     private void OnDestroy()
     {

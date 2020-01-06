@@ -48,5 +48,12 @@ MonoBehaviour:
   hatchNbr: 0
   stockNbr: 0
   armoryNbr: 0
-  energy: 0
+  broyeurNbr: 0
+  autorouteNbr: 0
+  normalBlob: 0
+  soldierBlob: 0
+  chargedBlob: 0
+  madBlob: 0
+  energyCap: 0
+  energy: 50
   blobProduced: 0

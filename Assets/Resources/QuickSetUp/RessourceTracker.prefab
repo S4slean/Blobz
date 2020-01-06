@@ -54,5 +54,6 @@ MonoBehaviour:
   soldierBlob: 0
   chargedBlob: 0
   madBlob: 0
-  energy: 0
+  energyCap: 0
+  energy: 50
   blobProduced: 0

@@ -126,7 +126,6 @@ public class Blob : PoolableObjects
         if (infectedCell != null)
         {
             infectedCell.StockageCapabilityVariation(-infectionAmount);
-            infectionAmount++;
         }
     }
 

@@ -14,8 +14,8 @@ public class ColonyBtn : PoolableObjects
         if(RessourceTracker.instance.energy > cost)
         {
             CellProductrice newProd = ObjectPooler.poolingSystem.GetPooledObject<CellProductrice>() as CellProductrice;
+            newProd.Outpool();
             newProd.transform.position = point;
-            newProd.gameObject.SetActive(true);
             newProd.CellInitialisation();
         }
         else

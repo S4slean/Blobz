@@ -5,14 +5,20 @@ using UnityEngine;
 public class NexusAera : MonoBehaviour
 {
     public int splouchCost = 100;
+    public bool revealed = false;
+    public ColonyBtn btn;
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.transform.tag != "enemies")
+        if (revealed)
+            return;
+
+        if(other.transform.tag != "Enemies")
         {
 
             if (other.GetComponent<Blob>())
             {
+                revealed = true;
                 UIManager.Instance.DisplayColonyBtn(this);
             }
         }

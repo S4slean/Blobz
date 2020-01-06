@@ -8,7 +8,7 @@ TagManager:
   - UI
   - Pools
   - Ground
-  - enemies
+  - Enemies
   layers:
   - Default
   - TransparentFX
@@ -26,7 +26,7 @@ TagManager:
   - DetectionProximite
   - LinkJoint
   - BuildingNotAllowed
-  - DamageFromBat
+  - 
   - 
   - 
   - 

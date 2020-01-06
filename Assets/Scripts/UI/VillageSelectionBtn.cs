@@ -26,6 +26,7 @@ public class VillageSelectionBtn : MonoBehaviour
 
         CellProductrice newProd;
         newProd = ObjectPooler.poolingSystem.GetPooledObject<CellProductrice>() as CellProductrice;
+        newProd.Outpool();
         newProd.transform.position = village.transform.position;
         newProd.CellInitialisation();
     }

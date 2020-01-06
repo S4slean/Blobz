@@ -142,6 +142,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5495dfa02e2d06a42897f883cf43ef39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canBePool: 0
+  initialPool: {fileID: 0}
   cost: 100
   point: {x: 0, y: 0, z: 0}
   txt: {fileID: 6863035879263383328}
@@ -255,7 +257,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: 10
+  m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
