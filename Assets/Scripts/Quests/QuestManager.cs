@@ -22,6 +22,9 @@ public class QuestManager : MonoBehaviour
     public bool desactiveQuest = false;
 
 
+    
+
+
     QuestPopUp popUp;
 
 
@@ -144,8 +147,13 @@ public class QuestManager : MonoBehaviour
                     if (obj != null)
                     {
                         success = false;
+                        
+                    }
+                    else
+                    {
                         questProgress++;
                     }
+
                 }
 
                 if (success)

@@ -112,7 +112,6 @@ public class InputManager : MonoBehaviour
                     {
 
                         currentPlayerAction = CurrentHit.transform.GetComponent<PlayerAction>(); //------------------------
-                        Debug.Log(currentPlayerAction);
                     }
 
                     if (currentPlayerAction != null)
@@ -143,6 +142,8 @@ public class InputManager : MonoBehaviour
                     }
                     if (selectedElement != null)
                     {
+                        
+                        Debug.Log(selectedElement);
                         float distanceFromElement = (CurrentHit.point - ((Component)selectedElement).transform.position).magnitude;
 
                         if (clickTime > clickCooldown && selectedElement != null && !dragging && distanceFromElement > distanceBeforeDrag)
@@ -168,6 +169,7 @@ public class InputManager : MonoBehaviour
                         selectedElement.OnLongLeftClickUp(CurrentHit);
                     }
 
+                    DeselectElement();
                     clickTime = 0;
                 }
 

@@ -13,6 +13,7 @@ public class Destructible : PoolableObjects, PlayerAction
     public int maxLife = 5;
     private int count = 0;
     public bool isReapairable = false;
+    public int repairDelay = 10;
     [HideInInspector] public bool isRuin = false;
 
     [Header("Enemies")]
@@ -34,48 +35,78 @@ public class Destructible : PoolableObjects, PlayerAction
         remainingLife = maxLife;
     }
 
-    public void ReceiveDamage(int dmg)
-    {
-        remainingLife -= dmg;
-        if (remainingLife < 1)
-        {
-            Destruction();
-        }
-    }
 
+    #region REPAIR
     public void Repair()
     {
-        TickManager.doTick -= RepairTick;
         remainingLife = maxLife;
         isRuin = false;
+        SwapGraph();
 
         if (isVillageNexus)
         {
             village.RestartVillageRepair();
             UIManager.Instance.HideVillageSelection();
         }
+        TickManager.doTick -= RepairTick;
         //remettre le bon graph
     }
-
     public void PauseRepair()
     {
         TickManager.doTick -= RepairTick;
     }
-
     public void RestartRepair()
     {
         TickManager.doTick += RepairTick;
     }
+    public void RepairTick()
+    {
+        if (count > repairDelay)
+        {
+            Repair();
+            Debug.Log("repairTick");
+            count = 0;
+        }
+        else
+        {
+            count++;
+        }
+    }
+    #endregion
 
+    #region DESTRUCTION
+    public void ReceiveDamage(int dmg)
+    {
+        remainingLife -= dmg;
+        //Play damageAnim
+        if (remainingLife < 1)
+        {
+            Destruction();
+        }
+    }
+    public void SpawnEnemies()
+    {
+        for (int i = 0; i < nbrOfEnemiesOnDestruction; i++)
+        {
+            Blob blob = ObjectPooler.poolingSystem.GetPooledObject<Blob>() as Blob;
+            blob.Outpool();
+            Vector2 circle = Random.insideUnitCircle;
+            Vector3 circleProjection = new Vector3(circle.x, 0, circle.y).normalized;
+            blob.transform.position = transform.position + circleProjection * spawnRange;
+
+        }
+    }
     public void Destruction()
     {
+        RessourceTracker.instance.EnergyVariation(splouchAtDestruction);
+
         if (!isReapairable)
         {
             if (spawnEnemiesOnDestruction)
                 SpawnEnemies();
 
             //Insert Anim and put Delete at the end
-            Destroy(gameObject); //remove once anim is inserted
+            Delete(); //remove once anim is inserted
         }
         else
         {
@@ -102,55 +133,26 @@ public class Destructible : PoolableObjects, PlayerAction
             //Play Destruction Anim
         }
     }
-
-    public void SpawnEnemies()
+    public void Delete()
     {
-        for (int i = 0; i < nbrOfEnemiesOnDestruction; i++)
-        {
-            Blob blob = ObjectPooler.poolingSystem.GetPooledObject<Blob>() as Blob;
-            blob.Outpool();
-            Vector2 circle = Random.insideUnitCircle;
-            Vector3 circleProjection = new Vector3(circle.x, 0, circle.y).normalized;
-            blob.transform.position = transform.position + circleProjection * spawnRange;
-
-        }
+        Destroy(gameObject);
     }
-
-    public void RepairTick()
+    private void OnDestroy()
     {
-        if (count > village.repairDelay)
-        {
-            Repair();
-            count = 0;
-        }
-        else
-        {
-            count++;
-        }
+        TickManager.doTick -= RepairTick;
     }
-
-
+    #endregion
     public void SwapGraph()
     {
         goodGraph.SetActive(!goodGraph.activeSelf);
         brokenGraph.SetActive(!brokenGraph.activeSelf);
     }
 
-    public void Delete()
-    {
-        Destroy(gameObject);
-    }
-
-    private void OnDestroy()
-    {
-        TickManager.doTick -= RepairTick;
-    }
 
 
 
 
-
-
+    #region PLAYER_ACTIONS
 
 
     public void OnLeftClickDown(RaycastHit hit)
@@ -160,8 +162,11 @@ public class Destructible : PoolableObjects, PlayerAction
 
     public void OnShortLeftClickUp(RaycastHit hit)
     {
-        ReceiveDamage(1);
-        Debug.Log("Aie");
+        if (canBeDestroyedByClick && !isRuin)
+        {
+            ReceiveDamage(1);
+            RessourceTracker.instance.EnergyVariation(splouchAtClick);
+        }
     }
 
     public void OnLeftClickHolding(RaycastHit hit)
@@ -227,4 +232,6 @@ public class Destructible : PoolableObjects, PlayerAction
     {
 
     }
+
+    #endregion
 }

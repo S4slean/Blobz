@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac59c85db94beed47808c892abe2bae2, type: 3}
   m_Name: TestQuest
   m_EditorClassIdentifier: 
-  questType: 0
+  questType: 4
   questTitle: TestQuest
   questDescription: 
   eventDone: 1
   populationObjective: 200
+  energyToObtain: 0
   cellType: 2
   level: 1
   cellNbrToObtain: 2
