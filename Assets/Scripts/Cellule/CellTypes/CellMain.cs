@@ -50,7 +50,12 @@ public class CellMain : PoolableObjects, PlayerAction
     public bool showlinks;
     public bool showRef;
     public bool noMoreLink;
+
     public int blobNumber;
+    public int normalBlobNumber;
+    public int coachBlobNumber;
+    public bool hasBlobCoach; 
+
     public bool hasBeenDrop;
     public bool limitedInLink;
 
@@ -372,13 +377,20 @@ public class CellMain : PoolableObjects, PlayerAction
     //    //UI update
     //    UpdateCaract();
     //}
-    public void BlobNumberVariation(int amount)
+    public void BlobNumberVariation(int amount, BlobManager.BlobType _blobType)
     {
-        blobNumber += amount;
-
-        RessourceTracker.instance.AddBlob(BlobManager.BlobType.normal, amount);
-
-
+        switch (_blobType)
+        {
+            case BlobManager.BlobType.normal:
+                RessourceTracker.instance.AddBlob(BlobManager.BlobType.normal, amount);
+                normalBlobNumber += amount;
+                break;
+            case BlobManager.BlobType.coach:
+                coachBlobNumber += amount;
+                RessourceTracker.instance.AddBlob(BlobManager.BlobType.coach, amount);
+                break;
+        }
+        blobNumber = normalBlobNumber + coachBlobNumber;
 
 
         float ratio = (float)blobNumber / (float)currentBlobStockage;
@@ -731,7 +743,7 @@ public class CellMain : PoolableObjects, PlayerAction
     {
         // currentLinkStockage = myCellTemplate.linkCapability;
         currentBlobStockage = myCellTemplate.storageCapability;
-       // currentSurproductionRate = myCellTemplate.SurproductionRate[0];
+        // currentSurproductionRate = myCellTemplate.SurproductionRate[0];
         currentRejectPower = myCellTemplate.rejectPowerBase;
         currentRange = myCellTemplate.rangeBase;
         currentTickForActivation = myCellTemplate.tickForActivationBase;
@@ -990,8 +1002,6 @@ public class CellMain : PoolableObjects, PlayerAction
 
     }
     #endregion
-
-
 
 
 

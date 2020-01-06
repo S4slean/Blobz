@@ -64,7 +64,7 @@ public class CellPilone : CellMain
     }
     private void ChargeEnergie()
     {
-        energie = myCellTemplate.MaxEnergie;
+        energie = myCellTemplate.maxEnergie;
 
 
         for (int i = 0; i < myProximityCollider.Length; i++)

@@ -39,6 +39,8 @@ public class CellTemplateCustomInspector : Editor
 
     SerializedProperty MaxEnergieProp, tourelleMaxMunProp;
     SerializedProperty tourelleDamageProp, tourelleAttackRadiusProp;
+    SerializedProperty maxBlobCoachProp;
+
 
     #endregion
 
@@ -112,10 +114,12 @@ public class CellTemplateCustomInspector : Editor
         #region Specificité
         //Broyeur
         energyPerblop = serializedObject.FindProperty("energyPerblop");
-        MaxEnergieProp = serializedObject.FindProperty("MaxEnergie");
+        MaxEnergieProp = serializedObject.FindProperty("maxEnergie");
         tourelleMaxMunProp = serializedObject.FindProperty("tourelleMaxMun");
         tourelleAttackRadiusProp = serializedObject.FindProperty("tourelleAttackRadius");
         tourelleDamageProp = serializedObject.FindProperty("tourelleDamage");
+
+        maxBlobCoachProp = serializedObject.FindProperty("maxBlobCoach");
 
 
         #endregion
@@ -171,6 +175,7 @@ public class CellTemplateCustomInspector : Editor
                 EditorGUILayout.PropertyField(tourelleAttackRadiusProp);
                 break;
             case CellType.LaSalle:
+                EditorGUILayout.PropertyField(maxBlobCoachProp);
                 break;
             case CellType.Pilone:
                 EditorGUILayout.PropertyField(MaxEnergieProp);
