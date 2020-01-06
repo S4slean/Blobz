@@ -106,7 +106,11 @@ public class InputManager : MonoBehaviour
             if (Input.GetMouseButtonDown(0))
             {
                 if (CurrentHit.transform != null)
+                {
+
                     currentPlayerAction = CurrentHit.transform.GetComponent<PlayerAction>(); //------------------------
+                    Debug.Log(currentPlayerAction);
+                }
 
                 if (currentPlayerAction != null)
                 {

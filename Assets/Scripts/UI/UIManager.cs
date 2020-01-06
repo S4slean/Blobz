@@ -206,6 +206,48 @@ public class UIManager : MonoBehaviour
 
     #endregion
 
+    #region VILLAGE_SELECTION
+    [Header("Village Destruction")]
+    public VillageSelectionBtn villageSelection;
+
+    public void DisplayVillageSelection(EnemyVillage village)
+    {
+        villageSelection.transform.position = village.transform.position + Vector3.up * 5 + Vector3.forward * 3;
+        villageSelection.SplouchAmount = village.splouchOnDestruction;
+        villageSelection.village = village;
+
+        villageSelection.gameObject.SetActive(true);
+        villageSelection.UpdateText();
+    }
+
+    public void HideVillageSelection()
+    {
+        villageSelection.gameObject.SetActive(false);
+    }
+
+    #endregion
+
+    #region COLONY
+    public ColonyBtn colonyBtn;
+
+    public void DisplayColonyBtn(NexusAera area)
+    {
+        if (colonyBtn.gameObject.activeSelf)
+            return;
+
+        colonyBtn.cost = area.splouchCost;
+        colonyBtn.point = area.transform.position;
+        colonyBtn.transform.position = area.transform.position + Vector3.up * 2;
+        colonyBtn.gameObject.SetActive(true);
+        colonyBtn.UpdateText();
+    }
+
+    public void HideColonyBtn()
+    {
+        colonyBtn.gameObject.SetActive(false);
+    }
+    #endregion
+
     #region NOT_ENOUGH_NRJ
 
     [Header("NRJ")]

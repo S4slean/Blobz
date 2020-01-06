@@ -110,7 +110,8 @@ public class Blob : PoolableObjects
     public void Jump(Vector3 direction)
     {
         transform.LookAt(transform.position + direction);
-        rb.AddForce(direction, ForceMode.Impulse);
+        
+        rb.AddForce(direction + Random.insideUnitSphere , ForceMode.Impulse);
 
     }
 
