@@ -6,7 +6,9 @@ public class CellDivine : CellMain
 {
     private bool isLoaded;
     private int energie;
-    private bool isAiming;
+    public divineCellButon activationButton;
+
+    
 
     public override void BlobsTick()
     {
@@ -61,8 +63,12 @@ public class CellDivine : CellMain
                 Debug.Log("Loaded , anim à déclencher ");
             }
         }
+    }
+    public void Decharge()
+    {
 
     }
+
     public override void SetupVariable()
     {
         energie = 0;
@@ -70,17 +76,16 @@ public class CellDivine : CellMain
         base.SetupVariable();
     }
 
-
-    public override void OnLeftClickDown(RaycastHit hit)
+    public override void OnShortLeftClickUp(RaycastHit hit)
     {
         if (isLoaded)
         {
-            isAiming = true;
+            //InputManager.Instance
+            //passer la reference de l'input de tir 
         }
         else
         {
-            base.OnLeftClickDown(hit);
+            //dipslay not enough charge 
         }
     }
-
 }
