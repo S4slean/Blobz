@@ -366,6 +366,18 @@ public class CellMain : PoolableObjects, PlayerAction
         }
         blobNumber = normalBlobNumber + coachBlobNumber + explorateurBlobNumber;
 
+        if (_blobType == BlobManager.BlobType.coach)
+        {
+            if (coachBlobNumber <0)
+            {
+                coachBlobNumber = 0;
+                hasBlobCoach = false;
+            }
+            else
+            {
+                hasBlobCoach = true;
+            }
+        }
 
         float ratio = (float)blobNumber / (float)currentBlobStockage;
         int pourcentage = Mathf.FloorToInt(ratio * 100f);
