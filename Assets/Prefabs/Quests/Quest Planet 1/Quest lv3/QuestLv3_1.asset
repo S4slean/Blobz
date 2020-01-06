@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac59c85db94beed47808c892abe2bae2, type: 3}
   m_Name: QuestLv3_1
   m_EditorClassIdentifier: 
-  questType: 2
+  questType: 3
   questTitle: 
   questDescription: 
-  eventDone: 0
+  eventDone: 1
   populationObjective: 0
   energyToObtain: 0
   cellType: 0
@@ -26,4 +26,56 @@ MonoBehaviour:
   placeToGet: {fileID: 0}
   range: 0
   objectToDestroy: []
-  questEvents: []
+  questEvents:
+  - eventType: 0
+    eventDuration: 1
+    virtualCamIndex: 3
+    popUpsMsg: []
+    UEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    foldout: 0
+  - eventType: 0
+    eventDuration: 2
+    virtualCamIndex: 0
+    popUpsMsg: []
+    UEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    foldout: 0
+  - eventType: 0
+    eventDuration: 2
+    virtualCamIndex: 1
+    popUpsMsg: []
+    UEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    foldout: 0
+  - eventType: 0
+    eventDuration: 1
+    virtualCamIndex: 2
+    popUpsMsg: []
+    UEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    foldout: 0
+  - eventType: 3
+    eventDuration: 1
+    virtualCamIndex: 2
+    popUpsMsg: []
+    UEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 6190842183759939533, guid: 7b934126b67bf7f44aabfd0ea1f12c2e,
+            type: 3}
+          m_MethodName: ReturnToMainCam
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    foldout: 0
