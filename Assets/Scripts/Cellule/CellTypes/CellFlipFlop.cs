@@ -53,7 +53,6 @@ public class CellFlipFlop : CellMain
 
     private void SwitchLink()
     {
-        Debug.Log(outputLinks.Count);
         if (outputLinks.Count == 0)
         {
             currentOutputLink = null;
@@ -79,7 +78,7 @@ public class CellFlipFlop : CellMain
 
         isToggle = false; 
 
-        if (switchCount == outputLinks.Count)
+        if (switchCount >= outputLinks.Count)
         {
             switchCount = 0;
         }
@@ -93,6 +92,17 @@ public class CellFlipFlop : CellMain
 
         switchCount++;
     }
+    private void SwitchLink(LinkClass link)
+    {
+        for (int i = 0; i < outputLinks.Count; i++)
+        {
+            outputLinks[i].isCLosed(true);
+        }
+        link.isCLosed(false); //Unclose celui là 
+        currentOutputLink = link;
+
+        switchCount++;
+    }
 
     public override void SetupVariable()
     {
@@ -102,4 +112,16 @@ public class CellFlipFlop : CellMain
         base.SetupVariable();
     }
 
+    public override void AddLinkReferenceToCell(LinkClass linkToAdd, bool output)
+    {
+        base.AddLinkReferenceToCell(linkToAdd, output);
+        SwitchLink(linkToAdd);
+    }
+
+    public override void RemoveLink(LinkClass linkToRemove, bool isOutput)
+    {
+        base.RemoveLink(linkToRemove, isOutput);
+        isToggle = false;
+        SwitchLink();
+    }
 }
