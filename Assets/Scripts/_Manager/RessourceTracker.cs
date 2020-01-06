@@ -118,7 +118,7 @@ public class RessourceTracker : MonoBehaviour
 
                 break;
 
-            case BlobManager.BlobType.charged:
+            case BlobManager.BlobType.explorateur:
 
                 chargedBlob++;
 
@@ -149,7 +149,7 @@ public class RessourceTracker : MonoBehaviour
 
                 break;
 
-            case BlobManager.BlobType.charged:
+            case BlobManager.BlobType.explorateur:
 
                 chargedBlob++;
 
@@ -180,7 +180,7 @@ public class RessourceTracker : MonoBehaviour
 
                 break;
 
-            case BlobManager.BlobType.charged:
+            case BlobManager.BlobType.explorateur:
 
                 chargedBlob += nbr;
 
@@ -220,7 +220,7 @@ public class RessourceTracker : MonoBehaviour
 
                 break;
 
-            case BlobManager.BlobType.charged:
+            case BlobManager.BlobType.explorateur:
 
                 chargedBlob--;
 
@@ -251,7 +251,7 @@ public class RessourceTracker : MonoBehaviour
 
                 break;
 
-            case BlobManager.BlobType.charged:
+            case BlobManager.BlobType.explorateur:
 
                 chargedBlob--;
 
@@ -282,7 +282,7 @@ public class RessourceTracker : MonoBehaviour
 
                 break;
 
-            case BlobManager.BlobType.charged:
+            case BlobManager.BlobType.explorateur:
 
                 chargedBlob -= nbr;
 

@@ -14,7 +14,7 @@ public class CellDivine : CellMain
     {
         if (blobNumber > 0)
         {
-            BlobNumberVariation(-1 , BlobManager.BlobType.normal);
+            BlobNumberVariation(-1 , BlobCheck());
             Charge(1);
         }
         BlobNumberVariation(myCellTemplate.prodPerTickBase , BlobManager.BlobType.normal);
@@ -33,7 +33,7 @@ public class CellDivine : CellMain
                 }
                 //Pour l'instant il y a moyen que si une cellule creve la prochaine 
                 //soit sauté mai squand il y aura les anim , ce sera plus possible
-                outputLinks[i].Transmitt(1 , BlobManager.BlobType.normal);
+                outputLinks[i].Transmitt(1 , BlobCheck());
                 haveExpulse = true;
             }
             currentTick = 0;

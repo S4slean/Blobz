@@ -61,7 +61,7 @@ public class CellProductrice : CellMain
                     }
                     //Pour l'instant il y a moyen que si une cellule creve la prochaine 
                     //soit sauté mai squand il y aura les anim , ce sera plus possible
-                    outputLinks[i].Transmitt(1 , BlobManager.BlobType.normal);
+                    outputLinks[i].Transmitt(1 , BlobCheck());
                     haveExpulse = true;
 
                 }

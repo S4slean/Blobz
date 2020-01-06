@@ -54,6 +54,7 @@ public class CellMain : PoolableObjects, PlayerAction
     public int blobNumber;
     public int normalBlobNumber;
     public int coachBlobNumber;
+    public int explorateurBlobNumber;
     public bool hasBlobCoach; 
 
     public bool hasBeenDrop;
@@ -301,7 +302,7 @@ public class CellMain : PoolableObjects, PlayerAction
                     }
                     //Pour l'instant il y a moyen que si une cellule creve la prochaine 
                     //soit sauté mai squand il y aura les anim , ce sera plus possible
-                    outputLinks[i].Transmitt(1 , BlobManager.BlobType.normal);
+                    outputLinks[i].Transmitt(1 , BlobCheck());
                     haveExpulse = true;
                 }
                 currentTick = 0;
@@ -347,37 +348,7 @@ public class CellMain : PoolableObjects, PlayerAction
     }
 
     #region BLOB_GESTION
-    //public void AddBlob(int Amount)
-    //{
-    //    blobNumber += Amount;
-
-    //    RessourceTracker.instance.AddBlob(BlobManager.BlobType.normal, Amount);
-
-    //    NBlob.text = (blobNumber + " / " + currentBlobStockage);
-    //    if (blobNumber > currentBlobStockage && !isDead && !isNexus)
-    //    {
-    //        Died(false);
-    //    }
-    //    if (blobNumber > currentBlobStockage)
-    //    {
-    //        int blobToRemobe = blobNumber - currentBlobStockage;
-
-    //        RessourceTracker.instance.RemoveBlob(BlobManager.BlobType.normal, blobToRemobe);
-
-
-    //        blobNumber = currentBlobStockage;
-    //    }
-    //    UpdateCaract();
-    //}
-    //public void RemoveBlob(int Amount)
-    //{
-    //    blobNumber -= Amount;
-
-    //    RessourceTracker.instance.RemoveBlob(BlobManager.BlobType.normal, Amount);
-    //    //UI update
-    //    UpdateCaract();
-    //}
-    public void BlobNumberVariation(int amount, BlobManager.BlobType _blobType)
+    public virtual void BlobNumberVariation(int amount, BlobManager.BlobType _blobType)
     {
         switch (_blobType)
         {
@@ -389,8 +360,11 @@ public class CellMain : PoolableObjects, PlayerAction
                 coachBlobNumber += amount;
                 RessourceTracker.instance.AddBlob(BlobManager.BlobType.coach, amount);
                 break;
+            case BlobManager.BlobType.explorateur:
+                explorateurBlobNumber += amount;
+                break;     
         }
-        blobNumber = normalBlobNumber + coachBlobNumber;
+        blobNumber = normalBlobNumber + coachBlobNumber + explorateurBlobNumber;
 
 
         float ratio = (float)blobNumber / (float)currentBlobStockage;
@@ -427,11 +401,43 @@ public class CellMain : PoolableObjects, PlayerAction
         //NBlob.text = (blobNumber + " / " + currentBlobStockage);
         //UpdateCaract();
     }
-    //en prévision 
-    //public void BlobNumberVariation(int amount , BlobManager.BlobType blobType)
-    //{
 
-    //}
+    public BlobManager.BlobType BlobCheck()
+    {
+        if (explorateurBlobNumber > 0 )
+        {
+            if ((int)Random.Range(1, 101) <= 40)
+            {
+                return BlobManager.BlobType.explorateur;
+            }
+        }
+
+        if (coachBlobNumber > 0 )
+        {
+            if ((int)Random.Range(1, 101) <= 40)
+            {
+                return BlobManager.BlobType.coach;
+            }
+        }
+
+        if (normalBlobNumber > 0 )
+        {
+            return BlobManager.BlobType.normal;
+        }
+
+        else
+        {
+            if (explorateurBlobNumber > 0 )
+            {
+                return BlobManager.BlobType.explorateur;
+            }
+            else
+            {
+                return BlobManager.BlobType.coach;
+            }
+        }
+    }
+
     #endregion
 
     #region PROXIMITE_GESTION
@@ -919,15 +925,15 @@ public class CellMain : PoolableObjects, PlayerAction
     //Interaction 
     public virtual void OnShortLeftClickUp(RaycastHit hit)
     {
-        if (blobNumber > 0)
-        {
-            BlobNumberVariation(-1 , BlobManager.BlobType.normal);
-            //CellManager.Instance.EnergyVariation(currentEnergyPerClick);
-            RessourceTracker.instance.EnergyVariation(currentEnergyPerClick);
-        }
+        //if (blobNumber > 0)
+        //{
+        //    BlobNumberVariation(-1 , BlobCheck());
+        //    //CellManager.Instance.EnergyVariation(currentEnergyPerClick);
+        //    RessourceTracker.instance.EnergyVariation(currentEnergyPerClick);
+        //}
 
-        anim.Play("PlayerInteraction", 0, 0f);
-        //  Debug.Log("interaction non définie");
+        //anim.Play("PlayerInteraction", 0, 0f);
+        ////  Debug.Log("interaction non définie");
     }
 
 
