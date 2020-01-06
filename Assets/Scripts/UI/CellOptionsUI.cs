@@ -24,7 +24,7 @@ public class CellOptionsUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     {
         Debug.Log("Move Cell: " + cell);
         InputManager.Instance.objectMoved = cell;
-        InputManager.Instance.movingObject = true;
+        InputManager.SwitchInputMode(InputManager.InputMode.movingCell);
 
         //store original POsition
         CellManager.Instance.originalPosOfMovingCell = cell.transform.position;
