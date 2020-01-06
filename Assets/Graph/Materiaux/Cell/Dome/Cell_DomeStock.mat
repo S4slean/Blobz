@@ -59,6 +59,6 @@ Material:
     - _Min: 0.2
     - _SIzeratio: 0
     - _SideDeformation: 0
-    - __dirty: 1
+    - __dirty: 0
     m_Colors:
     - _CellColor: {r: 0.52156866, g: 0.69300556, b: 0.9607843, a: 0}

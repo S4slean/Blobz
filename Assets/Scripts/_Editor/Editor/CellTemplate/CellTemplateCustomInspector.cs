@@ -23,7 +23,6 @@ public class CellTemplateCustomInspector : Editor
     SerializedProperty BlopPerTickProp;
     //Broyeuse Spé
 
-    //Stockage Spé
     SerializedProperty stockageCapacityProp, LinkCapacityProp, RangeProp, tickForActivationProp;
 
     SerializedProperty InfoBoxToggleProp, refToggleProp, statToggleProp, ProductionGestionsProp, ProximityGestionProp;
@@ -36,9 +35,14 @@ public class CellTemplateCustomInspector : Editor
 
     //ReorderableList proximityColliderList; 
 
+    #region VARIABLES SPE 
+
+    SerializedProperty piloneMaxEnergieProp, tourelleMaxMunProp;
+    SerializedProperty tourelleDamageProp, tourelleAttackRadiusProp;
+
+    #endregion
 
     private float fieldWidthBase, labelWidthBase;
-
 
     private void OnEnable()
     {
@@ -108,6 +112,12 @@ public class CellTemplateCustomInspector : Editor
         #region Specificité
         //Broyeur
         energyPerblop = serializedObject.FindProperty("energyPerblop");
+        piloneMaxEnergieProp = serializedObject.FindProperty("piloneMaxEnergie");
+        tourelleMaxMunProp = serializedObject.FindProperty("tourelleMaxMun");
+        tourelleAttackRadiusProp = serializedObject.FindProperty("tourelleAttackRadius");
+        tourelleDamageProp = serializedObject.FindProperty("tourelleDamage");
+
+
         #endregion
 
         #region LINK
@@ -122,7 +132,6 @@ public class CellTemplateCustomInspector : Editor
         labelWidthBase = EditorGUIUtility.labelWidth;
 
     }
-
     public override void OnInspectorGUI()
     {
         serializedObject.Update();
@@ -147,9 +156,25 @@ public class CellTemplateCustomInspector : Editor
                 break;
             case CellType.Broyeur:
                 EditorGUILayout.PropertyField(energyPerblop);
-
                 break;
             case CellType.Passage:
+                break;
+
+            case CellType.BlipBlop:
+                break;
+            case CellType.Divine:
+                break;
+            case CellType.Tourelle:
+                EditorGUILayout.PropertyField(tourelleMaxMunProp);
+                EditorGUILayout.PropertyField(tourelleDamageProp);
+                EditorGUILayout.PropertyField(tourelleAttackRadiusProp);
+                break;
+            case CellType.LaSalle:
+                break;
+            case CellType.Pilone:
+                EditorGUILayout.PropertyField(piloneMaxEnergieProp);
+                break;
+            case CellType.Decharge:
                 break;
         }
         EditorGUILayout.EndVertical();
@@ -369,7 +394,6 @@ public class CellTemplateCustomInspector : Editor
         serializedObject.ApplyModifiedProperties();
         // base.OnInspectorGUI();
     }
-
     private void DisplayArray(SerializedProperty array, string Label)
     {
         EditorGUILayout.BeginHorizontal();
@@ -497,19 +521,16 @@ public class CellTemplateCustomInspector : Editor
         }
 
     }
-
     //private void ElementCallBack(Rect rect , int index  , bool isActive , bool isFocused)
     //{
     //    rect.yMin += 2;
     //    rect.xMax -= 4;
     //    EditorGUI.PropertyField(rect, proximityCollidersProp.GetArrayElementAtIndex(index), new GUIContent("ProximityCollider n°" + index.ToString()) );
     //}
-
     private void ResetStats()
     {
 
     }
-
     private void DisplayProximityCollider(SerializedProperty array, string Label)
     {
         EditorGUILayout.BeginHorizontal();

@@ -34,7 +34,7 @@ MonoBehaviour:
   tickForActivationBase: 1
   energyPerClick: 2
   limitedInLinks: 1
-  slotDistance: 0.5
+  slotDistance: 1.5
   numberOfOuputLinks: 2
   numberOfInputLinks: 1
   numberOfFlexLinks: 0
@@ -55,4 +55,8 @@ MonoBehaviour:
   ToggleInfoBox: 1
   STATS: 0
   ProductionGestion: 0
-  ProximityGestion: 0
+  ProximityGestion: 1
+  piloneMaxEnergie: 5
+  tourelleMaxMun: 3
+  tourelleDamage: 5
+  tourelleAttackRadius: 6

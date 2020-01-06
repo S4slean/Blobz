@@ -72,7 +72,7 @@ public class CelluleTemplate : ScriptableObject
     public CellType[] positivesInteractions;
     public CellType[] negativesInteractions;
 
-    #region SPECIFICITE CELL 
+    #region PROXIMITY MODIF
     public int[] SurproductionRate;
 
     public float[] BlopPerTick;
@@ -95,6 +95,21 @@ public class CelluleTemplate : ScriptableObject
     public bool STATS;
     public bool ProductionGestion;
     public bool ProximityGestion;
+
+    #endregion
+
+    #region SPECIFIC VARIABLE
+
+    [Range(1 , 10)]
+    public int piloneMaxEnergie = 5;
+
+    [Range(1 , 5)]
+    public int tourelleMaxMun = 3;
+    [Range(1 , 10)]
+    public int tourelleDamage = 5;
+    [Range(3 , 20)]
+    public int tourelleAttackRadius = 6;
+
 
     #endregion
 }

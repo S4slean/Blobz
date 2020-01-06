@@ -726,11 +726,11 @@ public class CellMain : PoolableObjects, PlayerAction
         Vector3 graphPos = transform.position + new Vector3(0, 0.1f, 0);
         graphTransform.position = graphPos;
     }
-    private void SetupVariable()
+    public virtual void SetupVariable()
     {
         // currentLinkStockage = myCellTemplate.linkCapability;
         currentBlobStockage = myCellTemplate.storageCapability;
-        currentSurproductionRate = myCellTemplate.SurproductionRate[0];
+       // currentSurproductionRate = myCellTemplate.SurproductionRate[0];
         currentRejectPower = myCellTemplate.rejectPowerBase;
         currentRange = myCellTemplate.rangeBase;
         currentTickForActivation = myCellTemplate.tickForActivationBase;
@@ -906,15 +906,15 @@ public class CellMain : PoolableObjects, PlayerAction
     //Interaction 
     public virtual void OnShortLeftClickUp(RaycastHit hit)
     {
-        //if (blobNumber > 0)
-        //{
-        //    BlobNumberVariation(-1);
-        //    //CellManager.Instance.EnergyVariation(currentEnergyPerClick);
-        //    RessourceTracker.instance.EnergyVariation(currentEnergyPerClick);
-        //}
+        if (blobNumber > 0)
+        {
+            BlobNumberVariation(-1);
+            //CellManager.Instance.EnergyVariation(currentEnergyPerClick);
+            RessourceTracker.instance.EnergyVariation(currentEnergyPerClick);
+        }
 
-        //anim.Play("PlayerInteraction", 0, 0f);
-        Debug.Log("interaction non définie");
+        anim.Play("PlayerInteraction", 0, 0f);
+        //  Debug.Log("interaction non définie");
     }
 
 
@@ -1003,6 +1003,13 @@ public class CellMain : PoolableObjects, PlayerAction
         CellProximityDectection collider = other.GetComponent<CellProximityDectection>();
         if (collider != null && collider.parent != this)
         {
+            for (int i = 0; i < inThoseCellProximity.Count; i++)
+            {
+                if (inThoseCellProximity[i] == collider)
+                {
+                    return;
+                }
+            }
             Debug.Log("ça rentre", transform);
             inThoseCellProximity.Add(collider);
             //parent.AddToCellAtPromity(cell);
@@ -1034,16 +1041,16 @@ public class CellMain : PoolableObjects, PlayerAction
     }
     #endregion
 
-    public override void Inpool()
-    {
-        base.Inpool();
-        StartCoroutine(WaitFixUpdate());
-    }
-    //ON DEVRA REGLER ça
-    protected IEnumerator WaitFixUpdate()
-    {
-        yield return new WaitForFixedUpdate();
-        ownCollider.enabled = false;
-    }
+    //public override void Inpool()
+    //{
+    //    base.Inpool();
+    //    StartCoroutine(WaitFixUpdate());
+    //}
+    ////ON DEVRA REGLER ça
+    //protected IEnumerator WaitFixUpdate()
+    //{
+    //    yield return new WaitForFixedUpdate();
+    //    ownCollider.enabled = false;
+    //}
 
 }
