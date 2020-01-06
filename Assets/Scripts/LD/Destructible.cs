@@ -2,23 +2,31 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Destructible : MonoBehaviour, PlayerAction
+public class Destructible : PoolableObjects, PlayerAction
 {
+    [Header("Refs")]
     public GameObject goodGraph;
     public GameObject brokenGraph;
 
+    [Header("General")]
     private int remainingLife;
     public int maxLife = 5;
+    private int count = 0;
+    public bool isReapairable = false;
+    [HideInInspector] public bool isRuin = false;
 
+    [Header("Enemies")]
     public bool isVillageNexus = false;
-
+    [HideInInspector] public EnemyVillage village;
     public bool spawnEnemiesOnDestruction = false;
     public int nbrOfEnemiesOnDestruction = 5;
     public float spawnRange;
 
-    [HideInInspector]public EnemyVillage village;
-    private int count = 0;
-    public bool isRuin = false;
+    [Header("Clickable")]
+    public bool canBeDestroyedByClick = false;
+    public int splouchAtDestruction = 50;
+    public int splouchAtClick = 5;
+
 
 
     private void Start()
@@ -61,34 +69,51 @@ public class Destructible : MonoBehaviour, PlayerAction
 
     public void Destruction()
     {
-        if (isRuin)
-            return;
-
-        isRuin = true;
-        //Play destruction Fx
-        //PlayDestruction Sound
-        SwapGraph();
-        if (spawnEnemiesOnDestruction)
+        if (!isReapairable)
         {
-            for (int i = 0; i < nbrOfEnemiesOnDestruction; i++)
+            if (spawnEnemiesOnDestruction)
+                SpawnEnemies();
+
+            //Insert Anim and put Delete at the end
+            Destroy(gameObject); //remove once anim is inserted
+        }
+        else
+        {
+
+            if (isRuin)
+                return;
+
+            isRuin = true;
+            //Play destruction Fx
+            //PlayDestruction Sound
+            SwapGraph();
+            if (spawnEnemiesOnDestruction)
             {
-                Blob blob = ObjectPooler.poolingSystem.GetPooledObject<Blob>() as Blob;
-                blob.Outpool();
-                Vector2 circle = Random.insideUnitCircle;
-                Vector3 circleProjection = new Vector3(circle.x, 0, circle.y).normalized;
-                blob.transform.position = transform.position + circleProjection * spawnRange;
-
+                SpawnEnemies();
             }
-        }
 
-        if (isVillageNexus)
+            if (isVillageNexus)
+            {
+                village.StopVillageRepair();
+                UIManager.Instance.DisplayVillageSelection(village);
+            }
+
+            TickManager.doTick += RepairTick;
+            //Play Destruction Anim
+        }
+    }
+
+    public void SpawnEnemies()
+    {
+        for (int i = 0; i < nbrOfEnemiesOnDestruction; i++)
         {
-            village.StopVillageRepair();
-            UIManager.Instance.DisplayVillageSelection(village);
-        }
+            Blob blob = ObjectPooler.poolingSystem.GetPooledObject<Blob>() as Blob;
+            blob.Outpool();
+            Vector2 circle = Random.insideUnitCircle;
+            Vector3 circleProjection = new Vector3(circle.x, 0, circle.y).normalized;
+            blob.transform.position = transform.position + circleProjection * spawnRange;
 
-        TickManager.doTick += RepairTick;
-        //Play Destruction Anim
+        }
     }
 
     public void RepairTick()
@@ -111,6 +136,11 @@ public class Destructible : MonoBehaviour, PlayerAction
         brokenGraph.SetActive(!brokenGraph.activeSelf);
     }
 
+    public void Delete()
+    {
+        Destroy(gameObject);
+    }
+
     private void OnDestroy()
     {
         TickManager.doTick -= RepairTick;
@@ -125,7 +155,7 @@ public class Destructible : MonoBehaviour, PlayerAction
 
     public void OnLeftClickDown(RaycastHit hit)
     {
-    
+
     }
 
     public void OnShortLeftClickUp(RaycastHit hit)
@@ -136,17 +166,17 @@ public class Destructible : MonoBehaviour, PlayerAction
 
     public void OnLeftClickHolding(RaycastHit hit)
     {
-     
+
     }
 
     public void OnLongLeftClickUp(RaycastHit hit)
     {
-       
+
     }
 
     public void OnDragStart(RaycastHit hit)
     {
-        
+
     }
 
     public void OnLeftDrag(RaycastHit hit)
@@ -155,17 +185,17 @@ public class Destructible : MonoBehaviour, PlayerAction
 
     public void OnDragEnd(RaycastHit hit)
     {
-      
+
     }
 
     public void OnShortRightClick(RaycastHit hit)
     {
-     
+
     }
 
     public void OnRightClickWhileHolding(RaycastHit hit)
     {
-     
+
     }
 
     public void OnRightClickWhileDragging(RaycastHit hit)
@@ -180,21 +210,21 @@ public class Destructible : MonoBehaviour, PlayerAction
 
     public void OnMouseOut(RaycastHit hit)
     {
-        
+
     }
 
     public void OnSelect()
     {
-      
+
     }
 
     public void OnDeselect()
     {
-       
+
     }
 
     public void StopAction()
     {
-        
+
     }
 }
