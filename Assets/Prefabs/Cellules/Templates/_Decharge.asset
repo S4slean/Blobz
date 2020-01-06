@@ -31,7 +31,7 @@ MonoBehaviour:
   tickForActivationBase: 1
   energyPerClick: 10
   limitedInLinks: 0
-  slotDistance: 0.5
+  slotDistance: 1.5
   numberOfOuputLinks: 1
   numberOfInputLinks: 1
   numberOfFlexLinks: 3
@@ -53,3 +53,7 @@ MonoBehaviour:
   STATS: 0
   ProductionGestion: 0
   ProximityGestion: 0
+  MaxEnergie: 5
+  tourelleMaxMun: 3
+  tourelleDamage: 5
+  tourelleAttackRadius: 6

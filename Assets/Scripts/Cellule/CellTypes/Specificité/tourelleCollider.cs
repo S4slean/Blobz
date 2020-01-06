@@ -38,7 +38,7 @@ public class tourelleCollider : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "enemies")
+        if (other.tag == "Enemies")
         {
             Blob blolMechant = other.GetComponent<Blob>();
             if (blolMechant != null)
@@ -59,7 +59,7 @@ public class tourelleCollider : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.tag == "enemies")
+        if (other.tag == "Enemies")
         {
             Blob blolMechant = other.GetComponent<Blob>();
             if (blolMechant != null)
@@ -84,6 +84,7 @@ public class tourelleCollider : MonoBehaviour
     {
         if (hasTarget)
         {
+            Debug.Log("Fire");
             if (badBlobs[0] != null)
             {
                 //ça sera un projectile 

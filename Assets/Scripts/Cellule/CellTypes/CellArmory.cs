@@ -4,14 +4,8 @@ using UnityEngine;
 
 public class CellArmory : CellMain
 {
-    // [Header("SPECIFICITE CELL")]
-    // public GameObject myCellTemplate.targetDirection;
-    // [Header("Proximity Level Modif")]
-    // public float[] myCellTemplate.BlopPerTick;
-
     [SerializeField]
     private float rfBonus = 0;
-
 
     public override void BlobsTick()
     {
@@ -34,6 +28,8 @@ public class CellArmory : CellMain
                         newBlob.blobType = BlobManager.BlobType.soldier;
 
                         newBlob.Outpool();
+
+                        newBlob.tag = "Untagged";
 
                         newBlob.transform.position = TargetPos.transform.position + Helper.RandomVectorInUpSphere();
 

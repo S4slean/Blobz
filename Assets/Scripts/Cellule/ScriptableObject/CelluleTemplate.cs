@@ -101,7 +101,7 @@ public class CelluleTemplate : ScriptableObject
     #region SPECIFIC VARIABLE
 
     [Range(1 , 10)]
-    public int piloneMaxEnergie = 5;
+    public int MaxEnergie = 5;
 
     [Range(1 , 5)]
     public int tourelleMaxMun = 3;

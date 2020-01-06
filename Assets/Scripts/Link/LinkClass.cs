@@ -231,7 +231,6 @@ public class LinkClass : PoolableObjects
                 lockIcon[i].SetActive(true);
                 lockIcon[i].transform.position = extremityPos[i] + new Vector3(0, 0.02f, 0);
             }
-            Debug.Log("this link got closed", gameObject);
         }
         else
         {
@@ -239,7 +238,6 @@ public class LinkClass : PoolableObjects
             {
                 lockIcon[i].SetActive(false);
             }
-            Debug.Log("this link got opened", gameObject);
         }
     }
 

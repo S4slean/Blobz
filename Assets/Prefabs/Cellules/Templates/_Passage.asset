@@ -35,7 +35,7 @@ MonoBehaviour:
   numberOfOuputLinks: 0
   numberOfInputLinks: 0
   numberOfFlexLinks: 5
-  proximityLevelMax: 1
+  proximityLevelMax: 4
   proximityInfluenceMultiplier: 1
   positivesInteractions: 
   negativesInteractions: 
@@ -44,13 +44,17 @@ MonoBehaviour:
   - 0
   stockageCapacity: 
   LinkCapacity: 
-  Range: 
+  Range: 0a000000140000001e00000028000000
   tickForActivation: 00000000
   energyCap: 
   energyPerblop: 0
-  StatsModification: 5
+  StatsModification: 4
   REFS: 0
   ToggleInfoBox: 1
   STATS: 0
-  ProductionGestion: 1
-  ProximityGestion: 0
+  ProductionGestion: 0
+  ProximityGestion: 1
+  MaxEnergie: 5
+  tourelleMaxMun: 3
+  tourelleDamage: 5
+  tourelleAttackRadius: 6

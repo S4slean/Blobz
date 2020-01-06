@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5d07d45a74266e347a6c0f35a3488ad7, type: 3}
-  m_Name: _Tourelle
+  m_Name: _Divine
   m_EditorClassIdentifier: 
   cellsEnableToBuild: []
   blopPrefab: {fileID: 0}
   buttonColor: {r: 0, g: 0, b: 0, a: 0}
   cellTexture: {fileID: 0}
-  type: 7
+  type: 6
   generateProximity: 0
   proximityColliderNumber: 1
   proximityColliders: []
@@ -34,8 +34,8 @@ MonoBehaviour:
   slotDistance: 1.5
   numberOfOuputLinks: 1
   numberOfInputLinks: 1
-  numberOfFlexLinks: 3
-  proximityLevelMax: 4
+  numberOfFlexLinks: 2
+  proximityLevelMax: 0
   proximityInfluenceMultiplier: 1
   positivesInteractions: 
   negativesInteractions: 
@@ -44,16 +44,16 @@ MonoBehaviour:
   stockageCapacity: 
   LinkCapacity: 
   Range: 
-  tickForActivation: 04000000030000000200000001000000
+  tickForActivation: 
   energyCap: 
   energyPerblop: 0
-  StatsModification: 5
+  StatsModification: 7
   REFS: 0
   ToggleInfoBox: 1
   STATS: 0
   ProductionGestion: 0
   ProximityGestion: 1
-  MaxEnergie: 5
-  tourelleMaxMun: 5
+  MaxEnergie: 7
+  tourelleMaxMun: 3
   tourelleDamage: 5
   tourelleAttackRadius: 6
