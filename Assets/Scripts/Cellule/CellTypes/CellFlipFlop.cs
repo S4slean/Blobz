@@ -24,7 +24,7 @@ public class CellFlipFlop : CellMain
                     {
                         break;
                     }
-                    currentOutputLink.Transmitt(1 , BlobManager.BlobType.normal);
+                    currentOutputLink.Transmitt(1 , BlobCheck());
                     haveExpulse = true;
                 }
                 currentTick = 0;

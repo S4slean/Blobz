@@ -59,7 +59,7 @@ public class Blob : PoolableObjects
     {
         switch (blobType)
         {
-            case BlobManager.BlobType.charged:
+            case BlobManager.BlobType.explorateur:
 
                 rd.material = BlobManager.instance.chargedMat;
                 break;

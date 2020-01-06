@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BlobManager : MonoBehaviour
 {
-    public enum BlobType { normal, charged, soldier, mad , coach};
+    public enum BlobType { normal, explorateur, soldier, mad , coach};
 
 
     public static List<Blob> blobList = new List<Blob>();
@@ -82,7 +82,7 @@ public class BlobManager : MonoBehaviour
 
                     break;
 
-                case BlobType.charged:
+                case BlobType.explorateur:
 
                     break;
 
