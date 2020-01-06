@@ -37,7 +37,7 @@ public class CellTemplateCustomInspector : Editor
 
     #region VARIABLES SPE 
 
-    SerializedProperty piloneMaxEnergieProp, tourelleMaxMunProp;
+    SerializedProperty MaxEnergieProp, tourelleMaxMunProp;
     SerializedProperty tourelleDamageProp, tourelleAttackRadiusProp;
 
     #endregion
@@ -112,7 +112,7 @@ public class CellTemplateCustomInspector : Editor
         #region Specificité
         //Broyeur
         energyPerblop = serializedObject.FindProperty("energyPerblop");
-        piloneMaxEnergieProp = serializedObject.FindProperty("piloneMaxEnergie");
+        MaxEnergieProp = serializedObject.FindProperty("MaxEnergie");
         tourelleMaxMunProp = serializedObject.FindProperty("tourelleMaxMun");
         tourelleAttackRadiusProp = serializedObject.FindProperty("tourelleAttackRadius");
         tourelleDamageProp = serializedObject.FindProperty("tourelleDamage");
@@ -163,6 +163,7 @@ public class CellTemplateCustomInspector : Editor
             case CellType.BlipBlop:
                 break;
             case CellType.Divine:
+                EditorGUILayout.PropertyField(MaxEnergieProp);
                 break;
             case CellType.Tourelle:
                 EditorGUILayout.PropertyField(tourelleMaxMunProp);
@@ -172,7 +173,7 @@ public class CellTemplateCustomInspector : Editor
             case CellType.LaSalle:
                 break;
             case CellType.Pilone:
-                EditorGUILayout.PropertyField(piloneMaxEnergieProp);
+                EditorGUILayout.PropertyField(MaxEnergieProp);
                 break;
             case CellType.Decharge:
                 break;
@@ -495,8 +496,8 @@ public class CellTemplateCustomInspector : Editor
 
             case StatsModificationType.Range:
                 EditorGUILayout.HelpBox("Longueur maximum des liens venant de ce bâtiment ( aussi de la proximité pour l'instant ) ", MessageType.Info);
-                rangeBaseProp.arraySize = proximityLevelMaxProp.intValue;
-                DisplayArray(rangeBaseProp, "Level");
+                RangeProp.arraySize = proximityLevelMaxProp.intValue;
+                DisplayArray(RangeProp, "Level");
                 break;
 
             case StatsModificationType.TickForActivation:
