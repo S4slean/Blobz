@@ -65,6 +65,7 @@ public class EnemyVillage : MonoBehaviour
         Vector2 circle = Random.insideUnitCircle;
         Vector3 circleProjection = new Vector3(circle.x, 0, circle.y).normalized;
         blob.transform.position = buildings[rand].transform.position +  circleProjection* spawnRange + Vector3.up;
+        blob.tag = "Enemies";
         blob.SetOrigin(this);
         blobs.Add(blob);
 

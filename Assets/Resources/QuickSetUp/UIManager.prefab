@@ -616,7 +616,7 @@ MonoBehaviour:
   firstTooltipDelay: 0
   secondTooltipDelay: 0.2
   villageSelection: {fileID: 6388276774657264451}
-  colonyBtn: {fileID: 0}
+  colonyCreation: {fileID: 1437484220544116424}
   nENRJ: {fileID: 3317153440592376868}
   nELink: {fileID: 4577186692787261496}
   alertRadius: 200

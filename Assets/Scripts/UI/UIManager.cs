@@ -228,24 +228,30 @@ public class UIManager : MonoBehaviour
     #endregion
 
     #region COLONY
-    public ColonyBtn colonyBtn;
+    [Header("Colony")]
+    public Transform colonyCreation;
 
     public void DisplayColonyBtn(NexusAera area)
     {
-        if (colonyBtn.gameObject.activeSelf)
-            return;
+        ColonyBtn colonyBtn = ObjectPooler.poolingSystem.GetPooledObject<ColonyBtn>() as ColonyBtn;
+        
 
         colonyBtn.cost = area.splouchCost;
         colonyBtn.point = area.transform.position;
         colonyBtn.transform.position = area.transform.position + Vector3.up * 2;
-        colonyBtn.gameObject.SetActive(true);
+        colonyBtn.Outpool();
+        area.btn = colonyBtn;
         colonyBtn.UpdateText();
     }
 
-    public void HideColonyBtn()
+    public void HideColonyBtn(NexusAera area)
     {
-        colonyBtn.gameObject.SetActive(false);
+        area.btn.Inpool(); ;
     }
+    #endregion
+
+    #region DIVINE_CELL
+    public GameObject divineCellTArget;
     #endregion
 
     #region NOT_ENOUGH_NRJ

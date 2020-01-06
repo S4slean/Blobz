@@ -139,6 +139,7 @@ public class CellMain : PoolableObjects, PlayerAction
 
     public void CellInitialisation()
     {
+        ownCollider = GetComponent<Collider>();
         RessourceTracker.instance.AddCell(this);
         ownCollider.enabled = true;
         TickInscription();
