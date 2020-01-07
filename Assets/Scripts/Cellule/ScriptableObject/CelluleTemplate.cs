@@ -79,9 +79,11 @@ public class CelluleTemplate : ScriptableObject
     public int[] stockageCapacity;
 
     public int[] LinkCapacity;
-    public int[] Range;
+    public int[] rangeLien;
     public int[] tickForActivation;
     public int[] energyCap;
+
+    public int[] specifique;
 
     public int energyPerblop;
     #endregion
