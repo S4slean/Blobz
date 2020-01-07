@@ -17,6 +17,8 @@ public class CellMainInspector : Editor
 
     SerializedProperty TargetPosProp;
 
+    SerializedProperty coachIconProp;
+
     SerializedProperty animProp;
 
 
@@ -34,6 +36,7 @@ public class CellMainInspector : Editor
         ProximityDectectionProp = serializedObject.FindProperty("ProximityDectection");
         domeMRProp = serializedObject.FindProperty("domeMR");
         spriteMRProp = serializedObject.FindProperty("spriteMR");
+        coachIconProp = serializedObject.FindProperty("coachIcon");
 
 
         linksProp = serializedObject.FindProperty("links");
@@ -82,6 +85,8 @@ public class CellMainInspector : Editor
 
             EditorGUILayout.PropertyField(domeMRProp);
             EditorGUILayout.PropertyField(spriteMRProp);
+
+            EditorGUILayout.PropertyField(coachIconProp);
          
 
             EditorGUI.indentLevel -= 1;
