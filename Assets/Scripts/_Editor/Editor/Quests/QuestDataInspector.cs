@@ -23,7 +23,8 @@ public class QuestDataInspector : Editor
     SerializedProperty transformToGetProp;
     SerializedProperty rangeProp;
 
-    SerializedProperty destroyListProp;
+    SerializedProperty destructTypProp;
+    SerializedProperty nbrOfObjectProp;
 
 
     bool foldout = false;
@@ -47,7 +48,9 @@ public class QuestDataInspector : Editor
         transformToGetProp = serializedObject.FindProperty("placeToGet");
         rangeProp = serializedObject.FindProperty("range");
 
-        destroyListProp = serializedObject.FindProperty("objectToDestroy");
+        destructTypProp = serializedObject.FindProperty("destructType");
+        nbrOfObjectProp = serializedObject.FindProperty("nbrOfObject");
+
 
         questEventsProp = serializedObject.FindProperty("questEvents");
 
@@ -74,7 +77,7 @@ public class QuestDataInspector : Editor
                 EditorGUILayout.PropertyField(energyProp);
                 break;
 
-            case (int)QuestManager.QuestType.Colonisation:
+            case (int)QuestManager.QuestType.Exploration:
                 EditorGUILayout.PropertyField(anyCellsProp);
                 EditorGUILayout.PropertyField(coloCellProp);
                 EditorGUILayout.PropertyField(transformToGetProp);
@@ -84,20 +87,9 @@ public class QuestDataInspector : Editor
 
             case (int)QuestManager.QuestType.Destruction:
 
-                EditorGUILayout.LabelField("Destruction", EditorStyles.boldLabel);
+                EditorGUILayout.PropertyField(destructTypProp);
+                EditorGUILayout.PropertyField(nbrOfObjectProp);
 
-                EditorGUILayout.BeginHorizontal();
-                foldout = EditorGUILayout.Foldout(foldout, "Objects to destroy", true);
-                destroyListProp.arraySize =  EditorGUILayout.IntField( destroyListProp.arraySize);
-                EditorGUILayout.EndHorizontal();
-
-                if (foldout)
-                {
-                    for (int i = 0; i < destroyListProp.arraySize; i++)
-                    {
-                        EditorGUILayout.ObjectField(destroyListProp.GetArrayElementAtIndex(i));
-                    }
-                }
 
                 break;
 

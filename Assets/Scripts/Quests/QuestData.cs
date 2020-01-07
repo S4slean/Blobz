@@ -25,14 +25,15 @@ public class QuestData : ScriptableObject
     [Range(1,10)]public int level = 1;
     [Range(1,100)]public int cellNbrToObtain = 1;
 
-    [Header("Colonisation")]
+    [Header("Exploration")]
+    public bool blobExplo = false;
     public bool anyCells = true;
     public CellType colonialCellType = CellType.Productrice;
-    public Transform placeToGet;
-    [Range(0,1000)]public float range;
+    public int placeToGet;
 
     [Header("Destruction")]
-    public GameObject[] objectToDestroy;
+    public Destructible.DestructType destructType;
+    public int nbrOfObject;
 
     [Header("Events")]
     public QuestEvent[] questEvents;

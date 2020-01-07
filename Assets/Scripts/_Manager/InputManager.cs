@@ -143,7 +143,7 @@ public class InputManager : MonoBehaviour
                     if (selectedElement != null)
                     {
                         
-                        Debug.Log(selectedElement);
+
                         float distanceFromElement = (CurrentHit.point - ((Component)selectedElement).transform.position).magnitude;
 
                         if (clickTime > clickCooldown && selectedElement != null && !dragging && distanceFromElement > distanceBeforeDrag)
