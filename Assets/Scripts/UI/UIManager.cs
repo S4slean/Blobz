@@ -274,7 +274,10 @@ public class UIManager : MonoBehaviour
 
     public void UpdateShootingArea(float newRange)
     {
-        divineShotArea.transform.localScale = (Vector3.one * newRange);
+        if (InputManager.Instance.shootingCell == null)
+            return;
+        divineShotArea.transform.position = InputManager.Instance.shootingCell.transform.position;
+        divineShotArea.transform.localScale = (Vector3.one * newRange /0.075f);
     }
 
     public void SetTargetPos(Vector3 pos)

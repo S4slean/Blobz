@@ -41,7 +41,7 @@ public class Helper : MonoBehaviour
     public static bool CheckAvailableSpace(Vector3 pos, float radius, Collider colliderToIgnore)
     {
 
-        Collider[] objects = Physics.OverlapSphere(pos, radius, 1 << 12 | 1 << 11 | 1 << 15);
+        Collider[] objects = Physics.OverlapSphere(pos, radius, 1 << 12 | 1 << 11 | 1 << 15 |1 <<16);
 
         for (int i = 0; i < objects.Length; i++)
         {
