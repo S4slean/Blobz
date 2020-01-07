@@ -326,6 +326,7 @@ public class InputManager : MonoBehaviour
                         }
                     }
 
+                    shootingCell.Decharge();
                     SwitchInputMode(InputMode.normal);
                 }
                 if (Input.GetMouseButtonDown(1))
@@ -419,6 +420,7 @@ public class InputManager : MonoBehaviour
     public static void SwitchInputMode(InputMode newInputMode)
     {
         Instance.inputMode = newInputMode;
+        Debug.Log("InputModeSwitched to: " + newInputMode.ToString());
         if(newInputMode == InputMode.divineShot)
         {
             UIManager.Instance.DisplayDivineShot(Instance.shootingCell);
@@ -433,13 +435,13 @@ public class InputManager : MonoBehaviour
     public void UpdateTargetPos()
     {
         float dist = (shootingCell.transform.position - mouseWorldPos).sqrMagnitude;
-        if(dist < Mathf.Pow(shootingCell.specifiqueStats, 2)/*range au carré*/)
+        if(dist < Mathf.Pow(shootingCell.specifiqueStats/2, 2)/*range au carré*/)
         {
             UIManager.Instance.SetTargetPos(mouseWorldPos);
         }
         else
         {
-            UIManager.Instance.SetTargetPos(shootingCell.transform.position + (mouseWorldPos - shootingCell.transform.position) * shootingCell.specifiqueStats);
+            UIManager.Instance.SetTargetPos(shootingCell.transform.position + (mouseWorldPos - shootingCell.transform.position).normalized * (shootingCell.specifiqueStats/2));
         }
 
     }

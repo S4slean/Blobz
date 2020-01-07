@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1386173271546363315}
   - component: {fileID: 1386173271546363312}
   - component: {fileID: 1386173271546363313}
-  m_Layer: 15
+  m_Layer: 16
   m_Name: GoodGraph
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -89,7 +89,7 @@ GameObject:
   - component: {fileID: 1386173272474075142}
   - component: {fileID: 1386173272474075143}
   - component: {fileID: 1386173272474075140}
-  m_Layer: 15
+  m_Layer: 16
   m_Name: BrokenGraph
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -167,8 +167,8 @@ GameObject:
   - component: {fileID: 1386173272663449780}
   - component: {fileID: 1386173272663449781}
   - component: {fileID: 1386173272663449770}
-  m_Layer: 15
-  m_Name: Destructible 1
+  m_Layer: 16
+  m_Name: Destructible
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -207,7 +207,7 @@ MonoBehaviour:
   goodGraph: {fileID: 1386173271546363318}
   brokenGraph: {fileID: 1386173272474075141}
   destructType: 3
-  maxLife: 5
+  maxLife: 3
   isReapairable: 1
   repairDelay: 10
   isRuin: 0

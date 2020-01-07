@@ -47,6 +47,9 @@ public class QuestManager : MonoBehaviour
 
     public void DestructionCheck(Destructible.DestructType destructObjectType)
     {
+        if (currentQuest == null)
+            return;
+
         if (currentQuest.questType != QuestType.Destruction)
             return;
 

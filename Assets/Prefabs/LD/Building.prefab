@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 1425149600685392508}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_Children: []
   m_Father: {fileID: 702070642367133429}
   m_RootOrder: 1
@@ -138,14 +138,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee651ffc24120384e951aee1fbd5ed4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canBePool: 0
+  initialPool: {fileID: 0}
   goodGraph: {fileID: 6438243430102390527}
   brokenGraph: {fileID: 1425149600685392508}
-  remainingLife: 0
-  maxLife: 5
+  destructType: 0
+  maxLife: 3
+  isReapairable: 0
+  repairDelay: 10
+  isRuin: 0
+  isVillageNexus: 0
+  village: {fileID: 0}
   spawnEnemiesOnDestruction: 1
   nbrOfEnemiesOnDestruction: 2
   spawnRange: 1
-  village: {fileID: 0}
+  canBeDestroyedByClick: 0
+  splouchAtDestruction: 50
+  splouchAtClick: 5
 --- !u!1 &6438243430102390527
 GameObject:
   m_ObjectHideFlags: 0
