@@ -27,7 +27,9 @@ public class CellSalle : CellMain
                 newCoach.origianlSalle = this;
                 newCoach.inThisCell = this;
                 newCoach.currentLife = specifiqueStats;
+                newCoach.Init();
                 blobCoaches.Add(newCoach);
+
                 BlobManager.instance.blobCoaches.Add(newCoach);
                 break;
             case BlobManager.BlobType.coach:
@@ -114,6 +116,7 @@ public struct BlobCoach
      public void Init()
     {
         TickManager.doTick += Tick;
+        Debug.Log("ALLO");
     }
     private void LooseLife()
     {

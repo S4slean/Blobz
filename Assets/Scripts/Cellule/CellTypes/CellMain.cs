@@ -261,7 +261,10 @@ public class CellMain : PoolableObjects, PlayerAction
 
     public virtual void BlobsTick()
     {
-        BlobNumberVariation(myCellTemplate.prodPerTickBase, BlobManager.BlobType.normal);
+        if (myCellTemplate.prodPerTickBase > 0)
+        {
+            BlobNumberVariation(myCellTemplate.prodPerTickBase, BlobManager.BlobType.normal);
+        }
 
         //ANIM
         haveExpulse = false;
@@ -420,7 +423,7 @@ public class CellMain : PoolableObjects, PlayerAction
         //UpdateCaract();
     }
 
-    public  virtual BlobManager.BlobType BlobCheck()
+    public virtual BlobManager.BlobType BlobCheck()
     {
         if (explorateurBlobNumber > 0)
         {
