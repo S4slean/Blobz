@@ -275,12 +275,7 @@ public class UIManager : MonoBehaviour
     {
         divineCellTarget.transform.position = pos;
     }
-    public void UpdateTargetPos()
-    {
-        float dist = (InputManager.Instance.shootingCell.transform.position - InputManager.Instance.mouseWorldPos).sqrMagnitude;
-        if (dist < Input)
-        divineCellTarget.transform.position = InputManager.Instance.mouseWorldPos;
-    }
+
     #endregion
 
     #region NOT_ENOUGH_NRJ
