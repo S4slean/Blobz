@@ -88,4 +88,11 @@ public class CellDivine : CellMain
             //dipslay not enough charge 
         }
     }
+
+    public override void ProximityLevelModification()
+    {
+        base.ProximityLevelModification();
+
+        UIManager.Instance.UpdateShootingArea(specifiqueStats);
+    }
 }

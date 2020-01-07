@@ -84,7 +84,7 @@ public class CellMain : PoolableObjects, PlayerAction
     protected int currentSurproductionRate;
     protected float currentRejectPower;
     protected int currentRange;
-    protected int specifiqueStats;
+    public int specifiqueStats;
 
 
     #endregion

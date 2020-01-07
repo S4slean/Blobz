@@ -313,7 +313,25 @@ public class InputManager : MonoBehaviour
             #region SHOOTING_STATE
             case InputMode.divineShot:
 
+                UpdateTargetPos();
 
+                if (Input.GetMouseButtonDown(0))
+                {
+                    Collider[] hitColliders = Physics.OverlapSphere(UIManager.Instance.divineCellTarget.transform.position, 1, 1<<12 | 1<< 16);
+                    for (int i = 0; i < hitColliders.Length; i++)
+                    {
+                        if(hitColliders[i].TryGetComponent<Destructible>(out Destructible destrucible))
+                        {
+                            destrucible.ReceiveDamage(3);
+                        }
+                    }
+
+                    SwitchInputMode(InputMode.normal);
+                }
+                if (Input.GetMouseButtonDown(1))
+                {
+                    SwitchInputMode(InputMode.normal);
+                }
 
 
                 break;
@@ -393,6 +411,11 @@ public class InputManager : MonoBehaviour
         ResetInputs();
     }
 
+    public void SetShootingCell(CellDivine newShootingCell)
+    {
+        shootingCell = newShootingCell;
+    }
+
     public static void SwitchInputMode(InputMode newInputMode)
     {
         Instance.inputMode = newInputMode;
@@ -400,14 +423,23 @@ public class InputManager : MonoBehaviour
         {
             UIManager.Instance.DisplayDivineShot(Instance.shootingCell);
         }
+        else
+        {
+            Instance.shootingCell = null;
+            UIManager.Instance.HideDivineShot();
+        }
     }
 
     public void UpdateTargetPos()
     {
         float dist = (shootingCell.transform.position - mouseWorldPos).sqrMagnitude;
-        if(dist < shootingCell.GetCurrentRange()/*range au carré*/)
+        if(dist < Mathf.Pow(shootingCell.specifiqueStats, 2)/*range au carré*/)
         {
             UIManager.Instance.SetTargetPos(mouseWorldPos);
+        }
+        else
+        {
+            UIManager.Instance.SetTargetPos(shootingCell.transform.position + (mouseWorldPos - shootingCell.transform.position) * shootingCell.specifiqueStats);
         }
 
     }
