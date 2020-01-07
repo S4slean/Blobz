@@ -4,21 +4,31 @@ using UnityEngine;
 
 public class CellSalle : CellMain
 {
-    public List<BlobCoach> myCoachs;
     private int myCoachBlobNumber;
+    private List<BlobCoach> blobCoaches = new List<BlobCoach>();
 
     public override void BlobNumberVariation(int amount, BlobManager.BlobType _blobType)
     {
         switch (_blobType)
         {
             case BlobManager.BlobType.normal:
-                RessourceTracker.instance.AddBlob(BlobManager.BlobType.coach, amount);
                 myCoachBlobNumber += amount;
+                if (myCoachBlobNumber >= myCellTemplate.maxBlobCoach)
+                {
+                    myCoachBlobNumber = myCellTemplate.maxBlobCoach;
+                    return;
+                }
+                if (myCoachBlobNumber < 0)
+                {
+                    myCoachBlobNumber = 0;
+                }
+                RessourceTracker.instance.AddBlob(BlobManager.BlobType.coach, amount);
                 BlobCoach newCoach = new BlobCoach();
                 newCoach.origianlSalle = this;
                 newCoach.inThisCell = this;
-                //newCoach.currentLife
-                myCoachs.Add(newCoach);
+                newCoach.currentLife = specifiqueStats;
+                blobCoaches.Add(newCoach);
+                BlobManager.instance.blobCoaches.Add(newCoach);
                 break;
             case BlobManager.BlobType.coach:
                 coachBlobNumber += amount;
@@ -77,13 +87,21 @@ public class CellSalle : CellMain
         }
         UpdateCaract();
     }
+    public override void SetupVariable()
+    {
+        base.SetupVariable();
+        myCoachBlobNumber = 0;
+        foreach (BlobCoach blob in blobCoaches)
+        {
+            blob.SalleDeath();
+        }
 
-
-
-
-
+        blobCoaches.Clear();
+    }
 
 }
+
+
 [System.Serializable]
 public struct BlobCoach
 {
@@ -91,13 +109,44 @@ public struct BlobCoach
     public int currentLife;
     public CellMain inThisCell;
 
+    private bool salleDead;
+
+     public void Init()
+    {
+        TickManager.doTick += Tick;
+    }
     private void LooseLife()
     {
-
+        currentLife -= 1;
+        if (currentLife <=0)
+        {
+            Death();
+        }
     }
 
-    public void ChangeCell()
+    public void ChangeCell(CellMain newCell)
     {
+        inThisCell = newCell;
+    }
 
+    private void Tick()
+    {
+        if (origianlSalle != inThisCell || salleDead == true )
+        {
+            LooseLife();
+        }
+    }
+
+    public void SalleDeath()
+    {
+        origianlSalle = null;
+        salleDead = true;
+    }
+
+    private void Death()
+    {
+        inThisCell.BlobNumberVariation(-1, BlobManager.BlobType.coach);
+        BlobManager.instance.blobCoaches.Remove(this);
+        
     }
 }

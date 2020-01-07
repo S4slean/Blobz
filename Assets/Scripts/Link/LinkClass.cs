@@ -185,6 +185,18 @@ public class LinkClass : PoolableObjects
         //Ancienne Version 
         originalCell.BlobNumberVariation(-blobAmount , _blobType);
         receivingCell.BlobNumberVariation(blobAmount , _blobType);
+
+        if (_blobType == BlobManager.BlobType.coach)
+        {
+            for (int i = 0; i < BlobManager.instance.blobCoaches.Count; i++)
+            {
+                if (BlobManager.instance.blobCoaches[i].inThisCell == originalCell )
+                {
+                    BlobManager.instance.blobCoaches[i].ChangeCell(receivingCell);
+                }
+            }
+        }
+
         //New Version
         //joints[0].cellsAttach[0].BlobNumberVariation(-blobAmount);
         //joints[1].cellsAttach[0].BlobNumberVariation(blobAmount);
