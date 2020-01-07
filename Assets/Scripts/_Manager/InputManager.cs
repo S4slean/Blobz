@@ -49,6 +49,7 @@ public class InputManager : MonoBehaviour
 
 
     [HideInInspector] public CellMain objectMoved;
+    [HideInInspector] public CellDivine shootingCell;
 
     private RaycastHit CurrentHit;
     private PlayerAction currentPlayerAction;
@@ -311,6 +312,10 @@ public class InputManager : MonoBehaviour
 
             #region SHOOTING_STATE
             case InputMode.divineShot:
+
+
+
+
                 break;
                 #endregion
         }
@@ -391,5 +396,19 @@ public class InputManager : MonoBehaviour
     public static void SwitchInputMode(InputMode newInputMode)
     {
         Instance.inputMode = newInputMode;
+        if(newInputMode == InputMode.divineShot)
+        {
+            UIManager.Instance.DisplayDivineShot(Instance.shootingCell);
+        }
+    }
+
+    public void UpdateTargetPos()
+    {
+        float dist = (shootingCell.transform.position - mouseWorldPos).sqrMagnitude;
+        if(dist < shootingCell.GetCurrentRange()/*range au carré*/)
+        {
+            UIManager.Instance.SetTargetPos(mouseWorldPos);
+        }
+
     }
 }

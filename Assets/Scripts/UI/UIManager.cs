@@ -254,7 +254,33 @@ public class UIManager : MonoBehaviour
 
     #region DIVINE_CELL
     [Header("Divine Cell")]
-    public GameObject divineCellTArget;
+    public GameObject divineCellTarget;
+    public GameObject divineShotArea;
+
+    public void DisplayDivineShot(CellDivine shootingCell)
+    {
+        UpdateTargetPos();
+        divineShotArea.transform.position = shootingCell.transform.position;
+        divineCellTarget.SetActive(true);
+        divineShotArea.SetActive(true);
+    }
+    public void HideDivineShot()
+    {
+        divineCellTarget.SetActive(false);
+        divineShotArea.SetActive(false);
+    }
+
+
+    public void SetTargetPos(Vector3 pos)
+    {
+        divineCellTarget.transform.position = pos;
+    }
+    public void UpdateTargetPos()
+    {
+        float dist = (InputManager.Instance.shootingCell.transform.position - InputManager.Instance.mouseWorldPos).sqrMagnitude;
+        if (dist < Input)
+        divineCellTarget.transform.position = InputManager.Instance.mouseWorldPos;
+    }
     #endregion
 
     #region NOT_ENOUGH_NRJ
