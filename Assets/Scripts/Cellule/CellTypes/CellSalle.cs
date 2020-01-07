@@ -4,58 +4,54 @@ using UnityEngine;
 
 public class CellSalle : CellMain
 {
-    private int myCoachBlobNumber;
-    private List<BlobCoach> blobCoaches = new List<BlobCoach>();
+    public int myCoachBlobNumber;
+    //public List<BlobCoach> createdCoach = new List<BlobCoach>();
+
+    public override void BlobsTick()
+    {
+        base.BlobsTick();
+ 
+    }
 
     public override void BlobNumberVariation(int amount, BlobManager.BlobType _blobType)
     {
         switch (_blobType)
         {
             case BlobManager.BlobType.normal:
-                myCoachBlobNumber += amount;
-                if (myCoachBlobNumber >= myCellTemplate.maxBlobCoach)
-                {
-                    myCoachBlobNumber = myCellTemplate.maxBlobCoach;
-                    return;
-                }
-                if (myCoachBlobNumber < 0)
-                {
-                    myCoachBlobNumber = 0;
-                }
                 RessourceTracker.instance.AddBlob(BlobManager.BlobType.coach, amount);
-                BlobCoach newCoach = new BlobCoach();
-                newCoach.origianlSalle = this;
-                newCoach.inThisCell = this;
-                newCoach.currentLife = specifiqueStats;
-                newCoach.Init();
-                blobCoaches.Add(newCoach);
-
-                BlobManager.instance.blobCoaches.Add(newCoach);
+                for (int i = 0; i < amount; i++)
+                {
+                    if (blobNumber < currentBlobStockage && !isDead)
+                    {
+                        BlobCoach newCoach = new BlobCoach();
+                        newCoach.Init(this, specifiqueStats);
+                        newCoach.ChangeCell(this);
+                    }
+                }
                 break;
             case BlobManager.BlobType.coach:
                 coachBlobNumber += amount;
                 RessourceTracker.instance.AddBlob(BlobManager.BlobType.coach, amount);
-
-                if (coachBlobNumber < 0)
-                {
-                    coachBlobNumber = 0;
-                    hasBlobCoach = false;
-                    coachIcon.SetActive(false);
-                    ProximityLevelModification();
-                }
-                else
-                {
-                    hasBlobCoach = true;
-                    coachIcon.SetActive(true);
-                    ProximityLevelModification();
-                }
                 break;
             case BlobManager.BlobType.explorateur:
                 explorateurBlobNumber += amount;
-                RessourceTracker.instance.AddBlob(BlobManager.BlobType.explorateur, amount);
                 break;
         }
-        blobNumber = myCoachBlobNumber + coachBlobNumber + explorateurBlobNumber;
+        blobNumber = normalBlobNumber + coachBlobNumber + explorateurBlobNumber + myCoachBlobNumber;
+
+        if (blobCoaches.Count - myCoachBlobNumber <= 0)
+        {
+            coachBlobNumber = 0;
+            hasBlobCoach = false;
+            coachIcon.SetActive(false);
+            ProximityLevelModification();
+        }
+        else
+        {
+            hasBlobCoach = true;
+            coachIcon.SetActive(true);
+            ProximityLevelModification();
+        }
 
 
         float ratio = (float)blobNumber / (float)currentBlobStockage;
@@ -88,68 +84,41 @@ public class CellSalle : CellMain
             blobNumber = currentBlobStockage;
         }
         UpdateCaract();
+
     }
-    public override void SetupVariable()
+    public override BlobManager.BlobType BlobCheck()
     {
-        base.SetupVariable();
-        myCoachBlobNumber = 0;
-        foreach (BlobCoach blob in blobCoaches)
+        if (explorateurBlobNumber > 0)
         {
-            blob.SalleDeath();
+            if ((int)Random.Range(1, 101) <= 40)
+            {
+                return BlobManager.BlobType.explorateur;
+            }
         }
 
-        blobCoaches.Clear();
-    }
-
-}
-
-
-[System.Serializable]
-public struct BlobCoach
-{
-    public CellSalle origianlSalle;
-    public int currentLife;
-    public CellMain inThisCell;
-
-    private bool salleDead;
-
-     public void Init()
-    {
-        TickManager.doTick += Tick;
-        Debug.Log("ALLO");
-    }
-    private void LooseLife()
-    {
-        currentLife -= 1;
-        if (currentLife <=0)
+        if (coachBlobNumber > 0)
         {
-            Death();
+            if ((int)Random.Range(1, 101) <= 40)
+            {
+                return BlobManager.BlobType.coach;
+            }
         }
-    }
 
-    public void ChangeCell(CellMain newCell)
-    {
-        inThisCell = newCell;
-    }
-
-    private void Tick()
-    {
-        if (origianlSalle != inThisCell || salleDead == true )
+        if (myCoachBlobNumber > 0)
         {
-            LooseLife();
+            return BlobManager.BlobType.coach;
         }
-    }
 
-    public void SalleDeath()
-    {
-        origianlSalle = null;
-        salleDead = true;
-    }
-
-    private void Death()
-    {
-        inThisCell.BlobNumberVariation(-1, BlobManager.BlobType.coach);
-        BlobManager.instance.blobCoaches.Remove(this);
-        
+        else
+        {
+            if (explorateurBlobNumber > 0)
+            {
+                return BlobManager.BlobType.explorateur;
+            }
+            else
+            {
+                return BlobManager.BlobType.coach;
+            }
+        }
     }
 }

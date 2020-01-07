@@ -54,9 +54,10 @@ MonoBehaviour:
   BlopPerTick: []
   stockageCapacity: 0f000000140000001e00000032000000
   LinkCapacity: 00000000000000000000000000000000
-  Range: 
+  rangeLien: 
   tickForActivation: 
   energyCap: 
+  specifique: 
   energyPerblop: 0
   StatsModification: 2
   REFS: 1
@@ -64,7 +65,8 @@ MonoBehaviour:
   STATS: 0
   ProductionGestion: 0
   ProximityGestion: 1
-  MaxEnergie: 5
+  maxEnergie: 5
+  maxBlobCoach: 0
   tourelleMaxMun: 3
   tourelleDamage: 5
   tourelleAttackRadius: 6

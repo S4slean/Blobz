@@ -14,6 +14,7 @@ public class CellMain : PoolableObjects, PlayerAction
     public bool isNexus;
 
 
+
     // public List<CelulleMain> outputCell;
     #region REFS
     public Material cellDefaultMat;
@@ -43,6 +44,7 @@ public class CellMain : PoolableObjects, PlayerAction
 
     public LinkJointClass[] linkJoints;
 
+    public List<BlobCoach> blobCoaches = new List<BlobCoach>();
     #endregion
 
     #region DEBUG
@@ -85,6 +87,7 @@ public class CellMain : PoolableObjects, PlayerAction
     protected float currentRejectPower;
     protected int currentRange;
     public int specifiqueStats;
+
 
 
     #endregion
@@ -373,7 +376,7 @@ public class CellMain : PoolableObjects, PlayerAction
 
         if (_blobType == BlobManager.BlobType.coach)
         {
-            if (coachBlobNumber < 0)
+            if (blobCoaches.Count <= 0)
             {
                 coachBlobNumber = 0;
                 hasBlobCoach = false;
@@ -607,26 +610,28 @@ public class CellMain : PoolableObjects, PlayerAction
             {
                 currentProximityLevel += influencedByThoseCellProximity[i].proximityLevel;
             }
+
+            if (currentProximityLevel >= 0 && currentProximityLevel < myCellTemplate.proximityLevelMax)
+            {
+                currentProximityTier = currentProximityLevel;
+            }
+            else if (currentProximityLevel >= myCellTemplate.proximityLevelMax)
+            {
+                currentProximityTier = myCellTemplate.proximityLevelMax - 1;
+            }
+            else
+            {
+                currentProximityTier = 0;
+            }
         }
         else
-        {
-            currentProximityTier = currentProximityTier = myCellTemplate.proximityLevelMax - 1;
-        }
-
-
-
-        if (currentProximityLevel >= 0 && currentProximityLevel < myCellTemplate.proximityLevelMax)
-        {
-            currentProximityTier = currentProximityLevel;
-        }
-        else if (currentProximityLevel >= myCellTemplate.proximityLevelMax)
         {
             currentProximityTier = myCellTemplate.proximityLevelMax - 1;
+
         }
-        else
-        {
-            currentProximityTier = 0;
-        }
+
+
+
 
         NCurrentProximity.text = currentProximityTier.ToString();
 

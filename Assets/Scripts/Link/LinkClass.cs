@@ -188,13 +188,8 @@ public class LinkClass : PoolableObjects
 
         if (_blobType == BlobManager.BlobType.coach)
         {
-            for (int i = 0; i < BlobManager.instance.blobCoaches.Count; i++)
-            {
-                if (BlobManager.instance.blobCoaches[i].inThisCell == originalCell )
-                {
-                    BlobManager.instance.blobCoaches[i].ChangeCell(receivingCell);
-                }
-            }
+            originalCell.blobCoaches[0].ChangeCell(receivingCell);
+
         }
 
         //New Version
