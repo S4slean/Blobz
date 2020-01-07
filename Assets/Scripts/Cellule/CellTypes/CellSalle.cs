@@ -20,4 +20,13 @@ public struct BlobCoach
     public int currentLife;
     public CellMain inThisCell;
 
+    private void LooseLife()
+    {
+
+    }
+
+    public void ChangeCell()
+    {
+
+    }
 }

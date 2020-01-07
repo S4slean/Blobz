@@ -967,6 +967,9 @@ MonoBehaviour:
   showRef: 1
   noMoreLink: 0
   blobNumber: 0
+  normalBlobNumber: 0
+  coachBlobNumber: 0
+  hasBlobCoach: 0
   hasBeenDrop: 0
   limitedInLink: 0
   canBePlaced: 0
