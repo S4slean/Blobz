@@ -84,6 +84,7 @@ public class CellMain : PoolableObjects, PlayerAction
     protected int currentSurproductionRate;
     protected float currentRejectPower;
     protected int currentRange;
+    protected int specifiqueStats;
 
 
     #endregion
@@ -419,7 +420,7 @@ public class CellMain : PoolableObjects, PlayerAction
         //UpdateCaract();
     }
 
-    public BlobManager.BlobType BlobCheck()
+    public  virtual BlobManager.BlobType BlobCheck()
     {
         if (explorateurBlobNumber > 0)
         {
@@ -646,8 +647,8 @@ public class CellMain : PoolableObjects, PlayerAction
             //    currentLinkStockage = myCellTemplate.LinkCapacity[currentProximityTier];
             //    break;
 
-            case StatsModificationType.Range:
-                currentRange = myCellTemplate.Range[currentProximityTier];
+            case StatsModificationType.rangeLien:
+                currentRange = myCellTemplate.rangeLien[currentProximityTier];
                 break;
 
             case StatsModificationType.TickForActivation:
@@ -657,6 +658,9 @@ public class CellMain : PoolableObjects, PlayerAction
             case StatsModificationType.EnergyCap:
                 currentEnergyCap = myCellTemplate.energyCap[currentProximityTier];
                 RessourceTracker.instance.EnergyCapVariation(currentEnergyCap - lastEnergyCap);
+                break;
+            case StatsModificationType.Spécifique:
+                specifiqueStats = myCellTemplate.specifique[currentProximityTier];
                 break;
 
             case StatsModificationType.Aucune:

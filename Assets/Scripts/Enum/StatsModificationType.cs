@@ -9,9 +9,10 @@ public enum StatsModificationType
     RejectForce , 
     StockageCapacity, 
     LinkCapacity ,
-    Range , 
+    rangeLien , 
     TickForActivation,
     EnergyCap,
+    Spécifique,
     Aucune
 }
 

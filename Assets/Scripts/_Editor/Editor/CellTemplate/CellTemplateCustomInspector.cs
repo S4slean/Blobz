@@ -21,7 +21,9 @@ public class CellTemplateCustomInspector : Editor
     SerializedProperty SurprodRateProp;
     //Armory Spé
     SerializedProperty BlopPerTickProp;
-    //Broyeuse Spé
+
+    SerializedProperty speProp;
+ 
 
     SerializedProperty stockageCapacityProp, LinkCapacityProp, RangeProp, tickForActivationProp;
 
@@ -97,9 +99,11 @@ public class CellTemplateCustomInspector : Editor
         BlopPerTickProp = serializedObject.FindProperty("BlopPerTick");
         stockageCapacityProp = serializedObject.FindProperty("stockageCapacity");
         LinkCapacityProp = serializedObject.FindProperty("LinkCapacity");
-        RangeProp = serializedObject.FindProperty("Range");
+        RangeProp = serializedObject.FindProperty("rangeLien");
         tickForActivationProp = serializedObject.FindProperty("tickForActivation");
         energyCapProp = serializedObject.FindProperty("energyCap");
+
+        speProp = serializedObject.FindProperty("specifique");
 
         #endregion
 
@@ -499,7 +503,7 @@ public class CellTemplateCustomInspector : Editor
                 // DisplayArray(SurprodRateProp, "Level");
                 break;
 
-            case StatsModificationType.Range:
+            case StatsModificationType.rangeLien:
                 EditorGUILayout.HelpBox("Longueur maximum des liens venant de ce bâtiment ( aussi de la proximité pour l'instant ) ", MessageType.Info);
                 RangeProp.arraySize = proximityLevelMaxProp.intValue;
                 DisplayArray(RangeProp, "Level");
@@ -516,11 +520,20 @@ public class CellTemplateCustomInspector : Editor
                 energyCapProp.arraySize = proximityLevelMaxProp.intValue;
                 DisplayArray(energyCapProp, "Level");
                 break;
-
+            case StatsModificationType.Spécifique:
+                EditorGUILayout.HelpBox(
+                    "Gere à la fois : " + "\n" +
+                    "-La quantité de sploush obtenue (broyeur , décharge )  " + "\n" +
+                    "-La range de tir (cell divine)  " + "\n" +
+                    "-capacité dans lafile (Treblochet)  " + "\n" +
+                    "-Durée de vie des coachs (Treblochet)"
+                    , MessageType.Info);
+                speProp.arraySize = proximityLevelMaxProp.intValue;
+                DisplayArray(speProp, "Level");
+                break;
             case StatsModificationType.Aucune:
                 EditorGUILayout.HelpBox("Le batiment n'est pas effecter par la proximité ", MessageType.Info);
                 break;
-
             default:
                 break;
 
