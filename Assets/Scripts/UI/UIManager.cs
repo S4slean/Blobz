@@ -49,8 +49,10 @@ public class UIManager : MonoBehaviour
 
     public void UpdateAllUI()
     {
-        TopBar.UpdateUI();
-        QuestUI.UpdateUI();
+        if(TopBar.gameObject.activeSelf)
+            TopBar.UpdateUI();
+        if(QuestUI.gameObject.activeSelf)
+            QuestUI.UpdateUI();
     }
     #endregion
 

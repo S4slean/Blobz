@@ -25,10 +25,8 @@ MonoBehaviour:
   colonialCellType: 0
   placeToGet: {fileID: 0}
   range: 0
-  objectToDestroy:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  destructType: 3
+  nbrOfObject: 3
   questEvents:
   - eventType: 1
     eventDuration: 0

@@ -7,15 +7,16 @@ using UnityEngine;
 public class QuestManager : MonoBehaviour
 {
 
-    public enum QuestType { Population, Energy, Batiments, Colonisation, Destruction, Empty };
+    public enum QuestType { Population, Energy, Batiments, Exploration, Destruction, Empty };
 
     public int currentQuestID;
     public int currentQuestEventID;
     public int currentMsgID;
 
     public QuestData currentQuest;
+    [HideInInspector] public int questProgress;
     public List<QuestData> QuestList = new List<QuestData>();
-    public int questProgress;
+    public SpaceDetection[] explorationObjectives;
 
     public static QuestManager instance;
 
@@ -43,6 +44,17 @@ public class QuestManager : MonoBehaviour
     }
 
     #region QUEST_HANDLING
+
+    public void DestructionCheck(Destructible.DestructType destructObjectType)
+    {
+        if (currentQuest.questType != QuestType.Destruction)
+            return;
+
+        if (destructObjectType == currentQuest.destructType)
+            questProgress++;
+
+        CheckQuestSuccess();
+    }
     public void DisplayCurrentQuest()
     {
         UIManager.Instance.DisplayUI(UIManager.Instance.QuestUI.gameObject);
@@ -131,7 +143,7 @@ public class QuestManager : MonoBehaviour
 
                 break;
 
-            case QuestType.Colonisation:
+            case QuestType.Exploration:
 
                 //créer un préfab de detection en OntriggerEnter.
 
@@ -139,24 +151,8 @@ public class QuestManager : MonoBehaviour
 
             case QuestType.Destruction:
 
-                bool success = true;
-                questProgress = 0;
 
-                foreach (GameObject obj in currentQuest.objectToDestroy)
-                {
-                    if (obj != null)
-                    {
-                        success = false;
-                        
-                    }
-                    else
-                    {
-                        questProgress++;
-                    }
-
-                }
-
-                if (success)
+                if(questProgress == currentQuest.nbrOfObject)
                     QuestSuccess();
 
                 break;
