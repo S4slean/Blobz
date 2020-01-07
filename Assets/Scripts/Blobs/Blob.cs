@@ -11,7 +11,9 @@ public class Blob : PoolableObjects
     #endregion
 
     #region GENERAL
-    public int tickCount = 0;
+    [HideInInspector]public int tickCount = 0;
+    public int lifeTime = 0;
+    public int LifeSpan = 32;
     public BlobManager.BlobType blobType = BlobManager.BlobType.normal;
     #endregion
 
@@ -103,6 +105,8 @@ public class Blob : PoolableObjects
         {
             village.RemoveBlobFromVillageList(this);
         }
+
+        //play death Anim
         Inpool();
     }
 
