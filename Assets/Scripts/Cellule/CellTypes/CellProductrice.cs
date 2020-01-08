@@ -11,12 +11,12 @@ public class CellProductrice : CellMain
     {
         haveExpulse = false;
         //ça marche bien mais à voir si quand 1 batiment meure la produciton saute avec ou pas
-        if ((int)Random.Range(0, 101) <= productionBonusRatio)
-        {
-            BlobNumberVariation(myCellTemplate.prodPerTickBase , BlobManager.BlobType.normal);
-        }
+        //if ((int)Random.Range(0, 101) <= productionBonusRatio)
+        //{
+        //    BlobNumberVariation(myCellTemplate.prodPerTickBase , BlobManager.BlobType.normal);
+        //}
 
-        int productionPerTick = myCellTemplate.prodPerTickBase * (1 + productionBonusPacket);
+        int productionPerTick = myCellTemplate.prodPerTickBase/* * (1 + productionBonusPacket)*/;
 
         BlobNumberVariation(productionPerTick , BlobManager.BlobType.normal);
 

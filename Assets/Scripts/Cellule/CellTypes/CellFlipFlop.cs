@@ -18,13 +18,14 @@ public class CellFlipFlop : CellMain
             currentTick++;
             if (currentTick == currentTickForActivation)
             {
-                for (int i = 0; i < myCellTemplate.rejectPowerBase; i++)
+                for (int i = 0; i < currentRejectPower; i++)
                 {
+
                     if (blobNumber <= 0)
                     {
                         break;
                     }
-                    currentOutputLink.Transmitt(1 , BlobCheck());
+                    currentOutputLink.Transmitt(1, BlobCheck());
                     haveExpulse = true;
                 }
                 currentTick = 0;
@@ -76,7 +77,7 @@ public class CellFlipFlop : CellMain
         }
 
 
-        isToggle = false; 
+        isToggle = false;
 
         if (switchCount >= outputLinks.Count)
         {
@@ -108,14 +109,17 @@ public class CellFlipFlop : CellMain
     {
         currentOutputLink = null;
         isToggle = false;
-        switchCount = 0; 
+        switchCount = 0;
         base.SetupVariable();
     }
 
     public override void AddLinkReferenceToCell(LinkClass linkToAdd, bool output)
     {
         base.AddLinkReferenceToCell(linkToAdd, output);
-        SwitchLink(linkToAdd);
+        if (output)
+        {
+            SwitchLink(linkToAdd);
+        }
     }
 
     public override void RemoveLink(LinkClass linkToRemove, bool isOutput)
