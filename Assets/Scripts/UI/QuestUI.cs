@@ -48,7 +48,7 @@ public class QuestUI : MonoBehaviour
                     break;
 
 
-                case QuestManager.QuestType.Colonisation:
+                case QuestManager.QuestType.Exploration:
 
                     string cellName;
                     if (QuestManager.instance.currentQuest.anyCells)
@@ -59,8 +59,8 @@ public class QuestUI : MonoBehaviour
                     break;
 
                 case QuestManager.QuestType.Destruction:
-                    description.text = "Destroy all enemies. " + QuestManager.instance.questProgress + "/"
-                        + QuestManager.instance.currentQuest.objectToDestroy.Length;
+                    description.text = "Destroy " + QuestManager.instance.questProgress + "/"
+                        + QuestManager.instance.currentQuest.nbrOfObject +" " + QuestManager.instance.currentQuest.destructType.ToString();
                     break;
 
                 case QuestManager.QuestType.Population:

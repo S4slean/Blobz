@@ -49,6 +49,7 @@ public class InputManager : MonoBehaviour
 
 
     [HideInInspector] public CellMain objectMoved;
+    [HideInInspector] public CellDivine shootingCell;
 
     private RaycastHit CurrentHit;
     private PlayerAction currentPlayerAction;
@@ -143,7 +144,7 @@ public class InputManager : MonoBehaviour
                     if (selectedElement != null)
                     {
                         
-                        Debug.Log(selectedElement);
+
                         float distanceFromElement = (CurrentHit.point - ((Component)selectedElement).transform.position).magnitude;
 
                         if (clickTime > clickCooldown && selectedElement != null && !dragging && distanceFromElement > distanceBeforeDrag)
@@ -311,6 +312,29 @@ public class InputManager : MonoBehaviour
 
             #region SHOOTING_STATE
             case InputMode.divineShot:
+
+                UpdateTargetPos();
+
+                if (Input.GetMouseButtonDown(0))
+                {
+                    Collider[] hitColliders = Physics.OverlapSphere(UIManager.Instance.divineCellTarget.transform.position, 1, 1<<12 | 1<< 16);
+                    for (int i = 0; i < hitColliders.Length; i++)
+                    {
+                        if(hitColliders[i].TryGetComponent<Destructible>(out Destructible destrucible))
+                        {
+                            destrucible.ReceiveDamage(3);
+                        }
+                    }
+
+                    shootingCell.Decharge();
+                    SwitchInputMode(InputMode.normal);
+                }
+                if (Input.GetMouseButtonDown(1))
+                {
+                    SwitchInputMode(InputMode.normal);
+                }
+
+
                 break;
                 #endregion
         }
@@ -388,8 +412,37 @@ public class InputManager : MonoBehaviour
         ResetInputs();
     }
 
+    public void SetShootingCell(CellDivine newShootingCell)
+    {
+        shootingCell = newShootingCell;
+    }
+
     public static void SwitchInputMode(InputMode newInputMode)
     {
         Instance.inputMode = newInputMode;
+        Debug.Log("InputModeSwitched to: " + newInputMode.ToString());
+        if(newInputMode == InputMode.divineShot)
+        {
+            UIManager.Instance.DisplayDivineShot(Instance.shootingCell);
+        }
+        else
+        {
+            Instance.shootingCell = null;
+            UIManager.Instance.HideDivineShot();
+        }
+    }
+
+    public void UpdateTargetPos()
+    {
+        float dist = (shootingCell.transform.position - mouseWorldPos).sqrMagnitude;
+        if(dist < Mathf.Pow(shootingCell.specifiqueStats/2, 2)/*range au carré*/)
+        {
+            UIManager.Instance.SetTargetPos(mouseWorldPos);
+        }
+        else
+        {
+            UIManager.Instance.SetTargetPos(shootingCell.transform.position + (mouseWorldPos - shootingCell.transform.position).normalized * (shootingCell.specifiqueStats/2));
+        }
+
     }
 }

@@ -11,6 +11,7 @@ public class BlobManager : MonoBehaviour
     public static BlobManager instance;
 
 
+
     [Header("Normal variables")]
     public Material normalMat;
     [SerializeField] [Range(0, 128)] private int ticksBeforeMad = 4;
@@ -84,11 +85,30 @@ public class BlobManager : MonoBehaviour
 
                 case BlobType.explorateur:
 
+                    blob.tickCount++;
+                    blob.lifeTime++;
+                    if(blob.lifeTime > blob.LifeSpan)
+                    {
+                        blob.Destruct();
+                    }
+
+                    if(blob.tickCount > ticksBtwnJumps)
+                    {
+                        JumpForward(blob);
+                        blob.tickCount = 0;
+                    }
+
                     break;
 
                 case BlobType.soldier:
 
                     blob.tickCount++;
+                    blob.lifeTime++;
+                    if (blob.lifeTime > blob.LifeSpan)
+                    {
+                        blob.Destruct();
+                    }
+
                     //Check si le blob doit agir sur ce tick
                     if (blob.tickCount > ticksBtwnJumps)
                     {
@@ -272,10 +292,20 @@ public class BlobManager : MonoBehaviour
     public void Jump(Blob blob, Transform target)
     {
         Vector3 jumpDir = target.position - blob.transform.position;
+        jumpDir = jumpDir.normalized + (Random.insideUnitSphere * .25f) ;
         jumpDir = jumpDir.normalized;
         jumpDir = new Vector3(jumpDir.x, jumpHeight, jumpDir.z);
         blob.Jump(jumpDir * jumpForce);
 
+    }
+
+    public void JumpForward(Blob blob)
+    {
+        Vector3 jumpDir =  blob.transform.forward;
+        jumpDir = jumpDir.normalized + (Random.insideUnitSphere * .25f);
+        jumpDir = jumpDir.normalized;
+        jumpDir = new Vector3(jumpDir.x, jumpHeight, jumpDir.z);
+        blob.Jump(jumpDir * jumpForce);
     }
 
     public void Explode(Blob blob, int dmg)

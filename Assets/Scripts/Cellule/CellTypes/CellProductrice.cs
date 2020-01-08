@@ -17,7 +17,6 @@ public class CellProductrice : CellMain
         }
 
         int productionPerTick = myCellTemplate.prodPerTickBase * (1 + productionBonusPacket);
-        Debug.Log("production stable: " + productionPerTick + "chance de production en plus : " + productionBonusRatio + "%" , transform);
 
         BlobNumberVariation(productionPerTick , BlobManager.BlobType.normal);
 

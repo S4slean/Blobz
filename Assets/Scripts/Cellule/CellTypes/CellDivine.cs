@@ -66,7 +66,9 @@ public class CellDivine : CellMain
     }
     public void Decharge()
     {
-
+        energie = 0;
+        isLoaded = false;
+        Debug.Log("Anim déchargement");
     }
 
     public override void SetupVariable()
@@ -80,6 +82,7 @@ public class CellDivine : CellMain
     {
         if (isLoaded)
         {
+            InputManager.Instance.shootingCell = this;
             InputManager.SwitchInputMode(InputManager.InputMode.divineShot);
             //passer la reference de l'input de tir 
         }
@@ -87,5 +90,12 @@ public class CellDivine : CellMain
         {
             //dipslay not enough charge 
         }
+    }
+
+    public override void ProximityLevelModification()
+    {
+        base.ProximityLevelModification();
+
+        UIManager.Instance.UpdateShootingArea(specifiqueStats);
     }
 }

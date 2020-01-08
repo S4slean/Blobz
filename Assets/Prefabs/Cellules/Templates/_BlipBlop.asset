@@ -46,11 +46,12 @@ MonoBehaviour:
   BlopPerTick: []
   stockageCapacity: 
   LinkCapacity: 
-  Range: 
+  rangeLien: 
   tickForActivation: 
   energyCap: 
+  specifique: 
   energyPerblop: 0
-  StatsModification: 7
+  StatsModification: 8
   REFS: 0
   ToggleInfoBox: 1
   STATS: 0

@@ -49,8 +49,10 @@ public class UIManager : MonoBehaviour
 
     public void UpdateAllUI()
     {
-        TopBar.UpdateUI();
-        QuestUI.UpdateUI();
+        if(TopBar.gameObject.activeSelf)
+            TopBar.UpdateUI();
+        if(QuestUI.gameObject.activeSelf)
+            QuestUI.UpdateUI();
     }
     #endregion
 
@@ -252,7 +254,37 @@ public class UIManager : MonoBehaviour
 
     #region DIVINE_CELL
     [Header("Divine Cell")]
-    public GameObject divineCellTArget;
+    public GameObject divineCellTarget;
+    public GameObject divineShotArea;
+
+    public void DisplayDivineShot(CellDivine shootingCell)
+    {
+        InputManager.Instance.UpdateTargetPos();
+        UpdateShootingArea(shootingCell.specifiqueStats);
+        divineShotArea.transform.position = shootingCell.transform.position;
+        divineCellTarget.SetActive(true);
+        divineShotArea.SetActive(true);
+    }
+    public void HideDivineShot()
+    {
+        divineCellTarget.SetActive(false);
+        divineShotArea.SetActive(false);
+    }
+
+
+    public void UpdateShootingArea(float newRange)
+    {
+        if (InputManager.Instance.shootingCell == null)
+            return;
+        divineShotArea.transform.position = InputManager.Instance.shootingCell.transform.position;
+        divineShotArea.transform.localScale = (Vector3.one * newRange /0.075f);
+    }
+
+    public void SetTargetPos(Vector3 pos)
+    {
+        divineCellTarget.transform.position = pos;
+    }
+
     #endregion
 
     #region NOT_ENOUGH_NRJ
