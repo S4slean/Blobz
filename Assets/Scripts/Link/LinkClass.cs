@@ -183,29 +183,28 @@ public class LinkClass : PoolableObjects
     public void Transmitt(int blobAmount, BlobManager.BlobType _blobType)
     {
         //Ancienne Version 
-        if (_blobType != BlobManager.BlobType.aucun)
-        {
-            if (_blobType == BlobManager.BlobType.coach)
-            {
-                Debug.Log("transmission coach", originalCell.gameObject);
-                if (originalCell.blobCoaches.Count > 0)
-                {
-                    originalCell.blobCoaches[0].ChangeCell(receivingCell);
-                }
-            }
-            else
-            {
-                Debug.Log("transmission", originalCell.gameObject);
-                originalCell.BlobNumberVariation(-blobAmount, _blobType);
-                receivingCell.BlobNumberVariation(blobAmount, _blobType);
-            }
 
-            //New Version
-            //joints[0].cellsAttach[0].BlobNumberVariation(-blobAmount);
-            //joints[1].cellsAttach[0].BlobNumberVariation(blobAmount);
-            // on pourra lancer une anim ici 
-            anim.Play("Transfer");
+        if (_blobType == BlobManager.BlobType.coach)
+        {
+            Debug.Log("transmission coach", originalCell.gameObject);
+            if (originalCell.blobCoaches.Count > 0)
+            {
+                originalCell.blobCoaches[0].ChangeCell(receivingCell);
+            }
         }
+        else
+        {
+            Debug.Log("transmission", originalCell.gameObject);
+            originalCell.BlobNumberVariation(-blobAmount, _blobType);
+            receivingCell.BlobNumberVariation(blobAmount, _blobType);
+        }
+
+        //New Version
+        //joints[0].cellsAttach[0].BlobNumberVariation(-blobAmount);
+        //joints[1].cellsAttach[0].BlobNumberVariation(blobAmount);
+        // on pourra lancer une anim ici 
+        anim.Play("Transfer");
+
     }
 
     public void AngleFromCell(CellMain OutputCell)

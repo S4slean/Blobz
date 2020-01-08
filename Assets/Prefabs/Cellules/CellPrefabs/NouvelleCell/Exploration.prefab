@@ -139,7 +139,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 3f845962db955914ca7dcbe83dc94639, type: 2}
+  - {fileID: 2100000, guid: 27caee78ca4fe504fb1fb5f7da238074, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -223,6 +223,7 @@ Transform:
   - {fileID: 2976185063140997599}
   - {fileID: 2095896983002135567}
   - {fileID: 4665722794792940451}
+  - {fileID: 8938044885954486438}
   m_Father: {fileID: 7213726001769118057}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -879,9 +880,9 @@ GameObject:
   - component: {fileID: 7213726001769118057}
   - component: {fileID: -1350178439007509981}
   - component: {fileID: 3922479743895655383}
-  - component: {fileID: 8709668316821708887}
+  - component: {fileID: -2354730619583165002}
   m_Layer: 11
-  m_Name: Tourelle
+  m_Name: Exploration
   m_TagString: Cell
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -932,7 +933,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 0.5176959, z: 1}
   m_Center: {x: 0, y: 0.4295833, z: 0}
---- !u!114 &8709668316821708887
+--- !u!114 &-2354730619583165002
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -941,12 +942,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 6972052367257400834}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d37e0b6bb6fdf5748884709b84bfb201, type: 3}
+  m_Script: {fileID: 11500000, guid: 2b7c873568b896e4dbb875aaa4f4c66f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   canBePool: 0
   initialPool: {fileID: 0}
-  myCellTemplate: {fileID: 11400000, guid: b6ab8d784d74abc4f9d47376c0e0d260, type: 2}
+  myCellTemplate: {fileID: 11400000, guid: f785a1d8b31b25f46a040669bb8007c5, type: 2}
   isNexus: 0
   cellDefaultMat: {fileID: 0}
   anim: {fileID: 1065516467052029509}
@@ -956,6 +957,7 @@ MonoBehaviour:
   graphTransform: {fileID: 3454063361185357364}
   TargetPos: {fileID: 0}
   coachIcon: {fileID: 4981454565029333099}
+  exploIcon: {fileID: 8760632492657040238}
   domeMR: {fileID: 1065516466398935383}
   spriteMR: {fileID: 1065516467052029507}
   links: []
@@ -964,6 +966,7 @@ MonoBehaviour:
   stuckBlobs: []
   ownCollider: {fileID: 0}
   linkJoints: []
+  blobCoaches: []
   showDebug: 0
   showlinks: 0
   showRef: 1
@@ -977,7 +980,6 @@ MonoBehaviour:
   limitedInLink: 0
   specifiqueStats: 0
   canBePlaced: 0
-  tourelleCollider: {fileID: 0}
 --- !u!1001 &241933098616247659
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1194,4 +1196,90 @@ ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 8009261302443850940, guid: dce2aade4d19fd64bafb21906e96a13d,
     type: 3}
   m_PrefabInstance: {fileID: 1053307669086836335}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &6802806163946645109
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 5911719936170165945}
+    m_Modifications:
+    - target: {fileID: 2881293309684350235, guid: 8acb0fae47832f94f9eb83c430776a38,
+        type: 3}
+      propertyPath: m_Name
+      value: ExploIcon
+      objectReference: {fileID: 0}
+    - target: {fileID: 2881293309684350235, guid: 8acb0fae47832f94f9eb83c430776a38,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2477609119434983123, guid: 8acb0fae47832f94f9eb83c430776a38,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.43
+      objectReference: {fileID: 0}
+    - target: {fileID: 2477609119434983123, guid: 8acb0fae47832f94f9eb83c430776a38,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2477609119434983123, guid: 8acb0fae47832f94f9eb83c430776a38,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.64
+      objectReference: {fileID: 0}
+    - target: {fileID: 2477609119434983123, guid: 8acb0fae47832f94f9eb83c430776a38,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 2477609119434983123, guid: 8acb0fae47832f94f9eb83c430776a38,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2477609119434983123, guid: 8acb0fae47832f94f9eb83c430776a38,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2477609119434983123, guid: 8acb0fae47832f94f9eb83c430776a38,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 2477609119434983123, guid: 8acb0fae47832f94f9eb83c430776a38,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2477609119434983123, guid: 8acb0fae47832f94f9eb83c430776a38,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 2477609119434983123, guid: 8acb0fae47832f94f9eb83c430776a38,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2477609119434983123, guid: 8acb0fae47832f94f9eb83c430776a38,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 8acb0fae47832f94f9eb83c430776a38, type: 3}
+--- !u!1 &8760632492657040238 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2881293309684350235, guid: 8acb0fae47832f94f9eb83c430776a38,
+    type: 3}
+  m_PrefabInstance: {fileID: 6802806163946645109}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &8938044885954486438 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2477609119434983123, guid: 8acb0fae47832f94f9eb83c430776a38,
+    type: 3}
+  m_PrefabInstance: {fileID: 6802806163946645109}
   m_PrefabAsset: {fileID: 0}

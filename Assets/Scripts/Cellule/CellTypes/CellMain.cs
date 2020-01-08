@@ -322,8 +322,12 @@ public class CellMain : PoolableObjects, PlayerAction
                     }
                     //Pour l'instant il y a moyen que si une cellule creve la prochaine 
                     //soit sauté mai squand il y aura les anim , ce sera plus possible
-                    outputLinks[i].Transmitt(1, BlobCheck());
-                    haveExpulse = true;
+                    BlobManager.BlobType blobType = BlobCheck();
+                    if (blobType != BlobManager.BlobType.aucun)
+                    {
+                        outputLinks[i].Transmitt(1, BlobCheck());
+                        haveExpulse = true;
+                    }
                 }
                 currentTick = 0;
             }
@@ -376,6 +380,8 @@ public class CellMain : PoolableObjects, PlayerAction
         blobAddCheckType(amount, _blobType);
 
         CheckForCoach(_blobType);
+
+        CheckForExplo(_blobType);
 
         float ratio = (float)blobNumber / (float)currentBlobStockage;
         int pourcentage = Mathf.FloorToInt(ratio * 100f);
@@ -475,8 +481,6 @@ public class CellMain : PoolableObjects, PlayerAction
                 ProximityLevelModification();
             }
         }
-        blobNumber = normalBlobNumber + blobCoaches.Count + explorateurBlobNumber;
-        UpdateCaract();
     }
 
     public virtual void blobAddCheckType(int amount, BlobManager.BlobType _blobType)
@@ -487,9 +491,11 @@ public class CellMain : PoolableObjects, PlayerAction
                 RessourceTracker.instance.AddBlob(BlobManager.BlobType.normal, amount);
                 normalBlobNumber += amount;
                 break;
+
             case BlobManager.BlobType.coach:
                 RessourceTracker.instance.AddBlob(BlobManager.BlobType.coach, amount);
                 break;
+
             case BlobManager.BlobType.explorateur:
                 explorateurBlobNumber += amount;
                 RessourceTracker.instance.AddBlob(BlobManager.BlobType.explorateur, amount);
@@ -527,7 +533,7 @@ public class CellMain : PoolableObjects, PlayerAction
             {
                 return BlobManager.BlobType.explorateur;
             }
-            else if (blobCoaches.Count > 0)
+            else if (blobCoaches.Count > 1)
             {
                 return BlobManager.BlobType.coach;
             }

@@ -869,7 +869,12 @@ PrefabInstance:
     - target: {fileID: 5078418085769911552, guid: 28ec50add9b929b4fb6da4df03bd820d,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2264174843217787543, guid: 28ec50add9b929b4fb6da4df03bd820d,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 11.5
       objectReference: {fileID: 0}
     - target: {fileID: 4892174692380387016, guid: 28ec50add9b929b4fb6da4df03bd820d,
         type: 3}
@@ -925,11 +930,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2264174843217787543, guid: 28ec50add9b929b4fb6da4df03bd820d,
-        type: 3}
-      propertyPath: m_Size.x
-      value: 11.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 28ec50add9b929b4fb6da4df03bd820d, type: 3}
@@ -1054,6 +1054,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ExploIcon
+      objectReference: {fileID: 0}
+    - target: {fileID: 2881293309684350235, guid: 8acb0fae47832f94f9eb83c430776a38,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2477609119434983123, guid: 8acb0fae47832f94f9eb83c430776a38,
         type: 3}
