@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class BlobManager : MonoBehaviour
 {
-    public enum BlobType { normal, explorateur, soldier, mad , coach};
-    public List<BlobCoach> blobCoaches = new List<BlobCoach>();
+    public enum BlobType { normal, explorateur, soldier, mad , coach , aucun};
 
 
     public static List<Blob> blobList = new List<Blob>();

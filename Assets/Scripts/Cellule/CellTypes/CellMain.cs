@@ -14,6 +14,7 @@ public class CellMain : PoolableObjects, PlayerAction
     public bool isNexus;
 
 
+
     // public List<CelulleMain> outputCell;
     #region REFS
     public Material cellDefaultMat;
@@ -24,7 +25,9 @@ public class CellMain : PoolableObjects, PlayerAction
     public TextMeshPro NCurrentProximity;
     public Transform graphTransform;
     public Transform TargetPos;
+
     public GameObject coachIcon;
+    public GameObject exploIcon;
 
 
     public MeshRenderer domeMR, spriteMR;
@@ -43,6 +46,7 @@ public class CellMain : PoolableObjects, PlayerAction
 
     public LinkJointClass[] linkJoints;
 
+    public List<BlobCoach> blobCoaches = new List<BlobCoach>();
     #endregion
 
     #region DEBUG
@@ -87,6 +91,7 @@ public class CellMain : PoolableObjects, PlayerAction
     public int specifiqueStats;
 
 
+
     #endregion
 
     #region Etats/Boolean
@@ -95,6 +100,7 @@ public class CellMain : PoolableObjects, PlayerAction
     protected bool isDead = false;
     public bool canBePlaced;
     protected bool isVisible;
+    protected bool hasExplo;
     #endregion
 
     #region Anim Variable   
@@ -207,6 +213,8 @@ public class CellMain : PoolableObjects, PlayerAction
             links[0].Break();
         }
 
+
+
         for (int i = 0; i < linkJoints.Length; i++)
         {
             linkJoints[i].Inpool();
@@ -227,6 +235,13 @@ public class CellMain : PoolableObjects, PlayerAction
                 //blob.GetComponent<Blob>().blobType = BlobBehaviour.BlobType.mad;
             }
         }
+
+        int C = blobCoaches.Count;
+        for (int i = 0; i < C; i++)
+        {
+            blobCoaches[i].Death();
+        }
+        blobCoaches.Clear();
 
         if (this == CellManager.Instance.selectedCell)
         {
@@ -307,8 +322,12 @@ public class CellMain : PoolableObjects, PlayerAction
                     }
                     //Pour l'instant il y a moyen que si une cellule creve la prochaine 
                     //soit sauté mai squand il y aura les anim , ce sera plus possible
-                    outputLinks[i].Transmitt(1, BlobCheck());
-                    haveExpulse = true;
+                    BlobManager.BlobType blobType = BlobCheck();
+                    if (blobType != BlobManager.BlobType.aucun)
+                    {
+                        outputLinks[i].Transmitt(1, BlobCheck());
+                        haveExpulse = true;
+                    }
                 }
                 currentTick = 0;
             }
@@ -353,40 +372,16 @@ public class CellMain : PoolableObjects, PlayerAction
     }
 
     #region BLOB_GESTION
+
+
     public virtual void BlobNumberVariation(int amount, BlobManager.BlobType _blobType)
     {
-        switch (_blobType)
-        {
-            case BlobManager.BlobType.normal:
-                RessourceTracker.instance.AddBlob(BlobManager.BlobType.normal, amount);
-                normalBlobNumber += amount;
-                break;
-            case BlobManager.BlobType.coach:
-                coachBlobNumber += amount;
-                RessourceTracker.instance.AddBlob(BlobManager.BlobType.coach, amount);
-                break;
-            case BlobManager.BlobType.explorateur:
-                explorateurBlobNumber += amount;
-                break;
-        }
-        blobNumber = normalBlobNumber + coachBlobNumber + explorateurBlobNumber;
 
-        if (_blobType == BlobManager.BlobType.coach)
-        {
-            if (coachBlobNumber < 0)
-            {
-                coachBlobNumber = 0;
-                hasBlobCoach = false;
-                coachIcon.SetActive(false);
-                ProximityLevelModification();
-            }
-            else
-            {
-                hasBlobCoach = true;
-                coachIcon.SetActive(true);
-                ProximityLevelModification();
-            }
-        }
+        blobAddCheckType(amount, _blobType);
+
+        CheckForCoach(_blobType);
+
+        CheckForExplo(_blobType);
 
         float ratio = (float)blobNumber / (float)currentBlobStockage;
         int pourcentage = Mathf.FloorToInt(ratio * 100f);
@@ -411,16 +406,102 @@ public class CellMain : PoolableObjects, PlayerAction
         }
 
         //Nexus 
-        if (blobNumber > currentBlobStockage)
-        {
-            int blobToRemobe = blobNumber - currentBlobStockage;
-            RessourceTracker.instance.RemoveBlob(BlobManager.BlobType.normal, blobToRemobe);
-            blobNumber = currentBlobStockage;
-        }
+        BlobAmountCheck(amount, _blobType);
         UpdateCaract();
 
         //NBlob.text = (blobNumber + " / " + currentBlobStockage);
         //UpdateCaract();
+    }
+
+    public virtual void BlobAmountCheck(int amount, BlobManager.BlobType _blobType)
+    {
+        if (blobNumber > currentBlobStockage)
+        {
+
+            int blobToRemobe = blobNumber - currentBlobStockage;
+            switch (_blobType)
+            {
+                case BlobManager.BlobType.normal:
+                    RessourceTracker.instance.RemoveBlob(BlobManager.BlobType.normal, blobToRemobe);
+                    normalBlobNumber -= blobToRemobe;
+                    break;
+                case BlobManager.BlobType.coach:
+
+                    RessourceTracker.instance.RemoveBlob(BlobManager.BlobType.coach, blobToRemobe);
+                    for (int i = 0; i < blobToRemobe; i++)
+                    {
+                        Debug.Log("Coach");
+                        blobCoaches[blobCoaches.Count - 1].Death();
+                    }
+                    break;
+                case BlobManager.BlobType.explorateur:
+                    RessourceTracker.instance.RemoveBlob(BlobManager.BlobType.explorateur, blobToRemobe);
+                    explorateurBlobNumber -= blobToRemobe;
+                    break;
+            }
+            blobNumber = normalBlobNumber + explorateurBlobNumber + blobCoaches.Count;
+        }
+    }
+
+    public virtual void CheckForCoach(BlobManager.BlobType _blobType)
+    {
+        if (_blobType == BlobManager.BlobType.coach)
+        {
+            if (blobCoaches.Count <= 0)
+            {
+                // coachBlobNumber = 0;
+                hasBlobCoach = false;
+                coachIcon.SetActive(false);
+                ProximityLevelModification();
+            }
+            else
+            {
+                hasBlobCoach = true;
+                coachIcon.SetActive(true);
+                ProximityLevelModification();
+            }
+        }
+    }
+
+    public virtual void CheckForExplo(BlobManager.BlobType _blobType)
+    {
+        if (_blobType == BlobManager.BlobType.explorateur)
+        {
+            if (explorateurBlobNumber <= 0)
+            {
+                explorateurBlobNumber = 0;
+                hasExplo = false;
+                exploIcon.SetActive(false);
+                ProximityLevelModification();
+            }
+            else
+            {
+                hasExplo = true;
+                exploIcon.SetActive(true);
+                ProximityLevelModification();
+            }
+        }
+    }
+
+    public virtual void blobAddCheckType(int amount, BlobManager.BlobType _blobType)
+    {
+        switch (_blobType)
+        {
+            case BlobManager.BlobType.normal:
+                RessourceTracker.instance.AddBlob(BlobManager.BlobType.normal, amount);
+                normalBlobNumber += amount;
+                break;
+
+            case BlobManager.BlobType.coach:
+                RessourceTracker.instance.AddBlob(BlobManager.BlobType.coach, amount);
+                break;
+
+            case BlobManager.BlobType.explorateur:
+                explorateurBlobNumber += amount;
+                RessourceTracker.instance.AddBlob(BlobManager.BlobType.explorateur, amount);
+                break;
+        }
+        blobNumber = normalBlobNumber + blobCoaches.Count + explorateurBlobNumber;
     }
 
     public virtual BlobManager.BlobType BlobCheck()
@@ -433,7 +514,7 @@ public class CellMain : PoolableObjects, PlayerAction
             }
         }
 
-        if (coachBlobNumber > 0)
+        if (blobCoaches.Count > 1)
         {
             if ((int)Random.Range(1, 101) <= 40)
             {
@@ -452,12 +533,19 @@ public class CellMain : PoolableObjects, PlayerAction
             {
                 return BlobManager.BlobType.explorateur;
             }
-            else
+            else if (blobCoaches.Count > 1)
             {
                 return BlobManager.BlobType.coach;
             }
+            else
+            {
+                return BlobManager.BlobType.aucun;
+            }
+
         }
     }
+
+
 
     #endregion
 
@@ -607,27 +695,32 @@ public class CellMain : PoolableObjects, PlayerAction
             {
                 currentProximityLevel += influencedByThoseCellProximity[i].proximityLevel;
             }
+
+            if (currentProximityLevel >= 0 && currentProximityLevel < myCellTemplate.proximityLevelMax)
+            {
+                currentProximityTier = currentProximityLevel;
+            }
+            else if (currentProximityLevel >= myCellTemplate.proximityLevelMax)
+            {
+                currentProximityTier = myCellTemplate.proximityLevelMax - 1;
+            }
+            else
+            {
+                currentProximityTier = 0;
+            }
         }
         else
-        {
-            currentProximityTier = currentProximityTier = myCellTemplate.proximityLevelMax - 1;
-        }
-
-
-
-        if (currentProximityLevel >= 0 && currentProximityLevel < myCellTemplate.proximityLevelMax)
-        {
-            currentProximityTier = currentProximityLevel;
-        }
-        else if (currentProximityLevel >= myCellTemplate.proximityLevelMax)
         {
             currentProximityTier = myCellTemplate.proximityLevelMax - 1;
-        }
-        else
-        {
-            currentProximityTier = 0;
+
         }
 
+
+
+        if (myCellTemplate.StatsModification == StatsModificationType.Aucune)
+        {
+            NCurrentProximity.gameObject.SetActive(false);
+        }
         NCurrentProximity.text = currentProximityTier.ToString();
 
         //if (currentProximityTier != LastProximityTier)
@@ -790,23 +883,17 @@ public class CellMain : PoolableObjects, PlayerAction
         currentEnergyCap = myCellTemplate.energyCapBase;
 
         //cellAtProximity.Clear();
+        normalBlobNumber = 0;
+        //coachBlobNumber = 0;
+
+
+        explorateurBlobNumber = 0;
+        hasBlobCoach = false;
 
         currentProximityLevel = 0;
         inDanger = false;
         isDead = false;
 
-        if (myCellTemplate.generateProximity)
-        {
-            for (int i = 0; i < myCellTemplate.proximityColliders.Length; i++)
-            {
-                // Debug.Log(myCellTemplate.proximityColliders[i].proximityLevel + " "+ myCellTemplate.proximityColliders[i].range);
-            }
-        }
-        //if (myCellTemplate.limitedInLinks)
-        //{
-        //    limitedInLink = true;
-        //    GenerateLinkSlot();
-        //}
         RessourceTracker.instance.EnergyCapVariation(currentEnergyCap);
         GenerateProximity();
         ProximityLevelModification();
@@ -1041,8 +1128,6 @@ public class CellMain : PoolableObjects, PlayerAction
     }
     #endregion
 
-
-
     // A METTRE SUR UN AUTRE SCRIPT SECONDAIRE PLUS TARD
 
     #region Collider Proximity
@@ -1087,17 +1172,4 @@ public class CellMain : PoolableObjects, PlayerAction
 
     }
     #endregion
-
-    //public override void Inpool()
-    //{
-    //    base.Inpool();
-    //    StartCoroutine(WaitFixUpdate());
-    //}
-    ////ON DEVRA REGLER ça
-    //protected IEnumerator WaitFixUpdate()
-    //{
-    //    yield return new WaitForFixedUpdate();
-    //    ownCollider.enabled = false;
-    //}
-
 }

@@ -30,7 +30,7 @@ MonoBehaviour:
   impulseForce_Death: 10
   prodPerTickBase: 0
   rejectPowerBase: 1
-  storageCapability: 5
+  storageCapability: 20
   tickForActivationBase: 1
   energyPerClick: 2
   limitedInLinks: 1
@@ -38,7 +38,7 @@ MonoBehaviour:
   numberOfOuputLinks: 3
   numberOfInputLinks: 1
   numberOfFlexLinks: 0
-  proximityLevelMax: 0
+  proximityLevelMax: 1
   proximityInfluenceMultiplier: 1
   positivesInteractions: 
   negativesInteractions: 

@@ -17,7 +17,8 @@ public enum CellType
     Tourelle, 
     LaSalle,
     Pilone , 
-    Decharge
+    Decharge,
+    Exploration
 
 
 }
