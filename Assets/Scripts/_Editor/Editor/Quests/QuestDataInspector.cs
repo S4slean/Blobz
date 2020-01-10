@@ -77,13 +77,9 @@ public class QuestDataInspector : Editor
                 EditorGUILayout.PropertyField(energyProp);
                 break;
 
-            case (int)QuestManager.QuestType.Exploration:
-                EditorGUILayout.PropertyField(anyCellsProp);
-                EditorGUILayout.PropertyField(coloCellProp);
-                EditorGUILayout.PropertyField(transformToGetProp);
-                EditorGUILayout.PropertyField(rangeProp);
 
-                break;
+
+
 
             case (int)QuestManager.QuestType.Destruction:
 
