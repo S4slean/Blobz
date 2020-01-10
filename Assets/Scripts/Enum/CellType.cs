@@ -18,7 +18,8 @@ public enum CellType
     LaSalle,
     Pilone , 
     Decharge,
-    Exploration
+    Exploration,
+    Treblochet
 
 
 }

@@ -4,27 +4,26 @@ using UnityEngine;
 
 public class treblochetChargeur : MonoBehaviour, PlayerAction
 {
-    private Vector3 initialPos; 
-
-
-
     public List<BlobManager.BlobType> blobInChargeur = new List<BlobManager.BlobType>();
+
     public int maxStockage;
     public float maxPower;
     public float yOffset;
-    private CellTreblochet parent;
+    public float dragRange;
+
+    //private Vector3 initialPos; 
+    public CellTreblochet parent;
+    private float disTanceFromParent;
+
+    private float distance;
 
 
-    public void AddBlob(BlobManager.BlobType blobToAdd)
+    private void Awake()
     {
-        if (blobInChargeur.Count < maxStockage)
-        {
-            blobInChargeur.Add(blobToAdd);
-            //Update UI ; 
-
-        }
+        transform.position = new Vector3(transform.position.x, parent.transform.position.y, transform.position.z);
+        dragRange = parent.myCellTemplate.magazineDragRange;
+        disTanceFromParent = Vector3.Distance(transform.position, parent.transform.position);
     }
-
     public void Fire(float ratio)
     {
         if (blobInChargeur.Count > 0)
@@ -36,6 +35,7 @@ public class treblochetChargeur : MonoBehaviour, PlayerAction
             Blob blobToThrow = ObjectPooler.poolingSystem.GetPooledObject<Blob>() as Blob;
 
             blobToThrow.ChangeType(blobInChargeur[0]);
+            
 
             blobToThrow.rb.AddForce(((dir * ratio * maxPower) + (Vector3.up * yOffset)), ForceMode.Impulse);
             blobToThrow.Outpool();
@@ -47,8 +47,7 @@ public class treblochetChargeur : MonoBehaviour, PlayerAction
             // Display error
         }
     }
-
-    public void UpdateChargeurCapacity(int capacity)
+    public void UpdateSpecificity(int capacity)
     {
         //UI mise à jour
         maxStockage = capacity;
@@ -66,6 +65,54 @@ public class treblochetChargeur : MonoBehaviour, PlayerAction
 
     }
 
+    private void DragAction(RaycastHit hit)
+    {
+        Vector3 direction = hit.point - parent.transform.position;
+        direction = new Vector3(direction.x, 0, direction.z);
+        direction = direction.normalized;
+
+        distance = Vector3.Distance(parent.transform.position, hit.point);
+        if (distance <= disTanceFromParent)
+        {
+            transform.position = parent.transform.position + direction * disTanceFromParent;
+        }
+        else if (distance < dragRange)
+        {
+            transform.position = new Vector3(hit.point.x , transform.position.y , hit.point.z);
+
+        }
+        else
+        {
+            transform.position = parent.transform.position + direction * dragRange;
+        }
+
+        transform.LookAt(parent.transform);
+        transform.rotation = Quaternion.Euler(90, transform.rotation.y, transform.rotation.z);
+    }
+
+    private void DragEnd()
+    {
+        if (disTanceFromParent + parent.myCellTemplate.minDistanceDrag < distance)
+        {
+            float ratio = distance / dragRange;
+            Fire(ratio);
+        }
+        else
+        {
+            Debug.Log("pas assez de force");
+        }
+    }
+
+    private void DragCancel(RaycastHit hit)
+    {
+        Vector3 direction = hit.point - parent.transform.position;
+        direction = new Vector3(direction.x, 0, direction.z);
+        direction = direction.normalized;
+
+        transform.position = parent.transform.position + direction * disTanceFromParent;
+    }
+
+    #region BlobGestion
     public void BlolbFIre()
     {
         blobInChargeur.RemoveAt(0);
@@ -74,6 +121,17 @@ public class treblochetChargeur : MonoBehaviour, PlayerAction
             parent.chargerIsFull = false;
         }
     }
+
+    public void AddBlob(BlobManager.BlobType blobToAdd)
+    {
+        if (blobInChargeur.Count < maxStockage)
+        {
+            blobInChargeur.Add(blobToAdd);
+            //Update UI ; 
+
+        }
+    }
+
     public void BlobAdd(BlobManager.BlobType blobType)
     {
         blobInChargeur.Add(blobType);
@@ -82,8 +140,8 @@ public class treblochetChargeur : MonoBehaviour, PlayerAction
         {
             parent.chargerIsFull = true;
         }
-
     }
+    #endregion
 
     #region PLAYERINTERACTION
 
@@ -106,15 +164,19 @@ public class treblochetChargeur : MonoBehaviour, PlayerAction
 
     public void OnDragStart(RaycastHit hit)
     {
-        initialPos = transform.position;
+        //InputManager.Instance.selectedElement = this;
+        //je sais pas si c'est utiles
+        //initialPos = transform.position;
     }
 
     public void OnLeftDrag(RaycastHit hit)
     {
+        DragAction(hit);
     }
 
     public void OnDragEnd(RaycastHit hit)
     {
+        DragEnd();
     }
 
     public void OnShortRightClick(RaycastHit hit)
@@ -127,26 +189,39 @@ public class treblochetChargeur : MonoBehaviour, PlayerAction
 
     public void OnRightClickWhileDragging(RaycastHit hit)
     {
+        //
+        InputManager.Instance.DeselectElement();
+        DragCancel(hit);
+
     }
 
     public void OnmouseIn(RaycastHit hit)
     {
+        //
+
     }
 
     public void OnMouseOut(RaycastHit hit)
     {
+        //
+
     }
 
     public void OnSelect()
     {
+        //
+
     }
 
     public void OnDeselect()
     {
+        //
     }
 
     public void StopAction()
     {
+        //
+
     }
     #endregion
 }

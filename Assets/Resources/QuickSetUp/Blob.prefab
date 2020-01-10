@@ -57,9 +57,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canBePool: 0
   initialPool: {fileID: 0}
-  rb: {fileID: 0}
+  rb: {fileID: 366999152}
   rd: {fileID: 5531137448002726529}
   tickCount: 0
+  lifeTime: 0
+  LifeSpan: 32
   blobType: 0
   tagetTransform: {fileID: 0}
   isStuck: 0

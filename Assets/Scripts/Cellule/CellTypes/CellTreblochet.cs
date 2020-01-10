@@ -7,10 +7,11 @@ public class CellTreblochet : CellMain
     public treblochetChargeur myChargeur;
     public bool chargerIsFull;
 
+
     public override void ProximityLevelModification()
     {
         base.ProximityLevelModification();
-        myChargeur.UpdateChargeurCapacity(specifiqueStats);
+        myChargeur.UpdateSpecificity(specifiqueStats);
     }
 
     public override void BlobsTick()
@@ -18,12 +19,9 @@ public class CellTreblochet : CellMain
         if (blobNumber - blobCoaches.Count > 0 & !chargerIsFull)
         {
             BlobManager.BlobType blType = ChargerCustomBlobCheck();
-
             BlobNumberVariation(-1, blType);
-
             myChargeur.AddBlob(blType);
         }
-
 
         base.BlobsTick();
     }
