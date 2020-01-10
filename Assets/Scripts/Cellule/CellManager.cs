@@ -259,7 +259,7 @@ public class CellManager : MonoBehaviour
         EnergyVariation(-newCell.myCellTemplate.energyCost);
 
 
-        UIManager.Instance.cellSelection.DesactiveButton();
+
 
         SetIfNewCell(true);
         InputManager.Instance.StartMovingCell(newCell);

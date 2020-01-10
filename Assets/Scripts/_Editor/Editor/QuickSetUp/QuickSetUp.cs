@@ -193,41 +193,41 @@ public class QuickSetUp : Editor
         #endregion
 
         #region CELLS_SHOP
-        GameObject button = Resources.Load("QuickSetUp/Buttons/CellCreationButton") as GameObject;
+        //GameObject button = Resources.Load("QuickSetUp/Buttons/CellCreationButton") as GameObject;
 
-        uiScript.cellSelection.buttonTypes = new GameObject[levelManager.GetComponent<LevelManager>().availablesCells.Length];
+        //uiScript.cellSelection.buttonTypes = new GameObject[levelManager.GetComponent<LevelManager>().availablesCells.Length];
 
-        for (int i = 0; i < lvlMng.availablesCells.Length; i++)
-        {
-            GameObject objInstance = Instantiate(button);
-            objInstance.name = lvlMng.availablesCells[i].name + "Button";
-            RectTransform rect = objInstance.GetComponent<RectTransform>();
-            objInstance.GetComponent<Image>().color = lvlMng.availablesCells[i].GetComponent<CellMain>().myCellTemplate.buttonColor;
-
-
-            uiManager.GetComponent<UIManager>().cellSelection.GetComponent<CellSelectionShop>().buttonTypes[i] = objInstance;
-            rect.SetParent(uiManager.GetComponent<UIManager>().cellSelection.transform);
-
-            //UnityEditor.Events.UnityEventTools.AddPersistentListener(btn.onClick, new UnityEngine.Events.UnityAction(CellConstructionEvent));
-
-            EventTrigger trigger = objInstance.GetComponent<EventTrigger>();
-            CellSelectionShop shop = uiScript.cellSelection;
-
-            CellMain cell = levelManager.GetComponent<LevelManager>().availablesCells[i].GetComponent<CellMain>();
-            UnityAction<CellMain> action = new UnityAction<CellMain>(shop.CellConstruction);
-
-            EventTrigger.Entry entry = new EventTrigger.Entry();
-            entry.eventID = EventTriggerType.PointerUp;
-
-            GraphicRaycaster raycaster = FindObjectOfType<GraphicRaycaster>();
+        //for (int i = 0; i < lvlMng.availablesCells.Length; i++)
+        //{
+        //    GameObject objInstance = Instantiate(button);
+        //    objInstance.name = lvlMng.availablesCells[i].name + "Button";
+        //    RectTransform rect = objInstance.GetComponent<RectTransform>();
+        //    objInstance.GetComponent<Image>().color = lvlMng.availablesCells[i].GetComponent<CellMain>().myCellTemplate.buttonColor;
 
 
+        //    uiManager.GetComponent<UIManager>().cellSelection.GetComponent<CellSelectionShop>().buttonTypes[i] = objInstance;
+        //    rect.SetParent(uiManager.GetComponent<UIManager>().cellSelection.transform);
 
-            UnityEventTools.AddObjectPersistentListener<CellMain>(entry.callback, action, cell);
+        //    //UnityEditor.Events.UnityEventTools.AddPersistentListener(btn.onClick, new UnityEngine.Events.UnityAction(CellConstructionEvent));
 
-            trigger.triggers.Add(entry);
+        //    EventTrigger trigger = objInstance.GetComponent<EventTrigger>();
+        //    CellSelectionShop shop = uiScript.cellSelection;
 
-        }
+        //    CellMain cell = levelManager.GetComponent<LevelManager>().availablesCells[i].GetComponent<CellMain>();
+        //    UnityAction<CellMain> action = new UnityAction<CellMain>(shop.CellConstruction);
+
+        //    EventTrigger.Entry entry = new EventTrigger.Entry();
+        //    entry.eventID = EventTriggerType.PointerUp;
+
+        //    GraphicRaycaster raycaster = FindObjectOfType<GraphicRaycaster>();
+
+
+
+        //    UnityEventTools.AddObjectPersistentListener<CellMain>(entry.callback, action, cell);
+
+        //    trigger.triggers.Add(entry);
+
+        //}
 
         #endregion
 

@@ -9,11 +9,25 @@ public class CellButtonsShop : MonoBehaviour, IPointerEnterHandler, IPointerExit
     bool mouseOnMe = false;
     EventTrigger trigger;
     PointerEventData pointer;
+    Image img;
+    RectTransform rect;
+    Animator anim;
 
     private void Start()
     {
         trigger = GetComponent<EventTrigger>();
+        img = GetComponent<Image>();
+        rect = GetComponent<RectTransform>();
+        anim = GetComponent<Animator>();
+
+        //rect.pivot = img.sprite.pivot;
+        img.alphaHitTestMinimumThreshold = 0.9f;
     }
+
+    //private void OnEnable()
+    //{
+    //    anim.Play("DisplaySection");
+    //}
 
     private void OnDisable()
     {
@@ -23,6 +37,7 @@ public class CellButtonsShop : MonoBehaviour, IPointerEnterHandler, IPointerExit
     public void OnPointerEnter(PointerEventData eventData)
     {
         mouseOnMe = true;
+        anim.Play("DisplaySubMenu");
     }
 
     public void OnPointerExit(PointerEventData eventData)
@@ -30,13 +45,14 @@ public class CellButtonsShop : MonoBehaviour, IPointerEnterHandler, IPointerExit
         mouseOnMe = false;
     }
 
-    private void Update()
-    {
-        pointer = new PointerEventData(EventSystem.current);
+    //private void Update()
+    //{
+    //    pointer = new PointerEventData(EventSystem.current);
 
-        if(mouseOnMe && Input.GetMouseButtonUp(0))
-        {
-            trigger.OnPointerUp(pointer);
-        }
-    }
+    //    if(mouseOnMe && Input.GetMouseButtonUp(0))
+    //    {
+    //        Debug.Log("create Cell");
+    //        trigger.OnPointerUp(pointer);
+    //    }
+    //}
 }

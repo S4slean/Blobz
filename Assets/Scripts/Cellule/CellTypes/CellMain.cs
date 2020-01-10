@@ -1044,15 +1044,15 @@ public class CellMain : PoolableObjects, PlayerAction
     //Interaction 
     public virtual void OnShortLeftClickUp(RaycastHit hit)
     {
-        //if (blobNumber > 0)
-        //{
-        //    BlobNumberVariation(-1 , BlobCheck());
-        //    //CellManager.Instance.EnergyVariation(currentEnergyPerClick);
-        //    RessourceTracker.instance.EnergyVariation(currentEnergyPerClick);
-        //}
+        if (blobNumber > 0)
+        {
+            BlobNumberVariation(-1, BlobCheck());
+            //CellManager.Instance.EnergyVariation(currentEnergyPerClick);
+            RessourceTracker.instance.EnergyVariation(currentEnergyPerClick);
+        }
 
-        //anim.Play("PlayerInteraction", 0, 0f);
-        ////  Debug.Log("interaction non définie");
+        anim.Play("PlayerInteraction", 0, 0f);
+        //  Debug.Log("interaction non définie");
     }
 
 
@@ -1062,13 +1062,13 @@ public class CellMain : PoolableObjects, PlayerAction
     }
     public virtual void OnLongLeftClickUp(RaycastHit hit)
     {
-        UIManager.Instance.StartCoroutine(UIManager.Instance.DesactivateCellShop());
+        UIManager.Instance.DesactivateCellShop();
     }
 
 
     public virtual void OnDragStart(RaycastHit hit)
     {
-        UIManager.Instance.StartCoroutine(UIManager.Instance.DesactivateCellShop());
+        UIManager.Instance.DesactivateCellShop();
         if (CellManager.Instance.CreatenewLink())
             CellManager.Instance.newCell = false;
     }
@@ -1113,6 +1113,7 @@ public class CellMain : PoolableObjects, PlayerAction
     public virtual void OnDeselect()
     {
         UIManager.Instance.DeselectElement();
+        CellManager.Instance.selectedCell = null;
     }
 
     public virtual void StopAction()

@@ -67,27 +67,14 @@ public class UIManager : MonoBehaviour
 
     public void DisplayCellShop(CellMain originalCell)
     {
-
-        if (originalCell.CheckForAvailableJointOfType(linkJointType.output) == null)
-        {
-            UIManager.Instance.DisplayNotEnoughLink();
-        }
-        else
-        {
-
-            cellSelection.transform.position = originalCell.transform.position;
-            cellSelection.gameObject.SetActive(true);
-            cellSelection.ButtonPositions(originalCell);
-            InputManager.Instance.holdingLeftClick = true;
-        }
+        cellSelection.transform.position = originalCell.transform.position + Vector3.up * 2;
+        
+        cellSelection.DisplaySections();
     }
-    public IEnumerator DesactivateCellShop()
+        
+    public void DesactivateCellShop()
     {
-        yield return new WaitForEndOfFrame();
-        cellSelection.DesactiveButton();
-        InputManager.Instance.holdingLeftClick = false;
-
-        ///CellManager2.Instance.SupressCurrentLink();
+        cellSelection.HideSections();
     }
 
 
