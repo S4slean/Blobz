@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac59c85db94beed47808c892abe2bae2, type: 3}
   m_Name: TestQuest
   m_EditorClassIdentifier: 
-  questType: 4
+  questType: 1
   questTitle: TestQuest
   questDescription: 
   eventDone: 1
@@ -21,14 +21,14 @@ MonoBehaviour:
   cellType: 2
   level: 1
   cellNbrToObtain: 2
+  blobExplo: 0
   anyCells: 1
   colonialCellType: 0
-  placeToGet: {fileID: 0}
-  range: 0
+  placeToGet: 0
   destructType: 3
   nbrOfObject: 3
   questEvents:
-  - eventType: 1
+  - eventType: 3
     eventDuration: 0
     virtualCamIndex: 0
     popUpsMsg:
@@ -68,8 +68,8 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-    foldout: 0
-  - eventType: 1
+    foldout: 1
+  - eventType: 0
     eventDuration: 0
     virtualCamIndex: 0
     popUpsMsg:

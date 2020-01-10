@@ -43,6 +43,8 @@ public class CellTemplateCustomInspector : Editor
     SerializedProperty tourelleDamageProp, tourelleAttackRadiusProp;
     SerializedProperty maxBlobCoachProp;
 
+    SerializedProperty magazineDragRangeProp , minDistanceProp;
+
 
     #endregion
 
@@ -125,6 +127,9 @@ public class CellTemplateCustomInspector : Editor
 
         maxBlobCoachProp = serializedObject.FindProperty("maxBlobCoach");
 
+        magazineDragRangeProp = serializedObject.FindProperty("magazineDragRange");
+        minDistanceProp = serializedObject.FindProperty("minDistanceDrag");
+
 
         #endregion
 
@@ -185,6 +190,12 @@ public class CellTemplateCustomInspector : Editor
                 EditorGUILayout.PropertyField(MaxEnergieProp);
                 break;
             case CellType.Decharge:
+                break;
+            case CellType.Exploration:
+                break;
+            case CellType.Treblochet:
+                EditorGUILayout.PropertyField(magazineDragRangeProp);
+                EditorGUILayout.PropertyField(minDistanceProp);
                 break;
         }
         EditorGUILayout.EndVertical();

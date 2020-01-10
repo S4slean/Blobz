@@ -119,7 +119,7 @@ public class InputManager : MonoBehaviour
                     {
                         SelectElement();
                         selectedElement.OnLeftClickDown(CurrentHit);
-                        selectedElement.OnDeselect();
+                        selectedElement.OnSelect();
                     }
 
 
@@ -137,6 +137,7 @@ public class InputManager : MonoBehaviour
 
                     if (selectedElement != null && clickTime > clickCooldown && !holdingLeftClick && !dragging)
                     {
+                        Debug.Log("holding");
                         selectedElement.OnLeftClickHolding(CurrentHit);
                         holdingLeftClick = true;
 
@@ -167,7 +168,9 @@ public class InputManager : MonoBehaviour
 
                     if (holdingLeftClick)
                     {
+
                         selectedElement.OnLongLeftClickUp(CurrentHit);
+                        holdingLeftClick = false;
                     }
 
                     DeselectElement();
@@ -388,11 +391,13 @@ public class InputManager : MonoBehaviour
     public void SelectElement()
     {
         selectedElement = currentPlayerAction;
+        Debug.Log(selectedElement + " selected");
     }
 
     public void DeselectElement()
     {
         UIManager.Instance.DeselectElement();
+        Debug.Log("element Deselected");
         selectedElement = null;
     }
 

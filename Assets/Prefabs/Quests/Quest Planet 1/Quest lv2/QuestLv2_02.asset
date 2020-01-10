@@ -13,19 +13,20 @@ MonoBehaviour:
   m_Name: QuestLv2_02
   m_EditorClassIdentifier: 
   questType: 2
-  questTitle: Prepare the defense
+  questTitle: 'The explorator '
   questDescription: 
   eventDone: 0
   populationObjective: 0
   energyToObtain: 0
-  cellType: 1
+  cellType: 11
   level: 1
   cellNbrToObtain: 1
+  blobExplo: 0
   anyCells: 1
   colonialCellType: 0
-  placeToGet: {fileID: 0}
-  range: 0
-  objectToDestroy: []
+  placeToGet: 0
+  destructType: 4
+  nbrOfObject: 5
   questEvents:
   - eventType: 1
     eventDuration: 0
@@ -34,29 +35,21 @@ MonoBehaviour:
     - rpgStyle: 0
       anchor: {fileID: 0}
       offset: {x: 830, y: 260, z: 0}
-      usingSprite: 0
-      sprite: {fileID: 0}
-      Title: What we do with the Gaz?
-      Text: 'You can train Blobz Soldier
+      usingSprite: 1
+      sprite: {fileID: 21300000, guid: 68215239a0bc5fa4a8ec1952bf8fed68, type: 3}
+      Title: Blob the builder
+      Text: 'You can explore the map
 
-        for defend your Cells.'
-    UEvent:
-      m_PersistentCalls:
-        m_Calls: []
-    foldout: 1
-  - eventType: 1
-    eventDuration: 0
-    virtualCamIndex: 0
-    popUpsMsg:
+        with the explorator blob'
     - rpgStyle: 0
       anchor: {fileID: 0}
       offset: {x: 830, y: 260, z: 0}
-      usingSprite: 0
-      sprite: {fileID: 0}
+      usingSprite: 1
+      sprite: {fileID: 21300000, guid: 68215239a0bc5fa4a8ec1952bf8fed68, type: 3}
       Title: 
-      Text: 'For train Blobz Soldier you
+      Text: 'you juste have to build the
 
-        need to create the Arsenal Cell.'
+        explorator cell.'
     UEvent:
       m_PersistentCalls:
         m_Calls: []

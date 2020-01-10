@@ -13,19 +13,20 @@ MonoBehaviour:
   m_Name: QuestLv2_03
   m_EditorClassIdentifier: 
   questType: 2
-  questTitle: Soldier We Need You !
+  questTitle: 'Exploring '
   questDescription: 
   eventDone: 0
   populationObjective: 0
   energyToObtain: 0
-  cellType: 1
+  cellType: 11
   level: 1
   cellNbrToObtain: 1
+  blobExplo: 0
   anyCells: 1
   colonialCellType: 0
-  placeToGet: {fileID: 0}
-  range: 0
-  objectToDestroy: []
+  placeToGet: 0
+  destructType: 4
+  nbrOfObject: 5
   questEvents:
   - eventType: 1
     eventDuration: 0
@@ -34,29 +35,19 @@ MonoBehaviour:
     - rpgStyle: 0
       anchor: {fileID: 0}
       offset: {x: 830, y: 260, z: 0}
-      usingSprite: 0
-      sprite: {fileID: 0}
-      Title: What we do with the Gaz?
-      Text: 'You can train Blobz Soldier
+      usingSprite: 1
+      sprite: {fileID: 21300000, guid: cc3173b5ab91f26438949b73af93e3f9, type: 3}
+      Title: Explorator
+      Text: 'If you can''t past a river you
 
-        for defend your Cells.'
-    UEvent:
-      m_PersistentCalls:
-        m_Calls: []
-    foldout: 1
-  - eventType: 1
-    eventDuration: 0
-    virtualCamIndex: 0
-    popUpsMsg:
+        can build a Treblobchet'
     - rpgStyle: 0
       anchor: {fileID: 0}
       offset: {x: 830, y: 260, z: 0}
-      usingSprite: 0
-      sprite: {fileID: 0}
+      usingSprite: 1
+      sprite: {fileID: 21300000, guid: cc3173b5ab91f26438949b73af93e3f9, type: 3}
       Title: 
-      Text: 'For train Blobz Soldier you
-
-        need to create the Arsenal Cell.'
+      Text: "the treblobchet launches \nthe explorers further"
     UEvent:
       m_PersistentCalls:
         m_Calls: []
