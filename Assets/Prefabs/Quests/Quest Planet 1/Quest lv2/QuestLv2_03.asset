@@ -12,20 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac59c85db94beed47808c892abe2bae2, type: 3}
   m_Name: QuestLv2_03
   m_EditorClassIdentifier: 
-  questType: 2
-  questTitle: Soldier We Need You !
+  questType: 0
+  questTitle: Earn a bigger population
   questDescription: 
   eventDone: 0
-  populationObjective: 0
+  populationObjective: 150
   energyToObtain: 0
   cellType: 1
   level: 1
   cellNbrToObtain: 1
+  blobExplo: 0
   anyCells: 1
   colonialCellType: 0
-  placeToGet: {fileID: 0}
-  range: 0
-  objectToDestroy: []
+  placeToGet: 0
+  destructType: 0
+  nbrOfObject: 0
   questEvents:
   - eventType: 1
     eventDuration: 0
@@ -34,29 +35,10 @@ MonoBehaviour:
     - rpgStyle: 0
       anchor: {fileID: 0}
       offset: {x: 830, y: 260, z: 0}
-      usingSprite: 0
-      sprite: {fileID: 0}
-      Title: What we do with the Gaz?
-      Text: 'You can train Blobz Soldier
-
-        for defend your Cells.'
-    UEvent:
-      m_PersistentCalls:
-        m_Calls: []
-    foldout: 1
-  - eventType: 1
-    eventDuration: 0
-    virtualCamIndex: 0
-    popUpsMsg:
-    - rpgStyle: 0
-      anchor: {fileID: 0}
-      offset: {x: 830, y: 260, z: 0}
-      usingSprite: 0
-      sprite: {fileID: 0}
+      usingSprite: 1
+      sprite: {fileID: 21300000, guid: c98328a721f45da4fb0b32121f3026db, type: 3}
       Title: 
-      Text: 'For train Blobz Soldier you
-
-        need to create the Arsenal Cell.'
+      Text: Bigger as we more we earn Sploosh !
     UEvent:
       m_PersistentCalls:
         m_Calls: []
