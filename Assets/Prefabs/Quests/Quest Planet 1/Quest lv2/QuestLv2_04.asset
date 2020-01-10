@@ -12,21 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac59c85db94beed47808c892abe2bae2, type: 3}
   m_Name: QuestLv2_04
   m_EditorClassIdentifier: 
-  questType: 4
-  questTitle: Destroy some "Splooshimp"
+  questType: 2
+  questTitle: Build a New "Nexus"
   questDescription: 
   eventDone: 0
   populationObjective: 0
   energyToObtain: 0
-  cellType: 1
+  cellType: 0
   level: 1
   cellNbrToObtain: 1
   blobExplo: 0
   anyCells: 1
   colonialCellType: 0
   placeToGet: 0
-  destructType: 4
-  nbrOfObject: 5
+  destructType: 0
+  nbrOfObject: 0
   questEvents:
   - eventType: 1
     eventDuration: 0
@@ -35,27 +35,10 @@ MonoBehaviour:
     - rpgStyle: 0
       anchor: {fileID: 0}
       offset: {x: 830, y: 260, z: 0}
-      usingSprite: 1
-      sprite: {fileID: 21300000, guid: 74a01104759d6494d8d651afa2ac8826, type: 3}
-      Title: Splooshimp !
-      Text: 'You can found them on the map
-
-        it''s seems like Mushroom but they gives you Sploosh'
-    UEvent:
-      m_PersistentCalls:
-        m_Calls: []
-    foldout: 1
-  - eventType: 1
-    eventDuration: 0
-    virtualCamIndex: 0
-    popUpsMsg:
-    - rpgStyle: 0
-      anchor: {fileID: 0}
-      offset: {x: 830, y: 260, z: 0}
-      usingSprite: 1
-      sprite: {fileID: 21300000, guid: 74a01104759d6494d8d651afa2ac8826, type: 3}
-      Title: Click click
-      Text: "Click on them for destroy \nand earn Sploosh"
+      usingSprite: 0
+      sprite: {fileID: 21300000, guid: 68215239a0bc5fa4a8ec1952bf8fed68, type: 3}
+      Title: Colonisation Zone
+      Text: "Here you can build a new nexus \nfor develop your population"
     UEvent:
       m_PersistentCalls:
         m_Calls: []

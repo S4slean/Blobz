@@ -13,20 +13,20 @@ MonoBehaviour:
   m_Name: QuestLv2_02
   m_EditorClassIdentifier: 
   questType: 2
-  questTitle: Build a New "Nexus"
+  questTitle: 'The explorator '
   questDescription: 
   eventDone: 0
   populationObjective: 0
   energyToObtain: 0
-  cellType: 0
+  cellType: 11
   level: 1
   cellNbrToObtain: 1
   blobExplo: 0
   anyCells: 1
   colonialCellType: 0
   placeToGet: 0
-  destructType: 0
-  nbrOfObject: 0
+  destructType: 4
+  nbrOfObject: 5
   questEvents:
   - eventType: 1
     eventDuration: 0
@@ -35,10 +35,21 @@ MonoBehaviour:
     - rpgStyle: 0
       anchor: {fileID: 0}
       offset: {x: 830, y: 260, z: 0}
-      usingSprite: 0
+      usingSprite: 1
       sprite: {fileID: 21300000, guid: 68215239a0bc5fa4a8ec1952bf8fed68, type: 3}
-      Title: Colonisation Zone
-      Text: "Here you can build a new nexus \nfor develop your population"
+      Title: Blob the builder
+      Text: 'You can explore the map
+
+        with the explorator blob'
+    - rpgStyle: 0
+      anchor: {fileID: 0}
+      offset: {x: 830, y: 260, z: 0}
+      usingSprite: 1
+      sprite: {fileID: 21300000, guid: 68215239a0bc5fa4a8ec1952bf8fed68, type: 3}
+      Title: 
+      Text: 'you juste have to build the
+
+        explorator cell.'
     UEvent:
       m_PersistentCalls:
         m_Calls: []
