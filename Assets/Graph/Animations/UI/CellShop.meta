@@ -1,6 +1,10 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Graph/Animations/UI/CellShop.meta
 guid: 70affe6b5db29ca428fe2a91868d1ce8
 folderAsset: yes
+=======
+guid: a93daefb65ae123459bf59758afdbb62
+>>>>>>> b620b08a83640ff9f575730d84c8a51f0c39aae8:Assets/Scenes/Scènes Planètes/Planète2/Palnet2_Niveau1.unity.meta
 DefaultImporter:
   externalObjects: {}
   userData: 

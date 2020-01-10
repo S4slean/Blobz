@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Graph/Animations/UI/CellShop/DisplaySubMenu.anim.meta
 guid: 44875a4bc3ef2f34fa31bdbcfe13eab6
 NativeFormatImporter:
+=======
+guid: b26fab8c450febe4aa1c34576a06cf60
+DefaultImporter:
+>>>>>>> b620b08a83640ff9f575730d84c8a51f0c39aae8:Assets/Scenes/Scènes Planètes/Planète2/Palnet2_Niveau4.unity.meta
   externalObjects: {}
   mainObjectFileID: 7400000
   userData: 
