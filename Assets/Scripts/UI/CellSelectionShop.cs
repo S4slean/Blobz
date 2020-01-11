@@ -5,14 +5,18 @@ using UnityEngine.UI;
 
 public class CellSelectionShop : MonoBehaviour
 {
-    public GameObject[] sections;
+    public CellButtonsShop[] sections;
     public Animator[] anims;
 
+    public static CellSelectionShop instance;
 
-
-
-
-
+    private void Awake()
+    {
+        if (instance == null)
+            instance = this;
+        else
+            Destroy(gameObject);
+    }
 
     public void CellConstruction(CellMain cellule)
     {
@@ -30,7 +34,7 @@ public class CellSelectionShop : MonoBehaviour
             CellManager.Instance.SetIfNewCell(true);
 
             CellMain newCell = ObjectPooler.poolingSystem.GetPooledObject(cellType) as CellMain;
-            newCell.transform.position = InputManager.Instance.mouseWorldPos;         
+            newCell.transform.position = InputManager.Instance.mouseWorldPos;
             newCell.Outpool();
 
             CellManager.Instance.NewCellCreated(newCell);
@@ -45,8 +49,7 @@ public class CellSelectionShop : MonoBehaviour
         Debug.Log("displaySections");
         for (int i = 0; i < sections.Length; i++)
         {
-            sections[i].GetComponent<RectTransform>().ForceUpdateRectTransforms();
-            anims[i].Play("DisplaySection");
+            anims[i].SetInteger("opening", 1);
         }
     }
 
@@ -56,23 +59,30 @@ public class CellSelectionShop : MonoBehaviour
         {
             if (j == i)
                 continue;
-            anims[j].Play("HideSubMenu");
+            anims[j].SetInteger("opening", 1);
         }
     }
 
     public void HideSections()
     {
+        
         Debug.Log("close All");
         for (int i = 0; i < sections.Length; i++)
         {
-            anims[i].SetTrigger("close");
+            sections[i].UndetectMouse();
+            anims[i].SetInteger("opening", 0);
         }
     }
 
     public void DisplaySubMenu(int index)
     {
-        anims[index].Play("DisplaySubMenu");
-        HideOtherSubMenus(index);
+        if (sections[index].detectMouse)
+        {
+
+            Debug.Log("display SubMenu " + index);
+            anims[index].SetInteger("opening", 2) ;
+            HideOtherSubMenus(index);
+        }
     }
 
 

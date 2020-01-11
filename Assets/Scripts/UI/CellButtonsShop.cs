@@ -7,21 +7,19 @@ using UnityEngine.EventSystems;
 public class CellButtonsShop : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     bool mouseOnMe = false;
-    EventTrigger trigger;
-    PointerEventData pointer;
+    public  bool detectMouse = true;
+    public int index;
+
     Image img;
-    RectTransform rect;
     Animator anim;
 
     private void Start()
     {
-        trigger = GetComponent<EventTrigger>();
         img = GetComponent<Image>();
-        rect = GetComponent<RectTransform>();
         anim = GetComponent<Animator>();
 
         //rect.pivot = img.sprite.pivot;
-        img.alphaHitTestMinimumThreshold = 0.9f;
+        img.alphaHitTestMinimumThreshold = 0.5f;
     }
 
     //private void OnEnable()
@@ -36,13 +34,27 @@ public class CellButtonsShop : MonoBehaviour, IPointerEnterHandler, IPointerExit
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+        if (!detectMouse)
+            return;
+
         mouseOnMe = true;
-        anim.Play("DisplaySubMenu");
+        anim.SetInteger("opening", 2);
+        CellSelectionShop.instance.HideOtherSubMenus(index);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
         mouseOnMe = false;
+    }
+
+    public void DetectMouse()
+    {
+        detectMouse = true;
+    }
+
+    public void UndetectMouse()
+    {
+        detectMouse = false;
     }
 
     //private void Update()
