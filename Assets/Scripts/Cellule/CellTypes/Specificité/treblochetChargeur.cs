@@ -26,16 +26,17 @@ public class treblochetChargeur : MonoBehaviour, PlayerAction
     }
     public void Fire(float ratio)
     {
+        Vector3 dir = (parent.transform.position - transform.position).normalized;
+        dir = new Vector3(dir.x, 0, dir.z);
         if (blobInChargeur.Count > 0)
         {
-            Vector3 dir = (parent.transform.position - transform.position).normalized;
-            dir = new Vector3(dir.x, 0, dir.z);
 
 
             Blob blobToThrow = ObjectPooler.poolingSystem.GetPooledObject<Blob>() as Blob;
 
             blobToThrow.ChangeType(blobInChargeur[0]);
-            
+            blobToThrow.transform.position = transform.position + Vector3.up * 1.2f;
+
 
             blobToThrow.rb.AddForce(((dir * ratio * maxPower) + (Vector3.up * yOffset)), ForceMode.Impulse);
             blobToThrow.Outpool();
@@ -46,6 +47,8 @@ public class treblochetChargeur : MonoBehaviour, PlayerAction
         {
             // Display error
         }
+        transform.position = parent.transform.position - dir * disTanceFromParent; 
+
     }
     public void UpdateSpecificity(int capacity)
     {
@@ -78,7 +81,7 @@ public class treblochetChargeur : MonoBehaviour, PlayerAction
         }
         else if (distance < dragRange)
         {
-            transform.position = new Vector3(hit.point.x , transform.position.y , hit.point.z);
+            transform.position = new Vector3(hit.point.x, transform.position.y, hit.point.z);
 
         }
         else
