@@ -35,9 +35,9 @@ MonoBehaviour:
     - rpgStyle: 0
       anchor: {fileID: 0}
       offset: {x: 830, y: 260, z: 0}
-      usingSprite: 0
-      sprite: {fileID: 0}
-      Title: Earn Sploosh
+      usingSprite: 1
+      sprite: {fileID: 21300000, guid: c98328a721f45da4fb0b32121f3026db, type: 3}
+      Title: 
       Text: 'Click on the production cell to collect
 
         the sploosh !'

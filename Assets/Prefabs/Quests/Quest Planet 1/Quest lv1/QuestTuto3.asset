@@ -21,11 +21,12 @@ MonoBehaviour:
   cellType: 2
   level: 1
   cellNbrToObtain: 2
+  blobExplo: 0
   anyCells: 1
   colonialCellType: 0
-  placeToGet: {fileID: 0}
-  range: 0
-  objectToDestroy: []
+  placeToGet: 0
+  destructType: 0
+  nbrOfObject: 0
   questEvents:
   - eventType: 1
     eventDuration: 0
@@ -34,9 +35,9 @@ MonoBehaviour:
     - rpgStyle: 0
       anchor: {fileID: 0}
       offset: {x: 830, y: 260, z: 0}
-      usingSprite: 0
-      sprite: {fileID: 0}
-      Title: Earning Sploosh
+      usingSprite: 1
+      sprite: {fileID: 21300000, guid: c98328a721f45da4fb0b32121f3026db, type: 3}
+      Title: 
       Text: 'See? The Crusher Cell helps you earn Sploosh! '
     UEvent:
       m_PersistentCalls:
@@ -49,9 +50,9 @@ MonoBehaviour:
     - rpgStyle: 0
       anchor: {fileID: 0}
       offset: {x: 830, y: 260, z: 0}
-      usingSprite: 0
-      sprite: {fileID: 0}
-      Title: Don't let the cell explode !
+      usingSprite: 1
+      sprite: {fileID: 21300000, guid: 68215239a0bc5fa4a8ec1952bf8fed68, type: 3}
+      Title: 
       Text: 'You can create a Stock cell to stock your blobz in a
 
         cell.'

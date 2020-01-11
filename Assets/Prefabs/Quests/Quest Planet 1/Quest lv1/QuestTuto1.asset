@@ -21,11 +21,12 @@ MonoBehaviour:
   cellType: 0
   level: 1
   cellNbrToObtain: 1
+  blobExplo: 0
   anyCells: 1
   colonialCellType: 0
-  placeToGet: {fileID: 0}
-  range: 0
-  objectToDestroy: []
+  placeToGet: 0
+  destructType: 0
+  nbrOfObject: 0
   questEvents:
   - eventType: 0
     eventDuration: 1
@@ -88,15 +89,12 @@ MonoBehaviour:
     - rpgStyle: 0
       anchor: {fileID: 0}
       offset: {x: 830, y: 260, z: 0}
-      usingSprite: 0
-      sprite: {fileID: 0}
-      Title: Production Cell
+      usingSprite: 1
+      sprite: {fileID: 21300000, guid: c98328a721f45da4fb0b32121f3026db, type: 3}
+      Title: Capitaliblob
       Text: 'This Cell produces Blobz and
 
-        expands your population. You can see the number of Blobz in the cell going
-        up.
-
-'
+        expands your population. '
     UEvent:
       m_PersistentCalls:
         m_Calls:

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: QuestLv4_2
   m_EditorClassIdentifier: 
   questType: 2
-  questTitle: Pylone
+  questTitle: Pilone
   questDescription: 
   eventDone: 0
   populationObjective: 0

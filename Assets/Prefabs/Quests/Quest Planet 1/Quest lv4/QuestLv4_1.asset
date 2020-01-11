@@ -15,7 +15,7 @@ MonoBehaviour:
   questType: 2
   questTitle: Just do it !
   questDescription: 
-  eventDone: 0
+  eventDone: 1
   populationObjective: 0
   energyToObtain: 0
   cellType: 8
@@ -60,4 +60,4 @@ MonoBehaviour:
     UEvent:
       m_PersistentCalls:
         m_Calls: []
-    foldout: 0
+    foldout: 1
