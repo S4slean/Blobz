@@ -56,7 +56,7 @@ MonoBehaviour:
   ProximityGestion: 0
   maxEnergie: 5
   maxBlobCoach: 0
-  magazineDragRange: 3
+  magazineDragRange: 6
   minDistanceDrag: 0.2
   tourelleMaxMun: 3
   tourelleDamage: 5

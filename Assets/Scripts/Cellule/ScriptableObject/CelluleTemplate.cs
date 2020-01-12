@@ -107,7 +107,7 @@ public class CelluleTemplate : ScriptableObject
     [Range(1, 100)]
     public int maxBlobCoach;
 
-    [Range(1.2f, 3f)]
+    [Range(1.2f, 6f)]
     public float magazineDragRange = 1.5f;
     [Range(0.1f, 0.5f)]
     public float minDistanceDrag = 0.2f;

@@ -16,7 +16,7 @@ public class CellSalle : CellMain
                 {
                     BlobCoach newCoach = new BlobCoach();
                     newCoach.Init(this, specifiqueStats);
-                    newCoach.ChangeCell(this);
+                    newCoach.ChangeCellArrive(this);
                 }
                 break;
             case BlobManager.BlobType.coach:

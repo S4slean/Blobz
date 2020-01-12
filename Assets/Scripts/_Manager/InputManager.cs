@@ -391,7 +391,6 @@ public class InputManager : MonoBehaviour
     public void SelectElement()
     {
         selectedElement = currentPlayerAction;
-        Debug.Log(selectedElement + " selected");
     }
 
     public void DeselectElement()

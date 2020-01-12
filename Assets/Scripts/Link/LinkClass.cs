@@ -35,6 +35,14 @@ public class LinkClass : PoolableObjects
 
     #endregion
 
+    #region AnimVariable
+    private int transMitAmount;
+    private BlobManager.BlobType transmitType;
+    
+
+
+    #endregion
+
     #endregion
 
     #region COMMUN
@@ -51,6 +59,7 @@ public class LinkClass : PoolableObjects
         line.positionCount = range;
         extremityPos[0] = firstPos;
         extremityPos[1] = lastPos;
+        line.material.SetFloat("_rangeDivision", range);
         for (int i = 0; i < joints.Length; i++)
         {
             joints[i] = ObjectPooler.poolingSystem.GetPooledObject<LinkJointClass>() as LinkJointClass;
@@ -183,28 +192,45 @@ public class LinkClass : PoolableObjects
     public void Transmitt(int blobAmount, BlobManager.BlobType _blobType)
     {
         //Ancienne Version 
+        transmitType = _blobType;
+        transMitAmount = blobAmount;
 
         if (_blobType == BlobManager.BlobType.coach)
         {
-            Debug.Log("transmission coach", originalCell.gameObject);
             if (originalCell.blobCoaches.Count > 0)
             {
-                originalCell.blobCoaches[0].ChangeCell(receivingCell);
+                originalCell.blobCoaches[0].ChangeCellOut();
             }
         }
         else
         {
-            Debug.Log("transmission", originalCell.gameObject);
             originalCell.BlobNumberVariation(-blobAmount, _blobType);
-            receivingCell.BlobNumberVariation(blobAmount, _blobType);
+            //receivingCell.BlobNumberVariation(blobAmount, _blobType);
         }
 
         //New Version
         //joints[0].cellsAttach[0].BlobNumberVariation(-blobAmount);
         //joints[1].cellsAttach[0].BlobNumberVariation(blobAmount);
         // on pourra lancer une anim ici 
+        anim.speed = 1 / (TickManager.instance.tickDuration - TickManager.instance.tickDuration / 4f);
         anim.Play("Transfer");
+        Debug.Log("Anim commencé");
+    }
 
+    public void EndTransmit()
+    {
+        if (transmitType == BlobManager.BlobType.coach)
+        {
+            if (originalCell.blobCoaches.Count > 0)
+            {
+                originalCell.blobCoaches[0].ChangeCellArrive(receivingCell);
+            }
+        }
+        else
+        {
+            receivingCell.BlobNumberVariation(transMitAmount, transmitType);
+        }
+        Debug.Log("Anim finie");
     }
 
     public void AngleFromCell(CellMain OutputCell)

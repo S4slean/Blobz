@@ -18,7 +18,7 @@ public class TickManager : MonoBehaviour
 
     private float count = 0;
     private float ticksElapsed = 0;
-    [SerializeField] [Range(0, 10)] private float tickDuration = 1;
+    [SerializeField] [Range(0, 10)] public float tickDuration = 1;
 
     private void Awake()
     {

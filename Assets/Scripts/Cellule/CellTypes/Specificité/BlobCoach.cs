@@ -24,7 +24,7 @@ public class BlobCoach
             Death();
         }
     }
-    public void ChangeCell(CellMain newCell)
+    public void ChangeCellArrive(CellMain newCell)
     {
         previousCell = inThisCell;
         inThisCell = newCell;
@@ -35,7 +35,11 @@ public class BlobCoach
             origianlSalle.myCoachBlobNumber++;
         }
         inThisCell.BlobNumberVariation(1, BlobManager.BlobType.coach);
+        ChangeCellOut();
+    }
 
+    public void ChangeCellOut()
+    {
         if (previousCell != null)
         {
             if (previousCell.blobCoaches.Contains(this))
@@ -49,6 +53,7 @@ public class BlobCoach
             }
         }
     }
+
     private void Tick()
     {
         if (origianlSalle != inThisCell)
