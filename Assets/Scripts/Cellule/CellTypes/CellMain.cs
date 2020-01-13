@@ -151,9 +151,12 @@ public class CellMain : PoolableObjects, PlayerAction
         GenerateLinkSlot();
     }
 
-    public void CellInitialisation()
+    public virtual void CellInitialisation()
     {
-        ownCollider = GetComponent<Collider>();
+        if (ownCollider == null)
+        {
+            ownCollider = GetComponent<Collider>();
+        }
         RessourceTracker.instance.AddCell(this);
         ownCollider.enabled = true;
         TickInscription();

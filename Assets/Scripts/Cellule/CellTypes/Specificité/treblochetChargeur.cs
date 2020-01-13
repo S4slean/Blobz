@@ -10,12 +10,15 @@ public class treblochetChargeur : MonoBehaviour, PlayerAction
     public float maxPower;
     public float yOffset;
     public float dragRange;
+    public float slotRange;
 
     //private Vector3 initialPos; 
     public CellTreblochet parent;
     private float disTanceFromParent;
 
     private float finalDistance;
+
+    public TreblobchetUISlot[] treblobchetUISlots;
 
 
     private void Awake()
@@ -24,6 +27,13 @@ public class treblochetChargeur : MonoBehaviour, PlayerAction
         dragRange = parent.myCellTemplate.magazineDragRange;
         disTanceFromParent = Vector3.Distance(transform.position, parent.transform.position);
     }
+
+
+    public void Init()
+    {
+        UIGestion();
+    }
+
     private void DragAction(RaycastHit hit)
     {
         Vector3 direction = hit.point - parent.transform.position;
@@ -49,7 +59,7 @@ public class treblochetChargeur : MonoBehaviour, PlayerAction
         }
 
         transform.LookAt(parent.transform);
-        transform.rotation = Quaternion.Euler(90, transform.rotation.y, transform.rotation.z);
+        // transform.rotation = Quaternion.Euler(90, 0, transform.rotation.z);
     }
 
     private void DragEnd()
@@ -74,15 +84,16 @@ public class treblochetChargeur : MonoBehaviour, PlayerAction
         direction = direction.normalized;
 
         transform.position = parent.transform.position + direction * disTanceFromParent;
+        transform.LookAt(parent.transform);
     }
 
 
 
     public void Fire(float ratio)
     {
-        Vector3 dir = (parent.transform.position - transform.position).normalized;
-        dir = new Vector3(dir.x, 0, dir.z);
-        Debug.Log(dir);
+        Debug.Log(ratio);
+        Vector3 dir = (parent.transform.position - transform.position);
+        dir = new Vector3(dir.x, 0, dir.z).normalized;;
         if (blobInChargeur.Count > 0)
         {
 
@@ -91,8 +102,13 @@ public class treblochetChargeur : MonoBehaviour, PlayerAction
 
             blobToThrow.ChangeType(blobInChargeur[0]);
             blobToThrow.transform.position = transform.position + Vector3.up * 3f;
+            // blobToThrow.transform.LookAt(transform);
 
-            blobToThrow.rb.AddForce((dir * ratio * maxPower )+ (Vector3.up * yOffset), ForceMode.Impulse);
+            Vector3 powerVec = ((dir * ratio * maxPower) + (Vector3.up * yOffset));
+            Debug.Log(powerVec);
+            Debug.DrawRay(transform.position, powerVec, Color.blue, 2f);
+
+            blobToThrow.rb.AddForce(powerVec, ForceMode.Impulse);
             blobToThrow.Outpool();
             BlolbFIre();
 
@@ -101,7 +117,8 @@ public class treblochetChargeur : MonoBehaviour, PlayerAction
         {
             // Display error
         }
-        transform.position = parent.transform.position - dir * disTanceFromParent; 
+        transform.position = parent.transform.position - dir * disTanceFromParent;
+        transform.LookAt(parent.transform);
 
     }
     public void UpdateSpecificity(int capacity)
@@ -136,6 +153,7 @@ public class treblochetChargeur : MonoBehaviour, PlayerAction
         {
             parent.chargerIsFull = false;
         }
+        UIGestion();
     }
 
     public void AddBlob(BlobManager.BlobType blobToAdd)
@@ -151,6 +169,7 @@ public class treblochetChargeur : MonoBehaviour, PlayerAction
             }
 
         }
+        UIGestion();
     }
 
     #endregion
@@ -236,4 +255,44 @@ public class treblochetChargeur : MonoBehaviour, PlayerAction
 
     }
     #endregion
+
+    private void UIGestion()
+    {
+        Debug.Log("oui");
+        for (int i = 0; i < treblobchetUISlots.Length; i++)
+        {
+            treblobchetUISlots[i].gameObject.SetActive(false);
+        }
+
+        for (int i = 0; i < maxStockage; i++)
+        {
+            float angle = i * Mathf.PI / maxStockage;
+            angle += Mathf.PI;
+            Vector3 pos = new Vector3(Mathf.Cos(angle)*slotRange, Mathf.Sin(angle) * slotRange,0);
+
+            treblobchetUISlots[i].gameObject.SetActive(true);
+            treblobchetUISlots[i].transform.localPosition = pos;
+            treblobchetUISlots[i].transform.LookAt(transform);
+            treblobchetUISlots[i].transform.rotation = Quaternion.Euler(90, 0, transform.rotation.z);
+
+
+            if (i > blobInChargeur.Count - 1)
+            {
+                treblobchetUISlots[i].UpdateType(BlobManager.BlobType.aucun);
+            }
+            else
+            {
+                treblobchetUISlots[i].UpdateType(blobInChargeur[i]);
+            }
+
+
+
+
+        }
+
+    }
+
+
+
+
 }
