@@ -52,7 +52,7 @@ public class CellSelectionShop : MonoBehaviour
     {
         for (int i = 0; i < sections.Length; i++)
         {
-            anims[i].SetTrigger("Show");
+            anims[i].SetBool("Show", true);
         }
     }
 
@@ -110,7 +110,7 @@ public class CellSelectionShop : MonoBehaviour
         {
             sections[i].UndetectMouse();
             HideOtherSubMenus(5);
-            anims[i].SetTrigger("Hide");
+            anims[i].SetBool("Show", false);
         }
     }
 

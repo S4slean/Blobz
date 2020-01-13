@@ -1061,6 +1061,13 @@ public class CellMain : PoolableObjects, PlayerAction
 
     public virtual void OnLeftClickHolding(RaycastHit hit)
     {
+        if (CheckForAvailableJointOfType(linkJointType.output) == null)
+        {
+
+            Debug.Log("This cell is full , alerte message");
+            return;
+
+        }
         UIManager.Instance.DisplayCellShop(InputManager.Instance.selectedCell);
     }
     public virtual void OnLongLeftClickUp(RaycastHit hit)
@@ -1071,7 +1078,9 @@ public class CellMain : PoolableObjects, PlayerAction
 
     public virtual void OnDragStart(RaycastHit hit)
     {
+        Debug.Log("DragStart");
         UIManager.Instance.DesactivateCellShop();
+
         if (CellManager.Instance.CreatenewLink())
             CellManager.Instance.newCell = false;
     }
