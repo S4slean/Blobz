@@ -112,6 +112,7 @@ public class UIManager : MonoBehaviour
 
     [Header("ToolTip")]
     public TooltipUI tooltipUI;
+    public GameObject costUI;
     public CellOptionsUI cellOptionsUI;
 
 
@@ -147,6 +148,11 @@ public class UIManager : MonoBehaviour
 
 
         firstTooltipDisplayed = true;
+    }
+
+    public void DisplayCostToolTip(Vector3 pos, CellMain cell)
+    {
+        costUI.transform.position = pos + Vector3.forward;
     }
 
     public void DisplaySecondToolTip()

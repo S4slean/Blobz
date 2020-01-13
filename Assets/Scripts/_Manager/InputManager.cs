@@ -208,6 +208,7 @@ public class InputManager : MonoBehaviour
                     {
                         if (CurrentHit.transform.GetComponent<PlayerAction>() != null)
                         {
+                            
                             isOverInteractiveElement = true;
                             elementOver = CurrentHit.transform.GetComponent<PlayerAction>();
                             elementOver.OnmouseIn(CurrentHit);
@@ -219,7 +220,7 @@ public class InputManager : MonoBehaviour
 
                 if (CurrentHit.transform != null && isOverInteractiveElement)
                 {
-                    if (CurrentHit.transform.GetComponent<PlayerAction>() != selectedElement)
+                    if (CurrentHit.transform.GetComponent<PlayerAction>() != elementOver)
                     {
                         isOverInteractiveElement = false;
                         elementOver.OnMouseOut(CurrentHit);
