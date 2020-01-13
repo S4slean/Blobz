@@ -27,10 +27,7 @@ public class CellButtonsShop : MonoBehaviour, IPointerEnterHandler, IPointerExit
     //    anim.Play("DisplaySection");
     //}
 
-    private void OnDisable()
-    {
-        mouseOnMe = false;
-    }
+
 
     public void OnPointerEnter(PointerEventData eventData)
     {
@@ -38,8 +35,7 @@ public class CellButtonsShop : MonoBehaviour, IPointerEnterHandler, IPointerExit
             return;
 
         mouseOnMe = true;
-        anim.SetInteger("opening", 2);
-        CellSelectionShop.instance.HideOtherSubMenus(index);
+        CellSelectionShop.instance.DisplaySubMenu(index);
     }
 
     public void OnPointerExit(PointerEventData eventData)
