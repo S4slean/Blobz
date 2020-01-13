@@ -25,7 +25,6 @@ public class CellSelectionShop : MonoBehaviour
 
     public void CellConstruction(CellMain cellule)
     {
-        Debug.Log("build");
 
         System.Type cellType = cellule.GetType();
         if (cellule.myCellTemplate.energyCost > RessourceTracker.instance.energy)
@@ -51,7 +50,6 @@ public class CellSelectionShop : MonoBehaviour
 
     public void DisplaySections()
     {
-        Debug.Log("displaySections");
         for (int i = 0; i < sections.Length; i++)
         {
             anims[i].SetTrigger("Show");
@@ -62,7 +60,6 @@ public class CellSelectionShop : MonoBehaviour
 
     public void HideOtherSubMenus(int i)
     {
-        Debug.Log("HideOthers");
         for (int j = 0; j < sections.Length; j++)
         {
             if (j == i)
