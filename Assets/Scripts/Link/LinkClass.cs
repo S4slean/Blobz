@@ -212,9 +212,8 @@ public class LinkClass : PoolableObjects
         //joints[0].cellsAttach[0].BlobNumberVariation(-blobAmount);
         //joints[1].cellsAttach[0].BlobNumberVariation(blobAmount);
         // on pourra lancer une anim ici 
-        anim.speed = 1 / (TickManager.instance.tickDuration - TickManager.instance.tickDuration / 4f);
+        anim.speed = 1 / (TickManager.instance.tickDuration - TickManager.instance.tickDuration / 1.8f);
         anim.Play("Transfer");
-        Debug.Log("Anim commencé");
     }
 
     public void EndTransmit()
@@ -230,7 +229,6 @@ public class LinkClass : PoolableObjects
         {
             receivingCell.BlobNumberVariation(transMitAmount, transmitType);
         }
-        Debug.Log("Anim finie");
     }
 
     public void AngleFromCell(CellMain OutputCell)

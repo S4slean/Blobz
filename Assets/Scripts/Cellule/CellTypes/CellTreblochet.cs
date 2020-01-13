@@ -26,6 +26,12 @@ public class CellTreblochet : CellMain
         base.BlobsTick();
     }
 
+    public override void CellInitialisation()
+    {
+        base.CellInitialisation();
+        myChargeur.Init();
+    }
+
 
     private BlobManager.BlobType ChargerCustomBlobCheck()
     {
