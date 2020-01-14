@@ -24,30 +24,36 @@ public class BlobCoach
             Death();
         }
     }
-    public void ChangeCell(CellMain newCell)
+    public void ChangeCellArrive(CellMain newCell)
     {
         previousCell = inThisCell;
-
         inThisCell = newCell;
 
         inThisCell.blobCoaches.Add(this);
+        if (inThisCell == origianlSalle)
+        {
+            origianlSalle.myCoachBlobNumber++;
+        }
+        inThisCell.BlobNumberVariation(1, BlobManager.BlobType.coach);
+        ChangeCellOut();
+    }
 
+    public void ChangeCellOut()
+    {
         if (previousCell != null)
         {
             if (previousCell.blobCoaches.Contains(this))
             {
                 previousCell.blobCoaches.Remove(this);
+                if (previousCell == origianlSalle)
+                {
+                    origianlSalle.myCoachBlobNumber--;
+                }
+                previousCell.BlobNumberVariation(-1, BlobManager.BlobType.coach);
             }
         }
-        if (previousCell == origianlSalle)
-        {
-            origianlSalle.myCoachBlobNumber--;
-        }
-        if (inThisCell == origianlSalle )
-        {
-            origianlSalle.myCoachBlobNumber++;
-        }
     }
+
     private void Tick()
     {
         if (origianlSalle != inThisCell)
@@ -55,12 +61,20 @@ public class BlobCoach
             LooseLife();
         }
     }
-    private void Death()
+    public void Death()
     {
         TickManager.doTick -= Tick;
         inThisCell.blobCoaches.Remove(this);
+
         inThisCell.BlobNumberVariation(-1, BlobManager.BlobType.coach);
 
+
+        origianlSalle = null;
+        currentLife = 0;
+        inThisCell = null;
+        previousCell = null;
+
+        //inThisCell.BlobNumberVariation(-1, BlobManager.BlobType.coach);
     }
 
 }

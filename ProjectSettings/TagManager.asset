@@ -27,7 +27,7 @@ TagManager:
   - LinkJoint
   - BuildingNotAllowed
   - Destructible
-  - 
+  - tourelleDetection
   - 
   - 
   - 

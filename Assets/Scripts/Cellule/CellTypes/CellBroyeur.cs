@@ -51,12 +51,4 @@ public class CellBroyeur : CellMain
             anim.Play("BlobExpulsion");
         }
     }
-    public override void TickInscription()
-    {
-        TickManager.doTick2 += BlobsTick;
-    }
-    public override void TickDesinscription()
-    {
-        TickManager.doTick2 -= BlobsTick;
-    }
 }

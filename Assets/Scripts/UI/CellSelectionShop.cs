@@ -5,81 +5,26 @@ using UnityEngine.UI;
 
 public class CellSelectionShop : MonoBehaviour
 {
-    public GameObject[] buttonTypes;
-    [TextArea]
-    public string Important;
-    [Space(10f)]
-    [Header("TWEAKING")]
-    [Range(0f, 5f)]
-    public float buttonDistance = 2f;
-    public float yOffset = 1;
+    public CellButtonsShop[] sections;
+    public Animator[] anims;
 
-    [SerializeField]
-    private RectTransform[] butTrans;
+    public Animator[] energySubMenus;
+    public Animator[] exploSubMenus;
+    public Animator[] gestionSubMenus;
+    public Animator[] combatSubMenus;
+
+    public static CellSelectionShop instance;
 
     private void Awake()
     {
-
-        butTrans = new RectTransform[buttonTypes.Length];
-        DesactiveButton();
-        for (int i = 0; i < buttonTypes.Length; i++)
-        {
-            butTrans[i] = buttonTypes[i].GetComponent<RectTransform>();
-        }
-    }
-
-    public void DesactiveButton()
-    {
-        foreach (GameObject button in buttonTypes)
-        {
-            button.SetActive(false);
-        }
-    }
-
-    public void ButtonPositions(CellMain inputCell)
-    {
-        GameObject[] select = inputCell.myCellTemplate.cellsEnableToBuild;
-        if (select.Length == 0)
-        {
-            Debug.Log("IL FAUT RAJOUTER LE CHECK POUR LE POSSIBILITE DE BUILD");
-            return;
-        }
-        float anglefrac = 2 * Mathf.PI / select.Length;
-        for (int i = 0; i < select.Length; i++)
-        {
-            //calcule de l'angle en foncttion du nombre de point
-            float angle = anglefrac * i;
-            Vector3 dir = new Vector3(Mathf.Sin(angle), yOffset, Mathf.Cos(angle));
-           // Vector3 dir = new Vector3(Mathf.Sin(angle), 0, Mathf.Cos(angle)) - transform.position;
-           // Vector3 pos = transform.position + (dir * buttonDistance) + new Vector3 (0 , yOffset , 0 );
-            Vector3 pos = dir * buttonDistance;
-            CellType actualType = select[i].GetComponent<CellMain>().myCellTemplate.type;
-
-            ButtonChoosen(pos, actualType);
-
-        }
-    }
-
-    private void ButtonChoosen(Vector3 pos, CellType cellType)
-    {
-        GameObject currentButton;
-
-        for (int i = 0; i < buttonTypes.Length; i++)
-        {
-            if (cellType.ToString() == buttonTypes[i].name.Replace("Button", ""))
-            {
-                currentButton = buttonTypes[i];
-                butTrans[i].transform.localPosition = pos;
-                currentButton.SetActive(true);
-                break;
-            }
-        }
-
+        if (instance == null)
+            instance = this;
+        else
+            Destroy(gameObject);
     }
 
     public void CellConstruction(CellMain cellule)
     {
-        
 
         System.Type cellType = cellule.GetType();
         if (cellule.myCellTemplate.energyCost > RessourceTracker.instance.energy)
@@ -89,10 +34,11 @@ public class CellSelectionShop : MonoBehaviour
         }
         else
         {
+            HideSections();
             CellManager.Instance.SetIfNewCell(true);
 
             CellMain newCell = ObjectPooler.poolingSystem.GetPooledObject(cellType) as CellMain;
-            newCell.transform.position = InputManager.Instance.mouseWorldPos;         
+            newCell.transform.position = InputManager.Instance.mouseWorldPos;
             newCell.Outpool();
 
             CellManager.Instance.NewCellCreated(newCell);
@@ -100,4 +46,114 @@ public class CellSelectionShop : MonoBehaviour
 
         }
     }
+
+
+    public void DisplaySections()
+    {
+        for (int i = 0; i < sections.Length; i++)
+        {
+            anims[i].SetBool("Show", true);
+        }
+    }
+
+   
+
+    public void HideOtherSubMenus(int i)
+    {
+        for (int j = 0; j < sections.Length; j++)
+        {
+            if (j == i)
+            {
+
+                continue;
+            }
+
+            switch (j)
+            {
+                case 0:
+                    for (int l = 0; l < energySubMenus.Length; l++)
+                    {
+                        energySubMenus[l].SetBool("Open", false);
+                    }
+
+                    break;
+                case 1:
+                    for (int l = 0; l < exploSubMenus.Length; l++)
+                    {
+                        exploSubMenus[l].SetBool("Open", false);
+                    }
+
+                    break;
+                case 2:
+                    for (int l = 0; l < gestionSubMenus.Length; l++)
+                    {
+                        gestionSubMenus[l].SetBool("Open", false);
+                    }
+
+                    break;
+                case 3:
+                    for (int l = 0; l < combatSubMenus.Length; l++)
+                    {
+                        combatSubMenus[l].SetBool("Open", false);
+                    }
+
+                    break;
+            }
+        }
+    }
+
+    public void HideSections()
+    {
+        
+
+        for (int i = 0; i < sections.Length; i++)
+        {
+            sections[i].UndetectMouse();
+            HideOtherSubMenus(5);
+            anims[i].SetBool("Show", false);
+        }
+    }
+
+    public void DisplaySubMenu(int index)
+    {
+        if (sections[index].detectMouse)
+        {
+
+
+            
+            switch (index)
+            {
+                case 0:
+                    for (int i = 0; i < energySubMenus.Length; i++)
+                    {
+                        energySubMenus[i].SetBool("Open", true);
+                    }
+                    break;
+                case 1:
+                    for (int i = 0; i < energySubMenus.Length; i++)
+                    {
+                        exploSubMenus[i].SetBool("Open", true);
+                    }
+                    break;
+                case 2:
+                    for (int i = 0; i < energySubMenus.Length; i++)
+                    {
+                        gestionSubMenus[i].SetBool("Open", true);
+                    }
+                    break;
+                case 3:
+                    for (int i = 0; i < energySubMenus.Length; i++)
+                    {
+                        combatSubMenus[i].SetBool("Open", true);
+                    }
+                    break;
+            }
+
+            HideOtherSubMenus(index);
+        }
+    }
+
+
 }
+
+

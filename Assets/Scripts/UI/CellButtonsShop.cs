@@ -7,22 +7,35 @@ using UnityEngine.EventSystems;
 public class CellButtonsShop : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     bool mouseOnMe = false;
-    EventTrigger trigger;
-    PointerEventData pointer;
+    public  bool detectMouse = true;
+    public int index;
+
+    Image img;
+    Animator anim;
 
     private void Start()
     {
-        trigger = GetComponent<EventTrigger>();
+        img = GetComponent<Image>();
+        anim = GetComponent<Animator>();
+
+        //rect.pivot = img.sprite.pivot;
+        img.alphaHitTestMinimumThreshold = 0.5f;
     }
 
-    private void OnDisable()
-    {
-        mouseOnMe = false;
-    }
+    //private void OnEnable()
+    //{
+    //    anim.Play("DisplaySection");
+    //}
+
+
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+        if (!detectMouse)
+            return;
+
         mouseOnMe = true;
+        CellSelectionShop.instance.DisplaySubMenu(index);
     }
 
     public void OnPointerExit(PointerEventData eventData)
@@ -30,13 +43,24 @@ public class CellButtonsShop : MonoBehaviour, IPointerEnterHandler, IPointerExit
         mouseOnMe = false;
     }
 
-    private void Update()
+    public void DetectMouse()
     {
-        pointer = new PointerEventData(EventSystem.current);
-
-        if(mouseOnMe && Input.GetMouseButtonUp(0))
-        {
-            trigger.OnPointerUp(pointer);
-        }
+        detectMouse = true;
     }
+
+    public void UndetectMouse()
+    {
+        detectMouse = false;
+    }
+
+    //private void Update()
+    //{
+    //    pointer = new PointerEventData(EventSystem.current);
+
+    //    if(mouseOnMe && Input.GetMouseButtonUp(0))
+    //    {
+    //        Debug.Log("create Cell");
+    //        trigger.OnPointerUp(pointer);
+    //    }
+    //}
 }

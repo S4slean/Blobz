@@ -119,7 +119,7 @@ public class InputManager : MonoBehaviour
                     {
                         SelectElement();
                         selectedElement.OnLeftClickDown(CurrentHit);
-                        selectedElement.OnDeselect();
+                        selectedElement.OnSelect();
                     }
 
 
@@ -137,6 +137,7 @@ public class InputManager : MonoBehaviour
 
                     if (selectedElement != null && clickTime > clickCooldown && !holdingLeftClick && !dragging)
                     {
+
                         selectedElement.OnLeftClickHolding(CurrentHit);
                         holdingLeftClick = true;
 
@@ -167,7 +168,9 @@ public class InputManager : MonoBehaviour
 
                     if (holdingLeftClick)
                     {
+
                         selectedElement.OnLongLeftClickUp(CurrentHit);
+                        holdingLeftClick = false;
                     }
 
                     DeselectElement();
@@ -205,6 +208,7 @@ public class InputManager : MonoBehaviour
                     {
                         if (CurrentHit.transform.GetComponent<PlayerAction>() != null)
                         {
+                            
                             isOverInteractiveElement = true;
                             elementOver = CurrentHit.transform.GetComponent<PlayerAction>();
                             elementOver.OnmouseIn(CurrentHit);
@@ -216,7 +220,7 @@ public class InputManager : MonoBehaviour
 
                 if (CurrentHit.transform != null && isOverInteractiveElement)
                 {
-                    if (CurrentHit.transform.GetComponent<PlayerAction>() != selectedElement)
+                    if (CurrentHit.transform.GetComponent<PlayerAction>() != elementOver)
                     {
                         isOverInteractiveElement = false;
                         elementOver.OnMouseOut(CurrentHit);
@@ -243,7 +247,7 @@ public class InputManager : MonoBehaviour
 
                 if (rightClickedOnCell && Input.GetMouseButtonUp(1))
                 {
-                    selectedElement.OnShortRightClick(CurrentHit);
+                    //elementOver.OnShortRightClick(CurrentHit);
                 }
 
                 if (!isOverInteractiveElement && (Input.GetMouseButtonDown(1) || Input.GetMouseButtonDown(0)))
@@ -279,11 +283,15 @@ public class InputManager : MonoBehaviour
                         SwitchInputMode(InputMode.normal);
                         objectMoved = null;
                         //dragging = false;
+
+                        ResetInputs();
                     }
                     else
                     {
                         Debug.Log("You can't build there");
                     }
+
+                    
                 }
 
                 else if (Input.GetMouseButtonDown(1))
@@ -373,6 +381,7 @@ public class InputManager : MonoBehaviour
     {
         dragging = false;
         holdingLeftClick = false;
+        clickTime = 0;
     }
 
     public void StartMovingCell(CellMain cell)
@@ -381,7 +390,7 @@ public class InputManager : MonoBehaviour
         Instance.objectMoved = cell;
         SwitchInputMode(InputMode.movingCell);
         Instance.dragging = false;
-        Instance.holdingLeftClick = false;
+        //Instance.holdingLeftClick = false;
     }
 
 
@@ -393,6 +402,7 @@ public class InputManager : MonoBehaviour
     public void DeselectElement()
     {
         UIManager.Instance.DeselectElement();
+
         selectedElement = null;
     }
 
@@ -420,7 +430,7 @@ public class InputManager : MonoBehaviour
     public static void SwitchInputMode(InputMode newInputMode)
     {
         Instance.inputMode = newInputMode;
-        Debug.Log("InputModeSwitched to: " + newInputMode.ToString());
+
         if(newInputMode == InputMode.divineShot)
         {
             UIManager.Instance.DisplayDivineShot(Instance.shootingCell);

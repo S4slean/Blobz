@@ -18,20 +18,30 @@ MonoBehaviour:
   eventDone: 1
   populationObjective: 0
   energyToObtain: 0
-  cellType: 1
+  cellType: 7
   level: 1
-  cellNbrToObtain: 1
+  cellNbrToObtain: 2
+  blobExplo: 0
   anyCells: 1
   colonialCellType: 0
-  placeToGet: {fileID: 0}
-  range: 0
-  objectToDestroy: []
+  placeToGet: 0
+  destructType: 0
+  nbrOfObject: 0
   questEvents:
   - eventType: 1
     eventDuration: 1
     virtualCamIndex: 3
-    popUpsMsg: []
+    popUpsMsg:
+    - rpgStyle: 0
+      anchor: {fileID: 0}
+      offset: {x: 830, y: 260, z: 0}
+      usingSprite: 0
+      sprite: {fileID: 21300000, guid: 013d0ca5a2e30f7438158762ce87327c, type: 3}
+      Title: 
+      Text: 'Be careful we don''t what we can found
+
+        here ! Build some turret for protect us !'
     UEvent:
       m_PersistentCalls:
         m_Calls: []
-    foldout: 0
+    foldout: 1

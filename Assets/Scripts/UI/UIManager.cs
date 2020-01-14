@@ -67,27 +67,14 @@ public class UIManager : MonoBehaviour
 
     public void DisplayCellShop(CellMain originalCell)
     {
-
-        if (originalCell.CheckForAvailableJointOfType(linkJointType.output) == null)
-        {
-            UIManager.Instance.DisplayNotEnoughLink();
-        }
-        else
-        {
-
-            cellSelection.transform.position = originalCell.transform.position;
-            cellSelection.gameObject.SetActive(true);
-            cellSelection.ButtonPositions(originalCell);
-            InputManager.Instance.holdingLeftClick = true;
-        }
+        cellSelection.transform.position = originalCell.transform.position + Vector3.up * .5f;
+        
+        cellSelection.DisplaySections();
     }
-    public IEnumerator DesactivateCellShop()
+        
+    public void DesactivateCellShop()
     {
-        yield return new WaitForEndOfFrame();
-        cellSelection.DesactiveButton();
-        InputManager.Instance.holdingLeftClick = false;
-
-        ///CellManager2.Instance.SupressCurrentLink();
+        cellSelection.HideSections();
     }
 
 
@@ -125,6 +112,7 @@ public class UIManager : MonoBehaviour
 
     [Header("ToolTip")]
     public TooltipUI tooltipUI;
+    public GameObject costUI;
     public CellOptionsUI cellOptionsUI;
 
 
@@ -160,6 +148,16 @@ public class UIManager : MonoBehaviour
 
 
         firstTooltipDisplayed = true;
+    }
+
+    public void DisplayCostToolTip(Vector3 pos, CellMain cell)
+    {
+        //costUI.transform.position = pos + Vector3.forward;
+    }
+
+    public void HideCostTooltip()
+    {
+
     }
 
     public void DisplaySecondToolTip()

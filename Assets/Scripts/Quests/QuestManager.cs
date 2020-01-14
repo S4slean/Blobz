@@ -177,7 +177,7 @@ public class QuestManager : MonoBehaviour
     public void QuestSuccess()
     {
 
-        Debug.Log("Quest Success");
+        //Debug.Log("Quest Success");
         //Display Success
         //hide UI or play Disappearing anim
 
