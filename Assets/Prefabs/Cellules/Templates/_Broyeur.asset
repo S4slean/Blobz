@@ -35,7 +35,7 @@ MonoBehaviour:
   slotDistance: 1.5
   numberOfOuputLinks: 0
   numberOfInputLinks: 1
-  numberOfFlexLinks: 1
+  numberOfFlexLinks: 0
   proximityLevelMax: 4
   proximityInfluenceMultiplier: 1
   positivesInteractions: 
@@ -57,6 +57,8 @@ MonoBehaviour:
   ProximityGestion: 1
   maxEnergie: 5
   maxBlobCoach: 0
+  magazineDragRange: 1.5
+  minDistanceDrag: 0.2
   tourelleMaxMun: 3
   tourelleDamage: 5
   tourelleAttackRadius: 6

@@ -12,7 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d07d45a74266e347a6c0f35a3488ad7, type: 3}
   m_Name: _Pilone
   m_EditorClassIdentifier: 
-  cellsEnableToBuild: []
+  cellsEnableToBuild:
+  - {fileID: 5449206648009261835, guid: 257ce46f156b623499da87320e42c31f, type: 3}
+  - {fileID: 8322403635272401023, guid: cf6843133c307224196e57962e7f5179, type: 3}
+  - {fileID: 5449206648009261835, guid: e06466da8d1decb409888187dfd365c7, type: 3}
+  - {fileID: 6972052367257400834, guid: 4e9497ea1e00ed745bda0818b1c5748c, type: 3}
   blopPrefab: {fileID: 0}
   buttonColor: {r: 0, g: 0, b: 0, a: 0}
   cellTexture: {fileID: 0}
@@ -22,7 +26,7 @@ MonoBehaviour:
   proximityColliders:
   - proximityLevel: 3
     range: 20
-    productionBonusRatio: 0
+    productionBonusRatio: 70
   energyCost: 5
   energyCapBase: 10
   rangeBase: 50
@@ -37,7 +41,7 @@ MonoBehaviour:
   slotDistance: 1.5
   numberOfOuputLinks: 1
   numberOfInputLinks: 1
-  numberOfFlexLinks: 1
+  numberOfFlexLinks: 2
   proximityLevelMax: 0
   proximityInfluenceMultiplier: 1
   positivesInteractions: 
@@ -59,6 +63,8 @@ MonoBehaviour:
   ProximityGestion: 1
   maxEnergie: 5
   maxBlobCoach: 0
+  magazineDragRange: 1.5
+  minDistanceDrag: 0.2
   tourelleMaxMun: 3
   tourelleDamage: 5
   tourelleAttackRadius: 6

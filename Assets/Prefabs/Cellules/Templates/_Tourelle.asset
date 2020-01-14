@@ -37,7 +37,7 @@ MonoBehaviour:
   slotDistance: 1.5
   numberOfOuputLinks: 1
   numberOfInputLinks: 1
-  numberOfFlexLinks: 3
+  numberOfFlexLinks: 2
   proximityLevelMax: 4
   proximityInfluenceMultiplier: 1
   positivesInteractions: 
@@ -49,7 +49,7 @@ MonoBehaviour:
   rangeLien: 
   tickForActivation: 04000000030000000200000001000000
   energyCap: 
-  specifique: 
+  specifique: 0a0000000e0000001200000016000000
   energyPerblop: 0
   StatsModification: 5
   REFS: 1
