@@ -28,10 +28,11 @@ public class CelluleTemplate : ScriptableObject
     public int proximityColliderNumber = 1;
     public ProximityCollider[] proximityColliders;
 
-    [Range(0f, 50f)]
+    [Range(0, 1000)]
     public int energyCost = 5;
-    [Range(1, 150)]
+    [Range(0, 1500)]
     public int energyCapBase = 10;
+
     [Range(0f, 300f)]
     public int rangeBase = 50;
     [Range(0, 1)]
@@ -48,6 +49,7 @@ public class CelluleTemplate : ScriptableObject
     public int storageCapability = 10;
     [Range(1, 5)]
     public int tickForActivationBase = 1;
+
     [Range(1, 100)]
     public int energyPerClick = 2;
 
@@ -56,11 +58,11 @@ public class CelluleTemplate : ScriptableObject
     public bool limitedInLinks;
     [Range(0.5f , 5f)]
     public float slotDistance = 3; 
-    [Range(0 , 5)]
+    [Range(0 , 10)]
     public int numberOfOuputLinks =1;
-    [Range(0 , 5)]
+    [Range(0 , 10)]
     public int numberOfInputLinks =1;
-    [Range(0, 5)]
+    [Range(0, 20)]
     public int numberOfFlexLinks = 1;
 
 
@@ -102,7 +104,7 @@ public class CelluleTemplate : ScriptableObject
 
     #region SPECIFIC VARIABLE
 
-    [Range(1 , 10)]
+    [Range(1 , 15)]
     public int maxEnergie = 5;
     [Range(1, 100)]
     public int maxBlobCoach;
@@ -113,7 +115,7 @@ public class CelluleTemplate : ScriptableObject
     public float minDistanceDrag = 0.2f;
 
 
-    [Range(1 , 5)]
+    [Range(1 , 10)]
     public int tourelleMaxMun = 3;
     [Range(1 , 10)]
     public int tourelleDamage = 5;
@@ -131,6 +133,6 @@ public struct ProximityCollider
     public int proximityLevel;
     [Range (5 , 100)]
     public int range;
-    [Range (0 , 25)]
+    [Range (0 , 75)]
     public int productionBonusRatio;
 }
