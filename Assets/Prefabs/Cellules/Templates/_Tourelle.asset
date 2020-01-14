@@ -23,7 +23,7 @@ MonoBehaviour:
   - proximityLevel: 0
     range: 0
     productionBonusRatio: 0
-  energyCost: 5
+  energyCost: 750
   energyCapBase: 10
   rangeBase: 50
   blobRatioAtDeath: 0
