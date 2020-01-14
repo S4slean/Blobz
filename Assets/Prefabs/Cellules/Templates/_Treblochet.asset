@@ -27,7 +27,7 @@ MonoBehaviour:
   impulseForce_Death: 10
   prodPerTickBase: 0
   rejectPowerBase: 0
-  storageCapability: 10
+  storageCapability: 15
   tickForActivationBase: 1
   energyPerClick: 2
   limitedInLinks: 0

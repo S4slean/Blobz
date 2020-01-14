@@ -30,7 +30,7 @@ MonoBehaviour:
   impulseForce_Death: 10
   prodPerTickBase: 0
   rejectPowerBase: 1
-  storageCapability: 20
+  storageCapability: 15
   tickForActivationBase: 1
   energyPerClick: 2
   limitedInLinks: 1
@@ -54,8 +54,8 @@ MonoBehaviour:
   StatsModification: 8
   REFS: 1
   ToggleInfoBox: 1
-  STATS: 0
-  ProductionGestion: 0
+  STATS: 1
+  ProductionGestion: 1
   ProximityGestion: 1
   maxEnergie: 5
   maxBlobCoach: 0

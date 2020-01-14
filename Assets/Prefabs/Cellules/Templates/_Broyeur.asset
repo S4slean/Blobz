@@ -52,8 +52,8 @@ MonoBehaviour:
   StatsModification: 7
   REFS: 1
   ToggleInfoBox: 0
-  STATS: 0
-  ProductionGestion: 0
+  STATS: 1
+  ProductionGestion: 1
   ProximityGestion: 1
   maxEnergie: 5
   maxBlobCoach: 0
