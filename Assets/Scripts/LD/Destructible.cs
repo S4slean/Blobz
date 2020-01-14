@@ -166,6 +166,7 @@ public class Destructible : PoolableObjects, PlayerAction
 
     public void OnShortLeftClickUp(RaycastHit hit)
     {
+
         if (canBeDestroyedByClick && !isRuin)
         {
             ReceiveDamage(1);

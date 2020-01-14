@@ -19,12 +19,14 @@ public class SubMenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        Debug.Log("coucou");
+        Debug.Log("mouseOn");
+        UIManager.Instance.DisplayCostToolTip(transform.position, cellAssociated);
         mousOnMe = true;
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
+        UIManager.Instance.HideCostTooltip();
         mousOnMe = false;
 
     }
@@ -33,7 +35,7 @@ public class SubMenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     {
         if(mousOnMe && Input.GetMouseButtonUp(0))
         {
-            Debug.Log("allo");
+            Debug.Log("createCell");
             CellSelectionShop.instance.CellConstruction(cellAssociated);
         }
     }

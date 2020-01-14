@@ -45,7 +45,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maskLeftCLick:
     serializedVersion: 2
-    m_Bits: 39223
+    m_Bits: 104759
   UIMask:
     serializedVersion: 2
     m_Bits: 32
@@ -60,5 +60,5 @@ MonoBehaviour:
   mouseWorldPos: {x: 0, y: 0, z: 0}
   mouseScreenPos: {x: 0, y: 0, z: 0}
   selectedCell: {fileID: 0}
-  movingObject: 0
   objectMoved: {fileID: 0}
+  shootingCell: {fileID: 0}

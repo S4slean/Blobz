@@ -152,7 +152,12 @@ public class UIManager : MonoBehaviour
 
     public void DisplayCostToolTip(Vector3 pos, CellMain cell)
     {
-        costUI.transform.position = pos + Vector3.forward;
+        //costUI.transform.position = pos + Vector3.forward;
+    }
+
+    public void HideCostTooltip()
+    {
+
     }
 
     public void DisplaySecondToolTip()

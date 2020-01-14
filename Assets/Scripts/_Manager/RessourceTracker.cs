@@ -60,7 +60,8 @@ public class RessourceTracker : MonoBehaviour
                 break;
         }
 
-        UIManager.Instance.QuestUI.UpdateUI();
+        if(UIManager.Instance.QuestUI.gameObject.activeSelf)
+            UIManager.Instance.QuestUI.UpdateUI();
 
     }
     public void RemoveCell(CellMain cell)

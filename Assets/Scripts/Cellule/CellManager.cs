@@ -55,6 +55,7 @@ public class CellManager : MonoBehaviour
     #region LINK GESTION
     public bool CreatenewLink()
     {
+        Debug.Log("New Link");
         selectedCell = InputManager.Instance.selectedCell;
         LinkJointClass joint = selectedCell.CheckForAvailableJointOfType(linkJointType.output);
 
@@ -84,6 +85,13 @@ public class CellManager : MonoBehaviour
     //Sans Cell
     public void DragNewlink(RaycastHit hit)
     {
+        if (currentLink == null)
+        {
+            //Alert Message
+            Debug.Log("Pas assez de lien , alerte message");
+            InputManager.Instance.ResetInputs();
+            return;
+        }
         Vector3 direction = (hit.point - selectedCell.transform.position);
         direction = new Vector3(direction.x, 0, direction.z);
         direction = direction.normalized;
@@ -223,6 +231,10 @@ public class CellManager : MonoBehaviour
     }
     public void SupressCurrentLink()
     {
+        if (currentLink ==null)
+        {
+            return;
+        }
         currentLink.joints[0].disponible = true;
         selectedCell.jointReset(currentLink.joints[0]);
         currentLink.joints[1].Inpool();
