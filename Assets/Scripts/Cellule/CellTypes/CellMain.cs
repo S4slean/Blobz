@@ -47,6 +47,8 @@ public class CellMain : PoolableObjects, PlayerAction
     public LinkJointClass[] linkJoints;
 
     public List<BlobCoach> blobCoaches = new List<BlobCoach>();
+
+    public Transform myTransform;
     #endregion
 
     #region DEBUG
@@ -117,7 +119,15 @@ public class CellMain : PoolableObjects, PlayerAction
         //mF.mesh = myCellTemplate.mesh;
         //ProximityCheck();
         GetInitialMat();
-        ownCollider = GetComponent<Collider>();
+        if (ownCollider == null)
+        {
+            ownCollider = GetComponent<Collider>();
+        }
+        if (myTransform == null)
+        {
+            myTransform = transform;
+        }
+
         ownCollider.enabled = false;
     }
 
