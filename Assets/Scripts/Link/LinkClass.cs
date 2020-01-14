@@ -199,7 +199,7 @@ public class LinkClass : PoolableObjects
         {
             if (originalCell.blobCoaches.Count > 0)
             {
-                originalCell.blobCoaches[0].ChangeCellOut();
+                originalCell.blobCoaches[0].ChangeCellOut(receivingCell);
             }
         }
         else
@@ -222,7 +222,7 @@ public class LinkClass : PoolableObjects
         {
             if (originalCell.blobCoaches.Count > 0)
             {
-                originalCell.blobCoaches[0].ChangeCellArrive(receivingCell);
+                originalCell.blobCoaches[0].ChangeCellArrive();
             }
         }
         else
@@ -281,7 +281,5 @@ public class LinkClass : PoolableObjects
     }
 
     #endregion
-
-
 
 }

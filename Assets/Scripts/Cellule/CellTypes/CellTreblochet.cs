@@ -43,7 +43,11 @@ public class CellTreblochet : CellMain
             }
         }
 
-        return BlobManager.BlobType.soldier;
+        if (blobNumber - (blobCoaches.Count + explorateurBlobNumber) > 0)
+        {
+            return BlobManager.BlobType.soldier;
+        }
+        return BlobManager.BlobType.explorateur;
     }
 
     public override void blobAddCheckType(int amount, BlobManager.BlobType _blobType)

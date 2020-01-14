@@ -24,10 +24,9 @@ public class BlobCoach
             Death();
         }
     }
-    public void ChangeCellArrive(CellMain newCell)
+    public void ChangeCellArrive()
     {
-        previousCell = inThisCell;
-        inThisCell = newCell;
+
 
         inThisCell.blobCoaches.Add(this);
         if (inThisCell == origianlSalle)
@@ -35,11 +34,26 @@ public class BlobCoach
             origianlSalle.myCoachBlobNumber++;
         }
         inThisCell.BlobNumberVariation(1, BlobManager.BlobType.coach);
-        ChangeCellOut();
+        //ChangeCellOut();
+    }
+    public void ChangeCellArrive(CellMain cell)
+    {
+        inThisCell = cell;
+
+        inThisCell.blobCoaches.Add(this);
+        if (inThisCell == origianlSalle)
+        {
+            origianlSalle.myCoachBlobNumber++;
+        }
+        inThisCell.BlobNumberVariation(1, BlobManager.BlobType.coach);
+        //ChangeCellOut();
     }
 
-    public void ChangeCellOut()
+    public void ChangeCellOut(CellMain newCell)
     {
+        previousCell = inThisCell;
+        inThisCell = newCell;
+
         if (previousCell != null)
         {
             if (previousCell.blobCoaches.Contains(this))
