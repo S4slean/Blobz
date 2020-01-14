@@ -509,6 +509,7 @@ MonoBehaviour:
   ownCollider: {fileID: 0}
   linkJoints: []
   blobCoaches: []
+  myTransform: {fileID: 0}
   showDebug: 0
   showlinks: 0
   showRef: 1
