@@ -32,6 +32,7 @@ public class CellSelectionShop : MonoBehaviour
             UIManager.Instance.DisplayNotEnoughNRJ();
             CellManager.Instance.SetIfNewCell(false);
         }
+        
         else
         {
             HideSections();

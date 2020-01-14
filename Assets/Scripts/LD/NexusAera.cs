@@ -6,7 +6,7 @@ public class NexusAera : MonoBehaviour
 {
     public int splouchCost = 100;
     public bool revealed = false;
-
+    public ColonyBtn btn;
 
     private void OnTriggerEnter(Collider other)
     {
