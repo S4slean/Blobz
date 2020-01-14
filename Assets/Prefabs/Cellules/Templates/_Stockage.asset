@@ -30,7 +30,7 @@ MonoBehaviour:
   - proximityLevel: 1
     range: 40
     productionBonusRatio: 1
-  energyCost: 50
+  energyCost: 150
   energyCapBase: 10
   rangeBase: 40
   blobRatioAtDeath: 0
