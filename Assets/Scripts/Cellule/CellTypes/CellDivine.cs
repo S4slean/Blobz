@@ -7,17 +7,16 @@ public class CellDivine : CellMain
     private bool isLoaded;
     private int energie;
     public divineCellButon activationButton;
-
-    
+    public ProgressBar chargeBar;
 
     public override void BlobsTick()
     {
-        if (blobNumber > 0)
+        if (blobNumber > 0 && !isLoaded)
         {
-            BlobNumberVariation(-1 , BlobCheck());
+            BlobNumberVariation(-1, BlobCheck());
             Charge(1);
         }
-        BlobNumberVariation(myCellTemplate.prodPerTickBase , BlobManager.BlobType.normal);
+        BlobNumberVariation(myCellTemplate.prodPerTickBase, BlobManager.BlobType.normal);
 
         //ANIM
         haveExpulse = false;
@@ -33,7 +32,7 @@ public class CellDivine : CellMain
                 }
                 //Pour l'instant il y a moyen que si une cellule creve la prochaine 
                 //soit sauté mai squand il y aura les anim , ce sera plus possible
-                outputLinks[i].Transmitt(1 , BlobCheck());
+                outputLinks[i].Transmitt(1, BlobCheck());
                 haveExpulse = true;
             }
             currentTick = 0;
@@ -58,17 +57,23 @@ public class CellDivine : CellMain
             if (energie >= myCellTemplate.maxEnergie)
             {
                 isLoaded = true;
-                energie = myCellTemplate.maxEnergie;
-                //
+                energie = myCellTemplate.maxEnergie;                
                 Debug.Log("Loaded , anim à déclencher ");
+                activationButton.ToggleButton(true);
             }
+            float ratio = (float)energie / (float)myCellTemplate.maxEnergie;
+            chargeBar.UpdateBar(ratio);
         }
     }
     public void Decharge()
     {
         energie = 0;
         isLoaded = false;
-        Debug.Log("Anim déchargement");
+        Debug.Log("Decharge");
+        activationButton.ToggleButton(false);
+        float ratio = (float)energie / (float)myCellTemplate.maxEnergie;
+        chargeBar.UpdateBar(ratio);
+
     }
 
     public override void SetupVariable()

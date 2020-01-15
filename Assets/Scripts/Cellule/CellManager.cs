@@ -55,7 +55,6 @@ public class CellManager : MonoBehaviour
     #region LINK GESTION
     public bool CreatenewLink()
     {
-        Debug.Log("New Link");
         selectedCell = InputManager.Instance.selectedCell;
         LinkJointClass joint = selectedCell.CheckForAvailableJointOfType(linkJointType.output);
 

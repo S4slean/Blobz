@@ -1088,7 +1088,6 @@ public class CellMain : PoolableObjects, PlayerAction
 
     public virtual void OnDragStart(RaycastHit hit)
     {
-        Debug.Log("DragStart");
         UIManager.Instance.DesactivateCellShop();
 
         if (CellManager.Instance.CreatenewLink())
