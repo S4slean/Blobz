@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac59c85db94beed47808c892abe2bae2, type: 3}
   m_Name: QuestTuto1
   m_EditorClassIdentifier: 
-  questType: 0
+  questType: 2
   questTitle: Blobz are Coming
   questDescription: 
   eventDone: 1
   populationObjective: 7
   energyToObtain: 0
-  cellType: 0
+  cellType: 2
   level: 1
   cellNbrToObtain: 1
   blobExplo: 0
@@ -28,17 +28,25 @@ MonoBehaviour:
   destructType: 0
   nbrOfObject: 0
   questEvents:
-  - eventType: 0
+  - eventType: 1
     eventDuration: 1
     virtualCamIndex: 0
-    popUpsMsg: []
+    popUpsMsg:
+    - rpgStyle: 1
+      anchor: {fileID: 0}
+      offset: {x: 0, y: 0, z: 0}
+      usingSprite: 1
+      sprite: {fileID: 21300000, guid: 5e49d0c23e32339408d7c64f13cceb28, type: 3}
+      Title: 
+      Text: "This planet must be invaded, we need to spread quickly to move \nsomewhere
+        else and keep spreading ! \r"
     UEvent:
       m_PersistentCalls:
         m_Calls: []
     foldout: 0
   - eventType: 0
     eventDuration: 2.5
-    virtualCamIndex: 1
+    virtualCamIndex: 0
     popUpsMsg:
     - rpgStyle: 0
       anchor: {fileID: 0}
@@ -54,18 +62,48 @@ MonoBehaviour:
         m_Calls: []
     foldout: 1
   - eventType: 1
-    eventDuration: 5
+    eventDuration: 1
     virtualCamIndex: 1
     popUpsMsg:
-    - rpgStyle: 0
+    - rpgStyle: 1
       anchor: {fileID: 0}
-      offset: {x: 830, y: 260, z: 0}
+      offset: {x: 0, y: 0, z: 0}
       usingSprite: 1
-      sprite: {fileID: 21300000, guid: 684c818bea0ae0f4e9d96fc3907b7502, type: 3}
-      Title: What's a Blob?
-      Text: 'Blobz are created to expand your population.
+      sprite: {fileID: 21300000, guid: 5e49d0c23e32339408d7c64f13cceb28, type: 3}
+      Title: 
+      Text: "Here is the Nexus, the most important place for the blobz !\r\n"
+    - rpgStyle: 1
+      anchor: {fileID: 0}
+      offset: {x: 0, y: 0, z: 0}
+      usingSprite: 1
+      sprite: {fileID: 21300000, guid: 5e49d0c23e32339408d7c64f13cceb28, type: 3}
+      Title: 
+      Text: We are born here, before leaving it to conquer the world !
+    - rpgStyle: 1
+      anchor: {fileID: 0}
+      offset: {x: 0, y: 0, z: 0}
+      usingSprite: 1
+      sprite: {fileID: 21300000, guid: 5e49d0c23e32339408d7c64f13cceb28, type: 3}
+      Title: 
+      Text: "But first, we need to leave the nest and be more numerous. Let\u2019s
+        build more cells !\n"
+    - rpgStyle: 1
+      anchor: {fileID: 0}
+      offset: {x: 0, y: 0, z: 0}
+      usingSprite: 1
+      sprite: {fileID: 21300000, guid: 5e49d0c23e32339408d7c64f13cceb28, type: 3}
+      Title: 
+      Text: 'Cells are where we can breathe, because the air on this planet is toxic.
+        This is also where we can be turned into a lot of different things.
 
-        The more Blobz you have the better !'
+'
+    - rpgStyle: 1
+      anchor: {fileID: 0}
+      offset: {x: 0, y: 0, z: 0}
+      usingSprite: 1
+      sprite: {fileID: 21300000, guid: 5e49d0c23e32339408d7c64f13cceb28, type: 3}
+      Title: 
+      Text: Build a stock !
     UEvent:
       m_PersistentCalls:
         m_Calls:
@@ -81,20 +119,18 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-    foldout: 1
+    foldout: 0
   - eventType: 1
-    eventDuration: 5
+    eventDuration: 1
     virtualCamIndex: 1
     popUpsMsg:
     - rpgStyle: 0
       anchor: {fileID: 0}
       offset: {x: 830, y: 260, z: 0}
       usingSprite: 1
-      sprite: {fileID: 21300000, guid: c98328a721f45da4fb0b32121f3026db, type: 3}
-      Title: Capitaliblob
-      Text: 'This Cell produces Blobz and
-
-        expands your population. '
+      sprite: {fileID: 21300000, guid: 9ab830d8caf4e1547967ad370da85b41, type: 3}
+      Title: 
+      Text: "Click and drag to select the stock cell and \nplace it !\n"
     UEvent:
       m_PersistentCalls:
         m_Calls:
@@ -110,4 +146,4 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-    foldout: 1
+    foldout: 0
