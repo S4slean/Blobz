@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac59c85db94beed47808c892abe2bae2, type: 3}
   m_Name: QuestTuto1.5
   m_EditorClassIdentifier: 
-  questType: 1
-  questTitle: More Sploush
+  questType: 2
+  questTitle: More Sploosh
   questDescription: 
   eventDone: 1
   populationObjective: 100
   energyToObtain: 25
-  cellType: 0
+  cellType: 10
   level: 1
   cellNbrToObtain: 1
   blobExplo: 0
@@ -32,19 +32,59 @@ MonoBehaviour:
     eventDuration: 0
     virtualCamIndex: 0
     popUpsMsg:
+    - rpgStyle: 1
+      anchor: {fileID: 0}
+      offset: {x: 0, y: 0, z: 0}
+      usingSprite: 1
+      sprite: {fileID: 21300000, guid: 5e49d0c23e32339408d7c64f13cceb28, type: 3}
+      Title: 
+      Text: "Perfect! You see there is a link between the Nexus and the stock. \r\n"
+    - rpgStyle: 1
+      anchor: {fileID: 0}
+      offset: {x: 0, y: 0, z: 0}
+      usingSprite: 1
+      sprite: {fileID: 21300000, guid: 5e49d0c23e32339408d7c64f13cceb28, type: 3}
+      Title: 
+      Text: "With it we can travel in the system you\u2019ll build !\r\n\n"
+    - rpgStyle: 1
+      anchor: {fileID: 0}
+      offset: {x: 0, y: 0, z: 0}
+      usingSprite: 1
+      sprite: {fileID: 21300000, guid: 5e49d0c23e32339408d7c64f13cceb28, type: 3}
+      Title: 
+      Text: "To build cells, you need sploosh. But first you need to build a dump
+        !\r\n\n"
+    UEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    foldout: 0
+  - eventType: 1
+    eventDuration: 0
+    virtualCamIndex: 0
+    popUpsMsg:
     - rpgStyle: 0
       anchor: {fileID: 0}
       offset: {x: 830, y: 260, z: 0}
       usingSprite: 1
-      sprite: {fileID: 21300000, guid: c98328a721f45da4fb0b32121f3026db, type: 3}
+      sprite: {fileID: 21300000, guid: 9ab830d8caf4e1547967ad370da85b41, type: 3}
       Title: 
-      Text: 'Click on the production cell to collect
-
-        the sploosh !'
+      Text: "Click and drag to select the dump\r and \nplace it !\n"
     UEvent:
       m_PersistentCalls:
-        m_Calls: []
-    foldout: 1
+        m_Calls:
+        - m_Target: {fileID: 6190842183759939533, guid: 7b934126b67bf7f44aabfd0ea1f12c2e,
+            type: 3}
+          m_MethodName: ReturnToMainCam
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    foldout: 0
   - eventType: 3
     eventDuration: 0
     virtualCamIndex: 0
