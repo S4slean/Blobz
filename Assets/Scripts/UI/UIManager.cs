@@ -335,6 +335,12 @@ public class UIManager : MonoBehaviour
 
     #endregion
 
+    #region PAUSE MENU 
 
+    [Header ("PauseMenu")]
+    public PauseMenu pauseMenu;
+
+    #endregion
 
 }
+

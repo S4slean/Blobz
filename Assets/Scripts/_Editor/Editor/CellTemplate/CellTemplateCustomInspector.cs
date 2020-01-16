@@ -31,6 +31,8 @@ public class CellTemplateCustomInspector : Editor
 
     SerializedProperty energyPerblop, energyCapProp;
 
+    SerializedProperty overLoadTickMaxProp, overloadTreshHoldProp;
+
     SerializedProperty genererateProximityProp, proximityColliderNumberProp, proximityCollidersProp;
 
     SerializedProperty limitedInLinksProp, numberOfOuputLinksProp, numberOfInputLinksProp, slotDistanceProp, numberOfFlexLinksProp;
@@ -76,6 +78,10 @@ public class CellTemplateCustomInspector : Editor
         rangeBaseProp = serializedObject.FindProperty("rangeBase");
         blobRatioAtDeathProp = serializedObject.FindProperty("blobRatioAtDeath");
         impulseForce_DeathProp = serializedObject.FindProperty("impulseForce_Death");
+
+        overLoadTickMaxProp = serializedObject.FindProperty("overLoadTickMax");
+        overloadTreshHoldProp = serializedObject.FindProperty("overloadTreshHold");
+
         #endregion
 
         #region Production Gestion 
@@ -315,9 +321,14 @@ public class CellTemplateCustomInspector : Editor
             {
                 EditorGUILayout.PropertyField(blobRatioAtDeathProp);
                 EditorGUILayout.PropertyField(impulseForce_DeathProp);
+
                 EditorGUILayout.Space();
                 EditorGUILayout.PropertyField(energyPerClickProp);
                 EditorGUILayout.PropertyField(energyCapBaseProp);
+
+                EditorGUILayout.Space();
+                EditorGUILayout.PropertyField(overLoadTickMaxProp);
+                EditorGUILayout.PropertyField(overloadTreshHoldProp);
 
             }
             else
@@ -342,6 +353,15 @@ public class CellTemplateCustomInspector : Editor
                 EditorGUIUtility.fieldWidth = fieldWidthBase;
                 EditorGUILayout.EndHorizontal();
 
+
+                EditorGUILayout.BeginHorizontal();
+                EditorGUIUtility.fieldWidth = 30;
+                EditorGUIUtility.labelWidth = 140;
+                EditorGUILayout.PropertyField(overLoadTickMaxProp);
+                EditorGUILayout.PropertyField(overloadTreshHoldProp);
+                EditorGUIUtility.labelWidth = labelWidthBase;
+                EditorGUIUtility.fieldWidth = fieldWidthBase;
+                EditorGUILayout.EndHorizontal();
 
             }
 

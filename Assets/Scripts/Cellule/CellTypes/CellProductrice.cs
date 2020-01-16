@@ -95,7 +95,7 @@ public class CellProductrice : CellMain
     {
 
         productionBonusPacket = 0;
-        productionBonusPacket = 0;
+        productionBonusRatio = 0;
         base.Died(intentionnalDeath);
 
     }

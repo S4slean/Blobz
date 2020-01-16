@@ -58,7 +58,6 @@ public class CellDivine : CellMain
             {
                 isLoaded = true;
                 energie = myCellTemplate.maxEnergie;                
-                Debug.Log("Loaded , anim à déclencher ");
                 activationButton.ToggleButton(true);
             }
             float ratio = (float)energie / (float)myCellTemplate.maxEnergie;
@@ -69,7 +68,6 @@ public class CellDivine : CellMain
     {
         energie = 0;
         isLoaded = false;
-        Debug.Log("Decharge");
         activationButton.ToggleButton(false);
         float ratio = (float)energie / (float)myCellTemplate.maxEnergie;
         chargeBar.UpdateBar(ratio);

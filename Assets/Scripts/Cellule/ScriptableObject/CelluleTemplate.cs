@@ -40,6 +40,11 @@ public class CelluleTemplate : ScriptableObject
     [Range(5, 100)]
     public int impulseForce_Death = 10;
 
+    [Range(1 , 6)]
+    public int overLoadTickMax = 4 ;
+    [Range(1, 10)]
+    public int overloadTreshHold = 5;
+
 
     [Range(0, 10)]
     public int prodPerTickBase;
