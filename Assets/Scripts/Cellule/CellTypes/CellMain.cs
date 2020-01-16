@@ -1085,20 +1085,30 @@ public class CellMain : PoolableObjects, PlayerAction
     //Interaction 
     public virtual void OnShortLeftClickUp(RaycastHit hit)
     {
-        if (blobNumber > 0)
+        bool actionMade = false;
+        if (stuckBlobs.Count > 0)
+        {
+            stuckBlobs[stuckBlobs.Count - 1].Destruct();
+            actionMade = true;
+        }
+        else if (overLoad)
+        {
+            BlobNumberVariation(-1, BlobCheck());
+            actionMade = true;
+        }
+
+        else if (blobNumber > 0)
         {
             BlobNumberVariation(-1, BlobCheck());
             //CellManager.Instance.EnergyVariation(currentEnergyPerClick);
             RessourceTracker.instance.EnergyVariation(currentEnergyPerClick);
+            actionMade = true;
         }
 
-        if (overLoad)
+        if (actionMade)
         {
-            BlobNumberVariation(-1, BlobCheck());
+            anim.Play("PlayerInteraction", 0, 0f);
         }
-
-        anim.Play("PlayerInteraction", 0, 0f);
-        //  Debug.Log("interaction non définie");
     }
 
 
