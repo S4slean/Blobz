@@ -10,26 +10,26 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ac59c85db94beed47808c892abe2bae2, type: 3}
-  m_Name: QuestLv2_01
+  m_Name: QuestTuto6
   m_EditorClassIdentifier: 
-  questType: 2
-  questTitle: Explore the world
+  questType: 1
+  questTitle: So much Sploosh !
   questDescription: 
   eventDone: 1
-  populationObjective: 0
-  energyToObtain: 0
-  cellType: 11
+  populationObjective: 50
+  energyToObtain: 250
+  cellType: 10
   level: 1
   cellNbrToObtain: 1
   blobExplo: 0
-  anyCells: 0
+  anyCells: 1
   colonialCellType: 0
   placeToGet: 0
   destructType: 0
   nbrOfObject: 0
   questEvents:
   - eventType: 1
-    eventDuration: 1
+    eventDuration: 0
     virtualCamIndex: 0
     popUpsMsg:
     - rpgStyle: 1
@@ -38,25 +38,14 @@ MonoBehaviour:
       usingSprite: 1
       sprite: {fileID: 21300000, guid: 9ab830d8caf4e1547967ad370da85b41, type: 3}
       Title: 
-      Text: 'You can explore the map
-
-        with the explorator blob'
-    - rpgStyle: 1
-      anchor: {fileID: 0}
-      offset: {x: 0, y: 0, z: 0}
-      usingSprite: 1
-      sprite: {fileID: 21300000, guid: 9ab830d8caf4e1547967ad370da85b41, type: 3}
-      Title: 
-      Text: 'you juste have to build the
-
-        explorator cell.'
+      Text: Wow, this is great ! Now reach 250 sploosh
     UEvent:
       m_PersistentCalls:
         m_Calls: []
     foldout: 1
   - eventType: 1
-    eventDuration: 2
-    virtualCamIndex: 1
+    eventDuration: 0
+    virtualCamIndex: 0
     popUpsMsg:
     - rpgStyle: 0
       anchor: {fileID: 0}
@@ -64,7 +53,7 @@ MonoBehaviour:
       usingSprite: 1
       sprite: {fileID: 21300000, guid: 9ab830d8caf4e1547967ad370da85b41, type: 3}
       Title: 
-      Text: Build an explorator cell
+      Text: Collect more sploosh
     UEvent:
       m_PersistentCalls:
         m_Calls: []
