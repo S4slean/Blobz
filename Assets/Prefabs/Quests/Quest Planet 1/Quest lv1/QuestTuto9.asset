@@ -1,0 +1,92 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac59c85db94beed47808c892abe2bae2, type: 3}
+  m_Name: QuestTuto9
+  m_EditorClassIdentifier: 
+  questType: 1
+  questTitle: 'Make it better '
+  questDescription: 
+  eventDone: 0
+  populationObjective: 0
+  energyToObtain: 400
+  cellType: 0
+  level: 1
+  cellNbrToObtain: 1
+  blobExplo: 0
+  anyCells: 1
+  colonialCellType: 0
+  placeToGet: 0
+  destructType: 0
+  nbrOfObject: 0
+  questEvents:
+  - eventType: 1
+    eventDuration: 0
+    virtualCamIndex: 0
+    popUpsMsg:
+    - rpgStyle: 1
+      anchor: {fileID: 0}
+      offset: {x: 0, y: 0, z: 0}
+      usingSprite: 1
+      sprite: {fileID: 21300000, guid: c98328a721f45da4fb0b32121f3026db, type: 3}
+      Title: 
+      Text: "Look, the sploosh is rising by itself !\r\n"
+    - rpgStyle: 1
+      anchor: {fileID: 0}
+      offset: {x: 0, y: 0, z: 0}
+      usingSprite: 1
+      sprite: {fileID: 21300000, guid: 68215239a0bc5fa4a8ec1952bf8fed68, type: 3}
+      Title: 
+      Text: "There is something we didn\u2019t told you, the nexus is so important
+        for us that it impact the functions of the surrounding cells\r\n"
+    - rpgStyle: 1
+      anchor: {fileID: 0}
+      offset: {x: 0, y: 0, z: 0}
+      usingSprite: 1
+      sprite: {fileID: 21300000, guid: 68215239a0bc5fa4a8ec1952bf8fed68, type: 3}
+      Title: 
+      Text: You see the 3 circles ? They represent the proximity areas. Placing a
+        cell in an area modifies his statistics
+    - rpgStyle: 1
+      anchor: {fileID: 0}
+      offset: {x: 0, y: 0, z: 0}
+      usingSprite: 1
+      sprite: {fileID: 21300000, guid: 68215239a0bc5fa4a8ec1952bf8fed68, type: 3}
+      Title: 
+      Text: Some cells will be better in the first area, close to the nexus, some
+        will be better in the last one
+    UEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    foldout: 0
+  - eventType: 1
+    eventDuration: 0
+    virtualCamIndex: 0
+    popUpsMsg:
+    - rpgStyle: 0
+      anchor: {fileID: 0}
+      offset: {x: 830, y: 260, z: 0}
+      usingSprite: 1
+      sprite: {fileID: 21300000, guid: 68215239a0bc5fa4a8ec1952bf8fed68, type: 3}
+      Title: 
+      Text: "I will destroy all of your cells and sploosh. \nTry reaching 400 sploosh "
+    UEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    foldout: 1
+  - eventType: 3
+    eventDuration: 0
+    virtualCamIndex: 0
+    popUpsMsg: []
+    UEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    foldout: 0
