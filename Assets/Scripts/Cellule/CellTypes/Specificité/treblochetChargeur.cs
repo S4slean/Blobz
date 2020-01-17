@@ -11,6 +11,7 @@ public class treblochetChargeur : MonoBehaviour, PlayerAction
     public float yOffset;
     public float dragRange;
     public float slotRange;
+    public SphereCollider myCollider;
 
     //private Vector3 initialPos; 
     public CellTreblochet parent;
@@ -32,6 +33,8 @@ public class treblochetChargeur : MonoBehaviour, PlayerAction
     public void Init()
     {
         UIGestion();
+        myCollider.enabled = true;
+
     }
 
     private void DragAction(RaycastHit hit)
