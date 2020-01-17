@@ -117,11 +117,7 @@ public class CellSelectionShop : MonoBehaviour
 
     public void DisplaySubMenu(int index)
     {
-        if (sections[index].detectMouse)
-        {
 
-
-            
             switch (index)
             {
                 case 0:
@@ -155,6 +151,6 @@ public class CellSelectionShop : MonoBehaviour
     }
 
 
-}
+
 
 
