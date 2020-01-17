@@ -31,7 +31,7 @@ MonoBehaviour:
     range: 40
     productionBonusRatio: 1
   energyCost: 150
-  energyCapBase: 100
+  energyCapBase: 50
   rangeBase: 40
   blobRatioAtDeath: 0
   impulseForce_Death: 0
