@@ -12,18 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac59c85db94beed47808c892abe2bae2, type: 3}
   m_Name: QuestTuto4
   m_EditorClassIdentifier: 
-  questType: 0
+  questType: 1
   questTitle: So much BLOBZ !
   questDescription: 
   eventDone: 1
   populationObjective: 50
-  energyToObtain: 0
+  energyToObtain: 200
   cellType: 0
   level: 1
   cellNbrToObtain: 1
+  blobExplo: 0
   anyCells: 1
   colonialCellType: 0
-  placeToGet: {fileID: 0}
-  range: 0
-  objectToDestroy: []
+  placeToGet: 0
+  destructType: 0
+  nbrOfObject: 0
   questEvents: []

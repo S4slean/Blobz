@@ -27,7 +27,7 @@ MonoBehaviour:
   impulseForce_Death: 10
   prodPerTickBase: 0
   rejectPowerBase: 0
-  storageCapability: 10
+  storageCapability: 15
   tickForActivationBase: 1
   energyPerClick: 2
   limitedInLinks: 0
@@ -51,11 +51,13 @@ MonoBehaviour:
   StatsModification: 8
   REFS: 0
   ToggleInfoBox: 1
-  STATS: 0
-  ProductionGestion: 0
+  STATS: 1
+  ProductionGestion: 1
   ProximityGestion: 1
   maxEnergie: 5
   maxBlobCoach: 0
+  magazineDragRange: 1.5
+  minDistanceDrag: 0.2
   tourelleMaxMun: 3
   tourelleDamage: 5
   tourelleAttackRadius: 6

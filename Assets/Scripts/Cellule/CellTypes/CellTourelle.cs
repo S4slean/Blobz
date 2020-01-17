@@ -8,6 +8,7 @@ public class CellTourelle : CellMain
     private bool isLoaded;
 
     public tourelleCollider tourelleCollider;
+    public ProgressBar progressBar;
 
 
     public override void BlobsTick()
@@ -71,6 +72,8 @@ public class CellTourelle : CellMain
         {
             munitions = myCellTemplate.tourelleMaxMun;
         }
+        float ratio = (float)munitions / (float)myCellTemplate.tourelleMaxMun;
+        progressBar.UpdateBar(ratio);
     }
 
     public override void SetupVariable()

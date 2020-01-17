@@ -21,5 +21,4 @@ public enum CellType
     Exploration,
     Treblochet
 
-
 }

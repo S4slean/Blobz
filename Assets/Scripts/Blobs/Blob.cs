@@ -11,7 +11,7 @@ public class Blob : PoolableObjects
     #endregion
 
     #region GENERAL
-    [HideInInspector]public int tickCount = 0;
+    [HideInInspector] public int tickCount = 0;
     public int lifeTime = 0;
     public int LifeSpan = 32;
     public BlobManager.BlobType blobType = BlobManager.BlobType.normal;
@@ -94,6 +94,7 @@ public class Blob : PoolableObjects
         if (infectedCell != null)
         {
             infectedCell.StockageCapabilityVariation(infectionAmount);
+            infectedCell.stuckBlobs.Remove(this);
         }
         else
         {
@@ -107,15 +108,29 @@ public class Blob : PoolableObjects
         }
 
         //play death Anim
+        tickCount = 0;
+        lifeTime = 0;
+        blobType = BlobManager.BlobType.normal;
+        tagetTransform = null;
+
+        infectedCell = null;
+        isStuck = false;
+        infectionAmount = 0;
+
+        knowsNexus = false;
+        cameFromVillage = false;
+        village = null;
+
         Inpool();
+
     }
 
 
     public void Jump(Vector3 direction)
     {
         transform.LookAt(transform.position + direction);
-        
-        rb.AddForce(direction + Random.insideUnitSphere , ForceMode.Impulse);
+
+        rb.AddForce(direction + Random.insideUnitSphere, ForceMode.Impulse);
 
     }
 
@@ -156,11 +171,13 @@ public class Blob : PoolableObjects
 
     public void Unstuck()
     {
+
         infectedCell.stuckBlobs.Remove(this);
         infectedCell = null;
         infectionAmount = 0;
         rb.isKinematic = false;
         isStuck = false;
+
     }
 
     public bool CheckIfOutOfVillage()
@@ -170,4 +187,5 @@ public class Blob : PoolableObjects
         else
             return false;
     }
+
 }

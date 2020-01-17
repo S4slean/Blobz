@@ -23,21 +23,21 @@ MonoBehaviour:
   - proximityLevel: 0
     range: 0
     productionBonusRatio: 0
-  energyCost: 5
+  energyCost: 750
   energyCapBase: 10
   rangeBase: 50
   blobRatioAtDeath: 0
   impulseForce_Death: 10
   prodPerTickBase: 0
   rejectPowerBase: 0
-  storageCapability: 10
+  storageCapability: 15
   tickForActivationBase: 1
   energyPerClick: 2
   limitedInLinks: 0
   slotDistance: 1.5
   numberOfOuputLinks: 1
   numberOfInputLinks: 1
-  numberOfFlexLinks: 3
+  numberOfFlexLinks: 2
   proximityLevelMax: 4
   proximityInfluenceMultiplier: 1
   positivesInteractions: 
@@ -49,13 +49,13 @@ MonoBehaviour:
   rangeLien: 
   tickForActivation: 04000000030000000200000001000000
   energyCap: 
-  specifique: 
+  specifique: 0a0000000e0000001200000016000000
   energyPerblop: 0
   StatsModification: 5
   REFS: 1
   ToggleInfoBox: 1
-  STATS: 0
-  ProductionGestion: 0
+  STATS: 1
+  ProductionGestion: 1
   ProximityGestion: 0
   maxEnergie: 5
   maxBlobCoach: 0

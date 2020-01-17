@@ -20,21 +20,21 @@ MonoBehaviour:
   generateProximity: 0
   proximityColliderNumber: 1
   proximityColliders: []
-  energyCost: 5
+  energyCost: 100
   energyCapBase: 20
   rangeBase: 50
   blobRatioAtDeath: 0
   impulseForce_Death: 10
   prodPerTickBase: 0
   rejectPowerBase: 0
-  storageCapability: 10
+  storageCapability: 20
   tickForActivationBase: 1
   energyPerClick: 10
-  limitedInLinks: 0
+  limitedInLinks: 1
   slotDistance: 1.5
-  numberOfOuputLinks: 1
+  numberOfOuputLinks: 0
   numberOfInputLinks: 1
-  numberOfFlexLinks: 3
+  numberOfFlexLinks: 0
   proximityLevelMax: 4
   proximityInfluenceMultiplier: 1
   positivesInteractions: 
@@ -46,16 +46,18 @@ MonoBehaviour:
   rangeLien: 
   tickForActivation: 
   energyCap: 
-  specifique: 0200000003000000060000000a000000
+  specifique: 05000000140000001e00000028000000
   energyPerblop: 0
   StatsModification: 7
   REFS: 0
   ToggleInfoBox: 1
-  STATS: 0
-  ProductionGestion: 0
+  STATS: 1
+  ProductionGestion: 1
   ProximityGestion: 1
   maxEnergie: 5
   maxBlobCoach: 0
+  magazineDragRange: 1.5
+  minDistanceDrag: 0.2
   tourelleMaxMun: 3
   tourelleDamage: 5
   tourelleAttackRadius: 6

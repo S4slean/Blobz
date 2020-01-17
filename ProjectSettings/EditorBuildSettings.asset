@@ -9,6 +9,21 @@ EditorBuildSettings:
     path: "Assets/Scenes/Sc\xE8nes Plan\xE8tes/Plan\xE8te1/Planet1_Niveau1.unity"
     guid: f29fcd3e097e7a5478ed16580bb7f671
   - enabled: 1
+    path: "Assets/Scenes/Sc\xE8nes Plan\xE8tes/Plan\xE8te1/Planet1_Niveau2.unity"
+    guid: 831d225d0e25e6c4488de5ec0900df0c
+  - enabled: 1
+    path: "Assets/Scenes/Sc\xE8nes Plan\xE8tes/Plan\xE8te1/Planet1_Niveau3.unity"
+    guid: 85c70959dac60b8459a52b4a807250ba
+  - enabled: 1
+    path: "Assets/Scenes/Sc\xE8nes Plan\xE8tes/Plan\xE8te1/Planet1_Niveau4.unity"
+    guid: 32729f23fa0bd4f47bc464eb4f62f399
+  - enabled: 1
+    path: "Assets/Scenes/Sc\xE8nes Plan\xE8tes/Plan\xE8te1/Planet1_Niveau5.unity"
+    guid: 11bc95da410e1fd479b1fea78095322a
+  - enabled: 1
+    path: "Assets/Scenes/Sc\xE8nes Plan\xE8tes/LevelSelector.unity"
+    guid: 2a48e2c860599ef48911792925e1fa55
+  - enabled: 1
     path: Assets/Scenes/SceneLouis.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   m_configObjects: {}

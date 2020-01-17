@@ -47,6 +47,8 @@ public class CellMain : PoolableObjects, PlayerAction
     public LinkJointClass[] linkJoints;
 
     public List<BlobCoach> blobCoaches = new List<BlobCoach>();
+
+    public Transform myTransform;
     #endregion
 
     #region DEBUG
@@ -98,6 +100,11 @@ public class CellMain : PoolableObjects, PlayerAction
 
     protected bool inDanger;
     protected bool isDead = false;
+
+
+    protected bool overLoad = false;
+    protected int overloadStack;
+
     public bool canBePlaced;
     protected bool isVisible;
     protected bool hasExplo;
@@ -117,7 +124,15 @@ public class CellMain : PoolableObjects, PlayerAction
         //mF.mesh = myCellTemplate.mesh;
         //ProximityCheck();
         GetInitialMat();
-        ownCollider = GetComponent<Collider>();
+        if (ownCollider == null)
+        {
+            ownCollider = GetComponent<Collider>();
+        }
+        if (myTransform == null)
+        {
+            myTransform = transform;
+        }
+
         ownCollider.enabled = false;
     }
 
@@ -279,75 +294,83 @@ public class CellMain : PoolableObjects, PlayerAction
 
     public virtual void BlobsTick()
     {
-        if (myCellTemplate.prodPerTickBase > 0)
+        if (!overLoad)
         {
-            BlobNumberVariation(myCellTemplate.prodPerTickBase, BlobManager.BlobType.normal);
-        }
-
-        //ANIM
-        haveExpulse = false;
-        #region Ancienne Distribution
-
-        //if (blobNumber > 0)
-        //{
-
-        //    currentTick++;
-        //    if (currentTick == currentTickForActivation)
-        //    {
-        //        for (int i = 0; i < currentRejectPower; i++)
-        //        {
-        //            if (blobNumber > 0 && outputLinks.Count > 0)
-        //            {
-        //                if (currentIndex >= outputLinks.Count)
-        //                {
-        //                    return;
-        //                }
-        //                outputLinks[currentIndex].Transmitt();
-        //                currentIndex++;
-        //                currentIndex = Helper.LoopIndex(currentIndex, outputLinks.Count);
-        //                haveExpulse = true;
-        //            }
-        //        }
-        //        currentTick = 0;
-        //    }
-        //}
-        #endregion
-        if (blobNumber > 0)
-        {
-            currentTick++;
-            if (currentTick == currentTickForActivation)
+            overloadStack = 0;
+            if (myCellTemplate.prodPerTickBase > 0)
             {
-                for (int i = 0; i < outputLinks.Count; i++)
+                BlobNumberVariation(myCellTemplate.prodPerTickBase, BlobManager.BlobType.normal);
+            }
+
+            //ANIM
+            haveExpulse = false;
+            #region Ancienne Distribution
+
+            //if (blobNumber > 0)
+            //{
+
+            //    currentTick++;
+            //    if (currentTick == currentTickForActivation)
+            //    {
+            //        for (int i = 0; i < currentRejectPower; i++)
+            //        {
+            //            if (blobNumber > 0 && outputLinks.Count > 0)
+            //            {
+            //                if (currentIndex >= outputLinks.Count)
+            //                {
+            //                    return;
+            //                }
+            //                outputLinks[currentIndex].Transmitt();
+            //                currentIndex++;
+            //                currentIndex = Helper.LoopIndex(currentIndex, outputLinks.Count);
+            //                haveExpulse = true;
+            //            }
+            //        }
+            //        currentTick = 0;
+            //    }
+            //}
+            #endregion
+            if (blobNumber > 0)
+            {
+                currentTick++;
+                if (currentTick == currentTickForActivation)
                 {
-                    if (blobNumber <= 0)
+                    for (int i = 0; i < outputLinks.Count; i++)
                     {
-                        break;
+                        if (blobNumber <= 0)
+                        {
+                            break;
+                        }
+                        //Pour l'instant il y a moyen que si une cellule creve la prochaine 
+                        //soit sauté mai squand il y aura les anim , ce sera plus possible
+                        BlobManager.BlobType blobType = BlobCheck();
+                        if (blobType != BlobManager.BlobType.aucun)
+                        {
+                            outputLinks[i].Transmitt(1, BlobCheck());
+                            haveExpulse = true;
+                        }
                     }
-                    //Pour l'instant il y a moyen que si une cellule creve la prochaine 
-                    //soit sauté mai squand il y aura les anim , ce sera plus possible
-                    BlobManager.BlobType blobType = BlobCheck();
-                    if (blobType != BlobManager.BlobType.aucun)
-                    {
-                        outputLinks[i].Transmitt(1, BlobCheck());
-                        haveExpulse = true;
-                    }
+                    currentTick = 0;
                 }
+            }
+            else
+            {
                 currentTick = 0;
+            }
+
+            if (haveExpulse)
+            {
+                anim.Play("BlobExpulsion");
             }
         }
         else
         {
-            currentTick = 0;
+            overloadStack++;
+            if (overloadStack >= myCellTemplate.overLoadTickMax)
+            {
+                Died(false);
+            }
         }
-
-        if (haveExpulse)
-        {
-            anim.Play("BlobExpulsion");
-        }
-
-
-
-
     }
     public virtual void StockageCapabilityVariation(int Amount)
     {
@@ -356,19 +379,22 @@ public class CellMain : PoolableObjects, PlayerAction
 
         if (currentBlobStockage <= 0)
         {
-            Died(false);
+            overLoad = true;
+            //Died(false);
             return;
         }
 
         if (blobNumber > currentBlobStockage && !isDead && !isNexus)
         {
-            Died(false);
+            overLoad = true;
+            //Died(false);
             return;
         }
 
         if (currentBlobStockage < 0)
         {
             currentBlobStockage = 0;
+            Died(false);
         }
 
         UpdateCaract();
@@ -405,8 +431,18 @@ public class CellMain : PoolableObjects, PlayerAction
 
         if (blobNumber > currentBlobStockage && !isDead && !isNexus)
         {
-            Died(false);
+            overLoad = true;
+            //Died(false);
         }
+
+        if (overLoad)
+        {
+            if (blobNumber < currentBlobStockage - myCellTemplate.overloadTreshHold)
+            {
+                overLoad = false;
+            }
+        }
+
 
         //Nexus 
         BlobAmountCheck(amount, _blobType);
@@ -893,9 +929,11 @@ public class CellMain : PoolableObjects, PlayerAction
         explorateurBlobNumber = 0;
         hasBlobCoach = false;
 
+
         currentProximityLevel = 0;
         inDanger = false;
         isDead = false;
+        overLoad = false;
 
         RessourceTracker.instance.EnergyCapVariation(currentEnergyCap);
         GenerateProximity();
@@ -1047,15 +1085,30 @@ public class CellMain : PoolableObjects, PlayerAction
     //Interaction 
     public virtual void OnShortLeftClickUp(RaycastHit hit)
     {
-        if (blobNumber > 0)
+        bool actionMade = false;
+        if (stuckBlobs.Count > 0)
+        {
+            stuckBlobs[stuckBlobs.Count - 1].Destruct();
+            actionMade = true;
+        }
+        else if (overLoad)
+        {
+            BlobNumberVariation(-1, BlobCheck());
+            actionMade = true;
+        }
+
+        else if (blobNumber > 0)
         {
             BlobNumberVariation(-1, BlobCheck());
             //CellManager.Instance.EnergyVariation(currentEnergyPerClick);
             RessourceTracker.instance.EnergyVariation(currentEnergyPerClick);
+            actionMade = true;
         }
 
-        anim.Play("PlayerInteraction", 0, 0f);
-        //  Debug.Log("interaction non définie");
+        if (actionMade)
+        {
+            anim.Play("PlayerInteraction", 0, 0f);
+        }
     }
 
 
@@ -1078,7 +1131,6 @@ public class CellMain : PoolableObjects, PlayerAction
 
     public virtual void OnDragStart(RaycastHit hit)
     {
-        Debug.Log("DragStart");
         UIManager.Instance.DesactivateCellShop();
 
         if (CellManager.Instance.CreatenewLink())

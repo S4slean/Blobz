@@ -161,7 +161,7 @@ public class QuickSetUp : Editor
         {
             ObjectPoolItem cellPoolItem = new ObjectPoolItem();
             cellPoolItem.objectToPool = lvlMng.availablesCells[i];
-            cellPoolItem.AmountToPool = 100;
+            cellPoolItem.AmountToPool = 50;
             pooler.poolItems.Add(cellPoolItem);
         }
 
@@ -185,6 +185,13 @@ public class QuickSetUp : Editor
         colonyBtnPoolItem.objectToPool = Resources.Load("QuickSetUp/ColonyBtn") as GameObject;
         colonyBtnPoolItem.AmountToPool = 10;
         pooler.poolItems.Add(colonyBtnPoolItem);
+
+
+        ObjectPoolItem textScore = new ObjectPoolItem();
+        textScore.objectToPool = Resources.Load("QuickSetUp/TextScore") as GameObject;
+        textScore.AmountToPool = 100;
+        pooler.poolItems.Add(textScore);
+
 
 
 

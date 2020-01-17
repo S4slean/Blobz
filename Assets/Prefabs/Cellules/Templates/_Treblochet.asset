@@ -16,25 +16,25 @@ MonoBehaviour:
   blopPrefab: {fileID: 0}
   buttonColor: {r: 0, g: 0, b: 0, a: 0}
   cellTexture: {fileID: 0}
-  type: 1
+  type: 12
   generateProximity: 0
   proximityColliderNumber: 1
   proximityColliders: []
-  energyCost: 5
+  energyCost: 500
   energyCapBase: 10
   rangeBase: 50
   blobRatioAtDeath: 0
   impulseForce_Death: 10
   prodPerTickBase: 0
   rejectPowerBase: 0
-  storageCapability: 10
+  storageCapability: 15
   tickForActivationBase: 1
   energyPerClick: 2
   limitedInLinks: 0
   slotDistance: 1.3
   numberOfOuputLinks: 1
   numberOfInputLinks: 1
-  numberOfFlexLinks: 1
+  numberOfFlexLinks: 2
   proximityLevelMax: 4
   proximityInfluenceMultiplier: 1
   positivesInteractions: 
@@ -46,7 +46,7 @@ MonoBehaviour:
   rangeLien: 
   tickForActivation: 
   energyCap: 
-  specifique: 0400000006000000080000000a000000
+  specifique: 0a0000000e0000001200000016000000
   energyPerblop: 0
   StatsModification: 7
   REFS: 0
@@ -56,6 +56,8 @@ MonoBehaviour:
   ProximityGestion: 1
   maxEnergie: 5
   maxBlobCoach: 0
+  magazineDragRange: 6
+  minDistanceDrag: 0.2
   tourelleMaxMun: 3
   tourelleDamage: 5
   tourelleAttackRadius: 6

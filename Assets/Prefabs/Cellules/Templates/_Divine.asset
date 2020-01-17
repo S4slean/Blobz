@@ -20,14 +20,14 @@ MonoBehaviour:
   generateProximity: 0
   proximityColliderNumber: 1
   proximityColliders: []
-  energyCost: 5
+  energyCost: 750
   energyCapBase: 10
   rangeBase: 50
   blobRatioAtDeath: 0
   impulseForce_Death: 10
   prodPerTickBase: 0
   rejectPowerBase: 0
-  storageCapability: 10
+  storageCapability: 15
   tickForActivationBase: 1
   energyPerClick: 2
   limitedInLinks: 0
@@ -51,8 +51,8 @@ MonoBehaviour:
   StatsModification: 7
   REFS: 0
   ToggleInfoBox: 1
-  STATS: 0
-  ProductionGestion: 0
+  STATS: 1
+  ProductionGestion: 1
   ProximityGestion: 1
   maxEnergie: 5
   maxBlobCoach: 0
