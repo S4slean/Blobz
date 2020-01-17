@@ -17,24 +17,8 @@ public class tourelleCollider : MonoBehaviour
     {
         parent = _parent;
         myCollider.radius = parent.myCellTemplate.tourelleAttackRadius;
-
     }
 
-    //private void CheckBadCell()
-    //{
-    //    Collider[] colliders = Physics.OverlapSphere(transform.position, parent.GetCurrentRange());
-    //    for (int i = 0; i < colliders.Length; i++)
-    //    {
-    //        if (colliders[i].tag == "enemies")
-    //        {
-    //            Destructible newDestructible = colliders[i].GetComponent<Destructible>();
-    //            if (newDestructible != null)
-    //            {
-    //                badCell.Add(newDestructible);
-    //            }
-    //        }
-    //    }
-    //}
 
     private void OnTriggerEnter(Collider other)
     {

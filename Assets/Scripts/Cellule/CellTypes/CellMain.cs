@@ -118,11 +118,6 @@ public class CellMain : PoolableObjects, PlayerAction
 
     public virtual void Awake()
     {
-        //ProximityDectection.parent = this;
-
-        //mR.material = myCellTemplate.mat;
-        //mF.mesh = myCellTemplate.mesh;
-        //ProximityCheck();
         GetInitialMat();
         if (ownCollider == null)
         {

@@ -127,6 +127,10 @@ public class CelluleTemplate : ScriptableObject
     [Range(3 , 20)]
     public int tourelleAttackRadius = 6;
 
+    [Range(1, 10)]
+    public int clickBeforeLaunch;
+    [Range(1, 5)]
+    public int blobLostPerTick;
 
     #endregion
 }

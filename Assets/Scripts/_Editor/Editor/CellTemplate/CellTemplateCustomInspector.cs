@@ -47,6 +47,8 @@ public class CellTemplateCustomInspector : Editor
 
     SerializedProperty magazineDragRangeProp , minDistanceProp;
 
+    SerializedProperty clickBeforeLaunchProp, blobLostPerTickProp;
+
 
     #endregion
 
@@ -136,6 +138,9 @@ public class CellTemplateCustomInspector : Editor
         magazineDragRangeProp = serializedObject.FindProperty("magazineDragRange");
         minDistanceProp = serializedObject.FindProperty("minDistanceDrag");
 
+        clickBeforeLaunchProp = serializedObject.FindProperty("clickBeforeLaunch");
+        blobLostPerTickProp = serializedObject.FindProperty("blobLostPerTick");
+
 
         #endregion
 
@@ -202,6 +207,10 @@ public class CellTemplateCustomInspector : Editor
             case CellType.Treblochet:
                 EditorGUILayout.PropertyField(magazineDragRangeProp);
                 EditorGUILayout.PropertyField(minDistanceProp);
+                break;
+            case CellType.Merveille:
+                EditorGUILayout.PropertyField(clickBeforeLaunchProp);
+                EditorGUILayout.PropertyField(blobLostPerTickProp);
                 break;
         }
         EditorGUILayout.EndVertical();

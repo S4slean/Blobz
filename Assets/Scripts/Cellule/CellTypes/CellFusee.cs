@@ -4,18 +4,30 @@ using UnityEngine;
 
 public class CellFusee : CellMain
 {
+    private int clickforLauchn;
+
     public override void BlobsTick()
     {
-        if (blobNumber > 0 )
+        if (blobNumber > 0)
         {
-            BlobNumberVariation(-1, BlobCheck(), false);
+            BlobNumberVariation(myCellTemplate.blobLostPerTick, BlobCheck(), false);
             //CellManager.Instance.EnergyVariation(currentEnergyPerClick);
             RessourceTracker.instance.EnergyVariation(currentEnergyPerClick);
 
         }
-        base.BlobsTick();
     }
 
-
+    public override void OnShortLeftClickUp(RaycastHit hit)
+    {
+        if (overLoad)
+        {
+            clickforLauchn++;
+            //Play FX 
+            if (clickforLauchn >= myCellTemplate.clickBeforeLaunch)
+            {
+                // C'est WIN
+            }
+        }
+    }
 
 }

@@ -25,16 +25,16 @@ public class treblochetChargeur : MonoBehaviour, PlayerAction
     private void Awake()
     {
         transform.position = new Vector3(transform.position.x, parent.transform.position.y, transform.position.z);
-        dragRange = parent.myCellTemplate.magazineDragRange;
+
         disTanceFromParent = Vector3.Distance(transform.position, parent.transform.position);
     }
 
 
     public void Init()
     {
+        dragRange = parent.myCellTemplate.magazineDragRange;
         UIGestion();
         myCollider.enabled = true;
-
     }
 
     private void DragAction(RaycastHit hit)
@@ -135,7 +135,7 @@ public class treblochetChargeur : MonoBehaviour, PlayerAction
 
             BloBRedistribution();
         }
-
+        UIGestion();
     }
 
     private void BloBRedistribution()
@@ -264,7 +264,6 @@ public class treblochetChargeur : MonoBehaviour, PlayerAction
 
     private void UIGestion()
     {
-        Debug.Log("oui");
         for (int i = 0; i < treblobchetUISlots.Length; i++)
         {
             treblobchetUISlots[i].gameObject.SetActive(false);
@@ -273,7 +272,7 @@ public class treblochetChargeur : MonoBehaviour, PlayerAction
         for (int i = 0; i < maxStockage-1; i++)
         {
 
-            float angle = i * Mathf.PI / maxStockage;
+            float angle = i * Mathf.PI*3/2 / maxStockage;
             angle += Mathf.PI;
             Vector3 pos = new Vector3(Mathf.Cos(angle)*slotRange, Mathf.Sin(angle) * slotRange,0);
 

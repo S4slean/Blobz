@@ -19,6 +19,7 @@ public enum CellType
     Pilone , 
     Decharge,
     Exploration,
-    Treblochet
+    Treblochet,
+    Merveille
 
 }

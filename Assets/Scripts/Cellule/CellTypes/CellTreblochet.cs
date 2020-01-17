@@ -26,12 +26,6 @@ public class CellTreblochet : CellMain
         base.BlobsTick();
     }
 
-    public override void CellInitialisation()
-    {
-        base.CellInitialisation();
-        myChargeur.Init();
-    }
-
 
     private BlobManager.BlobType ChargerCustomBlobCheck()
     {
@@ -86,6 +80,22 @@ public class CellTreblochet : CellMain
         }
         blobNumber = normalBlobNumber + blobCoaches.Count + explorateurBlobNumber;
 
+    }
+
+    public override void SetupVariable()
+    {
+
+        myChargeur.Init();
+        chargerIsFull = false;
+        base.SetupVariable();
+
+
+    }
+
+    public override void Died(bool intentionnalDeath)
+    {
+        base.Died(intentionnalDeath);
+        myChargeur.blobInChargeur.Clear();
     }
 
 
