@@ -261,7 +261,7 @@ public class CellManager : MonoBehaviour
     {
         createdCell = newCell;
 
-        newCell.ChangeDeplacementMat(false);
+        newCell.ChangeDeplacementMat(Helper.CheckAvailableSpace(newCell.transform.position, newCell.myCellTemplate.slotDistance, newCell.ownCollider));
         terrainIsBuildable = false;
         terrainWasBuildable = true;
 

@@ -5,7 +5,7 @@ using UnityEngine;
 public class CellExplo : CellMain
 {
 
-    public override void blobAddCheckType(int amount, BlobManager.BlobType _blobType)
+    public override void blobAddCheckType(int amount, BlobManager.BlobType _blobType , bool transmission)
     {
         switch (_blobType)
         {
@@ -16,6 +16,17 @@ public class CellExplo : CellMain
 
             case BlobManager.BlobType.coach:
                 RessourceTracker.instance.AddBlob(BlobManager.BlobType.coach, amount);
+                if (!transmission)
+                {
+                    if (amount < 0)
+                    {
+                        for (int i = 0; i < amount; i++)
+                        {
+
+                            blobCoaches.Remove(blobCoaches[blobCoaches.Count - 1]);
+                        }
+                    }
+                }
                 break;
 
             case BlobManager.BlobType.explorateur:

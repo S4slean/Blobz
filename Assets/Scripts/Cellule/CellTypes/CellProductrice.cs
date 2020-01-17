@@ -18,7 +18,7 @@ public class CellProductrice : CellMain
 
         int productionPerTick = myCellTemplate.prodPerTickBase/* * (1 + productionBonusPacket)*/;
 
-        BlobNumberVariation(productionPerTick , BlobManager.BlobType.normal);
+        BlobNumberVariation(productionPerTick , BlobManager.BlobType.normal , true);
 
 
         #region Ancien Systeme de Tick 

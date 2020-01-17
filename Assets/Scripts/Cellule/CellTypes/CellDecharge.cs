@@ -8,7 +8,7 @@ public class CellDecharge : CellMain
     {
         if (blobNumber > 0)
         {
-            BlobNumberVariation(-1, BlobCheck());
+            BlobNumberVariation(-1, BlobCheck() , false);
             //CellManager.Instance.EnergyVariation(currentEnergyPerClick);
             RessourceTracker.instance.EnergyVariation(specifiqueStats);
             TextScore newTextescore = ObjectPooler.poolingSystem.GetPooledObject<TextScore>() as TextScore;

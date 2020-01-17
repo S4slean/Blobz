@@ -15,10 +15,10 @@ public class CellTourelle : CellMain
     {
         if (blobNumber > 0)
         {
-            BlobNumberVariation(-1 , BlobCheck());
+            BlobNumberVariation(-1 , BlobCheck() , false);
             MunitionVariation(1);
         }
-        BlobNumberVariation(myCellTemplate.prodPerTickBase , BlobManager.BlobType.normal);
+        BlobNumberVariation(myCellTemplate.prodPerTickBase , BlobManager.BlobType.normal , true);
 
         //ANIM
         haveExpulse = false;
