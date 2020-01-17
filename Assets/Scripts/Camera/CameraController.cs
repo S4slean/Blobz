@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
+
+    public float camXMin = -50;
+    public float camXMax = 50;
+    public float camYmin = -50;
+    public float camYMax = 50;
+
+
     [Range(0, 2)] public float timeToMaxSpeed = 1;
     [Range(0, 2)] public float timeToZeroSpeed = 1;
     public float defaultHeight = 35;
@@ -132,6 +139,7 @@ public class CameraController : MonoBehaviour
 
         tiltDir = mouseDir * tiltCount * tiltLength / 100;
 
+        originPos = new Vector3(Mathf.Clamp(originPos.x, camXMin, camXMax), originPos.y, Mathf.Clamp(originPos.z, camYmin, camYMax));
 
         transform.position = originPos + tiltDir + new Vector3(0, camHeight, 0);
 

@@ -17,6 +17,7 @@ public class ColonyBtn : PoolableObjects
             newProd.Outpool();
             newProd.transform.position = point;
             newProd.CellInitialisation();
+            gameObject.SetActive(false);
         }
         else
         {

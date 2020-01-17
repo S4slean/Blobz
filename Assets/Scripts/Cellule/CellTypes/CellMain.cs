@@ -1172,7 +1172,7 @@ public class CellMain : PoolableObjects, PlayerAction
 
     public virtual void OnmouseIn(RaycastHit hit)
     {
-        UIManager.Instance.LoadToolTip(transform.position, this);
+        UIManager.Instance.LoadToolTip(transform.position, this, false);
     }
     public virtual void OnMouseOut(RaycastHit hit)
     {

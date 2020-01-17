@@ -36,7 +36,7 @@ public class InputManager : MonoBehaviour
     [HideInInspector] public Vector3 mouseScreenPos;
 
     private float clickTime;
-    public enum InputMode {normal, movingCell, divineShot };
+    public enum InputMode { normal, movingCell, divineShot };
     private InputMode inputMode = InputMode.normal;
 
 
@@ -144,7 +144,7 @@ public class InputManager : MonoBehaviour
                     }
                     if (selectedElement != null)
                     {
-                        
+
 
                         float distanceFromElement = (CurrentHit.point - ((Component)selectedElement).transform.position).magnitude;
 
@@ -208,7 +208,7 @@ public class InputManager : MonoBehaviour
                     {
                         if (CurrentHit.transform.GetComponent<PlayerAction>() != null)
                         {
-                            
+
                             isOverInteractiveElement = true;
                             elementOver = CurrentHit.transform.GetComponent<PlayerAction>();
                             elementOver.OnmouseIn(CurrentHit);
@@ -264,7 +264,7 @@ public class InputManager : MonoBehaviour
             #region MOVING_STATE
             case InputMode.movingCell:
 
-                
+
                 if (CurrentHit.transform != null && CurrentHit.transform.tag == "Ground")
                 {
                     CellManager.Instance.CellDeplacement(CurrentHit.point, objectMoved);
@@ -291,7 +291,7 @@ public class InputManager : MonoBehaviour
                         Debug.Log("You can't build there");
                     }
 
-                    
+
                 }
 
                 else if (Input.GetMouseButtonDown(1))
@@ -325,10 +325,10 @@ public class InputManager : MonoBehaviour
 
                 if (Input.GetMouseButtonDown(0))
                 {
-                    Collider[] hitColliders = Physics.OverlapSphere(UIManager.Instance.divineCellTarget.transform.position, 1, 1<<12 | 1<< 16);
+                    Collider[] hitColliders = Physics.OverlapSphere(UIManager.Instance.divineCellTarget.transform.position, 1, 1 << 12 | 1 << 16);
                     for (int i = 0; i < hitColliders.Length; i++)
                     {
-                        if(hitColliders[i].TryGetComponent<Destructible>(out Destructible destrucible))
+                        if (hitColliders[i].TryGetComponent<Destructible>(out Destructible destrucible))
                         {
                             destrucible.ReceiveDamage(3);
                         }
@@ -402,8 +402,12 @@ public class InputManager : MonoBehaviour
     public void DeselectElement()
     {
         UIManager.Instance.DeselectElement();
+        if (selectedElement != null)
+        {
 
-        selectedElement = null;
+            selectedElement.OnDeselect();
+            selectedElement = null;
+        }
     }
 
     public void StopCurrentAction()
@@ -431,7 +435,7 @@ public class InputManager : MonoBehaviour
     {
         Instance.inputMode = newInputMode;
 
-        if(newInputMode == InputMode.divineShot)
+        if (newInputMode == InputMode.divineShot)
         {
             UIManager.Instance.DisplayDivineShot(Instance.shootingCell);
         }
@@ -445,13 +449,13 @@ public class InputManager : MonoBehaviour
     public void UpdateTargetPos()
     {
         float dist = (shootingCell.transform.position - mouseWorldPos).sqrMagnitude;
-        if(dist < Mathf.Pow(shootingCell.specifiqueStats/2, 2)/*range au carré*/)
+        if (dist < Mathf.Pow(shootingCell.specifiqueStats / 2, 2)/*range au carré*/)
         {
             UIManager.Instance.SetTargetPos(mouseWorldPos);
         }
         else
         {
-            UIManager.Instance.SetTargetPos(shootingCell.transform.position + (mouseWorldPos - shootingCell.transform.position).normalized * (shootingCell.specifiqueStats/2));
+            UIManager.Instance.SetTargetPos(shootingCell.transform.position + (mouseWorldPos - shootingCell.transform.position).normalized * (shootingCell.specifiqueStats / 2));
         }
 
     }

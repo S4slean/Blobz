@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac59c85db94beed47808c892abe2bae2, type: 3}
   m_Name: QuestLv2_01
   m_EditorClassIdentifier: 
-  questType: 0
-  questTitle: Go to the Sploosh Lake
+  questType: 2
+  questTitle: Explore the world
   questDescription: 
   eventDone: 1
   populationObjective: 0
   energyToObtain: 0
-  cellType: 0
+  cellType: 11
   level: 1
   cellNbrToObtain: 1
   blobExplo: 0
@@ -28,48 +28,43 @@ MonoBehaviour:
   destructType: 0
   nbrOfObject: 0
   questEvents:
-  - eventType: 0
-    eventDuration: 1
-    virtualCamIndex: 0
-    popUpsMsg: []
-    UEvent:
-      m_PersistentCalls:
-        m_Calls: []
-    foldout: 0
-  - eventType: 0
-    eventDuration: 2
-    virtualCamIndex: 1
-    popUpsMsg: []
-    UEvent:
-      m_PersistentCalls:
-        m_Calls: []
-    foldout: 0
   - eventType: 1
     eventDuration: 1
-    virtualCamIndex: 2
+    virtualCamIndex: 0
     popUpsMsg:
-    - rpgStyle: 0
+    - rpgStyle: 1
       anchor: {fileID: 0}
-      offset: {x: 830, y: 260, z: 0}
-      usingSprite: 0
-      sprite: {fileID: 21300000, guid: cc3173b5ab91f26438949b73af93e3f9, type: 3}
-      Title: Sploosh Lake
-      Text: Here you can build production cell.
+      offset: {x: 0, y: 0, z: 0}
+      usingSprite: 1
+      sprite: {fileID: 21300000, guid: 9ab830d8caf4e1547967ad370da85b41, type: 3}
+      Title: 
+      Text: 'You can explore the map
+
+        with the explorator blob'
+    - rpgStyle: 1
+      anchor: {fileID: 0}
+      offset: {x: 0, y: 0, z: 0}
+      usingSprite: 1
+      sprite: {fileID: 21300000, guid: 9ab830d8caf4e1547967ad370da85b41, type: 3}
+      Title: 
+      Text: 'you juste have to build the
+
+        explorator cell.'
     UEvent:
       m_PersistentCalls:
         m_Calls: []
     foldout: 1
   - eventType: 1
-    eventDuration: 1
-    virtualCamIndex: 2
+    eventDuration: 2
+    virtualCamIndex: 1
     popUpsMsg:
     - rpgStyle: 0
       anchor: {fileID: 0}
       offset: {x: 830, y: 260, z: 0}
-      usingSprite: 0
-      sprite: {fileID: 21300000, guid: cc3173b5ab91f26438949b73af93e3f9, type: 3}
-      Title: Explorator
-      Text: "Send some explorator blob for discover \nthe place ! "
+      usingSprite: 1
+      sprite: {fileID: 21300000, guid: 9ab830d8caf4e1547967ad370da85b41, type: 3}
+      Title: 
+      Text: Build an explorator cell
     UEvent:
       m_PersistentCalls:
         m_Calls: []

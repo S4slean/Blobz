@@ -112,7 +112,6 @@ public class UIManager : MonoBehaviour
 
     [Header("ToolTip")]
     public TooltipUI tooltipUI;
-    public GameObject costUI;
     public CellOptionsUI cellOptionsUI;
 
 
@@ -122,13 +121,13 @@ public class UIManager : MonoBehaviour
     public float secondTooltipDelay = 1.5f;
     private bool secondTooltipDisplayed = false;
 
-    public void LoadToolTip(Vector3 pos, CellMain cell)
+    public void LoadToolTip(Vector3 pos, CellMain cell, bool displayCost)
     {
         tooltipCount += Time.deltaTime;
 
         if (tooltipCount > firstTooltipDelay && !firstTooltipDisplayed)
         {
-            DisplayTooltip(pos, cell);
+            DisplayTooltip(pos, cell, displayCost);
         }
 
         if (tooltipCount > secondTooltipDelay && !secondTooltipDisplayed)
@@ -138,9 +137,9 @@ public class UIManager : MonoBehaviour
 
     }
 
-    public void DisplayTooltip(Vector3 pos, CellMain cell)
+    public void DisplayTooltip(Vector3 pos, CellMain cell, bool displayCost)
     {
-        tooltipUI.UpdateUI(cell);
+        tooltipUI.UpdateUI(cell, displayCost);
         DisplayUI(tooltipUI.gameObject);
         tooltipUI.transform.position = pos + Vector3.up;
         //tooltipUI.anim.Play("first Display");
@@ -233,8 +232,8 @@ public class UIManager : MonoBehaviour
 
     public void DisplayColonyBtn(NexusAera area)
     {
-        ColonyBtn colonyBtn = GameObject.Instantiate(Resources.Load("QuickSetUp/ColonyBtn") as GameObject).GetComponent<ColonyBtn>() ;
-
+        ColonyBtn colonyBtn = ObjectPooler.poolingSystem.GetPooledObject<ColonyBtn>() as ColonyBtn ;
+        Debug.Log("Woooo");
         colonyBtn.cost = area.splouchCost;
         colonyBtn.point = area.transform.position;
         colonyBtn.transform.SetParent(colonyCreation);
