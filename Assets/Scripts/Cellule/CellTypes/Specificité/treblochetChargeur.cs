@@ -182,6 +182,7 @@ public class treblochetChargeur : MonoBehaviour, PlayerAction
 
     public void OnLeftClickDown(RaycastHit hit)
     {
+
     }
 
     public void OnShortLeftClickUp(RaycastHit hit)
