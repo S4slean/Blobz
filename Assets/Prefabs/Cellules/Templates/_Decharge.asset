@@ -20,11 +20,13 @@ MonoBehaviour:
   generateProximity: 0
   proximityColliderNumber: 1
   proximityColliders: []
-  energyCost: 100
+  energyCost: 150
   energyCapBase: 20
   rangeBase: 50
   blobRatioAtDeath: 0
   impulseForce_Death: 10
+  overLoadTickMax: 4
+  overloadTreshHold: 5
   prodPerTickBase: 0
   rejectPowerBase: 0
   storageCapability: 20
@@ -33,7 +35,7 @@ MonoBehaviour:
   limitedInLinks: 1
   slotDistance: 1.5
   numberOfOuputLinks: 0
-  numberOfInputLinks: 1
+  numberOfInputLinks: 3
   numberOfFlexLinks: 0
   proximityLevelMax: 4
   proximityInfluenceMultiplier: 1

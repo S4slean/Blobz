@@ -25,6 +25,8 @@ MonoBehaviour:
   rangeBase: 50
   blobRatioAtDeath: 0
   impulseForce_Death: 10
+  overLoadTickMax: 4
+  overloadTreshHold: 5
   prodPerTickBase: 0
   rejectPowerBase: 0
   storageCapability: 20
@@ -41,20 +43,23 @@ MonoBehaviour:
   negativesInteractions: 
   SurproductionRate: 00000000
   BlopPerTick:
-  - 0
+  - 1
+  - 2
+  - 3
+  - 4
   stockageCapacity: 19000000320000003c00000050000000
   LinkCapacity: 
-  rangeLien: 
+  rangeLien: 00000000000000000000000000000000
   tickForActivation: 00000000
   energyCap: 
   specifique: 
   energyPerblop: 0
-  StatsModification: 4
+  StatsModification: 1
   REFS: 0
   ToggleInfoBox: 1
   STATS: 1
   ProductionGestion: 1
-  ProximityGestion: 0
+  ProximityGestion: 1
   maxEnergie: 5
   maxBlobCoach: 0
   magazineDragRange: 1.5
