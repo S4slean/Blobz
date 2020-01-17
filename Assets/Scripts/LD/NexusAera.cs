@@ -13,14 +13,13 @@ public class NexusAera : MonoBehaviour
         if (revealed)
             return;
 
-        if(other.transform.tag != "Enemies")
+        if (other.transform.tag != "Enemies")
         {
 
-            if (other.GetComponent<Blob>())
-            {
-                revealed = true;
-                UIManager.Instance.DisplayColonyBtn(this);
-            }
+
+            revealed = true;
+            UIManager.Instance.DisplayColonyBtn(this);
+
         }
     }
 

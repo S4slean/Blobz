@@ -112,7 +112,6 @@ public class UIManager : MonoBehaviour
 
     [Header("ToolTip")]
     public TooltipUI tooltipUI;
-    public GameObject costUI;
     public CellOptionsUI cellOptionsUI;
 
 
@@ -233,8 +232,8 @@ public class UIManager : MonoBehaviour
 
     public void DisplayColonyBtn(NexusAera area)
     {
-        ColonyBtn colonyBtn = GameObject.Instantiate(Resources.Load("QuickSetUp/ColonyBtn") as GameObject).GetComponent<ColonyBtn>() ;
-
+        ColonyBtn colonyBtn = ObjectPooler.poolingSystem.GetPooledObject<ColonyBtn>() as ColonyBtn ;
+        Debug.Log("Woooo");
         colonyBtn.cost = area.splouchCost;
         colonyBtn.point = area.transform.position;
         colonyBtn.transform.SetParent(colonyCreation);
