@@ -24,10 +24,12 @@ MonoBehaviour:
     range: 0
     productionBonusRatio: 0
   energyCost: 750
-  energyCapBase: 10
+  energyCapBase: 0
   rangeBase: 50
   blobRatioAtDeath: 0
   impulseForce_Death: 10
+  overLoadTickMax: 4
+  overloadTreshHold: 5
   prodPerTickBase: 0
   rejectPowerBase: 0
   storageCapability: 15
@@ -47,16 +49,16 @@ MonoBehaviour:
   stockageCapacity: 
   LinkCapacity: 
   rangeLien: 
-  tickForActivation: 04000000030000000200000001000000
+  tickForActivation: 05000000030000000200000001000000
   energyCap: 
-  specifique: 0a0000000e0000001200000016000000
+  specifique: 0200000005000000070000000a000000
   energyPerblop: 0
   StatsModification: 5
   REFS: 1
   ToggleInfoBox: 1
   STATS: 1
   ProductionGestion: 1
-  ProximityGestion: 0
+  ProximityGestion: 1
   maxEnergie: 5
   maxBlobCoach: 0
   magazineDragRange: 1.5
