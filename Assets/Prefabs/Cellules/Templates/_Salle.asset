@@ -30,7 +30,7 @@ MonoBehaviour:
     range: 40
     productionBonusRatio: 1
   energyCost: 750
-  energyCapBase: 10
+  energyCapBase: 0
   rangeBase: 50
   blobRatioAtDeath: 0
   impulseForce_Death: 10
@@ -57,7 +57,7 @@ MonoBehaviour:
   rangeLien: 
   tickForActivation: 
   energyCap: 
-  specifique: 0a000000190000001e00000028000000
+  specifique: 0200000005000000070000000a000000
   energyPerblop: 0
   StatsModification: 7
   REFS: 0
