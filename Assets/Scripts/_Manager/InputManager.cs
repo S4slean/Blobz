@@ -389,6 +389,7 @@ public class InputManager : MonoBehaviour
         cell.TickDesinscription();
         Instance.objectMoved = cell;
         SwitchInputMode(InputMode.movingCell);
+
         Instance.dragging = false;
         //Instance.holdingLeftClick = false;
     }

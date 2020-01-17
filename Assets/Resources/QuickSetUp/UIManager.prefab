@@ -2504,7 +2504,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!114 &4877872913692120102
 MonoBehaviour:
@@ -2718,7 +2718,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4877872913734379471
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7264,7 +7264,6 @@ MonoBehaviour:
   questEventPopUpOverlay: {fileID: 4877872913224212273}
   TopBar: {fileID: 4877872914531663992}
   tooltipUI: {fileID: 4877872914457006779}
-  costUI: {fileID: 0}
   cellOptionsUI: {fileID: 4877872915115628989}
   firstTooltipDelay: 0
   secondTooltipDelay: 0.2
@@ -8040,6 +8039,31 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 0.07500011
+      objectReference: {fileID: 0}
+    - target: {fileID: 6863035879263383328, guid: 9b424ba6455ec514284d3da7a4fedf29,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 6863035879263383328, guid: 9b424ba6455ec514284d3da7a4fedf29,
+        type: 3}
+      propertyPath: m_textInfo.spaceCount
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6863035879263383328, guid: 9b424ba6455ec514284d3da7a4fedf29,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6863035879263383328, guid: 9b424ba6455ec514284d3da7a4fedf29,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6863035879263383328, guid: 9b424ba6455ec514284d3da7a4fedf29,
+        type: 3}
+      propertyPath: m_textInfo.pageCount
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9b424ba6455ec514284d3da7a4fedf29, type: 3}

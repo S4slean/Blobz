@@ -71,9 +71,6 @@ public class QuickSetUp : Editor
         if (FindObjectOfType<InputManager>() != null)
             DestroyImmediate(FindObjectOfType<InputManager>().gameObject);
 
-        if (FindObjectOfType<RessourceTracker>() != null)
-            DestroyImmediate(FindObjectOfType<RessourceTracker>().gameObject);
-
         if (FindObjectOfType<CellManager>() != null)
             DestroyImmediate(FindObjectOfType<CellManager>().gameObject);
 
@@ -124,6 +121,9 @@ public class QuickSetUp : Editor
 
         if (FindObjectOfType<BlobManager>() == null)
             questManager = Instantiate(questManager);
+
+        if(FindObjectOfType<RessourceTracker>() == null)
+            resourceTracker = Instantiate(resourceTracker);
 
 
         #region UI

@@ -30,9 +30,9 @@ public class CellSelectionShop : MonoBehaviour
         if (cellule.myCellTemplate.energyCost > RessourceTracker.instance.energy)
         {
             UIManager.Instance.DisplayNotEnoughNRJ();
-            CellManager.Instance.SetIfNewCell(false);
+            //CellManager.Instance.SetIfNewCell(false);
         }
-        
+
         else
         {
             HideSections();
@@ -57,7 +57,7 @@ public class CellSelectionShop : MonoBehaviour
         }
     }
 
-   
+
 
     public void HideOtherSubMenus(int i)
     {
@@ -74,28 +74,32 @@ public class CellSelectionShop : MonoBehaviour
                 case 0:
                     for (int l = 0; l < energySubMenus.Length; l++)
                     {
-                        energySubMenus[l].SetBool("Open", false);
+                        if (energySubMenus[l].gameObject.activeSelf)
+                            energySubMenus[l].SetBool("Open", false);
                     }
 
                     break;
                 case 1:
                     for (int l = 0; l < exploSubMenus.Length; l++)
                     {
-                        exploSubMenus[l].SetBool("Open", false);
+                        if (exploSubMenus[l].gameObject.activeSelf)
+                            exploSubMenus[l].SetBool("Open", false);
                     }
 
                     break;
                 case 2:
                     for (int l = 0; l < gestionSubMenus.Length; l++)
                     {
-                        gestionSubMenus[l].SetBool("Open", false);
+                        if (gestionSubMenus[l].gameObject.activeSelf)
+                            gestionSubMenus[l].SetBool("Open", false);
                     }
 
                     break;
                 case 3:
                     for (int l = 0; l < combatSubMenus.Length; l++)
                     {
-                        combatSubMenus[l].SetBool("Open", false);
+                        if (combatSubMenus[l].gameObject.activeSelf)
+                            combatSubMenus[l].SetBool("Open", false);
                     }
 
                     break;
@@ -105,7 +109,7 @@ public class CellSelectionShop : MonoBehaviour
 
     public void HideSections()
     {
-        
+
 
         for (int i = 0; i < sections.Length; i++)
         {
@@ -118,37 +122,41 @@ public class CellSelectionShop : MonoBehaviour
     public void DisplaySubMenu(int index)
     {
 
-            switch (index)
-            {
-                case 0:
-                    for (int i = 0; i < energySubMenus.Length; i++)
-                    {
+        switch (index)
+        {
+            case 0:
+                for (int i = 0; i < energySubMenus.Length; i++)
+                {
+                    if (energySubMenus[i].gameObject.activeSelf)
                         energySubMenus[i].SetBool("Open", true);
-                    }
-                    break;
-                case 1:
-                    for (int i = 0; i < energySubMenus.Length; i++)
-                    {
+                }
+                break;
+            case 1:
+                for (int i = 0; i < energySubMenus.Length; i++)
+                {
+                    if (exploSubMenus[i].gameObject.activeSelf)
                         exploSubMenus[i].SetBool("Open", true);
-                    }
-                    break;
-                case 2:
-                    for (int i = 0; i < energySubMenus.Length; i++)
-                    {
+                }
+                break;
+            case 2:
+                for (int i = 0; i < energySubMenus.Length; i++)
+                {
+                    if (gestionSubMenus[i].gameObject.activeSelf)
                         gestionSubMenus[i].SetBool("Open", true);
-                    }
-                    break;
-                case 3:
-                    for (int i = 0; i < energySubMenus.Length; i++)
-                    {
+                }
+                break;
+            case 3:
+                for (int i = 0; i < energySubMenus.Length; i++)
+                {
+                    if (combatSubMenus[i].gameObject.activeSelf)
                         combatSubMenus[i].SetBool("Open", true);
-                    }
-                    break;
-            }
-
-            HideOtherSubMenus(index);
+                }
+                break;
         }
+
+        HideOtherSubMenus(index);
     }
+}
 
 
 
