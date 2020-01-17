@@ -5,11 +5,12 @@ using UnityEngine;
 public class LinkJointClass : PoolableObjects
 {
     public Color outputColor;
-    public Color InputColor;
+    public Color inputColor;
     public Color flexColor;
 
 
-    public MeshRenderer mF;
+    //   public MeshRenderer mF;
+    public SpriteRenderer sR;
 
     public linkJointType typeOfJoint;
 
@@ -35,13 +36,16 @@ public class LinkJointClass : PoolableObjects
         switch (typeOfJoint)
         {
             case linkJointType.flex:
-                mF.material.SetColor("_Color", flexColor);
+                // mF.material.SetColor("_Color", flexColor);
+                sR.color = flexColor;
                 break;
             case linkJointType.output:
-                mF.material.SetColor("_Color", outputColor);
+                //  mF.material.SetColor("_Color", outputColor);
+                sR.color = outputColor;
                 break;
             case linkJointType.input:
-                mF.material.SetColor("_Color", InputColor);
+                //  mF.material.SetColor("_Color", InputColor);
+                sR.color = inputColor;
                 break;
 
         }

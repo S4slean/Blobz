@@ -11,7 +11,7 @@ public class CellPassage : CellMain
             overloadStack = 0;
             if (myCellTemplate.prodPerTickBase > 0)
             {
-                BlobNumberVariation(myCellTemplate.prodPerTickBase, BlobManager.BlobType.normal);
+                BlobNumberVariation(myCellTemplate.prodPerTickBase, BlobManager.BlobType.normal , true);
             }
             haveExpulse = false;
 

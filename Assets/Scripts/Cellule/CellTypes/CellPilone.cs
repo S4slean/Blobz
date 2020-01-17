@@ -10,7 +10,7 @@ public class CellPilone : CellMain
     {
         if (blobNumber > 0)
         {
-            BlobNumberVariation(-1 , BlobCheck());
+            BlobNumberVariation(-1 , BlobCheck() ,false);
             ChargeEnergie();
         }
         else
@@ -27,7 +27,7 @@ public class CellPilone : CellMain
                 }
             }
         }
-        BlobNumberVariation(myCellTemplate.prodPerTickBase , BlobManager.BlobType.normal);
+        BlobNumberVariation(myCellTemplate.prodPerTickBase , BlobManager.BlobType.normal , true);
 
         //ANIM
         haveExpulse = false;

@@ -6,7 +6,7 @@ public class CellSalle : CellMain
 {
     public int myCoachBlobNumber;
 
-    public override void blobAddCheckType(int amount, BlobManager.BlobType _blobType)
+    public override void blobAddCheckType(int amount, BlobManager.BlobType _blobType ,bool transmission)
     {
         switch (_blobType)
         {
@@ -21,6 +21,21 @@ public class CellSalle : CellMain
                 break;
             case BlobManager.BlobType.coach:
                 RessourceTracker.instance.AddBlob(BlobManager.BlobType.coach, amount);
+                if (!transmission)
+                {
+                    if (amount < 0)
+                    {
+                        for (int i = 0; i < amount; i++)
+                        {
+                            if (blobCoaches[blobCoaches.Count - 1].origianlSalle == this)
+                            {
+                                myCoachBlobNumber--;
+                            }
+                            blobCoaches.Remove(blobCoaches[blobCoaches.Count - 1]);
+                        }
+                    }
+                }
+
                 break;
             case BlobManager.BlobType.explorateur:
                 explorateurBlobNumber += amount;

@@ -20,7 +20,7 @@ public class CellArmory : CellMain
                 {
                     if (blobNumber > 0)
                     {
-                        BlobNumberVariation(-1 , BlobManager.BlobType.normal);
+                       // BlobNumberVariation(-1 , BlobManager.BlobType.normal);
                         // Debug.LogWarning("PENSEZ à REGLER le sy")
                         Blob newBlob = ObjectPooler.poolingSystem.GetPooledObject<Blob>() as Blob;
                         BlobManager.blobList.Add(newBlob);

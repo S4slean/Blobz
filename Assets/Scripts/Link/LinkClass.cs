@@ -204,7 +204,7 @@ public class LinkClass : PoolableObjects
         }
         else
         {
-            originalCell.BlobNumberVariation(-blobAmount, _blobType);
+            originalCell.BlobNumberVariation(-blobAmount, _blobType , true);
             //receivingCell.BlobNumberVariation(blobAmount, _blobType);
         }
 
@@ -227,7 +227,7 @@ public class LinkClass : PoolableObjects
         }
         else
         {
-            receivingCell.BlobNumberVariation(transMitAmount, transmitType);
+            receivingCell.BlobNumberVariation(transMitAmount, transmitType , true);
         }
     }
 
