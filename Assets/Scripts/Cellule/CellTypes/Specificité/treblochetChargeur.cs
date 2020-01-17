@@ -71,7 +71,6 @@ public class treblochetChargeur : MonoBehaviour, PlayerAction
         {
 
             float ratio = finalDistance / dragRange;
-            Debug.Log(ratio);
             Fire(ratio);
         }
         else
@@ -104,15 +103,16 @@ public class treblochetChargeur : MonoBehaviour, PlayerAction
             Blob blobToThrow = ObjectPooler.poolingSystem.GetPooledObject<Blob>() as Blob;
 
             blobToThrow.ChangeType(blobInChargeur[0]);
-            blobToThrow.transform.position = transform.position + Vector3.up * 3f;
+            blobToThrow.Outpool();
+            blobToThrow.transform.position = transform.position/* + new Vector3 (0,3f,0)*/;
+            blobToThrow.transform.LookAt(parent.transform);
             // blobToThrow.transform.LookAt(transform);
 
-            Vector3 powerVec = ((dir * ratio * maxPower) + (Vector3.up * yOffset));
+            Vector3 powerVec = ((blobToThrow.transform.forward * ratio * maxPower) + (Vector3.up * yOffset));
             Debug.Log(powerVec);
             Debug.DrawRay(transform.position, powerVec, Color.blue, 2f);
 
             blobToThrow.rb.AddForce(powerVec, ForceMode.Impulse);
-            blobToThrow.Outpool();
             BlolbFIre();
 
         }
@@ -120,6 +120,7 @@ public class treblochetChargeur : MonoBehaviour, PlayerAction
         {
             // Display error
         }
+
         transform.position = parent.transform.position - dir * disTanceFromParent;
         transform.LookAt(parent.transform);
 
@@ -269,6 +270,7 @@ public class treblochetChargeur : MonoBehaviour, PlayerAction
 
         for (int i = 0; i < maxStockage-1; i++)
         {
+
             float angle = i * Mathf.PI / maxStockage;
             angle += Mathf.PI;
             Vector3 pos = new Vector3(Mathf.Cos(angle)*slotRange, Mathf.Sin(angle) * slotRange,0);
