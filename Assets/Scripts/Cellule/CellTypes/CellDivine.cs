@@ -13,10 +13,10 @@ public class CellDivine : CellMain
     {
         if (blobNumber > 0 && !isLoaded)
         {
-            BlobNumberVariation(-1, BlobCheck());
+            BlobNumberVariation(-1, BlobCheck() , false);
             Charge(1);
         }
-        BlobNumberVariation(myCellTemplate.prodPerTickBase, BlobManager.BlobType.normal);
+        BlobNumberVariation(myCellTemplate.prodPerTickBase, BlobManager.BlobType.normal , true);
 
         //ANIM
         haveExpulse = false;

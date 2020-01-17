@@ -194,6 +194,7 @@ public class CellMain : PoolableObjects, PlayerAction
         //ownCollider.enabled = false;
 
         RessourceTracker.instance.RemoveBlob(BlobManager.BlobType.normal, blobNumber);
+        RessourceTracker.instance.EnergyCapVariation(-currentEnergyCap);
 
 
         if (CellManager.Instance.originalPosOfMovingCell != new Vector3(0, 100, 0))
@@ -253,11 +254,14 @@ public class CellMain : PoolableObjects, PlayerAction
             }
         }
 
-        int C = blobCoaches.Count;
-        for (int i = 0; i < C; i++)
-        {
-            blobCoaches[i].Death();
-        }
+        //int C = blobCoaches.Count;
+        //for (int i = 0; i < C; i++)
+        //{
+        //    if (blobCoaches[i] != null)
+        //    {
+        //        blobCoaches[i].Death();
+        //    }
+        //}
         blobCoaches.Clear();
 
         if (this == CellManager.Instance.selectedCell)
@@ -298,7 +302,7 @@ public class CellMain : PoolableObjects, PlayerAction
             overloadStack = 0;
             if (myCellTemplate.prodPerTickBase > 0)
             {
-                BlobNumberVariation(myCellTemplate.prodPerTickBase, BlobManager.BlobType.normal);
+                BlobNumberVariation(myCellTemplate.prodPerTickBase, BlobManager.BlobType.normal, true);
             }
 
             //ANIM
@@ -402,10 +406,10 @@ public class CellMain : PoolableObjects, PlayerAction
     #region BLOB_GESTION
 
 
-    public virtual void BlobNumberVariation(int amount, BlobManager.BlobType _blobType)
+    public virtual void BlobNumberVariation(int amount, BlobManager.BlobType _blobType, bool transmission)
     {
 
-        blobAddCheckType(amount, _blobType);
+        blobAddCheckType(amount, _blobType, transmission);
 
         CheckForCoach(_blobType);
 
@@ -444,7 +448,10 @@ public class CellMain : PoolableObjects, PlayerAction
 
 
         //Nexus 
-        BlobAmountCheck(amount, _blobType);
+        if (isNexus)
+        {
+            BlobAmountCheck(amount, _blobType);
+        }
         UpdateCaract();
 
         //NBlob.text = (blobNumber + " / " + currentBlobStockage);
@@ -521,7 +528,7 @@ public class CellMain : PoolableObjects, PlayerAction
         }
     }
 
-    public virtual void blobAddCheckType(int amount, BlobManager.BlobType _blobType)
+    public virtual void blobAddCheckType(int amount, BlobManager.BlobType _blobType, bool transmission)
     {
         switch (_blobType)
         {
@@ -532,6 +539,16 @@ public class CellMain : PoolableObjects, PlayerAction
 
             case BlobManager.BlobType.coach:
                 RessourceTracker.instance.AddBlob(BlobManager.BlobType.coach, amount);
+                if (!transmission)
+                {
+                    if (amount < 0)
+                    {
+                        for (int i = 0; i < amount; i++)
+                        {
+                            blobCoaches.Remove(blobCoaches[blobCoaches.Count - 1]);
+                        }
+                    }
+                }
                 break;
 
             case BlobManager.BlobType.explorateur:
@@ -1092,13 +1109,13 @@ public class CellMain : PoolableObjects, PlayerAction
         }
         else if (overLoad)
         {
-            BlobNumberVariation(-1, BlobCheck());
+            BlobNumberVariation(-1, BlobCheck(), false);
             actionMade = true;
         }
 
         else if (blobNumber > 0)
         {
-            BlobNumberVariation(-1, BlobCheck());
+            BlobNumberVariation(-1, BlobCheck(), false);
             //CellManager.Instance.EnergyVariation(currentEnergyPerClick);
             RessourceTracker.instance.EnergyVariation(currentEnergyPerClick);
             actionMade = true;

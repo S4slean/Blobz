@@ -19,7 +19,7 @@ public class CellTreblochet : CellMain
         if (blobNumber - blobCoaches.Count > 0 & !chargerIsFull)
         {
             BlobManager.BlobType blType = ChargerCustomBlobCheck();
-            BlobNumberVariation(-1, blType);
+            BlobNumberVariation(-1, blType , false);
             myChargeur.AddBlob(blType);
         }
 
@@ -50,7 +50,7 @@ public class CellTreblochet : CellMain
         return BlobManager.BlobType.explorateur;
     }
 
-    public override void blobAddCheckType(int amount, BlobManager.BlobType _blobType)
+    public override void blobAddCheckType(int amount, BlobManager.BlobType _blobType , bool transmission)
     {
         switch (_blobType)
         {
@@ -66,6 +66,16 @@ public class CellTreblochet : CellMain
 
             case BlobManager.BlobType.coach:
                 RessourceTracker.instance.AddBlob(BlobManager.BlobType.coach, amount);
+                if (!transmission)
+                {
+                    if (amount < 0)
+                    {
+                        for (int i = 0; i < amount; i++)
+                        {
+                            blobCoaches.Remove(blobCoaches[blobCoaches.Count - 1]);
+                        }
+                    }
+                }
                 break;
 
             case BlobManager.BlobType.explorateur:
