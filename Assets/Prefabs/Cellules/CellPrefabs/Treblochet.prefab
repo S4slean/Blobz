@@ -1083,7 +1083,7 @@ GameObject:
   - component: {fileID: 6579087454905701728}
   - component: {fileID: 5126238700557690893}
   - component: {fileID: 1984579306425477977}
-  m_Layer: 11
+  m_Layer: 5
   m_Name: LINK
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1354,7 +1354,7 @@ MonoBehaviour:
   canBePool: 0
   initialPool: {fileID: 0}
   myCellTemplate: {fileID: 11400000, guid: 242b11b096bee404d8d1e8b1a6567b58, type: 2}
-  isNexus: 1
+  isNexus: 0
   cellDefaultMat: {fileID: 0}
   anim: {fileID: 2390025963806365036}
   NBlob: {fileID: 2904753947209794517}
@@ -1373,6 +1373,7 @@ MonoBehaviour:
   ownCollider: {fileID: 0}
   linkJoints: []
   blobCoaches: []
+  myTransform: {fileID: 0}
   showDebug: 0
   showlinks: 0
   showRef: 1
@@ -1431,7 +1432,7 @@ SphereCollider:
   m_GameObject: {fileID: 5489770942092436020}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.5000001
   m_Center: {x: 0, y: 0, z: 0}
@@ -1453,6 +1454,7 @@ MonoBehaviour:
   yOffset: 100
   dragRange: 0
   slotRange: 3
+  myCollider: {fileID: 465437789709073103}
   parent: {fileID: 2542981082271224747}
   treblobchetUISlots:
   - {fileID: 2026502692}
@@ -1494,7 +1496,7 @@ GameObject:
   - component: {fileID: 1373793651981595547}
   - component: {fileID: 7713790135933820678}
   - component: {fileID: 5343809440407741674}
-  m_Layer: 11
+  m_Layer: 5
   m_Name: Proximity
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1695,7 +1697,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3248601226105789574}
-  m_Layer: 11
+  m_Layer: 5
   m_Name: UICELL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1795,7 +1797,7 @@ GameObject:
   - component: {fileID: 1994316752525500121}
   - component: {fileID: 9106883261060387980}
   - component: {fileID: 2904753947209794517}
-  m_Layer: 11
+  m_Layer: 5
   m_Name: BLOB
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2002,6 +2004,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2881293309684350235, guid: 8acb0fae47832f94f9eb83c430776a38,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 2477609119434983123, guid: 8acb0fae47832f94f9eb83c430776a38,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2195,6 +2202,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5078418085769911552, guid: 28ec50add9b929b4fb6da4df03bd820d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4892174692380387016, guid: 28ec50add9b929b4fb6da4df03bd820d,
         type: 3}

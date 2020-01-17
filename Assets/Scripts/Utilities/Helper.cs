@@ -46,7 +46,10 @@ public class Helper : MonoBehaviour
         for (int i = 0; i < objects.Length; i++)
         {
             if (objects[i] != colliderToIgnore)
+            {
+                Debug.Log("hit " + objects[i].name);
                 return false;
+            }
         }
 
         return true;

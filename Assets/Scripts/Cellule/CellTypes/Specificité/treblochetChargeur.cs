@@ -267,7 +267,7 @@ public class treblochetChargeur : MonoBehaviour, PlayerAction
             treblobchetUISlots[i].gameObject.SetActive(false);
         }
 
-        for (int i = 0; i < maxStockage; i++)
+        for (int i = 0; i < maxStockage-1; i++)
         {
             float angle = i * Mathf.PI / maxStockage;
             angle += Mathf.PI;
