@@ -26,15 +26,18 @@ public class BlobCoach
     }
     public void ChangeCellArrive()
     {
-
+        if (inThisCell == null)
+        {
+            return;
+        }
 
         inThisCell.blobCoaches.Add(this);
         if (inThisCell == origianlSalle)
         {
             origianlSalle.myCoachBlobNumber++;
         }
-        inThisCell.BlobNumberVariation(1, BlobManager.BlobType.coach,true);
-        //ChangeCellOut();
+        inThisCell.BlobNumberVariation(1, BlobManager.BlobType.coach, true);
+
     }
     public void ChangeCellArrive(CellMain cell)
     {
@@ -45,8 +48,7 @@ public class BlobCoach
         {
             origianlSalle.myCoachBlobNumber++;
         }
-        inThisCell.BlobNumberVariation(1, BlobManager.BlobType.coach , true);
-        //ChangeCellOut();
+        inThisCell.BlobNumberVariation(1, BlobManager.BlobType.coach, true);
     }
 
     public void ChangeCellOut(CellMain newCell)
@@ -63,7 +65,7 @@ public class BlobCoach
                 {
                     origianlSalle.myCoachBlobNumber--;
                 }
-                previousCell.BlobNumberVariation(-1, BlobManager.BlobType.coach , true);
+                previousCell.BlobNumberVariation(-1, BlobManager.BlobType.coach, true);
             }
         }
     }
@@ -78,9 +80,11 @@ public class BlobCoach
     public void Death()
     {
         TickManager.doTick -= Tick;
-        inThisCell.blobCoaches.Remove(this);
-
-        inThisCell.BlobNumberVariation(-1, BlobManager.BlobType.coach,true);
+        if (inThisCell != null)
+        {
+            inThisCell.blobCoaches.Remove(this);
+            inThisCell.BlobNumberVariation(-1, BlobManager.BlobType.coach, true);
+        }
 
 
         origianlSalle = null;

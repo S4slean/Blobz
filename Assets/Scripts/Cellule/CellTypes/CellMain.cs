@@ -254,11 +254,14 @@ public class CellMain : PoolableObjects, PlayerAction
             }
         }
 
-        int C = blobCoaches.Count;
-        for (int i = 0; i < C; i++)
-        {
-            blobCoaches[i].Death();
-        }
+        //int C = blobCoaches.Count;
+        //for (int i = 0; i < C; i++)
+        //{
+        //    if (blobCoaches[i] != null)
+        //    {
+        //        blobCoaches[i].Death();
+        //    }
+        //}
         blobCoaches.Clear();
 
         if (this == CellManager.Instance.selectedCell)
@@ -445,7 +448,10 @@ public class CellMain : PoolableObjects, PlayerAction
 
 
         //Nexus 
-        BlobAmountCheck(amount, _blobType);
+        if (isNexus)
+        {
+            BlobAmountCheck(amount, _blobType);
+        }
         UpdateCaract();
 
         //NBlob.text = (blobNumber + " / " + currentBlobStockage);
@@ -1103,13 +1109,13 @@ public class CellMain : PoolableObjects, PlayerAction
         }
         else if (overLoad)
         {
-            BlobNumberVariation(-1, BlobCheck() , false);
+            BlobNumberVariation(-1, BlobCheck(), false);
             actionMade = true;
         }
 
         else if (blobNumber > 0)
         {
-            BlobNumberVariation(-1, BlobCheck() , false);
+            BlobNumberVariation(-1, BlobCheck(), false);
             //CellManager.Instance.EnergyVariation(currentEnergyPerClick);
             RessourceTracker.instance.EnergyVariation(currentEnergyPerClick);
             actionMade = true;

@@ -10,6 +10,7 @@ public class LinkClass : PoolableObjects
     #region REFS
     public Animator anim;
     public GameObject[] lockIcon = new GameObject[2];
+    private BlobCoach blobCoachInTransition;
 
     #endregion
 
@@ -38,7 +39,7 @@ public class LinkClass : PoolableObjects
     #region AnimVariable
     private int transMitAmount;
     private BlobManager.BlobType transmitType;
-    
+
 
 
     #endregion
@@ -191,28 +192,21 @@ public class LinkClass : PoolableObjects
 
     public void Transmitt(int blobAmount, BlobManager.BlobType _blobType)
     {
-        //Ancienne Version 
+
         transmitType = _blobType;
         transMitAmount = blobAmount;
 
         if (_blobType == BlobManager.BlobType.coach)
         {
-            if (originalCell.blobCoaches.Count > 0)
-            {
-                originalCell.blobCoaches[0].ChangeCellOut(receivingCell);
-            }
+            blobCoachInTransition = originalCell.blobCoaches[originalCell.blobCoaches.Count-1];
+            blobCoachInTransition.ChangeCellOut(receivingCell);
         }
         else
         {
-            originalCell.BlobNumberVariation(-blobAmount, _blobType , true);
-            //receivingCell.BlobNumberVariation(blobAmount, _blobType);
+            originalCell.BlobNumberVariation(-blobAmount, _blobType, true);
         }
 
-        //New Version
-        //joints[0].cellsAttach[0].BlobNumberVariation(-blobAmount);
-        //joints[1].cellsAttach[0].BlobNumberVariation(blobAmount);
-        // on pourra lancer une anim ici 
-        anim.speed = 1 / (TickManager.instance.tickDuration - TickManager.instance.tickDuration / 1.8f);
+        anim.speed = 1 / (TickManager.instance.tickDuration - TickManager.instance.tickDuration / 1.4f);
         anim.Play("Transfer");
     }
 
@@ -220,14 +214,11 @@ public class LinkClass : PoolableObjects
     {
         if (transmitType == BlobManager.BlobType.coach)
         {
-            if (originalCell.blobCoaches.Count > 0)
-            {
-                originalCell.blobCoaches[0].ChangeCellArrive();
-            }
+            blobCoachInTransition.ChangeCellArrive();
         }
         else
         {
-            receivingCell.BlobNumberVariation(transMitAmount, transmitType , true);
+            receivingCell.BlobNumberVariation(transMitAmount, transmitType, true);
         }
     }
 
