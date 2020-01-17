@@ -127,9 +127,36 @@ public class QuestManager : MonoBehaviour
                         break;
 
                     case CellType.Passage:
-                        questProgress = RessourceTracker.instance.autorouteNbr;
+                        questProgress = RessourceTracker.instance.passageNbr;
                         break;
 
+                    case CellType.BlipBlop:
+                        questProgress = RessourceTracker.instance.blipblopNbr;
+                        break;
+
+                    case CellType.Decharge:
+                        questProgress = RessourceTracker.instance.dechargeNbr;
+                        break;
+
+                    case CellType.Divine:
+                        questProgress = RessourceTracker.instance.divineNbr;
+                        break;
+
+                    case CellType.Exploration:
+                        questProgress = RessourceTracker.instance.exploNbr;
+                        break;
+
+                    case CellType.LaSalle:
+                        questProgress = RessourceTracker.instance.coachRoomNbr;
+                        break;
+
+                    case CellType.Pilone:
+                        questProgress = RessourceTracker.instance.piloneNbr;
+                        break;
+
+                    case CellType.Tourelle:
+                        questProgress = RessourceTracker.instance.towerNbr;
+                        break;
                 }
 
                 if (questProgress >= currentQuest.cellNbrToObtain)
