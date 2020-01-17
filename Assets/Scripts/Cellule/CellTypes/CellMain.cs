@@ -179,7 +179,6 @@ public class CellMain : PoolableObjects, PlayerAction
 
         SetupVariable();
         RestoreInitialMat();
-        RessourceTracker.instance.EnergyCapVariation(currentEnergyCap);
     }
 
     private void Start()
