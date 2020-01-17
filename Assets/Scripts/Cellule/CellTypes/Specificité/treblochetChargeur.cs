@@ -269,6 +269,7 @@ public class treblochetChargeur : MonoBehaviour, PlayerAction
 
         for (int i = 0; i < maxStockage-1; i++)
         {
+            Debug.Log(i);
             float angle = i * Mathf.PI / maxStockage;
             angle += Mathf.PI;
             Vector3 pos = new Vector3(Mathf.Cos(angle)*slotRange, Mathf.Sin(angle) * slotRange,0);
