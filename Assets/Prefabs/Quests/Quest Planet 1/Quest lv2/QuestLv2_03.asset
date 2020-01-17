@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac59c85db94beed47808c892abe2bae2, type: 3}
   m_Name: QuestLv2_03
   m_EditorClassIdentifier: 
-  questType: 2
-  questTitle: 'Exploring '
+  questType: 4
+  questTitle: Recolt the mushploosh
   questDescription: 
   eventDone: 0
   populationObjective: 0
