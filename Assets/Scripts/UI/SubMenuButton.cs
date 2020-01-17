@@ -20,13 +20,14 @@ public class SubMenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     public void OnPointerEnter(PointerEventData eventData)
     {
         Debug.Log("mouseOn");
-        UIManager.Instance.DisplayCostToolTip(transform.position, cellAssociated);
+        UIManager.Instance.LoadToolTip(transform.position, cellAssociated, true);
         mousOnMe = true;
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        UIManager.Instance.HideCostTooltip();
+        UIManager.Instance.UnloadToolTip();
+
         mousOnMe = false;
 
     }
