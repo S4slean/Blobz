@@ -13,7 +13,15 @@ public class RessourceTracker : MonoBehaviour
     public int stockNbr;
     public int armoryNbr;
     public int broyeurNbr;
-    public int autorouteNbr;
+    public int passageNbr;
+    public int blipblopNbr;
+    public int dechargeNbr;
+    public int divineNbr;
+    public int exploNbr;
+    public int coachRoomNbr;
+    public int piloneNbr;
+    public int towerNbr;
+
 
     public int normalBlob;
     public int soldierBlob;
@@ -47,7 +55,7 @@ public class RessourceTracker : MonoBehaviour
                 stockNbr++;
                 break;
 
-            case (CellType.Armory):
+            case (CellType.Treblochet):
                 armoryNbr++;
                 break;
 
@@ -56,8 +64,41 @@ public class RessourceTracker : MonoBehaviour
                 break;
 
             case (CellType.Passage):
-                autorouteNbr++;
+                passageNbr++;
                 break;
+
+            case (CellType.BlipBlop):
+                blipblopNbr++;
+                break;
+
+            case (CellType.Decharge):
+                dechargeNbr++;
+                break;
+
+            case (CellType.Divine):
+                divineNbr++;
+                break;
+
+            case (CellType.Exploration):
+                exploNbr++;
+                break;
+
+            case (CellType.LaSalle):
+                coachRoomNbr++;
+                break;
+
+            case (CellType.Pilone):
+                piloneNbr++;
+                break;
+
+            case (CellType.Tourelle):
+                towerNbr++;
+                break;
+
+              
+
+
+
         }
 
         if(UIManager.Instance.QuestUI.gameObject.activeSelf)
@@ -82,7 +123,7 @@ public class RessourceTracker : MonoBehaviour
                 stockNbr--;
                 break;
 
-            case (CellType.Armory):
+            case (CellType.Treblochet):
                 armoryNbr--;
                 break;
 
@@ -91,7 +132,36 @@ public class RessourceTracker : MonoBehaviour
                 break;
 
             case (CellType.Passage):
-                autorouteNbr--;
+                passageNbr--;
+                break;
+
+
+            case (CellType.BlipBlop):
+                blipblopNbr--;
+                break;
+
+            case (CellType.Decharge):
+                dechargeNbr--;
+                break;
+
+            case (CellType.Divine):
+                divineNbr--;
+                break;
+
+            case (CellType.Exploration):
+                exploNbr--;
+                break;
+
+            case (CellType.LaSalle):
+                coachRoomNbr--;
+                break;
+
+            case (CellType.Pilone):
+                piloneNbr--;
+                break;
+
+            case (CellType.Tourelle):
+                towerNbr--;
                 break;
         }
 
