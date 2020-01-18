@@ -193,6 +193,11 @@ public class QuickSetUp : Editor
         pooler.poolItems.Add(textScore);
 
 
+        ObjectPoolItem tourelleProjectile = new ObjectPoolItem();
+        tourelleProjectile.objectToPool = Resources.Load("QuickSetUp/TourelleProjectile") as GameObject;
+        tourelleProjectile.AmountToPool = 50;
+        pooler.poolItems.Add(tourelleProjectile);
+
 
 
         PoolCustomInpector.GeneratePools();
