@@ -29,7 +29,7 @@ public class CellSelectionShop : MonoBehaviour
         System.Type cellType = cellule.GetType();
         if (cellule.myCellTemplate.energyCost > RessourceTracker.instance.energy)
         {
-            UIManager.Instance.DisplayNotEnoughNRJ();
+            UIManager.Instance.WarningMessage("Not Enough Sploosh");
             //CellManager.Instance.SetIfNewCell(false);
         }
 
