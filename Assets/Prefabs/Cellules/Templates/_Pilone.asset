@@ -39,7 +39,7 @@ MonoBehaviour:
   slotDistance: 1.5
   numberOfOuputLinks: 1
   numberOfInputLinks: 1
-  numberOfFlexLinks: 2
+  numberOfFlexLinks: 5
   proximityLevelMax: 0
   proximityInfluenceMultiplier: 1
   positivesInteractions: 
@@ -66,3 +66,5 @@ MonoBehaviour:
   tourelleMaxMun: 3
   tourelleDamage: 5
   tourelleAttackRadius: 6
+  clickBeforeLaunch: 0
+  blobLostPerTick: 0

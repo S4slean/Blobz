@@ -22,15 +22,15 @@ MonoBehaviour:
   proximityColliderNumber: 3
   proximityColliders:
   - proximityLevel: 3
-    range: 20
+    range: 22
     productionBonusRatio: 70
   - proximityLevel: 2
-    range: 30
+    range: 43
     productionBonusRatio: 4
   - proximityLevel: 1
-    range: 40
+    range: 60
     productionBonusRatio: 1
-  energyCost: 5
+  energyCost: 500
   energyCapBase: 0
   rangeBase: 15
   blobRatioAtDeath: 0
@@ -64,7 +64,7 @@ MonoBehaviour:
   REFS: 1
   ToggleInfoBox: 1
   STATS: 1
-  ProductionGestion: 1
+  ProductionGestion: 0
   ProximityGestion: 1
   maxEnergie: 5
   maxBlobCoach: 0
