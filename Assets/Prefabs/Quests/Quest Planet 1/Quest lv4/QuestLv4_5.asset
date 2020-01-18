@@ -12,15 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac59c85db94beed47808c892abe2bae2, type: 3}
   m_Name: QuestLv4_5
   m_EditorClassIdentifier: 
-  questType: 3
-  questTitle: Explore this Area
+  questType: 2
+  questTitle: 
   questDescription: 
   eventDone: 0
   populationObjective: 0
   energyToObtain: 0
-  cellType: 0
+  cellType: 2
   level: 1
-  cellNbrToObtain: 1
+  cellNbrToObtain: 2
   blobExplo: 0
   anyCells: 1
   colonialCellType: 0
@@ -32,24 +32,13 @@ MonoBehaviour:
     eventDuration: 0
     virtualCamIndex: 0
     popUpsMsg:
-    - rpgStyle: 0
+    - rpgStyle: 1
       anchor: {fileID: 0}
-      offset: {x: 830, y: 260, z: 0}
+      offset: {x: 0, y: 0, z: 0}
       usingSprite: 1
-      sprite: {fileID: 21300000, guid: 013d0ca5a2e30f7438158762ce87327c, type: 3}
+      sprite: {fileID: 21300000, guid: c98328a721f45da4fb0b32121f3026db, type: 3}
       Title: 
-      Text: 'Our explortor tell me two
-
-        "village" of bad blobz are near'
-    - rpgStyle: 0
-      anchor: {fileID: 0}
-      offset: {x: 830, y: 260, z: 0}
-      usingSprite: 1
-      sprite: {fileID: 21300000, guid: 013d0ca5a2e30f7438158762ce87327c, type: 3}
-      Title: 
-      Text: 'And i don''t think it''s a good idea
-
-        to let them alive ! '
+      Text: "Dude, you need to link it to other cells.\r\n"
     UEvent:
       m_PersistentCalls:
         m_Calls: []

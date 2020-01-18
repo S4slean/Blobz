@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ac59c85db94beed47808c892abe2bae2, type: 3}
-  m_Name: QuestLv4_1
+  m_Name: QuestLv4_8
   m_EditorClassIdentifier: 
-  questType: 1
+  questType: 2
   questTitle: 
   questDescription: 
-  eventDone: 1
+  eventDone: 0
   populationObjective: 0
-  energyToObtain: 200
-  cellType: 8
+  energyToObtain: 0
+  cellType: 13
   level: 1
-  cellNbrToObtain: 2
+  cellNbrToObtain: 1
   blobExplo: 0
   anyCells: 1
   colonialCellType: 0
@@ -38,34 +38,39 @@ MonoBehaviour:
       usingSprite: 1
       sprite: {fileID: 21300000, guid: c98328a721f45da4fb0b32121f3026db, type: 3}
       Title: 
-      Text: "Alright, I saw you learn quite a few things but it will be different
-        with me buddy. You need to optimise okay? We don\u2019t have infinite space
-        around the nexus alright? \r\n"
+      Text: "Wow, what an energetic dude ! But calm down now. We are talking business
+        here.\r\n"
     - rpgStyle: 1
       anchor: {fileID: 0}
       offset: {x: 0, y: 0, z: 0}
       usingSprite: 1
       sprite: {fileID: 21300000, guid: c98328a721f45da4fb0b32121f3026db, type: 3}
       Title: 
-      Text: "Cool, listen to me kid. I know they explained you the proximity, but
-        i\u2019m sure you already forgot. "
+      Text: "You now know every cell. Congratulation !\r\n"
     - rpgStyle: 1
       anchor: {fileID: 0}
       offset: {x: 0, y: 0, z: 0}
       usingSprite: 1
       sprite: {fileID: 21300000, guid: c98328a721f45da4fb0b32121f3026db, type: 3}
       Title: 
-      Text: "Basically, the different areas around a nexus modifies the specificities
-        of the different cells, okay? You can learn what are the specificities by
-        passing your mouse over the cells.\r\n"
+      Text: "The last thing you need to know is about the nexus. The more cells you
+        have around it, the more blobz it will product each tick. Always keep that
+        in mind okay kid?\r\n"
     - rpgStyle: 1
       anchor: {fileID: 0}
       offset: {x: 0, y: 0, z: 0}
       usingSprite: 1
       sprite: {fileID: 21300000, guid: c98328a721f45da4fb0b32121f3026db, type: 3}
       Title: 
-      Text: "Okay, build a basic system, i\u2019ll come check later."
+      Text: "Now, let\u2019s leave this planet\r\n"
+    - rpgStyle: 0
+      anchor: {fileID: 0}
+      offset: {x: 830, y: 260, z: 0}
+      usingSprite: 1
+      sprite: {fileID: 21300000, guid: c98328a721f45da4fb0b32121f3026db, type: 3}
+      Title: 
+      Text: Build a Rocket !
     UEvent:
       m_PersistentCalls:
         m_Calls: []
-    foldout: 0
+    foldout: 1
