@@ -45,7 +45,7 @@ MonoBehaviour:
       usingSprite: 1
       sprite: {fileID: 21300000, guid: cc3173b5ab91f26438949b73af93e3f9, type: 3}
       Title: 
-      Text: "I told you there is 2 other cells. But you\u2019ll be discovering them
+      Text: "I told you there were 2 other cells. But you\u2019ll be discovering them
         later. We have better things to do !\r\n"
     UEvent:
       m_PersistentCalls:
@@ -107,7 +107,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-    foldout: 0
+    foldout: 1
   - eventType: 3
     eventDuration: 0
     virtualCamIndex: 0
@@ -149,4 +149,4 @@ MonoBehaviour:
     UEvent:
       m_PersistentCalls:
         m_Calls: []
-    foldout: 0
+    foldout: 1
