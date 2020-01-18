@@ -21,7 +21,7 @@ MonoBehaviour:
   generateProximity: 0
   proximityColliderNumber: 1
   proximityColliders: []
-  energyCost: 500
+  energyCost: 300
   energyCapBase: 0
   rangeBase: 20
   blobRatioAtDeath: 0
@@ -36,7 +36,7 @@ MonoBehaviour:
   limitedInLinks: 1
   slotDistance: 1.5
   numberOfOuputLinks: 0
-  numberOfInputLinks: 1
+  numberOfInputLinks: 3
   numberOfFlexLinks: 0
   proximityLevelMax: 4
   proximityInfluenceMultiplier: 1
@@ -64,3 +64,5 @@ MonoBehaviour:
   tourelleMaxMun: 3
   tourelleDamage: 5
   tourelleAttackRadius: 6
+  clickBeforeLaunch: 0
+  blobLostPerTick: 0

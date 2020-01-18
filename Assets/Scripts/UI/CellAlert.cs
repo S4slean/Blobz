@@ -5,8 +5,8 @@ using UnityEngine;
 public class CellAlert : PoolableObjects
 {
     [HideInInspector]public CellMain associatedCell;
-    [SerializeField]private RectTransform rect;
-    [SerializeField] private Animator anim;
+    public  RectTransform rect;
+     public  Animator anim;
 
     private void Update()
     {

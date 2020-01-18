@@ -83,6 +83,12 @@ public class InputManager : MonoBehaviour
         mouseWorldPos = CurrentHit.point;
         mouseScreenPos = new Vector3(Input.mousePosition.x, 0, Input.mousePosition.y);
 
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Time.timeScale = 0;
+            UIManager.Instance.DisplayUI(UIManager.Instance.pauseMenu.gameObject);
+        }
+
         switch (inputMode)
         {
             #region STANDARD_STATE
@@ -288,7 +294,7 @@ public class InputManager : MonoBehaviour
                     }
                     else
                     {
-                        Debug.Log("You can't build there");
+                        UIManager.Instance.WarningMessage("You can't build here !");
                     }
 
 
@@ -325,7 +331,7 @@ public class InputManager : MonoBehaviour
 
                 if (Input.GetMouseButtonDown(0))
                 {
-                    Collider[] hitColliders = Physics.OverlapSphere(UIManager.Instance.divineCellTarget.transform.position, 1, 1 << 12 | 1 << 16);
+                    Collider[] hitColliders = Physics.OverlapSphere(UIManager.Instance.divineCellTarget.transform.position, .8f, 1 << 12 | 1 << 16);
                     for (int i = 0; i < hitColliders.Length; i++)
                     {
                         if (hitColliders[i].TryGetComponent<Destructible>(out Destructible destrucible))

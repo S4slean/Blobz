@@ -19,6 +19,7 @@ public class TickManager : MonoBehaviour
     private float count = 0;
     private float ticksElapsed = 0;
     [SerializeField] [Range(0, 10)] public float tickDuration = 1;
+    private float originalSpeed;
 
     private void Awake()
     {
@@ -26,6 +27,8 @@ public class TickManager : MonoBehaviour
             instance = this;
         else
             Destroy(gameObject);
+
+        originalSpeed = tickDuration;
     }
 
     private void Update()

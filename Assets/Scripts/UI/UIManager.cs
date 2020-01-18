@@ -238,6 +238,7 @@ public class UIManager : MonoBehaviour
         colonyBtn.point = area.transform.position;
         colonyBtn.transform.SetParent(colonyCreation);
         colonyBtn.transform.position = area.transform.position + Vector3.up * 2;
+        colonyBtn.nexus = area;
         colonyBtn.Outpool();
         colonyBtn.anim.SetBool("Show", true);
         area.btn = colonyBtn;
@@ -285,27 +286,12 @@ public class UIManager : MonoBehaviour
 
     #endregion
 
-    #region NOT_ENOUGH_NRJ
+    #region WARNING_MESSAGE
+    public WarningMessage warning;
 
-    [Header("NRJ")]
-    public Animator nENRJ;
-
-    public void DisplayNotEnoughNRJ()
+    public void WarningMessage(string text)
     {
-        nENRJ.Play("Show");
-    }
-
-    #endregion
-
-    #region NOT ENOUGH LINK 
-    [Header("NotEnoughLinks")]
-    public Animator nELink;
-    public void DisplayNotEnoughLink()
-    {
-        if (nELink.GetCurrentAnimatorStateInfo(0).IsName("invisible"))
-        {
-            nELink.Play("Show");
-        }
+        warning.Display(text);
     }
 
     #endregion

@@ -18,6 +18,12 @@ public class NexusAera : MonoBehaviour
         }
     }
 
+    public void Reveal()
+    {
+
+            anim.SetBool("Show", true);
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (revealed)
@@ -32,6 +38,11 @@ public class NexusAera : MonoBehaviour
             anim.SetBool("Show", true);
 
         }
+    }
+
+    public void Hide()
+    {
+        anim.SetBool("Show", false);
     }
 
 

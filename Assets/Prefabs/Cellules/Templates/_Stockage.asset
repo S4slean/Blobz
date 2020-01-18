@@ -31,7 +31,7 @@ MonoBehaviour:
     range: 40
     productionBonusRatio: 1
   energyCost: 150
-  energyCapBase: 50
+  energyCapBase: 100
   rangeBase: 40
   blobRatioAtDeath: 0
   impulseForce_Death: 0
@@ -73,3 +73,5 @@ MonoBehaviour:
   tourelleMaxMun: 3
   tourelleDamage: 5
   tourelleAttackRadius: 6
+  clickBeforeLaunch: 0
+  blobLostPerTick: 0

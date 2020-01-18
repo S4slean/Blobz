@@ -10,20 +10,29 @@ public class ColonyBtn : PoolableObjects
 
     public TextMeshProUGUI txt;
     public Animator anim;
+    public NexusAera nexus;
+
+    private bool clicked = false;
 
     public void BuildNexus()
     {
-        if(RessourceTracker.instance.energy > cost)
+
+        if(RessourceTracker.instance.energy > cost && !clicked)
         {
+            clicked = true;
+
             CellProductrice newProd = ObjectPooler.poolingSystem.GetPooledObject<CellProductrice>() as CellProductrice;
             newProd.Outpool();
             newProd.transform.position = point;
             newProd.CellInitialisation();
+
+            nexus.Hide();
+
             anim.SetBool("Show", false);
         }
         else
         {
-            Debug.Log("Not enough Energy");
+            UIManager.Instance.WarningMessage("You don't have enough Sploosh !");
         }
     }
 

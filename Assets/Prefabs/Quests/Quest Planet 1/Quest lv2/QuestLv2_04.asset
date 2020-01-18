@@ -42,7 +42,7 @@ MonoBehaviour:
     UEvent:
       m_PersistentCalls:
         m_Calls: []
-    foldout: 0
+    foldout: 1
   - eventType: 0
     eventDuration: 0
     virtualCamIndex: 0
@@ -79,7 +79,7 @@ MonoBehaviour:
     UEvent:
       m_PersistentCalls:
         m_Calls: []
-    foldout: 0
+    foldout: 1
   - eventType: 3
     eventDuration: 2
     virtualCamIndex: 0
