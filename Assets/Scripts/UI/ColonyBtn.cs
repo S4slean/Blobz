@@ -9,6 +9,8 @@ public class ColonyBtn : PoolableObjects
     [HideInInspector] public Vector3 point;
 
     public TextMeshProUGUI txt;
+    public Animator anim;
+
     public void BuildNexus()
     {
         if(RessourceTracker.instance.energy > cost)
@@ -17,7 +19,7 @@ public class ColonyBtn : PoolableObjects
             newProd.Outpool();
             newProd.transform.position = point;
             newProd.CellInitialisation();
-            gameObject.SetActive(false);
+            anim.SetBool("Show", false);
         }
         else
         {

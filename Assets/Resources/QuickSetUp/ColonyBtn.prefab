@@ -13,13 +13,14 @@ GameObject:
   - component: {fileID: 8313984153787742019}
   - component: {fileID: 826464546043720027}
   - component: {fileID: 7042725127784015666}
+  - component: {fileID: 7863855723801002899}
   m_Layer: 0
   m_Name: ColonyBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &6488873808343084892
 RectTransform:
   m_ObjectHideFlags: 0
@@ -147,6 +148,25 @@ MonoBehaviour:
   cost: 100
   point: {x: 0, y: 0, z: 0}
   txt: {fileID: 6863035879263383328}
+--- !u!95 &7863855723801002899
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8489234571899730892}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: fda4ef580c3b19345bc9aed11223aee8, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &9122488311881436307
 GameObject:
   m_ObjectHideFlags: 0
@@ -281,13 +301,13 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 6863035879263383328}
-    characterCount: 0
+    characterCount: 16
     spriteCount: 0
-    spaceCount: 0
-    wordCount: 0
+    spaceCount: 3
+    wordCount: 3
     linkCount: 0
-    lineCount: 0
-    pageCount: 0
+    lineCount: 2
+    pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0

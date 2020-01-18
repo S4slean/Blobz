@@ -4,9 +4,19 @@ using UnityEngine;
 
 public class NexusAera : MonoBehaviour
 {
+    public bool alreadyRevealed;
     public int splouchCost = 100;
-    public bool revealed = false;
+    private bool revealed = false;
     public ColonyBtn btn;
+    public Animator anim;
+
+    private void Start()
+    {
+        if (alreadyRevealed)
+        {
+            anim.SetBool("Show", true);
+        }
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -19,6 +29,7 @@ public class NexusAera : MonoBehaviour
 
             revealed = true;
             UIManager.Instance.DisplayColonyBtn(this);
+            anim.SetBool("Show", true);
 
         }
     }

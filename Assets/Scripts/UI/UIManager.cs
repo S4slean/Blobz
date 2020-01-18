@@ -239,6 +239,7 @@ public class UIManager : MonoBehaviour
         colonyBtn.transform.SetParent(colonyCreation);
         colonyBtn.transform.position = area.transform.position + Vector3.up * 2;
         colonyBtn.Outpool();
+        colonyBtn.anim.SetBool("Show", true);
         area.btn = colonyBtn;
         colonyBtn.UpdateText();
     }

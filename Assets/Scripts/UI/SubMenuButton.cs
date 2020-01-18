@@ -19,7 +19,6 @@ public class SubMenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        Debug.Log("mouseOn");
         UIManager.Instance.LoadToolTip(transform.position, cellAssociated, true);
         mousOnMe = true;
     }
@@ -36,7 +35,6 @@ public class SubMenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     {
         if(mousOnMe && Input.GetMouseButtonUp(0))
         {
-            Debug.Log("createCell");
             CellSelectionShop.instance.CellConstruction(cellAssociated);
         }
     }
