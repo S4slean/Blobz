@@ -38,7 +38,7 @@ MonoBehaviour:
       usingSprite: 1
       sprite: {fileID: 21300000, guid: 013d0ca5a2e30f7438158762ce87327c, type: 3}
       Title: 
-      Text: "Perfect ! This cell is under your command. It will launch a power full
+      Text: "Perfect ! This cell is under your command. It will launch a powerful
         strike that does a lot of damage ! You can use it against the enemies and
         their buildings !\r\n"
     - rpgStyle: 1
@@ -47,7 +47,7 @@ MonoBehaviour:
       usingSprite: 1
       sprite: {fileID: 21300000, guid: 013d0ca5a2e30f7438158762ce87327c, type: 3}
       Title: 
-      Text: Use soldiers and aerial strike do destroy the village !
+      Text: Use soldiers and aerial strike to destroy the village !
     UEvent:
       m_PersistentCalls:
         m_Calls: []

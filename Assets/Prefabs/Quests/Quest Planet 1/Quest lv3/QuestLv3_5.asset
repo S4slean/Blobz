@@ -43,7 +43,7 @@ MonoBehaviour:
     UEvent:
       m_PersistentCalls:
         m_Calls: []
-    foldout: 0
+    foldout: 1
   - eventType: 0
     eventDuration: 2
     virtualCamIndex: 1
@@ -70,8 +70,8 @@ MonoBehaviour:
       usingSprite: 1
       sprite: {fileID: 21300000, guid: 013d0ca5a2e30f7438158762ce87327c, type: 3}
       Title: 
-      Text: "But be carefull, they will attack if we send soldiers or if we build
-        cell to close from their village. We need to be prepared.\r\n"
+      Text: "But be careful, they will attack if we send soldiers or if we build cell
+        to close from their village. We need to be prepared.\r\n"
     - rpgStyle: 1
       anchor: {fileID: 0}
       offset: {x: 0, y: 0, z: 0}
@@ -82,4 +82,4 @@ MonoBehaviour:
     UEvent:
       m_PersistentCalls:
         m_Calls: []
-    foldout: 0
+    foldout: 1
