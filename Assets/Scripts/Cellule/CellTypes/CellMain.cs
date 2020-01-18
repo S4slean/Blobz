@@ -25,6 +25,7 @@ public class CellMain : PoolableObjects, PlayerAction
     public TextMeshPro NCurrentProximity;
     public Transform graphTransform;
     public Transform TargetPos;
+    private CellAlert alert;
 
     public GameObject coachIcon;
     public GameObject exploIcon;
@@ -100,13 +101,14 @@ public class CellMain : PoolableObjects, PlayerAction
 
     protected bool inDanger;
     protected bool isDead = false;
+    protected bool alertDisplayed = false;
 
 
     protected bool overLoad = false;
     protected int overloadStack;
 
     public bool canBePlaced;
-    protected bool isVisible;
+    public bool isVisible;
     protected bool hasExplo;
     #endregion
 
@@ -410,22 +412,7 @@ public class CellMain : PoolableObjects, PlayerAction
 
         CheckForExplo(_blobType);
 
-        float ratio = (float)blobNumber / (float)currentBlobStockage;
-        int pourcentage = Mathf.FloorToInt(ratio * 100f);
-        if (pourcentage >= 80)
-        {
-            inDanger = true;
-            if (!isVisible)
-            {
-                CellAlert alert = ObjectPooler.poolingSystem.GetPooledObject<CellAlert>() as CellAlert;
-                UIManager.Instance.DisplayCellAlert(transform, alert);
-            }
-            //ANIM DANGER CELL 
-        }
-        else
-        {
-            inDanger = false;
-        }
+        HandleAlerts();
 
         if (blobNumber > currentBlobStockage && !isDead && !isNexus)
         {
@@ -451,6 +438,38 @@ public class CellMain : PoolableObjects, PlayerAction
 
         //NBlob.text = (blobNumber + " / " + currentBlobStockage);
         //UpdateCaract();
+    }
+
+    private void HandleAlerts()
+    {
+        float ratio = (float)blobNumber / (float)currentBlobStockage;
+        int pourcentage = Mathf.FloorToInt(ratio * 100f);
+
+        if (pourcentage >= 10)
+        {
+            if (!inDanger)
+                inDanger = true;
+
+            if (!isVisible && !alertDisplayed)
+            {
+                Debug.Log("Alert !");
+                alert = ObjectPooler.poolingSystem.GetPooledObject<CellAlert>() as CellAlert;
+                UIManager.Instance.DisplayCellAlert(transform, alert);
+                alertDisplayed = true;
+            }
+
+            if (isVisible && alertDisplayed)
+            {
+                UIManager.Instance.HideCellAlert(alert);
+                alertDisplayed = false;
+            }
+            //ANIM DANGER CELL 
+        }
+        else
+        {
+            if (inDanger)
+                inDanger = false;
+        }
     }
 
     public virtual void BlobAmountCheck(int amount, BlobManager.BlobType _blobType)
@@ -1079,9 +1098,11 @@ public class CellMain : PoolableObjects, PlayerAction
     private void OnBecameInvisible()
     {
         isVisible = false;
+        Debug.Log("invisible");
     }
     private void OnBecameVisible()
     {
+        Debug.Log("visible");
         isVisible = true;
     }
     #endregion

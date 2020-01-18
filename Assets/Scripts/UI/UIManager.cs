@@ -239,6 +239,7 @@ public class UIManager : MonoBehaviour
         colonyBtn.transform.SetParent(colonyCreation);
         colonyBtn.transform.position = area.transform.position + Vector3.up * 2;
         colonyBtn.Outpool();
+        colonyBtn.anim.SetBool("Show", true);
         area.btn = colonyBtn;
         colonyBtn.UpdateText();
     }
@@ -327,8 +328,19 @@ public class UIManager : MonoBehaviour
         Vector3 screenObjPos = Camera.main.WorldToScreenPoint(transform.position);
 
         Vector3 dir = (screenObjPos - screenCenter).normalized;
+        alert.Outpool();
+        rect.anchoredPosition = Vector2.zero + new Vector2(dir.x, dir.z) *500;
+        //rect.anchoredPosition = new Vector2((dir.x * Screen.width / 2) - (Mathf.Sign(dir.x) * Screen.width * offsetPercentage), (dir.y * Screen.height / 2) - (Mathf.Sign(dir.y) * Screen.height * offsetPercentage));
+    }
 
-        rect.anchoredPosition = new Vector2((dir.x * Screen.width / 2) - (Mathf.Sign(dir.x) * Screen.width * offsetPercentage), (dir.y * Screen.height / 2) - (Mathf.Sign(dir.y) * Screen.height * offsetPercentage));
+    public void UpdateAlertPos()
+    {
+        
+    }
+
+    public void HideCellAlert(CellAlert alert)
+    {
+        alert.Inpool();
     }
 
 
