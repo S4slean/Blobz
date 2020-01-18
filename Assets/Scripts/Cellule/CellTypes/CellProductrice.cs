@@ -10,13 +10,13 @@ public class CellProductrice : CellMain
     public override void BlobsTick()
     {
         haveExpulse = false;
-        //ça marche bien mais à voir si quand 1 batiment meure la produciton saute avec ou pas
-        //if ((int)Random.Range(0, 101) <= productionBonusRatio)
-        //{
-        //    BlobNumberVariation(myCellTemplate.prodPerTickBase , BlobManager.BlobType.normal);
-        //}
+       // ça marche bien mais à voir si quand 1 batiment meure la produciton saute avec ou pas
+        if ((int)Random.Range(0, 101) <= productionBonusRatio)
+        {
+            BlobNumberVariation(myCellTemplate.prodPerTickBase, BlobManager.BlobType.normal , true);
+        }
 
-        int productionPerTick = myCellTemplate.prodPerTickBase/* * (1 + productionBonusPacket)*/;
+        int productionPerTick = myCellTemplate.prodPerTickBase *(1 + productionBonusPacket);
 
         BlobNumberVariation(productionPerTick , BlobManager.BlobType.normal , true);
 
@@ -81,25 +81,14 @@ public class CellProductrice : CellMain
     public void ProductriceProximityGestion(CellProximityDectection collider, bool enter)
     {
         ProductionVariationByProximity(collider.productionBonusRatio, enter);
-        //Il faut choisir le plus grand 
-        //for (int i = 0; i < myProximityCollider.Length; i++)
-        //{
-        //    if (collider == myProximityCollider[i])
-        //    {
-        //        ProductionVariationByProximity(collider.productionBonusRatio, enter);
-        //    }
-        //}
     }
 
     public override void Died(bool intentionnalDeath)
     {
-
         productionBonusPacket = 0;
         productionBonusRatio = 0;
         base.Died(intentionnalDeath);
-
     }
-
     private void ProductionVariationByProximity(int amount, bool addition)
     {
         int multiplier;

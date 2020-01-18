@@ -84,4 +84,11 @@ public class CellTourelle : CellMain
         base.SetupVariable();
     }
 
+    public override void Died(bool intentionnalDeath)
+    {
+        tourelleCollider.Death();
+        base.Died(intentionnalDeath);
+        
+    }
+
 }
