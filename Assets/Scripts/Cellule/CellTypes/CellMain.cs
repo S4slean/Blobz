@@ -5,7 +5,6 @@ using System.Linq;
 using TMPro;
 using UnityEngine.EventSystems;
 
-//[RequireComponent(typeof(MeshCollider))]  //typeof(MeshRenderer), typeof(MeshFilter),
 public class CellMain : PoolableObjects, PlayerAction
 {
     #region Variables
@@ -380,14 +379,12 @@ public class CellMain : PoolableObjects, PlayerAction
         if (currentBlobStockage <= 0)
         {
             overLoad = true;
-            //Died(false);
             return;
         }
 
         if (blobNumber > currentBlobStockage && !isDead && !isNexus)
         {
             overLoad = true;
-            //Died(false);
             return;
         }
 
@@ -1120,7 +1117,7 @@ public class CellMain : PoolableObjects, PlayerAction
         bool actionMade = false;
         if (stuckBlobs.Count > 0)
         {
-            stuckBlobs[stuckBlobs.Count - 1].Destruct();
+            stuckBlobs[stuckBlobs.Count - 1].Unstuck();
             actionMade = true;
         }
         else if (overLoad)
