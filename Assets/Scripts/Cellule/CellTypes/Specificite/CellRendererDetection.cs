@@ -8,6 +8,7 @@ public class CellRendererDetection : MonoBehaviour
 
     private void OnBecameInvisible()
     {
+        
         cellParent.isVisible = false;
 
     }
