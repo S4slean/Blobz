@@ -83,6 +83,12 @@ public class InputManager : MonoBehaviour
         mouseWorldPos = CurrentHit.point;
         mouseScreenPos = new Vector3(Input.mousePosition.x, 0, Input.mousePosition.y);
 
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Time.timeScale = 0;
+            UIManager.Instance.DisplayUI(UIManager.Instance.pauseMenu.gameObject);
+        }
+
         switch (inputMode)
         {
             #region STANDARD_STATE
