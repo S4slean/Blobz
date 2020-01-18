@@ -22,8 +22,6 @@ public class SoundManager : MonoBehaviour
     private float count = 0;
     public float fadingTime = 2;
 
-
-    private bool firstMusicSource = true;
     private bool musicPaused = false;
     private AudioClip nextMusic;
 
