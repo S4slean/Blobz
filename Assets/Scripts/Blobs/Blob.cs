@@ -50,6 +50,15 @@ public class Blob : PoolableObjects
 
     public void ChangeType(BlobManager.BlobType newType)
     {
+        if (newType == BlobManager.BlobType.mad)
+        {
+            tag = "Enemies";
+        }
+        else if (blobType == BlobManager.BlobType.mad)
+        {
+            tag = "Untagged";
+        }
+
         RessourceTracker.instance.RemoveBlob(this);
         blobType = newType;
         UpdateMat();

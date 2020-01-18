@@ -15,12 +15,12 @@ MonoBehaviour:
   questType: 2
   questTitle: 
   questDescription: 
-  eventDone: 0
+  eventDone: 1
   populationObjective: 0
   energyToObtain: 0
   cellType: 10
   level: 1
-  cellNbrToObtain: 2
+  cellNbrToObtain: 3
   blobExplo: 0
   anyCells: 1
   colonialCellType: 0

@@ -11,6 +11,7 @@ public class tourelleCollider : MonoBehaviour
 
     private List<Blob> badBlobs = new List<Blob>();
     private List<Destructible> badCell = new List<Destructible>();
+    private int currentCellTargetIndex;
 
 
     public void Init(CellTourelle _parent)
@@ -37,7 +38,7 @@ public class tourelleCollider : MonoBehaviour
                     badCell.Add(cell);
                 }
             }
-
+            CheckForTarget();
         }
     }
 
@@ -55,7 +56,7 @@ public class tourelleCollider : MonoBehaviour
             else
             {
                 Destructible cell = other.GetComponent<Destructible>();
-                if (badCell != null)
+                if (cell != null)
                 {
                     badCell.Remove(cell);
                     CheckForTarget();
@@ -73,24 +74,62 @@ public class tourelleCollider : MonoBehaviour
             {
                 //ça sera un projectile 
                 badBlobs[0].Destruct();
+
+               // badBlobs.Remove(badBlobs[0]);
             }
             else
             {
                 //foudra désactiver / réactiver le cllider des cell en reoncstruction 
-                badCell[0].ReceiveDamage(parent.myCellTemplate.tourelleDamage);
+                badCell[currentCellTargetIndex].ReceiveDamage(parent.myCellTemplate.tourelleDamage);
+                if (badCell[currentCellTargetIndex].isRuin)
+                {
+                    CheckForTarget();
+                }
             }
         }
     }
 
     private void CheckForTarget()
     {
-        if (badBlobs.Count <= 0 && badCell.Count <= 0)
-        {
-            hasTarget = false;
-        }
-        else
+        if (badBlobs.Count > 0 )
         {
             hasTarget = true;
         }
+        else if (badCell.Count > 0)
+        {
+            hasTarget = false;
+            for (int i = 0; i < badCell.Count; i++)
+            {
+                if (!badCell[i].isRuin)
+                {
+                    currentCellTargetIndex = i;
+                    hasTarget = true;
+                    break;
+                }
+                
+            }   
+        }
+        else
+        {
+            hasTarget = false;
+        }
+
+
+        //if (badBlobs.Count <= 0 && badCell.Count <= 0)
+        //{
+        //    hasTarget = false;
+        //}
+        //else
+        //{
+        //    hasTarget = true;
+        //}
+    }
+
+    public void Death()
+    {
+        badBlobs.Clear();
+        badCell.Clear();
+        hasTarget = false;
+
     }
 }

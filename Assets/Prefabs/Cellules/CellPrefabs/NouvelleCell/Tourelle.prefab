@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1065516466398935401}
   - component: {fileID: 1065516466398935380}
   - component: {fileID: 1065516466398935383}
+  - component: {fileID: 7692827764334496424}
   m_Layer: 0
   m_Name: Dome
   m_TagString: Untagged
@@ -79,6 +80,19 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &7692827764334496424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1065516466398935400}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61958975c84ac004f90348d6e9e3c35c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cellParent: {fileID: 8709668316821708887}
 --- !u!1 &1065516467052029508
 GameObject:
   m_ObjectHideFlags: 0
@@ -1041,6 +1055,7 @@ MonoBehaviour:
   limitedInLink: 0
   specifiqueStats: 0
   canBePlaced: 0
+  isVisible: 0
   tourelleCollider: {fileID: 2304438593801643823}
   progressBar: {fileID: 5199257765705585381}
 --- !u!1001 &241933098616247659
@@ -1329,12 +1344,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 17615c398dc1608419d754388bfeb673, type: 3}
---- !u!4 &9120049730396818776 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4772645559006347207, guid: 17615c398dc1608419d754388bfeb673,
-    type: 3}
-  m_PrefabInstance: {fileID: 4371652947304002207}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &5199257765705585381 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8398160340424761466, guid: 17615c398dc1608419d754388bfeb673,
@@ -1347,6 +1356,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bb3219c9d53de74783035e5f0e216a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &9120049730396818776 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4772645559006347207, guid: 17615c398dc1608419d754388bfeb673,
+    type: 3}
+  m_PrefabInstance: {fileID: 4371652947304002207}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8585853933632768649
 PrefabInstance:
   m_ObjectHideFlags: 0

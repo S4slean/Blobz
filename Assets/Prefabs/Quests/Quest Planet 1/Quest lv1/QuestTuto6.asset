@@ -17,7 +17,7 @@ MonoBehaviour:
   questDescription: 
   eventDone: 1
   populationObjective: 50
-  energyToObtain: 250
+  energyToObtain: 350
   cellType: 10
   level: 1
   cellNbrToObtain: 1

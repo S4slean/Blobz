@@ -12,15 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac59c85db94beed47808c892abe2bae2, type: 3}
   m_Name: QuestLv3_3
   m_EditorClassIdentifier: 
-  questType: 4
-  questTitle: Attack them !
+  questType: 2
+  questTitle: Defend Us !
   questDescription: 
   eventDone: 1
   populationObjective: 0
   energyToObtain: 0
-  cellType: 1
+  cellType: 7
   level: 1
-  cellNbrToObtain: 1
+  cellNbrToObtain: 3
   blobExplo: 0
   anyCells: 1
   colonialCellType: 0
@@ -29,78 +29,24 @@ MonoBehaviour:
   nbrOfObject: 1
   questEvents:
   - eventType: 1
-    eventDuration: 1
+    eventDuration: 0
     virtualCamIndex: 3
     popUpsMsg:
-    - rpgStyle: 0
+    - rpgStyle: 1
       anchor: {fileID: 0}
-      offset: {x: 830, y: 260, z: 0}
+      offset: {x: 0, y: 0, z: 0}
       usingSprite: 1
       sprite: {fileID: 21300000, guid: 013d0ca5a2e30f7438158762ce87327c, type: 3}
       Title: 
-      Text: 'oh by my holy beard look at this
-
-        monstrous blobz ! '
-    UEvent:
-      m_PersistentCalls:
-        m_Calls: []
-    foldout: 1
-  - eventType: 0
-    eventDuration: 2
-    virtualCamIndex: 1
-    popUpsMsg:
-    - rpgStyle: 0
+      Text: 'Perfect ! But they will strike back for sure ! '
+    - rpgStyle: 1
       anchor: {fileID: 0}
       offset: {x: 0, y: 0, z: 0}
-      usingSprite: 0
-      sprite: {fileID: 0}
-      Title: Destroy the enemies
-      Text: 'You juste have to attack the village of
-
-        the bad blobz.'
+      usingSprite: 1
+      sprite: {fileID: 21300000, guid: 013d0ca5a2e30f7438158762ce87327c, type: 3}
+      Title: 
+      Text: "We need to create defenses. Build a turret !\r\n"
     UEvent:
       m_PersistentCalls:
         m_Calls: []
-    foldout: 1
-  - eventType: 1
-    eventDuration: 2
-    virtualCamIndex: 1
-    popUpsMsg:
-    - rpgStyle: 0
-      anchor: {fileID: 0}
-      offset: {x: 830, y: 260, z: 0}
-      usingSprite: 1
-      sprite: {fileID: 21300000, guid: 987c6d63034069f409ea7a78d353536f, type: 3}
-      Title: 
-      Text: gnnnnn blorb... sploosh we need sploosh....
-    UEvent:
-      m_PersistentCalls:
-        m_Calls: []
-    foldout: 1
-  - eventType: 3
-    eventDuration: 2
-    virtualCamIndex: 1
-    popUpsMsg:
-    - rpgStyle: 0
-      anchor: {fileID: 0}
-      offset: {x: 830, y: 260, z: 0}
-      usingSprite: 1
-      sprite: {fileID: 21300000, guid: 987c6d63034069f409ea7a78d353536f, type: 3}
-      Title: 
-      Text: gnnnnn blorb... sploosh we need sploosh....
-    UEvent:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 6190842183759939533, guid: 7b934126b67bf7f44aabfd0ea1f12c2e,
-            type: 3}
-          m_MethodName: ReturnToMainCam
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
     foldout: 1

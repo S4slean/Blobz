@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac59c85db94beed47808c892abe2bae2, type: 3}
   m_Name: QuestLv3_2
   m_EditorClassIdentifier: 
-  questType: 2
+  questType: 4
   questTitle: Prepare your defenses
   questDescription: 
   eventDone: 1
@@ -25,22 +25,34 @@ MonoBehaviour:
   anyCells: 1
   colonialCellType: 0
   placeToGet: 0
-  destructType: 0
-  nbrOfObject: 0
+  destructType: 2
+  nbrOfObject: 1
   questEvents:
   - eventType: 1
     eventDuration: 1
     virtualCamIndex: 3
     popUpsMsg:
-    - rpgStyle: 0
+    - rpgStyle: 1
       anchor: {fileID: 0}
-      offset: {x: 830, y: 260, z: 0}
-      usingSprite: 0
+      offset: {x: 0, y: 0, z: 0}
+      usingSprite: 1
       sprite: {fileID: 21300000, guid: 013d0ca5a2e30f7438158762ce87327c, type: 3}
       Title: 
-      Text: 'Be careful we don''t what we can found
-
-        here ! Build some turret for protect us !'
+      Text: "Now, use it ! Launch soldiers to the fight !\r\n"
+    - rpgStyle: 1
+      anchor: {fileID: 0}
+      offset: {x: 0, y: 0, z: 0}
+      usingSprite: 1
+      sprite: {fileID: 21300000, guid: 013d0ca5a2e30f7438158762ce87327c, type: 3}
+      Title: 
+      Text: "To launch blobz, drag the sling, aim, then release it\r\n"
+    - rpgStyle: 1
+      anchor: {fileID: 0}
+      offset: {x: 0, y: 0, z: 0}
+      usingSprite: 1
+      sprite: {fileID: 21300000, guid: 013d0ca5a2e30f7438158762ce87327c, type: 3}
+      Title: 
+      Text: "Eliminate the enemies\r\n"
     UEvent:
       m_PersistentCalls:
         m_Calls: []

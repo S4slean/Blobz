@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac59c85db94beed47808c892abe2bae2, type: 3}
   m_Name: QuestLv2_06
   m_EditorClassIdentifier: 
-  questType: 4
-  questTitle: Destroy some "Splooshimp"
+  questType: 2
+  questTitle: Go Rocket Blob !
   questDescription: 
   eventDone: 0
   populationObjective: 0
   energyToObtain: 0
-  cellType: 1
+  cellType: 13
   level: 1
   cellNbrToObtain: 1
   blobExplo: 0
@@ -32,19 +32,36 @@ MonoBehaviour:
     eventDuration: 0
     virtualCamIndex: 0
     popUpsMsg:
-    - rpgStyle: 0
+    - rpgStyle: 1
       anchor: {fileID: 0}
-      offset: {x: 830, y: 260, z: 0}
+      offset: {x: 0, y: 0, z: 0}
       usingSprite: 1
-      sprite: {fileID: 21300000, guid: 74a01104759d6494d8d651afa2ac8826, type: 3}
-      Title: Splooshimp !
-      Text: 'You can found them on the map
+      sprite: {fileID: 21300000, guid: cc3173b5ab91f26438949b73af93e3f9, type: 3}
+      Title: 
+      Text: "If I asked you to gain so much sploosh, it is because I want you to use
+        the rocket.\r\n"
+    - rpgStyle: 1
+      anchor: {fileID: 0}
+      offset: {x: 0, y: 0, z: 0}
+      usingSprite: 1
+      sprite: {fileID: 21300000, guid: cc3173b5ab91f26438949b73af93e3f9, type: 3}
+      Title: 
+      Text: "The rocket is really expensive, but if you manage to get enough blobz
+        on board, the rocket will launch and we will go to another planet ! \r\n\n"
+    - rpgStyle: 1
+      anchor: {fileID: 0}
+      offset: {x: 0, y: 0, z: 0}
+      usingSprite: 1
+      sprite: {fileID: 21300000, guid: cc3173b5ab91f26438949b73af93e3f9, type: 3}
+      Title: 
+      Text: 'But blobz in the rocket are slowly dying so you need to bring a lot of
+        blobz at the same time in the rocket.
 
-        it''s seems like Mushroom but they gives you Sploosh'
+'
     UEvent:
       m_PersistentCalls:
         m_Calls: []
-    foldout: 1
+    foldout: 0
   - eventType: 1
     eventDuration: 0
     virtualCamIndex: 0
@@ -53,10 +70,18 @@ MonoBehaviour:
       anchor: {fileID: 0}
       offset: {x: 830, y: 260, z: 0}
       usingSprite: 1
-      sprite: {fileID: 21300000, guid: 74a01104759d6494d8d651afa2ac8826, type: 3}
-      Title: Click click
-      Text: "Click on them for destroy \nand earn Sploosh"
+      sprite: {fileID: 21300000, guid: cc3173b5ab91f26438949b73af93e3f9, type: 3}
+      Title: 
+      Text: "Let\u2019s build a rocket \r\n"
+    - rpgStyle: 0
+      anchor: {fileID: 0}
+      offset: {x: 830, y: 260, z: 0}
+      usingSprite: 1
+      sprite: {fileID: 21300000, guid: cc3173b5ab91f26438949b73af93e3f9, type: 3}
+      Title: 
+      Text: "Get all the blobz on board ! Let\u2019s leave this planet and conquer
+        the universe !\r\n\n"
     UEvent:
       m_PersistentCalls:
         m_Calls: []
-    foldout: 1
+    foldout: 0

@@ -1,5 +1,18 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &7022370855461664999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1236907594294021663}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61958975c84ac004f90348d6e9e3c35c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cellParent: {fileID: 5565576154424326082}
 --- !u!1 &2176681768176192157
 GameObject:
   m_ObjectHideFlags: 0
@@ -568,6 +581,7 @@ MonoBehaviour:
   limitedInLink: 0
   specifiqueStats: 0
   canBePlaced: 0
+  isVisible: 0
 --- !u!54 &8777569679337227342
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -969,6 +983,12 @@ MeshRenderer:
 --- !u!95 &1236907593613512011 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 400314428079193248, guid: 74d7f2ad0af3d5644aa3194c57b18389,
+    type: 3}
+  m_PrefabInstance: {fileID: 1487405306405106155}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1236907594294021663 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 400314426343718900, guid: 74d7f2ad0af3d5644aa3194c57b18389,
     type: 3}
   m_PrefabInstance: {fileID: 1487405306405106155}
   m_PrefabAsset: {fileID: 0}
