@@ -1,14 +1,8 @@
 fileFormatVersion: 2
-<<<<<<< HEAD:Assets/Graph/Animations/UI/NotEnoughNRJ/Hide.anim.meta
-guid: 913a3d851e68ee74f8b0e3d4a36f168c
-NativeFormatImporter:
-=======
-guid: 0af21e3a0db26ca448de82c8f4272fec
+guid: 7fad0c9927537b746a5b789b86a3e5ef
 folderAsset: yes
 DefaultImporter:
->>>>>>> 468be43dbc51e801774ba9ecc0fe554893379e9b:Assets/Graph/Animations/Cell/TourelleProjectile.meta
   externalObjects: {}
-  mainObjectFileID: 7400000
   userData: 
   assetBundleName: 
   assetBundleVariant: 
