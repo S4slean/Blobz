@@ -317,30 +317,22 @@ public class UIManager : MonoBehaviour
     public Transform alertHolder;
     [Range(0, 20)] public float offsetPercentage;
 
-    public void DisplayCellAlert(Transform transform, CellAlert alert)
+    public void DisplayCellAlert(CellMain cell, CellAlert alert)
     {
+
 
         if (alert.transform.parent != alertHolder)
             alert.transform.SetParent(alertHolder);
 
-        RectTransform rect = alert.GetComponent<RectTransform>();
-        Vector3 screenCenter = new Vector3(Screen.width / 2, Screen.height / 2, 0);
-        Vector3 screenObjPos = Camera.main.WorldToScreenPoint(transform.position);
-
-        Vector3 dir = (screenObjPos - screenCenter).normalized;
         alert.Outpool();
-        rect.anchoredPosition = Vector2.zero + new Vector2(dir.x, dir.z) *500;
-        //rect.anchoredPosition = new Vector2((dir.x * Screen.width / 2) - (Mathf.Sign(dir.x) * Screen.width * offsetPercentage), (dir.y * Screen.height / 2) - (Mathf.Sign(dir.y) * Screen.height * offsetPercentage));
+        alert.Display(cell);
+
     }
 
-    public void UpdateAlertPos()
-    {
-        
-    }
 
     public void HideCellAlert(CellAlert alert)
     {
-        alert.Inpool();
+        alert.Hide();
     }
 
 
