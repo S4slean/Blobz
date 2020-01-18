@@ -15,7 +15,7 @@ MonoBehaviour:
   questType: 4
   questTitle: Recolt the mushploosh
   questDescription: 
-  eventDone: 0
+  eventDone: 1
   populationObjective: 0
   energyToObtain: 0
   cellType: 11
@@ -26,10 +26,63 @@ MonoBehaviour:
   colonialCellType: 0
   placeToGet: 0
   destructType: 4
-  nbrOfObject: 5
+  nbrOfObject: 3
   questEvents:
   - eventType: 1
     eventDuration: 0
+    virtualCamIndex: 0
+    popUpsMsg:
+    - rpgStyle: 1
+      anchor: {fileID: 0}
+      offset: {x: 0, y: 0, z: 0}
+      usingSprite: 1
+      sprite: {fileID: 21300000, guid: cc3173b5ab91f26438949b73af93e3f9, type: 3}
+      Title: 
+      Text: Great Job !
+    - rpgStyle: 1
+      anchor: {fileID: 0}
+      offset: {x: 0, y: 0, z: 0}
+      usingSprite: 1
+      sprite: {fileID: 21300000, guid: cc3173b5ab91f26438949b73af93e3f9, type: 3}
+      Title: 
+      Text: "I told you there is 2 other cells. But you\u2019ll be discovering them
+        later. We have better things to do !\r\n"
+    UEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    foldout: 0
+  - eventType: 0
+    eventDuration: 2
+    virtualCamIndex: 3
+    popUpsMsg:
+    - rpgStyle: 0
+      anchor: {fileID: 0}
+      offset: {x: 830, y: 260, z: 0}
+      usingSprite: 1
+      sprite: {fileID: 21300000, guid: cc3173b5ab91f26438949b73af93e3f9, type: 3}
+      Title: 
+      Text: Great Job !
+    UEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    foldout: 1
+  - eventType: 0
+    eventDuration: 2
+    virtualCamIndex: 4
+    popUpsMsg:
+    - rpgStyle: 0
+      anchor: {fileID: 0}
+      offset: {x: 830, y: 260, z: 0}
+      usingSprite: 1
+      sprite: {fileID: 21300000, guid: cc3173b5ab91f26438949b73af93e3f9, type: 3}
+      Title: 
+      Text: "Sometimes, you\u2019ll see weird mushrooms like this one"
+    UEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    foldout: 1
+  - eventType: 1
+    eventDuration: 2
     virtualCamIndex: 0
     popUpsMsg:
     - rpgStyle: 0
@@ -37,18 +90,63 @@ MonoBehaviour:
       offset: {x: 830, y: 260, z: 0}
       usingSprite: 1
       sprite: {fileID: 21300000, guid: cc3173b5ab91f26438949b73af93e3f9, type: 3}
-      Title: Explorator
-      Text: 'If you can''t past a river you
-
-        can build a Treblobchet'
-    - rpgStyle: 0
+      Title: 
+      Text: "Sometimes, you\u2019ll see weird mushrooms like this one "
+    UEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 6190842183759939533, guid: 7b934126b67bf7f44aabfd0ea1f12c2e,
+            type: 3}
+          m_MethodName: ReturnToMainCam
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    foldout: 0
+  - eventType: 3
+    eventDuration: 0
+    virtualCamIndex: 0
+    popUpsMsg:
+    - rpgStyle: 1
       anchor: {fileID: 0}
-      offset: {x: 830, y: 260, z: 0}
+      offset: {x: 0, y: 0, z: 0}
       usingSprite: 1
       sprite: {fileID: 21300000, guid: cc3173b5ab91f26438949b73af93e3f9, type: 3}
       Title: 
-      Text: "the treblobchet launches \nthe explorers further"
+      Text: "If you destroy it, it will give you sploosh. Destroy 3 of them !\r\n"
+    UEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 6190842183759939533, guid: 7b934126b67bf7f44aabfd0ea1f12c2e,
+            type: 3}
+          m_MethodName: ReturnToMainCam
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    foldout: 0
+  - eventType: 1
+    eventDuration: 0
+    virtualCamIndex: 0
+    popUpsMsg:
+    - rpgStyle: 1
+      anchor: {fileID: 0}
+      offset: {x: 0, y: 0, z: 0}
+      usingSprite: 1
+      sprite: {fileID: 21300000, guid: cc3173b5ab91f26438949b73af93e3f9, type: 3}
+      Title: 
+      Text: "If you destroy it, it will give you sploosh. Destroy 3 of them !\r\n"
     UEvent:
       m_PersistentCalls:
         m_Calls: []
-    foldout: 1
+    foldout: 0
