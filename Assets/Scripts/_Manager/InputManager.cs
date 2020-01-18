@@ -288,7 +288,7 @@ public class InputManager : MonoBehaviour
                     }
                     else
                     {
-                        Debug.Log("You can't build there");
+                        UIManager.Instance.WarningMessage("You can't build here !");
                     }
 
 

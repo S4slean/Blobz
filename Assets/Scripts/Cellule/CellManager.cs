@@ -60,7 +60,7 @@ public class CellManager : MonoBehaviour
 
         if (joint == null)
         {
-            Debug.Log("Plus assez d'output");
+            UIManager.Instance.WarningMessage("This cell can't output more Blobz");
             return false;
         }
         else
@@ -87,7 +87,7 @@ public class CellManager : MonoBehaviour
         if (currentLink == null)
         {
             //Alert Message
-            Debug.Log("Pas assez de lien , alerte message");
+            Debug.Log("This cell has no more links available");
             InputManager.Instance.ResetInputs();
             return;
         }
@@ -173,7 +173,6 @@ public class CellManager : MonoBehaviour
             }
             if (!currentLink.CheckNewLinkLength(receivingCell.transform.position, selectedCell, receivingCell))
             {
-                Debug.Log("Coucou c moi ki fé chié Old " + receivingCell.name);
                 SupressCurrentLink();
                 return;
             }
@@ -182,7 +181,7 @@ public class CellManager : MonoBehaviour
             LinkJointClass cellJoint = receivingCell.CheckForAvailableJointOfType(linkJointType.input);
             if (cellJoint == null)
             {
-                Debug.Log("Plus assez de lien input");
+                Debug.Log("This cell can't receive more links");
                 SupressCurrentLink();
                 return;
             }

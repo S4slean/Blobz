@@ -106,7 +106,6 @@ public class QuickSetUp : Editor
         tickManager = Instantiate(tickManager);
         cellManager = Instantiate(cellManager);
         inputManager = Instantiate(inputManager);
-        resourceTracker = Instantiate(resourceTracker);
         blobManager = Instantiate(blobManager);
 
         if (FindObjectOfType<CameraController>() == null)
@@ -192,6 +191,11 @@ public class QuickSetUp : Editor
         textScore.AmountToPool = 100;
         pooler.poolItems.Add(textScore);
 
+
+        ObjectPoolItem tourelleProjectile = new ObjectPoolItem();
+        tourelleProjectile.objectToPool = Resources.Load("QuickSetUp/TourelleProjectile") as GameObject;
+        tourelleProjectile.AmountToPool = 50;
+        pooler.poolItems.Add(tourelleProjectile);
 
 
 
