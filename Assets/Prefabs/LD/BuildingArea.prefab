@@ -72,6 +72,7 @@ MonoBehaviour:
   splouchCost: 100
   btn: {fileID: 0}
   anim: {fileID: 245632441357610159}
+  discoverySound: {fileID: 8300000, guid: b1333bbcda2375b44b62f65cb93fae9c, type: 3}
 --- !u!95 &245632441357610159
 Animator:
   serializedVersion: 3

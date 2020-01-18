@@ -9,6 +9,7 @@ public class NexusAera : MonoBehaviour
     private bool revealed = false;
     public ColonyBtn btn;
     public Animator anim;
+    public AudioClip discoverySound;
 
     private void Start()
     {
@@ -35,6 +36,7 @@ public class NexusAera : MonoBehaviour
 
             revealed = true;
             UIManager.Instance.DisplayColonyBtn(this);
+            SoundManager.instance.PlaySound(discoverySound);
             anim.SetBool("Show", true);
 
         }

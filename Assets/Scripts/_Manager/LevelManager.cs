@@ -27,6 +27,9 @@ public class LevelManager : MonoBehaviour
             instance = this;
         else
             Destroy(gameObject);
+
+
+
     }
     private void Update()
     {
