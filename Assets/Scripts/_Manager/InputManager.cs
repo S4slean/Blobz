@@ -331,7 +331,7 @@ public class InputManager : MonoBehaviour
 
                 if (Input.GetMouseButtonDown(0))
                 {
-                    Collider[] hitColliders = Physics.OverlapSphere(UIManager.Instance.divineCellTarget.transform.position, 1, 1 << 12 | 1 << 16);
+                    Collider[] hitColliders = Physics.OverlapSphere(UIManager.Instance.divineCellTarget.transform.position, .8f, 1 << 12 | 1 << 16);
                     for (int i = 0; i < hitColliders.Length; i++)
                     {
                         if (hitColliders[i].TryGetComponent<Destructible>(out Destructible destrucible))
