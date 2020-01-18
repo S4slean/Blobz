@@ -48,7 +48,7 @@ MonoBehaviour:
   rangeLien: 00000000000000000000000000000000
   tickForActivation: 
   energyCap: 
-  specifique: 0a0000000f000000140000001e000000
+  specifique: 0200000005000000070000000a000000
   energyPerblop: 0
   StatsModification: 7
   REFS: 0
@@ -63,5 +63,3 @@ MonoBehaviour:
   tourelleMaxMun: 3
   tourelleDamage: 5
   tourelleAttackRadius: 6
-  clickBeforeLaunch: 0
-  blobLostPerTick: 0

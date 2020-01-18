@@ -11,44 +11,34 @@ public class CellFlipFlop : CellMain
 
     public override void BlobsTick()
     {
-        if (!overLoad)
+        //ANIM
+        haveExpulse = false;
+        if (blobNumber > 0 && currentOutputLink != null)
         {
-            haveExpulse = false;
-            if (blobNumber > 0 && currentOutputLink != null)
+            currentTick++;
+            if (currentTick == currentTickForActivation)
             {
-                currentTick++;
-                if (currentTick == currentTickForActivation)
+                for (int i = 0; i < currentRejectPower; i++)
                 {
-                    for (int i = 0; i < currentRejectPower; i++)
+
+                    if (blobNumber <= 0)
                     {
-
-                        if (blobNumber <= 0)
-                        {
-                            break;
-                        }
-                        currentOutputLink.Transmitt(1, BlobCheck());
-                        haveExpulse = true;
+                        break;
                     }
-                    currentTick = 0;
+                    currentOutputLink.Transmitt(1, BlobCheck());
+                    haveExpulse = true;
                 }
-            }
-            else
-            {
                 currentTick = 0;
-            }
-
-            if (haveExpulse)
-            {
-                anim.Play("BlobExpulsion");
             }
         }
         else
         {
-            overloadStack++;
-            if (overloadStack >= myCellTemplate.overLoadTickMax)
-            {
-                Died(false);
-            }
+            currentTick = 0;
+        }
+
+        if (haveExpulse)
+        {
+            anim.Play("BlobExpulsion");
         }
 
     }
