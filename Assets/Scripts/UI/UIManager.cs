@@ -238,6 +238,7 @@ public class UIManager : MonoBehaviour
         colonyBtn.point = area.transform.position;
         colonyBtn.transform.SetParent(colonyCreation);
         colonyBtn.transform.position = area.transform.position + Vector3.up * 2;
+        colonyBtn.nexus = area;
         colonyBtn.Outpool();
         colonyBtn.anim.SetBool("Show", true);
         area.btn = colonyBtn;

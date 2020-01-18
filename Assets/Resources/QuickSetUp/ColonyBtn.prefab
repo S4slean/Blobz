@@ -30,7 +30,7 @@ RectTransform:
   m_GameObject: {fileID: 8489234571899730892}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.075, y: 0.075, z: 0.075}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7126458827688308305}
   m_Father: {fileID: 0}
@@ -148,6 +148,7 @@ MonoBehaviour:
   cost: 100
   point: {x: 0, y: 0, z: 0}
   txt: {fileID: 6863035879263383328}
+  anim: {fileID: 7863855723801002899}
 --- !u!95 &7863855723801002899
 Animator:
   serializedVersion: 3

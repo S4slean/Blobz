@@ -142,7 +142,7 @@ MonoBehaviour:
       usingSprite: 1
       sprite: {fileID: 21300000, guid: cc3173b5ab91f26438949b73af93e3f9, type: 3}
       Title: 
-      Text: "There is the academy, the rocket and the accelerator. We will start by
+      Text: "There is the academy, the rocket and the accelerator. We will start with
         the academy.\r\n\n"
     - rpgStyle: 1
       anchor: {fileID: 0}
@@ -150,7 +150,7 @@ MonoBehaviour:
       usingSprite: 1
       sprite: {fileID: 21300000, guid: cc3173b5ab91f26438949b73af93e3f9, type: 3}
       Title: 
-      Text: "The academy is created to train blobz explorer. Those blobz are dedicated
+      Text: "The academy is created to train explorer blobz. Those blobz are dedicated
         to explore the world for you. Create one \r\n"
     UEvent:
       m_PersistentCalls:
