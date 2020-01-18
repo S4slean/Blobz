@@ -6,7 +6,6 @@ using UnityEngine.EventSystems;
 
 public class CellButtonsShop : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    bool mouseOnMe = false;
     public  bool detectMouse = true;
     public int index;
 
@@ -28,21 +27,6 @@ public class CellButtonsShop : MonoBehaviour, IPointerEnterHandler, IPointerExit
     //}
 
 
-
-    public void OnPointerEnter(PointerEventData eventData)
-    {
-        if (!detectMouse)
-            return;
-
-        mouseOnMe = true;
-        CellSelectionShop.instance.DisplaySubMenu(index);
-    }
-
-    public void OnPointerExit(PointerEventData eventData)
-    {
-        mouseOnMe = false;
-    }
-
     public void DetectMouse()
     {
         detectMouse = true;
@@ -51,6 +35,20 @@ public class CellButtonsShop : MonoBehaviour, IPointerEnterHandler, IPointerExit
     public void UndetectMouse()
     {
         detectMouse = false;
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        if (!detectMouse)
+            return;
+
+        CellSelectionShop.instance.DisplaySubMenu(index);
+    }
+
+
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
     }
 
     //private void Update()

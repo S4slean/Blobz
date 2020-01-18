@@ -12,6 +12,12 @@ public class PauseMenu : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
+    public void Resume()
+    {
+        Time.timeScale = 1;
+        UIManager.Instance.HideUI(gameObject);
+    }
+
     public void DisplayQuitButton()
     {
 
