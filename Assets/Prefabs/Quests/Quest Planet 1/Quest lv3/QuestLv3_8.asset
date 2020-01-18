@@ -12,33 +12,42 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac59c85db94beed47808c892abe2bae2, type: 3}
   m_Name: QuestLv3_8
   m_EditorClassIdentifier: 
-  questType: 2
+  questType: 4
   questTitle: 
   questDescription: 
   eventDone: 0
   populationObjective: 0
   energyToObtain: 0
-  cellType: 13
+  cellType: 0
   level: 1
   cellNbrToObtain: 1
   blobExplo: 0
   anyCells: 1
   colonialCellType: 0
   placeToGet: 0
-  destructType: 0
-  nbrOfObject: 0
+  destructType: 2
+  nbrOfObject: 2
   questEvents:
   - eventType: 1
     eventDuration: 0
     virtualCamIndex: 0
     popUpsMsg:
-    - rpgStyle: 0
+    - rpgStyle: 1
       anchor: {fileID: 0}
-      offset: {x: 830, y: 260, z: 0}
+      offset: {x: 0, y: 0, z: 0}
       usingSprite: 1
       sprite: {fileID: 21300000, guid: 013d0ca5a2e30f7438158762ce87327c, type: 3}
       Title: 
-      Text: "Yes ! Congratulation ! Now we can build a rocket without troubles !\r\n"
+      Text: "There are 2 others enemy villages somewhere. Find them and destroy them
+        !\r\n"
+    - rpgStyle: 1
+      anchor: {fileID: 0}
+      offset: {x: 0, y: 0, z: 0}
+      usingSprite: 1
+      sprite: {fileID: 21300000, guid: 013d0ca5a2e30f7438158762ce87327c, type: 3}
+      Title: 
+      Text: "I didn\u2019t mention it put you can put explorers in the treblobchet
+        to launch them far away !\r\n"
     UEvent:
       m_PersistentCalls:
         m_Calls: []

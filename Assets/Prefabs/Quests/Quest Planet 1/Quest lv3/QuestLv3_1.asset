@@ -39,7 +39,7 @@ MonoBehaviour:
       sprite: {fileID: 21300000, guid: 013d0ca5a2e30f7438158762ce87327c, type: 3}
       Title: 
       Text: "Oy soldier, that\u2019s a nice landing ! I\u2019m General Globulus !
-        But i\u2019m not here to joke around ! I hope you are ready because you need
+        But I\u2019m not here to joke around ! I hope you are ready because you need
         to learn a lot of things today !\r\n"
     - rpgStyle: 1
       anchor: {fileID: 0}
@@ -111,7 +111,7 @@ MonoBehaviour:
       sprite: {fileID: 21300000, guid: 013d0ca5a2e30f7438158762ce87327c, type: 3}
       Title: 
       Text: "First, we will build a treblobchet ! It can launch blobz into the battlefield
-        that will fight for us ! Just build some basic cells first, because war cost
+        that will fight for us ! Just build some basic cells first, because war costs
         a lot !\r\n"
     UEvent:
       m_PersistentCalls:
