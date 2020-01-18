@@ -34,5 +34,10 @@ public class NexusAera : MonoBehaviour
         }
     }
 
+    public void Hide()
+    {
+        anim.SetBool("Show", false);
+    }
+
 
 }

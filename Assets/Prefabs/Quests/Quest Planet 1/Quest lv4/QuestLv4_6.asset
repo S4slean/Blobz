@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac59c85db94beed47808c892abe2bae2, type: 3}
   m_Name: QuestLv4_6
   m_EditorClassIdentifier: 
-  questType: 4
-  questTitle: They are to mush !
+  questType: 2
+  questTitle: Just do it !
   questDescription: 
   eventDone: 0
   populationObjective: 0
   energyToObtain: 0
-  cellType: 0
+  cellType: 8
   level: 1
   cellNbrToObtain: 1
   blobExplo: 0
@@ -32,24 +32,21 @@ MonoBehaviour:
     eventDuration: 0
     virtualCamIndex: 0
     popUpsMsg:
-    - rpgStyle: 0
+    - rpgStyle: 1
       anchor: {fileID: 0}
-      offset: {x: 830, y: 260, z: 0}
+      offset: {x: 0, y: 0, z: 0}
       usingSprite: 1
-      sprite: {fileID: 21300000, guid: 013d0ca5a2e30f7438158762ce87327c, type: 3}
+      sprite: {fileID: 21300000, guid: c98328a721f45da4fb0b32121f3026db, type: 3}
       Title: 
-      Text: 'Our explortor tell me two
-
-        "village" of bad blobz are near'
-    - rpgStyle: 0
+      Text: "Good. Now if you click on the cell, you can choose what link is open.
+        Blobz will only go into the open link. The most import\u2026"
+    - rpgStyle: 1
       anchor: {fileID: 0}
-      offset: {x: 830, y: 260, z: 0}
+      offset: {x: 0, y: 0, z: 0}
       usingSprite: 1
-      sprite: {fileID: 21300000, guid: 013d0ca5a2e30f7438158762ce87327c, type: 3}
+      sprite: {fileID: 21300000, guid: 9947f6d56d6bac647b6be103e73de2b9, type: 3}
       Title: 
-      Text: 'And i don''t think it''s a good idea
-
-        to let them alive ! '
+      Text: "I\u2019M BLOBCO, WHO\u2019S READY TO BE PUMPED ? CREATE A GYM NOW !!!\r\n"
     UEvent:
       m_PersistentCalls:
         m_Calls: []
