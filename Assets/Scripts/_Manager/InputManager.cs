@@ -36,7 +36,7 @@ public class InputManager : MonoBehaviour
     [HideInInspector] public Vector3 mouseScreenPos;
 
     private float clickTime;
-    public enum InputMode { normal, movingCell, divineShot };
+    public enum InputMode { normal, movingCell, divineShot, flag };
     private InputMode inputMode = InputMode.normal;
 
 
@@ -53,6 +53,10 @@ public class InputManager : MonoBehaviour
 
     private RaycastHit CurrentHit;
     private PlayerAction currentPlayerAction;
+
+
+    public GameObject flag;
+    public Animator flagAnim;
     #endregion
 
 
@@ -350,7 +354,30 @@ public class InputManager : MonoBehaviour
 
 
                 break;
-                #endregion
+            #endregion
+
+            case InputMode.flag:
+
+                flag.transform.position = mouseWorldPos;
+
+                if (Input.GetMouseButtonDown(0))
+                {
+                    Vector3 dir = (mouseWorldPos - selectedCell.transform.position).normalized;
+
+                    flagAnim.SetTrigger("Plant");
+                    Blob explo = ObjectPooler.poolingSystem.GetPooledObject<Blob>() as Blob;
+                    explo.blobType = BlobManager.BlobType.explorateur;
+                    explo.transform.position = selectedCell.transform.position + dir * 1.8f + Vector3.up*1.1f;
+                    explo.transform.LookAt(flag.transform.position);
+                    explo.Outpool();
+                    explo.Jump(dir);
+
+
+                    SwitchInputMode(InputMode.normal);
+                }
+
+
+                break;
         }
 
 
@@ -442,7 +469,13 @@ public class InputManager : MonoBehaviour
     {
         Instance.inputMode = newInputMode;
 
-        if (newInputMode == InputMode.divineShot)
+        if(newInputMode == InputMode.flag)
+        {
+            Instance.flag.SetActive(true);
+            Instance.flag.transform.position = Instance.mouseWorldPos;
+            Instance.flagAnim.Play("Appear");
+        }
+        else if (newInputMode == InputMode.divineShot)
         {
             UIManager.Instance.DisplayDivineShot(Instance.shootingCell);
         }

@@ -139,8 +139,13 @@ public class Blob : PoolableObjects
     {
         transform.LookAt(transform.position + direction);
 
-        rb.AddForce(direction + Random.insideUnitSphere, ForceMode.Impulse);
+        rb.AddForce(direction + Random.insideUnitSphere*0, ForceMode.Impulse);
 
+    }
+
+    public void Jump()
+    {
+        rb.AddForce(transform.forward * 50 + Vector3.up * 50, ForceMode.Impulse);
     }
 
     public void Fly()

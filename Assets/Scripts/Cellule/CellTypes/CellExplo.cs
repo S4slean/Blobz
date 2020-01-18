@@ -5,7 +5,7 @@ using UnityEngine;
 public class CellExplo : CellMain
 {
 
-    public override void blobAddCheckType(int amount, BlobManager.BlobType _blobType , bool transmission)
+    public override void blobAddCheckType(int amount, BlobManager.BlobType _blobType, bool transmission)
     {
         switch (_blobType)
         {
@@ -51,6 +51,20 @@ public class CellExplo : CellMain
             hasExplo = true;
             exploIcon.SetActive(true);
         }
+    }
+
+    public override void OnShortLeftClickUp(RaycastHit hit)
+    {
+        if (hasExplo)
+        {
+            InputManager.SwitchInputMode(InputManager.InputMode.flag);
+        }
+        else
+        {
+            base.OnShortLeftClickUp(hit);
+
+        }
+
     }
 
 }
