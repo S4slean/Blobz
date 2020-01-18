@@ -5,8 +5,10 @@ using UnityEngine;
 public class tourelleCollider : MonoBehaviour
 {
     public SphereCollider myCollider;
+    public Transform tourelleCanon;
     private CellTourelle parent;
     private bool hasTarget;
+
 
 
     private List<Blob> badBlobs = new List<Blob>();
@@ -69,11 +71,13 @@ public class tourelleCollider : MonoBehaviour
     {
         if (hasTarget)
         {
-            Debug.Log("Fire");
+            TourelleProjectile projectile = ObjectPooler.poolingSystem.GetPooledObject<TourelleProjectile>() as TourelleProjectile;
+            projectile.Outpool();
             if (badBlobs[0] != null)
             {
                 //ça sera un projectile 
                 badBlobs[0].Destruct();
+                projectile.Init(tourelleCanon.position, badBlobs[0].transform.position);
 
                // badBlobs.Remove(badBlobs[0]);
             }
@@ -81,6 +85,7 @@ public class tourelleCollider : MonoBehaviour
             {
                 //foudra désactiver / réactiver le cllider des cell en reoncstruction 
                 badCell[currentCellTargetIndex].ReceiveDamage(parent.myCellTemplate.tourelleDamage);
+                projectile.Init(tourelleCanon.position, badCell[currentCellTargetIndex].transform.position);
                 if (badCell[currentCellTargetIndex].isRuin)
                 {
                     CheckForTarget();
@@ -91,7 +96,7 @@ public class tourelleCollider : MonoBehaviour
 
     private void CheckForTarget()
     {
-        if (badBlobs.Count > 0 )
+        if (badBlobs.Count > 0)
         {
             hasTarget = true;
         }
@@ -106,8 +111,8 @@ public class tourelleCollider : MonoBehaviour
                     hasTarget = true;
                     break;
                 }
-                
-            }   
+
+            }
         }
         else
         {
