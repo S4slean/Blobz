@@ -412,7 +412,6 @@ public class CellMain : PoolableObjects, PlayerAction
 
         CheckForExplo(_blobType);
 
-        HandleAlerts();
 
         if (blobNumber > currentBlobStockage && !isDead && !isNexus)
         {
@@ -428,6 +427,7 @@ public class CellMain : PoolableObjects, PlayerAction
             }
         }
 
+        HandleAlerts();
 
         //Nexus 
         if (isNexus)
@@ -445,30 +445,43 @@ public class CellMain : PoolableObjects, PlayerAction
         float ratio = (float)blobNumber / (float)currentBlobStockage;
         int pourcentage = Mathf.FloorToInt(ratio * 100f);
 
-        if (pourcentage >= 10)
+        if (pourcentage >= 80)
         {
             if (!inDanger)
                 inDanger = true;
+           //ANIM DANGER CELL 
+        }
+        else
+        {
+            if (inDanger)
+                inDanger = false;
+        }
 
+        if (overLoad)
+        {
             if (!isVisible && !alertDisplayed)
             {
                 Debug.Log("Alert !");
                 alert = ObjectPooler.poolingSystem.GetPooledObject<CellAlert>() as CellAlert;
-                UIManager.Instance.DisplayCellAlert(transform, alert);
+                UIManager.Instance.DisplayCellAlert(this, alert);
                 alertDisplayed = true;
             }
 
             if (isVisible && alertDisplayed)
             {
                 UIManager.Instance.HideCellAlert(alert);
+                alert = null;
                 alertDisplayed = false;
             }
-            //ANIM DANGER CELL 
         }
         else
         {
-            if (inDanger)
-                inDanger = false;
+            if (alertDisplayed)
+            {
+                UIManager.Instance.HideCellAlert(alert);
+                alert = null;
+                alertDisplayed = false;
+            }
         }
     }
 
@@ -1091,19 +1104,6 @@ public class CellMain : PoolableObjects, PlayerAction
             domeMR.material = CellManager.Instance.refusedBuildingMat;
             spriteMR.material = CellManager.Instance.refusedBuldingSpriteMask;
         }
-    }
-    #endregion
-
-    #region VISIBLE
-    private void OnBecameInvisible()
-    {
-        isVisible = false;
-        Debug.Log("invisible");
-    }
-    private void OnBecameVisible()
-    {
-        Debug.Log("visible");
-        isVisible = true;
     }
     #endregion
 
