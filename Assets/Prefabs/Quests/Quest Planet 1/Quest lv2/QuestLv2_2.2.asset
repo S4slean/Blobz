@@ -53,7 +53,7 @@ MonoBehaviour:
       usingSprite: 1
       sprite: {fileID: 21300000, guid: cc3173b5ab91f26438949b73af93e3f9, type: 3}
       Title: 
-      Text: "As you may have notice, links length aren\u2019t infinite. The accelerator
+      Text: "As you may have noticed, links lengths aren't  infinite. The accelerator
         has way longer links length capacity. Also, they can expulse more blobz every
         tick than the other cells. \r\n"
     UEvent:
