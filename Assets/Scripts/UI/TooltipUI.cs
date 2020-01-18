@@ -19,6 +19,14 @@ public class TooltipUI : MonoBehaviour
         cellName.text = cell.myCellTemplate.name;
         cellDescription.text = "This cell produces " + cell.myCellTemplate.prodPerTickBase + " blobs per tick";
         cellCost.text = "Cost: " + cell.myCellTemplate.energyCost;
+        if(cell.myCellTemplate.energyCost > RessourceTracker.instance.energy)
+        {
+            cellCost.color = Color.red;
+        }
+        else
+        {
+            cellCost.color = Color.white;
+        }
 
 
         effects.text = "Effects are not implemented yet";

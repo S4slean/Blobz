@@ -16,7 +16,7 @@ public class CellTreblochet : CellMain
 
     public override void BlobsTick()
     {
-        if (blobNumber - blobCoaches.Count > 0 & !chargerIsFull)
+        if (blobNumber - blobCoaches.Count > 0 & !chargerIsFull && ! overLoad)
         {
             BlobManager.BlobType blType = ChargerCustomBlobCheck();
             BlobNumberVariation(-1, blType , false);
