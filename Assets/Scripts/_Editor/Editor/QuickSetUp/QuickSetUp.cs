@@ -114,7 +114,6 @@ public class QuickSetUp : Editor
         if (FindObjectOfType<LevelManager>() == null)
             levelManager = Instantiate(levelManager);
 
-
         if (FindObjectOfType<CinematicManager>() == null)
             cinematicManager = Instantiate(cinematicManager);
 

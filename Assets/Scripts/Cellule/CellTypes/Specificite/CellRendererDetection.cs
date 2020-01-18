@@ -8,13 +8,11 @@ public class CellRendererDetection : MonoBehaviour
 
     private void OnBecameInvisible()
     {
-        Debug.Log("Invisible ", cellParent);
         cellParent.isVisible = false;
 
     }
     private void OnBecameVisible()
     {
-        Debug.Log("Visible" , cellParent);
         cellParent.isVisible = true;
     }
 

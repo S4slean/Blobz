@@ -92,11 +92,11 @@ public class Blob : PoolableObjects
         }
     }
 
-    private void Update()
-    {
-        if (blobType == BlobManager.BlobType.soldier && flyTime > 0)
-            Fly();
-    }
+    //private void Update()
+    //{
+    //    if (blobType == BlobManager.BlobType.soldier && flyTime > 0)
+    //        Fly();
+    //}
 
     public void Destruct()
     {
@@ -105,11 +105,9 @@ public class Blob : PoolableObjects
             infectedCell.StockageCapabilityVariation(infectionAmount);
             infectedCell.stuckBlobs.Remove(this);
         }
-        else
-        {
-            //retire le blob de la liste des blobs actifs dans la scène
-            BlobManager.blobList.Remove(this);
-        }
+
+        //retire le blob de la liste des blobs actifs dans la scène
+        BlobManager.blobList.Remove(this);
 
         if (cameFromVillage)
         {
@@ -121,6 +119,8 @@ public class Blob : PoolableObjects
         lifeTime = 0;
         blobType = BlobManager.BlobType.normal;
         tagetTransform = null;
+
+
 
         infectedCell = null;
         isStuck = false;
