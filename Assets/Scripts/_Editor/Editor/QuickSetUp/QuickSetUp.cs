@@ -106,7 +106,6 @@ public class QuickSetUp : Editor
         tickManager = Instantiate(tickManager);
         cellManager = Instantiate(cellManager);
         inputManager = Instantiate(inputManager);
-        resourceTracker = Instantiate(resourceTracker);
         blobManager = Instantiate(blobManager);
 
         if (FindObjectOfType<CameraController>() == null)
@@ -114,7 +113,6 @@ public class QuickSetUp : Editor
 
         if (FindObjectOfType<LevelManager>() == null)
             levelManager = Instantiate(levelManager);
-
 
         if (FindObjectOfType<CinematicManager>() == null)
             cinematicManager = Instantiate(cinematicManager);

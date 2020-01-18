@@ -206,12 +206,17 @@ public class LinkClass : PoolableObjects
             originalCell.BlobNumberVariation(-blobAmount, _blobType, true);
         }
 
-        anim.speed = 1 / (TickManager.instance.tickDuration - TickManager.instance.tickDuration / 1.4f);
+        float speed = 1 / (TickManager.instance.tickDuration - TickManager.instance.tickDuration / 1.4f);
+
+        anim.speed =speed;
+      
         anim.Play("Transfer");
+        StartCoroutine(Transmission(TickManager.instance.tickDuration - TickManager.instance.tickDuration / 1.4f));
     }
 
-    public void EndTransmit()
+    private IEnumerator Transmission(float delay)
     {
+        yield return new WaitForSeconds(delay);
         if (transmitType == BlobManager.BlobType.coach)
         {
             blobCoachInTransition.ChangeCellArrive();
@@ -220,6 +225,11 @@ public class LinkClass : PoolableObjects
         {
             receivingCell.BlobNumberVariation(transMitAmount, transmitType, true);
         }
+    }
+
+    public void EndTransmit()
+    {
+
     }
 
     public void AngleFromCell(CellMain OutputCell)

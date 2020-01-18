@@ -14,83 +14,88 @@ public class tourelleCollider : MonoBehaviour
     private List<Blob> badBlobs = new List<Blob>();
     private List<Destructible> badCell = new List<Destructible>();
     private int currentCellTargetIndex;
+    private int currentBlobTargetIndex;
 
 
     public void Init(CellTourelle _parent)
     {
         parent = _parent;
         myCollider.radius = parent.myCellTemplate.tourelleAttackRadius;
+        myCollider.enabled = true;
     }
 
 
     private void OnTriggerEnter(Collider other)
     {
+        Blob blolMechant = other.GetComponent<Blob>();
+        if (blolMechant != null)
+        {
+            badBlobs.Add(blolMechant);
+            CheckForTarget();
+            return;
+        }
+
         if (other.tag == "Enemies")
         {
-            Blob blolMechant = other.GetComponent<Blob>();
-            if (blolMechant != null)
+
+            Destructible cell = other.GetComponent<Destructible>();
+            if (badCell != null)
             {
-                badBlobs.Add(blolMechant);
+                badCell.Add(cell);
+                CheckForTarget();
             }
-            else
-            {
-                Destructible cell = other.GetComponent<Destructible>();
-                if (badCell != null)
-                {
-                    badCell.Add(cell);
-                }
-            }
-            CheckForTarget();
+
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
+
+        Blob blolMechant = other.GetComponent<Blob>();
+        if (blolMechant != null)
+        {
+            badBlobs.Remove(blolMechant);
+            CheckForTarget();
+            return;
+        }
+
         if (other.tag == "Enemies")
         {
-            Blob blolMechant = other.GetComponent<Blob>();
-            if (blolMechant != null)
+            Destructible cell = other.GetComponent<Destructible>();
+            if (cell != null)
             {
-                badBlobs.Remove(blolMechant);
+                badCell.Remove(cell);
                 CheckForTarget();
-
-            }
-            else
-            {
-                Destructible cell = other.GetComponent<Destructible>();
-                if (cell != null)
-                {
-                    badCell.Remove(cell);
-                    CheckForTarget();
-                }
             }
         }
+
     }
 
     public void Fire()
     {
+        Debug.Log("TryFire");
+        if (!hasTarget)
+        {
+            CheckForTarget();
+        }
         if (hasTarget)
         {
+            Debug.Log("Fire");
+            parent.setCurrentTick(0);
             TourelleProjectile projectile = ObjectPooler.poolingSystem.GetPooledObject<TourelleProjectile>() as TourelleProjectile;
             projectile.Outpool();
-            if (badBlobs[0] != null)
+            if (badBlobs.Count > 0)
             {
-                //ça sera un projectile 
-                badBlobs[0].Destruct();
-                projectile.Init(tourelleCanon.position, badBlobs[0].transform.position);
+                badBlobs[currentCellTargetIndex].Destruct();
+                projectile.Init(tourelleCanon.position, badBlobs[currentCellTargetIndex].transform.position);
+                badBlobs.Remove(badBlobs[currentCellTargetIndex]);
+                return;
+            }
 
-               // badBlobs.Remove(badBlobs[0]);
-            }
-            else
-            {
-                //foudra désactiver / réactiver le cllider des cell en reoncstruction 
-                badCell[currentCellTargetIndex].ReceiveDamage(parent.myCellTemplate.tourelleDamage);
-                projectile.Init(tourelleCanon.position, badCell[currentCellTargetIndex].transform.position);
-                if (badCell[currentCellTargetIndex].isRuin)
-                {
-                    CheckForTarget();
-                }
-            }
+
+            badCell[currentCellTargetIndex].ReceiveDamage(parent.myCellTemplate.tourelleDamage);
+            projectile.Init(tourelleCanon.position, badCell[currentCellTargetIndex].transform.position);
+
         }
     }
 
@@ -98,9 +103,20 @@ public class tourelleCollider : MonoBehaviour
     {
         if (badBlobs.Count > 0)
         {
-            hasTarget = true;
+            hasTarget = false;
+            for (int i = 0; i < badBlobs.Count; i++)
+            {
+                if (badBlobs[i].gameObject.tag == "Enemies")
+                {
+                    currentBlobTargetIndex = i;
+                    hasTarget = true;
+                    return;
+                }
+
+            }
         }
-        else if (badCell.Count > 0)
+
+        if (badCell.Count > 0)
         {
             hasTarget = false;
             for (int i = 0; i < badCell.Count; i++)
@@ -109,29 +125,18 @@ public class tourelleCollider : MonoBehaviour
                 {
                     currentCellTargetIndex = i;
                     hasTarget = true;
-                    break;
+                    return;
                 }
 
             }
         }
-        else
-        {
-            hasTarget = false;
-        }
+        hasTarget = false;
 
-
-        //if (badBlobs.Count <= 0 && badCell.Count <= 0)
-        //{
-        //    hasTarget = false;
-        //}
-        //else
-        //{
-        //    hasTarget = true;
-        //}
     }
 
     public void Death()
     {
+        myCollider.enabled = false;
         badBlobs.Clear();
         badCell.Clear();
         hasTarget = false;
