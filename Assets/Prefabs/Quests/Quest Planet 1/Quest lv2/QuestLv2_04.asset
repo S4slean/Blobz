@@ -15,12 +15,12 @@ MonoBehaviour:
   questType: 2
   questTitle: Build a new Nexus
   questDescription: 
-  eventDone: 0
+  eventDone: 1
   populationObjective: 0
   energyToObtain: 0
   cellType: 0
   level: 1
-  cellNbrToObtain: 1
+  cellNbrToObtain: 2
   blobExplo: 0
   anyCells: 1
   colonialCellType: 0

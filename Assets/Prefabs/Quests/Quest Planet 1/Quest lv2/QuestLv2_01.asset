@@ -50,7 +50,7 @@ MonoBehaviour:
     UEvent:
       m_PersistentCalls:
         m_Calls: []
-    foldout: 1
+    foldout: 0
   - eventType: 1
     eventDuration: 1
     virtualCamIndex: 1
