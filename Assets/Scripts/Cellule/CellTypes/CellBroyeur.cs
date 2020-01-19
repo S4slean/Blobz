@@ -9,58 +9,58 @@ public class CellBroyeur : CellMain
         haveExpulse = false;
 
 
-
-        if (blobNumber > 0)
+        if (!overLoad)
         {
-            int energyGainThisActivation = 0;
-            currentTick++;
-            if (currentTick == currentTickForActivation)
+            if (blobNumber > 0)
             {
-                for (int i = 0; i < blobNumber; i++)
+                int energyGainThisActivation = 0;
+                currentTick++;
+                if (currentTick == currentTickForActivation)
                 {
-                    if (blobNumber > 0)
+                    for (int i = 0; i < blobNumber; i++)
                     {
+                        if (blobNumber > 0)
+                        {
 
-                        BlobNumberVariation(-1, BlobCheck() , false);
-                        RessourceTracker.instance.EnergyVariation(specifiqueStats);
-                        haveExpulse = true;
-                        energyGainThisActivation += specifiqueStats;
+                            BlobNumberVariation(-1, BlobCheck(), false);
+                            RessourceTracker.instance.EnergyVariation(specifiqueStats);
+                            haveExpulse = true;
+                            energyGainThisActivation += specifiqueStats;
 
+                        }
                     }
+                    TextScore newTextescore = ObjectPooler.poolingSystem.GetPooledObject<TextScore>() as TextScore;
+                    newTextescore.Outpool();
+
+                    newTextescore.myTransform.position = myTransform.position + new Vector3(Random.Range(-0.5f, 0.5f), 0, 0);
+                    newTextescore.textScore.text = ("+" + energyGainThisActivation.ToString());
+                    newTextescore.PlayAnim();
+
+
+                    currentTick = 0;
                 }
-                TextScore newTextescore = ObjectPooler.poolingSystem.GetPooledObject<TextScore>() as TextScore;
-                newTextescore.Outpool();
-
-                newTextescore.myTransform.position = myTransform.position + new Vector3(Random.Range(-0.5f, 0.5f), 0, 0);
-                newTextescore.textScore.text = ("+" + energyGainThisActivation.ToString());
-                newTextescore.PlayAnim();
-
-                //for (int i = 0; i < outputLinks.Count; i++)
-                //{
-                //    if (blobNumber <= 0)
-                //    {
-                //        break;
-                //    }
-                //    //Pour l'instant il y a moyen que si une cellule creve la prochaine 
-                //    //soit sauté mai squand il y aura les anim , ce sera plus possible
-                //    outputLinks[i].Transmitt(1 , BlobCheck());
-                //    haveExpulse = true;
-
-                //}
-
+            }
+            else
+            {
                 currentTick = 0;
+            }
+
+            if (haveExpulse)
+            {
+                anim.Play("BlobExpulsion");
+
             }
         }
         else
         {
-            currentTick = 0;
-        }
-
-        if (haveExpulse)
-        {
-            anim.Play("BlobExpulsion");
-            //AnimBroyage
-
+            if (!LevelManager.instance.cellInvisible)
+            {
+                overloadStack++;
+                if (overloadStack >= myCellTemplate.overLoadTickMax)
+                {
+                    Died(false);
+                }
+            }
         }
     }
 }
