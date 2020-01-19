@@ -36,21 +36,21 @@ MonoBehaviour:
       anchor: {fileID: 0}
       offset: {x: 0, y: 0, z: 0}
       usingSprite: 1
-      sprite: {fileID: 21300000, guid: 5e49d0c23e32339408d7c64f13cceb28, type: 3}
+      sprite: {fileID: 21300000, guid: 74a01104759d6494d8d651afa2ac8826, type: 3}
       Title: 
       Text: "Perfect! You see there is a link between the Nexus and the stock. \r\n"
     - rpgStyle: 1
       anchor: {fileID: 0}
       offset: {x: 0, y: 0, z: 0}
       usingSprite: 1
-      sprite: {fileID: 21300000, guid: 5e49d0c23e32339408d7c64f13cceb28, type: 3}
+      sprite: {fileID: 21300000, guid: 74a01104759d6494d8d651afa2ac8826, type: 3}
       Title: 
       Text: "With it we can travel in the system you\u2019ll build !\r\n\n"
     - rpgStyle: 1
       anchor: {fileID: 0}
       offset: {x: 0, y: 0, z: 0}
       usingSprite: 1
-      sprite: {fileID: 21300000, guid: 5e49d0c23e32339408d7c64f13cceb28, type: 3}
+      sprite: {fileID: 21300000, guid: 74a01104759d6494d8d651afa2ac8826, type: 3}
       Title: 
       Text: "To build cells, you need sploosh. But first you need to build a dump
         !\r\n\n"
@@ -59,6 +59,24 @@ MonoBehaviour:
         m_Calls: []
     foldout: 1
     cellType: 0
+    newTickDuration: 0
+  - eventType: 3
+    eventDuration: 0
+    virtualCamIndex: 0
+    popUpsMsg:
+    - rpgStyle: 0
+      anchor: {fileID: 0}
+      offset: {x: 830, y: 260, z: 0}
+      usingSprite: 1
+      sprite: {fileID: 21300000, guid: 68215239a0bc5fa4a8ec1952bf8fed68, type: 3}
+      Title: Blob le bricoleur
+      Text: "Click and drag to select the dump\r and place it !"
+    UEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    foldout: 1
+    cellType: 0
+    newTickDuration: 0
   - eventType: 1
     eventDuration: 0
     virtualCamIndex: 0
@@ -69,7 +87,7 @@ MonoBehaviour:
       usingSprite: 1
       sprite: {fileID: 21300000, guid: 68215239a0bc5fa4a8ec1952bf8fed68, type: 3}
       Title: 
-      Text: "Click and drag to select the dump\r and place it !"
+      Text: "Click and drag \nto select the dump\r \nand place it !"
     UEvent:
       m_PersistentCalls:
         m_Calls:
@@ -87,6 +105,7 @@ MonoBehaviour:
           m_CallState: 2
     foldout: 1
     cellType: 0
+    newTickDuration: 0
   - eventType: 3
     eventDuration: 0
     virtualCamIndex: 0
@@ -116,7 +135,8 @@ MonoBehaviour:
             m_BoolArgument: 0
           m_CallState: 2
     foldout: 1
-    cellType: 0
+    cellType: 3
+    newTickDuration: 0
   - eventType: 4
     eventDuration: 0
     virtualCamIndex: 0
@@ -147,3 +167,4 @@ MonoBehaviour:
           m_CallState: 2
     foldout: 1
     cellType: 3
+    newTickDuration: 0

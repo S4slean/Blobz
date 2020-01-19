@@ -36,13 +36,15 @@ MonoBehaviour:
       anchor: {fileID: 0}
       offset: {x: 0, y: 0, z: 0}
       usingSprite: 1
-      sprite: {fileID: 21300000, guid: 9ab830d8caf4e1547967ad370da85b41, type: 3}
+      sprite: {fileID: 21300000, guid: 68215239a0bc5fa4a8ec1952bf8fed68, type: 3}
       Title: 
       Text: Wow, this is great ! Now reach 250 sploosh
     UEvent:
       m_PersistentCalls:
         m_Calls: []
     foldout: 1
+    cellType: 0
+    newTickDuration: 0
   - eventType: 1
     eventDuration: 0
     virtualCamIndex: 0
@@ -51,10 +53,12 @@ MonoBehaviour:
       anchor: {fileID: 0}
       offset: {x: 830, y: 260, z: 0}
       usingSprite: 1
-      sprite: {fileID: 21300000, guid: 9ab830d8caf4e1547967ad370da85b41, type: 3}
+      sprite: {fileID: 21300000, guid: 68215239a0bc5fa4a8ec1952bf8fed68, type: 3}
       Title: 
       Text: Collect more sploosh
     UEvent:
       m_PersistentCalls:
         m_Calls: []
     foldout: 1
+    cellType: 0
+    newTickDuration: 0
