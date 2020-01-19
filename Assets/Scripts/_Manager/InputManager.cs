@@ -119,6 +119,8 @@ public class InputManager : MonoBehaviour
                 //Click Gauche In
                 if (Input.GetMouseButtonDown(0))
                 {
+                    
+
                     if (CurrentHit.transform != null)
                     {
 
@@ -145,9 +147,10 @@ public class InputManager : MonoBehaviour
                 {
                     clickTime += Time.deltaTime;
 
+
                     if (selectedElement != null && clickTime > clickCooldown && !holdingLeftClick && !dragging)
                     {
-
+                        UIManager.Instance.HideCellOptions();
                         selectedElement.OnLeftClickHolding(CurrentHit);
                         holdingLeftClick = true;
 
@@ -170,6 +173,8 @@ public class InputManager : MonoBehaviour
                 //Click Gauche Out
                 if (Input.GetMouseButtonUp(0))
                 {
+                    UIManager.Instance.HideCellOptions();
+
                     //pour interagir avec la cellule
                     if (clickTime <= clickCooldown && isOverInteractiveElement && elementOver == selectedElement)
                     {
@@ -190,6 +195,9 @@ public class InputManager : MonoBehaviour
                 //Click Droit In
                 if (Input.GetMouseButtonDown(1))
                 {
+                    SelectElement();
+                    UIManager.Instance.HideCellOptions();
+
                     if (holdingLeftClick)
                     {
                         selectedElement.OnRightClickWhileHolding(CurrentHit);
@@ -204,6 +212,12 @@ public class InputManager : MonoBehaviour
                     {
                         CellManager.Instance.DeselectElement();
                     }
+                }
+
+                if (Input.GetMouseButtonUp(1))
+                {
+                    if(elementOver != null)
+                        elementOver.OnShortRightClick(CurrentHit);
                 }
 
                 #endregion
@@ -370,7 +384,7 @@ public class InputManager : MonoBehaviour
                     explo.transform.position = selectedCell.transform.position + dir * 2.5f + Vector3.up*1.1f;
                     explo.transform.LookAt(flag.transform.position);
                     explo.Outpool();
-                    explo.Jump();
+                    explo.JumpForward();
 
 
                     SwitchInputMode(InputMode.normal);

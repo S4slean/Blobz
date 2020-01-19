@@ -1180,7 +1180,7 @@ public class CellMain : PoolableObjects, PlayerAction
 
     public virtual void OnShortRightClick(RaycastHit hit)
     {
-        //UIManager.Instance.DisplayCellOptions(this);
+        UIManager.Instance.DisplayCellOptions(this);
     }
     public virtual void OnRightClickWhileHolding(RaycastHit hit)
     {
