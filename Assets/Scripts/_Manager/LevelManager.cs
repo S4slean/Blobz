@@ -19,8 +19,8 @@ public class LevelManager : MonoBehaviour
     public bool Quests;
     public bool TopBar;
 
-    [Header("Cell Invinsible")]
-    public bool cellInvisible;
+    [Header("Cell Invincible")]
+    public bool cellInvincible;
 
 
     [Header("Cells Unlocked")]
