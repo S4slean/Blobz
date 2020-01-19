@@ -47,8 +47,31 @@ public class CellFlipFlop : CellMain
 
     public override void OnShortLeftClickUp(RaycastHit hit)
     {
-        // base.OnShortLeftClickUp(hit);
-        SwitchLink();
+        actionmade = false;
+        if (stuckBlobs.Count > 0)
+        {
+            stuckBlobs[stuckBlobs.Count - 1].Unstuck();
+            actionmade = true;
+        }
+        else if (overLoad)
+        {
+            BlobNumberVariation(-1, BlobCheck(), false);
+            actionmade = true;
+        }
+
+        if (!actionmade)
+        {
+            SwitchLink();
+            actionmade = true;
+        }
+
+        if (actionmade)
+        {
+            anim.Play("PlayerInteraction", 0, 0f);
+        }
+
+
+
     }
     #endregion
 
