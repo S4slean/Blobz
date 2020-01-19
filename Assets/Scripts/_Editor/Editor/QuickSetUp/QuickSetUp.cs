@@ -101,6 +101,7 @@ public class QuickSetUp : Editor
         blobManager = Resources.Load("QuickSetUp/BlobManager") as GameObject;
         cinematicManager = Resources.Load("QuickSetUp/CinematicManager") as GameObject;
         sceneHandler = Resources.Load("QuickSetUp/SceneLoader") as GameObject;
+        soundManager = Resources.Load("QuickSetUp/SoundManager") as GameObject;
     }
 
     static void BuildNewScene()
