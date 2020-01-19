@@ -38,10 +38,24 @@ public class Helper : MonoBehaviour
         return originhit;
     }
 
+    public static bool ReturnHit(Vector3 startPos, Vector3 endPos)
+    {
+        RaycastHit hit;
+        Vector3 dir = endPos - startPos;
+        dir = new Vector3(dir.x, 0, dir.z).normalized;
+
+        float distance = Vector3.Distance(startPos, endPos);
+
+
+        Debug.DrawLine(startPos, endPos);
+        return Physics.Raycast(startPos, dir, out hit, distance, 1 << 11 | 1 << 15);
+
+    }
+
     public static bool CheckAvailableSpace(Vector3 pos, float radius, Collider colliderToIgnore)
     {
 
-        Collider[] objects = Physics.OverlapSphere(pos, radius, 1 << 12 | 1 << 11 | 1 << 15 |1 <<16);
+        Collider[] objects = Physics.OverlapSphere(pos, radius, 1 << 12 | 1 << 11 | 1 << 15 | 1 << 16);
 
         for (int i = 0; i < objects.Length; i++)
         {

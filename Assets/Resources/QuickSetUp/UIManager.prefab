@@ -4541,7 +4541,7 @@ MonoBehaviour:
   alertHolder: {fileID: 7038464417759882717}
   offsetPercentage: 5
   pauseMenu: {fileID: 515377358770607703}
-  gameOverScreen: {fileID: 0}
+  gameOverScreen: {fileID: 7562233754459867842}
 --- !u!1 &7038464417660496775
 GameObject:
   m_ObjectHideFlags: 0
