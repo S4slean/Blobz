@@ -15,6 +15,7 @@ public class Blob : PoolableObjects
     public int lifeTime = 0;
     public int LifeSpan = 32;
     private BlobManager.BlobType blobType = BlobManager.BlobType.normal;
+    private float jumpForce = 5;
     #endregion
 
     #region ENNEMIES
@@ -50,14 +51,34 @@ public class Blob : PoolableObjects
 
     public void ChangeType(BlobManager.BlobType newType)
     {
-        if (newType == BlobManager.BlobType.mad)
-        {
-            tag = "Enemies";
-        }
-        else if (blobType == BlobManager.BlobType.mad)
+        if (blobType == BlobManager.BlobType.mad)
         {
             tag = "Untagged";
         }
+
+        switch (newType)
+        {
+            case BlobManager.BlobType.soldier:
+
+                jumpForce = BlobManager.instance.soldierJumpForce;
+                break;
+
+            case BlobManager.BlobType.mad:
+
+                jumpForce = BlobManager.instance.enemyJumpForce;
+                tag = "Enemies";
+
+                break;
+
+            case BlobManager.BlobType.explorateur:
+
+                jumpForce = BlobManager.instance.exploJumpForce;
+
+                break;
+        }
+
+
+
 
         RessourceTracker.instance.RemoveBlob(this);
         blobType = newType;
@@ -77,7 +98,7 @@ public class Blob : PoolableObjects
         {
             case BlobManager.BlobType.explorateur:
 
-                rd.material = BlobManager.instance.chargedMat;
+                rd.material = BlobManager.instance.exploMat;
                 break;
 
             case BlobManager.BlobType.normal:
@@ -121,7 +142,7 @@ public class Blob : PoolableObjects
 
         //play death Anim
         tickCount = 0;
-        lifeTime = 0;
+        lifeTime = 10;
         blobType = BlobManager.BlobType.normal;
         tagetTransform = null;
 
@@ -140,17 +161,26 @@ public class Blob : PoolableObjects
     }
 
 
-    public void Jump(Vector3 direction)
+    public void JumpTowards(Transform target)
     {
-        transform.LookAt(transform.position + direction);
+        transform.LookAt(target);
+        JumpForward();
 
-        rb.AddForce(direction + Random.insideUnitSphere*0, ForceMode.Impulse);
 
     }
 
-    public void Jump()
+    public void RandomJump()
     {
-        rb.AddForce(transform.forward * 2 + Vector3.up * 2, ForceMode.Impulse);
+        Vector3 circle = Random.insideUnitCircle;
+        circle = new Vector3(circle.x, 0, circle.y).normalized;
+        transform.LookAt(transform.position + circle);
+        JumpForward();
+    }
+
+    public void JumpForward()
+    {
+
+        rb.AddForce((transform.forward *3 + Vector3.up * 2 + transform.right*Random.Range(-.6f,.6f)).normalized * jumpForce, ForceMode.Impulse);
     }
 
     public void Fly()
