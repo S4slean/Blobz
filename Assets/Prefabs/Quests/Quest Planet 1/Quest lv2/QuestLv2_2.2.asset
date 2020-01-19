@@ -71,8 +71,9 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-    foldout: 1
+    foldout: 0
     cellType: 0
+    newTickDuration: 0
   - eventType: 1
     eventDuration: 2
     virtualCamIndex: 0
@@ -87,8 +88,9 @@ MonoBehaviour:
     UEvent:
       m_PersistentCalls:
         m_Calls: []
-    foldout: 1
+    foldout: 0
     cellType: 0
+    newTickDuration: 0
   - eventType: 0
     eventDuration: 2
     virtualCamIndex: 2
@@ -119,6 +121,7 @@ MonoBehaviour:
           m_CallState: 2
     foldout: 1
     cellType: 0
+    newTickDuration: 0
   - eventType: 1
     eventDuration: 0
     virtualCamIndex: 1
@@ -133,8 +136,9 @@ MonoBehaviour:
     UEvent:
       m_PersistentCalls:
         m_Calls: []
-    foldout: 1
+    foldout: 0
     cellType: 0
+    newTickDuration: 0
   - eventType: 3
     eventDuration: 0
     virtualCamIndex: 1
@@ -163,6 +167,7 @@ MonoBehaviour:
           m_CallState: 2
     foldout: 1
     cellType: 0
+    newTickDuration: 0
   - eventType: 4
     eventDuration: 0
     virtualCamIndex: 1
@@ -191,3 +196,4 @@ MonoBehaviour:
           m_CallState: 2
     foldout: 1
     cellType: 4
+    newTickDuration: 0

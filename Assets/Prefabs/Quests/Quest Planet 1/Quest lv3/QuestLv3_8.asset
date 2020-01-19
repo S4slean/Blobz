@@ -52,3 +52,5 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls: []
     foldout: 0
+    cellType: 0
+    newTickDuration: 0
