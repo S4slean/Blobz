@@ -116,12 +116,12 @@ public class InputManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            SceneManager.LoadScene(0);
+            SceneHandler.instance.ChangeScene(0);
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            SceneManager.LoadScene(1);
+            SceneHandler.instance.ChangeScene(1);
         }
 
 

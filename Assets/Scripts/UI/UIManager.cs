@@ -331,5 +331,15 @@ public class UIManager : MonoBehaviour
 
     #endregion
 
+    #region GAMEOVER
+    public GameObject gameOverScreen;
+
+    public void DisplayGameOver()
+    {
+        gameOverScreen.SetActive(true);
+    }
+
+    #endregion
+
 }
 

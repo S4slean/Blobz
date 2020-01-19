@@ -9,7 +9,7 @@ public class PauseMenu : MonoBehaviour
 
     public void RestartLevel()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        SceneHandler.instance.ChangeScene(SceneManager.GetActiveScene().name);
     }
 
     public void Resume()
@@ -30,7 +30,7 @@ public class PauseMenu : MonoBehaviour
 
     public void LevelSelectionMenu()
     {
-        SceneManager.LoadScene(levelSelectionSceneName);
+        SceneHandler.instance.ChangeScene(levelSelectionSceneName);
     }
 
 }

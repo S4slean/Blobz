@@ -51,6 +51,21 @@ public class LevelManager : MonoBehaviour
 
     }
 
+    #region VICTORY_CONDITIONS
+    public void LevelSuccessed()
+    {
+
+    }
+
+    public void LevelFailed()
+    {
+        TickManager.instance.PauseTick();
+        CameraController.instance.enabled = false;
+        UIManager.Instance.DisplayGameOver();
+    }
+
+    #endregion
+
     #region GAME_SPEED
     public void ReplayLevel()
     {

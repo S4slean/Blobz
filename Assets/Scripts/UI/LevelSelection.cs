@@ -7,6 +7,6 @@ public class LevelSelection : MonoBehaviour
 {
     public void LoadScene(string sceneName)
     {
-        SceneManager.LoadScene(sceneName);
+        SceneHandler.instance.ChangeScene(sceneName);
     }
 }
