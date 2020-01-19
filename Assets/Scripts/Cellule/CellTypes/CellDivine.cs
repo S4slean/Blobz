@@ -83,16 +83,31 @@ public class CellDivine : CellMain
 
     public override void OnShortLeftClickUp(RaycastHit hit)
     {
-        if (isLoaded)
+
+        actionmade = false;
+        if (stuckBlobs.Count > 0)
+        {
+            stuckBlobs[stuckBlobs.Count - 1].Unstuck();
+            actionmade = true;
+        }
+        else if (overLoad)
+        {
+            BlobNumberVariation(-1, BlobCheck(), false);
+            actionmade = true;
+        }
+
+        if (isLoaded && !actionmade)
         {
             InputManager.Instance.shootingCell = this;
             InputManager.SwitchInputMode(InputManager.InputMode.divineShot);
-            //passer la reference de l'input de tir 
+            actionmade = true;
         }
-        else
+
+        if (actionmade)
         {
-            //dipslay not enough charge 
+            anim.Play("PlayerInteraction", 0, 0f);
         }
+
     }
 
     public override void ProximityLevelModification()
