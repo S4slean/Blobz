@@ -22,6 +22,7 @@ public class QuickSetUp : Editor
     static GameObject levelManager;
     static GameObject blobManager;
     static GameObject cinematicManager;
+    static GameObject sceneHandler;
 
 
 
@@ -51,6 +52,7 @@ public class QuickSetUp : Editor
             || FindObjectOfType<CameraController>() != null
             || FindObjectOfType<LevelManager>() != null
             || FindObjectOfType<BlobManager>() != null
+            ||FindObjectOfType<SceneHandler>() != null
             || FindObjectOfType<CinematicManager>() != null)
         {
             return false;
@@ -97,6 +99,7 @@ public class QuickSetUp : Editor
         levelManager = Resources.Load("QuickSetUp/LevelManager") as GameObject;
         blobManager = Resources.Load("QuickSetUp/BlobManager") as GameObject;
         cinematicManager = Resources.Load("QuickSetUp/CinematicManager") as GameObject;
+        sceneHandler = Resources.Load("QuickSetUp/SceneLoader") as GameObject;
     }
 
     static void BuildNewScene()
@@ -122,6 +125,9 @@ public class QuickSetUp : Editor
 
         if(FindObjectOfType<RessourceTracker>() == null)
             resourceTracker = Instantiate(resourceTracker);
+
+        if (FindObjectOfType<SceneHandler>() == null)
+            sceneHandler = Instantiate(sceneHandler);
 
 
         #region UI

@@ -115,7 +115,7 @@ public class RessourceTracker : MonoBehaviour
                 hatchNbr--;
                 if(hatchNbr < 1)
                 {
-                    Debug.Log("GameOver");
+                    LevelManager.instance.LevelFailed();
                 }
                 break;
 
