@@ -16,6 +16,7 @@ public class QuestEventPropertyDrawer : PropertyDrawer
     SerializedProperty UEventProp;
     SerializedProperty foldoutProp;
     SerializedProperty cellTypeProp;
+    SerializedProperty newSpeedProp;
 
     bool foldout;
     int type = 0;
@@ -31,9 +32,6 @@ public class QuestEventPropertyDrawer : PropertyDrawer
         {
             case 0:
                 ObjectToWatchProp = property.FindPropertyRelative("ObjectToWatch");
-                if (!foldoutProp.boolValue)
-                    return (EditorGUIUtility.singleLineHeight + 2) * 4;
-                else
                     return (EditorGUIUtility.singleLineHeight + 2) * 4;
 
 
@@ -55,10 +53,9 @@ public class QuestEventPropertyDrawer : PropertyDrawer
                     return (EditorGUIUtility.singleLineHeight + 2 )*4.4f + (EditorGUIUtility.singleLineHeight + 2) * 2.5f * calls.arraySize ;
 
             case 4:
-
-                if (!foldoutProp.boolValue)
                     return (EditorGUIUtility.singleLineHeight + 2) * 4;
-                else
+
+            case 5:
                     return (EditorGUIUtility.singleLineHeight + 2) * 4;
 
 
@@ -88,6 +85,7 @@ public class QuestEventPropertyDrawer : PropertyDrawer
         popUpsMsgProp = property.FindPropertyRelative("popUpsMsg");
         UEventProp = property.FindPropertyRelative("UEvent");
         cellTypeProp = property.FindPropertyRelative("cellType");
+        newSpeedProp = property.FindPropertyRelative("newTickDuration");
         type = eventTypeProp.intValue;
 
 
@@ -180,6 +178,14 @@ public class QuestEventPropertyDrawer : PropertyDrawer
                 EditorGUI.PropertyField(
                      new Rect(position.x + 15, position.y + 10 + 2 * line, position.width - 25, line - 2),
                     cellTypeProp);
+                break;
+
+            case 5:
+
+                EditorGUI.PropertyField(
+     new Rect(position.x + 15, position.y + 10 + 2 * line, position.width - 25, line - 2),
+    newSpeedProp);
+
                 break;
         }
 
