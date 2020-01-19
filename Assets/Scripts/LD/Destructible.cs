@@ -7,6 +7,7 @@ public class Destructible : PoolableObjects, PlayerAction
     [Header("Refs")]
     public GameObject goodGraph;
     public GameObject brokenGraph;
+    public Animator anim;
     public enum DestructType {none, enemyBuilding, enemyVillage, rock, mushroom, bush, tree , crystal, bigCrystal, barricade, target1, target2,target3, target4, target5, target6, target7, target8, target9, target10 };
 
     [Header("General")]
@@ -97,6 +98,7 @@ public class Destructible : PoolableObjects, PlayerAction
             blob.transform.position = transform.position + circleProjection * spawnRange;
 
         }
+        anim.SetTrigger("Spawn");
     }
     public void Destruction()
     {
@@ -109,6 +111,8 @@ public class Destructible : PoolableObjects, PlayerAction
             if (spawnEnemiesOnDestruction)
                 SpawnEnemies();
 
+
+            anim.Play("Desytroy");
             //Insert Anim and put Delete at the end
             Delete(); //remove once anim is inserted
         }
@@ -125,6 +129,7 @@ public class Destructible : PoolableObjects, PlayerAction
             if (spawnEnemiesOnDestruction)
             {
                 SpawnEnemies();
+                
             }
 
             if (isVillageNexus)
@@ -153,7 +158,20 @@ public class Destructible : PoolableObjects, PlayerAction
     }
 
 
+    #region ANIMATIONS
+    public void SpawnParticles()
+    {
+        if (isRuin)
+        {
+            anim.Play("Disappear");
+        }
+        else
+        {
+            anim.Play("Repair");
+        }
+    }
 
+    #endregion
 
 
     #region PLAYER_ACTIONS

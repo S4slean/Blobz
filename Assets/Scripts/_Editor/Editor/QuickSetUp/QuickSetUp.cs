@@ -23,6 +23,7 @@ public class QuickSetUp : Editor
     static GameObject blobManager;
     static GameObject cinematicManager;
     static GameObject sceneHandler;
+    static GameObject soundManager;
 
 
 
@@ -100,6 +101,7 @@ public class QuickSetUp : Editor
         blobManager = Resources.Load("QuickSetUp/BlobManager") as GameObject;
         cinematicManager = Resources.Load("QuickSetUp/CinematicManager") as GameObject;
         sceneHandler = Resources.Load("QuickSetUp/SceneLoader") as GameObject;
+        soundManager = Resources.Load("QuickSetUp/SoundManager") as GameObject;
     }
 
     static void BuildNewScene()
@@ -128,6 +130,9 @@ public class QuickSetUp : Editor
 
         if (FindObjectOfType<SceneHandler>() == null)
             sceneHandler = Instantiate(sceneHandler);
+
+        if (FindObjectOfType<SoundManager>() == null)
+            soundManager = Instantiate(soundManager);
 
 
         #region UI

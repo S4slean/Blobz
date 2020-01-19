@@ -223,7 +223,7 @@ public class Blob : PoolableObjects
 
         infectedCell.stuckBlobs.Remove(this);
         infectedCell = null;
-        infectionAmount = 0;
+        infectionAmount = 1;
         rb.isKinematic = false;
         isStuck = false;
 

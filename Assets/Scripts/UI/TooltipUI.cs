@@ -17,7 +17,7 @@ public class TooltipUI : MonoBehaviour
     {
         cellCost.gameObject.SetActive(displayCost);
         cellName.text = cell.myCellTemplate.name;
-        cellDescription.text = "This cell produces " + cell.myCellTemplate.prodPerTickBase + " blobs per tick";
+        cellDescription.text = cell.myCellTemplate.description;
         cellCost.text = "Cost: " + cell.myCellTemplate.energyCost;
         if(cell.myCellTemplate.energyCost > RessourceTracker.instance.energy)
         {
