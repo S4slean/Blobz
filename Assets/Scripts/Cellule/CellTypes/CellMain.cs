@@ -356,10 +356,13 @@ public class CellMain : PoolableObjects, PlayerAction
         }
         else
         {
-            overloadStack++;
-            if (overloadStack >= myCellTemplate.overLoadTickMax)
+            if (!LevelManager.instance.cellInvisible)
             {
-                Died(false);
+                overloadStack++;
+                if (overloadStack >= myCellTemplate.overLoadTickMax)
+                {
+                    Died(false);
+                }
             }
         }
     }
