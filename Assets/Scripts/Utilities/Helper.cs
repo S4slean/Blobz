@@ -48,7 +48,7 @@ public class Helper : MonoBehaviour
 
 
         Debug.DrawLine(startPos, endPos);
-        return Physics.Raycast(startPos, dir, out hit, distance, 1 << 11 | 1 << 15);
+        return Physics.Raycast(startPos, dir, out hit, distance, 1 << 11 | 1 << 15 | 1<<16);
 
     }
 
@@ -61,7 +61,7 @@ public class Helper : MonoBehaviour
         {
             if (objects[i] != colliderToIgnore)
             {
-                Debug.Log("hit " + objects[i].name);
+
                 return false;
             }
         }

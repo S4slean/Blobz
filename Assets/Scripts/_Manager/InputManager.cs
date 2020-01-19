@@ -329,7 +329,7 @@ public class InputManager : MonoBehaviour
                 //si clic gauche, replacer la cell et update tous ses liens
                 if (Input.GetMouseButtonDown(0))
                 {
-                    if (CellManager.Instance.terrainIsBuildable)
+                    if (CellManager.Instance.terrainIsBuildable && !CellManager.Instance.obstructedLink)
                     {
 
                         if (CellManager.Instance.newCell)

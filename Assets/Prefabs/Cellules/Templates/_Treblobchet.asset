@@ -10,20 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5d07d45a74266e347a6c0f35a3488ad7, type: 3}
-  m_Name: _Pilone
+  m_Name: _Treblobchet
   m_EditorClassIdentifier: 
   cellsEnableToBuild: []
   blopPrefab: {fileID: 0}
   buttonColor: {r: 0, g: 0, b: 0, a: 0}
   cellTexture: {fileID: 0}
-  type: 9
-  generateProximity: 1
+  type: 12
+  generateProximity: 0
   proximityColliderNumber: 1
-  proximityColliders:
-  - proximityLevel: 3
-    range: 20
-    productionBonusRatio: 70
-  energyCost: 200
+  proximityColliders: []
+  energyCost: 500
   energyCapBase: 0
   rangeBase: 50
   blobRatioAtDeath: 0
@@ -36,11 +33,11 @@ MonoBehaviour:
   tickForActivationBase: 1
   energyPerClick: 2
   limitedInLinks: 0
-  slotDistance: 1.5
+  slotDistance: 1.3
   numberOfOuputLinks: 1
   numberOfInputLinks: 1
-  numberOfFlexLinks: 5
-  proximityLevelMax: 0
+  numberOfFlexLinks: 2
+  proximityLevelMax: 4
   proximityInfluenceMultiplier: 1
   positivesInteractions: 
   negativesInteractions: 
@@ -53,7 +50,7 @@ MonoBehaviour:
   energyCap: 
   specifique: 0200000005000000070000000a000000
   energyPerblop: 0
-  StatsModification: 8
+  StatsModification: 7
   REFS: 0
   ToggleInfoBox: 1
   STATS: 1
@@ -61,10 +58,11 @@ MonoBehaviour:
   ProximityGestion: 1
   maxEnergie: 5
   maxBlobCoach: 0
-  magazineDragRange: 1.5
+  magazineDragRange: 6
   minDistanceDrag: 0.2
   tourelleMaxMun: 3
   tourelleDamage: 5
   tourelleAttackRadius: 6
   clickBeforeLaunch: 0
   blobLostPerTick: 0
+  maxLifeProd: 0
