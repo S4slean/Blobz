@@ -10,17 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5d07d45a74266e347a6c0f35a3488ad7, type: 3}
-  m_Name: _AerialStrike
+  m_Name: Passage
   m_EditorClassIdentifier: 
   cellsEnableToBuild: []
   blopPrefab: {fileID: 0}
-  buttonColor: {r: 0, g: 0, b: 0, a: 0}
+  buttonColor: {r: 0.7169812, g: 0.4398764, b: 0, a: 1}
   cellTexture: {fileID: 0}
-  type: 6
+  type: 4
+  description: 
   generateProximity: 0
   proximityColliderNumber: 1
   proximityColliders: []
-  energyCost: 750
+  energyCost: 200
   energyCapBase: 0
   rangeBase: 50
   blobRatioAtDeath: 0
@@ -29,28 +30,32 @@ MonoBehaviour:
   overloadTreshHold: 5
   prodPerTickBase: 0
   rejectPowerBase: 0
-  storageCapability: 15
+  storageCapability: 20
   tickForActivationBase: 1
-  energyPerClick: 2
-  limitedInLinks: 1
+  energyPerClick: 1
+  limitedInLinks: 0
   slotDistance: 1.5
   numberOfOuputLinks: 0
-  numberOfInputLinks: 2
-  numberOfFlexLinks: 0
+  numberOfInputLinks: 0
+  numberOfFlexLinks: 5
   proximityLevelMax: 4
   proximityInfluenceMultiplier: 1
   positivesInteractions: 
   negativesInteractions: 
-  SurproductionRate: 
-  BlopPerTick: []
-  stockageCapacity: 
+  SurproductionRate: 00000000
+  BlopPerTick:
+  - 1
+  - 2
+  - 3
+  - 4
+  stockageCapacity: 19000000320000003c00000050000000
   LinkCapacity: 
   rangeLien: 00000000000000000000000000000000
-  tickForActivation: 05000000030000000200000001000000
+  tickForActivation: 00000000
   energyCap: 
   specifique: 0200000005000000070000000a000000
   energyPerblop: 0
-  StatsModification: 7
+  StatsModification: 1
   REFS: 0
   ToggleInfoBox: 1
   STATS: 1
