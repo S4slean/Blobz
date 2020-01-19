@@ -55,15 +55,30 @@ public class CellExplo : CellMain
 
     public override void OnShortLeftClickUp(RaycastHit hit)
     {
-        if (hasExplo)
+
+        actionmade = false;
+        if (stuckBlobs.Count > 0)
+        {
+            stuckBlobs[stuckBlobs.Count - 1].Unstuck();
+            actionmade = true;
+        }
+        else if (overLoad)
+        {
+            BlobNumberVariation(-1, BlobCheck(), false);
+            actionmade = true;
+        }
+
+        if (hasExplo && !actionmade)
         {
             InputManager.SwitchInputMode(InputManager.InputMode.flag);
+            actionmade = true;
         }
-        else
-        {
-            base.OnShortLeftClickUp(hit);
 
+        if (actionmade)
+        {
+            anim.Play("PlayerInteraction", 0, 0f);
         }
+
 
     }
 

@@ -61,7 +61,8 @@ MonoBehaviour:
     UEvent:
       m_PersistentCalls:
         m_Calls: []
-    foldout: 1
+    foldout: 0
+    cellType: 0
   - eventType: 1
     eventDuration: 0
     virtualCamIndex: 0
@@ -84,4 +85,29 @@ MonoBehaviour:
     UEvent:
       m_PersistentCalls:
         m_Calls: []
-    foldout: 1
+    foldout: 0
+    cellType: 0
+  - eventType: 4
+    eventDuration: 0
+    virtualCamIndex: 0
+    popUpsMsg:
+    - rpgStyle: 0
+      anchor: {fileID: 0}
+      offset: {x: 830, y: 260, z: 0}
+      usingSprite: 1
+      sprite: {fileID: 21300000, guid: cc3173b5ab91f26438949b73af93e3f9, type: 3}
+      Title: 
+      Text: "Let\u2019s build a rocket \r\n"
+    - rpgStyle: 0
+      anchor: {fileID: 0}
+      offset: {x: 830, y: 260, z: 0}
+      usingSprite: 1
+      sprite: {fileID: 21300000, guid: cc3173b5ab91f26438949b73af93e3f9, type: 3}
+      Title: 
+      Text: "Get all the blobz on board ! Let\u2019s leave this planet and conquer
+        the universe !\r\n\n"
+    UEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    foldout: 0
+    cellType: 13

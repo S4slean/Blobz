@@ -264,6 +264,12 @@ public class QuestManager : MonoBehaviour
                     StartCoroutine(WaitBeforNextEvent());
 
                     break;
+
+                case QuestEvent.QuestEventType.ModifyGameSpeed:
+                    TickManager.instance.tickDuration = currentQuest.questEvents[currentQuestEventID].newTickDuration;
+                    StartCoroutine(WaitBeforNextEvent());
+                    break;
+
             }
 
         }

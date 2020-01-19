@@ -245,9 +245,6 @@ public class CellManager : MonoBehaviour
         {
             SupressCurrentLink();
         }
-
-
-
     }
 
 
