@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6766438785346857497}
   - component: {fileID: 8249064179412635394}
   - component: {fileID: 831147374201942504}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: ExplorationQuest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
