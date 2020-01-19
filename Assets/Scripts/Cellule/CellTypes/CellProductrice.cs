@@ -84,6 +84,7 @@ public class CellProductrice : CellMain
         }
         else
         {
+            if (!LevelManager.instance.cellInvicible)
             {
                 overloadStack++;
                 if (overloadStack >= myCellTemplate.overLoadTickMax)

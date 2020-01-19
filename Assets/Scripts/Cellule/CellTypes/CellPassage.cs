@@ -52,10 +52,13 @@ public class CellPassage : CellMain
         }
         else
         {
-            overloadStack++;
-            if (overloadStack >= myCellTemplate.overLoadTickMax)
+            if (!LevelManager.instance.cellInvicible)
             {
-                Died(false);
+                overloadStack++;
+                if (overloadStack >= myCellTemplate.overLoadTickMax)
+                {
+                    Died(false);
+                }
             }
         }
     }

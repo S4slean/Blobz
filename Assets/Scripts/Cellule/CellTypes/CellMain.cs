@@ -108,6 +108,7 @@ public class CellMain : PoolableObjects, PlayerAction
     protected bool overLoad = false;
     protected int overloadStack;
 
+    protected bool actionmade = false;
 
     public bool canBePlaced;
     public bool isVisible;
@@ -355,10 +356,13 @@ public class CellMain : PoolableObjects, PlayerAction
         }
         else
         {
-            overloadStack++;
-            if (overloadStack >= myCellTemplate.overLoadTickMax)
+            if (!LevelManager.instance.cellInvicible)
             {
-                Died(false);
+                overloadStack++;
+                if (overloadStack >= myCellTemplate.overLoadTickMax)
+                {
+                    Died(false);
+                }
             }
         }
     }
@@ -1107,27 +1111,27 @@ public class CellMain : PoolableObjects, PlayerAction
     //Interaction 
     public virtual void OnShortLeftClickUp(RaycastHit hit)
     {
-        bool actionMade = false;
+        actionmade = false;
         if (stuckBlobs.Count > 0)
         {
             stuckBlobs[stuckBlobs.Count - 1].Unstuck();
-            actionMade = true;
+            actionmade = true;
         }
         else if (overLoad)
         {
             BlobNumberVariation(-1, BlobCheck(), false);
-            actionMade = true;
+            actionmade = true;
         }
 
-        else if (blobNumber > 0)
-        {
-            BlobNumberVariation(-1, BlobCheck(), false);
-            //CellManager.Instance.EnergyVariation(currentEnergyPerClick);
-            RessourceTracker.instance.EnergyVariation(currentEnergyPerClick);
-            actionMade = true;
-        }
+        //else if (blobNumber > 0)
+        //{
+        //    BlobNumberVariation(-1, BlobCheck(), false);
+        //    //CellManager.Instance.EnergyVariation(currentEnergyPerClick);
+        //    RessourceTracker.instance.EnergyVariation(currentEnergyPerClick);
+        //    actionMade = true;
+        //}
 
-        if (actionMade)
+        if (actionmade)
         {
             anim.Play("PlayerInteraction", 0, 0f);
         }

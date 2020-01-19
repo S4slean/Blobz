@@ -6,10 +6,22 @@ public class CellDecharge : CellMain
 {
     public override void OnShortLeftClickUp(RaycastHit hit)
     {
-        if (blobNumber > 0)
+
+        actionmade = false;
+        if (stuckBlobs.Count > 0)
+        {
+            stuckBlobs[stuckBlobs.Count - 1].Unstuck();
+            actionmade = true;
+        }
+        else if (overLoad)
+        {
+            BlobNumberVariation(-1, BlobCheck(), false);
+            actionmade = true;
+        }
+
+        if (blobNumber > 0 && !actionmade)
         {
             BlobNumberVariation(-1, BlobCheck() , false);
-            //CellManager.Instance.EnergyVariation(currentEnergyPerClick);
             RessourceTracker.instance.EnergyVariation(specifiqueStats);
             TextScore newTextescore = ObjectPooler.poolingSystem.GetPooledObject<TextScore>() as TextScore;
             newTextescore.Outpool();
@@ -19,10 +31,16 @@ public class CellDecharge : CellMain
             newTextescore.myTransform.position = myTransform.position + new Vector3(Random.Range(-0.5f, 0.5f), 2, 0);
             newTextescore.textScore.text = ("+" + specifiqueStats.ToString());
             newTextescore.PlayAnim();
+            actionmade = true;
         }
-        // à quoi servent les 2 dernier parametre
-        //AnimBroyage
-        anim.Play("PlayerInteraction", 0, 0f);
+
+
+        if (actionmade)
+        {
+            anim.Play("PlayerInteraction", 0, 0f);
+        }
+
+
 
     }
 

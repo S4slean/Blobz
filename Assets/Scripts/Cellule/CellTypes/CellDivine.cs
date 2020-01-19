@@ -11,40 +11,55 @@ public class CellDivine : CellMain
 
     public override void BlobsTick()
     {
-        if (blobNumber > 0 && !isLoaded)
-        {
-            BlobNumberVariation(-1, BlobCheck() , false);
-            Charge(1);
-        }
-        BlobNumberVariation(myCellTemplate.prodPerTickBase, BlobManager.BlobType.normal , true);
 
-        //ANIM
-        haveExpulse = false;
-
-        if (blobNumber > 0)
+        if (!overLoad)
         {
-            currentTick++;
-            for (int i = 0; i < outputLinks.Count; i++)
+            if (blobNumber > 0 && !isLoaded)
             {
-                if (blobNumber <= 0)
-                {
-                    break;
-                }
-                //Pour l'instant il y a moyen que si une cellule creve la prochaine 
-                //soit sauté mai squand il y aura les anim , ce sera plus possible
-                outputLinks[i].Transmitt(1, BlobCheck());
-                haveExpulse = true;
+                BlobNumberVariation(-1, BlobCheck(), false);
+                Charge(1);
             }
-            currentTick = 0;
+            BlobNumberVariation(myCellTemplate.prodPerTickBase, BlobManager.BlobType.normal, true);
+
+            //ANIM
+            haveExpulse = false;
+
+            if (blobNumber > 0)
+            {
+                currentTick++;
+                for (int i = 0; i < outputLinks.Count; i++)
+                {
+                    if (blobNumber <= 0)
+                    {
+                        break;
+                    }
+                    //Pour l'instant il y a moyen que si une cellule creve la prochaine 
+                    //soit sauté mai squand il y aura les anim , ce sera plus possible
+                    outputLinks[i].Transmitt(1, BlobCheck());
+                    haveExpulse = true;
+                }
+                currentTick = 0;
+            }
+            else
+            {
+                currentTick = 0;
+            }
+
+            if (haveExpulse)
+            {
+                anim.Play("BlobExpulsion");
+            }
         }
         else
         {
-            currentTick = 0;
-        }
-
-        if (haveExpulse)
-        {
-            anim.Play("BlobExpulsion");
+            if (!LevelManager.instance.cellInvicible)
+            {
+                overloadStack++;
+                if (overloadStack >= myCellTemplate.overLoadTickMax)
+                {
+                    Died(false);
+                }
+            }
         }
 
     }
@@ -57,7 +72,7 @@ public class CellDivine : CellMain
             if (energie >= myCellTemplate.maxEnergie)
             {
                 isLoaded = true;
-                energie = myCellTemplate.maxEnergie;                
+                energie = myCellTemplate.maxEnergie;
                 activationButton.ToggleButton(true);
             }
             float ratio = (float)energie / (float)myCellTemplate.maxEnergie;
@@ -83,16 +98,31 @@ public class CellDivine : CellMain
 
     public override void OnShortLeftClickUp(RaycastHit hit)
     {
-        if (isLoaded)
+
+        actionmade = false;
+        if (stuckBlobs.Count > 0)
+        {
+            stuckBlobs[stuckBlobs.Count - 1].Unstuck();
+            actionmade = true;
+        }
+        else if (overLoad)
+        {
+            BlobNumberVariation(-1, BlobCheck(), false);
+            actionmade = true;
+        }
+
+        if (isLoaded && !actionmade)
         {
             InputManager.Instance.shootingCell = this;
             InputManager.SwitchInputMode(InputManager.InputMode.divineShot);
-            //passer la reference de l'input de tir 
+            actionmade = true;
         }
-        else
+
+        if (actionmade)
         {
-            //dipslay not enough charge 
+            anim.Play("PlayerInteraction", 0, 0f);
         }
+
     }
 
     public override void ProximityLevelModification()
