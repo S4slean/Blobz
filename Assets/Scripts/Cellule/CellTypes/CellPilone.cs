@@ -5,6 +5,7 @@ using UnityEngine;
 public class CellPilone : CellMain
 {
     private int energie;
+    public ProgressBar progressBar;
 
     public override void BlobsTick()
     {
@@ -16,6 +17,9 @@ public class CellPilone : CellMain
         else
         {
             energie--;
+            float ratio = (float)energie / (float)myCellTemplate.maxEnergie;
+            progressBar.UpdateBar(ratio);
+
             if (energie <= 0)
             {
                 //Possible probleme avec les colliders 
@@ -65,6 +69,8 @@ public class CellPilone : CellMain
     private void ChargeEnergie()
     {
         energie = myCellTemplate.maxEnergie;
+        float ratio = (float)energie / (float)myCellTemplate.maxEnergie;
+        progressBar.UpdateBar(ratio);
 
 
         for (int i = 0; i < myProximityCollider.Length; i++)

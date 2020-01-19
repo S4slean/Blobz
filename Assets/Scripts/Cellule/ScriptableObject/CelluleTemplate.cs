@@ -7,8 +7,6 @@ using UnityEngine;
 public class CelluleTemplate : ScriptableObject
 {
 
-
-    // [Header ("REF IMPORTANT")]
     public GameObject[] cellsEnableToBuild;
     public GameObject blopPrefab;
     public Color buttonColor;
@@ -16,9 +14,7 @@ public class CelluleTemplate : ScriptableObject
 
     [Space(20f)]
 
-    //public Mesh mesh;
-    //public Material mat; 
-    //public Collider collider;
+
     [Space(20f)]
 
     public CellType type;
@@ -131,6 +127,9 @@ public class CelluleTemplate : ScriptableObject
     public int clickBeforeLaunch;
     [Range(1, 5)]
     public int blobLostPerTick;
+
+    [Range (1 , 100)]
+    public int maxLifeProd;
 
     #endregion
 }

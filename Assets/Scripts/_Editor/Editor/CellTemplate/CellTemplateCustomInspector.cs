@@ -37,6 +37,8 @@ public class CellTemplateCustomInspector : Editor
 
     SerializedProperty limitedInLinksProp, numberOfOuputLinksProp, numberOfInputLinksProp, slotDistanceProp, numberOfFlexLinksProp;
 
+    SerializedProperty maxLifeProdProp;
+
     //ReorderableList proximityColliderList; 
 
     #region VARIABLES SPE 
@@ -141,6 +143,8 @@ public class CellTemplateCustomInspector : Editor
         clickBeforeLaunchProp = serializedObject.FindProperty("clickBeforeLaunch");
         blobLostPerTickProp = serializedObject.FindProperty("blobLostPerTick");
 
+        maxLifeProdProp = serializedObject.FindProperty("maxLifeProd");
+
 
         #endregion
 
@@ -173,6 +177,7 @@ public class CellTemplateCustomInspector : Editor
         switch ((CellType)typeProp.enumValueIndex)
         {
             case CellType.Productrice:
+                EditorGUILayout.PropertyField(maxLifeProdProp);
                 break;
             case CellType.Armory:
                 break;
