@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 
 public class InputManager : MonoBehaviour
@@ -36,7 +37,7 @@ public class InputManager : MonoBehaviour
     [HideInInspector] public Vector3 mouseScreenPos;
 
     private float clickTime;
-    public enum InputMode { normal, movingCell, divineShot };
+    public enum InputMode { normal, movingCell, divineShot, flag };
     private InputMode inputMode = InputMode.normal;
 
 
@@ -53,6 +54,10 @@ public class InputManager : MonoBehaviour
 
     private RaycastHit CurrentHit;
     private PlayerAction currentPlayerAction;
+
+
+    public GameObject flag;
+    public Animator flagAnim;
     #endregion
 
 
@@ -83,11 +88,42 @@ public class InputManager : MonoBehaviour
         mouseWorldPos = CurrentHit.point;
         mouseScreenPos = new Vector3(Input.mousePosition.x, 0, Input.mousePosition.y);
 
+        #region PAUSE
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             Time.timeScale = 0;
             UIManager.Instance.DisplayUI(UIManager.Instance.pauseMenu.gameObject);
         }
+        #endregion
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            LevelManager.instance.ReplayLevel();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if (Time.timeScale == 0)
+                return;
+
+            if (Time.timeScale == 2)
+                LevelManager.instance.normalGameSpeed();
+
+            else if (Time.timeScale == 1)
+                LevelManager.instance.SpeedGame();
+
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            SceneManager.LoadScene(0);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            SceneManager.LoadScene(1);
+        }
+
 
         switch (inputMode)
         {
@@ -115,6 +151,8 @@ public class InputManager : MonoBehaviour
                 //Click Gauche In
                 if (Input.GetMouseButtonDown(0))
                 {
+                    
+
                     if (CurrentHit.transform != null)
                     {
 
@@ -141,9 +179,10 @@ public class InputManager : MonoBehaviour
                 {
                     clickTime += Time.deltaTime;
 
+
                     if (selectedElement != null && clickTime > clickCooldown && !holdingLeftClick && !dragging)
                     {
-
+                        UIManager.Instance.HideCellOptions();
                         selectedElement.OnLeftClickHolding(CurrentHit);
                         holdingLeftClick = true;
 
@@ -166,6 +205,8 @@ public class InputManager : MonoBehaviour
                 //Click Gauche Out
                 if (Input.GetMouseButtonUp(0))
                 {
+                    UIManager.Instance.HideCellOptions();
+
                     //pour interagir avec la cellule
                     if (clickTime <= clickCooldown && isOverInteractiveElement && elementOver == selectedElement)
                     {
@@ -186,6 +227,9 @@ public class InputManager : MonoBehaviour
                 //Click Droit In
                 if (Input.GetMouseButtonDown(1))
                 {
+                    SelectElement();
+                    UIManager.Instance.HideCellOptions();
+
                     if (holdingLeftClick)
                     {
                         selectedElement.OnRightClickWhileHolding(CurrentHit);
@@ -200,6 +244,12 @@ public class InputManager : MonoBehaviour
                     {
                         CellManager.Instance.DeselectElement();
                     }
+                }
+
+                if (Input.GetMouseButtonUp(1))
+                {
+                    if(elementOver != null)
+                        elementOver.OnShortRightClick(CurrentHit);
                 }
 
                 #endregion
@@ -350,6 +400,31 @@ public class InputManager : MonoBehaviour
 
 
                 break;
+            #endregion
+
+            #region FLAG_STATE
+            case InputMode.flag:
+
+                flag.transform.position = mouseWorldPos;
+
+                if (Input.GetMouseButtonDown(0))
+                {
+                    Vector3 dir = (mouseWorldPos - selectedCell.transform.position).normalized;
+
+                    flagAnim.SetTrigger("Plant");
+                    Blob explo = ObjectPooler.poolingSystem.GetPooledObject<Blob>() as Blob;
+                    explo.ChangeType(BlobManager.BlobType.explorateur);
+                    explo.transform.position = selectedCell.transform.position + dir * 2.5f + Vector3.up*1.1f;
+                    explo.transform.LookAt(flag.transform.position);
+                    explo.Outpool();
+                    explo.JumpForward();
+
+
+                    SwitchInputMode(InputMode.normal);
+                }
+
+
+                break;
                 #endregion
         }
 
@@ -442,7 +517,13 @@ public class InputManager : MonoBehaviour
     {
         Instance.inputMode = newInputMode;
 
-        if (newInputMode == InputMode.divineShot)
+        if(newInputMode == InputMode.flag)
+        {
+            Instance.flag.SetActive(true);
+            Instance.flag.transform.position = Instance.mouseWorldPos;
+            Instance.flagAnim.Play("Appear");
+        }
+        else if (newInputMode == InputMode.divineShot)
         {
             UIManager.Instance.DisplayDivineShot(Instance.shootingCell);
         }

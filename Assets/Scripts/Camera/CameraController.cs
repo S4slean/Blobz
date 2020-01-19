@@ -102,13 +102,13 @@ public class CameraController : MonoBehaviour
 
         if (moveDir != Vector3.zero)
         {
-            count += Time.deltaTime / timeToMaxSpeed;
+            count += Time.deltaTime /Time.timeScale / timeToMaxSpeed;
             count = Mathf.Clamp01(count);
         }
 
         else
         {
-            count -= Time.deltaTime / timeToZeroSpeed;
+            count -= Time.deltaTime/Time.timeScale / timeToZeroSpeed;
             count = Mathf.Clamp01(count);
         }
 
@@ -132,7 +132,7 @@ public class CameraController : MonoBehaviour
         }
         else
         {
-            originPos += moveDir * count * camSpeed * Time.deltaTime;
+            originPos += moveDir * count * camSpeed * Time.deltaTime/Time.timeScale;
 
         }
 
@@ -168,12 +168,12 @@ public class CameraController : MonoBehaviour
 
     public void MoveCamWithMouse()
     {
-        originPos += mouseDir * count * camSpeed * Time.deltaTime;
+        originPos += mouseDir * count * camSpeed * Time.deltaTime/Time.timeScale;
     }
 
     public void DecreaseTiltCount()
     {
-        tiltCount -= Time.deltaTime / tiltToZeroSpeed;
+        tiltCount -= Time.deltaTime/Time.timeScale / tiltToZeroSpeed;
         tiltCount = Mathf.Clamp01(tiltCount);
     }
 }

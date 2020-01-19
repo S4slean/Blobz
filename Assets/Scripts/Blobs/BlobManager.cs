@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BlobManager : MonoBehaviour
 {
-    public enum BlobType { normal, explorateur, soldier, mad , coach , aucun};
+    public enum BlobType { normal, explorateur, soldier, mad, coach, aucun };
 
 
     public static List<Blob> blobList = new List<Blob>();
@@ -16,13 +16,20 @@ public class BlobManager : MonoBehaviour
     public Material normalMat;
     [SerializeField] [Range(0, 128)] private int ticksBeforeMad = 4;
 
-    [Header("Charged variables")]
-    public Material chargedMat;
+
+    [Header("Explo variables")]
+    public Material exploMat;
+    public int exploLifeSpan = 10;
+    [SerializeField] [Range(0, 1000)] private int exploTicksBtwnJumps = 3;
+    [Range(0, 1000)] public float exploJumpForce = 7;
     //[SerializeField][Range(0, 10000)] private int energyGain = 10;
 
 
     [Header("Soldier variables")]
     public Material soldierMat;
+    public int soldierLifeSpan = 10;
+    [SerializeField] [Range(0, 1000)] private int soldierTicksBtwnJumps = 4;
+    [Range(0, 1000)] public float soldierJumpForce = 5;
     [SerializeField] [Range(0, 1000)] private float explosionRadius = 20;
     [SerializeField] [Range(0, 1000)] private float detectionRadius = 10;
     private Transform targetTransform;
@@ -30,12 +37,16 @@ public class BlobManager : MonoBehaviour
 
     [Header("Enemy variables")]
     public Material angryMat;
-    [SerializeField] [Range(0, 10000)] private float jumpForce = 10;
-    [SerializeField] [Range(0, 1000)] private float jumpHeight = 5;
+    public bool enemiesHaveLifeTime = false;
+    public int enemyLifeSpan = 10;
+    [SerializeField] [Range(0, 100)] private int standardEnemyTicksBtwnJumps = 4;
+    [SerializeField] [Range(0, 100)] private int AngryEnemyTicksBtwnJumps = 2;
+    [Range(0, 1000)] public float enemyJumpForce = 5;
     [SerializeField] [Range(0, 10000)] private float aggroRange = 10;
-    [SerializeField] [Range(0, 100)] private int ticksBtwnJumps = 4;
 
+    [Range(0, 100)] private int enemyTicksBtwnJumps = 4;
 
+    private Blob blob;
     public void Awake()
     {
         if (instance == null)
@@ -64,9 +75,11 @@ public class BlobManager : MonoBehaviour
             return;
 
         //prend un par un chaque blob de la scène
-        foreach (Blob blob in blobList)
+        for (int i = 0; i < blobList.Count; i++)
         {
-            switch (blob.blobType)
+            blob = blobList[i];
+
+            switch (blob.GetBlobType())
             {
                 //Si le blob est normal
                 case BlobType.normal:
@@ -87,12 +100,12 @@ public class BlobManager : MonoBehaviour
 
                     blob.tickCount++;
                     blob.lifeTime++;
-                    if(blob.lifeTime > blob.LifeSpan)
+                    if (blob.lifeTime > blob.LifeSpan)
                     {
                         blob.Destruct();
                     }
 
-                    if(blob.tickCount > ticksBtwnJumps)
+                    if (blob.tickCount > exploTicksBtwnJumps)
                     {
                         JumpForward(blob);
                         blob.tickCount = 0;
@@ -110,7 +123,7 @@ public class BlobManager : MonoBehaviour
                     }
 
                     //Check si le blob doit agir sur ce tick
-                    if (blob.tickCount > ticksBtwnJumps)
+                    if (blob.tickCount > soldierTicksBtwnJumps)
                     {
                         blob.tickCount = 0;
 
@@ -129,13 +142,13 @@ public class BlobManager : MonoBehaviour
                             //sinon  il se rapproche
                             else
                             {
-                                Jump(blob, targetTransform);
+                                JumpTowards(blob, targetTransform);
                             }
                         }
                         //si il ne detecte rien il se dépace de manière aléatoire
                         else
                         {
-                            Jump(blob);
+                            RanndomJump(blob);
                         }
                     }
 
@@ -145,6 +158,14 @@ public class BlobManager : MonoBehaviour
                 case BlobType.mad:
 
                     blob.tickCount++;
+                    if (enemiesHaveLifeTime)
+                    {
+                        blob.lifeTime++;
+                        if(blob.lifeTime > enemyLifeSpan)
+                        {
+                            blob.Destruct();
+                        }
+                    }
 
                     //Si le blob est déjà accroché à une cell il ne fait rien
                     if (blob.isStuck)
@@ -155,30 +176,30 @@ public class BlobManager : MonoBehaviour
                     {
 
                         //Check si le blob doit agir sur ce tick
-                        if (blob.tickCount > ticksBtwnJumps)
+                        if (blob.tickCount > enemyTicksBtwnJumps)
                         {
                             blob.tickCount = 0;
 
                             if (CheckNearbyCells(blob))
                             {
-                                ticksBtwnJumps = 2;
-                                Jump(blob, targetTransform);
+                                enemyTicksBtwnJumps = AngryEnemyTicksBtwnJumps;
+                                JumpTowards(blob, targetTransform);
                             }
                             else
                             {
-                                ticksBtwnJumps = 4;
+                                enemyTicksBtwnJumps = standardEnemyTicksBtwnJumps;
 
                                 if (blob.knowsNexus)
                                 {
-                                    Jump(blob, LevelManager.instance.nexus.transform);
+                                    JumpTowards(blob, LevelManager.instance.nexus.transform);
                                 }
                                 else if (blob.CheckIfOutOfVillage())
                                 {
-                                    Jump(blob, blob.village.transform);
+                                    JumpTowards(blob, blob.village.transform);
                                 }
                                 else
                                 {
-                                    Jump(blob);
+                                    RanndomJump(blob);
                                 }
 
                             }
@@ -210,7 +231,7 @@ public class BlobManager : MonoBehaviour
             //il check lequel est le plus près
             for (int i = 0; i < detectedColliders.Length; i++)
             {
-                if (detectedColliders[i].GetComponent<Blob>().blobType != BlobType.mad)
+                if (detectedColliders[i].GetComponent<Blob>().GetBlobType() != BlobType.mad)
                     continue;
 
                 Vector3 directionToTarget = detectedColliders[i].transform.position - currentPos;
@@ -277,35 +298,21 @@ public class BlobManager : MonoBehaviour
     }
 
 
-    //si le joueur click sur le blob on fait ça
-
-
-
-    public void Jump(Blob blob)
+    public void JumpTowards(Blob blob, Transform target)
     {
-        Vector2 jumpDir2D = Random.insideUnitCircle.normalized;
-        Vector3 jumpDir = new Vector3(jumpDir2D.x, jumpHeight, jumpDir2D.y);
-        blob.Jump(jumpDir * jumpForce);
-        //Debug.Log("Jump");
-    }
 
-    public void Jump(Blob blob, Transform target)
-    {
-        Vector3 jumpDir = target.position - blob.transform.position;
-        jumpDir = jumpDir.normalized + (Random.insideUnitSphere * .25f) ;
-        jumpDir = jumpDir.normalized;
-        jumpDir = new Vector3(jumpDir.x, jumpHeight, jumpDir.z);
-        blob.Jump(jumpDir * jumpForce);
+        blob.JumpTowards(target);
 
     }
 
     public void JumpForward(Blob blob)
     {
-        Vector3 jumpDir =  blob.transform.forward;
-        jumpDir = jumpDir.normalized + (Random.insideUnitSphere * .25f);
-        jumpDir = jumpDir.normalized;
-        jumpDir = new Vector3(jumpDir.x, jumpHeight, jumpDir.z);
-        blob.Jump(jumpDir * jumpForce);
+        blob.JumpForward();
+    }
+
+    public void RanndomJump(Blob blob)
+    {
+        blob.RandomJump();
     }
 
     public void Explode(Blob blob, int dmg)
@@ -318,7 +325,7 @@ public class BlobManager : MonoBehaviour
 
         foreach (Collider blobCol in touchedBlobs)
         {
-            if (blobCol.GetComponent<Blob>().blobType == BlobType.mad)
+            if (blobCol.GetComponent<Blob>().GetBlobType() == BlobType.mad)
                 Destroy(blobCol.gameObject);
         }
         //Debug.Log("Soldier Explosed " + touchedBlobs.Length + " blobs");

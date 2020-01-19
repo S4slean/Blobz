@@ -175,7 +175,7 @@ public class RessourceTracker : MonoBehaviour
     {
         blobPop++;
 
-        switch (blob.blobType)
+        switch (blob.GetBlobType())
         {
             case BlobManager.BlobType.normal:
 
@@ -277,7 +277,7 @@ public class RessourceTracker : MonoBehaviour
     {
         blobPop--;
 
-        switch (blob.blobType)
+        switch (blob.GetBlobType())
         {
             case BlobManager.BlobType.normal:
 

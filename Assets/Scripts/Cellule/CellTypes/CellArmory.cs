@@ -25,7 +25,7 @@ public class CellArmory : CellMain
                         Blob newBlob = ObjectPooler.poolingSystem.GetPooledObject<Blob>() as Blob;
                         BlobManager.blobList.Add(newBlob);
 
-                        newBlob.blobType = BlobManager.BlobType.soldier;
+                        newBlob.ChangeType(BlobManager.BlobType.soldier);
 
                         newBlob.Outpool();
 

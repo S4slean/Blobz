@@ -14,63 +14,52 @@ public class CellTourelle : CellMain
 
     public override void BlobsTick()
     {
-        if (!overLoad)
+        if (blobNumber > 0 && !fullLoaded)
+        {
+            BlobNumberVariation(-1, BlobCheck(), false);
+            MunitionVariation(1);
+        }
+        BlobNumberVariation(myCellTemplate.prodPerTickBase, BlobManager.BlobType.normal, true);
+
+        //ANIM
+        haveExpulse = false;
+
+        if (blobNumber > 0)
         {
 
-            if (blobNumber > 0 && !fullLoaded)
+            for (int i = 0; i < outputLinks.Count; i++)
             {
-                BlobNumberVariation(-1, BlobCheck(), false);
-                MunitionVariation(1);
-            }
-            BlobNumberVariation(myCellTemplate.prodPerTickBase, BlobManager.BlobType.normal, true);
-
-            //ANIM
-            haveExpulse = false;
-
-            if (blobNumber > 0)
-            {
-
-                for (int i = 0; i < outputLinks.Count; i++)
+                if (blobNumber <= 0)
                 {
-                    if (blobNumber <= 0)
-                    {
-                        break;
-                    }
-                    //Pour l'instant il y a moyen que si une cellule creve la prochaine 
-                    //soit sauté mai squand il y aura les anim , ce sera plus possible
-                    outputLinks[i].Transmitt(1, BlobCheck());
-                    haveExpulse = true;
+                    break;
                 }
+                //Pour l'instant il y a moyen que si une cellule creve la prochaine 
+                //soit sauté mai squand il y aura les anim , ce sera plus possible
+                outputLinks[i].Transmitt(1, BlobCheck());
+                haveExpulse = true;
+            }
+        }
+
+        if (isLoaded)
+        {
+            currentTick++;
+            if (currentTick >= currentTickForActivation)
+            {
+                //TIR
+                tourelleCollider.Fire();
             }
 
-            if (isLoaded)
-            {
-                currentTick++;
-                if (currentTick >= currentTickForActivation)
-                {
-                    //TIR
-                    tourelleCollider.Fire();
-                }
-
-            }
-            else
-            {
-                currentTick = 0;
-            }
-
-            if (haveExpulse)
-            {
-                anim.Play("BlobExpulsion");
-            }
         }
         else
         {
-            overloadStack++;
-            if (overloadStack >= myCellTemplate.overLoadTickMax)
-            {
-                Died(false);
-            }
+            currentTick = 0;
         }
+
+        if (haveExpulse)
+        {
+            anim.Play("BlobExpulsion");
+        }
+
     }
 
     private void MunitionVariation(int amount)

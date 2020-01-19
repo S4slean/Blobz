@@ -15,11 +15,6 @@ public class SoundManager : MonoBehaviour
     public AudioClip level1Music;
     public AudioClip badBlobzMusic;
 
-    [Header("SysytemSounds")]
-    public AudioClip discoverySound;
-    public AudioClip questSuccessSound;
-    public AudioClip victorySound;
-
     [Header("Curves")]
     public AnimationCurve fadingCurve;
 
@@ -27,8 +22,8 @@ public class SoundManager : MonoBehaviour
     private float count = 0;
     public float fadingTime = 2;
 
-
-    private bool firstMusicSource = true;
+    private bool musicPaused = false;
+    private AudioClip nextMusic;
 
     // Start is called before the first frame update
     private void Awake()
@@ -44,32 +39,48 @@ public class SoundManager : MonoBehaviour
         }
     }
 
-    private void Start()
-    {
-
-    }
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.G))
+            ChangeMusic(badBlobzMusic);
+
         if (fading)
         {
+            musicSource.volume = fadingCurve.Evaluate(count / fadingTime);
+            count += Time.deltaTime;
+
+            if(count >= fadingTime && !musicPaused)
+            {
+                musicSource.clip = nextMusic;
+                musicSource.volume = 1;
+                fading = false;
+                count = 0;
+                musicSource.Play();
+            }
 
         }
     }
 
+
+    #region MUSIC
     public void PlayMusic()
     {
+        musicPaused = false;
+        musicSource.volume = 1;
         musicSource.Play();
     }
 
     public void PauseMusic()
     {
-
+        FadeMusic();
+        musicPaused = true;
     }
 
     public void ChangeMusic(AudioClip newMusic)
     {
-
+        FadeMusic();
+        nextMusic = newMusic;
     }
 
     public void FadeMusic()
@@ -78,6 +89,15 @@ public class SoundManager : MonoBehaviour
 
 
     }
+    #endregion
 
+    #region SYSTEM_SOUNDS
+
+    public void PlaySound(AudioClip clip)
+    {
+        UISFXSource.PlayOneShot(clip);
+    }
+
+    #endregion
 
 }

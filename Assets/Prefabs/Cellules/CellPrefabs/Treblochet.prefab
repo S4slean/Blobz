@@ -2060,8 +2060,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blobInChargeur: 
   maxStockage: 0
-  maxPower: 50
-  yOffset: 10
+  maxPower: 500
+  yOffset: 100
   dragRange: 0
   slotRange: 3
   myCollider: {fileID: 465437789709073103}

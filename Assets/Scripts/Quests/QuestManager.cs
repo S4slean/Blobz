@@ -22,6 +22,8 @@ public class QuestManager : MonoBehaviour
 
     public bool desactiveQuest = false;
 
+    public AudioClip questSuccsessSound;
+
 
     
 
@@ -207,7 +209,7 @@ public class QuestManager : MonoBehaviour
         //Debug.Log("Quest Success");
         //Display Success
         //hide UI or play Disappearing anim
-
+        SoundManager.instance.PlaySound(questSuccsessSound);
 
         ChangeQuest();
     }

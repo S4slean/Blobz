@@ -5,6 +5,7 @@ using System.Linq;
 using TMPro;
 using UnityEngine.EventSystems;
 
+//[RequireComponent(typeof(MeshCollider))]  //typeof(MeshRenderer), typeof(MeshFilter),
 public class CellMain : PoolableObjects, PlayerAction
 {
     #region Variables
@@ -90,8 +91,6 @@ public class CellMain : PoolableObjects, PlayerAction
     protected int currentSurproductionRate;
     protected float currentRejectPower;
     protected int currentRange;
-
-    protected int blolbNumberAtOverload;
     public int specifiqueStats;
 
 
@@ -212,7 +211,10 @@ public class CellMain : PoolableObjects, PlayerAction
         int B = stuckBlobs.Count;
         for (int y = 0; y < B; y++)
         {
-
+            //if (y > B)
+            //{
+            //    break;
+            //}
             stuckBlobs[0].Unstuck();
         }
 
@@ -235,26 +237,19 @@ public class CellMain : PoolableObjects, PlayerAction
 
         }
 
-
-        #region SpawnBlobAtDeath
-
-        int blobAmount = (int)Mathf.Ceil((float)blolbNumberAtOverload / (float)10);
-
         if (!intentionnalDeath)
         {
-            blobAmount += (int)Mathf.Floor((float)blobAmount / (float)2);
+            //Spawn les blobs
+            for (int i = 0; i < blobNumber; i++)
+            {
+                //Debug.Log("SI TU VOIS ÇA C'EST QUE LES BLOB SONT ENCORE INSTANCIE EN SALE AINSI QUE LEUR RIGIDBODY ");
+                //GameObject blob = Instantiate(myCellTemplate.blopPrefab, transform.position, Quaternion.identity);
+                //Rigidbody rb = blob.GetComponent<Rigidbody>();
+                //Vector3 dir = new Vector3(Random.Range(-1, 1), Random.Range(0.1f, 1f), Random.Range(-1, 1)) * myCellTemplate.impulseForce_Death;
+                //rb.AddForce(dir, ForceMode.Impulse);
+                //blob.GetComponent<Blob>().blobType = BlobBehaviour.BlobType.mad;
+            }
         }
-        //Spawn les blobs
-        for (int i = 0; i < blobAmount; i++)
-        {
-            Blob spawnBlob = ObjectPooler.poolingSystem.GetPooledObject<Blob>() as Blob;
-            spawnBlob.transform.position = transform.position + new Vector3(Random.Range(-2, 2), Random.Range(0, 3), Random.Range(-2, 2));
-            spawnBlob.Outpool();
-            spawnBlob.Jump(Helper.RandomVectorInUpSphere() * 4);
-            spawnBlob.ChangeType(BlobManager.BlobType.mad);
-
-        }
-        #endregion
 
         //int C = blobCoaches.Count;
         //for (int i = 0; i < C; i++)
@@ -384,13 +379,15 @@ public class CellMain : PoolableObjects, PlayerAction
 
         if (currentBlobStockage <= 0)
         {
-            ToggleOverload(true);
+            overLoad = true;
+            //Died(false);
             return;
         }
 
         if (blobNumber > currentBlobStockage && !isDead && !isNexus)
         {
-            ToggleOverload(true);
+            overLoad = true;
+            //Died(false);
             return;
         }
 
@@ -399,7 +396,6 @@ public class CellMain : PoolableObjects, PlayerAction
             currentBlobStockage = 0;
             Died(false);
         }
-        HandleAlerts();
 
         UpdateCaract();
     }
@@ -419,7 +415,7 @@ public class CellMain : PoolableObjects, PlayerAction
 
         if (blobNumber > currentBlobStockage && !isDead && !isNexus)
         {
-            ToggleOverload(true);
+            overLoad = true;
             //Died(false);
         }
 
@@ -427,7 +423,7 @@ public class CellMain : PoolableObjects, PlayerAction
         {
             if (blobNumber < currentBlobStockage - myCellTemplate.overloadTreshHold)
             {
-                ToggleOverload(false);
+                overLoad = false;
             }
         }
 
@@ -452,11 +448,8 @@ public class CellMain : PoolableObjects, PlayerAction
         if (pourcentage >= 80)
         {
             if (!inDanger)
-            {
-                Debug.Log("in danger" , gameObject);
                 inDanger = true;
-            }
-            //ANIM DANGER CELL 
+           //ANIM DANGER CELL 
         }
         else
         {
@@ -466,7 +459,6 @@ public class CellMain : PoolableObjects, PlayerAction
 
         if (overLoad)
         {
-            Debug.Log("Overload alert" , gameObject);
             if (!isVisible && !alertDisplayed)
             {
                 Debug.Log("Alert !");
@@ -475,7 +467,7 @@ public class CellMain : PoolableObjects, PlayerAction
                 alertDisplayed = true;
             }
 
-            else if (isVisible && alertDisplayed)
+            if (isVisible && alertDisplayed)
             {
                 UIManager.Instance.HideCellAlert(alert);
                 alert = null;
@@ -1128,7 +1120,7 @@ public class CellMain : PoolableObjects, PlayerAction
         bool actionMade = false;
         if (stuckBlobs.Count > 0)
         {
-            stuckBlobs[stuckBlobs.Count - 1].Unstuck();
+            stuckBlobs[stuckBlobs.Count - 1].Destruct();
             actionMade = true;
         }
         else if (overLoad)
@@ -1188,7 +1180,7 @@ public class CellMain : PoolableObjects, PlayerAction
 
     public virtual void OnShortRightClick(RaycastHit hit)
     {
-        //UIManager.Instance.DisplayCellOptions(this);
+        UIManager.Instance.DisplayCellOptions(this);
     }
     public virtual void OnRightClickWhileHolding(RaycastHit hit)
     {
@@ -1276,21 +1268,5 @@ public class CellMain : PoolableObjects, PlayerAction
         }
 
     }
-    #endregion
-
-    #region OVERLOAD
-
-    private void ToggleOverload(bool isOverload)
-    {
-        overLoad = isOverload;
-        //FX.setActive()
-        if (isOverload)
-        {
-            Debug.Log("enterInOverload ", gameObject);
-            blolbNumberAtOverload = blobNumber;
-        }
-
-    }
-
     #endregion
 }

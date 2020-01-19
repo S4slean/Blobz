@@ -8,8 +8,6 @@ public class CellPilone : CellMain
 
     public override void BlobsTick()
     {
-        if (!overLoad)
-        {
         if (blobNumber > 0)
         {
             BlobNumberVariation(-1 , BlobCheck() ,false);
@@ -61,16 +59,6 @@ public class CellPilone : CellMain
         if (haveExpulse)
         {
             anim.Play("BlobExpulsion");
-        }
-
-        }
-        else
-        {
-            overloadStack++;
-            if (overloadStack >= myCellTemplate.overLoadTickMax)
-            {
-                Died(false);
-            }
         }
 
     }
