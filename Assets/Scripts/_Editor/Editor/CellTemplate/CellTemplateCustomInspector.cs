@@ -23,6 +23,8 @@ public class CellTemplateCustomInspector : Editor
     SerializedProperty BlopPerTickProp;
 
     SerializedProperty speProp;
+
+    SerializedProperty descriptionProp;
  
 
     SerializedProperty stockageCapacityProp, LinkCapacityProp, RangeProp, tickForActivationProp;
@@ -65,6 +67,8 @@ public class CellTemplateCustomInspector : Editor
         cellTextureProp = serializedObject.FindProperty("cellTexture");
         #endregion
         typeProp = serializedObject.FindProperty("type");
+        descriptionProp = serializedObject.FindProperty("description");
+
 
         #region Proximity Initialisation 
         genererateProximityProp = serializedObject.FindProperty("generateProximity");
@@ -174,6 +178,10 @@ public class CellTemplateCustomInspector : Editor
 
         EditorGUILayout.BeginVertical("Box");
         EditorGUILayout.PropertyField(typeProp);
+        EditorGUILayout.HelpBox("DESCRIPTION", MessageType.None);
+
+        descriptionProp.stringValue = EditorGUILayout.TextArea(descriptionProp.stringValue, GUILayout.MaxHeight(80));
+
         switch ((CellType)typeProp.enumValueIndex)
         {
             case CellType.Productrice:
