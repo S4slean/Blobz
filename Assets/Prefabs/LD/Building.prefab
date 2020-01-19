@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5853732124586470277
 Transform:
   m_ObjectHideFlags: 0
@@ -89,6 +89,7 @@ GameObject:
   - component: {fileID: 702070642367133429}
   - component: {fileID: 3307682111752870861}
   - component: {fileID: 3328925992418087246}
+  - component: {fileID: 8260789756600711135}
   m_Layer: 15
   m_Name: Building
   m_TagString: Enemies
@@ -103,7 +104,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5890611875072908535}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.38, y: 0, z: -2.32}
   m_LocalScale: {x: 0.69557, y: 0.69557, z: 0.69557}
   m_Children:
@@ -142,9 +143,10 @@ MonoBehaviour:
   initialPool: {fileID: 0}
   goodGraph: {fileID: 6438243430102390527}
   brokenGraph: {fileID: 1425149600685392508}
+  anim: {fileID: 0}
   destructType: 0
   maxLife: 3
-  isReapairable: 0
+  isReapairable: 1
   repairDelay: 10
   isRuin: 0
   isVillageNexus: 0
@@ -155,6 +157,25 @@ MonoBehaviour:
   canBeDestroyedByClick: 0
   splouchAtDestruction: 50
   splouchAtClick: 5
+--- !u!95 &8260789756600711135
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5890611875072908535}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d772c4e7d8688824e92b9fb721fa7459, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &6438243430102390527
 GameObject:
   m_ObjectHideFlags: 0
