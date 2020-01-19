@@ -45,18 +45,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maskLeftCLick:
     serializedVersion: 2
-    m_Bits: 6455
+    m_Bits: 268599
   UIMask:
     serializedVersion: 2
     m_Bits: 32
   distanceBeforeDrag: 3.5
   DelayBetweenClick: 0
   clickCooldown: 0.2
-  CellSelected: 0
-  DraggingLink: 0
-  InCellSelection: 0
+  dragging: 0
+  holdingLeftClick: 0
   InPauseMenu: 0
+  InQuestEvent: 0
   posCell: {x: 0, y: 0, z: 0}
-  mousePos: {x: 0, y: 0, z: 0}
-  movingObject: 0
+  mouseWorldPos: {x: 0, y: 0, z: 0}
+  mouseScreenPos: {x: 0, y: 0, z: 0}
+  selectedCell: {fileID: 0}
   objectMoved: {fileID: 0}
+  shootingCell: {fileID: 0}
+  flag: {fileID: 0}
+  flagAnim: {fileID: 0}
