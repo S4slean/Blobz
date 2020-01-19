@@ -23,6 +23,7 @@ public class QuickSetUp : Editor
     static GameObject blobManager;
     static GameObject cinematicManager;
     static GameObject sceneHandler;
+    static GameObject soundManager;
 
 
 
@@ -128,6 +129,9 @@ public class QuickSetUp : Editor
 
         if (FindObjectOfType<SceneHandler>() == null)
             sceneHandler = Instantiate(sceneHandler);
+
+        if (FindObjectOfType<SoundManager>() == null)
+            soundManager = Instantiate(soundManager);
 
 
         #region UI
