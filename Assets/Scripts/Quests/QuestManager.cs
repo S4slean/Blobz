@@ -223,7 +223,6 @@ public class QuestManager : MonoBehaviour
     {
 
 
-
         QuestEventManager.instance.StartQuestEvent();
 
         if (currentQuestEventID < currentQuest.questEvents.Length)
@@ -243,6 +242,8 @@ public class QuestManager : MonoBehaviour
 
                 case QuestEvent.QuestEventType.PopUp:
 
+                    QuestEventManager.instance.popUpIsSkippable = false;
+                    StartCoroutine(WaitBeforeSkip());
                     DisplayPopUp();
 
                     break;
@@ -312,6 +313,13 @@ public class QuestManager : MonoBehaviour
 
         popUp.UpdatePopUp(popUpData.Title, popUpData.Text, popUpData.sprite, popUpData.usingSprite);
     }
+
+    public IEnumerator WaitBeforeSkip()
+    {
+        yield return new WaitForSeconds(1);
+        QuestEventManager.instance.popUpIsSkippable = true;
+    }
+
     public IEnumerator WaitBeforNextEvent()
     {
         yield return new WaitForSeconds(currentQuest.questEvents[currentQuestEventID].eventDuration);
@@ -346,7 +354,7 @@ public class QuestManager : MonoBehaviour
 
             case QuestEvent.QuestEventType.PopUp:
 
-                UIManager.Instance.HideUI(popUp.gameObject);
+                popUp.anim.Play("Hide");
                 break;
         }
 

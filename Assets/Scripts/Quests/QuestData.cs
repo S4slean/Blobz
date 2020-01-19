@@ -47,7 +47,7 @@ public class QuestData : ScriptableObject
 [System.Serializable]
 public struct QuestEvent
 {
-    public enum QuestEventType { Cinematic, PopUp, Weather, Function, UnlockCell, ModifyGameSpeed}
+    public enum QuestEventType { Cinematic, PopUp, Weather, Function, UnlockCell, ModifyGameSpeed, PersistentMessage}
 
     public QuestEventType eventType;
     public float eventDuration;
@@ -63,6 +63,8 @@ public struct QuestEvent
     public CellType cellType;
 
     public float newTickDuration;
+
+    public PopUpData persistentMsg;
 
     public int GetLength()
     {
