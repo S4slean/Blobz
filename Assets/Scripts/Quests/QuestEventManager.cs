@@ -28,7 +28,6 @@ public class QuestEventManager : MonoBehaviour
         if (inQuestEvent)
             return;
 
-        TickManager.instance.PauseTick();
         InputManager.Instance.enabled = false;
         CameraController.instance.enabled = false;
         inQuestEvent = true;

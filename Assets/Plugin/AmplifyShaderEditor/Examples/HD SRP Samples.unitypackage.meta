@@ -1,5 +1,10 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Plugin/AmplifyShaderEditor/Examples/HD SRP Samples.unitypackage.meta
 guid: d1c0b77896049554fa4b635531caf741
+=======
+guid: 4aa9e14874d4133418cc2c8d89f1242e
+folderAsset: yes
+>>>>>>> bab14551e819f04c69e86156c01a567a57c18715:Assets/Graph/Font.meta
 DefaultImporter:
   externalObjects: {}
   userData: 

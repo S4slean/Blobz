@@ -28,9 +28,9 @@ MonoBehaviour:
   destructType: 0
   nbrOfObject: 0
   questEvents:
-  - eventType: 1
+  - eventType: 0
     eventDuration: 1
-    virtualCamIndex: 0
+    virtualCamIndex: 7
     popUpsMsg:
     - rpgStyle: 1
       anchor: {fileID: 0}
@@ -43,27 +43,25 @@ MonoBehaviour:
     UEvent:
       m_PersistentCalls:
         m_Calls: []
-    foldout: 0
-  - eventType: 0
-    eventDuration: 1.8
+    foldout: 1
+  - eventType: 3
+    eventDuration: 0
     virtualCamIndex: 0
     popUpsMsg:
-    - rpgStyle: 0
+    - rpgStyle: 1
       anchor: {fileID: 0}
       offset: {x: 0, y: 0, z: 0}
-      usingSprite: 0
-      sprite: {fileID: 0}
-      Title: What's a Blobz?
-      Text: 'Blobz are created to expend
-
-        your population ("Energies").'
+      usingSprite: 1
+      sprite: {fileID: 21300000, guid: 74a01104759d6494d8d651afa2ac8826, type: 3}
+      Title: 
+      Text: "\r"
     UEvent:
       m_PersistentCalls:
         m_Calls: []
     foldout: 1
-  - eventType: 0
-    eventDuration: 1.2
-    virtualCamIndex: 1
+  - eventType: 1
+    eventDuration: 0
+    virtualCamIndex: 0
     popUpsMsg:
     - rpgStyle: 1
       anchor: {fileID: 0}
@@ -71,39 +69,8 @@ MonoBehaviour:
       usingSprite: 1
       sprite: {fileID: 21300000, guid: 5e49d0c23e32339408d7c64f13cceb28, type: 3}
       Title: 
-      Text: '
-
-'
-    - rpgStyle: 1
-      anchor: {fileID: 0}
-      offset: {x: 0, y: 0, z: 0}
-      usingSprite: 1
-      sprite: {fileID: 21300000, guid: 5e49d0c23e32339408d7c64f13cceb28, type: 3}
-      Title: 
-      Text: 
-    - rpgStyle: 1
-      anchor: {fileID: 0}
-      offset: {x: 0, y: 0, z: 0}
-      usingSprite: 1
-      sprite: {fileID: 21300000, guid: 5e49d0c23e32339408d7c64f13cceb28, type: 3}
-      Title: 
-      Text: '
-
-'
-    - rpgStyle: 1
-      anchor: {fileID: 0}
-      offset: {x: 0, y: 0, z: 0}
-      usingSprite: 1
-      sprite: {fileID: 21300000, guid: 5e49d0c23e32339408d7c64f13cceb28, type: 3}
-      Title: 
-      Text: 
-    - rpgStyle: 1
-      anchor: {fileID: 0}
-      offset: {x: 0, y: 0, z: 0}
-      usingSprite: 1
-      sprite: {fileID: 21300000, guid: 5e49d0c23e32339408d7c64f13cceb28, type: 3}
-      Title: 
-      Text: 
+      Text: "This planet must be invaded, we need to spread quickly to move \nsomewhere
+        else and keep spreading ! "
     UEvent:
       m_PersistentCalls:
         m_Calls:
@@ -119,10 +86,10 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-    foldout: 0
-  - eventType: 3
-    eventDuration: 1
-    virtualCamIndex: 1
+    foldout: 1
+  - eventType: 0
+    eventDuration: 1.8
+    virtualCamIndex: 0
     popUpsMsg:
     - rpgStyle: 0
       anchor: {fileID: 0}
@@ -137,8 +104,8 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls: []
     foldout: 1
-  - eventType: 3
-    eventDuration: 1
+  - eventType: 0
+    eventDuration: 1.2
     virtualCamIndex: 1
     popUpsMsg:
     - rpgStyle: 0

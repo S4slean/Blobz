@@ -35,8 +35,11 @@ public class QuestData : ScriptableObject
     public Destructible.DestructType destructType;
     public int nbrOfObject;
 
+
     [Header("Events")]
     public QuestEvent[] questEvents;
+
+
 
     
 }
@@ -44,7 +47,7 @@ public class QuestData : ScriptableObject
 [System.Serializable]
 public struct QuestEvent
 {
-    public enum QuestEventType { Cinematic, PopUp, Weather, Function}
+    public enum QuestEventType { Cinematic, PopUp, Weather, Function, UnlockCell, ModifyGameSpeed}
 
     public QuestEventType eventType;
     public float eventDuration;
@@ -57,6 +60,10 @@ public struct QuestEvent
 
     public bool foldout;
 
+    public CellType cellType;
+
+    public float newTickDuration;
+
     public int GetLength()
     {
         UEvent.GetPersistentEventCount();
@@ -64,6 +71,8 @@ public struct QuestEvent
     }
 
 }
+
+
 
 [System.Serializable]
 public struct PopUpData
