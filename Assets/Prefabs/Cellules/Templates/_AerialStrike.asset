@@ -1,0 +1,68 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d07d45a74266e347a6c0f35a3488ad7, type: 3}
+  m_Name: _AerialStrike
+  m_EditorClassIdentifier: 
+  cellsEnableToBuild: []
+  blopPrefab: {fileID: 0}
+  buttonColor: {r: 0, g: 0, b: 0, a: 0}
+  cellTexture: {fileID: 0}
+  type: 6
+  generateProximity: 0
+  proximityColliderNumber: 1
+  proximityColliders: []
+  energyCost: 750
+  energyCapBase: 0
+  rangeBase: 50
+  blobRatioAtDeath: 0
+  impulseForce_Death: 10
+  overLoadTickMax: 4
+  overloadTreshHold: 5
+  prodPerTickBase: 0
+  rejectPowerBase: 0
+  storageCapability: 15
+  tickForActivationBase: 1
+  energyPerClick: 2
+  limitedInLinks: 1
+  slotDistance: 1.5
+  numberOfOuputLinks: 0
+  numberOfInputLinks: 2
+  numberOfFlexLinks: 0
+  proximityLevelMax: 4
+  proximityInfluenceMultiplier: 1
+  positivesInteractions: 
+  negativesInteractions: 
+  SurproductionRate: 
+  BlopPerTick: []
+  stockageCapacity: 
+  LinkCapacity: 
+  rangeLien: 00000000000000000000000000000000
+  tickForActivation: 05000000030000000200000001000000
+  energyCap: 
+  specifique: 0200000005000000070000000a000000
+  energyPerblop: 0
+  StatsModification: 7
+  REFS: 0
+  ToggleInfoBox: 1
+  STATS: 1
+  ProductionGestion: 1
+  ProximityGestion: 1
+  maxEnergie: 5
+  maxBlobCoach: 0
+  magazineDragRange: 1.5
+  minDistanceDrag: 0.2
+  tourelleMaxMun: 3
+  tourelleDamage: 5
+  tourelleAttackRadius: 6
+  clickBeforeLaunch: 0
+  blobLostPerTick: 0
+  maxLifeProd: 0
