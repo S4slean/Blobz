@@ -15,7 +15,7 @@ public class TopBarUI : MonoBehaviour
 
     public void ReplayLevel()
     {
-        LevelManager.instance.ReplayLevel();
+        SceneHandler.instance.ReplayLevel();
     }
 
     public void NormalSpeed()

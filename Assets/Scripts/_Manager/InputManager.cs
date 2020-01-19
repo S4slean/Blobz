@@ -98,7 +98,7 @@ public class InputManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.R))
         {
-            LevelManager.instance.ReplayLevel();
+            SceneHandler.instance.ReplayLevel();
         }
 
         if (Input.GetKeyDown(KeyCode.Space))
