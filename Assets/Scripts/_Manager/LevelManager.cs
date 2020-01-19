@@ -50,25 +50,27 @@ public class LevelManager : MonoBehaviour
 
 
     }
-    private void Update()
+
+    #region GAME_SPEED
+    public void ReplayLevel()
     {
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        }
-
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            SceneManager.LoadScene(0);
-        }
-
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            SceneManager.LoadScene(1);
-        }
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
+    public void SpeedGame()
+    {
+        Debug.Log("fasSpeed");
+        Time.timeScale = 2;
+    }
 
+    public void normalGameSpeed()
+    {
+        Debug.Log("normalSpeed");
+        Time.timeScale = 1;
+    }
+    #endregion
+
+    #region ENEMIES
     public void SpawnEnemyWave(int nbrOfEnemy, Vector3 pos)
     {
         
@@ -78,7 +80,7 @@ public class LevelManager : MonoBehaviour
     {
 
     }
-
+    #endregion
 
     #region PLAYER_PROGRESS & SAVE
     public void UnlockAllCells()

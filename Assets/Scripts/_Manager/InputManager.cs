@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 
 public class InputManager : MonoBehaviour
@@ -87,11 +88,42 @@ public class InputManager : MonoBehaviour
         mouseWorldPos = CurrentHit.point;
         mouseScreenPos = new Vector3(Input.mousePosition.x, 0, Input.mousePosition.y);
 
+        #region PAUSE
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             Time.timeScale = 0;
             UIManager.Instance.DisplayUI(UIManager.Instance.pauseMenu.gameObject);
         }
+        #endregion
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            LevelManager.instance.ReplayLevel();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if (Time.timeScale == 0)
+                return;
+
+            if (Time.timeScale == 2)
+                LevelManager.instance.normalGameSpeed();
+
+            else if (Time.timeScale == 1)
+                LevelManager.instance.SpeedGame();
+
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            SceneManager.LoadScene(0);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            SceneManager.LoadScene(1);
+        }
+
 
         switch (inputMode)
         {
@@ -370,6 +402,7 @@ public class InputManager : MonoBehaviour
                 break;
             #endregion
 
+            #region FLAG_STATE
             case InputMode.flag:
 
                 flag.transform.position = mouseWorldPos;
@@ -392,6 +425,7 @@ public class InputManager : MonoBehaviour
 
 
                 break;
+                #endregion
         }
 
 

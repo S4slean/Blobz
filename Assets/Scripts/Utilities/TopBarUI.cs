@@ -13,4 +13,19 @@ public class TopBarUI : MonoBehaviour
         energy.text = "Sploosh : " + RessourceTracker.instance.energy + "/ " + RessourceTracker.instance.energyCap;
     }
 
+    public void ReplayLevel()
+    {
+        LevelManager.instance.ReplayLevel();
+    }
+
+    public void NormalSpeed()
+    {
+        LevelManager.instance.normalGameSpeed();
+    }
+
+    public void FastSpeed()
+    {
+        LevelManager.instance.SpeedGame();
+    }
+
 }
