@@ -32,11 +32,11 @@ MonoBehaviour:
   storageCapability: 15
   tickForActivationBase: 1
   energyPerClick: 2
-  limitedInLinks: 0
+  limitedInLinks: 1
   slotDistance: 1.5
-  numberOfOuputLinks: 1
-  numberOfInputLinks: 1
-  numberOfFlexLinks: 2
+  numberOfOuputLinks: 0
+  numberOfInputLinks: 2
+  numberOfFlexLinks: 0
   proximityLevelMax: 4
   proximityInfluenceMultiplier: 1
   positivesInteractions: 
@@ -46,7 +46,7 @@ MonoBehaviour:
   stockageCapacity: 
   LinkCapacity: 
   rangeLien: 00000000000000000000000000000000
-  tickForActivation: 
+  tickForActivation: 05000000030000000200000001000000
   energyCap: 
   specifique: 0200000005000000070000000a000000
   energyPerblop: 0
@@ -63,3 +63,6 @@ MonoBehaviour:
   tourelleMaxMun: 3
   tourelleDamage: 5
   tourelleAttackRadius: 6
+  clickBeforeLaunch: 0
+  blobLostPerTick: 0
+  maxLifeProd: 0
