@@ -11,7 +11,7 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: 2949587340766439678}
-    m_Position: {x: 360, y: -10, z: 0}
+    m_Position: {x: 360, y: 0, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 6355208191154852524}
     m_Position: {x: 360, y: 90, z: 0}
@@ -37,7 +37,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Image
+  m_Name: Loading
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: FadeOut

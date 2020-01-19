@@ -67,11 +67,6 @@ public class LevelManager : MonoBehaviour
     #endregion
 
     #region GAME_SPEED
-    public void ReplayLevel()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    }
-
     public void SpeedGame()
     {
         Debug.Log("fasSpeed");

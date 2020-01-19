@@ -9,6 +9,8 @@ public class SceneHandler : MonoBehaviour
     public static SceneHandler instance;
     public Animator anim;
     private int indexToLoad;
+    private string stringToLoad;
+    private bool loadByString = false;
 
     private void Awake()
     {
@@ -25,46 +27,53 @@ public class SceneHandler : MonoBehaviour
 
     private void OnEnable()
     {
-        SceneManager.sceneLoaded += OnSceneLoaded;
+        SceneManager.sceneLoaded += Load;
     }
 
     private void OnDisable()
     {
-        SceneManager.sceneLoaded -= OnSceneLoaded;
+        SceneManager.sceneLoaded -= Load;
     }
 
-    public void OnSceneLoaded(Scene scene,LoadSceneMode mode)
+    public void Load(Scene scene,LoadSceneMode mode)
     {
         anim.SetTrigger("FadeOut");
     }
 
-    public void LoadScene(int index)
+    public void LoadScene()
     {
-        SceneManager.LoadSceneAsync(index, LoadSceneMode.Single);
-        anim.Play("FadeOut");
+        if (!loadByString)
+            SceneManager.LoadSceneAsync(indexToLoad, LoadSceneMode.Single);
+        else
+            SceneManager.LoadSceneAsync(stringToLoad, LoadSceneMode.Single);
+
     }
 
     public void ChangeScene(int index)
     {
+        loadByString = false;
         indexToLoad = index;
         anim.Play("FadeIn");
     }
 
     public void ChangeScene(string name)
     {
-        indexToLoad = SceneManager.GetSceneByName(name).buildIndex;
+        loadByString = true;
+        stringToLoad = name;
         anim.Play("FadeIn");
     }
 
     public void ReplayLevel()
     {
+        loadByString = false;
         indexToLoad = SceneManager.GetActiveScene().buildIndex;
         anim.Play("FadeIn");
     }
 
     public void BackToLevelSelection()
     {
-        indexToLoad = SceneManager.GetSceneByName("LevelSelection").buildIndex;
+        loadByString = true;
+        stringToLoad = "LevelSelector";
         anim.Play("FadeIn");
     }
 }
