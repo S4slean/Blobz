@@ -15,6 +15,7 @@ public class QuestEventPropertyDrawer : PropertyDrawer
     SerializedProperty popUpsMsgProp;
     SerializedProperty UEventProp;
     SerializedProperty foldoutProp;
+    SerializedProperty cellTypeProp;
 
     bool foldout;
     int type = 0;
@@ -53,9 +54,16 @@ public class QuestEventPropertyDrawer : PropertyDrawer
                 else
                     return (EditorGUIUtility.singleLineHeight + 2 )*4.4f + (EditorGUIUtility.singleLineHeight + 2) * 2.5f * calls.arraySize ;
 
-                
+            case 4:
 
-                
+                if (!foldoutProp.boolValue)
+                    return (EditorGUIUtility.singleLineHeight + 2) * 4;
+                else
+                    return (EditorGUIUtility.singleLineHeight + 2) * 4;
+
+
+
+
         }
 
         
@@ -79,6 +87,7 @@ public class QuestEventPropertyDrawer : PropertyDrawer
         ObjectToWatchProp = property.FindPropertyRelative("virtualCamIndex");
         popUpsMsgProp = property.FindPropertyRelative("popUpsMsg");
         UEventProp = property.FindPropertyRelative("UEvent");
+        cellTypeProp = property.FindPropertyRelative("cellType");
         type = eventTypeProp.intValue;
 
 
@@ -164,6 +173,13 @@ public class QuestEventPropertyDrawer : PropertyDrawer
                     new Rect(position.x + 15, position.y + 10 + 2* line, position.width - 25, line - 2),
                     UEventProp);
 
+                break;
+
+            case 4:
+
+                EditorGUI.PropertyField(
+                     new Rect(position.x + 15, position.y + 10 + 2 * line, position.width - 25, line - 2),
+                    cellTypeProp);
                 break;
         }
 

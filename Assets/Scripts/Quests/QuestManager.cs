@@ -257,6 +257,13 @@ public class QuestManager : MonoBehaviour
                     StartCoroutine(WaitBeforNextEvent());
 
                     break;
+
+                case QuestEvent.QuestEventType.UnlockCell:
+
+                    LevelManager.instance.UnlockNewCell(currentQuest.questEvents[currentQuestEventID].cellType);
+                    StartCoroutine(WaitBeforNextEvent());
+
+                    break;
             }
 
         }

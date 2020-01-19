@@ -27,6 +27,8 @@ public class QuestDataInspector : Editor
     SerializedProperty nbrOfObjectProp;
 
 
+
+
     //bool foldout = false;
     bool eventsFoldout = false;
 
