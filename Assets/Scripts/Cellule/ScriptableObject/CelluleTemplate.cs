@@ -18,6 +18,7 @@ public class CelluleTemplate : ScriptableObject
     [Space(20f)]
 
     public CellType type;
+    public string description;
 
     public bool generateProximity;
     [Range(1, 5)]
