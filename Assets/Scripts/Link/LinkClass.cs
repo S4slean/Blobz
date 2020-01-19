@@ -12,6 +12,9 @@ public class LinkClass : PoolableObjects
     public GameObject[] lockIcon = new GameObject[2];
     private BlobCoach blobCoachInTransition;
 
+    public LinkCollider myCollider;
+
+
     #endregion
 
     #region INFO
@@ -51,6 +54,8 @@ public class LinkClass : PoolableObjects
     {
         receivingCell.RemoveLink(this, false);
         originalCell.RemoveLink(this, true);
+        myCollider.boxCollider.enabled = false;
+
 
         Inpool();
     }
@@ -248,6 +253,11 @@ public class LinkClass : PoolableObjects
         //angle = 180 -( 180 * Vector3.Dot(OutputCell.transform.forward, dir) );
         //Vector3 relative = outputCell.transform.InverseTransformDirection(line.GetPosition(1));
         //angle = Mathf.Atan2(relative.x, relative.z) * Mathf.Rad2Deg;
+        Vector3 _pos = extremityPos[0] + trajectoir / 2;
+        float scale = trajectoir.magnitude ;
+
+        myCollider.UpdatePosAndScale(_pos, angle , scale);
+
     }
 
     public void GetInputSlot(CellMain _receivingCell)
