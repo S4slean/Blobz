@@ -19,7 +19,7 @@ public class CellManager : MonoBehaviour
     private bool shouldStop;
     [HideInInspector] public bool terrainIsBuildable = false;
     private bool terrainWasBuildable = false;
-    private bool obstructedLink = false;
+    public bool obstructedLink = true;
     private bool wasObstructedLink = false;
 
 
@@ -159,12 +159,12 @@ public class CellManager : MonoBehaviour
         {
             obstructedLink = true;
 
-            Debug.Log("obstructed ");
+
         }
         else
         {
             obstructedLink = false;
-            Debug.Log("unobstructed");
+
         }
     }
 
@@ -347,23 +347,9 @@ public class CellManager : MonoBehaviour
         terrainIsBuildable = Helper.CheckAvailableSpace(cellToMove.transform.position, cellToMove.myCellTemplate.slotDistance, cellToMove.ownCollider);
 
 
-        if (terrainIsBuildable && !terrainWasBuildable && !obstructedLink)
-        {
-            cellToMove.ChangeDeplacementMat(true);
-        }
-        else if (!terrainIsBuildable && terrainWasBuildable)
-        {
-            cellToMove.ChangeDeplacementMat(false);
-        }
 
-        if (wasObstructedLink && !obstructedLink && terrainIsBuildable)
-        {
-            cellToMove.ChangeDeplacementMat(true);
-        }
-        else if (!wasObstructedLink && obstructedLink)
-        {
-            cellToMove.ChangeDeplacementMat(false);
-        }
+
+
 
 
         for (int i = 0; i < cellToMove.links.Count; i++)
@@ -400,6 +386,28 @@ public class CellManager : MonoBehaviour
         {
             //A REMPLACER PAR updatePoints
             cellToMove.links[i].UpdateLinks(cellToMove, posToTest);
+        }
+
+
+        if (terrainIsBuildable && !terrainWasBuildable && !obstructedLink)
+        {
+            cellToMove.ChangeDeplacementMat(true);
+        }
+        if (!terrainIsBuildable && terrainWasBuildable)
+        {
+            cellToMove.ChangeDeplacementMat(false);
+        }
+
+        Debug.Log(wasObstructedLink + " " + obstructedLink);
+        if (wasObstructedLink && !obstructedLink && terrainIsBuildable)
+        {
+            Debug.Log("UnobstructedMat");
+            cellToMove.ChangeDeplacementMat(true);
+        }
+        if (!wasObstructedLink && obstructedLink)
+        {
+            cellToMove.ChangeDeplacementMat(false);
+            Debug.Log("ObstructedMat");
         }
 
         terrainWasBuildable = terrainIsBuildable;
