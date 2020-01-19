@@ -356,7 +356,7 @@ public class CellMain : PoolableObjects, PlayerAction
         }
         else
         {
-            if (!LevelManager.instance.cellInvisible)
+            if (!LevelManager.instance.cellInvicible)
             {
                 overloadStack++;
                 if (overloadStack >= myCellTemplate.overLoadTickMax)

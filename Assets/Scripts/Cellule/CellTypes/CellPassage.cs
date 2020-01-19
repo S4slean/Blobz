@@ -52,7 +52,7 @@ public class CellPassage : CellMain
         }
         else
         {
-            if (!LevelManager.instance.cellInvisible)
+            if (!LevelManager.instance.cellInvicible)
             {
                 overloadStack++;
                 if (overloadStack >= myCellTemplate.overLoadTickMax)

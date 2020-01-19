@@ -20,7 +20,7 @@ public class LevelManager : MonoBehaviour
     public bool TopBar;
 
     [Header("Cell Invincible")]
-    public bool cellInvincible;
+    public bool cellInvicible;
 
 
     [Header("Cells Unlocked")]
