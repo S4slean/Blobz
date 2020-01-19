@@ -14,7 +14,7 @@ public class Blob : PoolableObjects
     [HideInInspector] public int tickCount = 0;
     public int lifeTime = 0;
     public int LifeSpan = 32;
-    public BlobManager.BlobType blobType = BlobManager.BlobType.normal;
+    private BlobManager.BlobType blobType = BlobManager.BlobType.normal;
     #endregion
 
     #region ENNEMIES
@@ -64,6 +64,11 @@ public class Blob : PoolableObjects
         UpdateMat();
         RessourceTracker.instance.AddBlob(this);
 
+    }
+
+    public BlobManager.BlobType GetBlobType()
+    {
+        return blobType;
     }
 
     public void UpdateMat()
@@ -145,7 +150,7 @@ public class Blob : PoolableObjects
 
     public void Jump()
     {
-        rb.AddForce(transform.forward * 50 + Vector3.up * 50, ForceMode.Impulse);
+        rb.AddForce(transform.forward * 2 + Vector3.up * 2, ForceMode.Impulse);
     }
 
     public void Fly()

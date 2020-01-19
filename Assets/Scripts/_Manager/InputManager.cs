@@ -366,8 +366,8 @@ public class InputManager : MonoBehaviour
 
                     flagAnim.SetTrigger("Plant");
                     Blob explo = ObjectPooler.poolingSystem.GetPooledObject<Blob>() as Blob;
-                    explo.blobType = BlobManager.BlobType.explorateur;
-                    explo.transform.position = selectedCell.transform.position + dir * 1.8f + Vector3.up*1.1f;
+                    explo.ChangeType(BlobManager.BlobType.explorateur);
+                    explo.transform.position = selectedCell.transform.position + dir * 2.5f + Vector3.up*1.1f;
                     explo.transform.LookAt(flag.transform.position);
                     explo.Outpool();
                     explo.Jump();

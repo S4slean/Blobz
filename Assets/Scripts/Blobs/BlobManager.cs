@@ -66,7 +66,7 @@ public class BlobManager : MonoBehaviour
         //prend un par un chaque blob de la scène
         foreach (Blob blob in blobList)
         {
-            switch (blob.blobType)
+            switch (blob.GetBlobType())
             {
                 //Si le blob est normal
                 case BlobType.normal:
@@ -210,7 +210,7 @@ public class BlobManager : MonoBehaviour
             //il check lequel est le plus près
             for (int i = 0; i < detectedColliders.Length; i++)
             {
-                if (detectedColliders[i].GetComponent<Blob>().blobType != BlobType.mad)
+                if (detectedColliders[i].GetComponent<Blob>().GetBlobType() != BlobType.mad)
                     continue;
 
                 Vector3 directionToTarget = detectedColliders[i].transform.position - currentPos;
@@ -302,7 +302,7 @@ public class BlobManager : MonoBehaviour
     public void JumpForward(Blob blob)
     {
         Vector3 jumpDir =  blob.transform.forward;
-        jumpDir = jumpDir.normalized + (Random.insideUnitSphere * .25f);
+        jumpDir = jumpDir.normalized + (Random.insideUnitSphere * 0);
         jumpDir = jumpDir.normalized;
         jumpDir = new Vector3(jumpDir.x, jumpHeight, jumpDir.z);
         blob.Jump(jumpDir * jumpForce);
@@ -318,7 +318,7 @@ public class BlobManager : MonoBehaviour
 
         foreach (Collider blobCol in touchedBlobs)
         {
-            if (blobCol.GetComponent<Blob>().blobType == BlobType.mad)
+            if (blobCol.GetComponent<Blob>().GetBlobType() == BlobType.mad)
                 Destroy(blobCol.gameObject);
         }
         //Debug.Log("Soldier Explosed " + touchedBlobs.Length + " blobs");
