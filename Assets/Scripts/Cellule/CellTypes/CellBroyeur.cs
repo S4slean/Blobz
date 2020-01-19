@@ -22,7 +22,7 @@ public class CellBroyeur : CellMain
                     {
 
                         BlobNumberVariation(-1, BlobCheck() , false);
-                        CellManager.Instance.EnergyVariation(specifiqueStats);
+                        RessourceTracker.instance.EnergyVariation(specifiqueStats);
                         haveExpulse = true;
                         energyGainThisActivation += specifiqueStats;
 

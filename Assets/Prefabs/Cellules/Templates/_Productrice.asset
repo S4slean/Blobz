@@ -75,3 +75,4 @@ MonoBehaviour:
   tourelleAttackRadius: 6
   clickBeforeLaunch: 0
   blobLostPerTick: 0
+  maxLifeProd: 50
