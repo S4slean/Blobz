@@ -16,9 +16,11 @@ public class CellManager : MonoBehaviour
     public Material refusedBuildingMat;
     public Material refusedBuldingSpriteMask;
 
-    bool shouldStop;
+    private bool shouldStop;
     [HideInInspector] public bool terrainIsBuildable = false;
-    bool terrainWasBuildable = false;
+    private bool terrainWasBuildable = false;
+    private bool obstructedLink = false;
+    private bool wasObstructedLink = false;
 
 
     [Header("Debug")]
@@ -91,9 +93,14 @@ public class CellManager : MonoBehaviour
             InputManager.Instance.ResetInputs();
             return;
         }
+
+
+
         Vector3 direction = (hit.point - selectedCell.transform.position);
         direction = new Vector3(direction.x, 0, direction.z);
         direction = direction.normalized;
+
+
 
         // Permet de draw la line en runtime 
         float distance = Vector3.Distance(selectedCell.transform.position, hit.point);
@@ -120,20 +127,44 @@ public class CellManager : MonoBehaviour
         direction = new Vector3(direction.x, 0, direction.z);
         direction = direction.normalized;
 
+
+
+
         // Permet de draw la line en runtime 
         float distance = Vector3.Distance(selectedCell.transform.position, pos);
+
         if (distance <= (selectedCell.GetCurrentRange() + selectedCell.myCellTemplate.slotDistance + cellMoved.myCellTemplate.slotDistance))
         {
             Vector3 firstPos = selectedCell.graphTransform.transform.position + direction * selectedCell.myCellTemplate.slotDistance;
 
             Vector3 lastPos = new Vector3(pos.x, currentLink.extremityPos[0].y, pos.z) - (direction * cellMoved.myCellTemplate.slotDistance);
             currentLink.UpdatePoint(firstPos, lastPos);
+
+            LinkObstructedCheck(firstPos, lastPos);
+
+
         }
         else
         {
             Vector3 lastPos = selectedCell.graphTransform.transform.position + (direction * selectedCell.GetCurrentRange() + direction * selectedCell.myCellTemplate.slotDistance);
             Vector3 firstPos = selectedCell.graphTransform.transform.position + direction * selectedCell.myCellTemplate.slotDistance;
             currentLink.UpdatePoint(firstPos, lastPos);
+            LinkObstructedCheck(lastPos, firstPos);
+        }
+    }
+
+    private void LinkObstructedCheck(Vector3 startPos , Vector3 endPos)
+    {
+        if (Helper.ReturnHit(startPos, endPos))
+        {
+            obstructedLink = true;
+
+            Debug.Log("obstructed ");
+        }
+        else
+        {
+            obstructedLink = false;
+            Debug.Log("unobstructed");
         }
     }
 
@@ -229,7 +260,7 @@ public class CellManager : MonoBehaviour
     }
     public void SupressCurrentLink()
     {
-        if (currentLink ==null)
+        if (currentLink == null)
         {
             return;
         }
@@ -282,8 +313,8 @@ public class CellManager : MonoBehaviour
 
         selectedElement.OnDeselect();
         selectedElement = null;
-        
-       
+
+
     }
     //public void SelectCell(RaycastHit hit)
     //{
@@ -315,11 +346,21 @@ public class CellManager : MonoBehaviour
 
         terrainIsBuildable = Helper.CheckAvailableSpace(cellToMove.transform.position, cellToMove.myCellTemplate.slotDistance, cellToMove.ownCollider);
 
-        if (terrainIsBuildable && !terrainWasBuildable)
+
+        if (terrainIsBuildable && !terrainWasBuildable && !obstructedLink)
         {
             cellToMove.ChangeDeplacementMat(true);
         }
         else if (!terrainIsBuildable && terrainWasBuildable)
+        {
+            cellToMove.ChangeDeplacementMat(false);
+        }
+
+        if (wasObstructedLink && !obstructedLink && terrainIsBuildable)
+        {
+            cellToMove.ChangeDeplacementMat(true);
+        }
+        else if (!wasObstructedLink && obstructedLink)
         {
             cellToMove.ChangeDeplacementMat(false);
         }
@@ -362,6 +403,7 @@ public class CellManager : MonoBehaviour
         }
 
         terrainWasBuildable = terrainIsBuildable;
+        wasObstructedLink = obstructedLink;
     }
 
     #endregion
