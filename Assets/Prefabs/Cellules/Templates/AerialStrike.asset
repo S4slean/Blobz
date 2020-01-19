@@ -23,7 +23,7 @@ MonoBehaviour:
   proximityColliders: []
   energyCost: 750
   energyCapBase: 0
-  rangeBase: 50
+  rangeBase: 15
   blobRatioAtDeath: 0
   impulseForce_Death: 10
   overLoadTickMax: 4
@@ -57,7 +57,7 @@ MonoBehaviour:
   STATS: 1
   ProductionGestion: 1
   ProximityGestion: 1
-  maxEnergie: 5
+  maxEnergie: 15
   maxBlobCoach: 0
   magazineDragRange: 1.5
   minDistanceDrag: 0.2
