@@ -22,13 +22,13 @@ MonoBehaviour:
   proximityColliderNumber: 3
   proximityColliders:
   - proximityLevel: 3
-    range: 22
+    range: 20
     productionBonusRatio: 70
   - proximityLevel: 2
-    range: 43
+    range: 50
     productionBonusRatio: 4
   - proximityLevel: 1
-    range: 60
+    range: 80
     productionBonusRatio: 1
   energyCost: 500
   energyCapBase: 0
@@ -46,7 +46,7 @@ MonoBehaviour:
   slotDistance: 1.5
   numberOfOuputLinks: 3
   numberOfInputLinks: 1
-  numberOfFlexLinks: 5
+  numberOfFlexLinks: 3
   proximityLevelMax: 4
   proximityInfluenceMultiplier: 1
   positivesInteractions: 00000000
@@ -75,3 +75,4 @@ MonoBehaviour:
   tourelleAttackRadius: 6
   clickBeforeLaunch: 0
   blobLostPerTick: 0
+  maxLifeProd: 0
