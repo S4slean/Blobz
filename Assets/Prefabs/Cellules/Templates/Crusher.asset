@@ -1,0 +1,70 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d07d45a74266e347a6c0f35a3488ad7, type: 3}
+  m_Name: Crusher
+  m_EditorClassIdentifier: 
+  cellsEnableToBuild: []
+  blopPrefab: {fileID: 2596948755250502091, guid: 87d5b5a8fb0cf7442878829ab452a3bd,
+    type: 3}
+  buttonColor: {r: 0.990566, g: 0.18222679, b: 0.82150006, a: 1}
+  cellTexture: {fileID: 2800000, guid: 87b9dbfc141638846a4a3bcaeee3ec94, type: 3}
+  type: 3
+  description: Same as a dump... but automatic !
+  generateProximity: 0
+  proximityColliderNumber: 1
+  proximityColliders: []
+  energyCost: 300
+  energyCapBase: 0
+  rangeBase: 20
+  blobRatioAtDeath: 0
+  impulseForce_Death: 10
+  overLoadTickMax: 4
+  overloadTreshHold: 5
+  prodPerTickBase: 0
+  rejectPowerBase: 6
+  storageCapability: 15
+  tickForActivationBase: 1
+  energyPerClick: 1
+  limitedInLinks: 1
+  slotDistance: 1.5
+  numberOfOuputLinks: 0
+  numberOfInputLinks: 3
+  numberOfFlexLinks: 0
+  proximityLevelMax: 4
+  proximityInfluenceMultiplier: 1
+  positivesInteractions: 
+  negativesInteractions: 
+  SurproductionRate: 00000000000000000000000000000000
+  BlopPerTick: []
+  stockageCapacity: 
+  LinkCapacity: 
+  rangeLien: 
+  tickForActivation: 00000000000000000000000000000000
+  energyCap: 
+  specifique: 01000000030000000500000007000000
+  energyPerblop: 3
+  StatsModification: 7
+  REFS: 1
+  ToggleInfoBox: 0
+  STATS: 1
+  ProductionGestion: 1
+  ProximityGestion: 1
+  maxEnergie: 5
+  maxBlobCoach: 0
+  magazineDragRange: 1.5
+  minDistanceDrag: 0.2
+  tourelleMaxMun: 3
+  tourelleDamage: 5
+  tourelleAttackRadius: 6
+  clickBeforeLaunch: 0
+  blobLostPerTick: 0
+  maxLifeProd: 0
