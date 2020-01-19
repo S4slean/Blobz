@@ -86,15 +86,15 @@ public class tourelleCollider : MonoBehaviour
             projectile.Outpool();
             if (badBlobs.Count > 0)
             {
-                badBlobs[currentCellTargetIndex].Destruct();
-                projectile.Init(tourelleCanon.position, badBlobs[currentCellTargetIndex].transform.position);
+                // badBlobs[currentCellTargetIndex].Destruct();
+                projectile.Init(tourelleCanon.position, badBlobs[currentCellTargetIndex].transform.position, badBlobs[currentCellTargetIndex]);
                 badBlobs.Remove(badBlobs[currentCellTargetIndex]);
                 return;
             }
 
 
-            badCell[currentCellTargetIndex].ReceiveDamage(parent.myCellTemplate.tourelleDamage);
-            projectile.Init(tourelleCanon.position, badCell[currentCellTargetIndex].transform.position);
+            //badCell[currentCellTargetIndex].ReceiveDamage(parent.myCellTemplate.tourelleDamage);
+            projectile.Init(tourelleCanon.position, badCell[currentCellTargetIndex].transform.position, badCell[currentCellTargetIndex] , parent.myCellTemplate.tourelleDamage);
 
         }
     }

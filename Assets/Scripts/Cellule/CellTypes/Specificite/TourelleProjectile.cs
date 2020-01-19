@@ -13,6 +13,13 @@ public class TourelleProjectile : PoolableObjects
 
     public ParticleSystem[] particleSystems;
 
+
+    private bool targetIsBlob;
+    private Destructible currentCellTarget;
+    private Blob currentblobTarget;
+    private int damageToDeal;
+
+
     public void Travel()
     {
       //  Debug.Log(transform.position);
@@ -21,10 +28,26 @@ public class TourelleProjectile : PoolableObjects
 
 
 
-    public void Init(Vector3 startPos , Vector3 endPos)
+    public void Init(Vector3 startPos , Vector3 endPos , Blob blobTarget)
     {
+        targetIsBlob = true;
+        currentblobTarget = blobTarget;
 
-     //   Debug.Log ("StartPos : ")
+        pos[0] = startPos;
+        pos[1] = endPos;
+        travelRatio = 0;
+        inTravel = true;
+        transform.position = pos[0];
+        anim.Play("Shoot");
+    }
+
+    public void Init(Vector3 startPos, Vector3 endPos , Destructible cellTarget , int damage)
+    {
+        targetIsBlob = false;
+        currentCellTarget = cellTarget;
+        damageToDeal = damage;
+
+
         pos[0] = startPos;
         pos[1] = endPos;
         travelRatio = 0;
@@ -36,7 +59,18 @@ public class TourelleProjectile : PoolableObjects
     public void EndTravel()
     {
         inTravel = false;
+        if (targetIsBlob)
+        {
+            currentblobTarget.Destruct();
+        }
+        else
+        {
+            currentCellTarget.ReceiveDamage(damageToDeal);
+        }
+
+
         Inpool();
+
     }
 
 
