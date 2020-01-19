@@ -7,11 +7,13 @@ public class QuestEventManager : MonoBehaviour
     public static QuestEventManager instance;
 
     [HideInInspector]public bool inQuestEvent;
+    public bool popUpIsSkippable = false;
 
     [Header("EventPositions")]
     Transform[] eventsPos;
 
     QuestEvent.QuestEventType currentEventType;
+
 
     private void Start()
     {
@@ -28,6 +30,7 @@ public class QuestEventManager : MonoBehaviour
         if (inQuestEvent)
             return;
 
+        TickManager.instance.PauseTick();
         InputManager.Instance.enabled = false;
         CameraController.instance.enabled = false;
         inQuestEvent = true;
@@ -64,7 +67,7 @@ public class QuestEventManager : MonoBehaviour
         {
             case QuestEvent.QuestEventType.PopUp:
 
-                if (Input.GetMouseButtonDown(0))
+                if (Input.GetMouseButtonDown(0) && popUpIsSkippable)
                 {
                     QuestManager.instance.GoToNextMsg();
                 }

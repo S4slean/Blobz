@@ -10,6 +10,7 @@ public class QuestPopUp : MonoBehaviour
     public TextMeshProUGUI TMPtitle;
     public TextMeshProUGUI TMPtext;
     public Image img;
+    public Animator anim;
 
     public void UpdatePopUp(string title, string text, Sprite sprite, bool isUsingSprite)
     {
