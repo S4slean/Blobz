@@ -10,17 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5d07d45a74266e347a6c0f35a3488ad7, type: 3}
-  m_Name: _Explo
+  m_Name: _Battery
   m_EditorClassIdentifier: 
   cellsEnableToBuild: []
   blopPrefab: {fileID: 0}
   buttonColor: {r: 0, g: 0, b: 0, a: 0}
   cellTexture: {fileID: 0}
-  type: 11
-  generateProximity: 0
+  type: 9
+  generateProximity: 1
   proximityColliderNumber: 1
-  proximityColliders: []
-  energyCost: 5
+  proximityColliders:
+  - proximityLevel: 3
+    range: 20
+    productionBonusRatio: 70
+  energyCost: 200
   energyCapBase: 0
   rangeBase: 50
   blobRatioAtDeath: 0
@@ -36,7 +39,7 @@ MonoBehaviour:
   slotDistance: 1.5
   numberOfOuputLinks: 1
   numberOfInputLinks: 1
-  numberOfFlexLinks: 3
+  numberOfFlexLinks: 5
   proximityLevelMax: 0
   proximityInfluenceMultiplier: 1
   positivesInteractions: 
@@ -63,3 +66,6 @@ MonoBehaviour:
   tourelleMaxMun: 3
   tourelleDamage: 5
   tourelleAttackRadius: 6
+  clickBeforeLaunch: 0
+  blobLostPerTick: 0
+  maxLifeProd: 0

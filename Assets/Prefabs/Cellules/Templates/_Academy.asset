@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5d07d45a74266e347a6c0f35a3488ad7, type: 3}
-  m_Name: _Decharge
+  m_Name: _Academy
   m_EditorClassIdentifier: 
   cellsEnableToBuild: []
   blopPrefab: {fileID: 0}
   buttonColor: {r: 0, g: 0, b: 0, a: 0}
   cellTexture: {fileID: 0}
-  type: 10
+  type: 11
   generateProximity: 0
   proximityColliderNumber: 1
   proximityColliders: []
-  energyCost: 150
+  energyCost: 5
   energyCapBase: 0
   rangeBase: 50
   blobRatioAtDeath: 0
@@ -29,15 +29,15 @@ MonoBehaviour:
   overloadTreshHold: 5
   prodPerTickBase: 0
   rejectPowerBase: 0
-  storageCapability: 20
+  storageCapability: 15
   tickForActivationBase: 1
-  energyPerClick: 10
-  limitedInLinks: 1
+  energyPerClick: 2
+  limitedInLinks: 0
   slotDistance: 1.5
-  numberOfOuputLinks: 0
-  numberOfInputLinks: 3
-  numberOfFlexLinks: 0
-  proximityLevelMax: 4
+  numberOfOuputLinks: 1
+  numberOfInputLinks: 1
+  numberOfFlexLinks: 3
+  proximityLevelMax: 0
   proximityInfluenceMultiplier: 1
   positivesInteractions: 
   negativesInteractions: 
@@ -48,9 +48,9 @@ MonoBehaviour:
   rangeLien: 
   tickForActivation: 
   energyCap: 
-  specifique: 05000000140000001e00000028000000
+  specifique: 0200000005000000070000000a000000
   energyPerblop: 0
-  StatsModification: 7
+  StatsModification: 8
   REFS: 0
   ToggleInfoBox: 1
   STATS: 1
@@ -65,3 +65,4 @@ MonoBehaviour:
   tourelleAttackRadius: 6
   clickBeforeLaunch: 0
   blobLostPerTick: 0
+  maxLifeProd: 0
