@@ -14,9 +14,14 @@ public class LevelManager : MonoBehaviour
     
 
 
+
     [Header("Features Unlocked")]
     public bool Quests;
     public bool TopBar;
+
+    [Header("Cell Invincible")]
+    public bool cellInvincible;
+
 
     [Header("Cells Unlocked")]
     public bool allUnlocked = true;

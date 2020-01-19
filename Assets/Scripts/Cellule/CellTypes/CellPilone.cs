@@ -9,60 +9,74 @@ public class CellPilone : CellMain
 
     public override void BlobsTick()
     {
-        if (blobNumber > 0)
+        if (!overLoad)
         {
-            BlobNumberVariation(-1 , BlobCheck() ,false);
-            ChargeEnergie();
-        }
-        else
-        {
-            energie--;
-            float ratio = (float)energie / (float)myCellTemplate.maxEnergie;
-            progressBar.UpdateBar(ratio);
-
-            if (energie <= 0)
+            if (blobNumber > 0)
             {
-                //Possible probleme avec les colliders 
-                // myProximityCollider[0].gameObject.SetActive(false);
-                for (int i = 0; i < myProximityCollider.Length; i++)
+                BlobNumberVariation(-1, BlobCheck(), false);
+                ChargeEnergie();
+            }
+            else
+            {
+                energie--;
+                float ratio = (float)energie / (float)myCellTemplate.maxEnergie;
+                progressBar.UpdateBar(ratio);
+
+                if (energie <= 0)
                 {
-                    myProximityCollider[i].transform.position = myProximityCollider[i].initialPool.transform.position;
-                    StartCoroutine(Desactive(myProximityCollider[i].gameObject));
+                    //Possible probleme avec les colliders 
+                    // myProximityCollider[0].gameObject.SetActive(false);
+                    for (int i = 0; i < myProximityCollider.Length; i++)
+                    {
+                        myProximityCollider[i].transform.position = myProximityCollider[i].initialPool.transform.position;
+                        StartCoroutine(Desactive(myProximityCollider[i].gameObject));
+                    }
                 }
             }
-        }
-        BlobNumberVariation(myCellTemplate.prodPerTickBase , BlobManager.BlobType.normal , true);
+            BlobNumberVariation(myCellTemplate.prodPerTickBase, BlobManager.BlobType.normal, true);
 
-        //ANIM
-        haveExpulse = false;
+            //ANIM
+            haveExpulse = false;
 
-        if (blobNumber > 0)
-        {
-            currentTick++;
-            if (currentTick == currentTickForActivation)
+            if (blobNumber > 0)
             {
-                for (int i = 0; i < outputLinks.Count; i++)
+                currentTick++;
+                if (currentTick == currentTickForActivation)
                 {
-                    if (blobNumber <= 0)
+                    for (int i = 0; i < outputLinks.Count; i++)
                     {
-                        break;
+                        if (blobNumber <= 0)
+                        {
+                            break;
+                        }
+                        //Pour l'instant il y a moyen que si une cellule creve la prochaine 
+                        //soit sauté mai squand il y aura les anim , ce sera plus possible
+                        outputLinks[i].Transmitt(1, BlobCheck());
+                        haveExpulse = true;
                     }
-                    //Pour l'instant il y a moyen que si une cellule creve la prochaine 
-                    //soit sauté mai squand il y aura les anim , ce sera plus possible
-                    outputLinks[i].Transmitt(1 , BlobCheck());
-                    haveExpulse = true;
+                    currentTick = 0;
                 }
+            }
+            else
+            {
                 currentTick = 0;
             }
+
+            if (haveExpulse)
+            {
+                anim.Play("BlobExpulsion");
+            }
         }
         else
         {
-            currentTick = 0;
-        }
-
-        if (haveExpulse)
-        {
-            anim.Play("BlobExpulsion");
+            if (!LevelManager.instance.cellInvisible)
+            {
+                overloadStack++;
+                if (overloadStack >= myCellTemplate.overLoadTickMax)
+                {
+                    Died(false);
+                }
+            }
         }
 
     }
