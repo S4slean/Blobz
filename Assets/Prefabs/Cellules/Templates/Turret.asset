@@ -17,7 +17,7 @@ MonoBehaviour:
   buttonColor: {r: 0, g: 0, b: 0, a: 0}
   cellTexture: {fileID: 0}
   type: 7
-  description: 
+  description: A classic turret, but must be fed with blobz !
   generateProximity: 0
   proximityColliderNumber: 1
   proximityColliders:

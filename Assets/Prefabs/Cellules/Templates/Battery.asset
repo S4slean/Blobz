@@ -17,7 +17,7 @@ MonoBehaviour:
   buttonColor: {r: 0, g: 0, b: 0, a: 0}
   cellTexture: {fileID: 0}
   type: 9
-  description: 
+  description: This cell will boost the cells all around
   generateProximity: 1
   proximityColliderNumber: 1
   proximityColliders:

@@ -18,7 +18,7 @@ MonoBehaviour:
   buttonColor: {r: 0.2688679, g: 0.7080042, b: 1, a: 1}
   cellTexture: {fileID: 2800000, guid: 2162646fcfe8d3543bd48e3f88874de3, type: 3}
   type: 2
-  description: suce
+  description: A cell to stack up your blobz and augment your max sploosh
   generateProximity: 0
   proximityColliderNumber: 2
   proximityColliders:

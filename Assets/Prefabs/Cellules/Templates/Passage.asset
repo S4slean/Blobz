@@ -17,7 +17,7 @@ MonoBehaviour:
   buttonColor: {r: 0.7169812, g: 0.4398764, b: 0, a: 1}
   cellTexture: {fileID: 0}
   type: 4
-  description: 
+  description: "A cell to send your blobz further and faster\r\n"
   generateProximity: 0
   proximityColliderNumber: 1
   proximityColliders: []
