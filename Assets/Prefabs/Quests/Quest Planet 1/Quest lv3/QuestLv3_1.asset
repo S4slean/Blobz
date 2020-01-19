@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: QuestLv3_1
   m_EditorClassIdentifier: 
   questType: 2
-  questTitle: 'Colonise '
+  questTitle: 
   questDescription: 
   eventDone: 1
   populationObjective: 0

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac59c85db94beed47808c892abe2bae2, type: 3}
   m_Name: QuestLv2_02
   m_EditorClassIdentifier: 
-  questType: 5
+  questType: 3
   questTitle: Colonize
   questDescription: 
   eventDone: 1
@@ -116,7 +116,7 @@ MonoBehaviour:
     UEvent:
       m_PersistentCalls:
         m_Calls: []
-    foldout: 1
+    foldout: 0
   - eventType: 1
     eventDuration: 0
     virtualCamIndex: 0
@@ -167,7 +167,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-    foldout: 1
+    foldout: 0
   - eventType: 1
     eventDuration: 2
     virtualCamIndex: 2
@@ -200,5 +200,39 @@ MonoBehaviour:
             m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 0
+          m_CallState: 2
+    foldout: 0
+  - eventType: 3
+    eventDuration: 2
+    virtualCamIndex: 2
+    popUpsMsg:
+    - rpgStyle: 0
+      anchor: {fileID: 0}
+      offset: {x: 830, y: 260, z: 0}
+      usingSprite: 1
+      sprite: {fileID: 21300000, guid: cc3173b5ab91f26438949b73af93e3f9, type: 3}
+      Title: 
+      Text: Create an academy
+    - rpgStyle: 0
+      anchor: {fileID: 0}
+      offset: {x: 830, y: 260, z: 0}
+      usingSprite: 1
+      sprite: {fileID: 21300000, guid: cc3173b5ab91f26438949b73af93e3f9, type: 3}
+      Title: 
+      Text: Click and drag from the cell to give the exploraters a place to reach
+    UEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 3530137145383302592, guid: 7d42775b7a7763949a0a39f0f4287f3e,
+            type: 3}
+          m_MethodName: 
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
           m_CallState: 2
     foldout: 1

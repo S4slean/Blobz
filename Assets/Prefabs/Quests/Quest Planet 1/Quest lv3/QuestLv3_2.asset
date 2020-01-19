@@ -57,3 +57,32 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls: []
     foldout: 1
+  - eventType: 3
+    eventDuration: 1
+    virtualCamIndex: 3
+    popUpsMsg:
+    - rpgStyle: 1
+      anchor: {fileID: 0}
+      offset: {x: 0, y: 0, z: 0}
+      usingSprite: 1
+      sprite: {fileID: 21300000, guid: 013d0ca5a2e30f7438158762ce87327c, type: 3}
+      Title: 
+      Text: "Now, use it ! Launch soldiers to the fight !\r\n"
+    - rpgStyle: 1
+      anchor: {fileID: 0}
+      offset: {x: 0, y: 0, z: 0}
+      usingSprite: 1
+      sprite: {fileID: 21300000, guid: 013d0ca5a2e30f7438158762ce87327c, type: 3}
+      Title: 
+      Text: "To launch blobz, drag the sling, aim, then release it\r\n"
+    - rpgStyle: 1
+      anchor: {fileID: 0}
+      offset: {x: 0, y: 0, z: 0}
+      usingSprite: 1
+      sprite: {fileID: 21300000, guid: 013d0ca5a2e30f7438158762ce87327c, type: 3}
+      Title: 
+      Text: "Eliminate the enemies\r\n"
+    UEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    foldout: 1

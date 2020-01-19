@@ -20,7 +20,7 @@ MonoBehaviour:
   energyToObtain: 0
   cellType: 2
   level: 1
-  cellNbrToObtain: 2
+  cellNbrToObtain: 1
   blobExplo: 0
   anyCells: 1
   colonialCellType: 0
@@ -45,7 +45,7 @@ MonoBehaviour:
         m_Calls: []
     foldout: 0
   - eventType: 0
-    eventDuration: 2.5
+    eventDuration: 1.8
     virtualCamIndex: 0
     popUpsMsg:
     - rpgStyle: 0
@@ -62,7 +62,7 @@ MonoBehaviour:
         m_Calls: []
     foldout: 1
   - eventType: 0
-    eventDuration: 2.5
+    eventDuration: 1.2
     virtualCamIndex: 1
     popUpsMsg:
     - rpgStyle: 1
@@ -268,4 +268,4 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-    foldout: 0
+    foldout: 1
