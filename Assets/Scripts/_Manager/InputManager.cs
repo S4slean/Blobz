@@ -370,7 +370,7 @@ public class InputManager : MonoBehaviour
                     explo.transform.position = selectedCell.transform.position + dir * 1.8f + Vector3.up*1.1f;
                     explo.transform.LookAt(flag.transform.position);
                     explo.Outpool();
-                    explo.Jump(dir);
+                    explo.Jump();
 
 
                     SwitchInputMode(InputMode.normal);
