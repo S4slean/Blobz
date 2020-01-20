@@ -108,7 +108,12 @@ public class CellProductrice : CellMain
         float ratio = (float)Life / (float)myCellTemplate.maxLifeProd;
         if (Life < myCellTemplate.maxLifeProd)
         {
+            progressBar.ToggleRenderer(true);
             //Display Barre
+        }
+        else
+        {
+            progressBar.ToggleRenderer(false);
         }
 
 
@@ -198,6 +203,7 @@ public class CellProductrice : CellMain
         float ratio = (float)Life / (float)myCellTemplate.maxLifeProd;
 
         progressBar.UpdateBar(ratio);
+        progressBar.ToggleRenderer(false);
         
         base.SetupVariable();
     }
