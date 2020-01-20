@@ -29,7 +29,7 @@ MonoBehaviour:
   nbrOfObject: 0
   questEvents:
   - eventType: 1
-    eventDuration: 0
+    eventDuration: 1.5
     virtualCamIndex: 0
     popUpsMsg:
     - rpgStyle: 1
@@ -95,7 +95,7 @@ MonoBehaviour:
       Title: 
       Text: 
   - eventType: 6
-    eventDuration: 0
+    eventDuration: 1
     virtualCamIndex: 0
     popUpsMsg:
     - rpgStyle: 0
@@ -132,7 +132,7 @@ MonoBehaviour:
       Title: 
       Text: "Click and drag \nto select stock\r \nand place it !"
   - eventType: 3
-    eventDuration: 0
+    eventDuration: 0.5
     virtualCamIndex: 0
     popUpsMsg:
     - rpgStyle: 0
