@@ -367,6 +367,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   filledImage: {fileID: 5269632342810311160}
   anim: {fileID: 1202135833579598443}
+  graph: {fileID: 11724440893181108}
 --- !u!95 &1202135833579598443
 Animator:
   serializedVersion: 3
