@@ -21,7 +21,7 @@ MonoBehaviour:
   generateProximity: 0
   proximityColliderNumber: 1
   proximityColliders: []
-  energyCost: 5
+  energyCost: 200
   energyCapBase: 0
   rangeBase: 15
   blobRatioAtDeath: 0
