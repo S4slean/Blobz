@@ -17,7 +17,7 @@ MonoBehaviour:
   buttonColor: {r: 0, g: 0, b: 0, a: 0}
   cellTexture: {fileID: 0}
   type: 6
-  description: Feed that cell with blobz to shoot a strong missile
+  description: Send a powerfull strike on an area
   generateProximity: 0
   proximityColliderNumber: 1
   proximityColliders: []
@@ -27,7 +27,7 @@ MonoBehaviour:
   blobRatioAtDeath: 0
   impulseForce_Death: 10
   overLoadTickMax: 4
-  overloadTreshHold: 5
+  overloadTreshHold: 1
   prodPerTickBase: 0
   rejectPowerBase: 0
   storageCapability: 15
@@ -35,7 +35,7 @@ MonoBehaviour:
   energyPerClick: 2
   limitedInLinks: 1
   slotDistance: 1.5
-  numberOfOuputLinks: 0
+  numberOfOuputLinks: 2
   numberOfInputLinks: 2
   numberOfFlexLinks: 0
   proximityLevelMax: 4
@@ -49,7 +49,7 @@ MonoBehaviour:
   rangeLien: 00000000000000000000000000000000
   tickForActivation: 05000000030000000200000001000000
   energyCap: 
-  specifique: 0a0000000f000000190000002d000000
+  specifique: 0200000005000000070000000a000000
   energyPerblop: 0
   StatsModification: 7
   REFS: 0
