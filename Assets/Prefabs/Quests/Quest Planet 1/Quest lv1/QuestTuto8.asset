@@ -29,13 +29,13 @@ MonoBehaviour:
   nbrOfObject: 0
   questEvents:
   - eventType: 1
-    eventDuration: 0
+    eventDuration: 1
     virtualCamIndex: 0
     popUpsMsg:
     - rpgStyle: 1
       anchor: {fileID: 0}
       offset: {x: 0, y: 0, z: 0}
-      usingSprite: 0
+      usingSprite: 1
       sprite: {fileID: 21300000, guid: c98328a721f45da4fb0b32121f3026db, type: 3}
       Title: 
       Text: Great ! The dump is useful to collect sploosh, but when you have a lot
@@ -43,7 +43,7 @@ MonoBehaviour:
     - rpgStyle: 1
       anchor: {fileID: 0}
       offset: {x: 0, y: 0, z: 0}
-      usingSprite: 0
+      usingSprite: 1
       sprite: {fileID: 21300000, guid: c98328a721f45da4fb0b32121f3026db, type: 3}
       Title: 
       Text: The crusher do the job for you !
@@ -53,7 +53,15 @@ MonoBehaviour:
     foldout: 0
     cellType: 0
     newTickDuration: 0
-  - eventType: 1
+    persistentMsg:
+      rpgStyle: 0
+      anchor: {fileID: 0}
+      offset: {x: 0, y: 0, z: 0}
+      usingSprite: 0
+      sprite: {fileID: 0}
+      Title: 
+      Text: 
+  - eventType: 6
     eventDuration: 0
     virtualCamIndex: 0
     popUpsMsg:
@@ -63,13 +71,21 @@ MonoBehaviour:
       usingSprite: 1
       sprite: {fileID: 21300000, guid: 68215239a0bc5fa4a8ec1952bf8fed68, type: 3}
       Title: 
-      Text: 'Build a crusher '
+      Text: 
     UEvent:
       m_PersistentCalls:
         m_Calls: []
-    foldout: 0
+    foldout: 1
     cellType: 0
     newTickDuration: 0
+    persistentMsg:
+      rpgStyle: 0
+      anchor: {fileID: 0}
+      offset: {x: 830, y: 300, z: 0}
+      usingSprite: 1
+      sprite: {fileID: 21300000, guid: 68215239a0bc5fa4a8ec1952bf8fed68, type: 3}
+      Title: 
+      Text: 'Build a crusher '
   - eventType: 4
     eventDuration: 0
     virtualCamIndex: 0
@@ -87,3 +103,11 @@ MonoBehaviour:
     foldout: 0
     cellType: 3
     newTickDuration: 0
+    persistentMsg:
+      rpgStyle: 0
+      anchor: {fileID: 0}
+      offset: {x: 0, y: 0, z: 0}
+      usingSprite: 0
+      sprite: {fileID: 0}
+      Title: 
+      Text: 
