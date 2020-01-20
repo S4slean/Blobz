@@ -5330,7 +5330,7 @@ MonoBehaviour:
   warning: {fileID: 4089947948402342599}
   alertRadius: 200
   alertHolder: {fileID: 7038464417759882717}
-  offsetPercentage: 5
+  offsetPercentage: 5.2
   pauseMenu: {fileID: 515377358770607703}
   gameOverScreen: {fileID: 7562233754459867842}
 --- !u!1 &7038464417660496775
