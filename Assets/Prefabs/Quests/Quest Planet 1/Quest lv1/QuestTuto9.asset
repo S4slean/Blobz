@@ -36,14 +36,14 @@ MonoBehaviour:
       anchor: {fileID: 0}
       offset: {x: 0, y: 0, z: 0}
       usingSprite: 1
-      sprite: {fileID: 21300000, guid: c98328a721f45da4fb0b32121f3026db, type: 3}
+      sprite: {fileID: 21300000, guid: 74a01104759d6494d8d651afa2ac8826, type: 3}
       Title: 
       Text: "Look, the sploosh is rising by itself !\r\n"
     - rpgStyle: 1
       anchor: {fileID: 0}
       offset: {x: 0, y: 0, z: 0}
       usingSprite: 1
-      sprite: {fileID: 21300000, guid: 68215239a0bc5fa4a8ec1952bf8fed68, type: 3}
+      sprite: {fileID: 21300000, guid: 74a01104759d6494d8d651afa2ac8826, type: 3}
       Title: 
       Text: "There is something we didn\u2019t told you, the nexus is so important
         for us that it impact the functions of the surrounding cells\r\n"
@@ -51,7 +51,7 @@ MonoBehaviour:
       anchor: {fileID: 0}
       offset: {x: 0, y: 0, z: 0}
       usingSprite: 1
-      sprite: {fileID: 21300000, guid: 68215239a0bc5fa4a8ec1952bf8fed68, type: 3}
+      sprite: {fileID: 21300000, guid: 74a01104759d6494d8d651afa2ac8826, type: 3}
       Title: 
       Text: You see the 3 circles ? They represent the proximity areas. Placing a
         cell in an area modifies his statistics
@@ -59,7 +59,7 @@ MonoBehaviour:
       anchor: {fileID: 0}
       offset: {x: 0, y: 0, z: 0}
       usingSprite: 1
-      sprite: {fileID: 21300000, guid: 68215239a0bc5fa4a8ec1952bf8fed68, type: 3}
+      sprite: {fileID: 21300000, guid: 74a01104759d6494d8d651afa2ac8826, type: 3}
       Title: 
       Text: Some cells will be better in the first area, close to the nexus, some
         will be better in the last one
@@ -97,9 +97,9 @@ MonoBehaviour:
     persistentMsg:
       rpgStyle: 0
       anchor: {fileID: 0}
-      offset: {x: 830, y: 300, z: 0}
+      offset: {x: 0, y: 0, z: 0}
       usingSprite: 1
-      sprite: {fileID: 21300000, guid: 68215239a0bc5fa4a8ec1952bf8fed68, type: 3}
+      sprite: {fileID: 21300000, guid: 74a01104759d6494d8d651afa2ac8826, type: 3}
       Title: 
       Text: "I will destroy all of your cells and sploosh. \nTry reaching 400 sploosh"
   - eventType: 3

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5d07d45a74266e347a6c0f35a3488ad7, type: 3}
-  m_Name: Stockage
+  m_Name: Stock
   m_EditorClassIdentifier: 
   cellsEnableToBuild: []
   blopPrefab: {fileID: 1232130753061943726, guid: e8f62a3d1b4c9b2418bcd0499799a8a9,
