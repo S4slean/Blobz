@@ -30,7 +30,7 @@ MonoBehaviour:
   blobRatioAtDeath: 0
   impulseForce_Death: 10
   overLoadTickMax: 4
-  overloadTreshHold: 5
+  overloadTreshHold: 1
   prodPerTickBase: 0
   rejectPowerBase: 0
   storageCapability: 15
