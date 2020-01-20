@@ -18,7 +18,7 @@ MonoBehaviour:
   eventDone: 1
   populationObjective: 100
   energyToObtain: 25
-  cellType: 10
+  cellType: 2
   level: 1
   cellNbrToObtain: 1
   blobExplo: 0
@@ -36,28 +36,29 @@ MonoBehaviour:
       anchor: {fileID: 0}
       offset: {x: 0, y: 0, z: 0}
       usingSprite: 1
-      sprite: {fileID: 21300000, guid: 74a01104759d6494d8d651afa2ac8826, type: 3}
+      sprite: {fileID: 21300000, guid: 68215239a0bc5fa4a8ec1952bf8fed68, type: 3}
       Title: 
-      Text: "Perfect! You see there is a link between the Nexus and the stock. \r\n"
+      Text: "Perfect! You see there is a link between the Nexus and the dump. \r\n"
     - rpgStyle: 1
       anchor: {fileID: 0}
       offset: {x: 0, y: 0, z: 0}
       usingSprite: 1
-      sprite: {fileID: 21300000, guid: 74a01104759d6494d8d651afa2ac8826, type: 3}
+      sprite: {fileID: 21300000, guid: 68215239a0bc5fa4a8ec1952bf8fed68, type: 3}
       Title: 
       Text: "With it we can travel in the system you\u2019ll build !\r\n\n"
     - rpgStyle: 1
       anchor: {fileID: 0}
       offset: {x: 0, y: 0, z: 0}
       usingSprite: 1
-      sprite: {fileID: 21300000, guid: 74a01104759d6494d8d651afa2ac8826, type: 3}
+      sprite: {fileID: 21300000, guid: 68215239a0bc5fa4a8ec1952bf8fed68, type: 3}
       Title: 
-      Text: "To build cells, you need sploosh. But first you need to build a dump
-        !\r\n\n"
+      Text: 'Let be more numerous with the stock cell !
+
+'
     UEvent:
       m_PersistentCalls:
         m_Calls: []
-    foldout: 0
+    foldout: 1
     cellType: 0
     newTickDuration: 0
     persistentMsg:
@@ -129,7 +130,7 @@ MonoBehaviour:
       usingSprite: 1
       sprite: {fileID: 21300000, guid: 68215239a0bc5fa4a8ec1952bf8fed68, type: 3}
       Title: 
-      Text: "Click and drag \nto select the dump\r \nand place it !"
+      Text: "Click and drag \nto select stock\r \nand place it !"
   - eventType: 3
     eventDuration: 0
     virtualCamIndex: 0
@@ -198,7 +199,7 @@ MonoBehaviour:
             m_BoolArgument: 0
           m_CallState: 2
     foldout: 1
-    cellType: 3
+    cellType: 2
     newTickDuration: 0
     persistentMsg:
       rpgStyle: 0
