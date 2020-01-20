@@ -285,6 +285,22 @@ public class CellMain : PoolableObjects, PlayerAction
 
     public virtual void BlobsTick()
     {
+        if (myCellTemplate.StatsModification == StatsModificationType.StockageCapacity)
+        {
+            if (stuckBlobs.Count <= 0 && currentBlobStockage < myCellTemplate.stockageCapacity[currentProximityTier])
+            {
+                StockageCapabilityVariation(1);
+            }
+        }
+        else
+        {
+            if (stuckBlobs.Count <= 0 && currentBlobStockage < myCellTemplate.storageCapability)
+            {
+                StockageCapabilityVariation(1);
+            }
+        }
+
+
         if (!overLoad)
         {
             overloadStack = 0;
@@ -374,14 +390,12 @@ public class CellMain : PoolableObjects, PlayerAction
         if (currentBlobStockage <= 0)
         {
             ToggleOverload(true);
-            ;
             return;
         }
 
         if (blobNumber > currentBlobStockage && !isDead && !isNexus)
         {
             ToggleOverload(true);
-            ;
             return;
         }
 
