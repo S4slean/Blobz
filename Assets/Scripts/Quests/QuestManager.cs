@@ -244,7 +244,7 @@ public class QuestManager : MonoBehaviour
 
                 case QuestEvent.QuestEventType.PopUp:
 
-                    if (currentQuestID == 0)
+                    if (currentMsgID == 0)
                     {
                         QuestEventManager.instance.popUpIsSkippable = false;
                         StartCoroutine(WaitBeforeSkip());
