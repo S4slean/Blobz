@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4524424998453287765}
   - component: {fileID: 4524424998453287767}
   - component: {fileID: 4524424998453287766}
+  - component: {fileID: 6002670252862791857}
   m_Layer: 0
   m_Name: Energie
   m_TagString: Untagged
@@ -155,6 +156,18 @@ MonoBehaviour:
   - {fileID: 0}
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &6002670252862791857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4524424998453287764}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f49dfd5ce0b58e8478015afd8093fa7f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4524424998470927788
 GameObject:
   m_ObjectHideFlags: 0
@@ -242,3 +255,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7316a99edd486b4d9cf151154154623, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  energy: {fileID: 0}
+  anim: {fileID: 0}
