@@ -28,7 +28,7 @@ public class CellDecharge : CellMain
 
 
             Debug.Log(myTransform.position);
-            newTextescore.myTransform.position = myTransform.position + new Vector3(Random.Range(-0.5f, 0.5f), 2, 0);
+            newTextescore.myTransform.position = graphTransform.position + new Vector3(Random.Range(-0.5f, 0.5f), 2, 0);
             newTextescore.textScore.text = ("+" + specifiqueStats.ToString());
             newTextescore.PlayAnim();
             actionmade = true;

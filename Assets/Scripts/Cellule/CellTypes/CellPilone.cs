@@ -14,13 +14,20 @@ public class CellPilone : CellMain
             if (blobNumber > 0)
             {
                 BlobNumberVariation(-1, BlobCheck(), false);
-                ChargeEnergie();
+                if (energie < myCellTemplate.maxEnergie)
+                {
+                    ChargeEnergie();
+                }
             }
             else
             {
-                energie--;
-                float ratio = (float)energie / (float)myCellTemplate.maxEnergie;
-                progressBar.UpdateBar(ratio);
+                if (energie > 0)
+                {
+                    energie--;
+                    float ratio = (float)energie / (float)myCellTemplate.maxEnergie;
+                    progressBar.UpdateBar(ratio);
+
+                }
 
                 if (energie <= 0)
                 {
