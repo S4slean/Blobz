@@ -53,17 +53,17 @@ MonoBehaviour:
       sprite: {fileID: 0}
       Title: 
       Text: 
-  - eventType: 1
+  - eventType: 6
     eventDuration: 0
     virtualCamIndex: 0
     popUpsMsg:
     - rpgStyle: 0
       anchor: {fileID: 0}
-      offset: {x: 830, y: 260, z: 0}
+      offset: {x: 0, y: 0, z: 0}
       usingSprite: 1
       sprite: {fileID: 21300000, guid: 68215239a0bc5fa4a8ec1952bf8fed68, type: 3}
       Title: 
-      Text: Collect more sploosh
+      Text: 
     UEvent:
       m_PersistentCalls:
         m_Calls: []
@@ -74,7 +74,7 @@ MonoBehaviour:
       rpgStyle: 0
       anchor: {fileID: 0}
       offset: {x: 0, y: 0, z: 0}
-      usingSprite: 0
-      sprite: {fileID: 0}
+      usingSprite: 1
+      sprite: {fileID: 21300000, guid: 68215239a0bc5fa4a8ec1952bf8fed68, type: 3}
       Title: 
-      Text: 
+      Text: Collect more sploosh
