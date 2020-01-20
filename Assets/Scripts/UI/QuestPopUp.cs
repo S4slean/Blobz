@@ -16,14 +16,23 @@ public class QuestPopUp : MonoBehaviour
     {
         TMPtitle.text = title;
         TMPtext.text = text;
-        
-        if(img.sprite != null)
+
+        if (img.sprite != null)
             img.sprite = sprite;
 
         SetRpgStyle(isUsingSprite);
     }
 
-    void SetRpgStyle(bool isUsingSprite)
+
+    public void UpdatePersistentMsg(string text, Sprite sprite)
+    {
+        TMPtext.text = text;
+
+        if (img.sprite != null)
+            img.sprite = sprite;
+    }
+
+    public void SetRpgStyle(bool isUsingSprite)
     {
         if (isUsingSprite)
         {

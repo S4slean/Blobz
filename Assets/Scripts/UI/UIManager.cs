@@ -97,6 +97,24 @@ public class UIManager : MonoBehaviour
     public QuestUI QuestUI;
     public QuestPopUp questEventPopUpWorld;
     public QuestPopUp questEventPopUpOverlay;
+    public QuestPopUp persistentMsg;
+
+
+    public void HidePersistentMsg()
+    {
+        persistentMsg.anim.SetBool("Show", false);
+    }
+
+    public void DisplayPopUp(QuestPopUp pop)
+    {
+        pop.anim.SetBool("Show", true);
+        pop.anim.Play("Show");
+    }
+
+    public void HidePopUp(QuestPopUp pop)
+    {
+        pop.anim.SetBool("Show", false);
+    }
 
     #endregion
 

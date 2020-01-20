@@ -25,7 +25,7 @@ public class QuestManager : MonoBehaviour
     public AudioClip questSuccsessSound;
 
 
-    
+
 
 
     QuestPopUp popUp;
@@ -74,6 +74,7 @@ public class QuestManager : MonoBehaviour
 
             DisplayCurrentQuest();
             ResetQuestEventCount();
+
             PlayQuestEvent();
         }
         else
@@ -184,7 +185,7 @@ public class QuestManager : MonoBehaviour
             case QuestType.Destruction:
 
 
-                if(questProgress == currentQuest.nbrOfObject)
+                if (questProgress == currentQuest.nbrOfObject)
                     QuestSuccess();
 
                 break;
@@ -210,6 +211,7 @@ public class QuestManager : MonoBehaviour
         //Display Success
         //hide UI or play Disappearing anim
         SoundManager.instance.PlaySound(questSuccsessSound);
+        UIManager.Instance.HidePersistentMsg();
 
         ChangeQuest();
     }
@@ -243,7 +245,11 @@ public class QuestManager : MonoBehaviour
                 case QuestEvent.QuestEventType.PopUp:
 
                     QuestEventManager.instance.popUpIsSkippable = false;
-                    StartCoroutine(WaitBeforeSkip());
+                    if (currentQuestID == 0)
+                    {
+                        StartCoroutine(WaitBeforeSkip());
+
+                    }
                     DisplayPopUp();
 
                     break;
@@ -271,6 +277,15 @@ public class QuestManager : MonoBehaviour
                     StartCoroutine(WaitBeforNextEvent());
                     break;
 
+                case QuestEvent.QuestEventType.PersistentMessage:
+
+                    DisplayPersistentMessage();
+                    StartCoroutine(WaitBeforNextEvent());
+
+
+                    break;
+
+
             }
 
         }
@@ -282,6 +297,13 @@ public class QuestManager : MonoBehaviour
 
 
     }
+    public void DisplayPersistentMessage()
+    {
+        PopUpData persistentMsg = currentQuest.questEvents[currentQuestEventID].persistentMsg;
+        popUp = UIManager.Instance.persistentMsg;
+        popUp.UpdatePersistentMsg(persistentMsg.Text, persistentMsg.sprite);
+        UIManager.Instance.DisplayPopUp(popUp);
+    }
     private void DisplayPopUp()
     {
         PopUpData popUpData = currentQuest.questEvents[currentQuestEventID].popUpsMsg[currentMsgID];
@@ -290,19 +312,19 @@ public class QuestManager : MonoBehaviour
         if (popUpData.rpgStyle)
         {
             popUp = UIManager.Instance.questEventPopUpOverlay;
-            UIManager.Instance.DisplayUI(popUp.gameObject);
+            UIManager.Instance.DisplayPopUp(popUp);
         }
         else
         {
             popUp = UIManager.Instance.questEventPopUpWorld;
-            UIManager.Instance.DisplayUI(popUp.gameObject);
+            UIManager.Instance.DisplayPopUp(popUp);
 
 
 
             popUp.transform.position = popUpData.offset;
         }
 
-        if(popUpData.usingSprite == false || popUpData.sprite == null)
+        if (popUpData.usingSprite == false || popUpData.sprite == null)
         {
             popUp.img.gameObject.SetActive(false);
         }
@@ -313,13 +335,11 @@ public class QuestManager : MonoBehaviour
 
         popUp.UpdatePopUp(popUpData.Title, popUpData.Text, popUpData.sprite, popUpData.usingSprite);
     }
-
     public IEnumerator WaitBeforeSkip()
     {
         yield return new WaitForSeconds(1);
         QuestEventManager.instance.popUpIsSkippable = true;
     }
-
     public IEnumerator WaitBeforNextEvent()
     {
         yield return new WaitForSeconds(currentQuest.questEvents[currentQuestEventID].eventDuration);
@@ -354,6 +374,7 @@ public class QuestManager : MonoBehaviour
 
             case QuestEvent.QuestEventType.PopUp:
 
+                
                 popUp.anim.Play("Hide");
                 break;
         }
