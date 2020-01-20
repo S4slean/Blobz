@@ -281,7 +281,7 @@ MonoBehaviour:
       Title: 
       Text: 
   - eventType: 6
-    eventDuration: 1.5
+    eventDuration: 1.8
     virtualCamIndex: 1
     popUpsMsg:
     - rpgStyle: 0

@@ -58,7 +58,7 @@ MonoBehaviour:
     UEvent:
       m_PersistentCalls:
         m_Calls: []
-    foldout: 1
+    foldout: 0
     cellType: 0
     newTickDuration: 0
     persistentMsg:
@@ -95,7 +95,7 @@ MonoBehaviour:
       Title: 
       Text: 
   - eventType: 6
-    eventDuration: 1
+    eventDuration: 1.5
     virtualCamIndex: 0
     popUpsMsg:
     - rpgStyle: 0
