@@ -6102,6 +6102,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   energy: {fileID: 7038464418405311201}
+  energieTopBar: {fileID: 0}
 --- !u!1 &7038464417953392492
 GameObject:
   m_ObjectHideFlags: 0
