@@ -17,7 +17,7 @@ MonoBehaviour:
   buttonColor: {r: 0, g: 0, b: 0, a: 0}
   cellTexture: {fileID: 0}
   type: 6
-  description: Feed that cell with blobz to shoot a strong missile
+  description: Send a powerfull strike on an area
   generateProximity: 0
   proximityColliderNumber: 1
   proximityColliders: []

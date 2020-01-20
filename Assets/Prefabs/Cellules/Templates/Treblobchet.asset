@@ -17,7 +17,7 @@ MonoBehaviour:
   buttonColor: {r: 0, g: 0, b: 0, a: 0}
   cellTexture: {fileID: 0}
   type: 12
-  description: Send blobz outside to fight for you or to explore the world !
+  description: Send blobz to fight
   generateProximity: 0
   proximityColliderNumber: 1
   proximityColliders: []
