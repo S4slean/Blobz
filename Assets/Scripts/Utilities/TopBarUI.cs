@@ -7,10 +7,13 @@ public class TopBarUI : MonoBehaviour
 {
 
     public TextMeshProUGUI energy;
+    public energieTopBar energieTopBar;
 
     public void UpdateUI()
     {
         energy.text = "Sploosh : " + RessourceTracker.instance.energy + "/ " + RessourceTracker.instance.energyCap;
+        energieTopBar.CheckEnergieAmount();
+
     }
 
     public void ReplayLevel()
