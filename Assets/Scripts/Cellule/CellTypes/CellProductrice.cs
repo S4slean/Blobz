@@ -13,6 +13,11 @@ public class CellProductrice : CellMain
 
     public override void BlobsTick()
     {
+        if (stuckBlobs.Count <= 0 && Life < myCellTemplate.maxLifeProd)
+        {
+            StockageCapabilityVariation(1);
+        }
+
         if (!overLoad)
         {
             haveExpulse = false;
@@ -100,9 +105,14 @@ public class CellProductrice : CellMain
     public override void StockageCapabilityVariation(int Amount)
     {
         Life += Amount;
-        float ratio = (float)Life/ (float)myCellTemplate.maxLifeProd;
+        float ratio = (float)Life / (float)myCellTemplate.maxLifeProd;
+        if (Life < myCellTemplate.maxLifeProd)
+        {
+            //Display Barre
+        }
 
-        if (Life <= 0 )
+
+        if (Life <= 0)
         {
             ToggleOverload(true);
         }
@@ -186,7 +196,9 @@ public class CellProductrice : CellMain
     {
         Life = myCellTemplate.maxLifeProd;
         float ratio = (float)Life / (float)myCellTemplate.maxLifeProd;
+
         progressBar.UpdateBar(ratio);
+        
         base.SetupVariable();
     }
 
