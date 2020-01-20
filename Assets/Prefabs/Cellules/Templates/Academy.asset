@@ -17,7 +17,7 @@ MonoBehaviour:
   buttonColor: {r: 0, g: 0, b: 0, a: 0}
   cellTexture: {fileID: 0}
   type: 11
-  description: A cell to make explorator blobz
+  description: Create explorator blobz
   generateProximity: 0
   proximityColliderNumber: 1
   proximityColliders: []
@@ -27,7 +27,7 @@ MonoBehaviour:
   blobRatioAtDeath: 0
   impulseForce_Death: 10
   overLoadTickMax: 4
-  overloadTreshHold: 5
+  overloadTreshHold: 1
   prodPerTickBase: 0
   rejectPowerBase: 0
   storageCapability: 15
