@@ -29,7 +29,7 @@ MonoBehaviour:
   nbrOfObject: 0
   questEvents:
   - eventType: 1
-    eventDuration: 0
+    eventDuration: 1.5
     virtualCamIndex: 0
     popUpsMsg:
     - rpgStyle: 1
@@ -37,11 +37,19 @@ MonoBehaviour:
       offset: {x: 0, y: 0, z: 0}
       usingSprite: 1
       sprite: {fileID: 21300000, guid: cc3173b5ab91f26438949b73af93e3f9, type: 3}
-      Title: 
+      Title: MaJellyan
       Text: Now, be careful and keep an eye on your 2 nexus. Try to reach 1200
     UEvent:
       m_PersistentCalls:
         m_Calls: []
-    foldout: 0
+    foldout: 1
     cellType: 0
     newTickDuration: 0
+    persistentMsg:
+      rpgStyle: 0
+      anchor: {fileID: 0}
+      offset: {x: 0, y: 0, z: 0}
+      usingSprite: 0
+      sprite: {fileID: 0}
+      Title: 
+      Text: 

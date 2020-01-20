@@ -28,7 +28,7 @@ MonoBehaviour:
   destructType: 4
   nbrOfObject: 5
   questEvents:
-  - eventType: 3
+  - eventType: 0
     eventDuration: 1
     virtualCamIndex: 0
     popUpsMsg:
@@ -67,9 +67,9 @@ MonoBehaviour:
       sprite: {fileID: 0}
       Title: 
       Text: 
-  - eventType: 3
-    eventDuration: 2
-    virtualCamIndex: 0
+  - eventType: 0
+    eventDuration: 1.5
+    virtualCamIndex: 1
     popUpsMsg:
     - rpgStyle: 1
       anchor: {fileID: 0}
@@ -106,7 +106,7 @@ MonoBehaviour:
       Title: 
       Text: 
   - eventType: 3
-    eventDuration: 2
+    eventDuration: 1.2
     virtualCamIndex: 1
     popUpsMsg:
     - rpgStyle: 1
@@ -231,7 +231,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-    foldout: 1
+    foldout: 0
     cellType: 0
     newTickDuration: 0
     persistentMsg:
@@ -242,8 +242,8 @@ MonoBehaviour:
       sprite: {fileID: 0}
       Title: 
       Text: 
-  - eventType: 1
-    eventDuration: 2
+  - eventType: 6
+    eventDuration: 1
     virtualCamIndex: 2
     popUpsMsg:
     - rpgStyle: 1
@@ -252,14 +252,14 @@ MonoBehaviour:
       usingSprite: 1
       sprite: {fileID: 21300000, guid: cc3173b5ab91f26438949b73af93e3f9, type: 3}
       Title: 
-      Text: Create an academy
+      Text: 
     - rpgStyle: 0
       anchor: {fileID: 0}
       offset: {x: 830, y: 260, z: 0}
       usingSprite: 1
       sprite: {fileID: 21300000, guid: cc3173b5ab91f26438949b73af93e3f9, type: 3}
       Title: 
-      Text: Click and drag from the cell to give the exploraters a place to reach
+      Text: 
     UEvent:
       m_PersistentCalls:
         m_Calls:
@@ -282,12 +282,12 @@ MonoBehaviour:
       rpgStyle: 0
       anchor: {fileID: 0}
       offset: {x: 0, y: 0, z: 0}
-      usingSprite: 0
-      sprite: {fileID: 0}
-      Title: 
-      Text: 
-  - eventType: 3
-    eventDuration: 2
+      usingSprite: 1
+      sprite: {fileID: 21300000, guid: cc3173b5ab91f26438949b73af93e3f9, type: 3}
+      Title: MaJellyan
+      Text: Create an academy
+  - eventType: 6
+    eventDuration: 1
     virtualCamIndex: 2
     popUpsMsg:
     - rpgStyle: 1
@@ -297,13 +297,6 @@ MonoBehaviour:
       sprite: {fileID: 21300000, guid: cc3173b5ab91f26438949b73af93e3f9, type: 3}
       Title: 
       Text: Create an academy
-    - rpgStyle: 0
-      anchor: {fileID: 0}
-      offset: {x: 830, y: 260, z: 0}
-      usingSprite: 1
-      sprite: {fileID: 21300000, guid: cc3173b5ab91f26438949b73af93e3f9, type: 3}
-      Title: 
-      Text: Click and drag from the cell to give the exploraters a place to reach
     UEvent:
       m_PersistentCalls:
         m_Calls:
@@ -326,12 +319,56 @@ MonoBehaviour:
       rpgStyle: 0
       anchor: {fileID: 0}
       offset: {x: 0, y: 0, z: 0}
+      usingSprite: 1
+      sprite: {fileID: 21300000, guid: cc3173b5ab91f26438949b73af93e3f9, type: 3}
+      Title: MaJellyan
+      Text: Click and drag from the cell to give the exploraters a place to reach
+  - eventType: 3
+    eventDuration: 0
+    virtualCamIndex: 2
+    popUpsMsg:
+    - rpgStyle: 1
+      anchor: {fileID: 0}
+      offset: {x: 830, y: 260, z: 0}
+      usingSprite: 1
+      sprite: {fileID: 21300000, guid: cc3173b5ab91f26438949b73af93e3f9, type: 3}
+      Title: 
+      Text: Create an academy
+    - rpgStyle: 0
+      anchor: {fileID: 0}
+      offset: {x: 830, y: 260, z: 0}
+      usingSprite: 1
+      sprite: {fileID: 21300000, guid: cc3173b5ab91f26438949b73af93e3f9, type: 3}
+      Title: 
+      Text: Click and drag from the cell to give the exploraters a place to reach
+    UEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 7092926421352154698, guid: d3347b8975fd83342864f44ebbc52728,
+            type: 3}
+          m_MethodName: 
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
+    foldout: 1
+    cellType: 11
+    newTickDuration: 0
+    persistentMsg:
+      rpgStyle: 0
+      anchor: {fileID: 0}
+      offset: {x: 0, y: 0, z: 0}
       usingSprite: 0
       sprite: {fileID: 0}
       Title: 
       Text: 
   - eventType: 4
-    eventDuration: 1
+    eventDuration: 0
     virtualCamIndex: 2
     popUpsMsg:
     - rpgStyle: 1

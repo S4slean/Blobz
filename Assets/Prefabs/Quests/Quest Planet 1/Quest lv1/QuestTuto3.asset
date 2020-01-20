@@ -36,14 +36,14 @@ MonoBehaviour:
       anchor: {fileID: 0}
       offset: {x: 0, y: 0, z: 0}
       usingSprite: 1
-      sprite: {fileID: 21300000, guid: c98328a721f45da4fb0b32121f3026db, type: 3}
-      Title: 
+      sprite: {fileID: 21300000, guid: 68215239a0bc5fa4a8ec1952bf8fed68, type: 3}
+      Title: Blob the builder
       Text: "Great ! Let\u2019s create another one ! But first you need more sploosh
         !\r\n"
     UEvent:
       m_PersistentCalls:
         m_Calls: []
-    foldout: 0
+    foldout: 1
     cellType: 0
     newTickDuration: 0
     persistentMsg:
@@ -77,5 +77,5 @@ MonoBehaviour:
       offset: {x: 0, y: 0, z: 0}
       usingSprite: 1
       sprite: {fileID: 21300000, guid: 68215239a0bc5fa4a8ec1952bf8fed68, type: 3}
-      Title: 
+      Title: Blob the builder
       Text: Create more sploosh
