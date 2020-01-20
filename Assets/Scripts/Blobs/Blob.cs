@@ -180,7 +180,7 @@ public class Blob : PoolableObjects
     public void JumpForward()
     {
 
-        rb.AddForce((transform.forward *3 + Vector3.up * 2 + transform.right*Random.Range(-.6f,.6f)).normalized * jumpForce, ForceMode.Impulse);
+        rb.AddForce((transform.forward * 3 + Vector3.up * 2 + transform.right * Random.Range(-.6f, .6f)).normalized * jumpForce, ForceMode.Impulse);
     }
 
     public void Fly()
@@ -220,8 +220,10 @@ public class Blob : PoolableObjects
 
     public void Unstuck()
     {
-
-        infectedCell.stuckBlobs.Remove(this);
+        if (infectedCell != null)
+        {
+            infectedCell.stuckBlobs.Remove(this);
+        }
         infectedCell = null;
         infectionAmount = 1;
         rb.isKinematic = false;

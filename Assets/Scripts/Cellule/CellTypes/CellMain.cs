@@ -216,6 +216,7 @@ public class CellMain : PoolableObjects, PlayerAction
         {
             stuckBlobs[0].Unstuck();
         }
+      //  stuckBlobs.Clear();
 
         int I = links.Count;
         for (int i = 0; i < I; i++)
