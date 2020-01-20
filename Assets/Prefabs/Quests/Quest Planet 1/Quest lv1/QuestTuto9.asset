@@ -29,7 +29,7 @@ MonoBehaviour:
   nbrOfObject: 0
   questEvents:
   - eventType: 1
-    eventDuration: 0
+    eventDuration: 1
     virtualCamIndex: 0
     popUpsMsg:
     - rpgStyle: 1
@@ -69,8 +69,16 @@ MonoBehaviour:
     foldout: 0
     cellType: 0
     newTickDuration: 0
-  - eventType: 1
-    eventDuration: 0
+    persistentMsg:
+      rpgStyle: 0
+      anchor: {fileID: 0}
+      offset: {x: 0, y: 0, z: 0}
+      usingSprite: 0
+      sprite: {fileID: 0}
+      Title: 
+      Text: 
+  - eventType: 6
+    eventDuration: 1.2
     virtualCamIndex: 0
     popUpsMsg:
     - rpgStyle: 0
@@ -79,13 +87,21 @@ MonoBehaviour:
       usingSprite: 1
       sprite: {fileID: 21300000, guid: 68215239a0bc5fa4a8ec1952bf8fed68, type: 3}
       Title: 
-      Text: "I will destroy all of your cells and sploosh. \nTry reaching 400 sploosh "
+      Text: ' '
     UEvent:
       m_PersistentCalls:
         m_Calls: []
-    foldout: 0
+    foldout: 1
     cellType: 0
     newTickDuration: 0
+    persistentMsg:
+      rpgStyle: 0
+      anchor: {fileID: 0}
+      offset: {x: 830, y: 300, z: 0}
+      usingSprite: 1
+      sprite: {fileID: 21300000, guid: 68215239a0bc5fa4a8ec1952bf8fed68, type: 3}
+      Title: 
+      Text: "I will destroy all of your cells and sploosh. \nTry reaching 400 sploosh"
   - eventType: 3
     eventDuration: 0
     virtualCamIndex: 0
@@ -96,3 +112,11 @@ MonoBehaviour:
     foldout: 0
     cellType: 0
     newTickDuration: 0
+    persistentMsg:
+      rpgStyle: 0
+      anchor: {fileID: 0}
+      offset: {x: 0, y: 0, z: 0}
+      usingSprite: 0
+      sprite: {fileID: 0}
+      Title: 
+      Text: 
