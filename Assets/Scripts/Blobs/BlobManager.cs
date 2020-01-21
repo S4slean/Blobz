@@ -329,11 +329,16 @@ public class BlobManager : MonoBehaviour
 
         if (blob.GetBlobType() == BlobType.soldier && touchedBlobs.Length > 0)
         {
-            if (touchedBlobs[0].GetComponent<Blob>().GetBlobType() == BlobType.mad)
+            for (int i = 0; i < touchedBlobs.Length; i++)
             {
-                touchedBlobs[0].GetComponent<Blob>().Destruct();
-                blob.Destruct();
-                return true;
+
+                if (touchedBlobs[i].GetComponent<Blob>().GetBlobType() == BlobType.mad)
+                {
+                    Debug.Log("Soldier Attacked blob");
+                    touchedBlobs[i].GetComponent<Blob>().Destruct();
+                    blob.Destruct();
+                    return true;
+                }
             }
         }
 
@@ -341,20 +346,27 @@ public class BlobManager : MonoBehaviour
 
         if (touchedDestructibles.Length > 0)
         {
-            if (TryGetComponent<Destructible>(out Destructible destructible))
+
+            for (int i = 0; i < touchedDestructibles.Length; i++)
             {
-                if (blob.GetBlobType() == BlobType.soldier && (destructible.destructType == Destructible.DestructType.enemy || destructible.destructType == Destructible.DestructType.all))
+
+                if (touchedDestructibles[i].TryGetComponent<Destructible>(out Destructible destructible))
                 {
-                    destructible.ReceiveDamage(dmg);
-                    return true;
+                    if (blob.GetBlobType() == BlobType.soldier && (destructible.destructType == Destructible.DestructType.enemy || destructible.destructType == Destructible.DestructType.all))
+                    {
+                        Debug.Log("Soldier attacked enemy Base");
+                        destructible.ReceiveDamage(dmg);
+                        return true;
+
+                    }
+                    else if (blob.GetBlobType() == BlobType.explorateur && (destructible.destructType == Destructible.DestructType.ressources || destructible.destructType == Destructible.DestructType.all))
+                    {
+                        Debug.Log("Explo harvested ressources");
+                        destructible.ReceiveDamage(dmg);
+                        return true;
+                    }
 
                 }
-                else if (blob.GetBlobType() == BlobType.explorateur && (destructible.destructType == Destructible.DestructType.ressources || destructible.destructType == Destructible.DestructType.all))
-                {
-                    destructible.ReceiveDamage(dmg);
-                    return true;
-                }
-
             }
         }
 
