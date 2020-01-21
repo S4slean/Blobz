@@ -146,8 +146,6 @@ public class Blob : PoolableObjects
         blobType = BlobManager.BlobType.normal;
         tagetTransform = null;
 
-
-
         infectedCell = null;
         isStuck = false;
         infectionAmount = 0;
@@ -160,7 +158,7 @@ public class Blob : PoolableObjects
 
     }
 
-
+    #region DEPLACEMENT
     public void JumpTowards(Transform target)
     {
         transform.LookAt(target);
@@ -183,20 +181,21 @@ public class Blob : PoolableObjects
         rb.AddForce((transform.forward * 3 + Vector3.up * 2 + transform.right * Random.Range(-.6f, .6f)).normalized * jumpForce, ForceMode.Impulse);
     }
 
+    public void JumpBackward()
+    {
+
+        rb.AddForce((-transform.forward * 3 + Vector3.up * 2 + transform.right * Random.Range(-.6f, .6f)).normalized * jumpForce, ForceMode.Impulse);
+    }
+
     public void Fly()
     {
         rb.velocity = transform.forward * flySpeed;
         flyTime -= Time.deltaTime;
     }
 
-    public void ReduceCapacity()
-    {
-        if (infectedCell != null)
-        {
-            infectedCell.StockageCapabilityVariation(-infectionAmount);
-        }
-    }
+    #endregion
 
+    #region CELL INTERACTION
     private void OnCollisionEnter(Collision collision)
     {
         if (blobType == BlobManager.BlobType.mad && collision.transform.tag == "Cell")
@@ -212,10 +211,12 @@ public class Blob : PoolableObjects
             BlobManager.instance.Explode(this, 1);
     }
 
-    public void SetOrigin(EnemyVillage newVillage)
+    public void ReduceCapacity()
     {
-        cameFromVillage = true;
-        village = newVillage;
+        if (infectedCell != null)
+        {
+            infectedCell.StockageCapabilityVariation(-infectionAmount);
+        }
     }
 
     public void Unstuck()
@@ -223,14 +224,25 @@ public class Blob : PoolableObjects
         if (infectedCell != null)
         {
             infectedCell.stuckBlobs.Remove(this);
+            infectedCell.StockageCapabilityVariation(infectionAmount);
         }
         infectedCell = null;
         infectionAmount = 1;
         rb.isKinematic = false;
         isStuck = false;
+        JumpBackward();
 
     }
 
+    #endregion
+
+
+
+    public void SetOrigin(EnemyVillage newVillage)
+    {
+        cameFromVillage = true;
+        village = newVillage;
+    }
     public bool CheckIfOutOfVillage()
     {
         if ((transform.position - village.transform.position).sqrMagnitude > Mathf.Pow(village.boundariesRange, 2))
