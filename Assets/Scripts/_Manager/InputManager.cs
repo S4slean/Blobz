@@ -58,6 +58,8 @@ public class InputManager : MonoBehaviour
 
     public GameObject flag;
     public Animator flagAnim;
+
+    private Vector3 posToTest;
     #endregion
 
 
@@ -325,7 +327,8 @@ public class InputManager : MonoBehaviour
 
                 if (CurrentHit.transform != null && CurrentHit.transform.tag == "Ground")
                 {
-                    CellManager.Instance.CellDeplacement(CurrentHit.point, objectMoved);
+                    posToTest = new Vector3(CurrentHit.point.x, 0, CurrentHit.point.z);
+                    CellManager.Instance.CellDeplacement(posToTest, objectMoved);
                 }
 
                 //si clic gauche, replacer la cell et update tous ses liens

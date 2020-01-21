@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac59c85db94beed47808c892abe2bae2, type: 3}
   m_Name: TestQuest
   m_EditorClassIdentifier: 
-  questType: 1
+  questType: 2
   questTitle: TestQuest
   questDescription: 
   eventDone: 1
@@ -20,91 +20,11 @@ MonoBehaviour:
   energyToObtain: 1000
   cellType: 2
   level: 1
-  cellNbrToObtain: 2
+  cellNbrToObtain: 8
   blobExplo: 0
   anyCells: 1
   colonialCellType: 0
   placeToGet: 0
   destructType: 3
   nbrOfObject: 3
-  questEvents:
-  - eventType: 1
-    eventDuration: 0
-    virtualCamIndex: 0
-    popUpsMsg:
-    - rpgStyle: 1
-      anchor: {fileID: 0}
-      offset: {x: 900, y: 500, z: 0}
-      usingSprite: 1
-      sprite: {fileID: 21300000, guid: 013d0ca5a2e30f7438158762ce87327c, type: 3}
-      Title: Yo
-      Text: Cette Quete marche
-    - rpgStyle: 1
-      anchor: {fileID: 0}
-      offset: {x: 0, y: 0, z: 0}
-      usingSprite: 0
-      sprite: {fileID: 21300000, guid: a6145ea1067118a42817843806cd1ffc, type: 3}
-      Title: Ouf
-      Text: Et les messages aussi !
-    UEvent:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 412198583721461599, guid: f4977ad77028024489b871d608afbd15,
-            type: 3}
-          m_MethodName: 
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: 
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-    foldout: 1
-    cellType: 0
-    newTickDuration: 0
-    persistentMsg:
-      rpgStyle: 0
-      anchor: {fileID: 0}
-      offset: {x: 0, y: 0, z: 0}
-      usingSprite: 0
-      sprite: {fileID: 21300000, guid: ffd3b1ed1b798c144ba2d2d9f69162b0, type: 3}
-      Title: 
-      Text: "Piti\xE9 reste"
-  - eventType: 6
-    eventDuration: 0
-    virtualCamIndex: 0
-    popUpsMsg:
-    - rpgStyle: 0
-      anchor: {fileID: 0}
-      offset: {x: 900, y: 500, z: 0}
-      usingSprite: 0
-      sprite: {fileID: 0}
-      Title: Et moi donc
-      Text: 
-    UEvent:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 0}
-          m_MethodName: 
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: 
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-    foldout: 0
-    cellType: 0
-    newTickDuration: 0
-    persistentMsg:
-      rpgStyle: 0
-      anchor: {fileID: 0}
-      offset: {x: 0, y: 0, z: 0}
-      usingSprite: 0
-      sprite: {fileID: 21300000, guid: 50c020bdd99202542a59f4d679a8d911, type: 3}
-      Title: 
-      Text: "Piti\xE9 reste"
+  questEvents: []
