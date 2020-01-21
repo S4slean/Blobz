@@ -114,7 +114,17 @@ public class CelluleTemplate : ScriptableObject
     [Range(1.2f, 6f)]
     public float magazineDragRange = 1.5f;
     [Range(0.1f, 0.5f)]
-    public float minDistanceDrag = 0.2f;
+    public float minDragRatio = 0.2f;
+
+    [Range(1, 60)]
+    public int shotPower = 25;
+    [Range(1, 30)]
+    public int verticalConstantPower = 10;
+    [Range(1, 10)]
+    public float verticalOffset = 1;
+    [Range(0.25f , 4f)]
+    public float magazinSlotDistance = 3;
+
 
 
     [Range(1 , 10)]

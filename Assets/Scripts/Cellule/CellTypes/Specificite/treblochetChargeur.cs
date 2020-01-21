@@ -7,10 +7,10 @@ public class treblochetChargeur : MonoBehaviour, PlayerAction
     public List<BlobManager.BlobType> blobInChargeur = new List<BlobManager.BlobType>();
 
     public int maxStockage;
-    public float maxPower;
-    public float yOffset;
-    public float dragRange;
-    public float slotRange;
+    //  public float maxPower;
+    // public float yOffset;
+    private float dragRange;
+    // public float slotRange;
     public SphereCollider myCollider;
 
     //private Vector3 initialPos; 
@@ -43,39 +43,45 @@ public class treblochetChargeur : MonoBehaviour, PlayerAction
         direction = new Vector3(direction.x, 0, direction.z);
         direction = direction.normalized;
 
+
+        //Calcul à revoir pour le ratio 
         float distance = Vector3.Distance(parent.transform.position, hit.point);
         if (distance <= disTanceFromParent)
         {
             transform.position = parent.graphTransform.position + direction * disTanceFromParent;
-            finalDistance = disTanceFromParent;
+            finalDistance = 0;
         }
         else if (distance < dragRange)
         {
             transform.position = new Vector3(hit.point.x, transform.position.y, hit.point.z);
-            finalDistance = distance;
+            finalDistance = distance - disTanceFromParent;
 
         }
         else
         {
             transform.position = parent.graphTransform.position + direction * dragRange;
-            finalDistance = dragRange;
+            finalDistance = dragRange - disTanceFromParent;
         }
 
         transform.LookAt(parent.transform);
         // transform.rotation = Quaternion.Euler(90, 0, transform.rotation.z);
     }
 
-    private void DragEnd()
+    private void DragEnd(RaycastHit hit)
     {
-        if (disTanceFromParent + parent.myCellTemplate.minDistanceDrag < finalDistance)
+
+        float ratio = finalDistance / (dragRange - disTanceFromParent);
+        Debug.Log("Ratio :" + ratio);
+        if (parent.myCellTemplate.minDragRatio < ratio)
         {
 
-            float ratio = finalDistance / dragRange;
+            // float ratio = finalDistance / (dragRange - disTanceFromParent);
             Fire(ratio);
         }
         else
         {
             Debug.Log("pas assez de force");
+            DragCancel(hit);
         }
     }
 
@@ -93,9 +99,8 @@ public class treblochetChargeur : MonoBehaviour, PlayerAction
 
     public void Fire(float ratio)
     {
-        Debug.Log(ratio);
         Vector3 dir = (parent.transform.position - transform.position);
-        dir = new Vector3(dir.x, 0, dir.z).normalized;;
+        dir = new Vector3(dir.x, 0, dir.z).normalized; ;
         if (blobInChargeur.Count > 0)
         {
 
@@ -104,12 +109,11 @@ public class treblochetChargeur : MonoBehaviour, PlayerAction
 
             blobToThrow.ChangeType(blobInChargeur[0]);
             blobToThrow.Outpool();
-            blobToThrow.transform.position = transform.position/* + new Vector3 (0,3f,0)*/;
+            blobToThrow.transform.position = transform.position + new Vector3(0, parent.myCellTemplate.verticalOffset, 0);
             blobToThrow.transform.LookAt(parent.transform);
             // blobToThrow.transform.LookAt(transform);
 
-            Vector3 powerVec = ((blobToThrow.transform.forward * (ratio*ratio)* maxPower) + (Vector3.up * yOffset));
-            Debug.Log(powerVec);
+            Vector3 powerVec = ((blobToThrow.transform.forward * (1 +(ratio * ratio)) * parent.myCellTemplate.shotPower) + (Vector3.up * parent.myCellTemplate.verticalConstantPower));
             Debug.DrawRay(transform.position, powerVec, Color.blue, 2f);
 
             blobToThrow.rb.AddForce(powerVec, ForceMode.Impulse);
@@ -143,7 +147,7 @@ public class treblochetChargeur : MonoBehaviour, PlayerAction
         int diff = blobInChargeur.Count - maxStockage;
         for (int i = 0; i < diff; i++)
         {
-            parent.BlobNumberVariation(1, blobInChargeur[blobInChargeur.Count - 1] , true);
+            parent.BlobNumberVariation(1, blobInChargeur[blobInChargeur.Count - 1], true);
             blobInChargeur.RemoveAt(blobInChargeur.Count - 1);
         }
     }
@@ -212,7 +216,7 @@ public class treblochetChargeur : MonoBehaviour, PlayerAction
 
     public void OnDragEnd(RaycastHit hit)
     {
-        DragEnd();
+        DragEnd(hit);
     }
 
     public void OnShortRightClick(RaycastHit hit)
@@ -269,12 +273,12 @@ public class treblochetChargeur : MonoBehaviour, PlayerAction
             treblobchetUISlots[i].gameObject.SetActive(false);
         }
 
-        for (int i = 0; i < maxStockage-1; i++)
+        for (int i = 0; i < maxStockage - 1; i++)
         {
 
-            float angle = i * Mathf.PI*3/2 / maxStockage;
+            float angle = i * Mathf.PI * 3 / 2 / maxStockage;
             angle += Mathf.PI;
-            Vector3 pos = new Vector3(Mathf.Cos(angle)*slotRange, Mathf.Sin(angle) * slotRange,0);
+            Vector3 pos = new Vector3(Mathf.Cos(angle) * parent.myCellTemplate.magazinSlotDistance, Mathf.Sin(angle) * parent.myCellTemplate.magazinSlotDistance, 0);
 
             treblobchetUISlots[i].gameObject.SetActive(true);
             treblobchetUISlots[i].transform.localPosition = pos;
