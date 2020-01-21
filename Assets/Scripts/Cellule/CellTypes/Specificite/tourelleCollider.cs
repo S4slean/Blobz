@@ -87,14 +87,16 @@ public class tourelleCollider : MonoBehaviour
             if (badBlobs.Count > 0)
             {
                 // badBlobs[currentCellTargetIndex].Destruct();
-                projectile.Init(tourelleCanon.position, badBlobs[currentCellTargetIndex].transform.position, badBlobs[currentCellTargetIndex]);
-                badBlobs.Remove(badBlobs[currentCellTargetIndex]);
+                projectile.Init(tourelleCanon.position, badBlobs[currentBlobTargetIndex].transform.position, badBlobs[currentBlobTargetIndex]);
+                badBlobs.Remove(badBlobs[currentBlobTargetIndex]);
+                parent.MunitionVariation(-1);
                 return;
             }
 
 
             //badCell[currentCellTargetIndex].ReceiveDamage(parent.myCellTemplate.tourelleDamage);
-            projectile.Init(tourelleCanon.position, badCell[currentCellTargetIndex].transform.position, badCell[currentCellTargetIndex] , parent.myCellTemplate.tourelleDamage);
+            projectile.Init(tourelleCanon.position, badCell[currentCellTargetIndex].transform.position, badCell[currentCellTargetIndex], parent.myCellTemplate.tourelleDamage);
+            parent.MunitionVariation(-1);
 
         }
     }

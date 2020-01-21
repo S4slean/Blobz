@@ -47,23 +47,23 @@ public class RessourceTracker : MonoBehaviour
 
         switch (cell.myCellTemplate.type)
         {
-            case (CellType.Productrice):
+            case (CellType.Nexus):
                 hatchNbr++;
                 break;
 
-            case (CellType.Stockage):
+            case (CellType.Stock):
                 stockNbr++;
                 break;
 
-            case (CellType.Treblochet):
+            case (CellType.Treblobchet):
                 armoryNbr++;
                 break;
 
-            case (CellType.Broyeur):
+            case (CellType.Crusher):
                 broyeurNbr++;
                 break;
 
-            case (CellType.Passage):
+            case (CellType.Accelerator):
                 passageNbr++;
                 break;
 
@@ -71,27 +71,27 @@ public class RessourceTracker : MonoBehaviour
                 blipblopNbr++;
                 break;
 
-            case (CellType.Decharge):
+            case (CellType.Dump):
                 dechargeNbr++;
                 break;
 
-            case (CellType.Divine):
+            case (CellType.AerialStrike):
                 divineNbr++;
                 break;
 
-            case (CellType.Exploration):
+            case (CellType.Academy):
                 exploNbr++;
                 break;
 
-            case (CellType.LaSalle):
+            case (CellType.Gym):
                 coachRoomNbr++;
                 break;
 
-            case (CellType.Pilone):
+            case (CellType.Battery):
                 piloneNbr++;
                 break;
 
-            case (CellType.Tourelle):
+            case (CellType.Turret):
                 towerNbr++;
                 break;
 
@@ -111,7 +111,7 @@ public class RessourceTracker : MonoBehaviour
 
         switch (cell.myCellTemplate.type)
         {
-            case (CellType.Productrice):
+            case (CellType.Nexus):
                 hatchNbr--;
                 if(hatchNbr < 1)
                 {
@@ -119,19 +119,19 @@ public class RessourceTracker : MonoBehaviour
                 }
                 break;
 
-            case (CellType.Stockage):
+            case (CellType.Stock):
                 stockNbr--;
                 break;
 
-            case (CellType.Treblochet):
+            case (CellType.Treblobchet):
                 armoryNbr--;
                 break;
 
-            case (CellType.Broyeur):
+            case (CellType.Crusher):
                 broyeurNbr--;
                 break;
 
-            case (CellType.Passage):
+            case (CellType.Accelerator):
                 passageNbr--;
                 break;
 
@@ -140,27 +140,27 @@ public class RessourceTracker : MonoBehaviour
                 blipblopNbr--;
                 break;
 
-            case (CellType.Decharge):
+            case (CellType.Dump):
                 dechargeNbr--;
                 break;
 
-            case (CellType.Divine):
+            case (CellType.AerialStrike):
                 divineNbr--;
                 break;
 
-            case (CellType.Exploration):
+            case (CellType.Academy):
                 exploNbr--;
                 break;
 
-            case (CellType.LaSalle):
+            case (CellType.Gym):
                 coachRoomNbr--;
                 break;
 
-            case (CellType.Pilone):
+            case (CellType.Battery):
                 piloneNbr--;
                 break;
 
-            case (CellType.Tourelle):
+            case (CellType.Turret):
                 towerNbr--;
                 break;
         }

@@ -6,20 +6,20 @@ using UnityEngine;
 [System.Serializable]
 public enum CellType
 {
-    Productrice,
+    Nexus,
     Armory,
-    Stockage,
-    Broyeur,
-    Passage,
+    Stock,
+    Crusher,
+    Accelerator,
 
     BlipBlop, 
-    Divine,
-    Tourelle, 
-    LaSalle,
-    Pilone , 
-    Decharge,
-    Exploration,
-    Treblochet,
-    Merveille
+    AerialStrike,
+    Turret, 
+    Gym,
+    Battery , 
+    Dump,
+    Academy,
+    Treblobchet,
+    Rocket
 
 }

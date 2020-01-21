@@ -237,7 +237,6 @@ public class Blob : PoolableObjects
     #endregion
 
 
-
     public void SetOrigin(EnemyVillage newVillage)
     {
         cameFromVillage = true;

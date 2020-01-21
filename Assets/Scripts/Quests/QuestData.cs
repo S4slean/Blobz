@@ -21,14 +21,14 @@ public class QuestData : ScriptableObject
     [Range(0, 1000000)] public int energyToObtain;
 
     [Header("Batiments")]
-    public CellType cellType = CellType.Productrice;
+    public CellType cellType = CellType.Nexus;
     [Range(1,10)]public int level = 1;
     [Range(1,100)]public int cellNbrToObtain = 1;
 
     [Header("Exploration")]
     public bool blobExplo = false;
     public bool anyCells = true;
-    public CellType colonialCellType = CellType.Productrice;
+    public CellType colonialCellType = CellType.Nexus;
     public int placeToGet;
 
     [Header("Destruction")]

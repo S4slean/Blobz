@@ -24,7 +24,7 @@ public class treblochetChargeur : MonoBehaviour, PlayerAction
 
     private void Awake()
     {
-        transform.position = new Vector3(transform.position.x, parent.transform.position.y, transform.position.z);
+        transform.position = new Vector3(transform.position.x, parent.graphTransform.position.y, transform.position.z);
 
         disTanceFromParent = Vector3.Distance(transform.position, parent.transform.position);
     }
@@ -46,7 +46,7 @@ public class treblochetChargeur : MonoBehaviour, PlayerAction
         float distance = Vector3.Distance(parent.transform.position, hit.point);
         if (distance <= disTanceFromParent)
         {
-            transform.position = parent.transform.position + direction * disTanceFromParent;
+            transform.position = parent.graphTransform.position + direction * disTanceFromParent;
             finalDistance = disTanceFromParent;
         }
         else if (distance < dragRange)
@@ -57,7 +57,7 @@ public class treblochetChargeur : MonoBehaviour, PlayerAction
         }
         else
         {
-            transform.position = parent.transform.position + direction * dragRange;
+            transform.position = parent.graphTransform.position + direction * dragRange;
             finalDistance = dragRange;
         }
 
@@ -85,7 +85,7 @@ public class treblochetChargeur : MonoBehaviour, PlayerAction
         direction = new Vector3(direction.x, 0, direction.z);
         direction = direction.normalized;
 
-        transform.position = parent.transform.position + direction * disTanceFromParent;
+        transform.position = parent.graphTransform.position + direction * disTanceFromParent;
         transform.LookAt(parent.transform);
     }
 
@@ -108,7 +108,7 @@ public class treblochetChargeur : MonoBehaviour, PlayerAction
             blobToThrow.transform.LookAt(parent.transform);
             // blobToThrow.transform.LookAt(transform);
 
-            Vector3 powerVec = ((blobToThrow.transform.forward * ratio * maxPower) + (Vector3.up * yOffset));
+            Vector3 powerVec = ((blobToThrow.transform.forward * (ratio*ratio)* maxPower) + (Vector3.up * yOffset));
             Debug.Log(powerVec);
             Debug.DrawRay(transform.position, powerVec, Color.blue, 2f);
 
@@ -121,7 +121,7 @@ public class treblochetChargeur : MonoBehaviour, PlayerAction
             // Display error
         }
 
-        transform.position = parent.transform.position - dir * disTanceFromParent;
+        transform.position = parent.graphTransform.position - dir * disTanceFromParent;
         transform.LookAt(parent.transform);
 
     }
