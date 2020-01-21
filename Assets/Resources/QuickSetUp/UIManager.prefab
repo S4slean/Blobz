@@ -3142,7 +3142,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7038464417162641757
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4177,7 +4177,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7038464417526802465
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6588,7 +6588,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7038464418305128540
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7201,7 +7201,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7038464418525594692
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9170,6 +9170,31 @@ PrefabInstance:
       propertyPath: m_Name
       value: TopBar 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2660070319258974839, guid: 4a2952ec0751b8e408c96d80d15b93bf,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2660070319258974839, guid: 4a2952ec0751b8e408c96d80d15b93bf,
+        type: 3}
+      propertyPath: m_textInfo.spaceCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2660070319258974839, guid: 4a2952ec0751b8e408c96d80d15b93bf,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2660070319258974839, guid: 4a2952ec0751b8e408c96d80d15b93bf,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2660070319258974839, guid: 4a2952ec0751b8e408c96d80d15b93bf,
+        type: 3}
+      propertyPath: m_textInfo.pageCount
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2660070318933605768, guid: 4a2952ec0751b8e408c96d80d15b93bf,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -9273,31 +9298,6 @@ PrefabInstance:
     - target: {fileID: 2660070318933605768, guid: 4a2952ec0751b8e408c96d80d15b93bf,
         type: 3}
       propertyPath: m_Pivot.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2660070319258974839, guid: 4a2952ec0751b8e408c96d80d15b93bf,
-        type: 3}
-      propertyPath: m_textInfo.characterCount
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 2660070319258974839, guid: 4a2952ec0751b8e408c96d80d15b93bf,
-        type: 3}
-      propertyPath: m_textInfo.spaceCount
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2660070319258974839, guid: 4a2952ec0751b8e408c96d80d15b93bf,
-        type: 3}
-      propertyPath: m_textInfo.wordCount
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2660070319258974839, guid: 4a2952ec0751b8e408c96d80d15b93bf,
-        type: 3}
-      propertyPath: m_textInfo.lineCount
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2660070319258974839, guid: 4a2952ec0751b8e408c96d80d15b93bf,
-        type: 3}
-      propertyPath: m_textInfo.pageCount
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
