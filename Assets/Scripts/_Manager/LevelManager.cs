@@ -11,7 +11,7 @@ public class LevelManager : MonoBehaviour
     public GameObject[] availablesCells;
 
 
-    
+
 
 
 
@@ -90,7 +90,7 @@ public class LevelManager : MonoBehaviour
     #region ENEMIES
     public void SpawnEnemyWave(int nbrOfEnemy, Vector3 pos)
     {
-        
+
     }
 
     public void SpawnEnemyWave(int nbrOfEnemy, Transform transform)
@@ -137,6 +137,24 @@ public class LevelManager : MonoBehaviour
 
         UIManager.Instance.cellSelection.combatSubMenus[0].gameObject.SetActive(true);
         CellTreblobchet = true;
+
+        UnlockSectionCheck();
+    }
+
+    public void UnlockSectionCheck()
+    {
+        if (CellStockage || CellDecharge || CellBroyeur)
+            UIManager.Instance.cellSelection.sections[0].gameObject.SetActive(true);
+
+        if (CellExplo || CellPassage || CellFusee)
+            UIManager.Instance.cellSelection.sections[1].gameObject.SetActive(true);
+
+        if (CellBlipBlop || CellSalle || CellPilone)
+            UIManager.Instance.cellSelection.sections[2].gameObject.SetActive(true);
+
+        if (CellTreblobchet || CellDivine || CellTourelle)
+            UIManager.Instance.cellSelection.sections[3].gameObject.SetActive(true);
+
     }
 
     public void UnlockNewCell(CellType cellType)
@@ -202,7 +220,9 @@ public class LevelManager : MonoBehaviour
                 UIManager.Instance.cellSelection.combatSubMenus[0].gameObject.SetActive(true);
                 CellTreblobchet = true;
                 break;
+
         }
+        UnlockSectionCheck();
     }
 
     public void SetupUnlockedFeatures()
