@@ -121,6 +121,8 @@ public class CellTourelle : CellMain
         munitions = 0;
         isLoaded = false;
         fullLoaded = false;
+        float ratio = (float)munitions / (float)myCellTemplate.tourelleMaxMun;
+        progressBar.UpdateBar(ratio);
         tourelleCollider.Init(this);
         base.SetupVariable();
     }

@@ -93,9 +93,11 @@ public class Destructible : PoolableObjects, PlayerAction
         {
             Blob blob = ObjectPooler.poolingSystem.GetPooledObject<Blob>() as Blob;
             blob.Outpool();
+            blob.ChangeType(BlobManager.BlobType.mad);
             Vector2 circle = Random.insideUnitCircle;
             Vector3 circleProjection = new Vector3(circle.x, 0, circle.y).normalized;
             blob.transform.position = transform.position + circleProjection * spawnRange;
+            
 
         }
         anim.SetTrigger("Spawn");

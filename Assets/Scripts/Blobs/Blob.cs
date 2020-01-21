@@ -42,7 +42,7 @@ public class Blob : PoolableObjects
     private void OnEnable()
     {
         rb = GetComponent<Rigidbody>();
-        rd = GetComponent<Renderer>();
+       // rd = GetComponent<Renderer>();
 
 
         UpdateMat();
