@@ -988,6 +988,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 16
       objectReference: {fileID: 0}
+    - target: {fileID: 5890611875072908535, guid: e7d28e8fbd0c30640911ed34314e34c3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3328925992418087246, guid: e7d28e8fbd0c30640911ed34314e34c3,
         type: 3}
       propertyPath: isVillageNexus
@@ -1133,6 +1138,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 6a231909317c5b246beabacf961e56b6, type: 2}
+    - target: {fileID: 3307682111752870861, guid: e7d28e8fbd0c30640911ed34314e34c3,
+        type: 3}
+      propertyPath: m_Radius
+      value: 1.02
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e7d28e8fbd0c30640911ed34314e34c3, type: 3}
 --- !u!4 &7911075998013149542 stripped
