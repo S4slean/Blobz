@@ -33,18 +33,32 @@ public class CellDivine : CellMain
             if (blobNumber > 0)
             {
                 currentTick++;
-                for (int i = 0; i < outputLinks.Count; i++)
+                if (currentTick >= currentTickForActivation)
                 {
-                    if (blobNumber <= 0)
+                    for (int i = 0; i < outputLinks.Count; i++)
                     {
-                        break;
+                        if (blobNumber > 0 && outputLinks.Count > 0)
+                        {
+                            if (currentIndex < outputLinks.Count)
+                            {
+                                BlobManager.BlobType blobType = BlobCheck();
+
+                                if (blobType != BlobManager.BlobType.aucun)
+                                {
+                                    outputLinks[currentIndex].Transmitt(1, BlobCheck());
+                                    haveExpulse = true;
+                                    currentIndex++;
+                                    currentIndex = Helper.LoopIndex(currentIndex, outputLinks.Count);
+                                }
+                            }
+                            else
+                            {
+                                currentIndex = 0;
+                            }
+                        }
                     }
-                    //Pour l'instant il y a moyen que si une cellule creve la prochaine 
-                    //soit sauté mai squand il y aura les anim , ce sera plus possible
-                    outputLinks[i].Transmitt(1, BlobCheck());
-                    haveExpulse = true;
+                    currentTick = 0;
                 }
-                currentTick = 0;
             }
             else
             {

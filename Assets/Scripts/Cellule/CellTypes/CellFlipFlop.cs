@@ -24,7 +24,7 @@ public class CellFlipFlop : CellMain
             if (blobNumber > 0 && currentOutputLink != null)
             {
                 currentTick++;
-                if (currentTick == currentTickForActivation)
+                if (currentTick >= currentTickForActivation)
                 {
                     for (int i = 0; i < currentRejectPower; i++)
                     {

@@ -236,21 +236,29 @@ public class CellMain : PoolableObjects, PlayerAction
             if (blobNumber > 0)
             {
                 currentTick++;
-                if (currentTick == currentTickForActivation)
+                if (currentTick >= currentTickForActivation)
                 {
                     for (int i = 0; i < outputLinks.Count; i++)
                     {
-                        if (blobNumber <= 0)
+                        if (blobNumber > 0 && outputLinks.Count > 0)
                         {
-                            break;
-                        }
-                        //Pour l'instant il y a moyen que si une cellule creve la prochaine 
-                        //soit sauté mai squand il y aura les anim , ce sera plus possible
-                        BlobManager.BlobType blobType = BlobCheck();
-                        if (blobType != BlobManager.BlobType.aucun)
-                        {
-                            outputLinks[i].Transmitt(1, BlobCheck());
-                            haveExpulse = true;
+                            if (currentIndex < outputLinks.Count)
+                            {
+                                BlobManager.BlobType blobType = BlobCheck();
+
+                                if (blobType != BlobManager.BlobType.aucun)
+                                {
+                                    outputLinks[currentIndex].Transmitt(1, BlobCheck());
+                                    haveExpulse = true;
+                                    currentIndex++;
+                                    currentIndex = Helper.LoopIndex(currentIndex, outputLinks.Count);
+                                 
+                                }
+                            }
+                            else
+                            {
+                                currentIndex = 0;
+                            }
                         }
                     }
                     currentTick = 0;
@@ -309,7 +317,7 @@ public class CellMain : PoolableObjects, PlayerAction
         {
             stuckBlobs[0].Unstuck();
         }
-      //  stuckBlobs.Clear();
+        //  stuckBlobs.Clear();
 
         int I = links.Count;
         for (int i = 0; i < I; i++)
