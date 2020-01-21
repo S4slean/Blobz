@@ -184,44 +184,44 @@ public class CellTemplateCustomInspector : Editor
 
         switch ((CellType)typeProp.enumValueIndex)
         {
-            case CellType.Productrice:
+            case CellType.Nexus:
                 EditorGUILayout.PropertyField(maxLifeProdProp);
                 break;
             case CellType.Armory:
                 break;
-            case CellType.Stockage:
+            case CellType.Stock:
                 break;
-            case CellType.Broyeur:
+            case CellType.Crusher:
                 EditorGUILayout.PropertyField(energyPerblop);
                 break;
-            case CellType.Passage:
+            case CellType.Accelerator:
                 break;
 
             case CellType.BlipBlop:
                 break;
-            case CellType.Divine:
+            case CellType.AerialStrike:
                 EditorGUILayout.PropertyField(MaxEnergieProp);
                 break;
-            case CellType.Tourelle:
+            case CellType.Turret:
                 EditorGUILayout.PropertyField(tourelleMaxMunProp);
                 EditorGUILayout.PropertyField(tourelleDamageProp);
                 EditorGUILayout.PropertyField(tourelleAttackRadiusProp);
                 break;
-            case CellType.LaSalle:
+            case CellType.Gym:
                 EditorGUILayout.PropertyField(maxBlobCoachProp);
                 break;
-            case CellType.Pilone:
+            case CellType.Battery:
                 EditorGUILayout.PropertyField(MaxEnergieProp);
                 break;
-            case CellType.Decharge:
+            case CellType.Dump:
                 break;
-            case CellType.Exploration:
+            case CellType.Academy:
                 break;
-            case CellType.Treblochet:
+            case CellType.Treblobchet:
                 EditorGUILayout.PropertyField(magazineDragRangeProp);
                 EditorGUILayout.PropertyField(minDistanceProp);
                 break;
-            case CellType.Merveille:
+            case CellType.Rocket:
                 EditorGUILayout.PropertyField(clickBeforeLaunchProp);
                 EditorGUILayout.PropertyField(blobLostPerTickProp);
                 break;
@@ -263,7 +263,7 @@ public class CellTemplateCustomInspector : Editor
                 + "\n" + "- Une Range au rayon du collider"
                 , MessageType.Info);
 
-            if (((CellType)typeProp.enumValueIndex) == CellType.Productrice)
+            if (((CellType)typeProp.enumValueIndex) == CellType.Nexus)
             {
                 EditorGUILayout.HelpBox("- Le Production Ratio Bonus est l'augmentation de la production en pourcentage " +
                     "de la productrice " +
@@ -281,7 +281,7 @@ public class CellTemplateCustomInspector : Editor
         EditorGUILayout.Space();
         EditorGUILayout.Space();
 
-        if (((CellType)typeProp.enumValueIndex) != CellType.Productrice)
+        if (((CellType)typeProp.enumValueIndex) != CellType.Nexus)
         {
             EditorGUILayout.PropertyField(ProximityGestionProp);
             if (ProximityGestionProp.boolValue)
@@ -639,7 +639,7 @@ public class CellTemplateCustomInspector : Editor
                 currentElementRange.intValue = EditorGUILayout.IntField(currentElementRange.intValue);
                 EditorGUILayout.EndHorizontal();
 
-                if (((CellType)typeProp.enumValueIndex) == CellType.Productrice)
+                if (((CellType)typeProp.enumValueIndex) == CellType.Nexus)
                 {
                     EditorGUILayout.BeginHorizontal("Box");
                     EditorGUILayout.LabelField("Collider Production Ratio Bonus");

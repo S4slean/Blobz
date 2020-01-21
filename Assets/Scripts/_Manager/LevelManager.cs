@@ -143,7 +143,7 @@ public class LevelManager : MonoBehaviour
     {
         switch (cellType)
         {
-            case CellType.Passage:
+            case CellType.Accelerator:
                 UIManager.Instance.cellSelection.exploSubMenus[0].gameObject.SetActive(true);
                 CellPassage = true;
                 break;
@@ -153,52 +153,52 @@ public class LevelManager : MonoBehaviour
                 CellBlipBlop = true;
                 break;
 
-            case CellType.Broyeur:
+            case CellType.Crusher:
                 UIManager.Instance.cellSelection.energySubMenus[2].gameObject.SetActive(true);
                 CellBroyeur = true;
                 break;
 
-            case CellType.Decharge:
+            case CellType.Dump:
                 UIManager.Instance.cellSelection.energySubMenus[1].gameObject.SetActive(true);
                 CellDecharge = true;
                 break;
 
-            case CellType.Divine:
+            case CellType.AerialStrike:
                 UIManager.Instance.cellSelection.combatSubMenus[2].gameObject.SetActive(true);
                 CellDivine = true;
                 break;
 
-            case CellType.Exploration:
+            case CellType.Academy:
                 UIManager.Instance.cellSelection.exploSubMenus[1].gameObject.SetActive(true);
                 CellExplo = true;
                 break;
 
-            case CellType.LaSalle:
+            case CellType.Gym:
                 UIManager.Instance.cellSelection.gestionSubMenus[2].gameObject.SetActive(true);
                 CellSalle = true;
                 break;
 
-            case CellType.Merveille:
+            case CellType.Rocket:
                 UIManager.Instance.cellSelection.exploSubMenus[2].gameObject.SetActive(true);
                 CellFusee = true;
                 break;
 
-            case CellType.Pilone:
+            case CellType.Battery:
                 UIManager.Instance.cellSelection.gestionSubMenus[1].gameObject.SetActive(true);
                 CellPilone = true;
                 break;
 
-            case CellType.Stockage:
+            case CellType.Stock:
                 UIManager.Instance.cellSelection.energySubMenus[0].gameObject.SetActive(true);
                 CellStockage = true;
                 break;
 
-            case CellType.Tourelle:
+            case CellType.Turret:
                 UIManager.Instance.cellSelection.combatSubMenus[1].gameObject.SetActive(true);
                 CellTourelle = true;
                 break;
 
-            case CellType.Treblochet:
+            case CellType.Treblobchet:
                 UIManager.Instance.cellSelection.combatSubMenus[0].gameObject.SetActive(true);
                 CellTreblobchet = true;
                 break;
@@ -208,40 +208,40 @@ public class LevelManager : MonoBehaviour
     public void SetupUnlockedFeatures()
     {
         if (CellStockage)
-            UnlockNewCell(CellType.Stockage);
+            UnlockNewCell(CellType.Stock);
 
         if (CellTreblobchet)
-            UnlockNewCell(CellType.Treblochet);
+            UnlockNewCell(CellType.Treblobchet);
 
         if (CellBroyeur)
-            UnlockNewCell(CellType.Broyeur);
+            UnlockNewCell(CellType.Crusher);
 
         if (CellPassage)
-            UnlockNewCell(CellType.Passage);
+            UnlockNewCell(CellType.Accelerator);
 
         if (CellBlipBlop)
             UnlockNewCell(CellType.BlipBlop);
 
         if (CellDecharge)
-            UnlockNewCell(CellType.Decharge);
+            UnlockNewCell(CellType.Dump);
 
         if (CellDivine)
-            UnlockNewCell(CellType.Divine);
+            UnlockNewCell(CellType.AerialStrike);
 
         if (CellExplo)
-            UnlockNewCell(CellType.Exploration);
+            UnlockNewCell(CellType.Academy);
 
         if (CellSalle)
-            UnlockNewCell(CellType.LaSalle);
+            UnlockNewCell(CellType.Gym);
 
         if (CellFusee)
-            UnlockNewCell(CellType.Merveille);
+            UnlockNewCell(CellType.Rocket);
 
         if (CellPilone)
-            UnlockNewCell(CellType.Pilone);
+            UnlockNewCell(CellType.Battery);
 
         if (CellTourelle)
-            UnlockNewCell(CellType.Tourelle);
+            UnlockNewCell(CellType.Turret);
     }
     public void GameOver()
     {

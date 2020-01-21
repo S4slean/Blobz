@@ -1245,7 +1245,7 @@ public class CellMain : PoolableObjects, PlayerAction
             //parent.AddToCellAtPromity(cell);
             AddProximityInfluence(collider);
             //OVERRIDE POSSIBLE 
-            if (collider.parent.myCellTemplate.type == CellType.Productrice)
+            if (collider.parent.myCellTemplate.type == CellType.Nexus)
             {
                 CellProductrice prod = collider.parent as CellProductrice;
                 prod.ProductriceProximityGestion(collider, true);
@@ -1260,7 +1260,7 @@ public class CellMain : PoolableObjects, PlayerAction
         {
             RemoveProximityInfluence(collider);
             //OVERRIDE POSSIBLE 
-            if (collider.parent.myCellTemplate.type == CellType.Productrice)
+            if (collider.parent.myCellTemplate.type == CellType.Nexus)
             {
                 CellProductrice prod = collider.parent as CellProductrice;
                 prod.ProductriceProximityGestion(collider, false);
