@@ -75,6 +75,9 @@ public class CameraController : MonoBehaviour
 
     public void MoveCamera()
     {
+        if (Time.timeScale == 0)
+            return;
+
 
         mouseDir = new Vector3(Input.mousePosition.x - Screen.width / 2, 0, Input.mousePosition.y - Screen.height / 2);
 

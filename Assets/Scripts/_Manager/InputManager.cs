@@ -91,6 +91,8 @@ public class InputManager : MonoBehaviour
         #region PAUSE
         if (Input.GetKeyDown(KeyCode.Escape))
         {
+            CameraController.instance.enabled = false;
+            InputManager.Instance.enabled = false;
             Time.timeScale = 0;
             UIManager.Instance.DisplayUI(UIManager.Instance.pauseMenu.gameObject);
         }
