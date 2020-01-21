@@ -8,10 +8,10 @@ public class Destructible : PoolableObjects, PlayerAction
     public GameObject goodGraph;
     public GameObject brokenGraph;
     public Animator anim;
-    public enum DestructType {none, enemyBuilding, enemyVillage, rock, mushroom, bush, tree , crystal, bigCrystal, barricade, target1, target2,target3, target4, target5, target6, target7, target8, target9, target10 };
+    public enum DestructType {all, ressources, enemy };
 
     [Header("General")]
-    public DestructType destructType = DestructType.none;
+    public DestructType destructType = DestructType.all;
     private int remainingLife;
     public int maxLife = 5;
     private int count = 0;

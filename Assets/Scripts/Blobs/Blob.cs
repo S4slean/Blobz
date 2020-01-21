@@ -207,8 +207,8 @@ public class Blob : PoolableObjects
             isStuck = true;
         }
 
-        if (blobType == BlobManager.BlobType.soldier && canExplode)
-            BlobManager.instance.Explode(this, 1);
+        if (blobType == BlobManager.BlobType.soldier)
+            BlobManager.instance.TryAttack(this, 1);
     }
 
     public void ReduceCapacity()
