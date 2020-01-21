@@ -8,7 +8,7 @@ public class Destructible : PoolableObjects, PlayerAction
     public GameObject goodGraph;
     public GameObject brokenGraph;
     public Animator anim;
-    public enum DestructType {all, ressources, enemy };
+    public enum DestructType { all, ressources, enemy };
 
     [Header("General")]
     public DestructType destructType = DestructType.all;
@@ -17,7 +17,7 @@ public class Destructible : PoolableObjects, PlayerAction
     private int count = 0;
     public bool isReapairable = false;
     public int repairDelay = 10;
-    [HideInInspector] public bool isRuin = false;
+    public bool isRuin = false;
 
     [Header("Enemies")]
     public bool isVillageNexus = false;
@@ -129,7 +129,7 @@ public class Destructible : PoolableObjects, PlayerAction
             if (spawnEnemiesOnDestruction)
             {
                 SpawnEnemies();
-                
+
             }
 
             if (isVillageNexus)
