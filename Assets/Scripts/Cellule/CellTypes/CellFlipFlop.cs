@@ -11,6 +11,13 @@ public class CellFlipFlop : CellMain
 
     public override void BlobsTick()
     {
+
+
+        if (stuckBlobs.Count <= 0 && currentBlobStockage < myCellTemplate.storageCapability)
+        {
+            StockageCapabilityVariation(1);
+        }
+
         if (!overLoad)
         {
             haveExpulse = false;

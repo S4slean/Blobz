@@ -36,7 +36,7 @@ MonoBehaviour:
       anchor: {fileID: 0}
       offset: {x: 0, y: 0, z: 0}
       usingSprite: 1
-      sprite: {fileID: 21300000, guid: c98328a721f45da4fb0b32121f3026db, type: 3}
+      sprite: {fileID: 21300000, guid: 74a01104759d6494d8d651afa2ac8826, type: 3}
       Title: 
       Text: Great ! The dump is useful to collect sploosh, but when you have a lot
         of them, it can be hard to empty them all.
@@ -44,7 +44,7 @@ MonoBehaviour:
       anchor: {fileID: 0}
       offset: {x: 0, y: 0, z: 0}
       usingSprite: 1
-      sprite: {fileID: 21300000, guid: c98328a721f45da4fb0b32121f3026db, type: 3}
+      sprite: {fileID: 21300000, guid: 74a01104759d6494d8d651afa2ac8826, type: 3}
       Title: 
       Text: The crusher do the job for you !
     UEvent:
@@ -81,10 +81,10 @@ MonoBehaviour:
     persistentMsg:
       rpgStyle: 0
       anchor: {fileID: 0}
-      offset: {x: 830, y: 300, z: 0}
+      offset: {x: 0, y: 0, z: 0}
       usingSprite: 1
       sprite: {fileID: 21300000, guid: 68215239a0bc5fa4a8ec1952bf8fed68, type: 3}
-      Title: 
+      Title: Blob the builder
       Text: 'Build a crusher '
   - eventType: 4
     eventDuration: 0

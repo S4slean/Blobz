@@ -53,6 +53,14 @@ MonoBehaviour:
     foldout: 1
     cellType: 0
     newTickDuration: 0
+    persistentMsg:
+      rpgStyle: 0
+      anchor: {fileID: 0}
+      offset: {x: 0, y: 0, z: 0}
+      usingSprite: 0
+      sprite: {fileID: 0}
+      Title: 
+      Text: 
   - eventType: 0
     eventDuration: 1
     virtualCamIndex: 7
@@ -70,8 +78,16 @@ MonoBehaviour:
     foldout: 1
     cellType: 0
     newTickDuration: 0
+    persistentMsg:
+      rpgStyle: 0
+      anchor: {fileID: 0}
+      offset: {x: 0, y: 0, z: 0}
+      usingSprite: 0
+      sprite: {fileID: 0}
+      Title: 
+      Text: 
   - eventType: 1
-    eventDuration: 1
+    eventDuration: 1.5
     virtualCamIndex: 1
     popUpsMsg:
     - rpgStyle: 1
@@ -95,20 +111,36 @@ MonoBehaviour:
     foldout: 0
     cellType: 0
     newTickDuration: 0
-  - eventType: 1
-    eventDuration: 1
+    persistentMsg:
+      rpgStyle: 0
+      anchor: {fileID: 0}
+      offset: {x: 0, y: 0, z: 0}
+      usingSprite: 0
+      sprite: {fileID: 0}
+      Title: 
+      Text: 
+  - eventType: 6
+    eventDuration: 2
     virtualCamIndex: 1
     popUpsMsg:
     - rpgStyle: 0
       anchor: {fileID: 0}
-      offset: {x: 830, y: 260, z: 0}
+      offset: {x: 0, y: 0, z: 0}
+      usingSprite: 1
+      sprite: {fileID: 21300000, guid: 74a01104759d6494d8d651afa2ac8826, type: 3}
+      Title: 
+      Text: 
+    UEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    foldout: 1
+    cellType: 0
+    newTickDuration: 0
+    persistentMsg:
+      rpgStyle: 0
+      anchor: {fileID: 0}
+      offset: {x: 0, y: 0, z: 0}
       usingSprite: 1
       sprite: {fileID: 21300000, guid: 74a01104759d6494d8d651afa2ac8826, type: 3}
       Title: 
       Text: Use keyboard arrow or drag with your left click you
-    UEvent:
-      m_PersistentCalls:
-        m_Calls: []
-    foldout: 0
-    cellType: 0
-    newTickDuration: 0

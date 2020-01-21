@@ -12,6 +12,12 @@ public class CellDivine : CellMain
     public override void BlobsTick()
     {
 
+        if (stuckBlobs.Count <= 0 && currentBlobStockage < myCellTemplate.storageCapability)
+        {
+            StockageCapabilityVariation(1);
+        }
+
+
         if (!overLoad)
         {
             if (blobNumber > 0 && !isLoaded)

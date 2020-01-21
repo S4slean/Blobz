@@ -1,0 +1,79 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d07d45a74266e347a6c0f35a3488ad7, type: 3}
+  m_Name: Stock
+  m_EditorClassIdentifier: 
+  cellsEnableToBuild: []
+  blopPrefab: {fileID: 1232130753061943726, guid: e8f62a3d1b4c9b2418bcd0499799a8a9,
+    type: 3}
+  buttonColor: {r: 0.2688679, g: 0.7080042, b: 1, a: 1}
+  cellTexture: {fileID: 2800000, guid: 2162646fcfe8d3543bd48e3f88874de3, type: 3}
+  type: 2
+  description: High capacity. Raise the max sploosh capacity
+  generateProximity: 0
+  proximityColliderNumber: 2
+  proximityColliders:
+  - proximityLevel: 3
+    range: 20
+    productionBonusRatio: 70
+  - proximityLevel: 2
+    range: 30
+    productionBonusRatio: 4
+  - proximityLevel: 1
+    range: 40
+    productionBonusRatio: 1
+  energyCost: 150
+  energyCapBase: 150
+  rangeBase: 15
+  blobRatioAtDeath: 0
+  impulseForce_Death: 0
+  overLoadTickMax: 4
+  overloadTreshHold: 1
+  prodPerTickBase: 0
+  rejectPowerBase: 2
+  storageCapability: 20
+  tickForActivationBase: 1
+  energyPerClick: 1
+  limitedInLinks: 0
+  slotDistance: 1.5
+  numberOfOuputLinks: 0
+  numberOfInputLinks: 0
+  numberOfFlexLinks: 5
+  proximityLevelMax: 4
+  proximityInfluenceMultiplier: 1
+  positivesInteractions: 0100000000000000
+  negativesInteractions: 03000000
+  SurproductionRate: 00000000000000000000000000000000
+  BlopPerTick: []
+  stockageCapacity: 19000000320000003c00000050000000
+  LinkCapacity: 00000000000000000000000000000000
+  rangeLien: 
+  tickForActivation: 
+  energyCap: 
+  specifique: 0200000005000000070000000a000000
+  energyPerblop: 0
+  StatsModification: 2
+  REFS: 1
+  ToggleInfoBox: 1
+  STATS: 1
+  ProductionGestion: 0
+  ProximityGestion: 1
+  maxEnergie: 5
+  maxBlobCoach: 0
+  magazineDragRange: 1.5
+  minDistanceDrag: 0.2
+  tourelleMaxMun: 3
+  tourelleDamage: 5
+  tourelleAttackRadius: 6
+  clickBeforeLaunch: 0
+  blobLostPerTick: 0
+  maxLifeProd: 0

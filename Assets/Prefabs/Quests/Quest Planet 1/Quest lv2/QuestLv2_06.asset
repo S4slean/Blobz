@@ -29,7 +29,7 @@ MonoBehaviour:
   nbrOfObject: 5
   questEvents:
   - eventType: 1
-    eventDuration: 0
+    eventDuration: 1
     virtualCamIndex: 0
     popUpsMsg:
     - rpgStyle: 1
@@ -37,7 +37,7 @@ MonoBehaviour:
       offset: {x: 0, y: 0, z: 0}
       usingSprite: 1
       sprite: {fileID: 21300000, guid: cc3173b5ab91f26438949b73af93e3f9, type: 3}
-      Title: 
+      Title: MaJellyan
       Text: "If I asked you to gain so much sploosh, it is because I want you to use
         the rocket.\r\n"
     - rpgStyle: 1
@@ -45,7 +45,7 @@ MonoBehaviour:
       offset: {x: 0, y: 0, z: 0}
       usingSprite: 1
       sprite: {fileID: 21300000, guid: cc3173b5ab91f26438949b73af93e3f9, type: 3}
-      Title: 
+      Title: MaJellyan
       Text: "The rocket is really expensive, but if you manage to get enough blobz
         on board, the rocket will launch and we will go to another planet ! \r\n\n"
     - rpgStyle: 1
@@ -53,7 +53,7 @@ MonoBehaviour:
       offset: {x: 0, y: 0, z: 0}
       usingSprite: 1
       sprite: {fileID: 21300000, guid: cc3173b5ab91f26438949b73af93e3f9, type: 3}
-      Title: 
+      Title: MaJellyan
       Text: 'But blobz in the rocket are slowly dying so you need to bring a lot of
         blobz at the same time in the rocket.
 
@@ -64,8 +64,16 @@ MonoBehaviour:
     foldout: 0
     cellType: 0
     newTickDuration: 0
+    persistentMsg:
+      rpgStyle: 0
+      anchor: {fileID: 0}
+      offset: {x: 0, y: 0, z: 0}
+      usingSprite: 0
+      sprite: {fileID: 0}
+      Title: 
+      Text: 
   - eventType: 1
-    eventDuration: 0
+    eventDuration: 2
     virtualCamIndex: 0
     popUpsMsg:
     - rpgStyle: 0
@@ -73,14 +81,14 @@ MonoBehaviour:
       offset: {x: 830, y: 260, z: 0}
       usingSprite: 1
       sprite: {fileID: 21300000, guid: cc3173b5ab91f26438949b73af93e3f9, type: 3}
-      Title: 
+      Title: MaJellyan
       Text: "Let\u2019s build a rocket \r\n"
     - rpgStyle: 0
       anchor: {fileID: 0}
       offset: {x: 830, y: 260, z: 0}
       usingSprite: 1
       sprite: {fileID: 21300000, guid: cc3173b5ab91f26438949b73af93e3f9, type: 3}
-      Title: 
+      Title: MaJellyan
       Text: "Get all the blobz on board ! Let\u2019s leave this planet and conquer
         the universe !\r\n\n"
     UEvent:
@@ -89,6 +97,14 @@ MonoBehaviour:
     foldout: 0
     cellType: 0
     newTickDuration: 0
+    persistentMsg:
+      rpgStyle: 0
+      anchor: {fileID: 0}
+      offset: {x: 0, y: 0, z: 0}
+      usingSprite: 0
+      sprite: {fileID: 0}
+      Title: 
+      Text: 
   - eventType: 4
     eventDuration: 0
     virtualCamIndex: 0
@@ -114,3 +130,11 @@ MonoBehaviour:
     foldout: 0
     cellType: 13
     newTickDuration: 0
+    persistentMsg:
+      rpgStyle: 0
+      anchor: {fileID: 0}
+      offset: {x: 0, y: 0, z: 0}
+      usingSprite: 0
+      sprite: {fileID: 0}
+      Title: 
+      Text: 

@@ -9,6 +9,11 @@ public class CellBroyeur : CellMain
         haveExpulse = false;
 
 
+        if (stuckBlobs.Count <= 0 && currentBlobStockage < myCellTemplate.storageCapability)
+        {
+            StockageCapabilityVariation(1);
+        }
+
         if (!overLoad)
         {
             if (blobNumber > 0)
