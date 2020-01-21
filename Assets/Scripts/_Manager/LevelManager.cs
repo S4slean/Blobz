@@ -81,6 +81,8 @@ public class LevelManager : MonoBehaviour
     public void normalGameSpeed()
     {
         Debug.Log("normalSpeed");
+        CameraController.instance.enabled = false;
+        InputManager.Instance.enabled = false;
         Time.timeScale = 1;
     }
     #endregion
