@@ -68,6 +68,7 @@ public class QuestManager : MonoBehaviour
     public void ChangeQuest()
     {
         currentQuestID++;
+        questProgress = 0;
         if (QuestList.Count > currentQuestID)
         {
             currentQuest = QuestList[currentQuestID];
