@@ -41,6 +41,8 @@ public class CellTemplateCustomInspector : Editor
 
     SerializedProperty maxLifeProdProp;
 
+    SerializedProperty shotPowerProp , verticalConstantPowerProp , verticalOffsetProp , magazinSlotDistanceProp;
+
     //ReorderableList proximityColliderList; 
 
     #region VARIABLES SPE 
@@ -49,7 +51,7 @@ public class CellTemplateCustomInspector : Editor
     SerializedProperty tourelleDamageProp, tourelleAttackRadiusProp;
     SerializedProperty maxBlobCoachProp;
 
-    SerializedProperty magazineDragRangeProp , minDistanceProp;
+    SerializedProperty magazineDragRangeProp , minDragRatioProp;
 
     SerializedProperty clickBeforeLaunchProp, blobLostPerTickProp;
 
@@ -142,12 +144,19 @@ public class CellTemplateCustomInspector : Editor
         maxBlobCoachProp = serializedObject.FindProperty("maxBlobCoach");
 
         magazineDragRangeProp = serializedObject.FindProperty("magazineDragRange");
-        minDistanceProp = serializedObject.FindProperty("minDistanceDrag");
+        minDragRatioProp = serializedObject.FindProperty("minDragRatio");
 
         clickBeforeLaunchProp = serializedObject.FindProperty("clickBeforeLaunch");
         blobLostPerTickProp = serializedObject.FindProperty("blobLostPerTick");
 
         maxLifeProdProp = serializedObject.FindProperty("maxLifeProd");
+
+
+        shotPowerProp = serializedObject.FindProperty("shotPower");
+        verticalConstantPowerProp = serializedObject.FindProperty("verticalConstantPower");
+        verticalOffsetProp = serializedObject.FindProperty("verticalOffset");
+        magazinSlotDistanceProp = serializedObject.FindProperty("magazinSlotDistance");
+
 
 
         #endregion
@@ -219,7 +228,13 @@ public class CellTemplateCustomInspector : Editor
                 break;
             case CellType.Treblobchet:
                 EditorGUILayout.PropertyField(magazineDragRangeProp);
-                EditorGUILayout.PropertyField(minDistanceProp);
+                EditorGUILayout.PropertyField(minDragRatioProp);
+                EditorGUILayout.HelpBox("VARIABLE POUR LE LANCER", MessageType.None);
+                EditorGUILayout.PropertyField(shotPowerProp);
+                EditorGUILayout.PropertyField(verticalConstantPowerProp);
+                EditorGUILayout.PropertyField(verticalOffsetProp);
+                EditorGUILayout.PropertyField(magazinSlotDistanceProp);
+
                 break;
             case CellType.Rocket:
                 EditorGUILayout.PropertyField(clickBeforeLaunchProp);
