@@ -43,19 +43,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33e8b886d5eb64547b28c5d327f815d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  normalMat: {fileID: 2100000, guid: ca6fc90324bce12439173f6e87feedc9, type: 2}
+  normalMat: {fileID: 2100000, guid: 009f9fa71d81c11488fc56031ed97bd9, type: 2}
   ticksBeforeMad: 4
-  exploMat: {fileID: 2100000, guid: b77b756311bd9db468e4adfd33652476, type: 2}
-  exploLifeSpan: 10
+  exploMat: {fileID: 2100000, guid: 009f9fa71d81c11488fc56031ed97bd9, type: 2}
+  exploLifeSpan: 25
   exploTicksBtwnJumps: 3
   exploJumpForce: 7
   soldierMat: {fileID: 2100000, guid: 009f9fa71d81c11488fc56031ed97bd9, type: 2}
-  soldierLifeSpan: 10
+  soldierLifeSpan: 20
   soldierTicksBtwnJumps: 4
   soldierJumpForce: 5
-  explosionRadius: 20
+  attackRange: 2
   detectionRadius: 10
-  angryMat: {fileID: 2100000, guid: 74c3c43bfa7a9af4b8c34ec4181f4ba7, type: 2}
+  angryMat: {fileID: 2100000, guid: 327822872d3c5e04ab61f508751ed570, type: 2}
   enemiesHaveLifeTime: 0
   enemyLifeSpan: 10
   standardEnemyTicksBtwnJumps: 4
