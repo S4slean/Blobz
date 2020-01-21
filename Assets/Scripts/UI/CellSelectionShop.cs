@@ -53,7 +53,8 @@ public class CellSelectionShop : MonoBehaviour
     {
         for (int i = 0; i < sections.Length; i++)
         {
-            anims[i].SetBool("Show", true);
+            if(sections[i].gameObject.activeSelf)
+                anims[i].SetBool("Show", true);
         }
     }
 
@@ -115,7 +116,8 @@ public class CellSelectionShop : MonoBehaviour
         {
             sections[i].UndetectMouse();
             HideOtherSubMenus(5);
-            anims[i].SetBool("Show", false);
+            if (anims[i].gameObject.activeSelf)
+                anims[i].SetBool("Show", false);
         }
     }
 

@@ -55,8 +55,8 @@ MonoBehaviour:
       Title: 
       Text: 
   - eventType: 3
-    eventDuration: 0
-    virtualCamIndex: 0
+    eventDuration: 1
+    virtualCamIndex: 7
     popUpsMsg:
     - rpgStyle: 1
       anchor: {fileID: 0}
@@ -81,7 +81,7 @@ MonoBehaviour:
       Text: 
   - eventType: 1
     eventDuration: 1.5
-    virtualCamIndex: 0
+    virtualCamIndex: 7
     popUpsMsg:
     - rpgStyle: 1
       anchor: {fileID: 0}
@@ -119,9 +119,9 @@ MonoBehaviour:
       Text: 
   - eventType: 0
     eventDuration: 1.8
-    virtualCamIndex: 0
+    virtualCamIndex: 7
     popUpsMsg:
-    - rpgStyle: 0
+    - rpgStyle: 1
       anchor: {fileID: 0}
       offset: {x: 830, y: 260, z: 0}
       usingSprite: 1
@@ -148,7 +148,7 @@ MonoBehaviour:
     eventDuration: 1.2
     virtualCamIndex: 1
     popUpsMsg:
-    - rpgStyle: 0
+    - rpgStyle: 1
       anchor: {fileID: 0}
       offset: {x: 830, y: 260, z: 0}
       usingSprite: 1
@@ -232,7 +232,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-    foldout: 0
+    foldout: 1
     cellType: 0
     newTickDuration: 0
     persistentMsg:
@@ -322,7 +322,7 @@ MonoBehaviour:
     eventDuration: 1.8
     virtualCamIndex: 1
     popUpsMsg:
-    - rpgStyle: 0
+    - rpgStyle: 1
       anchor: {fileID: 0}
       offset: {x: 830, y: 260, z: 0}
       usingSprite: 1
