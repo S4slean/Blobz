@@ -113,11 +113,11 @@ public class QuestManager : MonoBehaviour
 
                 switch (currentQuest.cellType)
                 {
-                    case CellType.Productrice:
+                    case CellType.Nexus:
                         questProgress = RessourceTracker.instance.hatchNbr;
                         break;
 
-                    case CellType.Stockage:
+                    case CellType.Stock:
                         questProgress = RessourceTracker.instance.stockNbr;
                         break;
 
@@ -125,11 +125,11 @@ public class QuestManager : MonoBehaviour
                         questProgress = RessourceTracker.instance.armoryNbr;
                         break;
 
-                    case CellType.Broyeur:
+                    case CellType.Crusher:
                         questProgress = RessourceTracker.instance.broyeurNbr;
                         break;
 
-                    case CellType.Passage:
+                    case CellType.Accelerator:
                         questProgress = RessourceTracker.instance.passageNbr;
                         break;
 
@@ -137,27 +137,27 @@ public class QuestManager : MonoBehaviour
                         questProgress = RessourceTracker.instance.blipblopNbr;
                         break;
 
-                    case CellType.Decharge:
+                    case CellType.Dump:
                         questProgress = RessourceTracker.instance.dechargeNbr;
                         break;
 
-                    case CellType.Divine:
+                    case CellType.AerialStrike:
                         questProgress = RessourceTracker.instance.divineNbr;
                         break;
 
-                    case CellType.Exploration:
+                    case CellType.Academy:
                         questProgress = RessourceTracker.instance.exploNbr;
                         break;
 
-                    case CellType.LaSalle:
+                    case CellType.Gym:
                         questProgress = RessourceTracker.instance.coachRoomNbr;
                         break;
 
-                    case CellType.Pilone:
+                    case CellType.Battery:
                         questProgress = RessourceTracker.instance.piloneNbr;
                         break;
 
-                    case CellType.Tourelle:
+                    case CellType.Turret:
                         questProgress = RessourceTracker.instance.towerNbr;
                         break;
                 }
