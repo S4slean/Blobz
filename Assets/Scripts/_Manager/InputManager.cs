@@ -60,7 +60,6 @@ public class InputManager : MonoBehaviour
     public Animator flagAnim;
 
     private Vector3 posToTest;
-    private bool inPauseMenu = false;
     #endregion
 
 
@@ -96,6 +95,7 @@ public class InputManager : MonoBehaviour
         {
             if (!InPauseMenu)
             {
+                InPauseMenu = true;
                 CameraController.instance.enabled = false;
                 InputManager.Instance.enabled = false;
                 Time.timeScale = 0;
@@ -103,6 +103,7 @@ public class InputManager : MonoBehaviour
             }
             else
             {
+                InPauseMenu = false;
                 UIManager.Instance.pauseMenu.Resume();
             }
         }

@@ -114,7 +114,9 @@ public class CellSelectionShop : MonoBehaviour
 
         for (int i = 0; i < sections.Length; i++)
         {
-            sections[i].UndetectMouse();
+            if(sections[i].gameObject.activeSelf)
+                sections[i].UndetectMouse();
+
             HideOtherSubMenus(5);
             if (anims[i].gameObject.activeSelf)
                 anims[i].SetBool("Show", false);
