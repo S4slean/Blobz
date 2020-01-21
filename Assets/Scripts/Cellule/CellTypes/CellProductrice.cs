@@ -20,68 +20,38 @@ public class CellProductrice : CellMain
 
         if (!overLoad)
         {
-            haveExpulse = false;
+
             // ça marche bien mais à voir si quand 1 batiment meure la produciton saute avec ou pas
-            if ((int)Random.Range(0, 101) <= productionBonusRatio)
-            {
-                BlobNumberVariation(myCellTemplate.prodPerTickBase, BlobManager.BlobType.normal, true);
-            }
-
-            int productionPerTick = myCellTemplate.prodPerTickBase * (1 + productionBonusPacket);
-
-            BlobNumberVariation(productionPerTick, BlobManager.BlobType.normal, true);
-
-
-            #region Ancien Systeme de Tick 
-            //if (blobNumber > 0)
+            //if ((int)Random.Range(0, 101) <= productionBonusRatio)
             //{
-            //    currentTick++;
-            //    if (currentTick == currentTickForActivation)
-            //    {
-            //        Debug.Log("tickPass");
-            //        for (int i = 0; i < currentRejectPower; i++)
-            //        {
-            //            if (blobNumber > 0 && outputLinks.Count > 0)
-            //            {
-            //                if (currentIndex >= outputLinks.Count)
-            //                {
-            //                    return;
-            //                }
-            //                outputLinks[currentIndex].Transmitt(1);
-            //                currentIndex++;
-            //                currentIndex = Helper.LoopIndex(currentIndex, outputLinks.Count);
-            //                haveExpulse = true;
-            //            }
-            //        }
-            //        currentTick = 0;
-            //    }
+            //    BlobNumberVariation(myCellTemplate.prodPerTickBase, BlobManager.BlobType.normal, true);
             //}
-            #endregion
-            if (blobNumber > 0)
+
+            //int productionPerTick = myCellTemplate.prodPerTickBase * (1 + productionBonusPacket);
+
+            //BlobNumberVariation(productionPerTick, BlobManager.BlobType.normal, true);
+            haveExpulse = false;
+
+            int nbrTransmission = 0;
+            for (int i = 0; i < outputLinks.Count + productionBonusPacket; i++)
             {
-                currentTick++;
-                if (currentTick == currentTickForActivation)
+
+                if (currentIndex < outputLinks.Count)
                 {
-
-                    for (int i = 0; i < outputLinks.Count; i++)
-                    {
-                        if (blobNumber <= 0)
-                        {
-                            break;
-                        }
-                        //Pour l'instant il y a moyen que si une cellule creve la prochaine 
-                        //soit sauté mai squand il y aura les anim , ce sera plus possible
-                        outputLinks[i].Transmitt(1, BlobCheck());
-                        haveExpulse = true;
-
-                    }
-                    currentTick = 0;
+                    outputLinks[currentIndex].Transmitt(1, BlobManager.BlobType.normal);
+                    haveExpulse = true;
+                    currentIndex++;
+                    currentIndex = Helper.LoopIndex(currentIndex, outputLinks.Count);
+                    nbrTransmission++;
                 }
+                else
+                {
+                    Debug.Log(currentIndex + "Reset Index" + "LinkCount" + outputLinks.Count);
+                    currentIndex = 0;
+                }
+
             }
-            else
-            {
-                currentTick = 0;
-            }
+
             if (haveExpulse)
             {
                 anim.Play("BlobExpulsion");
@@ -204,7 +174,7 @@ public class CellProductrice : CellMain
 
         progressBar.UpdateBar(ratio);
         progressBar.ToggleRenderer(false);
-        
+
         base.SetupVariable();
     }
 
