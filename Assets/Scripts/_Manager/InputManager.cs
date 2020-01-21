@@ -327,8 +327,8 @@ public class InputManager : MonoBehaviour
 
                 if (CurrentHit.transform != null && CurrentHit.transform.tag == "Ground")
                 {
-                    posToTest = new Vector3(CurrentHit.point.x, 0, CurrentHit.point.z);
-                    CellManager.Instance.CellDeplacement(posToTest, objectMoved);
+                    
+                    CellManager.Instance.CellDeplacement(CurrentHit.point, objectMoved);
                 }
 
                 //si clic gauche, replacer la cell et update tous ses liens
