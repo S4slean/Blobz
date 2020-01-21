@@ -14,6 +14,8 @@ public class PauseMenu : MonoBehaviour
 
     public void Resume()
     {
+        CameraController.instance.enabled = true;
+        InputManager.Instance.enabled = true;
         Time.timeScale = 1;
         UIManager.Instance.HideUI(gameObject);
     }
