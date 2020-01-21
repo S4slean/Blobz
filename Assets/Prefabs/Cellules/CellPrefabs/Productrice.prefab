@@ -737,7 +737,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 0.5176959, z: 1}
+  m_Size: {x: 1.62, y: 0.5176959, z: 1.67}
   m_Center: {x: 0, y: 0.4295833, z: 0}
 --- !u!114 &5338465575289603483
 MonoBehaviour:
@@ -812,6 +812,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5911719936170165945}
     m_Modifications:
+    - target: {fileID: 2881293309684350235, guid: 8acb0fae47832f94f9eb83c430776a38,
+        type: 3}
+      propertyPath: m_Name
+      value: ExploIcon
+      objectReference: {fileID: 0}
+    - target: {fileID: 2881293309684350235, guid: 8acb0fae47832f94f9eb83c430776a38,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2477609119434983123, guid: 8acb0fae47832f94f9eb83c430776a38,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -865,16 +875,6 @@ PrefabInstance:
     - target: {fileID: 2477609119434983123, guid: 8acb0fae47832f94f9eb83c430776a38,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2881293309684350235, guid: 8acb0fae47832f94f9eb83c430776a38,
-        type: 3}
-      propertyPath: m_Name
-      value: ExploIcon
-      objectReference: {fileID: 0}
-    - target: {fileID: 2881293309684350235, guid: 8acb0fae47832f94f9eb83c430776a38,
-        type: 3}
-      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

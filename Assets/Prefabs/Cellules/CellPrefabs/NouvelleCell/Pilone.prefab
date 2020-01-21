@@ -946,7 +946,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 0.5176959, z: 1}
+  m_Size: {x: 1.44, y: 0.5176959, z: 1.59}
   m_Center: {x: 0, y: 0.4295833, z: 0}
 --- !u!114 &7558667029908519922
 MonoBehaviour:
@@ -1005,6 +1005,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5911719936170165945}
     m_Modifications:
+    - target: {fileID: 2881293309684350235, guid: 8acb0fae47832f94f9eb83c430776a38,
+        type: 3}
+      propertyPath: m_Name
+      value: ExploIcon
+      objectReference: {fileID: 0}
+    - target: {fileID: 2881293309684350235, guid: 8acb0fae47832f94f9eb83c430776a38,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2477609119434983123, guid: 8acb0fae47832f94f9eb83c430776a38,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1058,16 +1068,6 @@ PrefabInstance:
     - target: {fileID: 2477609119434983123, guid: 8acb0fae47832f94f9eb83c430776a38,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2881293309684350235, guid: 8acb0fae47832f94f9eb83c430776a38,
-        type: 3}
-      propertyPath: m_Name
-      value: ExploIcon
-      objectReference: {fileID: 0}
-    - target: {fileID: 2881293309684350235, guid: 8acb0fae47832f94f9eb83c430776a38,
-        type: 3}
-      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -1198,6 +1198,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1065516466398935401}
     m_Modifications:
+    - target: {fileID: 8009261302443850913, guid: dce2aade4d19fd64bafb21906e96a13d,
+        type: 3}
+      propertyPath: m_Name
+      value: Fx_Sploutch
+      objectReference: {fileID: 0}
     - target: {fileID: 8009261302443850914, guid: dce2aade4d19fd64bafb21906e96a13d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1267,11 +1272,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8009261302443850913, guid: dce2aade4d19fd64bafb21906e96a13d,
-        type: 3}
-      propertyPath: m_Name
-      value: Fx_Sploutch
       objectReference: {fileID: 0}
     - target: {fileID: 8009261302443850940, guid: dce2aade4d19fd64bafb21906e96a13d,
         type: 3}
