@@ -256,6 +256,8 @@ public class InputManager : MonoBehaviour
                         elementOver.OnShortRightClick(CurrentHit);
                 }
 
+                distanceBeforeDrag = 2.8f *0.05f * CameraController.instance.transform.position.y;
+
                 #endregion
 
                 #region MOUSEOVER_CELLS - TOOLTIP
