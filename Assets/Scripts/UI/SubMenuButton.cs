@@ -19,7 +19,7 @@ public class SubMenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        UIManager.Instance.LoadToolTip(transform.position, cellAssociated, true);
+        UIManager.Instance.LoadToolTip(transform.position, cellAssociated, true,false);
         mousOnMe = true;
     }
 

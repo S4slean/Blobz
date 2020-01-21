@@ -19,6 +19,15 @@ public class TooltipUI : MonoBehaviour
         cellName.text = cell.myCellTemplate.name;
         cellDescription.text = cell.myCellTemplate.description;
         cellCost.text = "Cost: " + cell.myCellTemplate.energyCost;
+
+
+        if (displayCost)
+        {
+            //ADD CellTemplates Proximity Text
+            //ADD Pro 
+        }
+
+
         if(cell.myCellTemplate.energyCost > RessourceTracker.instance.energy)
         {
             cellCost.color = Color.red;

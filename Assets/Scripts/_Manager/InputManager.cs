@@ -93,10 +93,19 @@ public class InputManager : MonoBehaviour
         #region PAUSE
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            CameraController.instance.enabled = false;
-            InputManager.Instance.enabled = false;
-            Time.timeScale = 0;
-            UIManager.Instance.DisplayUI(UIManager.Instance.pauseMenu.gameObject);
+            if (!InPauseMenu)
+            {
+                InPauseMenu = true;
+                CameraController.instance.enabled = false;
+                InputManager.Instance.enabled = false;
+                Time.timeScale = 0;
+                UIManager.Instance.DisplayUI(UIManager.Instance.pauseMenu.gameObject);
+            }
+            else
+            {
+                InPauseMenu = false;
+                UIManager.Instance.pauseMenu.Resume();
+            }
         }
         #endregion
 
@@ -256,7 +265,7 @@ public class InputManager : MonoBehaviour
                         elementOver.OnShortRightClick(CurrentHit);
                 }
 
-                distanceBeforeDrag = 2.8f *0.05f * CameraController.instance.transform.position.y;
+                
 
                 #endregion
 
