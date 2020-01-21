@@ -83,7 +83,7 @@ public class CellTourelle : CellMain
 
     }
 
-    private void MunitionVariation(int amount)
+    public void MunitionVariation(int amount)
     {
         munitions += amount;
         if (munitions <= 0)
