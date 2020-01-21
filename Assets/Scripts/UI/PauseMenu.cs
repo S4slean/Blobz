@@ -9,6 +9,7 @@ public class PauseMenu : MonoBehaviour
 
     public void RestartLevel()
     {
+        Time.timeScale = 1;
         SceneHandler.instance.ChangeScene(SceneManager.GetActiveScene().name);
     }
 
