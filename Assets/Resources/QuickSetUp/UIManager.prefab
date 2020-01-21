@@ -5467,6 +5467,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7038464417905372441}
   - component: {fileID: 7038464417905372440}
+  - component: {fileID: 118725363998581825}
   m_Layer: 5
   m_Name: ChooseACell
   m_TagString: Untagged
@@ -5548,6 +5549,19 @@ MonoBehaviour:
   - {fileID: 7038464418308316001}
   - {fileID: 7038464416830526102}
   - {fileID: 7038464417958195713}
+--- !u!114 &118725363998581825
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7038464417905372442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b025400018a9947419f556ea6ad88b3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ratio: 0.045
 --- !u!1 &7038464417953392492
 GameObject:
   m_ObjectHideFlags: 0
