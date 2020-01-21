@@ -139,7 +139,7 @@ public class UIManager : MonoBehaviour
     public float secondTooltipDelay = 1.5f;
     private bool secondTooltipDisplayed = false;
 
-    public void LoadToolTip(Vector3 pos, CellMain cell, bool displayCost)
+    public void LoadToolTip(Vector3 pos, CellMain cell, bool displayCost, bool displaySecondToolTip)
     {
         tooltipCount += Time.deltaTime;
 
@@ -148,7 +148,7 @@ public class UIManager : MonoBehaviour
             DisplayTooltip(pos, cell, displayCost);
         }
 
-        if (tooltipCount > secondTooltipDelay && !secondTooltipDisplayed)
+        if (displaySecondToolTip)
         {
             DisplaySecondToolTip();
         }
