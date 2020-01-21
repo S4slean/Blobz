@@ -986,7 +986,13 @@ public class CellMain : PoolableObjects, PlayerAction
         currentProximityLevel = 0;
         inDanger = false;
         isDead = false;
-        overLoad = false;
+        blolbNumberAtOverload = 0;
+
+
+        ToggleOverload(false);
+
+        overloadStack = 0;
+
 
         RessourceTracker.instance.EnergyCapVariation(currentEnergyCap);
         GenerateProximity();

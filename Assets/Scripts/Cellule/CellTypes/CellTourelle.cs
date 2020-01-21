@@ -120,6 +120,7 @@ public class CellTourelle : CellMain
     {
         munitions = 0;
         isLoaded = false;
+        fullLoaded = false;
         tourelleCollider.Init(this);
         base.SetupVariable();
     }
