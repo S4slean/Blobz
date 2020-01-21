@@ -30,7 +30,7 @@ public class BlobManager : MonoBehaviour
     public int soldierLifeSpan = 10;
     [SerializeField] [Range(0, 1000)] private int soldierTicksBtwnJumps = 4;
     [Range(0, 1000)] public float soldierJumpForce = 5;
-    [SerializeField] [Range(0, 1000)] private float explosionRadius = 20;
+    [SerializeField] [Range(0, 1000)] private float attackRange = 20;
     [SerializeField] [Range(0, 1000)] private float detectionRadius = 10;
     private Transform targetTransform;
 
@@ -107,7 +107,11 @@ public class BlobManager : MonoBehaviour
 
                     if (blob.tickCount > exploTicksBtwnJumps)
                     {
-                        JumpForward(blob);
+                        if (!TryAttack(blob, 1))
+                        {
+                            JumpForward(blob);
+
+                        }
                         blob.tickCount = 0;
                     }
 
@@ -135,9 +139,9 @@ public class BlobManager : MonoBehaviour
                             Vector3 directionToTarget = targetTransform.position - blob.transform.position;
 
                             //si il est assez près: BOOM!
-                            if (directionToTarget.magnitude < explosionRadius / 2)
+                            if (directionToTarget.magnitude < attackRange / 2)
                             {
-                                Explode(blob, 1);
+                                TryAttack(blob, 1);
                             }
                             //sinon  il se rapproche
                             else
@@ -161,7 +165,7 @@ public class BlobManager : MonoBehaviour
                     if (enemiesHaveLifeTime)
                     {
                         blob.lifeTime++;
-                        if(blob.lifeTime > enemyLifeSpan)
+                        if (blob.lifeTime > enemyLifeSpan)
                         {
                             blob.Destruct();
                         }
@@ -315,30 +319,47 @@ public class BlobManager : MonoBehaviour
         blob.RandomJump();
     }
 
-    public void Explode(Blob blob, int dmg)
+    public bool TryAttack(Blob blob, int dmg)
     {
         Collider[] touchedBlobs;
-        touchedBlobs = Physics.OverlapSphere(blob.transform.position, explosionRadius, 1 << 12);
+        touchedBlobs = Physics.OverlapSphere(blob.transform.position, attackRange, 1 << 12);
 
         Collider[] touchedDestructibles;
-        touchedDestructibles = Physics.OverlapSphere(blob.transform.position, explosionRadius, 1 << 11);
+        touchedDestructibles = Physics.OverlapSphere(blob.transform.position, attackRange, 1 << 11);
 
-        foreach (Collider blobCol in touchedBlobs)
+        if (blob.GetBlobType() == BlobType.soldier && touchedBlobs.Length > 0)
         {
-            if (blobCol.GetComponent<Blob>().GetBlobType() == BlobType.mad)
-                Destroy(blobCol.gameObject);
-        }
-        //Debug.Log("Soldier Explosed " + touchedBlobs.Length + " blobs");
-
-        foreach (Collider destructiblesCol in touchedDestructibles)
-        {
-            if (TryGetComponent<Destructible>(out Destructible destructible))
+            if (touchedBlobs[0].GetComponent<Blob>().GetBlobType() == BlobType.mad)
             {
-                destructible.ReceiveDamage(dmg);
+                touchedBlobs[0].GetComponent<Blob>().Destruct();
+                blob.Destruct();
+                return true;
             }
         }
 
-        blob.Destruct(); ;
+        //Debug.Log("Soldier Explosed " + touchedBlobs.Length + " blobs");
+
+        if (touchedDestructibles.Length > 0)
+        {
+            if (TryGetComponent<Destructible>(out Destructible destructible))
+            {
+                if (blob.GetBlobType() == BlobType.soldier && (destructible.destructType == Destructible.DestructType.enemy || destructible.destructType == Destructible.DestructType.all))
+                {
+                    destructible.ReceiveDamage(dmg);
+                    return true;
+
+                }
+                else if (blob.GetBlobType() == BlobType.explorateur && (destructible.destructType == Destructible.DestructType.ressources || destructible.destructType == Destructible.DestructType.all))
+                {
+                    destructible.ReceiveDamage(dmg);
+                    return true;
+                }
+
+            }
+        }
+
+        return false;
+
     }
 
 
