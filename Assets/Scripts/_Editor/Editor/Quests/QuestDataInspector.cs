@@ -102,7 +102,7 @@ public class QuestDataInspector : Editor
 
         EditorGUILayout.BeginHorizontal();
         eventsFoldout = EditorGUILayout.Foldout(eventsFoldout, "Quest Events");
-        questEventsProp.arraySize = EditorGUILayout.IntField(questEventsProp.arraySize);
+        questEventsProp.arraySize = EditorGUILayout.IntSlider(questEventsProp.arraySize, 0, 50);
         EditorGUILayout.EndHorizontal();
 
         if (eventsFoldout)
