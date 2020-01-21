@@ -1946,8 +1946,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 0
   serializedVersion: 2
-  m_Size: {x: 1.89, y: 1.85, z: 1.57}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1.96, y: 1.2555902, z: 1.72}
+  m_Center: {x: 0, y: 0.5516155, z: 0}
 --- !u!114 &2542981082271224747
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2060,10 +2060,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blobInChargeur: 
   maxStockage: 0
-  maxPower: 25
-  yOffset: 10
-  dragRange: 0
-  slotRange: 3
   myCollider: {fileID: 465437789709073103}
   parent: {fileID: 2542981082271224747}
   treblobchetUISlots:
