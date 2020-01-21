@@ -29,7 +29,7 @@ MonoBehaviour:
   nbrOfObject: 2
   questEvents:
   - eventType: 1
-    eventDuration: 0
+    eventDuration: 1.5
     virtualCamIndex: 0
     popUpsMsg:
     - rpgStyle: 1
@@ -37,7 +37,7 @@ MonoBehaviour:
       offset: {x: 0, y: 0, z: 0}
       usingSprite: 1
       sprite: {fileID: 21300000, guid: 013d0ca5a2e30f7438158762ce87327c, type: 3}
-      Title: 
+      Title: General Globulus
       Text: "There are 2 others enemy villages somewhere. Find them and destroy them
         !\r\n"
     - rpgStyle: 1
@@ -45,12 +45,20 @@ MonoBehaviour:
       offset: {x: 0, y: 0, z: 0}
       usingSprite: 1
       sprite: {fileID: 21300000, guid: 013d0ca5a2e30f7438158762ce87327c, type: 3}
-      Title: 
+      Title: General Globulus
       Text: "I didn\u2019t mention it put you can put explorers in the treblobchet
         to launch them far away !\r\n"
     UEvent:
       m_PersistentCalls:
         m_Calls: []
-    foldout: 0
+    foldout: 1
     cellType: 0
     newTickDuration: 0
+    persistentMsg:
+      rpgStyle: 0
+      anchor: {fileID: 0}
+      offset: {x: 0, y: 0, z: 0}
+      usingSprite: 0
+      sprite: {fileID: 0}
+      Title: 
+      Text: 

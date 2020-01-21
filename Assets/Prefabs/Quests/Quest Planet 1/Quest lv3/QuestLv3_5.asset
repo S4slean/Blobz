@@ -29,7 +29,7 @@ MonoBehaviour:
   nbrOfObject: 1
   questEvents:
   - eventType: 1
-    eventDuration: 0
+    eventDuration: 1.5
     virtualCamIndex: 0
     popUpsMsg:
     - rpgStyle: 1
@@ -37,7 +37,7 @@ MonoBehaviour:
       offset: {x: 0, y: 0, z: 0}
       usingSprite: 1
       sprite: {fileID: 21300000, guid: 013d0ca5a2e30f7438158762ce87327c, type: 3}
-      Title: 
+      Title: General Globulus
       Text: "Okay, we are safe. They come from a village near (la cam\xE9ra montre
         un village) We need to destroy it !\r\n"
     UEvent:
@@ -91,7 +91,7 @@ MonoBehaviour:
       Title: 
       Text: 
   - eventType: 1
-    eventDuration: 0
+    eventDuration: 1.5
     virtualCamIndex: 0
     popUpsMsg:
     - rpgStyle: 1
@@ -99,7 +99,7 @@ MonoBehaviour:
       offset: {x: 0, y: 0, z: 0}
       usingSprite: 1
       sprite: {fileID: 21300000, guid: 013d0ca5a2e30f7438158762ce87327c, type: 3}
-      Title: 
+      Title: General Globulus
       Text: "But be careful, they will attack if we send soldiers or if we build cell
         to close from their village. We need to be prepared.\r\n"
     - rpgStyle: 1
@@ -107,7 +107,7 @@ MonoBehaviour:
       offset: {x: 0, y: 0, z: 0}
       usingSprite: 1
       sprite: {fileID: 21300000, guid: 013d0ca5a2e30f7438158762ce87327c, type: 3}
-      Title: 
+      Title: General Globulus
       Text: 'Reach the village, then build a aerial strike cell '
     UEvent:
       m_PersistentCalls:
