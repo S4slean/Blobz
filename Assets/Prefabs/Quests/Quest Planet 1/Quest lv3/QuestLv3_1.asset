@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   questType: 2
   questTitle: 
-  questDescription: 
+  questDescription: 10
   eventDone: 1
   populationObjective: 0
   energyToObtain: 0
@@ -59,7 +59,7 @@ MonoBehaviour:
     UEvent:
       m_PersistentCalls:
         m_Calls: []
-    foldout: 1
+    foldout: 0
     cellType: 0
     newTickDuration: 0
     persistentMsg:
@@ -70,22 +70,22 @@ MonoBehaviour:
       sprite: {fileID: 0}
       Title: 
       Text: 
-  - eventType: 0
+  - eventType: 1
     eventDuration: 2
     virtualCamIndex: 1
     popUpsMsg:
-    - rpgStyle: 0
+    - rpgStyle: 1
       anchor: {fileID: 0}
       offset: {x: 830, y: 260, z: 0}
-      usingSprite: 0
+      usingSprite: 1
       sprite: {fileID: 21300000, guid: cc3173b5ab91f26438949b73af93e3f9, type: 3}
-      Title: 
+      Title: General Globulus
       Text: "Discover this new place maybe we \nfound more Mushsploosh or other splooshi
         things..."
     UEvent:
       m_PersistentCalls:
         m_Calls: []
-    foldout: 1
+    foldout: 0
     cellType: 0
     newTickDuration: 0
     persistentMsg:
@@ -96,22 +96,22 @@ MonoBehaviour:
       sprite: {fileID: 0}
       Title: 
       Text: 
-  - eventType: 0
+  - eventType: 1
     eventDuration: 2
-    virtualCamIndex: 0
+    virtualCamIndex: 1
     popUpsMsg:
-    - rpgStyle: 0
+    - rpgStyle: 1
       anchor: {fileID: 0}
       offset: {x: 830, y: 260, z: 0}
       usingSprite: 1
       sprite: {fileID: 21300000, guid: 013d0ca5a2e30f7438158762ce87327c, type: 3}
-      Title: 
+      Title: General Globulus
       Text: " know they look like us but they are vermin ! We need to destroy them
         !\r\n"
     UEvent:
       m_PersistentCalls:
         m_Calls: []
-    foldout: 1
+    foldout: 0
     cellType: 0
     newTickDuration: 0
     persistentMsg:
@@ -161,12 +161,12 @@ MonoBehaviour:
     eventDuration: 2
     virtualCamIndex: 2
     popUpsMsg:
-    - rpgStyle: 0
+    - rpgStyle: 1
       anchor: {fileID: 0}
       offset: {x: 830, y: 260, z: 0}
       usingSprite: 1
       sprite: {fileID: 21300000, guid: 013d0ca5a2e30f7438158762ce87327c, type: 3}
-      Title: 
+      Title: General Globulus
       Text: " know they look like us but they are vermin ! We need to destroy them
         !\r\n"
     UEvent:
@@ -196,15 +196,15 @@ MonoBehaviour:
       Title: 
       Text: 
   - eventType: 4
-    eventDuration: 0
+    eventDuration: 2
     virtualCamIndex: 2
     popUpsMsg:
-    - rpgStyle: 0
+    - rpgStyle: 1
       anchor: {fileID: 0}
       offset: {x: 830, y: 260, z: 0}
       usingSprite: 1
       sprite: {fileID: 21300000, guid: 013d0ca5a2e30f7438158762ce87327c, type: 3}
-      Title: 
+      Title: General Globulus
       Text: " know they look like us but they are vermin ! We need to destroy them
         !\r\n"
     UEvent:
