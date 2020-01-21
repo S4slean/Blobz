@@ -159,11 +159,9 @@ public class CellMain : PoolableObjects, PlayerAction
 
     }
 
-    IEnumerator WaitForInit()
+    private void Start()
     {
-        yield return new WaitForEndOfFrame();
-        CellInitialisation();
-        GenerateLinkSlot();
+        GraphSetup();
     }
 
     public virtual void CellInitialisation()
@@ -179,109 +177,6 @@ public class CellMain : PoolableObjects, PlayerAction
 
         SetupVariable();
         RestoreInitialMat();
-    }
-
-    private void Start()
-    {
-        GraphSetup();
-    }
-
-    public virtual void Died(bool intentionnalDeath)
-    {
-
-        isDead = true;
-        //TickManager.doTick -= BlobsTick;
-        //ownCollider.enabled = false;
-
-        RessourceTracker.instance.RemoveBlob(BlobManager.BlobType.normal, blobNumber);
-        RessourceTracker.instance.EnergyCapVariation(-currentEnergyCap);
-
-
-        if (CellManager.Instance.originalPosOfMovingCell != new Vector3(0, 100, 0))
-            RessourceTracker.instance.RemoveCell(this);
-
-        if (CellManager.Instance.selectedCell == this)
-        {
-            UIManager.Instance.DesactivateCellShop();
-        }
-        if (InputManager.Instance.selectedElement == this as PlayerAction)
-        {
-            InputManager.Instance.DeselectElement();
-        }
-
-        TickDesinscription();
-
-        int B = stuckBlobs.Count;
-        for (int y = 0; y < B; y++)
-        {
-            stuckBlobs[0].Unstuck();
-        }
-      //  stuckBlobs.Clear();
-
-        int I = links.Count;
-        for (int i = 0; i < I; i++)
-        {
-            if (i > I)
-            {
-                break;
-            }
-            links[0].Break();
-        }
-
-        for (int i = 0; i < linkJoints.Length; i++)
-        {
-            linkJoints[i].Inpool();
-            linkJoints[i] = null;
-
-        }
-        #region SpawnBlobAtDeath
-        int blobAmount = (int)Mathf.Ceil((float)blolbNumberAtOverload / (float)10);
-
-        if (!intentionnalDeath)
-        {
-            blobAmount += (int)Mathf.Floor((float)blobAmount / (float)2);
-        }
-        //Spawn les blobs
-        for (int i = 0; i < blobAmount; i++)
-        {
-            Blob spawnBlob = ObjectPooler.poolingSystem.GetPooledObject<Blob>() as Blob;
-            spawnBlob.transform.position = transform.position + new Vector3(Random.Range(-2, 2), Random.Range(0, 3), Random.Range(-2, 2));
-            spawnBlob.Outpool();
-            spawnBlob.ChangeType(BlobManager.BlobType.mad);
-            spawnBlob.RandomJump();
-        }
-        #endregion
-        blobCoaches.Clear();
-
-        if (this == CellManager.Instance.selectedCell)
-        {
-            InputManager.Instance.StopCurrentAction();
-        }
-
-        if (myCellTemplate.generateProximity)
-        {
-            //Met dans la pull les enfants
-            for (int i = 0; i < myProximityCollider.Length; i++)
-            {
-                myProximityCollider[i].Inpool();
-            }
-        }
-
-
-        inThoseCellProximity.Clear();
-        influencedByThoseCellProximity.Clear();
-
-        blobNumber = 0;
-        //SetupVariable();
-        if (initialPool == null)
-        {
-            transform.position += new Vector3(0, -200, 0);
-            Destroy(gameObject);
-        }
-        else
-        {
-            Inpool();
-        }
     }
 
     public virtual void BlobsTick()
@@ -383,6 +278,107 @@ public class CellMain : PoolableObjects, PlayerAction
             }
         }
     }
+
+    public virtual void Died(bool intentionnalDeath)
+    {
+
+        isDead = true;
+        //TickManager.doTick -= BlobsTick;
+        //ownCollider.enabled = false;
+
+        RessourceTracker.instance.RemoveBlob(BlobManager.BlobType.normal, blobNumber);
+        RessourceTracker.instance.EnergyCapVariation(-currentEnergyCap);
+
+
+        if (CellManager.Instance.originalPosOfMovingCell != new Vector3(0, 100, 0))
+            RessourceTracker.instance.RemoveCell(this);
+
+        if (CellManager.Instance.selectedCell == this)
+        {
+            UIManager.Instance.DesactivateCellShop();
+        }
+        if (InputManager.Instance.selectedElement == this as PlayerAction)
+        {
+            InputManager.Instance.DeselectElement();
+        }
+
+        TickDesinscription();
+
+        int B = stuckBlobs.Count;
+        for (int y = 0; y < B; y++)
+        {
+            stuckBlobs[0].Unstuck();
+        }
+      //  stuckBlobs.Clear();
+
+        int I = links.Count;
+        for (int i = 0; i < I; i++)
+        {
+            if (i > I)
+            {
+                break;
+            }
+            links[0].Break();
+        }
+
+        for (int i = 0; i < linkJoints.Length; i++)
+        {
+            linkJoints[i].Inpool();
+            linkJoints[i] = null;
+
+        }
+        #region SpawnBlobAtDeath
+        int blobAmount = (int)Mathf.Ceil((float)blolbNumberAtOverload / (float)10);
+
+        if (!intentionnalDeath)
+        {
+            blobAmount += (int)Mathf.Floor((float)blobAmount / (float)2);
+        }
+        //Spawn les blobs
+        for (int i = 0; i < blobAmount; i++)
+        {
+            Blob spawnBlob = ObjectPooler.poolingSystem.GetPooledObject<Blob>() as Blob;
+            spawnBlob.transform.position = transform.position + new Vector3(Random.Range(-2, 2), Random.Range(0, 3), Random.Range(-2, 2));
+            spawnBlob.Outpool();
+            spawnBlob.ChangeType(BlobManager.BlobType.mad);
+            spawnBlob.RandomJump();
+        }
+        #endregion
+        blobCoaches.Clear();
+
+        if (this == CellManager.Instance.selectedCell)
+        {
+            InputManager.Instance.StopCurrentAction();
+        }
+
+        if (myCellTemplate.generateProximity)
+        {
+            //Met dans la pull les enfants
+            for (int i = 0; i < myProximityCollider.Length; i++)
+            {
+                myProximityCollider[i].Inpool();
+            }
+        }
+
+
+        inThoseCellProximity.Clear();
+        influencedByThoseCellProximity.Clear();
+
+        blobNumber = 0;
+        //SetupVariable();
+        if (initialPool == null)
+        {
+            transform.position += new Vector3(0, -200, 0);
+            Destroy(gameObject);
+        }
+        else
+        {
+            Inpool();
+        }
+    }
+
+    #region BLOB_GESTION
+
     public virtual void StockageCapabilityVariation(int Amount)
     {
         currentBlobStockage += Amount;
@@ -409,9 +405,6 @@ public class CellMain : PoolableObjects, PlayerAction
         HandleAlerts();
         UpdateCaract();
     }
-
-    #region BLOB_GESTION
-
 
     public virtual void BlobNumberVariation(int amount, BlobManager.BlobType _blobType, bool transmission)
     {
@@ -1292,4 +1285,10 @@ public class CellMain : PoolableObjects, PlayerAction
 
     #endregion
 
+    IEnumerator WaitForInit()
+    {
+        yield return new WaitForEndOfFrame();
+        CellInitialisation();
+        GenerateLinkSlot();
+    }
 }
