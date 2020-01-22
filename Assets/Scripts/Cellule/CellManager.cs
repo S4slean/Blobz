@@ -395,7 +395,6 @@ public class CellManager : MonoBehaviour
             cellToMove.ChangeDeplacementMat(false);
         }
 
-        Debug.Log(wasObstructedLink + " " + obstructedLink);
         if (wasObstructedLink && !obstructedLink && terrainIsBuildable)
         {
             Debug.Log("UnobstructedMat");

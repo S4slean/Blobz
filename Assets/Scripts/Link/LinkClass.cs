@@ -59,7 +59,6 @@ public class LinkClass : PoolableObjects
 
     public void Tick()
     {
-        Debug.Log("tickLink");
         numberOfBlob.text = transmissionAmount.ToString();
         transmissionAmount = 0;
     }
