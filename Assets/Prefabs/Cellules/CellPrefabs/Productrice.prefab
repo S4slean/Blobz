@@ -700,8 +700,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7213726001769118057}
-  - component: {fileID: 3922479743895655383}
   - component: {fileID: 5338465575289603483}
+  - component: {fileID: 2955111989555263193}
   - component: {fileID: -1350178439007509981}
   - component: {fileID: -1575426712437948980}
   m_Layer: 11
@@ -727,19 +727,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &3922479743895655383
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6972052367257400834}
-  m_Material: {fileID: 13400000, guid: e277263082fb7da4096ac7dee83d093f, type: 2}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1.62, y: 0.5176959, z: 1.67}
-  m_Center: {x: 0, y: 0.4295833, z: 0}
 --- !u!114 &5338465575289603483
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -771,7 +758,7 @@ MonoBehaviour:
   inThoseCellProximity: []
   influencedByThoseCellProximity: []
   stuckBlobs: []
-  ownCollider: {fileID: 0}
+  ownCollider: {fileID: 2955111989555263193}
   linkJoints: []
   blobCoaches: []
   myTransform: {fileID: 0}
@@ -790,6 +777,19 @@ MonoBehaviour:
   canBePlaced: 0
   isVisible: 0
   progressBar: {fileID: 6857700786843569492}
+--- !u!135 &2955111989555263193
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6972052367257400834}
+  m_Material: {fileID: 13400000, guid: e277263082fb7da4096ac7dee83d093f, type: 2}
+  m_IsTrigger: 1
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Radius: 1.08
+  m_Center: {x: 0, y: 0.24, z: 0}
 --- !u!54 &-1350178439007509981
 Rigidbody:
   m_ObjectHideFlags: 0
