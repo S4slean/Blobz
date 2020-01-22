@@ -23,9 +23,13 @@ public class CellMain : PoolableObjects, PlayerAction
     public TextMeshPro NBlob;
     public TextMeshPro NLink;
     public TextMeshPro NCurrentProximity;
+    public ProgressBar stockageBar;
     public Transform graphTransform;
     public Transform TargetPos;
     private CellAlert alert;
+
+
+
 
     public GameObject coachIcon;
     public GameObject exploIcon;
@@ -410,6 +414,20 @@ public class CellMain : PoolableObjects, PlayerAction
             Died(false);
         }
 
+        if (!overLoad)
+        {
+            float ratio = 0;
+            if (myCellTemplate.StatsModification == StatsModificationType.StockageCapacity)
+            {
+                ratio = (float)blobNumber / (float)myCellTemplate.stockageCapacity[currentProximityTier];
+            }
+            else
+            {
+                ratio = (float)blobNumber / (float)myCellTemplate.storageCapability;
+            }
+            stockageBar.UpdateBar(ratio, true);
+        }
+
         HandleAlerts();
         UpdateCaract();
     }
@@ -437,6 +455,21 @@ public class CellMain : PoolableObjects, PlayerAction
             }
         }
 
+        if (!overLoad)
+        {
+            float ratio = 0;
+            if (myCellTemplate.StatsModification == StatsModificationType.StockageCapacity)
+            {
+                ratio = (float)blobNumber / (float)myCellTemplate.stockageCapacity[currentProximityTier];
+            }
+            else
+            {
+                ratio = (float)blobNumber / (float)myCellTemplate.storageCapability;
+            }
+            stockageBar.UpdateBar(ratio, true);
+        }
+
+
         HandleAlerts();
 
         //Nexus 
@@ -446,8 +479,6 @@ public class CellMain : PoolableObjects, PlayerAction
         }
         UpdateCaract();
 
-        //NBlob.text = (blobNumber + " / " + currentBlobStockage);
-        //UpdateCaract();
     }
 
     protected void HandleAlerts()
@@ -1294,6 +1325,10 @@ public class CellMain : PoolableObjects, PlayerAction
     protected void ToggleOverload(bool isOverload)
     {
         overLoad = isOverload;
+        if (stockageBar != null)
+        {
+            stockageBar.ToggleRenderer(isOverload);
+        }
         //FX.setActive()
         if (isOverload)
         {
