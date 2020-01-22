@@ -18,6 +18,7 @@ public class QuestEventPropertyDrawer : PropertyDrawer
     SerializedProperty cellTypeProp;
     SerializedProperty newSpeedProp;
     SerializedProperty persistentMsgprop;
+    SerializedProperty newLevelProp;
 
     bool foldout;
     int type = 0;
@@ -62,6 +63,13 @@ public class QuestEventPropertyDrawer : PropertyDrawer
             case 6:
                 return (EditorGUIUtility.singleLineHeight + 2) * 4 + (EditorGUIUtility.singleLineHeight + 2) * 10;
 
+            case 7:
+                return (EditorGUIUtility.singleLineHeight + 2) * 4 + (EditorGUIUtility.singleLineHeight + 2) * 10;
+
+            case 8:
+                return (EditorGUIUtility.singleLineHeight + 2) * 4 + (EditorGUIUtility.singleLineHeight + 2) * 10;
+
+
 
 
 
@@ -91,6 +99,7 @@ public class QuestEventPropertyDrawer : PropertyDrawer
         cellTypeProp = property.FindPropertyRelative("cellType");
         newSpeedProp = property.FindPropertyRelative("newTickDuration");
         persistentMsgprop = property.FindPropertyRelative("persistentMsg");
+        newLevelProp = property.FindPropertyRelative("levelName");
         type = eventTypeProp.intValue;
 
 
@@ -199,6 +208,20 @@ public class QuestEventPropertyDrawer : PropertyDrawer
                     new Rect(position.x + 15, position.y + 10 + 2 * line, position.width - 25, line - 2),
                     persistentMsgprop);
 
+
+                break;
+
+
+            case 7:
+
+                break;
+
+
+            case 8:
+
+                EditorGUI.PropertyField(
+                    new Rect(position.x + 15, position.y + 10 + 2 * line, position.width - 25, line - 2),
+                    persistentMsgprop);
 
                 break;
         }
