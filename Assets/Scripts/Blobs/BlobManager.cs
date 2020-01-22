@@ -325,7 +325,7 @@ public class BlobManager : MonoBehaviour
         touchedBlobs = Physics.OverlapSphere(blob.transform.position, attackRange, 1 << 12);
 
         Collider[] touchedDestructibles;
-        touchedDestructibles = Physics.OverlapSphere(blob.transform.position, attackRange, 1 << 11);
+        touchedDestructibles = Physics.OverlapSphere(blob.transform.position, attackRange, 1 << 15 | 1<<16);
 
         if (blob.GetBlobType() == BlobType.soldier && touchedBlobs.Length > 0)
         {

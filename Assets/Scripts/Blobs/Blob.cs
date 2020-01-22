@@ -15,7 +15,7 @@ public class Blob : PoolableObjects
     [HideInInspector] public int tickCount = 0;
     public int lifeTime = 0;
     public int LifeSpan = 32;
-    private BlobManager.BlobType blobType = BlobManager.BlobType.normal;
+    [SerializeField]private BlobManager.BlobType blobType = BlobManager.BlobType.normal;
     private float jumpForce = 5;
     #endregion
 
