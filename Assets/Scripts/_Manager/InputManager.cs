@@ -399,7 +399,11 @@ public class InputManager : MonoBehaviour
                 if (Input.GetMouseButtonDown(0))
                 {
                     Collider[] hitColliders = Physics.OverlapSphere(UIManager.Instance.divineCellTarget.transform.position, shootingCell.myCellTemplate.explosionRadius, 1 << 12 | 1 << 16 | 1 << 15);
-                    Gizmos.DrawSphere(UIManager.Instance.divineCellTarget.transform.position, shootingCell.myCellTemplate.explosionRadius);
+                    GameObject sphere =   GameObject.CreatePrimitive(PrimitiveType.Sphere);
+                    sphere.transform.localScale = new Vector3 (shootingCell.myCellTemplate.explosionRadius, shootingCell.myCellTemplate.explosionRadius, shootingCell.myCellTemplate.explosionRadius);
+                    sphere.transform.position = UIManager.Instance.divineCellTarget.transform.position;
+
+
                     for (int i = 0; i < hitColliders.Length; i++)
                     {
                         if (hitColliders[i].TryGetComponent<Destructible>(out Destructible destrucible))
