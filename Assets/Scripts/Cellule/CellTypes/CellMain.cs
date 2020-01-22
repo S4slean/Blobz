@@ -252,7 +252,7 @@ public class CellMain : PoolableObjects, PlayerAction
                                     haveExpulse = true;
                                     currentIndex++;
                                     currentIndex = Helper.LoopIndex(currentIndex, outputLinks.Count);
-                                 
+
                                 }
                             }
                             else
@@ -298,8 +298,8 @@ public class CellMain : PoolableObjects, PlayerAction
         RessourceTracker.instance.EnergyCapVariation(-currentEnergyCap);
 
 
-        if (CellManager.Instance.originalPosOfMovingCell != new Vector3(0, 100, 0))
-            RessourceTracker.instance.RemoveCell(this);
+        //if (CellManager.Instance.originalPosOfMovingCell != new Vector3(0, 100, 0))
+        RessourceTracker.instance.RemoveCell(this);
 
         if (CellManager.Instance.selectedCell == this)
         {
@@ -856,6 +856,11 @@ public class CellMain : PoolableObjects, PlayerAction
                 //}
         }
         UpdateCaract();
+    }
+
+    public int GetProximityTier()
+    {
+        return currentProximityTier;
     }
     #endregion
 
