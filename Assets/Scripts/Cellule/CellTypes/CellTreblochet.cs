@@ -22,10 +22,8 @@ public class CellTreblochet : CellMain
             BlobNumberVariation(-1, blType , false);
             myChargeur.AddBlob(blType);
         }
-
         base.BlobsTick();
     }
-
 
     private BlobManager.BlobType ChargerCustomBlobCheck()
     {

@@ -8,16 +8,16 @@ public class Destructible : PoolableObjects, PlayerAction
     public GameObject goodGraph;
     public GameObject brokenGraph;
     public Animator anim;
-    public enum DestructType {none, enemyBuilding, enemyVillage, rock, mushroom, bush, tree , crystal, bigCrystal, barricade, target1, target2,target3, target4, target5, target6, target7, target8, target9, target10 };
+    public enum DestructType { all, ressources, enemy };
 
     [Header("General")]
-    public DestructType destructType = DestructType.none;
+    public DestructType destructType = DestructType.all;
     private int remainingLife;
     public int maxLife = 5;
     private int count = 0;
     public bool isReapairable = false;
     public int repairDelay = 10;
-    [HideInInspector] public bool isRuin = false;
+    public bool isRuin = false;
 
     [Header("Enemies")]
     public bool isVillageNexus = false;
@@ -93,9 +93,11 @@ public class Destructible : PoolableObjects, PlayerAction
         {
             Blob blob = ObjectPooler.poolingSystem.GetPooledObject<Blob>() as Blob;
             blob.Outpool();
+            blob.ChangeType(BlobManager.BlobType.mad);
             Vector2 circle = Random.insideUnitCircle;
             Vector3 circleProjection = new Vector3(circle.x, 0, circle.y).normalized;
             blob.transform.position = transform.position + circleProjection * spawnRange;
+            
 
         }
         anim.SetTrigger("Spawn");
@@ -129,7 +131,7 @@ public class Destructible : PoolableObjects, PlayerAction
             if (spawnEnemiesOnDestruction)
             {
                 SpawnEnemies();
-                
+
             }
 
             if (isVillageNexus)

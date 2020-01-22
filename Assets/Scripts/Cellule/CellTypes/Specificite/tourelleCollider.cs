@@ -24,7 +24,6 @@ public class tourelleCollider : MonoBehaviour
         myCollider.enabled = true;
     }
 
-
     private void OnTriggerEnter(Collider other)
     {
         Blob blolMechant = other.GetComponent<Blob>();
@@ -90,6 +89,7 @@ public class tourelleCollider : MonoBehaviour
                 projectile.Init(tourelleCanon.position, badBlobs[currentBlobTargetIndex].transform.position, badBlobs[currentBlobTargetIndex]);
                 badBlobs.Remove(badBlobs[currentBlobTargetIndex]);
                 parent.MunitionVariation(-1);
+                CheckForTarget();
                 return;
             }
 
@@ -97,6 +97,7 @@ public class tourelleCollider : MonoBehaviour
             //badCell[currentCellTargetIndex].ReceiveDamage(parent.myCellTemplate.tourelleDamage);
             projectile.Init(tourelleCanon.position, badCell[currentCellTargetIndex].transform.position, badCell[currentCellTargetIndex], parent.myCellTemplate.tourelleDamage);
             parent.MunitionVariation(-1);
+            CheckForTarget();
 
         }
     }
@@ -127,6 +128,7 @@ public class tourelleCollider : MonoBehaviour
                 {
                     currentCellTargetIndex = i;
                     hasTarget = true;
+                    Debug.Log(badCell[i], gameObject);
                     return;
                 }
 
@@ -141,6 +143,9 @@ public class tourelleCollider : MonoBehaviour
         myCollider.enabled = false;
         badBlobs.Clear();
         badCell.Clear();
+        currentBlobTargetIndex = 0;
+        currentCellTargetIndex = 0;
+
         hasTarget = false;
 
     }

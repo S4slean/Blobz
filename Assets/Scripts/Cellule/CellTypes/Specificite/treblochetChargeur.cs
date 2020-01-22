@@ -107,9 +107,9 @@ public class treblochetChargeur : MonoBehaviour, PlayerAction
 
             Blob blobToThrow = ObjectPooler.poolingSystem.GetPooledObject<Blob>() as Blob;
 
-            blobToThrow.ChangeType(blobInChargeur[0]);
             blobToThrow.Outpool();
             blobToThrow.transform.position = transform.position + new Vector3(0, parent.myCellTemplate.verticalOffset, 0);
+            blobToThrow.ChangeType(blobInChargeur[0]);
             blobToThrow.transform.LookAt(parent.transform);
             // blobToThrow.transform.LookAt(transform);
 

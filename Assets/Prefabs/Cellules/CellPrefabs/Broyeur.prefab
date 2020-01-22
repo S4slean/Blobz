@@ -461,7 +461,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5711269901007850592}
-  - component: {fileID: 9046521798861578125}
+  - component: {fileID: 55899866799495373}
   - component: {fileID: 5867697968191919761}
   - component: {fileID: -202813483981728604}
   - component: {fileID: -2144677417003518876}
@@ -489,8 +489,8 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &9046521798861578125
-BoxCollider:
+--- !u!135 &55899866799495373
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -500,8 +500,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 0
   serializedVersion: 2
-  m_Size: {x: 1.87, y: 1, z: 1.8}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: 1.09
+  m_Center: {x: 0, y: 0.31, z: 0.1}
 --- !u!114 &5867697968191919761
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -533,7 +533,7 @@ MonoBehaviour:
   inThoseCellProximity: []
   influencedByThoseCellProximity: []
   stuckBlobs: []
-  ownCollider: {fileID: 0}
+  ownCollider: {fileID: 55899866799495373}
   linkJoints: []
   blobCoaches: []
   myTransform: {fileID: 0}

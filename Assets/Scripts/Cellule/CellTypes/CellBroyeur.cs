@@ -20,7 +20,7 @@ public class CellBroyeur : CellMain
             {
                 int energyGainThisActivation = 0;
                 currentTick++;
-                if (currentTick == currentTickForActivation)
+                if (currentTick >= currentTickForActivation)
                 {
                     for (int i = 0; i < blobNumber; i++)
                     {

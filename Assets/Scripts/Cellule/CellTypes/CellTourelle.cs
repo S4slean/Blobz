@@ -35,20 +35,29 @@ public class CellTourelle : CellMain
 
             if (blobNumber > 0)
             {
-
                 for (int i = 0; i < outputLinks.Count; i++)
                 {
-                    if (blobNumber <= 0)
+                    if (blobNumber > 0 && outputLinks.Count > 0)
                     {
-                        break;
+                        if (currentIndex < outputLinks.Count)
+                        {
+                            BlobManager.BlobType blobType = BlobCheck();
+
+                            if (blobType != BlobManager.BlobType.aucun)
+                            {
+                                outputLinks[currentIndex].Transmitt(1, BlobCheck());
+                                haveExpulse = true;
+                                currentIndex++;
+                                currentIndex = Helper.LoopIndex(currentIndex, outputLinks.Count);
+                            }
+                        }
+                        else
+                        {
+                            currentIndex = 0;
+                        }
                     }
-                    //Pour l'instant il y a moyen que si une cellule creve la prochaine 
-                    //soit sauté mai squand il y aura les anim , ce sera plus possible
-                    outputLinks[i].Transmitt(1, BlobCheck());
-                    haveExpulse = true;
                 }
             }
-
             if (isLoaded)
             {
                 currentTick++;
@@ -111,6 +120,9 @@ public class CellTourelle : CellMain
     {
         munitions = 0;
         isLoaded = false;
+        fullLoaded = false;
+        float ratio = (float)munitions / (float)myCellTemplate.tourelleMaxMun;
+        progressBar.UpdateBar(ratio);
         tourelleCollider.Init(this);
         base.SetupVariable();
     }

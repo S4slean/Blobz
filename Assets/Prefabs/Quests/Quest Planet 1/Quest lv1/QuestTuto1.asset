@@ -28,8 +28,8 @@ MonoBehaviour:
   destructType: 0
   nbrOfObject: 0
   questEvents:
-  - eventType: 0
-    eventDuration: 1
+  - eventType: 3
+    eventDuration: 0
     virtualCamIndex: 7
     popUpsMsg:
     - rpgStyle: 1
@@ -55,7 +55,7 @@ MonoBehaviour:
       Title: 
       Text: 
   - eventType: 3
-    eventDuration: 1
+    eventDuration: 0
     virtualCamIndex: 7
     popUpsMsg:
     - rpgStyle: 1
@@ -80,7 +80,7 @@ MonoBehaviour:
       Title: 
       Text: 
   - eventType: 1
-    eventDuration: 1.5
+    eventDuration: 5
     virtualCamIndex: 7
     popUpsMsg:
     - rpgStyle: 1
@@ -280,57 +280,17 @@ MonoBehaviour:
       sprite: {fileID: 0}
       Title: 
       Text: 
-  - eventType: 1
-    eventDuration: 1.8
-    virtualCamIndex: 1
-    popUpsMsg:
-    - rpgStyle: 1
-      anchor: {fileID: 0}
-      offset: {x: 0, y: 0, z: 0}
-      usingSprite: 1
-      sprite: {fileID: 21300000, guid: 74a01104759d6494d8d651afa2ac8826, type: 3}
-      Title: 
-      Text: "If you click on the dump, a blob will liquefy and great sploosh ! \nBut
-        don\u2019t worry, it\u2019s painless !"
-    UEvent:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 6190842183759939533, guid: 7b934126b67bf7f44aabfd0ea1f12c2e,
-            type: 3}
-          m_MethodName: ReturnToMainCam
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-    foldout: 1
-    cellType: 0
-    newTickDuration: 0
-    persistentMsg:
-      rpgStyle: 0
-      anchor: {fileID: 0}
-      offset: {x: 0, y: 0, z: 0}
-      usingSprite: 1
-      sprite: {fileID: 21300000, guid: 68215239a0bc5fa4a8ec1952bf8fed68, type: 3}
-      Title: 
-      Text: "Click and drag to select the dump cell and \nplace it !"
   - eventType: 6
     eventDuration: 1.8
     virtualCamIndex: 1
     popUpsMsg:
     - rpgStyle: 1
       anchor: {fileID: 0}
-      offset: {x: 830, y: 260, z: 0}
+      offset: {x: 0, y: 0, z: 0}
       usingSprite: 1
-      sprite: {fileID: 21300000, guid: 74a01104759d6494d8d651afa2ac8826, type: 3}
-      Title: 
-      Text: '
-
-'
+      sprite: {fileID: 21300000, guid: 68215239a0bc5fa4a8ec1952bf8fed68, type: 3}
+      Title: Blob the Builder
+      Text: Click and hold to select the dump, then drag to place it !
     UEvent:
       m_PersistentCalls:
         m_Calls:
@@ -356,4 +316,43 @@ MonoBehaviour:
       usingSprite: 1
       sprite: {fileID: 21300000, guid: 68215239a0bc5fa4a8ec1952bf8fed68, type: 3}
       Title: Blob the Builder
-      Text: Clickand hold to select the dump, then drag to place it !
+      Text: "Click and drag to select the dump cell and \nplace it !"
+  - eventType: 1
+    eventDuration: 1.8
+    virtualCamIndex: 1
+    popUpsMsg:
+    - rpgStyle: 1
+      anchor: {fileID: 0}
+      offset: {x: 830, y: 260, z: 0}
+      usingSprite: 1
+      sprite: {fileID: 21300000, guid: 74a01104759d6494d8d651afa2ac8826, type: 3}
+      Title: 
+      Text: "If you click on the dump, a blob will liquefy and creat sploosh ! But
+        don\u2019t worry, it\u2019s painless !\n"
+    UEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 6190842183759939533, guid: 7b934126b67bf7f44aabfd0ea1f12c2e,
+            type: 3}
+          m_MethodName: ReturnToMainCam
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    foldout: 1
+    cellType: 0
+    newTickDuration: 0
+    persistentMsg:
+      rpgStyle: 0
+      anchor: {fileID: 0}
+      offset: {x: 0, y: 0, z: 0}
+      usingSprite: 1
+      sprite: {fileID: 21300000, guid: 74a01104759d6494d8d651afa2ac8826, type: 3}
+      Title: Blob the Builder
+      Text: "If you click on the dump, a blob will liquefy and great sploosh ! \nBut
+        don\u2019t worry, it\u2019s painless !"

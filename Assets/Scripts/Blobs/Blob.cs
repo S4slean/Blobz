@@ -10,6 +10,7 @@ public class Blob : PoolableObjects
     public Renderer rd;
     #endregion
 
+    [Header("General")]
     #region GENERAL
     [HideInInspector] public int tickCount = 0;
     public int lifeTime = 0;
@@ -18,6 +19,7 @@ public class Blob : PoolableObjects
     private float jumpForce = 5;
     #endregion
 
+    [Header("Enemy")]
     #region ENNEMIES
     public Transform tagetTransform;
     public bool isStuck = false;
@@ -28,6 +30,7 @@ public class Blob : PoolableObjects
     public EnemyVillage village;
     #endregion
 
+    [Header("Soldier")]
     #region SOLDIER
     public float flyTime = 3;
     public float flySpeed = 5;
@@ -39,7 +42,7 @@ public class Blob : PoolableObjects
     private void OnEnable()
     {
         rb = GetComponent<Rigidbody>();
-        rd = GetComponent<Renderer>();
+       // rd = GetComponent<Renderer>();
 
 
         UpdateMat();
@@ -207,8 +210,8 @@ public class Blob : PoolableObjects
             isStuck = true;
         }
 
-        if (blobType == BlobManager.BlobType.soldier && canExplode)
-            BlobManager.instance.Explode(this, 1);
+        if (blobType == BlobManager.BlobType.soldier)
+            BlobManager.instance.TryAttack(this, 1);
     }
 
     public void ReduceCapacity()

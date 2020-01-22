@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5853732124586470277
 Transform:
   m_ObjectHideFlags: 0
@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 1425149600685392508}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
+  m_LocalScale: {x: 0.19075802, y: 0.19075802, z: 0.19075802}
   m_Children: []
   m_Father: {fileID: 702070642367133429}
   m_RootOrder: 1
@@ -87,9 +87,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 702070642367133429}
-  - component: {fileID: 3307682111752870861}
   - component: {fileID: 3328925992418087246}
   - component: {fileID: 8260789756600711135}
+  - component: {fileID: 4277878747365917371}
   m_Layer: 15
   m_Name: Building
   m_TagString: Enemies
@@ -113,20 +113,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!136 &3307682111752870861
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5890611875072908535}
-  m_Material: {fileID: 13400000, guid: e277263082fb7da4096ac7dee83d093f, type: 2}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 1.17
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!114 &3328925992418087246
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -176,6 +162,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!135 &4277878747365917371
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5890611875072908535}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.74
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6438243430102390527
 GameObject:
   m_ObjectHideFlags: 0
@@ -203,7 +202,7 @@ Transform:
   m_GameObject: {fileID: 6438243430102390527}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.3, y: 1, z: 0.3}
+  m_LocalScale: {x: 0.19075802, y: 0.19075802, z: 0.19075802}
   m_Children: []
   m_Father: {fileID: 702070642367133429}
   m_RootOrder: 0
