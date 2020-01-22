@@ -170,7 +170,7 @@ MonoBehaviour:
       Title: 
       Text: 
   - eventType: 1
-    eventDuration: 1
+    eventDuration: 2
     virtualCamIndex: 1
     popUpsMsg:
     - rpgStyle: 1
@@ -281,7 +281,7 @@ MonoBehaviour:
       Title: 
       Text: 
   - eventType: 6
-    eventDuration: 1.8
+    eventDuration: 2.5
     virtualCamIndex: 1
     popUpsMsg:
     - rpgStyle: 1
@@ -318,7 +318,7 @@ MonoBehaviour:
       Title: Blob the Builder
       Text: "Click and drag to select the dump cell and \nplace it !"
   - eventType: 1
-    eventDuration: 1.8
+    eventDuration: 3
     virtualCamIndex: 1
     popUpsMsg:
     - rpgStyle: 1

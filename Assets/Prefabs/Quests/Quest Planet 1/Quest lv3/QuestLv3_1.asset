@@ -29,7 +29,7 @@ MonoBehaviour:
   nbrOfObject: 0
   questEvents:
   - eventType: 1
-    eventDuration: 1
+    eventDuration: 2
     virtualCamIndex: 0
     popUpsMsg:
     - rpgStyle: 1
@@ -56,10 +56,18 @@ MonoBehaviour:
       sprite: {fileID: 21300000, guid: 013d0ca5a2e30f7438158762ce87327c, type: 3}
       Title: General Globulus
       Text: 'Look at those things ! '
+    - rpgStyle: 1
+      anchor: {fileID: 0}
+      offset: {x: 0, y: 0, z: 0}
+      usingSprite: 1
+      sprite: {fileID: 21300000, guid: 013d0ca5a2e30f7438158762ce87327c, type: 3}
+      Title: General Globulus
+      Text: "Discover this new place maybe we \nfound more Mushsploosh or other splooshi
+        things..."
     UEvent:
       m_PersistentCalls:
         m_Calls: []
-    foldout: 0
+    foldout: 1
     cellType: 0
     newTickDuration: 0
     persistentMsg:
@@ -70,22 +78,21 @@ MonoBehaviour:
       sprite: {fileID: 0}
       Title: 
       Text: 
-  - eventType: 1
-    eventDuration: 1.5
+  - eventType: 3
+    eventDuration: 0
     virtualCamIndex: 1
     popUpsMsg:
     - rpgStyle: 1
       anchor: {fileID: 0}
-      offset: {x: 830, y: 260, z: 0}
+      offset: {x: 0, y: 0, z: 0}
       usingSprite: 1
       sprite: {fileID: 21300000, guid: cc3173b5ab91f26438949b73af93e3f9, type: 3}
       Title: General Globulus
-      Text: "Discover this new place maybe we \nfound more Mushsploosh or other splooshi
-        things..."
+      Text: 
     UEvent:
       m_PersistentCalls:
         m_Calls: []
-    foldout: 0
+    foldout: 1
     cellType: 0
     newTickDuration: 0
     persistentMsg:
@@ -123,12 +130,12 @@ MonoBehaviour:
       Title: 
       Text: 
   - eventType: 1
-    eventDuration: 1.5
+    eventDuration: 2
     virtualCamIndex: 2
     popUpsMsg:
     - rpgStyle: 1
       anchor: {fileID: 0}
-      offset: {x: 830, y: 260, z: 0}
+      offset: {x: 0, y: 0, z: 0}
       usingSprite: 1
       sprite: {fileID: 21300000, guid: 013d0ca5a2e30f7438158762ce87327c, type: 3}
       Title: General Globulus
@@ -136,7 +143,7 @@ MonoBehaviour:
         !\r\n"
     - rpgStyle: 1
       anchor: {fileID: 0}
-      offset: {x: 830, y: 260, z: 0}
+      offset: {x: 0, y: 0, z: 0}
       usingSprite: 1
       sprite: {fileID: 21300000, guid: 013d0ca5a2e30f7438158762ce87327c, type: 3}
       Title: General Globulus
@@ -196,7 +203,7 @@ MonoBehaviour:
       Title: 
       Text: 
   - eventType: 4
-    eventDuration: 2
+    eventDuration: 0
     virtualCamIndex: 2
     popUpsMsg:
     - rpgStyle: 1
