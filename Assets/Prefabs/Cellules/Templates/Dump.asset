@@ -30,12 +30,12 @@ MonoBehaviour:
   overloadTreshHold: 1
   prodPerTickBase: 0
   rejectPowerBase: 0
-  storageCapability: 20
+  storageCapability: 50
   tickForActivationBase: 1
   energyPerClick: 10
   limitedInLinks: 1
   slotDistance: 1.5
-  numberOfOuputLinks: 0
+  numberOfOuputLinks: 2
   numberOfInputLinks: 3
   numberOfFlexLinks: 0
   proximityLevelMax: 4
@@ -49,7 +49,7 @@ MonoBehaviour:
   rangeLien: 
   tickForActivation: 
   energyCap: 
-  specifique: 0a000000070000000500000002000000
+  specifique: 140000000c0000000800000003000000
   energyPerblop: 0
   StatsModification: 7
   REFS: 0

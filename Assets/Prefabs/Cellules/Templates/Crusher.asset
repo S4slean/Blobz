@@ -22,7 +22,7 @@ MonoBehaviour:
   generateProximity: 0
   proximityColliderNumber: 1
   proximityColliders: []
-  energyCost: 300
+  energyCost: 500
   energyCapBase: 0
   rangeBase: 15
   blobRatioAtDeath: 0
@@ -31,7 +31,7 @@ MonoBehaviour:
   overloadTreshHold: 1
   prodPerTickBase: 0
   rejectPowerBase: 6
-  storageCapability: 15
+  storageCapability: 20
   tickForActivationBase: 1
   energyPerClick: 1
   limitedInLinks: 1
@@ -50,7 +50,7 @@ MonoBehaviour:
   rangeLien: 
   tickForActivation: 00000000000000000000000000000000
   energyCap: 
-  specifique: 0a000000070000000500000002000000
+  specifique: 0f0000000c0000000700000005000000
   energyPerblop: 3
   StatsModification: 7
   REFS: 1
