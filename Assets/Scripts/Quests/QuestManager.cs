@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 
 
@@ -283,6 +284,18 @@ public class QuestManager : MonoBehaviour
                     DisplayPersistentMessage();
                     StartCoroutine(WaitBeforNextEvent());
 
+
+                    break;
+
+                case QuestEvent.QuestEventType.screenShake:
+
+                    CameraController.instance.GetComponent<CinemachineImpulseSource>().GenerateImpulse();
+
+                    break;
+
+                case QuestEvent.QuestEventType.SwitchScene:
+
+                    SceneHandler.instance.ChangeScene(currentQuest.questEvents[currentQuestEventID].levelName);
 
                     break;
 
