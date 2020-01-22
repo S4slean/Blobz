@@ -164,7 +164,7 @@ public class InputManager : MonoBehaviour
                 //Click Gauche In
                 if (Input.GetMouseButtonDown(0))
                 {
-                    
+
 
                     if (CurrentHit.transform != null)
                     {
@@ -261,11 +261,11 @@ public class InputManager : MonoBehaviour
 
                 if (Input.GetMouseButtonUp(1))
                 {
-                    if(elementOver != null)
+                    if (elementOver != null)
                         elementOver.OnShortRightClick(CurrentHit);
                 }
 
-                
+
 
                 #endregion
 
@@ -338,7 +338,7 @@ public class InputManager : MonoBehaviour
 
                 if (CurrentHit.transform != null && CurrentHit.transform.tag == "Ground")
                 {
-                    
+
                     CellManager.Instance.CellDeplacement(CurrentHit.point, objectMoved);
                 }
 
@@ -395,14 +395,23 @@ public class InputManager : MonoBehaviour
 
                 UpdateTargetPos();
 
+
                 if (Input.GetMouseButtonDown(0))
                 {
-                    Collider[] hitColliders = Physics.OverlapSphere(UIManager.Instance.divineCellTarget.transform.position, .8f, 1 << 12 | 1 << 16);
+                    Collider[] hitColliders = Physics.OverlapSphere(UIManager.Instance.divineCellTarget.transform.position, shootingCell.myCellTemplate.explosionRadius, 1 << 12 | 1 << 16 | 1 << 15);
+                    Gizmos.DrawSphere(UIManager.Instance.divineCellTarget.transform.position, shootingCell.myCellTemplate.explosionRadius);
                     for (int i = 0; i < hitColliders.Length; i++)
                     {
                         if (hitColliders[i].TryGetComponent<Destructible>(out Destructible destrucible))
                         {
                             destrucible.ReceiveDamage(3);
+                        }
+                        if (hitColliders[i].TryGetComponent<Blob>(out Blob blob))
+                        {
+                            if (blob.GetBlobType() == BlobManager.BlobType.mad)
+                            {
+                                blob.Destruct();
+                            }
                         }
                     }
 
@@ -430,7 +439,7 @@ public class InputManager : MonoBehaviour
                     flagAnim.SetTrigger("Plant");
                     Blob explo = ObjectPooler.poolingSystem.GetPooledObject<Blob>() as Blob;
                     explo.ChangeType(BlobManager.BlobType.explorateur);
-                    explo.transform.position = selectedCell.transform.position + dir * 2.5f + Vector3.up*1.1f;
+                    explo.transform.position = selectedCell.transform.position + dir * 2.5f + Vector3.up * 1.1f;
                     explo.transform.LookAt(flag.transform.position);
                     explo.Outpool();
                     explo.JumpForward();
@@ -533,7 +542,7 @@ public class InputManager : MonoBehaviour
     {
         Instance.inputMode = newInputMode;
 
-        if(newInputMode == InputMode.flag)
+        if (newInputMode == InputMode.flag)
         {
             Instance.flag.SetActive(true);
             Instance.flag.transform.position = Instance.mouseWorldPos;
