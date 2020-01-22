@@ -1071,7 +1071,7 @@ MonoBehaviour:
   inThoseCellProximity: []
   influencedByThoseCellProximity: []
   stuckBlobs: []
-  ownCollider: {fileID: 0}
+  ownCollider: {fileID: 3922479743895655383}
   linkJoints: []
   blobCoaches: []
   myTransform: {fileID: 0}

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 [RequireComponent(typeof(LineRenderer))]
 public class LinkClass : PoolableObjects
@@ -13,6 +14,11 @@ public class LinkClass : PoolableObjects
     private BlobCoach blobCoachInTransition;
 
     public LinkCollider myCollider;
+    public TextMeshPro numberOfBlob;
+
+    public LinkTransmissionNumber LinkTransmissionNumber;
+
+    private int transmissionAmount;
 
 
     #endregion
@@ -50,12 +56,20 @@ public class LinkClass : PoolableObjects
     #endregion
 
     #region COMMUN
+
+    public void Tick()
+    {
+        Debug.Log("tickLink");
+        numberOfBlob.text = transmissionAmount.ToString();
+        transmissionAmount = 0;
+    }
+
     public void Break()
     {
         receivingCell.RemoveLink(this, false);
         originalCell.RemoveLink(this, true);
         myCollider.boxCollider.enabled = false;
-
+        TickManager.doTick -= Tick;
 
         Inpool();
     }
@@ -230,6 +244,8 @@ public class LinkClass : PoolableObjects
         {
             receivingCell.BlobNumberVariation(transMitAmount, transmitType, true);
         }
+        transmissionAmount++;
+
     }
 
     public void EndTransmit()
@@ -256,7 +272,9 @@ public class LinkClass : PoolableObjects
         Vector3 _pos = extremityPos[0] + trajectoir / 2;
         float scale = trajectoir.magnitude ;
 
+        TickManager.doTick += Tick;
         myCollider.UpdatePosAndScale(_pos, angle , scale);
+        LinkTransmissionNumber.UpdatePosAndScale(_pos , angle);
 
     }
 

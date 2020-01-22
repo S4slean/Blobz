@@ -1009,9 +1009,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7213726001769118057}
   - component: {fileID: -1350178439007509981}
-  - component: {fileID: 3922479743895655383}
   - component: {fileID: 5055533939074660160}
   - component: {fileID: -122010785801593359}
+  - component: {fileID: 4102602269581784783}
   m_Layer: 11
   m_Name: Divine
   m_TagString: Cell
@@ -1051,19 +1051,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 1
---- !u!65 &3922479743895655383
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6972052367257400834}
-  m_Material: {fileID: 13400000, guid: e277263082fb7da4096ac7dee83d093f, type: 2}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1.72, y: 0.5176959, z: 1.62}
-  m_Center: {x: 0, y: 0.4295833, z: 0}
 --- !u!114 &5055533939074660160
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1095,7 +1082,7 @@ MonoBehaviour:
   inThoseCellProximity: []
   influencedByThoseCellProximity: []
   stuckBlobs: []
-  ownCollider: {fileID: 0}
+  ownCollider: {fileID: 4102602269581784783}
   linkJoints: []
   blobCoaches: []
   myTransform: {fileID: 0}
@@ -1211,6 +1198,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!135 &4102602269581784783
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6972052367257400834}
+  m_Material: {fileID: 13400000, guid: e277263082fb7da4096ac7dee83d093f, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Radius: 1.1
+  m_Center: {x: 0, y: 0.34, z: 0}
 --- !u!1001 &241933098616247659
 PrefabInstance:
   m_ObjectHideFlags: 0

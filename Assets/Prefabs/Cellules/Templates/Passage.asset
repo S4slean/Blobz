@@ -32,7 +32,7 @@ MonoBehaviour:
   overloadTreshHold: 1
   prodPerTickBase: 0
   rejectPowerBase: 0
-  storageCapability: 20
+  storageCapability: 25
   tickForActivationBase: 1
   energyPerClick: 1
   limitedInLinks: 0
@@ -66,7 +66,11 @@ MonoBehaviour:
   maxEnergie: 5
   maxBlobCoach: 0
   magazineDragRange: 1.5
-  minDistanceDrag: 0.2
+  minDragRatio: 0.2
+  shotPower: 25
+  verticalConstantPower: 10
+  verticalOffset: 1
+  magazinSlotDistance: 3
   tourelleMaxMun: 3
   tourelleDamage: 5
   tourelleAttackRadius: 6

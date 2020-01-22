@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class CellProductrice : CellMain
 {
     private int productionBonusRatio;
     private int productionBonusPacket;
+    public TextMeshPro prodDisplay;
 
 
     private int Life;
@@ -13,6 +15,9 @@ public class CellProductrice : CellMain
 
     public override void BlobsTick()
     {
+        int production = outputLinks.Count + productionBonusPacket;
+        prodDisplay.text = production.ToString();
+
         if (stuckBlobs.Count <= 0 && Life < myCellTemplate.maxLifeProd)
         {
             StockageCapabilityVariation(1);
@@ -33,7 +38,7 @@ public class CellProductrice : CellMain
             haveExpulse = false;
 
             int nbrTransmission = 0;
-            for (int i = 0; i < outputLinks.Count + productionBonusPacket; i++)
+            for (int i = 0; i < production; i++)
             {
 
                 if (currentIndex < outputLinks.Count)

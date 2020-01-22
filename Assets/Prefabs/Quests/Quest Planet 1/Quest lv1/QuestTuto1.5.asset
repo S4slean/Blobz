@@ -46,19 +46,10 @@ MonoBehaviour:
       sprite: {fileID: 21300000, guid: 74a01104759d6494d8d651afa2ac8826, type: 3}
       Title: 
       Text: "With it we can travel in the system you\u2019ll build !\r\n\n"
-    - rpgStyle: 1
-      anchor: {fileID: 0}
-      offset: {x: 0, y: 0, z: 0}
-      usingSprite: 1
-      sprite: {fileID: 21300000, guid: 74a01104759d6494d8d651afa2ac8826, type: 3}
-      Title: 
-      Text: 'Let be more numerous with the stock cell !
-
-'
     UEvent:
       m_PersistentCalls:
         m_Calls: []
-    foldout: 0
+    foldout: 1
     cellType: 0
     newTickDuration: 0
     persistentMsg:

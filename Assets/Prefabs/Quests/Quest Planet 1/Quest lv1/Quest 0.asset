@@ -29,7 +29,7 @@ MonoBehaviour:
   nbrOfObject: 0
   questEvents:
   - eventType: 0
-    eventDuration: 1
+    eventDuration: 3
     virtualCamIndex: 7
     popUpsMsg: []
     UEvent:

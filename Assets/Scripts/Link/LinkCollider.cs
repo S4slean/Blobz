@@ -28,6 +28,7 @@ public class LinkCollider : MonoBehaviour, PlayerAction
 
     }
 
+    #region Interaction
 
     public void OnDeselect()
     {
@@ -92,4 +93,6 @@ public class LinkCollider : MonoBehaviour, PlayerAction
     public void StopAction()
     {
     }
+    #endregion
+
 }
