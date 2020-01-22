@@ -49,7 +49,7 @@ MonoBehaviour:
   rangeLien: 
   tickForActivation: 
   energyCap: 
-  specifique: 0200000005000000070000000a000000
+  specifique: 0a000000070000000500000002000000
   energyPerblop: 0
   StatsModification: 7
   REFS: 0
