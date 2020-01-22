@@ -12,12 +12,10 @@ public class divineCellButon : MonoBehaviour
     {
         if (toggle)
         {
-            Debug.Log("Oui");
             anim.Play("Open");
         }
         else
         {
-            Debug.Log("Non");
             anim.Play("Close");
         }
     }

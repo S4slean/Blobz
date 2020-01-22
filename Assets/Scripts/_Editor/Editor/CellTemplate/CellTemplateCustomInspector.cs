@@ -24,12 +24,12 @@ public class CellTemplateCustomInspector : Editor
 
     SerializedProperty speProp;
 
-    SerializedProperty descriptionProp;
- 
+    SerializedProperty descriptionProp, descriptionProximityProp, descriptionClickProp;
+
 
     SerializedProperty stockageCapacityProp, LinkCapacityProp, RangeProp, tickForActivationProp;
 
-    SerializedProperty InfoBoxToggleProp, refToggleProp, statToggleProp, ProductionGestionsProp, ProximityGestionProp;
+    SerializedProperty InfoBoxToggleProp, refToggleProp, statToggleProp, ProductionGestionsProp, ProximityGestionProp, clickInteractionProp;
 
     SerializedProperty energyPerblop, energyCapProp;
 
@@ -41,7 +41,7 @@ public class CellTemplateCustomInspector : Editor
 
     SerializedProperty maxLifeProdProp;
 
-    SerializedProperty shotPowerProp , verticalConstantPowerProp , verticalOffsetProp , magazinSlotDistanceProp;
+    SerializedProperty shotPowerProp, verticalConstantPowerProp, verticalOffsetProp, magazinSlotDistanceProp;
 
     //ReorderableList proximityColliderList; 
 
@@ -51,9 +51,12 @@ public class CellTemplateCustomInspector : Editor
     SerializedProperty tourelleDamageProp, tourelleAttackRadiusProp;
     SerializedProperty maxBlobCoachProp;
 
-    SerializedProperty magazineDragRangeProp , minDragRatioProp;
+    SerializedProperty magazineDragRangeProp, minDragRatioProp;
 
     SerializedProperty clickBeforeLaunchProp, blobLostPerTickProp;
+
+
+    SerializedProperty explosionRadiusProp;
 
 
     #endregion
@@ -70,6 +73,8 @@ public class CellTemplateCustomInspector : Editor
         #endregion
         typeProp = serializedObject.FindProperty("type");
         descriptionProp = serializedObject.FindProperty("description");
+        descriptionProximityProp = serializedObject.FindProperty("descriptionProximity");
+        descriptionClickProp = serializedObject.FindProperty("descriptionClick");
 
 
         #region Proximity Initialisation 
@@ -131,6 +136,8 @@ public class CellTemplateCustomInspector : Editor
         statToggleProp = serializedObject.FindProperty("STATS");
         ProductionGestionsProp = serializedObject.FindProperty("ProductionGestion");
         ProximityGestionProp = serializedObject.FindProperty("ProximityGestion");
+
+        clickInteractionProp = serializedObject.FindProperty("clickInteraction");
         #endregion
 
         #region Specificité
@@ -156,6 +163,8 @@ public class CellTemplateCustomInspector : Editor
         verticalConstantPowerProp = serializedObject.FindProperty("verticalConstantPower");
         verticalOffsetProp = serializedObject.FindProperty("verticalOffset");
         magazinSlotDistanceProp = serializedObject.FindProperty("magazinSlotDistance");
+
+        explosionRadiusProp = serializedObject.FindProperty("explosionRadius");
 
 
 
@@ -188,8 +197,14 @@ public class CellTemplateCustomInspector : Editor
         EditorGUILayout.BeginVertical("Box");
         EditorGUILayout.PropertyField(typeProp);
         EditorGUILayout.HelpBox("DESCRIPTION", MessageType.None);
-
         descriptionProp.stringValue = EditorGUILayout.TextArea(descriptionProp.stringValue, GUILayout.MaxHeight(80));
+        EditorGUILayout.PropertyField(clickInteractionProp);
+        if (clickInteractionProp.boolValue)
+        {
+            EditorGUILayout.HelpBox("DESCRIPTION INTERACTION", MessageType.None);
+            descriptionClickProp.stringValue = EditorGUILayout.TextArea(descriptionClickProp.stringValue, GUILayout.MaxHeight(80));
+        }
+
 
         switch ((CellType)typeProp.enumValueIndex)
         {
@@ -210,6 +225,7 @@ public class CellTemplateCustomInspector : Editor
                 break;
             case CellType.AerialStrike:
                 EditorGUILayout.PropertyField(MaxEnergieProp);
+                EditorGUILayout.PropertyField(explosionRadiusProp);
                 break;
             case CellType.Turret:
                 EditorGUILayout.PropertyField(tourelleMaxMunProp);
@@ -542,6 +558,13 @@ public class CellTemplateCustomInspector : Editor
     }
     private void StatsModifDisplay(SerializedProperty statsModif)
     {
+        if ((StatsModificationType)statsModif.enumValueIndex != StatsModificationType.Aucune)
+        {
+            EditorGUILayout.HelpBox("DESCRIPTION MODIFICATION DE PROXIMITE", MessageType.None);
+            descriptionProximityProp.stringValue = EditorGUILayout.TextArea(descriptionProximityProp.stringValue, GUILayout.MaxHeight(80));
+        }
+
+
         switch ((StatsModificationType)statsModif.enumValueIndex)
         {
             case StatsModificationType.Surproduction:
@@ -594,7 +617,7 @@ public class CellTemplateCustomInspector : Editor
                     "-La quantité de sploush obtenue (broyeur , décharge )  " + "\n" +
                     "-La range de tir (cell divine)  " + "\n" +
                     "-capacité dans lafile (Treblochet)  " + "\n" +
-                    "-Durée de vie des coachs (Treblochet)"
+                    "-Durée de vie des coachs ou des explorateurs (Coach / Explo)"
                     , MessageType.Info);
                 speProp.arraySize = proximityLevelMaxProp.intValue;
                 DisplayArray(speProp, "Level");
