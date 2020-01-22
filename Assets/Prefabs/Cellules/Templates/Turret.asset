@@ -24,7 +24,7 @@ MonoBehaviour:
   - proximityLevel: 0
     range: 0
     productionBonusRatio: 0
-  energyCost: 750
+  energyCost: 250
   energyCapBase: 0
   rangeBase: 15
   blobRatioAtDeath: 0
@@ -33,7 +33,7 @@ MonoBehaviour:
   overloadTreshHold: 1
   prodPerTickBase: 0
   rejectPowerBase: 0
-  storageCapability: 15
+  storageCapability: 30
   tickForActivationBase: 1
   energyPerClick: 2
   limitedInLinks: 1
@@ -63,7 +63,11 @@ MonoBehaviour:
   maxEnergie: 5
   maxBlobCoach: 0
   magazineDragRange: 1.5
-  minDistanceDrag: 0.2
+  minDragRatio: 0.2
+  shotPower: 25
+  verticalConstantPower: 10
+  verticalOffset: 1
+  magazinSlotDistance: 3
   tourelleMaxMun: 5
   tourelleDamage: 5
   tourelleAttackRadius: 6

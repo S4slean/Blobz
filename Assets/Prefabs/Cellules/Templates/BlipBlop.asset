@@ -24,7 +24,7 @@ MonoBehaviour:
   - proximityLevel: 0
     range: 0
     productionBonusRatio: 0
-  energyCost: 100
+  energyCost: 125
   energyCapBase: 0
   rangeBase: 15
   blobRatioAtDeath: 0
@@ -33,7 +33,7 @@ MonoBehaviour:
   overloadTreshHold: 1
   prodPerTickBase: 0
   rejectPowerBase: 1
-  storageCapability: 15
+  storageCapability: 25
   tickForActivationBase: 1
   energyPerClick: 2
   limitedInLinks: 1

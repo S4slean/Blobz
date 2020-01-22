@@ -30,7 +30,7 @@ MonoBehaviour:
   overloadTreshHold: 1
   prodPerTickBase: 0
   rejectPowerBase: 0
-  storageCapability: 15
+  storageCapability: 30
   tickForActivationBase: 1
   energyPerClick: 2
   limitedInLinks: 1
