@@ -89,7 +89,7 @@ public class QuickSetUp : Editor
 
     static void GetResources()
     {
-        pools = Resources.Load<GameObject>("QuickSetUp/--Pools--");
+        pools = Resources.Load("QuickSetUp/--Pools--") as GameObject;
         tickManager = Resources.Load("QuickSetUp/TickManager") as GameObject;
         questManager = Resources.Load("QuickSetUp/QuestManager") as GameObject;
         uiManager = Resources.Load("QuickSetUp/UIManager") as GameObject;
@@ -106,33 +106,33 @@ public class QuickSetUp : Editor
 
     static void BuildNewScene()
     {
-        pools = Instantiate(pools);
-        uiManager = Instantiate(uiManager);
-        tickManager = Instantiate(tickManager);
-        cellManager = Instantiate(cellManager);
-        inputManager = Instantiate(inputManager);
-        blobManager = Instantiate(blobManager);
+        pools = PrefabUtility.InstantiatePrefab(pools) as GameObject;
+        uiManager = PrefabUtility.InstantiatePrefab(uiManager) as GameObject;
+        tickManager = PrefabUtility.InstantiatePrefab(tickManager) as GameObject;
+        cellManager = PrefabUtility.InstantiatePrefab(cellManager) as GameObject;
+        inputManager = PrefabUtility.InstantiatePrefab(inputManager) as GameObject;
+        blobManager = PrefabUtility.InstantiatePrefab(blobManager) as GameObject;
 
         if (FindObjectOfType<CameraController>() == null)
-            camera = Instantiate(camera);
+            camera = PrefabUtility.InstantiatePrefab(camera) as GameObject;
 
         if (FindObjectOfType<LevelManager>() == null)
-            levelManager = Instantiate(levelManager);
+            levelManager = PrefabUtility.InstantiatePrefab(levelManager) as GameObject;
 
         if (FindObjectOfType<CinematicManager>() == null)
-            cinematicManager = Instantiate(cinematicManager);
+            cinematicManager = PrefabUtility.InstantiatePrefab(cinematicManager) as GameObject;
 
         if (FindObjectOfType<BlobManager>() == null)
-            questManager = Instantiate(questManager);
+            questManager = PrefabUtility.InstantiatePrefab(questManager) as GameObject;
 
-        if(FindObjectOfType<RessourceTracker>() == null)
-            resourceTracker = Instantiate(resourceTracker);
+        if (FindObjectOfType<RessourceTracker>() == null)
+            resourceTracker = PrefabUtility.InstantiatePrefab(resourceTracker) as GameObject;
 
         if (FindObjectOfType<SceneHandler>() == null)
-            sceneHandler = Instantiate(sceneHandler);
+            sceneHandler = PrefabUtility.InstantiatePrefab(sceneHandler) as GameObject;
 
         if (FindObjectOfType<SoundManager>() == null)
-            soundManager = Instantiate(soundManager);
+            soundManager = PrefabUtility.InstantiatePrefab(soundManager) as GameObject;
 
 
         #region UI
