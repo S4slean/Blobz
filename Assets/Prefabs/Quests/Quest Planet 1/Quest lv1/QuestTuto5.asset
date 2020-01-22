@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   questType: 2
   questTitle: Dump help you
-  questDescription: 
+  questDescription: Build one more Dump
   eventDone: 1
   populationObjective: 50
   energyToObtain: 200
