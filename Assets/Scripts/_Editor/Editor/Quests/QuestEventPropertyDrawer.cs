@@ -64,10 +64,10 @@ public class QuestEventPropertyDrawer : PropertyDrawer
                 return (EditorGUIUtility.singleLineHeight + 2) * 4 + (EditorGUIUtility.singleLineHeight + 2) * 10;
 
             case 7:
-                return (EditorGUIUtility.singleLineHeight + 2) * 4 + (EditorGUIUtility.singleLineHeight + 2) * 10;
+                return (EditorGUIUtility.singleLineHeight + 2) * 4;
 
             case 8:
-                return (EditorGUIUtility.singleLineHeight + 2) * 4 + (EditorGUIUtility.singleLineHeight + 2) * 10;
+                return (EditorGUIUtility.singleLineHeight + 2) * 4;
 
 
 
@@ -221,7 +221,7 @@ public class QuestEventPropertyDrawer : PropertyDrawer
 
                 EditorGUI.PropertyField(
                     new Rect(position.x + 15, position.y + 10 + 2 * line, position.width - 25, line - 2),
-                    persistentMsgprop);
+                    newLevelProp);
 
                 break;
         }

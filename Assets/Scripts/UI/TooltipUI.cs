@@ -8,7 +8,9 @@ public class TooltipUI : MonoBehaviour
     //public Animator anim;
     public TextMeshProUGUI cellName;
     public TextMeshProUGUI cellDescription;
-    public TextMeshProUGUI effects;
+    public TextMeshProUGUI proximityEffects;
+    public TextMeshProUGUI clicEffects;
+    public TextMeshProUGUI proximityLvl;
     public TextMeshProUGUI cellCost;
     public GameObject secondDisplay;
 
@@ -26,6 +28,10 @@ public class TooltipUI : MonoBehaviour
             //ADD CellTemplates Proximity Text
             //ADD Pro 
         }
+        else
+        {
+
+        }
 
 
         if(cell.myCellTemplate.energyCost > RessourceTracker.instance.energy)
@@ -38,7 +44,7 @@ public class TooltipUI : MonoBehaviour
         }
 
 
-        effects.text = "Effects are not implemented yet";
+        proximityEffects.text = "Effects are not implemented yet";
     }
 
     public void HideTooltipUI()
