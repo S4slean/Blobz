@@ -23,6 +23,7 @@ public class CellTourelle : CellMain
 
         if (!overLoad)
         {
+            overloadStack = 0;
             if (blobNumber > 0 && !fullLoaded)
             {
                 BlobNumberVariation(-1, BlobCheck(), false);
@@ -82,6 +83,7 @@ public class CellTourelle : CellMain
         {
             if (!LevelManager.instance.cellInvicible)
             {
+                overloadSparke.SetSpikeNumberAndSpeed(overloadStack, overloadStack * 0.3f);
                 overloadStack++;
                 if (overloadStack >= myCellTemplate.overLoadTickMax)
                 {
@@ -99,6 +101,8 @@ public class CellTourelle : CellMain
         {
             munitions = 0;
             isLoaded = false;
+            float rat = (float)munitions / (float)myCellTemplate.tourelleMaxMun;
+            progressBar.UpdateBar(rat, false);
             return;
         }
         isLoaded = true;

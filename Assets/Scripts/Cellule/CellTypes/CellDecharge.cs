@@ -31,7 +31,6 @@ public class CellDecharge : CellMain
                     newTextescore.Outpool();
 
 
-                    Debug.Log(myTransform.position);
                     newTextescore.myTransform.position = graphTransform.position + new Vector3(Random.Range(-1.5f, 1.5f), 2, 0);
                     newTextescore.textScore.text = ("+" + specifiqueStats.ToString());
 
@@ -43,14 +42,10 @@ public class CellDecharge : CellMain
             }
         }
 
-
         if (actionmade)
         {
             anim.Play("PlayerInteraction", 0, 0f);
         }
-
-
-
     }
 
 }

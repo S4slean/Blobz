@@ -16,6 +16,7 @@ public class CellBroyeur : CellMain
 
         if (!overLoad)
         {
+            overloadStack = 0;
             if (blobNumber > 0)
             {
                 int energyGainThisActivation = 0;
@@ -60,6 +61,7 @@ public class CellBroyeur : CellMain
         {
             if (!LevelManager.instance.cellInvicible)
             {
+                overloadSparke.SetSpikeNumberAndSpeed(overloadStack, overloadStack * 0.3f);
                 overloadStack++;
                 if (overloadStack >= myCellTemplate.overLoadTickMax)
                 {

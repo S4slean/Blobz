@@ -78,6 +78,7 @@ public class CellPassage : CellMain
         {
             if (!LevelManager.instance.cellInvicible)
             {
+                overloadSparke.SetSpikeNumberAndSpeed(overloadStack, overloadStack * 0.3f);
                 overloadStack++;
                 if (overloadStack >= myCellTemplate.overLoadTickMax)
                 {
