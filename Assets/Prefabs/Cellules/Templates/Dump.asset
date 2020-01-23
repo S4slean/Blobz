@@ -18,6 +18,8 @@ MonoBehaviour:
   cellTexture: {fileID: 0}
   type: 10
   description: Create sploosh by clicking on it
+  descriptionProximity: 
+  descriptionClick: 
   generateProximity: 0
   proximityColliderNumber: 1
   proximityColliders: []
@@ -57,7 +59,10 @@ MonoBehaviour:
   STATS: 1
   ProductionGestion: 1
   ProximityGestion: 1
+  clickInteraction: 0
   maxEnergie: 5
+  explosionRadius: 0.8
+  maxBlobShreddedPerClick: 1
   maxBlobCoach: 0
   magazineDragRange: 1.5
   minDragRatio: 0.2

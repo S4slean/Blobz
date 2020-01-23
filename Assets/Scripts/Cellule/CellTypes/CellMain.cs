@@ -28,6 +28,8 @@ public class CellMain : PoolableObjects, PlayerAction
     public Transform TargetPos;
     private CellAlert alert;
 
+    public OverloadSparke OverloadSparke;
+
 
 
 
@@ -282,6 +284,7 @@ public class CellMain : PoolableObjects, PlayerAction
         {
             if (!LevelManager.instance.cellInvicible)
             {
+                //OverloadSparke.SetSpikeNumberAndSpeed(overloadStack , );
                 overloadStack++;
                 if (overloadStack >= myCellTemplate.overLoadTickMax)
                 {
