@@ -43,7 +43,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b50ae9b267e4fe64c80bf859a6c3cbb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentQuestID: 0
+  currentQuestEventID: 0
+  currentMsgID: 0
   currentQuest: {fileID: 0}
-  QuestList: []
   questProgress: 0
+  QuestList: []
+  explorationObjectives: []
   desactiveQuest: 0
+  questSuccsessSound: {fileID: 8300000, guid: 6fa3deed06bc43949b9a030e6b8e4a9e, type: 3}
