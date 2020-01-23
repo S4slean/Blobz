@@ -8,6 +8,7 @@ public class Blob : PoolableObjects
     #region REFS
     public Rigidbody rb;
     public Renderer rd;
+    public Animator anim;
     #endregion
 
     [Header("General")]
@@ -48,6 +49,7 @@ public class Blob : PoolableObjects
         UpdateMat();
         //rajoute le blob à la liste des blobs actifs dans la scène
 
+        anim.Play("Appear");
         RessourceTracker.instance.AddBlob(this);
         BlobManager.blobList.Add(this);
     }
@@ -126,8 +128,7 @@ public class Blob : PoolableObjects
     //    if (blobType == BlobManager.BlobType.soldier && flyTime > 0)
     //        Fly();
     //}
-
-    public void Destruct()
+    public void GetBackInPool()
     {
         if (infectedCell != null)
         {
@@ -161,6 +162,13 @@ public class Blob : PoolableObjects
 
     }
 
+
+    public void Destruct()
+    {
+        anim.Play("Death");
+        //event --> GetBackInPool();
+    }
+
     #region DEPLACEMENT
     public void JumpTowards(Transform target)
     {
@@ -180,7 +188,7 @@ public class Blob : PoolableObjects
 
     public void JumpForward()
     {
-
+        anim.Play("Jump");
         rb.AddForce((transform.forward * 3 + Vector3.up * 2 + transform.right * Random.Range(-.6f, .6f)).normalized * jumpForce, ForceMode.Impulse);
     }
 
@@ -201,6 +209,9 @@ public class Blob : PoolableObjects
     #region CELL INTERACTION
     private void OnCollisionEnter(Collision collision)
     {
+        anim.Play("Bounce");
+
+
         if (blobType == BlobManager.BlobType.mad && collision.transform.tag == "Cell")
         {
             infectedCell = collision.transform.GetComponent<CellMain>();

@@ -336,7 +336,7 @@ public class BlobManager : MonoBehaviour
                 {
                     Debug.Log("Soldier Attacked blob");
                     touchedBlobs[i].GetComponent<Blob>().Destruct();
-                    blob.Destruct();
+                    blob.anim.Play("Attack");
                     return true;
                 }
             }
@@ -355,6 +355,7 @@ public class BlobManager : MonoBehaviour
                     if (blob.GetBlobType() == BlobType.soldier && (destructible.destructType == Destructible.DestructType.enemy || destructible.destructType == Destructible.DestructType.all))
                     {
                         Debug.Log("Soldier attacked enemy Base");
+                        blob.anim.Play("Attack");
                         destructible.ReceiveDamage(dmg);
                         return true;
 
@@ -362,6 +363,7 @@ public class BlobManager : MonoBehaviour
                     else if (blob.GetBlobType() == BlobType.explorateur && (destructible.destructType == Destructible.DestructType.ressources || destructible.destructType == Destructible.DestructType.all))
                     {
                         Debug.Log("Explo harvested ressources");
+                        blob.anim.Play("Attack");
                         destructible.ReceiveDamage(dmg);
                         return true;
                     }
