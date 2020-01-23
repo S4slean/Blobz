@@ -101,7 +101,7 @@ public class CellProductrice : CellMain
             ToggleOverload(false);
         }
         HandleAlerts();
-        progressBar.UpdateBar(ratio);
+        progressBar.UpdateBar(ratio , true);
 
     }
 
@@ -176,8 +176,9 @@ public class CellProductrice : CellMain
     {
         Life = myCellTemplate.maxLifeProd;
         float ratio = (float)Life / (float)myCellTemplate.maxLifeProd;
+        progressBar.transform.position = graphTransform.position;
 
-        progressBar.UpdateBar(ratio);
+        progressBar.UpdateBar(ratio, true);
         progressBar.ToggleRenderer(false);
 
         base.SetupVariable();

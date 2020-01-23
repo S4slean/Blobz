@@ -23,9 +23,13 @@ public class CellMain : PoolableObjects, PlayerAction
     public TextMeshPro NBlob;
     public TextMeshPro NLink;
     public TextMeshPro NCurrentProximity;
+    public ProgressBar stockageBar;
     public Transform graphTransform;
     public Transform TargetPos;
     private CellAlert alert;
+
+
+
 
     public GameObject coachIcon;
     public GameObject exploIcon;
@@ -252,7 +256,7 @@ public class CellMain : PoolableObjects, PlayerAction
                                     haveExpulse = true;
                                     currentIndex++;
                                     currentIndex = Helper.LoopIndex(currentIndex, outputLinks.Count);
-                                 
+
                                 }
                             }
                             else
@@ -298,8 +302,8 @@ public class CellMain : PoolableObjects, PlayerAction
         RessourceTracker.instance.EnergyCapVariation(-currentEnergyCap);
 
 
-        if (CellManager.Instance.originalPosOfMovingCell != new Vector3(0, 100, 0))
-            RessourceTracker.instance.RemoveCell(this);
+        //if (CellManager.Instance.originalPosOfMovingCell != new Vector3(0, 100, 0))
+        RessourceTracker.instance.RemoveCell(this);
 
         if (CellManager.Instance.selectedCell == this)
         {
@@ -410,6 +414,13 @@ public class CellMain : PoolableObjects, PlayerAction
             Died(false);
         }
 
+        if (!overLoad)
+        {
+            float ratio = 0;
+            ratio = (float)blobNumber / (float)currentBlobStockage;
+            stockageBar.UpdateBar(ratio, true);
+        }
+
         HandleAlerts();
         UpdateCaract();
     }
@@ -437,6 +448,14 @@ public class CellMain : PoolableObjects, PlayerAction
             }
         }
 
+        if (!overLoad)
+        {
+            float ratio = 0;
+            ratio = (float)blobNumber / (float)currentBlobStockage;
+            stockageBar.UpdateBar(ratio, true);
+        }
+
+
         HandleAlerts();
 
         //Nexus 
@@ -446,8 +465,6 @@ public class CellMain : PoolableObjects, PlayerAction
         }
         UpdateCaract();
 
-        //NBlob.text = (blobNumber + " / " + currentBlobStockage);
-        //UpdateCaract();
     }
 
     protected void HandleAlerts()
@@ -857,6 +874,11 @@ public class CellMain : PoolableObjects, PlayerAction
         }
         UpdateCaract();
     }
+
+    public int GetProximityTier()
+    {
+        return currentProximityTier;
+    }
     #endregion
 
     #region LINK_GESTION
@@ -964,6 +986,12 @@ public class CellMain : PoolableObjects, PlayerAction
     }
     public virtual void SetupVariable()
     {
+        int B = stuckBlobs.Count;
+        for (int y = 0; y < B; y++)
+        {
+            stuckBlobs[0].Unstuck();
+        }
+
         // currentLinkStockage = myCellTemplate.linkCapability;
         currentBlobStockage = myCellTemplate.storageCapability;
         // currentSurproductionRate = myCellTemplate.SurproductionRate[0];
@@ -988,6 +1016,10 @@ public class CellMain : PoolableObjects, PlayerAction
         isDead = false;
         blolbNumberAtOverload = 0;
 
+        if (stockageBar != null)
+        {
+            stockageBar.transform.position = graphTransform.position;
+        }
 
         ToggleOverload(false);
 
@@ -1289,10 +1321,14 @@ public class CellMain : PoolableObjects, PlayerAction
     protected void ToggleOverload(bool isOverload)
     {
         overLoad = isOverload;
+        if (stockageBar != null)
+        {
+            stockageBar.ToggleRenderer(!isOverload);
+        }
         //FX.setActive()
         if (isOverload)
         {
-            Debug.Log("enterInOverload ", gameObject);
+            //Debug.Log("enterInOverload ", gameObject);
             blolbNumberAtOverload = blobNumber;
         }
     }

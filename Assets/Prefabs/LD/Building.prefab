@@ -129,7 +129,7 @@ MonoBehaviour:
   initialPool: {fileID: 0}
   goodGraph: {fileID: 6438243430102390527}
   brokenGraph: {fileID: 1425149600685392508}
-  anim: {fileID: 0}
+  anim: {fileID: 8260789756600711135}
   destructType: 0
   maxLife: 3
   isReapairable: 1

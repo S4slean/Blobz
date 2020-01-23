@@ -32,7 +32,7 @@ public class CellPilone : CellMain
                 {
                     energie--;
                     float ratio = (float)energie / (float)myCellTemplate.maxEnergie;
-                    progressBar.UpdateBar(ratio);
+                    progressBar.UpdateBar(ratio , false);
 
                 }
 
@@ -109,7 +109,7 @@ public class CellPilone : CellMain
     {
         energie = myCellTemplate.maxEnergie;
         float ratio = (float)energie / (float)myCellTemplate.maxEnergie;
-        progressBar.UpdateBar(ratio);
+        progressBar.UpdateBar(ratio , false);
 
 
         for (int i = 0; i < myProximityCollider.Length; i++)
