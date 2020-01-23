@@ -212,7 +212,7 @@ public class QuestManager : MonoBehaviour
         //Debug.Log("Quest Success");
         //Display Success
         //hide UI or play Disappearing anim
-        SoundManager.instance.PlaySound(questSuccsessSound);
+        SoundManager.instance.PlayQuestSuccessSound();
         UIManager.Instance.HidePersistentMsg();
 
         ChangeQuest();
