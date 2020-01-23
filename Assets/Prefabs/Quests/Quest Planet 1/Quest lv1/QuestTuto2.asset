@@ -38,13 +38,6 @@ MonoBehaviour:
       usingSprite: 1
       sprite: {fileID: 21300000, guid: 74a01104759d6494d8d651afa2ac8826, type: 3}
       Title: 
-      Text: The number displayed on the cell is the number of blobz inside the cell.
-    - rpgStyle: 1
-      anchor: {fileID: 0}
-      offset: {x: 0, y: 0, z: 0}
-      usingSprite: 1
-      sprite: {fileID: 21300000, guid: 74a01104759d6494d8d651afa2ac8826, type: 3}
-      Title: 
       Text: Click on the dump to create sploosh
     UEvent:
       m_PersistentCalls:
@@ -60,3 +53,4 @@ MonoBehaviour:
       sprite: {fileID: 0}
       Title: 
       Text: 
+    levelName: 

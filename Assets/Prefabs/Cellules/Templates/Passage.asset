@@ -20,6 +20,9 @@ MonoBehaviour:
   description: 'Send blobz further and faster
 
 '
+  descriptionProximity: 'Far proximity effect: The number of blobz that can be rejected
+    each tick is higher'
+  descriptionClick: 
   generateProximity: 0
   proximityColliderNumber: 1
   proximityColliders: []
@@ -63,7 +66,9 @@ MonoBehaviour:
   STATS: 1
   ProductionGestion: 1
   ProximityGestion: 1
+  clickInteraction: 0
   maxEnergie: 5
+  explosionRadius: 0.8
   maxBlobCoach: 0
   magazineDragRange: 1.5
   minDragRatio: 0.2

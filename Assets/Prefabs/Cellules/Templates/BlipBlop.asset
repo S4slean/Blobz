@@ -18,6 +18,8 @@ MonoBehaviour:
   cellTexture: {fileID: 0}
   type: 5
   description: Allow you to switch links pathes
+  descriptionProximity: 
+  descriptionClick: Allow you to switch links pathes
   generateProximity: 0
   proximityColliderNumber: 1
   proximityColliders:
@@ -60,7 +62,9 @@ MonoBehaviour:
   STATS: 1
   ProductionGestion: 1
   ProximityGestion: 1
+  clickInteraction: 1
   maxEnergie: 5
+  explosionRadius: 0.8
   maxBlobCoach: 0
   magazineDragRange: 1.5
   minDragRatio: 0.2
