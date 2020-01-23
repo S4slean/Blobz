@@ -115,6 +115,9 @@ public class CelluleTemplate : ScriptableObject
     [Range(0.4f, 5)]
     public float explosionRadius = 0.8f;
 
+    [Range(1 , 10)]
+    public int maxBlobShreddedPerClick = 1;
+
 
     [Range(1, 100)]
     public int maxBlobCoach;
