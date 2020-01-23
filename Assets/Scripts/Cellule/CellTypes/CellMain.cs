@@ -417,14 +417,7 @@ public class CellMain : PoolableObjects, PlayerAction
         if (!overLoad)
         {
             float ratio = 0;
-            if (myCellTemplate.StatsModification == StatsModificationType.StockageCapacity)
-            {
-                ratio = (float)blobNumber / (float)myCellTemplate.stockageCapacity[currentProximityTier];
-            }
-            else
-            {
-                ratio = (float)blobNumber / (float)myCellTemplate.storageCapability;
-            }
+            ratio = (float)blobNumber / (float)currentBlobStockage;
             stockageBar.UpdateBar(ratio, true);
         }
 
@@ -458,14 +451,7 @@ public class CellMain : PoolableObjects, PlayerAction
         if (!overLoad)
         {
             float ratio = 0;
-            if (myCellTemplate.StatsModification == StatsModificationType.StockageCapacity)
-            {
-                ratio = (float)blobNumber / (float)myCellTemplate.stockageCapacity[currentProximityTier];
-            }
-            else
-            {
-                ratio = (float)blobNumber / (float)myCellTemplate.storageCapability;
-            }
+            ratio = (float)blobNumber / (float)currentBlobStockage;
             stockageBar.UpdateBar(ratio, true);
         }
 
@@ -1000,6 +986,12 @@ public class CellMain : PoolableObjects, PlayerAction
     }
     public virtual void SetupVariable()
     {
+        int B = stuckBlobs.Count;
+        for (int y = 0; y < B; y++)
+        {
+            stuckBlobs[0].Unstuck();
+        }
+
         // currentLinkStockage = myCellTemplate.linkCapability;
         currentBlobStockage = myCellTemplate.storageCapability;
         // currentSurproductionRate = myCellTemplate.SurproductionRate[0];
@@ -1024,6 +1016,10 @@ public class CellMain : PoolableObjects, PlayerAction
         isDead = false;
         blolbNumberAtOverload = 0;
 
+        if (stockageBar != null)
+        {
+            stockageBar.transform.position = graphTransform.position;
+        }
 
         ToggleOverload(false);
 
@@ -1327,12 +1323,12 @@ public class CellMain : PoolableObjects, PlayerAction
         overLoad = isOverload;
         if (stockageBar != null)
         {
-            stockageBar.ToggleRenderer(isOverload);
+            stockageBar.ToggleRenderer(!isOverload);
         }
         //FX.setActive()
         if (isOverload)
         {
-            Debug.Log("enterInOverload ", gameObject);
+            //Debug.Log("enterInOverload ", gameObject);
             blolbNumberAtOverload = blobNumber;
         }
     }
