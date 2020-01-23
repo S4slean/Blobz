@@ -15,6 +15,10 @@ public class SoundManager : MonoBehaviour
     public AudioClip level1Music;
     public AudioClip badBlobzMusic;
 
+    [Header("SystemSounds")]
+    public AudioClip questSuccessSound;
+    public AudioClip victorySound;
+
     [Header("Curves")]
     public AnimationCurve fadingCurve;
 
@@ -92,7 +96,15 @@ public class SoundManager : MonoBehaviour
     #endregion
 
     #region SYSTEM_SOUNDS
+    public void PlayVictorySound()
+    {
+        UISFXSource.PlayOneShot(victorySound);
+    }
 
+    public void PlayQuestSuccessSound()
+    {
+        UISFXSource.PlayOneShot(questSuccessSound);
+    }
     public void PlaySound(AudioClip clip)
     {
         UISFXSource.PlayOneShot(clip);
