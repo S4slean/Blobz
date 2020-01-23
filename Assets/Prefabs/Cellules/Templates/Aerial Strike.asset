@@ -18,6 +18,12 @@ MonoBehaviour:
   cellTexture: {fileID: 0}
   type: 6
   description: Send a powerfull strike on an area
+  descriptionProximity: 'Touncy
+
+'
+  descriptionClick: 'OH CLICK
+
+'
   generateProximity: 0
   proximityColliderNumber: 1
   proximityColliders: []
@@ -49,7 +55,7 @@ MonoBehaviour:
   rangeLien: 00000000000000000000000000000000
   tickForActivation: 05000000030000000200000001000000
   energyCap: 
-  specifique: 0200000005000000070000000a000000
+  specifique: 0a000000140000002300000041000000
   energyPerblop: 0
   StatsModification: 7
   REFS: 0
@@ -57,7 +63,9 @@ MonoBehaviour:
   STATS: 1
   ProductionGestion: 1
   ProximityGestion: 1
+  clickInteraction: 1
   maxEnergie: 15
+  explosionRadius: 0.8
   maxBlobCoach: 0
   magazineDragRange: 1.5
   minDragRatio: 0.2

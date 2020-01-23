@@ -113,7 +113,7 @@ public class CellTourelle : CellMain
             fullLoaded = false;
         }
         float ratio = (float)munitions / (float)myCellTemplate.tourelleMaxMun;
-        progressBar.UpdateBar(ratio);
+        progressBar.UpdateBar(ratio , false);
     }
 
     public override void SetupVariable()
@@ -122,7 +122,7 @@ public class CellTourelle : CellMain
         isLoaded = false;
         fullLoaded = false;
         float ratio = (float)munitions / (float)myCellTemplate.tourelleMaxMun;
-        progressBar.UpdateBar(ratio);
+        progressBar.UpdateBar(ratio , false);
         tourelleCollider.Init(this);
         base.SetupVariable();
     }

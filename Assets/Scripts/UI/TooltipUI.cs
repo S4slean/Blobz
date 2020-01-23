@@ -8,7 +8,9 @@ public class TooltipUI : MonoBehaviour
     //public Animator anim;
     public TextMeshProUGUI cellName;
     public TextMeshProUGUI cellDescription;
-    public TextMeshProUGUI effects;
+    public TextMeshProUGUI proximityEffects;
+    public TextMeshProUGUI clicEffects;
+    public TextMeshProUGUI proximityLvl;
     public TextMeshProUGUI cellCost;
     public GameObject secondDisplay;
 
@@ -19,13 +21,13 @@ public class TooltipUI : MonoBehaviour
         cellName.text = cell.myCellTemplate.name;
         cellDescription.text = cell.myCellTemplate.description;
         cellCost.text = "Cost: " + cell.myCellTemplate.energyCost;
+        clicEffects.text = cell.myCellTemplate.descriptionClick;
+        proximityLvl.text = "Tier: " + cell.GetProximityTier().ToString();
+        proximityEffects.text = cell.myCellTemplate.descriptionProximity;
 
 
-        if (displayCost)
-        {
-            //ADD CellTemplates Proximity Text
-            //ADD Pro 
-        }
+
+        
 
 
         if(cell.myCellTemplate.energyCost > RessourceTracker.instance.energy)
@@ -36,9 +38,6 @@ public class TooltipUI : MonoBehaviour
         {
             cellCost.color = Color.white;
         }
-
-
-        effects.text = "Effects are not implemented yet";
     }
 
     public void HideTooltipUI()

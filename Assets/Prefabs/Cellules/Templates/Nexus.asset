@@ -19,6 +19,8 @@ MonoBehaviour:
   cellTexture: {fileID: 2800000, guid: fa8a025f4698212438823fbaf9a5967d, type: 3}
   type: 0
   description: Produce blobz each tick
+  descriptionProximity: 
+  descriptionClick: 
   generateProximity: 1
   proximityColliderNumber: 3
   proximityColliders:
@@ -62,12 +64,14 @@ MonoBehaviour:
   specifique: 0200000005000000070000000a000000
   energyPerblop: 0
   StatsModification: 0
-  REFS: 1
+  REFS: 0
   ToggleInfoBox: 1
   STATS: 1
   ProductionGestion: 0
   ProximityGestion: 1
+  clickInteraction: 0
   maxEnergie: 5
+  explosionRadius: 0.8
   maxBlobCoach: 0
   magazineDragRange: 1.5
   minDragRatio: 0.2

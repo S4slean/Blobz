@@ -96,7 +96,7 @@ public class CellDivine : CellMain
                 activationButton.ToggleButton(true);
             }
             float ratio = (float)energie / (float)myCellTemplate.maxEnergie;
-            chargeBar.UpdateBar(ratio);
+            chargeBar.UpdateBar(ratio , false);
         }
     }
     public void Decharge()
@@ -105,7 +105,7 @@ public class CellDivine : CellMain
         isLoaded = false;
         activationButton.ToggleButton(false);
         float ratio = (float)energie / (float)myCellTemplate.maxEnergie;
-        chargeBar.UpdateBar(ratio);
+        chargeBar.UpdateBar(ratio , false);
 
     }
 

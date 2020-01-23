@@ -19,6 +19,8 @@ public class CelluleTemplate : ScriptableObject
 
     public CellType type;
     public string description;
+    public string descriptionProximity;
+    public string descriptionClick;
 
     public bool generateProximity;
     [Range(1, 5)]
@@ -101,6 +103,7 @@ public class CelluleTemplate : ScriptableObject
     public bool STATS;
     public bool ProductionGestion;
     public bool ProximityGestion;
+    public bool clickInteraction;
 
     #endregion
 
@@ -108,6 +111,11 @@ public class CelluleTemplate : ScriptableObject
 
     [Range(1 , 15)]
     public int maxEnergie = 5;
+
+    [Range(0.4f, 5)]
+    public float explosionRadius = 0.8f;
+
+
     [Range(1, 100)]
     public int maxBlobCoach;
 

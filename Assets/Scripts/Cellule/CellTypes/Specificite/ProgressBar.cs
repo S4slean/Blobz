@@ -10,11 +10,18 @@ public class ProgressBar : MonoBehaviour
 
     public GameObject graph;
 
-    public void UpdateBar(float ratio)
+    public void UpdateBar(float ratio, bool circleBar)
     {
         filledImage.fillAmount = ratio;
         anim.speed = 1 / (TickManager.instance.tickDuration - TickManager.instance.tickDuration / 1.8f);
-        anim.Play("AmountModification");
+        if (circleBar)
+        {
+            anim.Play("AmountModificationCercle");
+        }
+        else
+        {
+            anim.Play("AmountModification");
+        }
     }
 
     public void ToggleRenderer(bool toggle)
