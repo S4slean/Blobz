@@ -18,9 +18,16 @@ MonoBehaviour:
   cellTexture: {fileID: 0}
   type: 11
   description: Create explorator blobz
+  descriptionProximity: "Close \rproximity effect: The lifespan of explorator blobz
+    is higher"
+  descriptionClick: Click on the cell to place the flag. An enplorator blobz will
+    leave the cell and go in this direction
   generateProximity: 0
   proximityColliderNumber: 1
-  proximityColliders: []
+  proximityColliders:
+  - proximityLevel: 0
+    range: 0
+    productionBonusRatio: 0
   energyCost: 200
   energyCapBase: 0
   rangeBase: 15
@@ -57,7 +64,9 @@ MonoBehaviour:
   STATS: 1
   ProductionGestion: 1
   ProximityGestion: 1
+  clickInteraction: 1
   maxEnergie: 5
+  explosionRadius: 0.8
   maxBlobCoach: 0
   magazineDragRange: 1.5
   minDragRatio: 0.2

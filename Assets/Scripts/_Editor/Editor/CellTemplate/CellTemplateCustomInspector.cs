@@ -9,6 +9,7 @@ using UnityEditorInternal;
 [CustomEditor(typeof(CelluleTemplate))]
 public class CellTemplateCustomInspector : Editor
 {
+    #region VARIABLES
     SerializedProperty cellsEnableToBuildProp, blopPrefabProp, buttonColorProp, cellTextureProp;
     SerializedProperty typeProp;
     SerializedProperty energyCostProp, energyCapBaseProp, rangeBaseProp, blobRatioAtDeathProp, impulseForce_DeathProp;
@@ -42,8 +43,8 @@ public class CellTemplateCustomInspector : Editor
     SerializedProperty maxLifeProdProp;
 
     SerializedProperty shotPowerProp, verticalConstantPowerProp, verticalOffsetProp, magazinSlotDistanceProp;
-
     //ReorderableList proximityColliderList; 
+    #endregion
 
     #region VARIABLES SPE 
 
@@ -55,6 +56,7 @@ public class CellTemplateCustomInspector : Editor
 
     SerializedProperty clickBeforeLaunchProp, blobLostPerTickProp;
 
+    SerializedProperty maxBlobShreddedPerClickProp;
 
     SerializedProperty explosionRadiusProp;
 
@@ -166,6 +168,8 @@ public class CellTemplateCustomInspector : Editor
 
         explosionRadiusProp = serializedObject.FindProperty("explosionRadius");
 
+        maxBlobShreddedPerClickProp = serializedObject.FindProperty("maxBlobShreddedPerClick");
+
 
 
         #endregion
@@ -239,6 +243,7 @@ public class CellTemplateCustomInspector : Editor
                 EditorGUILayout.PropertyField(MaxEnergieProp);
                 break;
             case CellType.Dump:
+                EditorGUILayout.PropertyField(maxBlobShreddedPerClickProp);
                 break;
             case CellType.Academy:
                 break;

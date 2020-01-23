@@ -18,6 +18,10 @@ MonoBehaviour:
   cellTexture: {fileID: 0}
   type: 6
   description: Send a powerfull strike on an area
+  descriptionProximity: 'Far proximity effect: The range of the strike is raised by
+    the proximity'
+  descriptionClick: Click on the cell to switch to the aiming pointer. Click again
+    to launched a strike on the aimed area
   generateProximity: 0
   proximityColliderNumber: 1
   proximityColliders: []
@@ -57,7 +61,9 @@ MonoBehaviour:
   STATS: 1
   ProductionGestion: 1
   ProximityGestion: 1
-  maxEnergie: 15
+  clickInteraction: 1
+  maxEnergie: 5
+  explosionRadius: 2
   maxBlobCoach: 0
   magazineDragRange: 1.5
   minDragRatio: 0.2

@@ -13,6 +13,7 @@ public class CellProductrice : CellMain
     private int Life;
     public ProgressBar progressBar;
 
+
     public override void BlobsTick()
     {
         int production = outputLinks.Count + productionBonusPacket;

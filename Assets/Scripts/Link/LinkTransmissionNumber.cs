@@ -18,7 +18,7 @@ public class LinkTransmissionNumber : MonoBehaviour
     public void UpdatePosAndScale(Vector3 pos , float angle)
     {
         myTransform.position = pos + new Vector3(0, 0.2f, 0);
-        myTransform.rotation = Quaternion.Euler(90, angle%90 - 90, 0);
+      //  myTransform.rotation = Quaternion.Euler(90, angle%90 - 90, 0);
     }
 
 }
