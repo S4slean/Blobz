@@ -20,7 +20,10 @@ MonoBehaviour:
   description: Create explorator blobz
   generateProximity: 0
   proximityColliderNumber: 1
-  proximityColliders: []
+  proximityColliders:
+  - proximityLevel: 0
+    range: 0
+    productionBonusRatio: 0
   energyCost: 200
   energyCapBase: 0
   rangeBase: 15
