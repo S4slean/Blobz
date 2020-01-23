@@ -62,8 +62,8 @@ MonoBehaviour:
   ProductionGestion: 1
   ProximityGestion: 1
   clickInteraction: 1
-  maxEnergie: 15
-  explosionRadius: 0.8
+  maxEnergie: 5
+  explosionRadius: 2
   maxBlobCoach: 0
   magazineDragRange: 1.5
   minDragRatio: 0.2
