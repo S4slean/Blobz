@@ -37,9 +37,9 @@ public class CellBroyeur : CellMain
                     TextScore newTextescore = ObjectPooler.poolingSystem.GetPooledObject<TextScore>() as TextScore;
                     newTextescore.Outpool();
 
-                    newTextescore.myTransform.position = graphTransform.position + new Vector3(Random.Range(-0.5f, 0.5f), 0, 0);
+                    newTextescore.myTransform.position = graphTransform.position + new Vector3(Random.Range(-1f, 1f), 0, 0);
                     newTextescore.textScore.text = ("+" + energyGainThisActivation.ToString());
-                    newTextescore.PlayAnim();
+                    newTextescore.PlayAnim(0);
 
 
                     currentTick = 0;

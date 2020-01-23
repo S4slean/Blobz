@@ -34,7 +34,11 @@ public class CellDecharge : CellMain
                     Debug.Log(myTransform.position);
                     newTextescore.myTransform.position = graphTransform.position + new Vector3(Random.Range(-1.5f, 1.5f), 2, 0);
                     newTextescore.textScore.text = ("+" + specifiqueStats.ToString());
-                    newTextescore.PlayAnim();
+
+                    newTextescore.myTransform.localScale = Vector3.one;
+                    newTextescore.myTransform.localScale *= Random.Range(0.7f, 1.3f);
+                    newTextescore.PlayAnim(Random.Range(-0.15f , 0.15f));
+
                     actionmade = true;
 
                 }
