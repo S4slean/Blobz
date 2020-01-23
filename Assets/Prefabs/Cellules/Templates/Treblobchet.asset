@@ -18,6 +18,9 @@ MonoBehaviour:
   cellTexture: {fileID: 0}
   type: 12
   description: Send blobz to fight
+  descriptionProximity: 'Close proximity effect: The number of blobz that can be in
+    the waiting line is higher'
+  descriptionClick: Click on the sling, drag and aim, then release to launch a blobz
   generateProximity: 0
   proximityColliderNumber: 1
   proximityColliders: []
@@ -57,7 +60,9 @@ MonoBehaviour:
   STATS: 1
   ProductionGestion: 1
   ProximityGestion: 1
+  clickInteraction: 1
   maxEnergie: 5
+  explosionRadius: 0.8
   maxBlobCoach: 0
   magazineDragRange: 6
   minDragRatio: 0.2
