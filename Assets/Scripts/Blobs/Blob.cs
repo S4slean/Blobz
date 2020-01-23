@@ -251,6 +251,9 @@ public class Blob : PoolableObjects
     }
     public bool CheckIfOutOfVillage()
     {
+        if (village == null)
+            return false;
+
         if ((transform.position - village.transform.position).sqrMagnitude > Mathf.Pow(village.boundariesRange, 2))
             return true;
         else
