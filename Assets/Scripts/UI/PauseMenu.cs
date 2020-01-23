@@ -33,7 +33,8 @@ public class PauseMenu : MonoBehaviour
 
     public void LevelSelectionMenu()
     {
-        SceneHandler.instance.ChangeScene(levelSelectionSceneName);
+        Time.timeScale = 1;
+        SceneHandler.instance.BackToLevelSelection();
     }
 
 }

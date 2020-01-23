@@ -19,6 +19,8 @@ MonoBehaviour:
   cellTexture: {fileID: 2800000, guid: 87b9dbfc141638846a4a3bcaeee3ec94, type: 3}
   type: 3
   description: Create sploosh automatically
+  descriptionProximity: 'Far proximity effect: The amount of sploosh by tick is higher'
+  descriptionClick: 
   generateProximity: 0
   proximityColliderNumber: 1
   proximityColliders: []
@@ -58,7 +60,9 @@ MonoBehaviour:
   STATS: 1
   ProductionGestion: 1
   ProximityGestion: 1
+  clickInteraction: 0
   maxEnergie: 5
+  explosionRadius: 0.8
   maxBlobCoach: 0
   magazineDragRange: 1.5
   minDragRatio: 0.2
