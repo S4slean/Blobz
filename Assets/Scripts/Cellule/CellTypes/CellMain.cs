@@ -1024,6 +1024,10 @@ public class CellMain : PoolableObjects, PlayerAction
         isDead = false;
         blolbNumberAtOverload = 0;
 
+        if (stockageBar != null)
+        {
+            stockageBar.transform.position = graphTransform.position;
+        }
 
         ToggleOverload(false);
 
@@ -1327,12 +1331,12 @@ public class CellMain : PoolableObjects, PlayerAction
         overLoad = isOverload;
         if (stockageBar != null)
         {
-            stockageBar.ToggleRenderer(isOverload);
+            stockageBar.ToggleRenderer(!isOverload);
         }
         //FX.setActive()
         if (isOverload)
         {
-            Debug.Log("enterInOverload ", gameObject);
+            //Debug.Log("enterInOverload ", gameObject);
             blolbNumberAtOverload = blobNumber;
         }
     }
