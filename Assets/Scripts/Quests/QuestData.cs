@@ -12,6 +12,7 @@ public class QuestData : ScriptableObject
     public string questTitle;
     public string questDescription;
     public bool eventDone = false;
+    public bool isEndingQuest = false;
 
     [Header("Population")]
     [Range(0,10000)]public int populationObjective;
