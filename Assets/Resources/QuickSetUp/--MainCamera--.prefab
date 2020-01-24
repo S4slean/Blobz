@@ -93,6 +93,9 @@ MonoBehaviour:
   camXMax: 50
   camYmin: -50
   camYMax: 50
+  topRotation: 90
+  botRotation: 70
+  heightforwardIncidence: 0
   timeToMaxSpeed: 0.6
   timeToZeroSpeed: 0.6
   defaultHeight: 35
