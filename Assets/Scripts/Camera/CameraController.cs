@@ -12,6 +12,7 @@ public class CameraController : MonoBehaviour
 
     public float topRotation;
     public float botRotation;
+    public float heightforwardIncidence = 5;
 
     [Range(0, 2)] public float timeToMaxSpeed = 1;
     [Range(0, 2)] public float timeToZeroSpeed = 1;
@@ -39,6 +40,7 @@ public class CameraController : MonoBehaviour
 
 
     Vector3 moveDir;
+    float camfHeight;
     float camHeight;
     float camHeightGoal;
     float smoothCount;
@@ -90,14 +92,16 @@ public class CameraController : MonoBehaviour
             smoothCount = 0;
             InputManager.Instance.dragDistance = 2.8f * 0.05f *transform.position.y;
 
-            float angle = Mathf.Lerp(botRotation, topRotation, (transform.position.y - minHeight) / (maxHeight - minHeight));
-            transform.eulerAngles = new Vector3(angle, 0, 0);
+
         }
+
 
         smoothCount += Time.deltaTime / camHeightSpeed;
         smoothCount = Mathf.Clamp01(smoothCount);
 
         camHeight = Mathf.Lerp(camHeight, camHeightGoal, smoothCount);
+        camfHeight = (camHeight * -1 + 1) * heightforwardIncidence;
+        float angle = Mathf.Lerp(botRotation, topRotation, (transform.position.y - minHeight) / (maxHeight - minHeight));
 
 
         if (MouseIsInBorder())
@@ -150,7 +154,9 @@ public class CameraController : MonoBehaviour
 
         originPos = new Vector3(Mathf.Clamp(originPos.x, camXMin, camXMax), originPos.y, Mathf.Clamp(originPos.z, camYmin, camYMax));
 
-        transform.position = originPos + tiltDir + new Vector3(0, camHeight, 0);
+        transform.position = originPos + tiltDir + new Vector3(0, camHeight, -camfHeight);
+        transform.eulerAngles = new Vector3(angle, 0, 0);
+
 
     }
 
