@@ -15,7 +15,8 @@ public class InputManager : MonoBehaviour
     public LayerMask UIMask;
 
     //défini la distance avant d'activé le drag 
-    public float distanceBeforeDrag;
+    public float distanceBeforeDrag = 2.8f;
+    [HideInInspector] public float dragDistance;
 
     //variables pour l'interaction avec la cellule 
     public float DelayBetweenClick;
@@ -206,7 +207,7 @@ public class InputManager : MonoBehaviour
 
                         float distanceFromElement = (CurrentHit.point - ((Component)selectedElement).transform.position).magnitude;
 
-                        if (clickTime > clickCooldown && selectedElement != null && !dragging && distanceFromElement > distanceBeforeDrag)
+                        if (clickTime > clickCooldown && selectedElement != null && !dragging && distanceFromElement > dragDistance)
                         {
                             selectedElement.OnDragStart(CurrentHit);
                             dragging = true;
@@ -561,6 +562,16 @@ public class InputManager : MonoBehaviour
             Instance.shootingCell = null;
             UIManager.Instance.HideDivineShot();
         }
+    }
+
+    public void BackToStandardDraggingDistance()
+    {
+        dragDistance = distanceBeforeDrag * 0.05f * CameraController.instance.transform.position.y;
+    }
+
+    public void SetDraggingDistance(float newDistance)
+    {
+        dragDistance = newDistance;
     }
 
     public void UpdateTargetPos()

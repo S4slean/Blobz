@@ -10,6 +10,8 @@ public class CameraController : MonoBehaviour
     public float camYmin = -50;
     public float camYMax = 50;
 
+    public float topRotation;
+    public float botRotation;
 
     [Range(0, 2)] public float timeToMaxSpeed = 1;
     [Range(0, 2)] public float timeToZeroSpeed = 1;
@@ -86,7 +88,10 @@ public class CameraController : MonoBehaviour
             camHeightGoal += -Input.GetAxis("Mouse ScrollWheel") * heightStep;
             camHeightGoal = Mathf.Clamp(camHeightGoal, minHeight, maxHeight);
             smoothCount = 0;
-            InputManager.Instance.distanceBeforeDrag = 2.8f * 0.05f *transform.position.y;
+            InputManager.Instance.dragDistance = 2.8f * 0.05f *transform.position.y;
+
+            float angle = Mathf.Lerp(botRotation, topRotation, (transform.position.y - minHeight) / (maxHeight - minHeight));
+            transform.eulerAngles = new Vector3(angle, 0, 0);
         }
 
         smoothCount += Time.deltaTime / camHeightSpeed;

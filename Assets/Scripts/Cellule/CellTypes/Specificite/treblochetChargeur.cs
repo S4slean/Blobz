@@ -186,7 +186,7 @@ public class treblochetChargeur : MonoBehaviour, PlayerAction
 
     public void OnLeftClickDown(RaycastHit hit)
     {
-        InputManager.Instance.distanceBeforeDrag = .1f;
+        InputManager.Instance.SetDraggingDistance(.1f);
     }
 
     public void OnShortLeftClickUp(RaycastHit hit)
@@ -256,7 +256,7 @@ public class treblochetChargeur : MonoBehaviour, PlayerAction
     public void OnDeselect()
     {
         Debug.Log("drag restored");
-        InputManager.Instance.distanceBeforeDrag = 2.8f * 0.05f* CameraController.instance.transform.position.y;
+        InputManager.Instance.dragDistance = 2.8f * 0.05f* CameraController.instance.transform.position.y;
     }
 
     public void StopAction()
