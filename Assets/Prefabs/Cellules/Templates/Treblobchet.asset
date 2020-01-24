@@ -67,9 +67,9 @@ MonoBehaviour:
   maxBlobCoach: 0
   magazineDragRange: 6
   minDragRatio: 0.2
-  shotPower: 12
-  verticalConstantPower: 20
-  verticalOffset: 5
+  shotPower: 6
+  verticalConstantPower: 10
+  verticalOffset: 1
   magazinSlotDistance: 3
   tourelleMaxMun: 3
   tourelleDamage: 5
