@@ -56,7 +56,7 @@ MonoBehaviour:
   rangeLien: 
   tickForActivation: 
   energyCap: 
-  specifique: 280000001e000000190000000f000000
+  specifique: 0200000005000000070000000a000000
   energyPerblop: 0
   StatsModification: 7
   REFS: 0
@@ -67,6 +67,7 @@ MonoBehaviour:
   clickInteraction: 1
   maxEnergie: 5
   explosionRadius: 0.8
+  maxBlobShreddedPerClick: 1
   maxBlobCoach: 0
   magazineDragRange: 1.5
   minDragRatio: 0.2
