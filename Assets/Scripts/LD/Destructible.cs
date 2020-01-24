@@ -86,6 +86,10 @@ public class Destructible : PoolableObjects, PlayerAction
         {
             Destruction();
         }
+        else
+        {
+            anim.Play("Bounce",-1, 0);
+        }
     }
     public void SpawnEnemies()
     {
@@ -100,7 +104,7 @@ public class Destructible : PoolableObjects, PlayerAction
             
 
         }
-        anim.SetTrigger("Spawn");
+        anim.Play("Bounce");
     }
     public void Destruction()
     {
@@ -114,9 +118,9 @@ public class Destructible : PoolableObjects, PlayerAction
                 SpawnEnemies();
 
 
-            anim.Play("Desytroy");
+            anim.Play("Disappear");
             //Insert Anim and put Delete at the end
-            Delete(); //remove once anim is inserted
+            //remove once anim is inserted
         }
         else
         {
@@ -155,25 +159,9 @@ public class Destructible : PoolableObjects, PlayerAction
     #endregion
     public void SwapGraph()
     {
-        goodGraph.SetActive(!goodGraph.activeSelf);
-        brokenGraph.SetActive(!brokenGraph.activeSelf);
+        anim.SetBool("isRuin", isRuin);
     }
 
-
-    #region ANIMATIONS
-    public void SpawnParticles()
-    {
-        if (isRuin)
-        {
-            anim.Play("Disappear");
-        }
-        else
-        {
-            anim.Play("Repair");
-        }
-    }
-
-    #endregion
 
 
     #region PLAYER_ACTIONS

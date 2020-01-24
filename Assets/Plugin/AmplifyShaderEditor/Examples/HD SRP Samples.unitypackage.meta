@@ -1,7 +1,18 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Plugin/AmplifyShaderEditor/Examples/HD SRP Samples.unitypackage.meta
 guid: d1c0b77896049554fa4b635531caf741
+=======
+<<<<<<< HEAD:Assets/Graph/Animations/Destructibles/Bounce.anim.meta
+guid: c82c0e66c0b8265498966608ab7db414
+NativeFormatImporter:
+=======
+guid: 5b13cb0ccf1b828438b58168a6804ace
+folderAsset: yes
+>>>>>>> c887faee0405b2a88ec54ea46ead2d7462809fba:Assets/Prefabs/Quests/Quest Planet 1/Quest lv5.meta
 DefaultImporter:
+>>>>>>> 5d47645a5db2c6ce29f8738c34047e75e03568ab:Assets/Prefabs/Quests/Quest Planet 1/Quest lv5.meta
   externalObjects: {}
+  mainObjectFileID: 7400000
   userData: 
   assetBundleName: 
   assetBundleVariant: 
