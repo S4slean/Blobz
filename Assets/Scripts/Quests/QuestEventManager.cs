@@ -31,6 +31,7 @@ public class QuestEventManager : MonoBehaviour
             return;
 
         TickManager.instance.PauseTick();
+        CameraController.instance.isPanning = false;
         InputManager.Instance.enabled = false;
         CameraController.instance.enabled = false;
         inQuestEvent = true;

@@ -63,13 +63,14 @@ public class CameraController : MonoBehaviour
 
         originPos = new Vector3(transform.position.x, 0, transform.position.z);
         camHeightGoal = minHeight;
-        camHeight = minHeight;
-        transform.position = originPos + new Vector3(0, camHeight, 0);
+        camHeight = maxHeight;
+        camfHeight = maxHeight * -1 + 1;
+        transform.position = originPos + new Vector3(0, camHeight, camfHeight);
         transform.LookAt(transform.position + Vector3.down);
     }
 
 
-    bool isPanning = false;
+    [HideInInspector]public bool isPanning = false;
     Vector3 panningStart;
     Vector3 panningCamStart;
 
