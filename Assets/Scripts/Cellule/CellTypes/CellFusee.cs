@@ -30,7 +30,7 @@ public class CellFusee : CellMain
         {
             clickforLauchn++;
             //Play FX 
-            if (clickforLauchn >= myCellTemplate.clickBeforeLaunch)
+            if (clickforLauchn > myCellTemplate.clickBeforeLaunch)
             {
                 // C'est WIN
             }
