@@ -130,7 +130,8 @@ MonoBehaviour:
   UIMask:
     serializedVersion: 2
     m_Bits: 32
-  distanceBeforeDrag: 3.5
+  distanceBeforeDrag: 2.8
+  dragDistance: 0
   DelayBetweenClick: 0
   clickCooldown: 0.2
   dragging: 0
@@ -171,6 +172,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5506356160572856949}
     m_Modifications:
+    - target: {fileID: 3361404571038862991, guid: 8f3c98caec5e76a4f95f1789ac441085,
+        type: 3}
+      propertyPath: m_Name
+      value: Flag
+      objectReference: {fileID: 0}
     - target: {fileID: 1097292297981819361, guid: 8f3c98caec5e76a4f95f1789ac441085,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -225,11 +231,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3361404571038862991, guid: 8f3c98caec5e76a4f95f1789ac441085,
-        type: 3}
-      propertyPath: m_Name
-      value: Flag
       objectReference: {fileID: 0}
     - target: {fileID: 227704383089568493, guid: 8f3c98caec5e76a4f95f1789ac441085,
         type: 3}
