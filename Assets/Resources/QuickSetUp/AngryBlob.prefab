@@ -161,6 +161,7 @@ MonoBehaviour:
   rb: {fileID: 366999152}
   rd: {fileID: 3185202987928838775}
   anim: {fileID: 5048609606909255804}
+  sword: {fileID: 4873006768499202}
   tickCount: 0
   lifeTime: 0
   LifeSpan: 32

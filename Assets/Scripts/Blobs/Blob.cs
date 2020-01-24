@@ -9,6 +9,7 @@ public class Blob : PoolableObjects
     public Rigidbody rb;
     public Renderer rd;
     public Animator anim;
+    public GameObject sword;
     #endregion
 
     [Header("General")]
@@ -64,19 +65,19 @@ public class Blob : PoolableObjects
         switch (newType)
         {
             case BlobManager.BlobType.soldier:
-
+                sword.SetActive(true);
                 jumpForce = BlobManager.instance.soldierJumpForce;
                 break;
 
             case BlobManager.BlobType.mad:
-
+                sword.SetActive(false);
                 jumpForce = BlobManager.instance.enemyJumpForce;
                 tag = "Enemies";
 
                 break;
 
             case BlobManager.BlobType.explorateur:
-
+                sword.SetActive(false);
                 jumpForce = BlobManager.instance.exploJumpForce;
 
                 break;

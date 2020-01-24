@@ -115,6 +115,7 @@ MonoBehaviour:
   rb: {fileID: 366999152}
   rd: {fileID: 565441561003744860}
   anim: {fileID: 8399404954119418303}
+  sword: {fileID: 2600814841338242995}
   tickCount: 0
   lifeTime: 0
   LifeSpan: 32
