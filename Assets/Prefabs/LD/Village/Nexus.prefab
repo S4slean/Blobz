@@ -272,7 +272,7 @@ MonoBehaviour:
   anim: {fileID: 6417174108804688898}
   destructType: 0
   maxLife: 5
-  isReapairable: 1
+  isReapairable: 0
   repairDelay: 10
   isRuin: 0
   isVillageNexus: 1
