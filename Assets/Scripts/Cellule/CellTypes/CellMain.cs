@@ -848,7 +848,13 @@ public class CellMain : PoolableObjects, PlayerAction
                 break;
 
             case StatsModificationType.StockageCapacity:
-                currentBlobStockage = myCellTemplate.stockageCapacity[currentProximityTier];
+                int differenceAmount = 0;
+                if (stuckBlobs.Count >0)
+                {
+                    differenceAmount = currentBlobStockage - myCellTemplate.stockageCapacity[LastProximityTier];
+                }
+                currentBlobStockage = myCellTemplate.stockageCapacity[currentProximityTier] - differenceAmount;
+
                 break;
 
             //case StatsModificationType.LinkCapacity:
