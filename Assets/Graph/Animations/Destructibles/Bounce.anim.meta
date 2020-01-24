@@ -1,14 +1,8 @@
 fileFormatVersion: 2
-<<<<<<< HEAD:Assets/Graph/Animations/Destructibles/Bounce.anim.meta
-guid: c82c0e66c0b8265498966608ab7db414
+guid: 39189a9172f76284aad139b9289dda04
 NativeFormatImporter:
-=======
-guid: 5b13cb0ccf1b828438b58168a6804ace
-folderAsset: yes
-DefaultImporter:
->>>>>>> 5d47645a5db2c6ce29f8738c34047e75e03568ab:Assets/Prefabs/Quests/Quest Planet 1/Quest lv5.meta
   externalObjects: {}
-  mainObjectFileID: 7400000
+  mainObjectFileID: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 
