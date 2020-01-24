@@ -16,6 +16,7 @@ MonoBehaviour:
   questTitle: Earn lot of Sploosh
   questDescription: 
   eventDone: 0
+  isEndingQuest: 0
   populationObjective: 150
   energyToObtain: 1200
   cellType: 1
@@ -29,7 +30,7 @@ MonoBehaviour:
   nbrOfObject: 0
   questEvents:
   - eventType: 1
-    eventDuration: 1.5
+    eventDuration: 3
     virtualCamIndex: 0
     popUpsMsg:
     - rpgStyle: 1
@@ -53,3 +54,4 @@ MonoBehaviour:
       sprite: {fileID: 0}
       Title: 
       Text: 
+    levelName: 

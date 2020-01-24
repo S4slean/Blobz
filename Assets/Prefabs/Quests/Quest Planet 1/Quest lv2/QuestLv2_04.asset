@@ -30,7 +30,7 @@ MonoBehaviour:
   nbrOfObject: 0
   questEvents:
   - eventType: 1
-    eventDuration: 2
+    eventDuration: 5
     virtualCamIndex: 0
     popUpsMsg:
     - rpgStyle: 1
@@ -43,7 +43,7 @@ MonoBehaviour:
     UEvent:
       m_PersistentCalls:
         m_Calls: []
-    foldout: 1
+    foldout: 0
     cellType: 0
     newTickDuration: 0
     persistentMsg:
@@ -56,8 +56,8 @@ MonoBehaviour:
       Text: 
     levelName: 
   - eventType: 0
-    eventDuration: 1.5
-    virtualCamIndex: 0
+    eventDuration: 2
+    virtualCamIndex: 8
     popUpsMsg:
     - rpgStyle: 1
       anchor: {fileID: 0}
@@ -82,7 +82,7 @@ MonoBehaviour:
       Text: 
     levelName: 
   - eventType: 1
-    eventDuration: 2
+    eventDuration: 5
     virtualCamIndex: 0
     popUpsMsg:
     - rpgStyle: 1
@@ -115,7 +115,7 @@ MonoBehaviour:
       Text: 
     levelName: 
   - eventType: 3
-    eventDuration: 2
+    eventDuration: 3
     virtualCamIndex: 0
     popUpsMsg:
     - rpgStyle: 0

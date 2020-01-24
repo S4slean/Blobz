@@ -16,7 +16,7 @@ MonoBehaviour:
   questTitle: Go Rocket Blob !
   questDescription: 
   eventDone: 0
-  isEndingQuest: 0
+  isEndingQuest: 1
   populationObjective: 0
   energyToObtain: 0
   cellType: 13
@@ -30,7 +30,7 @@ MonoBehaviour:
   nbrOfObject: 5
   questEvents:
   - eventType: 1
-    eventDuration: 1
+    eventDuration: 5
     virtualCamIndex: 0
     popUpsMsg:
     - rpgStyle: 1
@@ -62,7 +62,7 @@ MonoBehaviour:
     UEvent:
       m_PersistentCalls:
         m_Calls: []
-    foldout: 1
+    foldout: 0
     cellType: 0
     newTickDuration: 0
     persistentMsg:
@@ -75,19 +75,19 @@ MonoBehaviour:
       Text: 
     levelName: 
   - eventType: 1
-    eventDuration: 2
+    eventDuration: 5
     virtualCamIndex: 0
     popUpsMsg:
-    - rpgStyle: 0
+    - rpgStyle: 1
       anchor: {fileID: 0}
-      offset: {x: 830, y: 260, z: 0}
+      offset: {x: 0, y: 0, z: 0}
       usingSprite: 1
       sprite: {fileID: 21300000, guid: cc3173b5ab91f26438949b73af93e3f9, type: 3}
       Title: MaJellyan
       Text: "Let\u2019s build a rocket \r\n"
-    - rpgStyle: 0
+    - rpgStyle: 1
       anchor: {fileID: 0}
-      offset: {x: 830, y: 260, z: 0}
+      offset: {x: 0, y: 0, z: 0}
       usingSprite: 1
       sprite: {fileID: 21300000, guid: cc3173b5ab91f26438949b73af93e3f9, type: 3}
       Title: MaJellyan
