@@ -71,7 +71,6 @@ public class treblochetChargeur : MonoBehaviour, PlayerAction
     {
 
         float ratio = finalDistance / (dragRange - disTanceFromParent);
-        Debug.Log("Ratio :" + ratio);
         if (parent.myCellTemplate.minDragRatio < ratio)
         {
 

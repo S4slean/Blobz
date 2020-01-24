@@ -83,6 +83,7 @@ public class InputManager : MonoBehaviour
         m_Raycaster = FindObjectOfType<GraphicRaycaster>();
         m_EventSystem = FindObjectOfType<EventSystem>();
         p_Raycaster = FindObjectOfType<PhysicsRaycaster>();
+        dragDistance = distanceBeforeDrag;
     }
 
     private void Update()
