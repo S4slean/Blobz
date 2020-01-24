@@ -16,6 +16,7 @@ MonoBehaviour:
   questTitle: Colonize
   questDescription: 
   eventDone: 1
+  isEndingQuest: 0
   populationObjective: 0
   energyToObtain: 0
   cellType: 0
@@ -71,7 +72,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-    foldout: 0
+    foldout: 1
     cellType: 0
     newTickDuration: 0
     persistentMsg:
@@ -82,6 +83,7 @@ MonoBehaviour:
       sprite: {fileID: 0}
       Title: 
       Text: 
+    levelName: 
   - eventType: 1
     eventDuration: 2
     virtualCamIndex: 0
@@ -107,6 +109,7 @@ MonoBehaviour:
       sprite: {fileID: 21300000, guid: cc3173b5ab91f26438949b73af93e3f9, type: 3}
       Title: MaJellyan
       Text: 
+    levelName: 
   - eventType: 0
     eventDuration: 2
     virtualCamIndex: 2
@@ -146,6 +149,7 @@ MonoBehaviour:
       sprite: {fileID: 0}
       Title: 
       Text: 
+    levelName: 
   - eventType: 6
     eventDuration: 2
     virtualCamIndex: 1
@@ -170,9 +174,10 @@ MonoBehaviour:
       anchor: {fileID: 0}
       offset: {x: 0, y: 0, z: 0}
       usingSprite: 1
-      sprite: {fileID: 21300000, guid: cc3173b5ab91f26438949b73af93e3f9, type: 3}
-      Title: MaJellyan
+      sprite: {fileID: 21300000, guid: 68215239a0bc5fa4a8ec1952bf8fed68, type: 3}
+      Title: Blob the Builder
       Text: "Try reach it ! But don\u2019t forget to gain sploosh first !\r\n\r"
+    levelName: 
   - eventType: 3
     eventDuration: 0
     virtualCamIndex: 1
@@ -210,6 +215,7 @@ MonoBehaviour:
       sprite: {fileID: 0}
       Title: 
       Text: 
+    levelName: 
   - eventType: 4
     eventDuration: 0
     virtualCamIndex: 1
@@ -247,3 +253,4 @@ MonoBehaviour:
       sprite: {fileID: 0}
       Title: 
       Text: 
+    levelName: 
