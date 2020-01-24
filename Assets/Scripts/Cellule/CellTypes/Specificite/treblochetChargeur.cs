@@ -256,7 +256,7 @@ public class treblochetChargeur : MonoBehaviour, PlayerAction
     public void OnDeselect()
     {
         Debug.Log("drag restored");
-        InputManager.Instance.distanceBeforeDrag = 3.5f;
+        InputManager.Instance.distanceBeforeDrag = 2.8f * 0.05f* CameraController.instance.transform.position.y;
     }
 
     public void StopAction()
