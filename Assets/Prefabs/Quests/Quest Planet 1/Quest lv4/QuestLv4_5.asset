@@ -38,7 +38,7 @@ MonoBehaviour:
       offset: {x: 0, y: 0, z: 0}
       usingSprite: 1
       sprite: {fileID: 21300000, guid: c98328a721f45da4fb0b32121f3026db, type: 3}
-      Title: Oncle Sploodge
+      Title: Uncle Sploodge
       Text: "Dude, you need to link it to other cells.\r\n"
     UEvent:
       m_PersistentCalls:

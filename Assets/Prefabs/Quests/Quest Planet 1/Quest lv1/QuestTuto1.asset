@@ -83,7 +83,7 @@ MonoBehaviour:
       Text: 
     levelName: 
   - eventType: 1
-    eventDuration: 5
+    eventDuration: 8
     virtualCamIndex: 7
     popUpsMsg:
     - rpgStyle: 1
@@ -336,8 +336,7 @@ MonoBehaviour:
       usingSprite: 1
       sprite: {fileID: 21300000, guid: 74a01104759d6494d8d651afa2ac8826, type: 3}
       Title: 
-      Text: "If you click on the dump, a blob will liquefy and creat sploosh ! But
-        don\u2019t worry, it\u2019s painless !\n"
+      Text: 
     UEvent:
       m_PersistentCalls:
         m_Calls:

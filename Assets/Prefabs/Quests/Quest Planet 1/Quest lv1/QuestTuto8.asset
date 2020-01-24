@@ -30,7 +30,7 @@ MonoBehaviour:
   nbrOfObject: 0
   questEvents:
   - eventType: 1
-    eventDuration: 1
+    eventDuration: 5
     virtualCamIndex: 0
     popUpsMsg:
     - rpgStyle: 1
@@ -51,7 +51,7 @@ MonoBehaviour:
     UEvent:
       m_PersistentCalls:
         m_Calls: []
-    foldout: 1
+    foldout: 0
     cellType: 0
     newTickDuration: 0
     persistentMsg:
@@ -64,7 +64,7 @@ MonoBehaviour:
       Text: 
     levelName: 
   - eventType: 6
-    eventDuration: 0
+    eventDuration: 8
     virtualCamIndex: 0
     popUpsMsg:
     - rpgStyle: 0

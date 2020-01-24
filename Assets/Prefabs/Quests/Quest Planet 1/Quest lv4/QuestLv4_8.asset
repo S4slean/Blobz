@@ -38,7 +38,7 @@ MonoBehaviour:
       offset: {x: 0, y: 0, z: 0}
       usingSprite: 1
       sprite: {fileID: 21300000, guid: c98328a721f45da4fb0b32121f3026db, type: 3}
-      Title: Oncle Sploodge
+      Title: Uncle Sploodge
       Text: "Wow, what an energetic dude ! But calm down now. We are talking business
         here.\r\n"
     - rpgStyle: 1
@@ -46,14 +46,14 @@ MonoBehaviour:
       offset: {x: 0, y: 0, z: 0}
       usingSprite: 1
       sprite: {fileID: 21300000, guid: c98328a721f45da4fb0b32121f3026db, type: 3}
-      Title: Oncle Sploodge
+      Title: Uncle Sploodge
       Text: "You now know every cell. Congratulation !\r\n"
     - rpgStyle: 1
       anchor: {fileID: 0}
       offset: {x: 0, y: 0, z: 0}
       usingSprite: 1
       sprite: {fileID: 21300000, guid: c98328a721f45da4fb0b32121f3026db, type: 3}
-      Title: Oncle Sploodge
+      Title: Uncle Sploodge
       Text: "The last thing you need to know is about the nexus. The more cells you
         have around it, the more blobz it will product each tick. Always keep that
         in mind okay kid?\r\n"
@@ -67,7 +67,7 @@ MonoBehaviour:
     UEvent:
       m_PersistentCalls:
         m_Calls: []
-    foldout: 0
+    foldout: 1
     cellType: 0
     newTickDuration: 0
     persistentMsg:

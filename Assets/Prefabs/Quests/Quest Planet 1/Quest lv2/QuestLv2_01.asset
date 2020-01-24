@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac59c85db94beed47808c892abe2bae2, type: 3}
   m_Name: QuestLv2_01
   m_EditorClassIdentifier: 
-  questType: 3
+  questType: 5
   questTitle: Explore the world
   questDescription: Explore the map
   eventDone: 1
@@ -147,7 +147,7 @@ MonoBehaviour:
       usingSprite: 1
       sprite: {fileID: 21300000, guid: 68215239a0bc5fa4a8ec1952bf8fed68, type: 3}
       Title: Blob the Builder
-      Text: Use keyboard arrow or drag with your left click you
+      Text: 
     levelName: 
   - eventType: 3
     eventDuration: 2
