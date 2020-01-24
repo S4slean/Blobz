@@ -112,8 +112,6 @@ public class treblochetChargeur : MonoBehaviour, PlayerAction
         transform.LookAt(parent.transform);
     }
 
-
-
     public void Fire(float ratio)
     {
         Vector3 dir = (parent.transform.position - transform.position);
@@ -124,12 +122,14 @@ public class treblochetChargeur : MonoBehaviour, PlayerAction
 
             // blobToThrow.transform.LookAt(transform);
 
-            BlobManager.blobList.Remove(currentBlob);
+            BlobManager.blobList.Add(currentBlob);
             Vector3 powerVec = ((currentBlob.transform.forward * (1 +(ratio * ratio)) * parent.myCellTemplate.shotPower) + (Vector3.up * parent.myCellTemplate.verticalConstantPower));
             Debug.DrawRay(transform.position, powerVec, Color.blue, 2f);
 
             currentBlob.rb.AddForce(powerVec, ForceMode.Impulse);
+            currentBlob = null;
             BlolbFIre();
+            gotABlob = false;
         }
         else
         {
@@ -215,9 +215,21 @@ public class treblochetChargeur : MonoBehaviour, PlayerAction
 
     public void OnDragStart(RaycastHit hit)
     {
-        //InputManager.Instance.selectedElement = this;
-        //je sais pas si c'est utiles
-        //initialPos = transform.position;
+        if (!gotABlob && blobInChargeur.Count > 0)
+        {
+
+            currentBlob = ObjectPooler.poolingSystem.GetPooledObject<Blob>() as Blob;
+            currentBlob.Outpool();
+            gotABlob = true;
+
+            currentBlob.transform.position = transform.position + new Vector3(0, 0.3f, 0);
+            currentBlob.ChangeType(blobInChargeur[0]);
+            currentBlob.transform.LookAt(parent.transform);
+
+
+            BlobManager.blobList.Remove(currentBlob);
+
+        }
     }
 
     public void OnLeftDrag(RaycastHit hit)
@@ -305,22 +317,6 @@ public class treblochetChargeur : MonoBehaviour, PlayerAction
             {
                 treblobchetUISlots[i].UpdateType(blobInChargeur[i]);
             }
-        }
-        if (!gotABlob && blobInChargeur.Count > 0)
-        {
-
-            currentBlob = ObjectPooler.poolingSystem.GetPooledObject<Blob>() as Blob;
-            currentBlob.Outpool();
-            gotABlob = true;
-
-            currentBlob.transform.position = transform.position + new Vector3(0, 0.3f, 0);
-            currentBlob.ChangeType(blobInChargeur[0]);
-            currentBlob.transform.LookAt(parent.transform);
-
-
-            BlobManager.blobList.Remove(currentBlob) ;
-
-
         }
     }
 
