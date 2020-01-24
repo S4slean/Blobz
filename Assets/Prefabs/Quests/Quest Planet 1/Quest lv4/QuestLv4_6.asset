@@ -16,6 +16,7 @@ MonoBehaviour:
   questTitle: Just do it !
   questDescription: 
   eventDone: 0
+  isEndingQuest: 0
   populationObjective: 0
   energyToObtain: 0
   cellType: 8
@@ -37,7 +38,7 @@ MonoBehaviour:
       offset: {x: 0, y: 0, z: 0}
       usingSprite: 1
       sprite: {fileID: 21300000, guid: c98328a721f45da4fb0b32121f3026db, type: 3}
-      Title: Oncle Sploodge
+      Title: Uncle Sploodge
       Text: "Good. Now if you click on the cell, you can choose what link is open.
         Blobz will only go into the open link. The most import\u2026"
     - rpgStyle: 1
@@ -45,7 +46,7 @@ MonoBehaviour:
       offset: {x: 0, y: 0, z: 0}
       usingSprite: 1
       sprite: {fileID: 21300000, guid: 9947f6d56d6bac647b6be103e73de2b9, type: 3}
-      Title: BLOBCO
+      Title: Coach BLOBCO
       Text: "I\u2019M BLOBCO, WHO\u2019S READY TO BE PUMPED ? CREATE A GYM NOW !!!\r\n"
     UEvent:
       m_PersistentCalls:
@@ -61,6 +62,40 @@ MonoBehaviour:
       sprite: {fileID: 0}
       Title: 
       Text: 
+    levelName: 
+  - eventType: 6
+    eventDuration: 2
+    virtualCamIndex: 0
+    popUpsMsg:
+    - rpgStyle: 1
+      anchor: {fileID: 0}
+      offset: {x: 0, y: 0, z: 0}
+      usingSprite: 1
+      sprite: {fileID: 21300000, guid: c98328a721f45da4fb0b32121f3026db, type: 3}
+      Title: 
+      Text: "Good. Now if you click on the cell, you can choose what link is open.
+        Blobz will only go into the open link. The most import\u2026"
+    - rpgStyle: 1
+      anchor: {fileID: 0}
+      offset: {x: 0, y: 0, z: 0}
+      usingSprite: 1
+      sprite: {fileID: 21300000, guid: 9947f6d56d6bac647b6be103e73de2b9, type: 3}
+      Title: 
+      Text: "I\u2019M BLOBCO, WHO\u2019S READY TO BE PUMPED ? CREATE A GYM NOW !!!\r\n"
+    UEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    foldout: 1
+    cellType: 8
+    newTickDuration: 0
+    persistentMsg:
+      rpgStyle: 0
+      anchor: {fileID: 0}
+      offset: {x: 0, y: 0, z: 0}
+      usingSprite: 1
+      sprite: {fileID: 21300000, guid: 68215239a0bc5fa4a8ec1952bf8fed68, type: 3}
+      Title: Blob the Builder
+      Text: Create a Gym !
     levelName: 
   - eventType: 4
     eventDuration: 0

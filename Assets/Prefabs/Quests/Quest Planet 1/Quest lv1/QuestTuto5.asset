@@ -16,6 +16,7 @@ MonoBehaviour:
   questTitle: Dump help you
   questDescription: Build one more Dump
   eventDone: 1
+  isEndingQuest: 0
   populationObjective: 50
   energyToObtain: 200
   cellType: 10
@@ -29,7 +30,7 @@ MonoBehaviour:
   nbrOfObject: 0
   questEvents:
   - eventType: 1
-    eventDuration: 1
+    eventDuration: 4
     virtualCamIndex: 0
     popUpsMsg:
     - rpgStyle: 1
@@ -54,8 +55,9 @@ MonoBehaviour:
       sprite: {fileID: 0}
       Title: 
       Text: 
+    levelName: 
   - eventType: 6
-    eventDuration: 1.2
+    eventDuration: 5
     virtualCamIndex: 0
     popUpsMsg:
     - rpgStyle: 0
@@ -79,3 +81,4 @@ MonoBehaviour:
       sprite: {fileID: 21300000, guid: 68215239a0bc5fa4a8ec1952bf8fed68, type: 3}
       Title: Blob the builder
       Text: Create a dump
+    levelName: 

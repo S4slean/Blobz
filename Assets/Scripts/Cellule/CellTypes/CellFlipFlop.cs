@@ -20,6 +20,7 @@ public class CellFlipFlop : CellMain
 
         if (!overLoad)
         {
+            overloadStack = 0;
             haveExpulse = false;
             if (blobNumber > 0 && currentOutputLink != null)
             {
@@ -53,6 +54,7 @@ public class CellFlipFlop : CellMain
         {
             if (!LevelManager.instance.cellInvicible)
             {
+                overloadSparke.SetSpikeNumberAndSpeed(overloadStack, overloadStack * 0.3f);
                 overloadStack++;
                 if (overloadStack >= myCellTemplate.overLoadTickMax)
                 {

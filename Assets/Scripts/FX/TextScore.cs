@@ -17,7 +17,6 @@ public class TextScore : PoolableObjects
             myTransform = transform;
         }
         baseScale = myTransform.localScale;
-
     }
 
     public void PlayAnim(float amount)
@@ -30,8 +29,4 @@ public class TextScore : PoolableObjects
         anim.Play("addScore");
 
     }
-
-
-
-
 }

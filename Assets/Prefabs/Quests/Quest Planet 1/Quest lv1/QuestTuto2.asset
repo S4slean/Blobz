@@ -16,6 +16,7 @@ MonoBehaviour:
   questTitle: WE NEED SPLOOSH !
   questDescription: 
   eventDone: 1
+  isEndingQuest: 0
   populationObjective: 0
   energyToObtain: 100
   cellType: 3
@@ -29,7 +30,7 @@ MonoBehaviour:
   nbrOfObject: 0
   questEvents:
   - eventType: 1
-    eventDuration: 2
+    eventDuration: 3
     virtualCamIndex: 0
     popUpsMsg:
     - rpgStyle: 1

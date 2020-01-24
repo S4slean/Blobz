@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac59c85db94beed47808c892abe2bae2, type: 3}
   m_Name: QuestLv2_01
   m_EditorClassIdentifier: 
-  questType: 3
+  questType: 5
   questTitle: Explore the world
   questDescription: Explore the map
   eventDone: 1
+  isEndingQuest: 0
   populationObjective: 0
   energyToObtain: 0
   cellType: 11
@@ -61,6 +62,7 @@ MonoBehaviour:
       sprite: {fileID: 0}
       Title: 
       Text: 
+    levelName: 
   - eventType: 0
     eventDuration: 1
     virtualCamIndex: 7
@@ -86,6 +88,7 @@ MonoBehaviour:
       sprite: {fileID: 0}
       Title: 
       Text: 
+    levelName: 
   - eventType: 1
     eventDuration: 1.5
     virtualCamIndex: 1
@@ -108,7 +111,7 @@ MonoBehaviour:
     UEvent:
       m_PersistentCalls:
         m_Calls: []
-    foldout: 0
+    foldout: 1
     cellType: 0
     newTickDuration: 0
     persistentMsg:
@@ -119,7 +122,34 @@ MonoBehaviour:
       sprite: {fileID: 0}
       Title: 
       Text: 
+    levelName: 
   - eventType: 6
+    eventDuration: 2
+    virtualCamIndex: 1
+    popUpsMsg:
+    - rpgStyle: 0
+      anchor: {fileID: 0}
+      offset: {x: 0, y: 0, z: 0}
+      usingSprite: 1
+      sprite: {fileID: 21300000, guid: 74a01104759d6494d8d651afa2ac8826, type: 3}
+      Title: 
+      Text: 
+    UEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    foldout: 1
+    cellType: 0
+    newTickDuration: 0
+    persistentMsg:
+      rpgStyle: 0
+      anchor: {fileID: 0}
+      offset: {x: 0, y: 0, z: 0}
+      usingSprite: 1
+      sprite: {fileID: 21300000, guid: 68215239a0bc5fa4a8ec1952bf8fed68, type: 3}
+      Title: Blob the Builder
+      Text: 
+    levelName: 
+  - eventType: 3
     eventDuration: 2
     virtualCamIndex: 1
     popUpsMsg:
@@ -144,3 +174,4 @@ MonoBehaviour:
       sprite: {fileID: 21300000, guid: 74a01104759d6494d8d651afa2ac8826, type: 3}
       Title: 
       Text: Use keyboard arrow or drag with your left click you
+    levelName: 

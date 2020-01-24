@@ -16,6 +16,7 @@ MonoBehaviour:
   questTitle: Prepare your defenses
   questDescription: 
   eventDone: 1
+  isEndingQuest: 0
   populationObjective: 0
   energyToObtain: 0
   cellType: 7
@@ -39,20 +40,6 @@ MonoBehaviour:
       sprite: {fileID: 21300000, guid: 013d0ca5a2e30f7438158762ce87327c, type: 3}
       Title: General Globulus
       Text: "Now, use it ! Launch soldiers to the fight !\r\n"
-    - rpgStyle: 1
-      anchor: {fileID: 0}
-      offset: {x: 0, y: 0, z: 0}
-      usingSprite: 1
-      sprite: {fileID: 21300000, guid: 013d0ca5a2e30f7438158762ce87327c, type: 3}
-      Title: General Globulus
-      Text: "To launch blobz, drag the sling, aim, then release it\r\n"
-    - rpgStyle: 1
-      anchor: {fileID: 0}
-      offset: {x: 0, y: 0, z: 0}
-      usingSprite: 1
-      sprite: {fileID: 21300000, guid: 013d0ca5a2e30f7438158762ce87327c, type: 3}
-      Title: General Globulus
-      Text: "Eliminate the enemies\r\n"
     UEvent:
       m_PersistentCalls:
         m_Calls: []
@@ -67,6 +54,73 @@ MonoBehaviour:
       sprite: {fileID: 0}
       Title: 
       Text: 
+    levelName: 
+  - eventType: 1
+    eventDuration: 2
+    virtualCamIndex: 3
+    popUpsMsg:
+    - rpgStyle: 0
+      anchor: {fileID: 0}
+      offset: {x: 830, y: 400, z: 0}
+      usingSprite: 1
+      sprite: {fileID: 21300000, guid: 013d0ca5a2e30f7438158762ce87327c, type: 3}
+      Title: General Globulus
+      Text: "To launch blobz, drag the sling, aim, then release it\r\n"
+    UEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    foldout: 1
+    cellType: 0
+    newTickDuration: 0
+    persistentMsg:
+      rpgStyle: 0
+      anchor: {fileID: 0}
+      offset: {x: 0, y: 0, z: 0}
+      usingSprite: 1
+      sprite: {fileID: 21300000, guid: 013d0ca5a2e30f7438158762ce87327c, type: 3}
+      Title: General Globulus
+      Text: 
+    levelName: 
+  - eventType: 6
+    eventDuration: 2
+    virtualCamIndex: 3
+    popUpsMsg:
+    - rpgStyle: 1
+      anchor: {fileID: 0}
+      offset: {x: 0, y: 0, z: 0}
+      usingSprite: 1
+      sprite: {fileID: 21300000, guid: 013d0ca5a2e30f7438158762ce87327c, type: 3}
+      Title: 
+      Text: "Now, use it ! Launch soldiers to the fight !\r\n"
+    - rpgStyle: 1
+      anchor: {fileID: 0}
+      offset: {x: 0, y: 0, z: 0}
+      usingSprite: 1
+      sprite: {fileID: 21300000, guid: 013d0ca5a2e30f7438158762ce87327c, type: 3}
+      Title: 
+      Text: "To launch blobz, drag the sling, aim, then release it\r\n"
+    - rpgStyle: 1
+      anchor: {fileID: 0}
+      offset: {x: 0, y: 0, z: 0}
+      usingSprite: 1
+      sprite: {fileID: 21300000, guid: 013d0ca5a2e30f7438158762ce87327c, type: 3}
+      Title: 
+      Text: "Eliminate the enemies\r\n"
+    UEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    foldout: 1
+    cellType: 0
+    newTickDuration: 0
+    persistentMsg:
+      rpgStyle: 0
+      anchor: {fileID: 0}
+      offset: {x: 0, y: 0, z: 0}
+      usingSprite: 1
+      sprite: {fileID: 21300000, guid: 013d0ca5a2e30f7438158762ce87327c, type: 3}
+      Title: General Globulus
+      Text: "Eliminate the enemies\r"
+    levelName: 
   - eventType: 3
     eventDuration: 1
     virtualCamIndex: 3
@@ -106,3 +160,4 @@ MonoBehaviour:
       sprite: {fileID: 0}
       Title: 
       Text: 
+    levelName: 

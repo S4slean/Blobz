@@ -16,6 +16,7 @@ MonoBehaviour:
   questTitle: Conquer this planet !
   questDescription: 
   eventDone: 1
+  isEndingQuest: 1
   populationObjective: 0
   energyToObtain: 800
   cellType: 0
@@ -29,7 +30,7 @@ MonoBehaviour:
   nbrOfObject: 0
   questEvents:
   - eventType: 1
-    eventDuration: 1
+    eventDuration: 6
     virtualCamIndex: 0
     popUpsMsg:
     - rpgStyle: 1
@@ -85,3 +86,4 @@ MonoBehaviour:
       sprite: {fileID: 0}
       Title: 
       Text: 
+    levelName: 

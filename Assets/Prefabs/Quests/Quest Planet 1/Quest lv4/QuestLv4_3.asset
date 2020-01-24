@@ -16,6 +16,7 @@ MonoBehaviour:
   questTitle: 
   questDescription: 
   eventDone: 0
+  isEndingQuest: 0
   populationObjective: 0
   energyToObtain: 300
   cellType: 10
@@ -37,7 +38,7 @@ MonoBehaviour:
       offset: {x: 0, y: 0, z: 0}
       usingSprite: 1
       sprite: {fileID: 21300000, guid: c98328a721f45da4fb0b32121f3026db, type: 3}
-      Title: Oncle Sploodge
+      Title: Uncle Sploodge
       Text: "Show me now. Build 2 cells around a working battery.\r"
     UEvent:
       m_PersistentCalls:
@@ -53,4 +54,30 @@ MonoBehaviour:
       sprite: {fileID: 0}
       Title: 
       Text: 
+    levelName: 
+  - eventType: 6
+    eventDuration: 2
+    virtualCamIndex: 0
+    popUpsMsg:
+    - rpgStyle: 1
+      anchor: {fileID: 0}
+      offset: {x: 0, y: 0, z: 0}
+      usingSprite: 1
+      sprite: {fileID: 21300000, guid: c98328a721f45da4fb0b32121f3026db, type: 3}
+      Title: Oncle Sploodge
+      Text: "Show me now. Build 2 cells around a working battery.\r"
+    UEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    foldout: 1
+    cellType: 0
+    newTickDuration: 0
+    persistentMsg:
+      rpgStyle: 0
+      anchor: {fileID: 0}
+      offset: {x: 0, y: 0, z: 0}
+      usingSprite: 1
+      sprite: {fileID: 21300000, guid: 68215239a0bc5fa4a8ec1952bf8fed68, type: 3}
+      Title: Blob the Builder
+      Text: Build 2 cells around the battery
     levelName: 
