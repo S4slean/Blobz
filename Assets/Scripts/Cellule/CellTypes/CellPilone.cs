@@ -99,7 +99,7 @@ public class CellPilone : CellMain
             {
                 overloadSparke.SetSpikeNumberAndSpeed(overloadStack, overloadStack * 0.3f);
                 overloadStack++;
-                if (overloadStack >= myCellTemplate.overLoadTickMax)
+                if (overloadStack > myCellTemplate.overLoadTickMax)
                 {
                     Died(false);
                 }

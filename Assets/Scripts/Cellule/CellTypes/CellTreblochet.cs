@@ -41,7 +41,7 @@ public class CellTreblochet : CellMain
         }
         return BlobManager.BlobType.explorateur;
     }
-
+    
     public override void blobAddCheckType(int amount, BlobManager.BlobType _blobType , bool transmission)
     {
         switch (_blobType)
