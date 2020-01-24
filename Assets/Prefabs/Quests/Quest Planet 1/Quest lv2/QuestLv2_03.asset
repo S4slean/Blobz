@@ -26,11 +26,11 @@ MonoBehaviour:
   anyCells: 1
   colonialCellType: 0
   placeToGet: 0
-  destructType: 4
+  destructType: 1
   nbrOfObject: 3
   questEvents:
   - eventType: 1
-    eventDuration: 0
+    eventDuration: 5
     virtualCamIndex: 0
     popUpsMsg:
     - rpgStyle: 1
@@ -119,9 +119,9 @@ MonoBehaviour:
     eventDuration: 2
     virtualCamIndex: 0
     popUpsMsg:
-    - rpgStyle: 0
+    - rpgStyle: 1
       anchor: {fileID: 0}
-      offset: {x: 830, y: 300, z: 0}
+      offset: {x: 0, y: 0, z: 0}
       usingSprite: 1
       sprite: {fileID: 21300000, guid: cc3173b5ab91f26438949b73af93e3f9, type: 3}
       Title: MaJellyan
@@ -154,7 +154,7 @@ MonoBehaviour:
       Text: 
     levelName: 
   - eventType: 3
-    eventDuration: 0
+    eventDuration: 4
     virtualCamIndex: 0
     popUpsMsg:
     - rpgStyle: 1
@@ -192,7 +192,7 @@ MonoBehaviour:
       Text: 
     levelName: 
   - eventType: 6
-    eventDuration: 2
+    eventDuration: 5
     virtualCamIndex: 0
     popUpsMsg:
     - rpgStyle: 0
