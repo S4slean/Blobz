@@ -28,6 +28,8 @@ public class CellMain : PoolableObjects, PlayerAction
     public Transform TargetPos;
     private CellAlert alert;
 
+    public OverloadSparke overloadSparke;
+
 
 
 
@@ -282,6 +284,7 @@ public class CellMain : PoolableObjects, PlayerAction
         {
             if (!LevelManager.instance.cellInvicible)
             {
+                overloadSparke.SetSpikeNumberAndSpeed(overloadStack , overloadStack*0.3f );
                 overloadStack++;
                 if (overloadStack >= myCellTemplate.overLoadTickMax)
                 {
@@ -1002,6 +1005,7 @@ public class CellMain : PoolableObjects, PlayerAction
         currentEnergyPerClick = myCellTemplate.energyPerClick;
         currentEnergyCap = myCellTemplate.energyCapBase;
 
+
         //cellAtProximity.Clear();
         normalBlobNumber = 0;
         //coachBlobNumber = 0;
@@ -1024,6 +1028,9 @@ public class CellMain : PoolableObjects, PlayerAction
         ToggleOverload(false);
 
         overloadStack = 0;
+
+        overloadSparke.SetupPos(graphTransform.position + new Vector3(0, 0.2f, 0));
+
 
 
         RessourceTracker.instance.EnergyCapVariation(currentEnergyCap);

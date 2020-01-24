@@ -25,7 +25,7 @@ public class QuestDataInspector : Editor
 
     SerializedProperty destructTypProp;
     SerializedProperty nbrOfObjectProp;
-
+    SerializedProperty endingQuestProp;
 
 
 
@@ -38,6 +38,7 @@ public class QuestDataInspector : Editor
         questTypeProp = serializedObject.FindProperty("questType");
         questTitleProp = serializedObject.FindProperty("questTitle");
         questDescriptionProp = serializedObject.FindProperty("questDescription");
+        endingQuestProp = serializedObject.FindProperty("isEndingQuest");
         popObjProp = serializedObject.FindProperty("populationObjective");
 
         energyProp = serializedObject.FindProperty("energyToObtain");
@@ -62,6 +63,8 @@ public class QuestDataInspector : Editor
     {
         EditorGUILayout.PropertyField(questTypeProp);
         EditorGUILayout.PropertyField(questTitleProp);
+        EditorGUILayout.PropertyField(endingQuestProp);
+
 
         EditorGUILayout.BeginHorizontal();
         EditorGUILayout.PrefixLabel("QuestDescription");

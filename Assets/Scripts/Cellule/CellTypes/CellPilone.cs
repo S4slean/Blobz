@@ -18,6 +18,7 @@ public class CellPilone : CellMain
 
         if (!overLoad)
         {
+            overloadStack = 0;
             if (blobNumber > 0)
             {
                 BlobNumberVariation(-1, BlobCheck(), false);
@@ -96,6 +97,7 @@ public class CellPilone : CellMain
         {
             if (!LevelManager.instance.cellInvicible)
             {
+                overloadSparke.SetSpikeNumberAndSpeed(overloadStack, overloadStack * 0.3f);
                 overloadStack++;
                 if (overloadStack >= myCellTemplate.overLoadTickMax)
                 {

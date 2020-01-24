@@ -62,6 +62,7 @@ MonoBehaviour:
   clickInteraction: 1
   maxEnergie: 5
   explosionRadius: 0.8
+  maxBlobShreddedPerClick: 5
   maxBlobCoach: 0
   magazineDragRange: 1.5
   minDragRatio: 0.2

@@ -15,7 +15,8 @@ MonoBehaviour:
   questType: 1
   questTitle: 'Make it better '
   questDescription: 
-  eventDone: 0
+  eventDone: 1
+  isEndingQuest: 0
   populationObjective: 0
   energyToObtain: 400
   cellType: 0
@@ -77,6 +78,7 @@ MonoBehaviour:
       sprite: {fileID: 0}
       Title: 
       Text: 
+    levelName: 
   - eventType: 6
     eventDuration: 1.2
     virtualCamIndex: 0
@@ -102,6 +104,37 @@ MonoBehaviour:
       sprite: {fileID: 21300000, guid: 74a01104759d6494d8d651afa2ac8826, type: 3}
       Title: 
       Text: "I will destroy all of your cells and sploosh. \nTry reaching 400 sploosh"
+    levelName: 
+  - eventType: 7
+    eventDuration: 2
+    virtualCamIndex: 0
+    popUpsMsg: []
+    UEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 0}
+          m_MethodName: 
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: 
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    foldout: 0
+    cellType: 0
+    newTickDuration: 0
+    persistentMsg:
+      rpgStyle: 0
+      anchor: {fileID: 0}
+      offset: {x: 0, y: 0, z: 0}
+      usingSprite: 0
+      sprite: {fileID: 0}
+      Title: 
+      Text: 
+    levelName: 
   - eventType: 3
     eventDuration: 0
     virtualCamIndex: 0
@@ -120,3 +153,4 @@ MonoBehaviour:
       sprite: {fileID: 0}
       Title: 
       Text: 
+    levelName: 

@@ -349,6 +349,17 @@ public class UIManager : MonoBehaviour
 
     #endregion
 
+    #region VICTORY_SCREEN
+    Animator victoryScreen;
+
+    public void DisplayVictoryScreen()
+    {
+        victoryScreen.Play("Show");
+    }
+
+
+    #endregion
+
     #region GAMEOVER
     public GameObject gameOverScreen;
 

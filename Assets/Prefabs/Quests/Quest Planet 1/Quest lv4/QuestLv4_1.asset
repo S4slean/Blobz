@@ -29,7 +29,7 @@ MonoBehaviour:
   nbrOfObject: 0
   questEvents:
   - eventType: 1
-    eventDuration: 0
+    eventDuration: 2
     virtualCamIndex: 0
     popUpsMsg:
     - rpgStyle: 1
@@ -37,7 +37,7 @@ MonoBehaviour:
       offset: {x: 0, y: 0, z: 0}
       usingSprite: 1
       sprite: {fileID: 21300000, guid: c98328a721f45da4fb0b32121f3026db, type: 3}
-      Title: 
+      Title: Oncle Sploodge
       Text: "Alright, I saw you learn quite a few things but it will be different
         with me buddy. You need to optimise okay? We don\u2019t have infinite space
         around the nexus alright? \r\n"
@@ -46,7 +46,7 @@ MonoBehaviour:
       offset: {x: 0, y: 0, z: 0}
       usingSprite: 1
       sprite: {fileID: 21300000, guid: c98328a721f45da4fb0b32121f3026db, type: 3}
-      Title: 
+      Title: Oncle Sploodge
       Text: "Cool, listen to me kid. I know they explained you the proximity, but
         i\u2019m sure you already forgot. "
     - rpgStyle: 1
@@ -54,7 +54,7 @@ MonoBehaviour:
       offset: {x: 0, y: 0, z: 0}
       usingSprite: 1
       sprite: {fileID: 21300000, guid: c98328a721f45da4fb0b32121f3026db, type: 3}
-      Title: 
+      Title: Oncle Sploodge
       Text: "Basically, the different areas around a nexus modifies the specificities
         of the different cells, okay? You can learn what are the specificities by
         passing your mouse over the cells.\r\n"
@@ -63,12 +63,12 @@ MonoBehaviour:
       offset: {x: 0, y: 0, z: 0}
       usingSprite: 1
       sprite: {fileID: 21300000, guid: c98328a721f45da4fb0b32121f3026db, type: 3}
-      Title: 
+      Title: Oncle Sploodge
       Text: "Okay, build a basic system, i\u2019ll come check later."
     UEvent:
       m_PersistentCalls:
         m_Calls: []
-    foldout: 1
+    foldout: 0
     cellType: 0
     newTickDuration: 0
     persistentMsg:
@@ -79,3 +79,4 @@ MonoBehaviour:
       sprite: {fileID: 0}
       Title: 
       Text: 
+    levelName: 

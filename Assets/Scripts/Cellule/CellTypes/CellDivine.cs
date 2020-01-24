@@ -20,6 +20,7 @@ public class CellDivine : CellMain
 
         if (!overLoad)
         {
+            overloadStack = 0;
             if (blobNumber > 0 && !isLoaded)
             {
                 BlobNumberVariation(-1, BlobCheck(), false);
@@ -74,6 +75,7 @@ public class CellDivine : CellMain
         {
             if (!LevelManager.instance.cellInvicible)
             {
+                overloadSparke.SetSpikeNumberAndSpeed(overloadStack, overloadStack * 0.3f);
                 overloadStack++;
                 if (overloadStack >= myCellTemplate.overLoadTickMax)
                 {

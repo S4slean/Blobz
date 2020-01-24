@@ -13,6 +13,7 @@ public class CellProductrice : CellMain
     private int Life;
     public ProgressBar progressBar;
 
+
     public override void BlobsTick()
     {
         int production = outputLinks.Count + productionBonusPacket;
@@ -25,7 +26,7 @@ public class CellProductrice : CellMain
 
         if (!overLoad)
         {
-
+            overloadStack = 0;
             // ça marche bien mais à voir si quand 1 batiment meure la produciton saute avec ou pas
             //if ((int)Random.Range(0, 101) <= productionBonusRatio)
             //{
@@ -66,6 +67,7 @@ public class CellProductrice : CellMain
         {
             if (!LevelManager.instance.cellInvicible)
             {
+                overloadSparke.SetSpikeNumberAndSpeed(overloadStack, overloadStack * 0.3f);
                 overloadStack++;
                 if (overloadStack >= myCellTemplate.overLoadTickMax)
                 {

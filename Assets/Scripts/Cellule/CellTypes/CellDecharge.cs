@@ -21,27 +21,31 @@ public class CellDecharge : CellMain
 
         if (blobNumber > 0 && !actionmade)
         {
-            BlobNumberVariation(-1, BlobCheck() , false);
-            RessourceTracker.instance.EnergyVariation(specifiqueStats);
-            TextScore newTextescore = ObjectPooler.poolingSystem.GetPooledObject<TextScore>() as TextScore;
-            newTextescore.Outpool();
+            for (int i = 0; i < myCellTemplate.maxBlobShreddedPerClick; i++)
+            {
+                if (blobNumber > 0)
+                {
+                    BlobNumberVariation(-1, BlobCheck(), false);
+                    RessourceTracker.instance.EnergyVariation(specifiqueStats);
+                    TextScore newTextescore = ObjectPooler.poolingSystem.GetPooledObject<TextScore>() as TextScore;
+                    newTextescore.Outpool();
 
 
-            Debug.Log(myTransform.position);
-            newTextescore.myTransform.position = graphTransform.position + new Vector3(Random.Range(-0.5f, 0.5f), 2, 0);
-            newTextescore.textScore.text = ("+" + specifiqueStats.ToString());
-            newTextescore.PlayAnim();
-            actionmade = true;
+                    newTextescore.myTransform.position = graphTransform.position + new Vector3(Random.Range(-1.5f, 1.5f), 2, 0);
+                    newTextescore.textScore.text = ("+" + specifiqueStats.ToString());
+
+                    newTextescore.PlayAnim(Random.Range(-0.15f , 0.15f));
+
+                    actionmade = true;
+
+                }
+            }
         }
-
 
         if (actionmade)
         {
             anim.Play("PlayerInteraction", 0, 0f);
         }
-
-
-
     }
 
 }
