@@ -96,9 +96,9 @@ MonoBehaviour:
   timeToMaxSpeed: 0.6
   timeToZeroSpeed: 0.6
   defaultHeight: 35
-  camSpeed: 10
-  minHeight: 20
-  maxHeight: 100
+  camSpeed: 23
+  minHeight: 15
+  maxHeight: 60
   heightStep: 1
   panningSpeed: 50
   closesetPanningMultiplier: 0.5
