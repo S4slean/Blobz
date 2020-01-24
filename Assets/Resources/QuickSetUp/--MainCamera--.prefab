@@ -57,7 +57,7 @@ GameObject:
   - component: {fileID: 489078714425495523}
   m_Layer: 0
   m_Name: --MainCamera--
-  m_TagString: Untagged
+  m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -109,6 +109,7 @@ MonoBehaviour:
   tiltToMaxSpeed: 0.001
   tiltToZeroSpeed: 0.001
   tiltLength: 1
+  isPanning: 0
 --- !u!114 &7957181515078020139
 MonoBehaviour:
   m_ObjectHideFlags: 0
