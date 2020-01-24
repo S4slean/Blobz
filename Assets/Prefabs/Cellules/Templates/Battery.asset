@@ -18,6 +18,8 @@ MonoBehaviour:
   cellTexture: {fileID: 0}
   type: 9
   description: High proximty in the surrounding area
+  descriptionProximity: 
+  descriptionClick: 
   generateProximity: 1
   proximityColliderNumber: 1
   proximityColliders:
@@ -60,7 +62,10 @@ MonoBehaviour:
   STATS: 0
   ProductionGestion: 1
   ProximityGestion: 1
+  clickInteraction: 0
   maxEnergie: 5
+  explosionRadius: 0.8
+  maxBlobShreddedPerClick: 1
   maxBlobCoach: 0
   magazineDragRange: 1.5
   minDragRatio: 0.2
