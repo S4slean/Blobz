@@ -16,6 +16,7 @@ MonoBehaviour:
   questTitle: 'The are coming '
   questDescription: 
   eventDone: 0
+  isEndingQuest: 0
   populationObjective: 0
   energyToObtain: 0
   cellType: 0
@@ -29,7 +30,7 @@ MonoBehaviour:
   nbrOfObject: 0
   questEvents:
   - eventType: 1
-    eventDuration: 0
+    eventDuration: 2
     virtualCamIndex: 0
     popUpsMsg:
     - rpgStyle: 1
@@ -49,10 +50,18 @@ MonoBehaviour:
       Title: General Globulus
       Text: "Here they come ! Launch some soldiers to help your turret ! And collect
         more sploosh soldier ! We need MORE !\r\n"
+    - rpgStyle: 1
+      anchor: {fileID: 0}
+      offset: {x: 0, y: 0, z: 0}
+      usingSprite: 1
+      sprite: {fileID: 21300000, guid: 013d0ca5a2e30f7438158762ce87327c, type: 3}
+      Title: General Globulus
+      Text: "They are coming from both sides, don\u2019t let them destroy our cells,
+        or our blobz will turn into evil ones just like them !\n"
     UEvent:
       m_PersistentCalls:
         m_Calls: []
-    foldout: 1
+    foldout: 0
     cellType: 0
     newTickDuration: 0
     persistentMsg:
@@ -63,3 +72,92 @@ MonoBehaviour:
       sprite: {fileID: 0}
       Title: 
       Text: 
+    levelName: 
+  - eventType: 7
+    eventDuration: 1
+    virtualCamIndex: 0
+    popUpsMsg:
+    - rpgStyle: 1
+      anchor: {fileID: 0}
+      offset: {x: 0, y: 0, z: 0}
+      usingSprite: 1
+      sprite: {fileID: 21300000, guid: 013d0ca5a2e30f7438158762ce87327c, type: 3}
+      Title: General Globulus
+      Text: "Turrets are used to attack enemies that come close to them. But they
+        need ammos. Blobz that go inside transform into bullets. When the turrets
+        are full, blobz don\u2019t sacrifice themself and leave the cell.\r\n"
+    - rpgStyle: 1
+      anchor: {fileID: 0}
+      offset: {x: 0, y: 0, z: 0}
+      usingSprite: 1
+      sprite: {fileID: 21300000, guid: 013d0ca5a2e30f7438158762ce87327c, type: 3}
+      Title: General Globulus
+      Text: "Here they come ! Launch some soldiers to help your turret ! And collect
+        more sploosh soldier ! We need MORE !\r\n"
+    - rpgStyle: 1
+      anchor: {fileID: 0}
+      offset: {x: 0, y: 0, z: 0}
+      usingSprite: 1
+      sprite: {fileID: 21300000, guid: 013d0ca5a2e30f7438158762ce87327c, type: 3}
+      Title: General Globulus
+      Text: "They are coming from both sides, don\u2019t let them destroy our cells,
+        or our blobz will turn into evil ones just like them !\n"
+    UEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    foldout: 0
+    cellType: 0
+    newTickDuration: 0
+    persistentMsg:
+      rpgStyle: 0
+      anchor: {fileID: 0}
+      offset: {x: 0, y: 0, z: 0}
+      usingSprite: 0
+      sprite: {fileID: 0}
+      Title: 
+      Text: 
+    levelName: 
+  - eventType: 6
+    eventDuration: 2
+    virtualCamIndex: 0
+    popUpsMsg:
+    - rpgStyle: 1
+      anchor: {fileID: 0}
+      offset: {x: 0, y: 0, z: 0}
+      usingSprite: 1
+      sprite: {fileID: 21300000, guid: 013d0ca5a2e30f7438158762ce87327c, type: 3}
+      Title: General Globulus
+      Text: "Turrets are used to attack enemies that come close to them. But they
+        need ammos. Blobz that go inside transform into bullets. When the turrets
+        are full, blobz don\u2019t sacrifice themself and leave the cell.\r\n"
+    - rpgStyle: 1
+      anchor: {fileID: 0}
+      offset: {x: 0, y: 0, z: 0}
+      usingSprite: 1
+      sprite: {fileID: 21300000, guid: 013d0ca5a2e30f7438158762ce87327c, type: 3}
+      Title: General Globulus
+      Text: "Here they come ! Launch some soldiers to help your turret ! And collect
+        more sploosh soldier ! We need MORE !\r\n"
+    - rpgStyle: 1
+      anchor: {fileID: 0}
+      offset: {x: 0, y: 0, z: 0}
+      usingSprite: 1
+      sprite: {fileID: 21300000, guid: 013d0ca5a2e30f7438158762ce87327c, type: 3}
+      Title: General Globulus
+      Text: "They are coming from both sides, don\u2019t let them destroy our cells,
+        or our blobz will turn into evil ones just like them !\n"
+    UEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    foldout: 0
+    cellType: 0
+    newTickDuration: 0
+    persistentMsg:
+      rpgStyle: 0
+      anchor: {fileID: 0}
+      offset: {x: 0, y: 0, z: 0}
+      usingSprite: 1
+      sprite: {fileID: 21300000, guid: 013d0ca5a2e30f7438158762ce87327c, type: 3}
+      Title: General Globulus
+      Text: Defend yourself
+    levelName: 
