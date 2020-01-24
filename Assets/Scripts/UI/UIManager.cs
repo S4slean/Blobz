@@ -145,6 +145,7 @@ public class UIManager : MonoBehaviour
 
         if (tooltipCount > firstTooltipDelay && !firstTooltipDisplayed)
         {
+            Debug.Log("DisplayTooltip");
             DisplayTooltip(pos, cell, displayCost);
         }
 
@@ -157,8 +158,8 @@ public class UIManager : MonoBehaviour
 
     public void DisplayTooltip(Vector3 pos, CellMain cell, bool displayCost)
     {
-        tooltipUI.UpdateUI(cell, displayCost);
         DisplayUI(tooltipUI.gameObject);
+        tooltipUI.UpdateUI(cell, displayCost);
         tooltipUI.transform.position = pos + Vector3.up;
         //tooltipUI.anim.Play("first Display");
 
