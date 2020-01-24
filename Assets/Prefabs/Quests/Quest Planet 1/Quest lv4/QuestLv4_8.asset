@@ -16,6 +16,7 @@ MonoBehaviour:
   questTitle: 
   questDescription: 
   eventDone: 0
+  isEndingQuest: 1
   populationObjective: 0
   energyToObtain: 0
   cellType: 13

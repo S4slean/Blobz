@@ -16,6 +16,7 @@ MonoBehaviour:
   questTitle: Go Rocket Blob !
   questDescription: 
   eventDone: 0
+  isEndingQuest: 1
   populationObjective: 0
   energyToObtain: 0
   cellType: 13
@@ -72,6 +73,7 @@ MonoBehaviour:
       sprite: {fileID: 0}
       Title: 
       Text: 
+    levelName: 
   - eventType: 1
     eventDuration: 2
     virtualCamIndex: 0
@@ -105,6 +107,7 @@ MonoBehaviour:
       sprite: {fileID: 0}
       Title: 
       Text: 
+    levelName: 
   - eventType: 4
     eventDuration: 0
     virtualCamIndex: 0
@@ -138,3 +141,4 @@ MonoBehaviour:
       sprite: {fileID: 0}
       Title: 
       Text: 
+    levelName: 
