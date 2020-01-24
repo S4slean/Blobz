@@ -20,13 +20,20 @@ public class treblochetChargeur : MonoBehaviour, PlayerAction
     private float finalDistance;
 
     public TreblobchetUISlot[] treblobchetUISlots;
+    private Transform myTransform;
 
 
     private void Awake()
     {
         transform.position = new Vector3(transform.position.x, parent.graphTransform.position.y, transform.position.z);
 
+
         disTanceFromParent = Vector3.Distance(transform.position, parent.transform.position);
+
+        if (myTransform == null)
+        {
+            myTransform = transform;
+        }
     }
 
 
@@ -35,6 +42,8 @@ public class treblochetChargeur : MonoBehaviour, PlayerAction
         dragRange = parent.myCellTemplate.magazineDragRange;
         UIGestion();
         myCollider.enabled = true;
+        myTransform.position = parent.graphTransform.position;
+        
     }
 
     private void DragAction(RaycastHit hit)
