@@ -62,7 +62,7 @@ public class CameraController : MonoBehaviour
         }
 
         originPos = new Vector3(transform.position.x, 0, transform.position.z);
-        camHeightGoal = minHeight;
+        camHeightGoal = maxHeight;
         camHeight = maxHeight;
         camfHeight = maxHeight * -1 + 1;
         transform.position = originPos + new Vector3(0, camHeight, camfHeight);
