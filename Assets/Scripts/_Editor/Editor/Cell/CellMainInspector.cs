@@ -7,9 +7,9 @@ using UnityEditor;
 [CustomEditor(typeof(CellMain), true)]
 public class CellMainInspector : Editor
 {
-    SerializedProperty myCellTemplateProp , isNexusProp;
+    SerializedProperty myCellTemplateProp, isNexusProp;
 
-    SerializedProperty NBlobProp, NLinkProp, NCurrentProximityProp, graphTransformProp, ProximityDectectionProp , domeMRProp, spriteMRProp;
+    SerializedProperty /*NBlobProp, NLinkProp,*/ NCurrentProximityProp, graphTransformProp, ProximityDectectionProp, domeMRProp, spriteMRProp;
     //debugProperty 
     SerializedProperty linksProp, noMoreLinkProp, BlobNumberProp, hasBeenDropProp;
 
@@ -17,20 +17,26 @@ public class CellMainInspector : Editor
 
     SerializedProperty TargetPosProp;
 
-    SerializedProperty coachIconProp , exploIcon;
+    SerializedProperty coachIconProp, exploIcon;
 
     SerializedProperty animProp;
 
+    SerializedProperty blobDisplayProp;
+
+    SerializedProperty hasCustomEventProp, onConnectEventProp, onOverloadEventProp;
 
 
-    
+
+
+
     private void OnEnable()
     {
         myCellTemplateProp = serializedObject.FindProperty("myCellTemplate");
         isNexusProp = serializedObject.FindProperty("isNexus");
 
-        NBlobProp = serializedObject.FindProperty("NBlob");
-        NLinkProp = serializedObject.FindProperty("NLink");
+        // NBlobProp = serializedObject.FindProperty("NBlob");
+        // NLinkProp = serializedObject.FindProperty("NLink");
+        blobDisplayProp = serializedObject.FindProperty("blobDisplay");
         NCurrentProximityProp = serializedObject.FindProperty("NCurrentProximity");
         graphTransformProp = serializedObject.FindProperty("graphTransform");
         ProximityDectectionProp = serializedObject.FindProperty("ProximityDectection");
@@ -53,6 +59,10 @@ public class CellMainInspector : Editor
         TargetPosProp = serializedObject.FindProperty("TargetPos");
 
         animProp = serializedObject.FindProperty("anim");
+
+        hasCustomEventProp = serializedObject.FindProperty("hasCustomEvent");
+        onConnectEventProp = serializedObject.FindProperty("onConnectEvent");
+        onOverloadEventProp = serializedObject.FindProperty("onOverloadEvent");
     }
 
     public override void OnInspectorGUI()
@@ -69,19 +79,28 @@ public class CellMainInspector : Editor
         EditorGUI.indentLevel += 2;
         EditorGUILayout.PropertyField(isNexusProp);
         EditorGUI.indentLevel -= 2;
-       
 
-        EditorGUILayout.PropertyField(showRefProp );
+        EditorGUILayout.PropertyField(hasCustomEventProp);
+        //foldRef = EditorGUILayout.Foldout(foldRef, "Display REF VARIABLES", true);
+        if (hasCustomEventProp.boolValue)
+        {
+            EditorGUILayout.PropertyField(onConnectEventProp);
+            EditorGUILayout.PropertyField(onOverloadEventProp);
+        }
+
+        EditorGUILayout.PropertyField(showRefProp);
         //foldRef = EditorGUILayout.Foldout(foldRef, "Display REF VARIABLES", true);
         if (showRefProp.boolValue)
         {
 
             EditorGUI.indentLevel += 1;
-            EditorGUILayout.PropertyField(NBlobProp);
-            EditorGUILayout.PropertyField(NLinkProp);
+            // EditorGUILayout.PropertyField(NBlobProp);
+            // EditorGUILayout.PropertyField(NLinkProp);
+
+            EditorGUILayout.PropertyField(blobDisplayProp);
             EditorGUILayout.PropertyField(NCurrentProximityProp);
             EditorGUILayout.PropertyField(graphTransformProp);
-           // EditorGUILayout.PropertyField(ProximityDectectionProp);
+            // EditorGUILayout.PropertyField(ProximityDectectionProp);
             EditorGUILayout.PropertyField(TargetPosProp);
             EditorGUILayout.PropertyField(animProp);
 
@@ -90,7 +109,7 @@ public class CellMainInspector : Editor
 
             EditorGUILayout.PropertyField(coachIconProp);
             EditorGUILayout.PropertyField(exploIcon);
-         
+
 
             EditorGUI.indentLevel -= 1;
         }
