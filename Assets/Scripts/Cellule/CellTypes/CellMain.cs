@@ -351,11 +351,11 @@ public class CellMain : PoolableObjects, PlayerAction
 
         }
         #region SpawnBlobAtDeath
-        int blobAmount = (int)Mathf.Ceil((float)blolbNumberAtOverload / (float)10);
+        int blobAmount = (int)Mathf.Ceil((float)blolbNumberAtOverload * ((float)myCellTemplate.blobSpawnRatioAtDeath / 100f));
 
         if (!intentionnalDeath)
         {
-            blobAmount += (int)Mathf.Floor((float)blobAmount / (float)2);
+            blobAmount += (int)Mathf.Floor((float)blobAmount * ((float)myCellTemplate.blobSpawnAdditionnalRatioAtDeath / 100f));
         }
         //Spawn les blobs
         for (int i = 0; i < blobAmount; i++)
@@ -739,7 +739,7 @@ public class CellMain : PoolableObjects, PlayerAction
                 newProximityCollider.transform.localScale = new Vector3(1, 1, 1) * (myCellTemplate.proximityColliders[i].range / 2);
                 newProximityCollider.transform.SetParent(transform);
                 newProximityCollider.productionBonusRatio = myCellTemplate.proximityColliders[i].productionBonusRatio;
-                newProximityCollider.Init(myCellTemplate.proximityColliders[i].proximityLevel, transform);
+                newProximityCollider.Init(myCellTemplate.proximityColliders[i].proximityLevel, graphTransform);
                 newProximityCollider.parent = this;
 
                 newProximityCollider.Outpool();

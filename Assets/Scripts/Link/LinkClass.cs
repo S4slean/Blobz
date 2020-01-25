@@ -211,6 +211,11 @@ public class LinkClass : PoolableObjects
     public void Transmitt(int blobAmount, BlobManager.BlobType _blobType)
     {
 
+        if (anim == null || originalCell == null || receivingCell == null)
+        {
+            return;
+        }
+
         transmitType = _blobType;
         transMitAmount = blobAmount;
 
@@ -296,7 +301,7 @@ public class LinkClass : PoolableObjects
             for (int i = 0; i < lockIcon.Length; i++)
             {
                 lockIcon[i].SetActive(true);
-                lockIcon[i].transform.position = extremityPos[i] + new Vector3(0, 0.02f, 0);
+                lockIcon[i].transform.position = extremityPos[i] + new Vector3(0, 0.05f, 0);
             }
         }
         else
