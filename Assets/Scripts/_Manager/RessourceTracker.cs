@@ -33,12 +33,24 @@ public class RessourceTracker : MonoBehaviour
     public int energy;
     public int blobProduced;
 
+    public int enemyKilled;
+
     private void Awake()
     {
         instance = this;
     }
 
+    #region COMBAT
+    public void AddKill()
+    {
+        enemyKilled++;
+    }
 
+    public void ResetKillCount()
+    {
+        enemyKilled = 0;
+    }
+    #endregion
 
     #region CELLS
     public void AddCell(CellMain cell)

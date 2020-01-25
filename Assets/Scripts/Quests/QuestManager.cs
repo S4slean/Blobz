@@ -70,6 +70,7 @@ public class QuestManager : MonoBehaviour
     {
         currentQuestID++;
         questProgress = 0;
+        RessourceTracker.instance.enemyKilled = 0;
         if (QuestList.Count > currentQuestID)
         {
             currentQuest = QuestList[currentQuestID];
@@ -186,6 +187,8 @@ public class QuestManager : MonoBehaviour
 
             case QuestType.Destruction:
 
+                if (currentQuest.destructType == Destructible.DestructType.EnemyBlob)
+                    questProgress = RessourceTracker.instance.enemyKilled;
 
                 if (questProgress == currentQuest.nbrOfObject)
                     QuestSuccess();
