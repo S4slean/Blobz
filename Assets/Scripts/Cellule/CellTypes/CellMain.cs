@@ -852,8 +852,12 @@ public class CellMain : PoolableObjects, PlayerAction
                 if (stuckBlobs.Count >0)
                 {
                     differenceAmount = currentBlobStockage - myCellTemplate.stockageCapacity[LastProximityTier];
+                    if (differenceAmount >0 )
+                    {
+                        differenceAmount = 0;
+                    }
                 }
-                currentBlobStockage = myCellTemplate.stockageCapacity[currentProximityTier] - differenceAmount;
+                currentBlobStockage = myCellTemplate.stockageCapacity[currentProximityTier] + differenceAmount;
 
                 break;
 
