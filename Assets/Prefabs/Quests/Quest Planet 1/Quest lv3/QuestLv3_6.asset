@@ -26,7 +26,7 @@ MonoBehaviour:
   anyCells: 1
   colonialCellType: 0
   placeToGet: 0
-  destructType: 2
+  destructType: 3
   nbrOfObject: 1
   questEvents:
   - eventType: 1

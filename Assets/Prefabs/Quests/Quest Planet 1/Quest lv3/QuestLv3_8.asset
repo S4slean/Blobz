@@ -39,8 +39,7 @@ MonoBehaviour:
       usingSprite: 1
       sprite: {fileID: 21300000, guid: 013d0ca5a2e30f7438158762ce87327c, type: 3}
       Title: General Globulus
-      Text: "There are 2 others enemy villages somewhere. Find them and destroy them
-        !\r\n"
+      Text: 'Destroy the cells of the village '
     - rpgStyle: 1
       anchor: {fileID: 0}
       offset: {x: 0, y: 0, z: 0}
