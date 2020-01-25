@@ -59,25 +59,6 @@ MonoBehaviour:
         blobz at the same time in the rocket.
 
 '
-    UEvent:
-      m_PersistentCalls:
-        m_Calls: []
-    foldout: 0
-    cellType: 0
-    newTickDuration: 0
-    persistentMsg:
-      rpgStyle: 0
-      anchor: {fileID: 0}
-      offset: {x: 0, y: 0, z: 0}
-      usingSprite: 0
-      sprite: {fileID: 0}
-      Title: 
-      Text: 
-    levelName: 
-  - eventType: 1
-    eventDuration: 5
-    virtualCamIndex: 0
-    popUpsMsg:
     - rpgStyle: 1
       anchor: {fileID: 0}
       offset: {x: 0, y: 0, z: 0}
@@ -92,7 +73,7 @@ MonoBehaviour:
       sprite: {fileID: 21300000, guid: cc3173b5ab91f26438949b73af93e3f9, type: 3}
       Title: MaJellyan
       Text: "Get all the blobz on board ! Let\u2019s leave this planet and conquer
-        the universe !\r\n\n"
+        the universe !\r\n"
     UEvent:
       m_PersistentCalls:
         m_Calls: []
@@ -108,6 +89,207 @@ MonoBehaviour:
       Title: 
       Text: 
     levelName: 
+    levelEvent: 0
+  - eventType: 3
+    eventDuration: 0
+    virtualCamIndex: 0
+    popUpsMsg:
+    - rpgStyle: 1
+      anchor: {fileID: 0}
+      offset: {x: 0, y: 0, z: 0}
+      usingSprite: 1
+      sprite: {fileID: 21300000, guid: cc3173b5ab91f26438949b73af93e3f9, type: 3}
+      Title: MaJellyan
+      Text: '
+
+'
+    - rpgStyle: 1
+      anchor: {fileID: 0}
+      offset: {x: 0, y: 0, z: 0}
+      usingSprite: 1
+      sprite: {fileID: 21300000, guid: cc3173b5ab91f26438949b73af93e3f9, type: 3}
+      Title: MaJellyan
+      Text: '
+
+'
+    - rpgStyle: 1
+      anchor: {fileID: 0}
+      offset: {x: 0, y: 0, z: 0}
+      usingSprite: 1
+      sprite: {fileID: 21300000, guid: cc3173b5ab91f26438949b73af93e3f9, type: 3}
+      Title: MaJellyan
+      Text: '
+
+'
+    - rpgStyle: 1
+      anchor: {fileID: 0}
+      offset: {x: 0, y: 0, z: 0}
+      usingSprite: 1
+      sprite: {fileID: 21300000, guid: cc3173b5ab91f26438949b73af93e3f9, type: 3}
+      Title: MaJellyan
+      Text: '
+
+'
+    - rpgStyle: 1
+      anchor: {fileID: 0}
+      offset: {x: 0, y: 0, z: 0}
+      usingSprite: 1
+      sprite: {fileID: 21300000, guid: cc3173b5ab91f26438949b73af93e3f9, type: 3}
+      Title: MaJellyan
+      Text: '
+
+'
+    - rpgStyle: 1
+      anchor: {fileID: 0}
+      offset: {x: 0, y: 0, z: 0}
+      usingSprite: 1
+      sprite: {fileID: 21300000, guid: cc3173b5ab91f26438949b73af93e3f9, type: 3}
+      Title: MaJellyan
+      Text: '
+
+'
+    - rpgStyle: 1
+      anchor: {fileID: 0}
+      offset: {x: 0, y: 0, z: 0}
+      usingSprite: 1
+      sprite: {fileID: 21300000, guid: cc3173b5ab91f26438949b73af93e3f9, type: 3}
+      Title: MaJellyan
+      Text: '
+
+'
+    - rpgStyle: 1
+      anchor: {fileID: 0}
+      offset: {x: 0, y: 0, z: 0}
+      usingSprite: 1
+      sprite: {fileID: 21300000, guid: cc3173b5ab91f26438949b73af93e3f9, type: 3}
+      Title: MaJellyan
+      Text: '
+
+'
+    - rpgStyle: 1
+      anchor: {fileID: 0}
+      offset: {x: 0, y: 0, z: 0}
+      usingSprite: 1
+      sprite: {fileID: 21300000, guid: cc3173b5ab91f26438949b73af93e3f9, type: 3}
+      Title: MaJellyan
+      Text: '
+
+'
+    - rpgStyle: 1
+      anchor: {fileID: 0}
+      offset: {x: 0, y: 0, z: 0}
+      usingSprite: 1
+      sprite: {fileID: 21300000, guid: cc3173b5ab91f26438949b73af93e3f9, type: 3}
+      Title: MaJellyan
+      Text: '
+
+'
+    - rpgStyle: 1
+      anchor: {fileID: 0}
+      offset: {x: 0, y: 0, z: 0}
+      usingSprite: 1
+      sprite: {fileID: 21300000, guid: cc3173b5ab91f26438949b73af93e3f9, type: 3}
+      Title: MaJellyan
+      Text: '
+
+'
+    - rpgStyle: 1
+      anchor: {fileID: 0}
+      offset: {x: 0, y: 0, z: 0}
+      usingSprite: 1
+      sprite: {fileID: 21300000, guid: cc3173b5ab91f26438949b73af93e3f9, type: 3}
+      Title: MaJellyan
+      Text: '
+
+'
+    - rpgStyle: 1
+      anchor: {fileID: 0}
+      offset: {x: 0, y: 0, z: 0}
+      usingSprite: 1
+      sprite: {fileID: 21300000, guid: cc3173b5ab91f26438949b73af93e3f9, type: 3}
+      Title: MaJellyan
+      Text: '
+
+'
+    - rpgStyle: 1
+      anchor: {fileID: 0}
+      offset: {x: 0, y: 0, z: 0}
+      usingSprite: 1
+      sprite: {fileID: 21300000, guid: cc3173b5ab91f26438949b73af93e3f9, type: 3}
+      Title: MaJellyan
+      Text: '
+
+'
+    - rpgStyle: 1
+      anchor: {fileID: 0}
+      offset: {x: 0, y: 0, z: 0}
+      usingSprite: 1
+      sprite: {fileID: 21300000, guid: cc3173b5ab91f26438949b73af93e3f9, type: 3}
+      Title: MaJellyan
+      Text: '
+
+'
+    - rpgStyle: 1
+      anchor: {fileID: 0}
+      offset: {x: 0, y: 0, z: 0}
+      usingSprite: 1
+      sprite: {fileID: 21300000, guid: cc3173b5ab91f26438949b73af93e3f9, type: 3}
+      Title: MaJellyan
+      Text: '
+
+'
+    - rpgStyle: 1
+      anchor: {fileID: 0}
+      offset: {x: 0, y: 0, z: 0}
+      usingSprite: 1
+      sprite: {fileID: 21300000, guid: cc3173b5ab91f26438949b73af93e3f9, type: 3}
+      Title: MaJellyan
+      Text: '
+
+'
+    - rpgStyle: 1
+      anchor: {fileID: 0}
+      offset: {x: 0, y: 0, z: 0}
+      usingSprite: 1
+      sprite: {fileID: 21300000, guid: cc3173b5ab91f26438949b73af93e3f9, type: 3}
+      Title: MaJellyan
+      Text: '
+
+'
+    - rpgStyle: 1
+      anchor: {fileID: 0}
+      offset: {x: 0, y: 0, z: 0}
+      usingSprite: 1
+      sprite: {fileID: 21300000, guid: cc3173b5ab91f26438949b73af93e3f9, type: 3}
+      Title: MaJellyan
+      Text: '
+
+'
+    - rpgStyle: 1
+      anchor: {fileID: 0}
+      offset: {x: 0, y: 0, z: 0}
+      usingSprite: 1
+      sprite: {fileID: 21300000, guid: cc3173b5ab91f26438949b73af93e3f9, type: 3}
+      Title: MaJellyan
+      Text: '
+
+'
+    UEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    foldout: 1
+    cellType: 0
+    newTickDuration: 0
+    persistentMsg:
+      rpgStyle: 0
+      anchor: {fileID: 0}
+      offset: {x: 0, y: 0, z: 0}
+      usingSprite: 0
+      sprite: {fileID: 0}
+      Title: 
+      Text: 
+    levelName: 
+    levelEvent: 0
   - eventType: 4
     eventDuration: 0
     virtualCamIndex: 0
@@ -142,3 +324,4 @@ MonoBehaviour:
       Title: 
       Text: 
     levelName: 
+    levelEvent: 0

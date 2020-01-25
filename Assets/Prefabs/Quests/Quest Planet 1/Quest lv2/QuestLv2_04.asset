@@ -55,6 +55,7 @@ MonoBehaviour:
       Title: 
       Text: 
     levelName: 
+    levelEvent: 0
   - eventType: 0
     eventDuration: 2
     virtualCamIndex: 8
@@ -81,6 +82,7 @@ MonoBehaviour:
       Title: 
       Text: 
     levelName: 
+    levelEvent: 0
   - eventType: 1
     eventDuration: 5
     virtualCamIndex: 0
@@ -114,6 +116,7 @@ MonoBehaviour:
       Title: 
       Text: 
     levelName: 
+    levelEvent: 0
   - eventType: 3
     eventDuration: 3
     virtualCamIndex: 0
@@ -159,3 +162,4 @@ MonoBehaviour:
       Title: 
       Text: 
     levelName: 
+    levelEvent: 0
