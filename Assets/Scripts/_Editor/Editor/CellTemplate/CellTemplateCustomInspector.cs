@@ -12,7 +12,7 @@ public class CellTemplateCustomInspector : Editor
     #region VARIABLES
     SerializedProperty cellsEnableToBuildProp, blopPrefabProp, buttonColorProp, cellTextureProp;
     SerializedProperty typeProp;
-    SerializedProperty energyCostProp, energyCapBaseProp, rangeBaseProp, blobRatioAtDeathProp, impulseForce_DeathProp;
+    SerializedProperty energyCostProp, energyCapBaseProp, rangeBaseProp, blobSpawnRatioAtDeathProp , blobSpawnAdditionnalRatioAtDeath;
 
     SerializedProperty prodPerTickProp, rejectPowerProp, storageCapabilityProp/*, linkCapabilityProp*/, tickForActivationBaseProp, energyPerClickProp;
 
@@ -93,8 +93,8 @@ public class CellTemplateCustomInspector : Editor
         energyCapBaseProp = serializedObject.FindProperty("energyCapBase");
 
         rangeBaseProp = serializedObject.FindProperty("rangeBase");
-        blobRatioAtDeathProp = serializedObject.FindProperty("blobRatioAtDeath");
-        impulseForce_DeathProp = serializedObject.FindProperty("impulseForce_Death");
+        blobSpawnRatioAtDeathProp = serializedObject.FindProperty("blobSpawnRatioAtDeath");
+        blobSpawnAdditionnalRatioAtDeath = serializedObject.FindProperty("blobSpawnAdditionnalRatioAtDeath");
 
         overLoadTickMaxProp = serializedObject.FindProperty("overLoadTickMax");
         overloadTreshHoldProp = serializedObject.FindProperty("overloadTreshHold");
@@ -377,8 +377,8 @@ public class CellTemplateCustomInspector : Editor
 
             if (EditorGUIUtility.currentViewWidth < 485)
             {
-                EditorGUILayout.PropertyField(blobRatioAtDeathProp);
-                EditorGUILayout.PropertyField(impulseForce_DeathProp);
+                EditorGUILayout.PropertyField(blobSpawnRatioAtDeathProp);
+                EditorGUILayout.PropertyField(blobSpawnAdditionnalRatioAtDeath);
 
                 EditorGUILayout.Space();
                 EditorGUILayout.PropertyField(energyPerClickProp);
@@ -395,8 +395,8 @@ public class CellTemplateCustomInspector : Editor
                 EditorGUIUtility.fieldWidth = 30;
                 EditorGUIUtility.labelWidth = 140;
 
-                EditorGUILayout.PropertyField(blobRatioAtDeathProp);
-                EditorGUILayout.PropertyField(impulseForce_DeathProp);
+                EditorGUILayout.PropertyField(blobSpawnRatioAtDeathProp);
+                EditorGUILayout.PropertyField(blobSpawnAdditionnalRatioAtDeath);
 
                 EditorGUIUtility.labelWidth = labelWidthBase;
                 EditorGUIUtility.fieldWidth = fieldWidthBase;
