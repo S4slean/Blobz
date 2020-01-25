@@ -39,7 +39,7 @@ MonoBehaviour:
       usingSprite: 1
       sprite: {fileID: 21300000, guid: 74a01104759d6494d8d651afa2ac8826, type: 3}
       Title: 
-      Text: Wow, this is great ! Now reach 250 sploosh
+      Text: Wow, this is great ! Now reach 350 sploosh
     UEvent:
       m_PersistentCalls:
         m_Calls: []
@@ -55,6 +55,7 @@ MonoBehaviour:
       Title: 
       Text: 
     levelName: 
+    levelEvent: 0
   - eventType: 6
     eventDuration: 5
     virtualCamIndex: 0
@@ -81,3 +82,4 @@ MonoBehaviour:
       Title: Blob the builder
       Text: Collect more sploosh
     levelName: 
+    levelEvent: 0

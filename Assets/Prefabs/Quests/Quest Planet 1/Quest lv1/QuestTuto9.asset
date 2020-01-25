@@ -97,9 +97,9 @@ MonoBehaviour:
       Text: 
     levelName: 
     levelEvent: 0
-  - eventType: 9
+  - eventType: 0
     eventDuration: 2
-    virtualCamIndex: 0
+    virtualCamIndex: 8
     popUpsMsg: []
     UEvent:
       m_PersistentCalls:
@@ -117,8 +117,8 @@ MonoBehaviour:
       Text: 
     levelName: 
     levelEvent: 0
-  - eventType: 0
-    eventDuration: 2
+  - eventType: 9
+    eventDuration: 1
     virtualCamIndex: 8
     popUpsMsg: []
     UEvent:
