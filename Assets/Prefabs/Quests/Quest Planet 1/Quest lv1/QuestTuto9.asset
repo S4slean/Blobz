@@ -12,13 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac59c85db94beed47808c892abe2bae2, type: 3}
   m_Name: QuestTuto9
   m_EditorClassIdentifier: 
-  questType: 5
-  questTitle: 'Link it  '
-  questDescription: 
+  questType: 3
+  questTitle: Link it
+  questDescription: 'Link your cells to this dump
+
+'
   eventDone: 1
   isEndingQuest: 0
   populationObjective: 0
-  energyToObtain: 400
+  energyToObtain: 0
   cellType: 0
   level: 1
   cellNbrToObtain: 1
@@ -30,7 +32,7 @@ MonoBehaviour:
   nbrOfObject: 0
   questEvents:
   - eventType: 1
-    eventDuration: 4
+    eventDuration: 3
     virtualCamIndex: 0
     popUpsMsg:
     - rpgStyle: 1
@@ -39,7 +41,7 @@ MonoBehaviour:
       usingSprite: 1
       sprite: {fileID: 21300000, guid: 74a01104759d6494d8d651afa2ac8826, type: 3}
       Title: 
-      Text: "Look, the sploosh is rising by itself !\r\n"
+      Text: Look, the sploosh is rising by itself !
     - rpgStyle: 1
       anchor: {fileID: 0}
       offset: {x: 0, y: 0, z: 0}
@@ -71,7 +73,7 @@ MonoBehaviour:
       sprite: {fileID: 21300000, guid: 74a01104759d6494d8d651afa2ac8826, type: 3}
       Title: 
       Text: "About the links, you can create links between 2 existing cells. You can
-        also destroy a link or a cell by right clicking on them ! Look a this cell\r\n\r"
+        also destroy a link or a cell by right clicking on them ! Look a this cell\r\n"
     - rpgStyle: 1
       anchor: {fileID: 0}
       offset: {x: 0, y: 0, z: 0}
@@ -94,45 +96,61 @@ MonoBehaviour:
       Title: 
       Text: 
     levelName: 
-  - eventType: 6
-    eventDuration: 4
+    levelEvent: 0
+  - eventType: 9
+    eventDuration: 2
     virtualCamIndex: 0
-    popUpsMsg:
-    - rpgStyle: 0
-      anchor: {fileID: 0}
-      offset: {x: 830, y: 260, z: 0}
-      usingSprite: 1
-      sprite: {fileID: 21300000, guid: 68215239a0bc5fa4a8ec1952bf8fed68, type: 3}
-      Title: 
-      Text: ' '
+    popUpsMsg: []
     UEvent:
       m_PersistentCalls:
         m_Calls: []
-    foldout: 1
+    foldout: 0
     cellType: 0
     newTickDuration: 0
     persistentMsg:
       rpgStyle: 0
       anchor: {fileID: 0}
       offset: {x: 0, y: 0, z: 0}
-      usingSprite: 1
-      sprite: {fileID: 21300000, guid: 68215239a0bc5fa4a8ec1952bf8fed68, type: 3}
+      usingSprite: 0
+      sprite: {fileID: 0}
       Title: 
-      Text: Click and drag to create a link
+      Text: 
     levelName: 
-  - eventType: 7
+    levelEvent: 0
+  - eventType: 0
     eventDuration: 2
+    virtualCamIndex: 8
+    popUpsMsg: []
+    UEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    foldout: 0
+    cellType: 0
+    newTickDuration: 0
+    persistentMsg:
+      rpgStyle: 0
+      anchor: {fileID: 0}
+      offset: {x: 0, y: 0, z: 0}
+      usingSprite: 0
+      sprite: {fileID: 0}
+      Title: 
+      Text: 
+    levelName: 
+    levelEvent: 0
+  - eventType: 3
+    eventDuration: 1
     virtualCamIndex: 0
     popUpsMsg: []
     UEvent:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
-          m_MethodName: 
+        - m_Target: {fileID: 6190842183759939533, guid: 7b934126b67bf7f44aabfd0ea1f12c2e,
+            type: 3}
+          m_MethodName: ReturnToMainCam
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: 
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -150,8 +168,9 @@ MonoBehaviour:
       Title: 
       Text: 
     levelName: 
-  - eventType: 3
-    eventDuration: 0
+    levelEvent: 0
+  - eventType: 6
+    eventDuration: 3
     virtualCamIndex: 0
     popUpsMsg: []
     UEvent:
@@ -164,8 +183,9 @@ MonoBehaviour:
       rpgStyle: 0
       anchor: {fileID: 0}
       offset: {x: 0, y: 0, z: 0}
-      usingSprite: 0
-      sprite: {fileID: 0}
+      usingSprite: 1
+      sprite: {fileID: 21300000, guid: 68215239a0bc5fa4a8ec1952bf8fed68, type: 3}
       Title: 
-      Text: 
+      Text: Click and drag to create a link
     levelName: 
+    levelEvent: 0

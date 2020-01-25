@@ -63,6 +63,7 @@ MonoBehaviour:
       Title: 
       Text: 
     levelName: 
+    levelEvent: 0
   - eventType: 0
     eventDuration: 1
     virtualCamIndex: 7
@@ -89,6 +90,7 @@ MonoBehaviour:
       Title: 
       Text: 
     levelName: 
+    levelEvent: 0
   - eventType: 1
     eventDuration: 2
     virtualCamIndex: 1
@@ -111,7 +113,7 @@ MonoBehaviour:
     UEvent:
       m_PersistentCalls:
         m_Calls: []
-    foldout: 1
+    foldout: 0
     cellType: 0
     newTickDuration: 0
     persistentMsg:
@@ -123,6 +125,7 @@ MonoBehaviour:
       Title: 
       Text: 
     levelName: 
+    levelEvent: 0
   - eventType: 6
     eventDuration: 2
     virtualCamIndex: 1
@@ -151,6 +154,7 @@ MonoBehaviour:
 
 '
     levelName: 
+    levelEvent: 0
   - eventType: 3
     eventDuration: 0
     virtualCamIndex: 1
@@ -177,3 +181,4 @@ MonoBehaviour:
       Title: 
       Text: Use keyboard arrow or drag with your left click you
     levelName: 
+    levelEvent: 0

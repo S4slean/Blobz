@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   questType: 3
   questTitle: Colonize
-  questDescription: 
+  questDescription: Send a blob
   eventDone: 1
   isEndingQuest: 0
   populationObjective: 0
@@ -57,6 +57,13 @@ MonoBehaviour:
       Text: "As you may have noticed, links lengths aren't  infinite. The accelerator
         has way longer links length capacity. Also, they can expulse more blobz every
         tick than the other cells. \r\n"
+    - rpgStyle: 1
+      anchor: {fileID: 0}
+      offset: {x: 0, y: 0, z: 0}
+      usingSprite: 1
+      sprite: {fileID: 21300000, guid: cc3173b5ab91f26438949b73af93e3f9, type: 3}
+      Title: MaJellyan
+      Text: You see this point on the map
     UEvent:
       m_PersistentCalls:
         m_Calls:
@@ -84,8 +91,9 @@ MonoBehaviour:
       Title: 
       Text: 
     levelName: 
-  - eventType: 1
-    eventDuration: 3
+    levelEvent: 0
+  - eventType: 3
+    eventDuration: 0
     virtualCamIndex: 0
     popUpsMsg:
     - rpgStyle: 1
@@ -94,11 +102,11 @@ MonoBehaviour:
       usingSprite: 1
       sprite: {fileID: 21300000, guid: cc3173b5ab91f26438949b73af93e3f9, type: 3}
       Title: MaJellyan
-      Text: You see this point on the map
+      Text: 
     UEvent:
       m_PersistentCalls:
         m_Calls: []
-    foldout: 0
+    foldout: 1
     cellType: 0
     newTickDuration: 0
     persistentMsg:
@@ -110,9 +118,10 @@ MonoBehaviour:
       Title: MaJellyan
       Text: 
     levelName: 
+    levelEvent: 0
   - eventType: 0
     eventDuration: 3
-    virtualCamIndex: 2
+    virtualCamIndex: 9
     popUpsMsg:
     - rpgStyle: 0
       anchor: {fileID: 0}
@@ -150,8 +159,9 @@ MonoBehaviour:
       Title: 
       Text: 
     levelName: 
-  - eventType: 6
-    eventDuration: 3.5
+    levelEvent: 0
+  - eventType: 4
+    eventDuration: 0
     virtualCamIndex: 1
     popUpsMsg:
     - rpgStyle: 0
@@ -167,7 +177,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls: []
     foldout: 1
-    cellType: 0
+    cellType: 4
     newTickDuration: 0
     persistentMsg:
       rpgStyle: 0
@@ -175,11 +185,12 @@ MonoBehaviour:
       offset: {x: 0, y: 0, z: 0}
       usingSprite: 1
       sprite: {fileID: 21300000, guid: 68215239a0bc5fa4a8ec1952bf8fed68, type: 3}
-      Title: Blob the Builder
-      Text: "Try reach it ! But don\u2019t forget to gain sploosh first !\r\n\r"
+      Title: 
+      Text: 
     levelName: 
-  - eventType: 3
-    eventDuration: 4
+    levelEvent: 0
+  - eventType: 9
+    eventDuration: 1.5
     virtualCamIndex: 1
     popUpsMsg:
     - rpgStyle: 0
@@ -216,9 +227,10 @@ MonoBehaviour:
       Title: 
       Text: 
     levelName: 
-  - eventType: 4
-    eventDuration: 0
-    virtualCamIndex: 1
+    levelEvent: 1
+  - eventType: 0
+    eventDuration: 2
+    virtualCamIndex: 9
     popUpsMsg:
     - rpgStyle: 0
       anchor: {fileID: 0}
@@ -254,3 +266,121 @@ MonoBehaviour:
       Title: 
       Text: 
     levelName: 
+    levelEvent: 0
+  - eventType: 3
+    eventDuration: 2
+    virtualCamIndex: 1
+    popUpsMsg:
+    - rpgStyle: 0
+      anchor: {fileID: 0}
+      offset: {x: 830, y: 260, z: 0}
+      usingSprite: 1
+      sprite: {fileID: 21300000, guid: cc3173b5ab91f26438949b73af93e3f9, type: 3}
+      Title: 
+      Text: "Try reach it ! But don\u2019t forget to gain sploosh first !\r\n\r\n"
+    UEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 6190842183759939533, guid: 7b934126b67bf7f44aabfd0ea1f12c2e,
+            type: 3}
+          m_MethodName: ReturnToMainCam
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    foldout: 1
+    cellType: 4
+    newTickDuration: 0
+    persistentMsg:
+      rpgStyle: 0
+      anchor: {fileID: 0}
+      offset: {x: 0, y: 0, z: 0}
+      usingSprite: 0
+      sprite: {fileID: 0}
+      Title: 
+      Text: 
+    levelName: 
+    levelEvent: 0
+  - eventType: 6
+    eventDuration: 2
+    virtualCamIndex: 1
+    popUpsMsg:
+    - rpgStyle: 0
+      anchor: {fileID: 0}
+      offset: {x: 830, y: 260, z: 0}
+      usingSprite: 1
+      sprite: {fileID: 21300000, guid: cc3173b5ab91f26438949b73af93e3f9, type: 3}
+      Title: 
+      Text: "Try reach it ! But don\u2019t forget to gain sploosh first !\r\n\r\n"
+    UEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1614161555072513781, guid: 7d42775b7a7763949a0a39f0f4287f3e,
+            type: 3}
+          m_MethodName: Reveal
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    foldout: 1
+    cellType: 4
+    newTickDuration: 0
+    persistentMsg:
+      rpgStyle: 0
+      anchor: {fileID: 0}
+      offset: {x: 0, y: 0, z: 0}
+      usingSprite: 1
+      sprite: {fileID: 21300000, guid: cc3173b5ab91f26438949b73af93e3f9, type: 3}
+      Title: MaJellyan
+      Text: "Try reach it ! But don\u2019t forget to gain sploosh first !\r\n\r"
+    levelName: 
+    levelEvent: 0
+  - eventType: 9
+    eventDuration: 2
+    virtualCamIndex: 1
+    popUpsMsg:
+    - rpgStyle: 0
+      anchor: {fileID: 0}
+      offset: {x: 830, y: 260, z: 0}
+      usingSprite: 1
+      sprite: {fileID: 21300000, guid: cc3173b5ab91f26438949b73af93e3f9, type: 3}
+      Title: 
+      Text: "Try reach it ! But don\u2019t forget to gain sploosh first !\r\n\r\n"
+    UEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1614161555072513781, guid: 7d42775b7a7763949a0a39f0f4287f3e,
+            type: 3}
+          m_MethodName: Reveal
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    foldout: 1
+    cellType: 4
+    newTickDuration: 0
+    persistentMsg:
+      rpgStyle: 0
+      anchor: {fileID: 0}
+      offset: {x: 0, y: 0, z: 0}
+      usingSprite: 1
+      sprite: {fileID: 21300000, guid: cc3173b5ab91f26438949b73af93e3f9, type: 3}
+      Title: MaJellyan
+      Text: "Try reach it ! But don\u2019t forget to gain sploosh first !\r\n\r"
+    levelName: 
+    levelEvent: 0
