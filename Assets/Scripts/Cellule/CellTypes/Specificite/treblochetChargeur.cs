@@ -20,13 +20,23 @@ public class treblochetChargeur : MonoBehaviour, PlayerAction
     private float finalDistance;
 
     public TreblobchetUISlot[] treblobchetUISlots;
+    private Transform myTransform;
+    private bool gotABlob;
+
+    private Blob currentBlob;
 
 
     private void Awake()
     {
         transform.position = new Vector3(transform.position.x, parent.graphTransform.position.y, transform.position.z);
 
+
         disTanceFromParent = Vector3.Distance(transform.position, parent.transform.position);
+
+        if (myTransform == null)
+        {
+            myTransform = transform;
+        }
     }
 
 
@@ -35,35 +45,45 @@ public class treblochetChargeur : MonoBehaviour, PlayerAction
         dragRange = parent.myCellTemplate.magazineDragRange;
         UIGestion();
         myCollider.enabled = true;
+        myTransform.position = new Vector3(myTransform.position.x, parent.graphTransform.position.y, myTransform.position.z);
+
     }
 
     private void DragAction(RaycastHit hit)
     {
-        Vector3 direction = hit.point - parent.transform.position;
-        direction = new Vector3(direction.x, 0, direction.z);
-        direction = direction.normalized;
-
-
-        //Calcul à revoir pour le ratio 
-        float distance = Vector3.Distance(parent.transform.position, hit.point);
-        if (distance <= disTanceFromParent)
+        if (gotABlob)
         {
-            transform.position = parent.graphTransform.position + direction * disTanceFromParent;
-            finalDistance = 0;
-        }
-        else if (distance < dragRange)
-        {
-            transform.position = new Vector3(hit.point.x, transform.position.y, hit.point.z);
-            finalDistance = distance - disTanceFromParent;
+            Vector3 direction = hit.point - parent.myTransform.position;
+            direction = new Vector3(direction.x, 0, direction.z);
+            direction = direction.normalized;
 
-        }
-        else
-        {
-            transform.position = parent.graphTransform.position + direction * dragRange;
-            finalDistance = dragRange - disTanceFromParent;
-        }
 
-        transform.LookAt(parent.transform);
+            //Calcul à revoir pour le ratio 
+            float distance = Vector3.Distance(parent.myTransform.position, hit.point);
+            if (distance <= disTanceFromParent)
+            {
+                transform.position = parent.graphTransform.position + direction * disTanceFromParent;
+                finalDistance = 0;
+            }
+            else if (distance < dragRange)
+            {
+                transform.position = new Vector3(hit.point.x, transform.position.y, hit.point.z);
+                finalDistance = distance - disTanceFromParent;
+
+            }
+            else
+            {
+                transform.position = parent.graphTransform.position + direction * dragRange;
+                finalDistance = dragRange - disTanceFromParent;
+            }
+            transform.LookAt(parent.transform);
+
+            if (gotABlob)
+            {
+                currentBlob.transform.position = myTransform.position + new Vector3(0, 0.3f, 0);
+                currentBlob.transform.LookAt(parent.transform);
+            }
+        }
         // transform.rotation = Quaternion.Euler(90, 0, transform.rotation.z);
     }
 
@@ -71,6 +91,7 @@ public class treblochetChargeur : MonoBehaviour, PlayerAction
     {
 
         float ratio = finalDistance / (dragRange - disTanceFromParent);
+
         if (parent.myCellTemplate.minDragRatio < ratio)
         {
 
@@ -86,7 +107,7 @@ public class treblochetChargeur : MonoBehaviour, PlayerAction
 
     private void DragCancel(RaycastHit hit)
     {
-        Vector3 direction = hit.point - parent.transform.position;
+        Vector3 direction = hit.point - parent.myTransform.position;
         direction = new Vector3(direction.x, 0, direction.z);
         direction = direction.normalized;
 
@@ -94,34 +115,24 @@ public class treblochetChargeur : MonoBehaviour, PlayerAction
         transform.LookAt(parent.transform);
     }
 
-
-
     public void Fire(float ratio)
     {
         Vector3 dir = (parent.transform.position - transform.position);
         dir = new Vector3(dir.x, 0, dir.z).normalized; ;
-        if (blobInChargeur.Count > 0)
+        if (blobInChargeur.Count > 0 && gotABlob)
         {
 
 
-            Blob blobToThrow = ObjectPooler.poolingSystem.GetPooledObject<Blob>() as Blob;
-
-            blobToThrow.Outpool();
-            blobToThrow.transform.position = transform.position + new Vector3(0, parent.myCellTemplate.verticalOffset, 0);
-            blobToThrow.ChangeType(blobInChargeur[0]);
-            blobToThrow.transform.LookAt(parent.transform);
             // blobToThrow.transform.LookAt(transform);
 
-            Vector3 powerVec = ((blobToThrow.transform.forward * (1 +(ratio * ratio)) * parent.myCellTemplate.shotPower) + (Vector3.up * parent.myCellTemplate.verticalConstantPower));
+            BlobManager.blobList.Add(currentBlob);
+            Vector3 powerVec = ((currentBlob.transform.forward * (1 + (ratio * ratio)) * parent.myCellTemplate.shotPower) + (Vector3.up * parent.myCellTemplate.verticalConstantPower));
             Debug.DrawRay(transform.position, powerVec, Color.blue, 2f);
 
-            blobToThrow.rb.AddForce(powerVec, ForceMode.Impulse);
+            currentBlob.rb.AddForce(powerVec, ForceMode.Impulse);
+            currentBlob = null;
             BlolbFIre();
-
-        }
-        else
-        {
-            // Display error
+            gotABlob = false;
         }
 
         transform.position = parent.graphTransform.position - dir * disTanceFromParent;
@@ -203,9 +214,21 @@ public class treblochetChargeur : MonoBehaviour, PlayerAction
 
     public void OnDragStart(RaycastHit hit)
     {
-        //InputManager.Instance.selectedElement = this;
-        //je sais pas si c'est utiles
-        //initialPos = transform.position;
+        if (!gotABlob && blobInChargeur.Count > 0)
+        {
+
+            gotABlob = true;
+            currentBlob = ObjectPooler.poolingSystem.GetPooledObject<Blob>() as Blob;
+            currentBlob.Outpool();
+
+            currentBlob.transform.position = transform.position + new Vector3(0, 0.3f, 0);
+            currentBlob.ChangeType(blobInChargeur[0]);
+            currentBlob.transform.LookAt(parent.transform);
+
+
+            BlobManager.blobList.Remove(currentBlob);
+
+        }
     }
 
     public void OnLeftDrag(RaycastHit hit)
@@ -255,7 +278,7 @@ public class treblochetChargeur : MonoBehaviour, PlayerAction
     public void OnDeselect()
     {
         Debug.Log("drag restored");
-        InputManager.Instance.dragDistance = 2.8f * 0.05f* CameraController.instance.transform.position.y;
+        InputManager.Instance.dragDistance = 2.8f * 0.05f * CameraController.instance.transform.position.y;
     }
 
     public void StopAction()
@@ -293,15 +316,8 @@ public class treblochetChargeur : MonoBehaviour, PlayerAction
             {
                 treblobchetUISlots[i].UpdateType(blobInChargeur[i]);
             }
-
-
-
-
         }
-
     }
-
-
 
 
 }

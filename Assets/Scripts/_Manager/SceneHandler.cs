@@ -65,6 +65,8 @@ public class SceneHandler : MonoBehaviour
 
     public void ReplayLevel()
     {
+        BlobManager.blobList.Clear();
+      //  RessourceTracker.
         loadByString = false;
         indexToLoad = SceneManager.GetActiveScene().buildIndex;
         anim.Play("FadeIn");

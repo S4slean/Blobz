@@ -57,7 +57,7 @@ GameObject:
   - component: {fileID: 489078714425495523}
   m_Layer: 0
   m_Name: --MainCamera--
-  m_TagString: Untagged
+  m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -93,6 +93,9 @@ MonoBehaviour:
   camXMax: 50
   camYmin: -50
   camYMax: 50
+  topRotation: 90
+  botRotation: 70
+  heightforwardIncidence: 0
   timeToMaxSpeed: 0.6
   timeToZeroSpeed: 0.6
   defaultHeight: 35
@@ -106,6 +109,7 @@ MonoBehaviour:
   tiltToMaxSpeed: 0.001
   tiltToZeroSpeed: 0.001
   tiltLength: 1
+  isPanning: 0
 --- !u!114 &7957181515078020139
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -122,7 +126,7 @@ MonoBehaviour:
   - m_Script
   m_LockStageInInspector: 
   m_StreamingVersion: 20170927
-  m_Priority: 10
+  m_Priority: 15
   m_StandbyUpdate: 2
   m_LookAt: {fileID: 0}
   m_Follow: {fileID: 0}
