@@ -130,7 +130,7 @@ MonoBehaviour:
   UIMask:
     serializedVersion: 2
     m_Bits: 32
-  distanceBeforeDrag: 2.8
+  distanceBeforeDrag: 7
   dragDistance: 0
   DelayBetweenClick: 0
   clickCooldown: 0.2
