@@ -21,7 +21,7 @@ public class CellMainInspector : Editor
 
     SerializedProperty animProp;
 
-    SerializedProperty hasCustomEventProp, onConnectEventProp;
+    SerializedProperty hasCustomEventProp, onConnectEventProp , onOverloadEventProp;
 
 
 
@@ -31,7 +31,7 @@ public class CellMainInspector : Editor
         myCellTemplateProp = serializedObject.FindProperty("myCellTemplate");
         isNexusProp = serializedObject.FindProperty("isNexus");
 
-        NBlobProp = serializedObject.FindProperty("NBlob");
+       // NBlobProp = serializedObject.FindProperty("NBlob");
         NLinkProp = serializedObject.FindProperty("NLink");
         NCurrentProximityProp = serializedObject.FindProperty("NCurrentProximity");
         graphTransformProp = serializedObject.FindProperty("graphTransform");
@@ -58,6 +58,7 @@ public class CellMainInspector : Editor
 
         hasCustomEventProp = serializedObject.FindProperty("hasCustomEvent");
         onConnectEventProp = serializedObject.FindProperty("onConnectEvent");
+        onOverloadEventProp = serializedObject.FindProperty("onOverloadEvent");
     }
 
     public override void OnInspectorGUI()
@@ -80,6 +81,7 @@ public class CellMainInspector : Editor
         if (hasCustomEventProp.boolValue)
         {
             EditorGUILayout.PropertyField(onConnectEventProp);
+            EditorGUILayout.PropertyField(onOverloadEventProp);
         }
 
         EditorGUILayout.PropertyField(showRefProp);
@@ -88,7 +90,7 @@ public class CellMainInspector : Editor
         {
 
             EditorGUI.indentLevel += 1;
-            EditorGUILayout.PropertyField(NBlobProp);
+           // EditorGUILayout.PropertyField(NBlobProp);
             EditorGUILayout.PropertyField(NLinkProp);
             EditorGUILayout.PropertyField(NCurrentProximityProp);
             EditorGUILayout.PropertyField(graphTransformProp);
