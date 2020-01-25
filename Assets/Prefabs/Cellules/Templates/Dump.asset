@@ -26,10 +26,10 @@ MonoBehaviour:
   energyCost: 150
   energyCapBase: 0
   rangeBase: 15
-  blobRatioAtDeath: 0
-  impulseForce_Death: 10
   overLoadTickMax: 4
   overloadTreshHold: 1
+  blobSpawnRatioAtDeath: 3
+  blobSpawnAdditionnalRatioAtDeath: 5
   prodPerTickBase: 0
   rejectPowerBase: 0
   storageCapability: 50
@@ -51,7 +51,7 @@ MonoBehaviour:
   rangeLien: 
   tickForActivation: 
   energyCap: 
-  specifique: 280000001e0000001400000005000000
+  specifique: 0200000005000000070000000a000000
   energyPerblop: 0
   StatsModification: 7
   REFS: 0

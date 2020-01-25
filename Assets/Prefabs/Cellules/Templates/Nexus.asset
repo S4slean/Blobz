@@ -36,10 +36,10 @@ MonoBehaviour:
   energyCost: 500
   energyCapBase: 500
   rangeBase: 15
-  blobRatioAtDeath: 0
-  impulseForce_Death: 0
   overLoadTickMax: 4
   overloadTreshHold: 1
+  blobSpawnRatioAtDeath: 0
+  blobSpawnAdditionnalRatioAtDeath: 0
   prodPerTickBase: 1
   rejectPowerBase: 2
   storageCapability: 50
