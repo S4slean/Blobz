@@ -355,6 +355,7 @@ public class BlobManager : MonoBehaviour
                     if (blob.GetBlobType() == BlobType.soldier && (destructible.destructType == Destructible.DestructType.EnemyBlob 
                         || destructible.destructType == Destructible.DestructType.all 
                         || destructible.destructType == Destructible.DestructType.enemyCell
+                        || destructible.destructType == Destructible.DestructType.nexus
                         || destructible.destructType == Destructible.DestructType.barricade))
                     {
                         Debug.Log("Soldier attacked enemy Base");
