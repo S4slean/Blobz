@@ -389,7 +389,7 @@ MonoBehaviour:
       Text: 
     levelName: 
   - eventType: 3
-    eventDuration: 3
+    eventDuration: 2
     virtualCamIndex: 2
     popUpsMsg:
     - rpgStyle: 1
