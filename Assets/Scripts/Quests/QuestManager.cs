@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
+using UnityEngine.Events;
 
 
 
@@ -23,7 +24,7 @@ public class QuestManager : MonoBehaviour
 
     public bool desactiveQuest = false;
 
-
+    public UnityEvent[] levelEvents;
 
 
 
@@ -302,6 +303,11 @@ public class QuestManager : MonoBehaviour
 
                     SceneHandler.instance.ChangeScene(currentQuest.questEvents[currentQuestEventID].levelName);
 
+                    break;
+
+                case QuestEvent.QuestEventType.LevelEvent:
+                    levelEvents[currentQuest.questEvents[currentQuestEventID].levelEvent].Invoke();
+                    StartCoroutine(WaitBeforNextEvent());
                     break;
 
 
