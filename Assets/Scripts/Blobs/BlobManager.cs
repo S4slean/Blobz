@@ -352,7 +352,10 @@ public class BlobManager : MonoBehaviour
 
                 if (touchedDestructibles[i].TryGetComponent<Destructible>(out Destructible destructible))
                 {
-                    if (blob.GetBlobType() == BlobType.soldier && (destructible.destructType == Destructible.DestructType.enemy || destructible.destructType == Destructible.DestructType.all))
+                    if (blob.GetBlobType() == BlobType.soldier && (destructible.destructType == Destructible.DestructType.EnemyBlob 
+                        || destructible.destructType == Destructible.DestructType.all 
+                        || destructible.destructType == Destructible.DestructType.enemyCell
+                        || destructible.destructType == Destructible.DestructType.barricade))
                     {
                         Debug.Log("Soldier attacked enemy Base");
                         blob.anim.Play("Attack");
@@ -360,7 +363,10 @@ public class BlobManager : MonoBehaviour
                         return true;
 
                     }
-                    else if (blob.GetBlobType() == BlobType.explorateur && (destructible.destructType == Destructible.DestructType.ressources || destructible.destructType == Destructible.DestructType.all))
+                    else if (blob.GetBlobType() == BlobType.explorateur && (destructible.destructType == Destructible.DestructType.ressources 
+                        || destructible.destructType == Destructible.DestructType.all
+                        || destructible.destructType == Destructible.DestructType.shroom
+                        || destructible.destructType == Destructible.DestructType.crystal))
                     {
                         Debug.Log("Explo harvested ressources");
                         blob.anim.Play("Attack");

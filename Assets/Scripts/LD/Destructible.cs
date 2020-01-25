@@ -8,7 +8,7 @@ public class Destructible : PoolableObjects, PlayerAction
     public GameObject goodGraph;
     public GameObject brokenGraph;
     public Animator anim;
-    public enum DestructType { all, ressources, enemy };
+    public enum DestructType { all, ressources, EnemyBlob, enemyCell, shroom, crystal, barricade, tree, rock };
 
     [Header("General")]
     public DestructType destructType = DestructType.all;
