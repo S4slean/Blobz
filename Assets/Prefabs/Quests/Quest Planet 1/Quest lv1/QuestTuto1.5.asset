@@ -39,7 +39,8 @@ MonoBehaviour:
       usingSprite: 1
       sprite: {fileID: 21300000, guid: 74a01104759d6494d8d651afa2ac8826, type: 3}
       Title: 
-      Text: "Perfect! You see there is a link between the Nexus and the dump. \r\n"
+      Text: "Perfect! You see there is a <#ff9933>link</color> between the Nexus and
+        the dump. \r\n"
     - rpgStyle: 1
       anchor: {fileID: 0}
       offset: {x: 0, y: 0, z: 0}
@@ -70,6 +71,7 @@ MonoBehaviour:
       Title: 
       Text: 
     levelName: 
+    levelEvent: 0
   - eventType: 3
     eventDuration: 0
     virtualCamIndex: 0
@@ -96,6 +98,7 @@ MonoBehaviour:
       Title: 
       Text: 
     levelName: 
+    levelEvent: 0
   - eventType: 6
     eventDuration: 1.5
     virtualCamIndex: 0
@@ -134,6 +137,7 @@ MonoBehaviour:
       Title: Blob the builder
       Text: "Click and drag \nto select stock\r \nand place it !"
     levelName: 
+    levelEvent: 0
   - eventType: 3
     eventDuration: 0.5
     virtualCamIndex: 0
@@ -174,6 +178,7 @@ MonoBehaviour:
       Title: 
       Text: 
     levelName: 
+    levelEvent: 0
   - eventType: 4
     eventDuration: 0
     virtualCamIndex: 0
@@ -214,3 +219,4 @@ MonoBehaviour:
       Title: 
       Text: 
     levelName: 
+    levelEvent: 0
