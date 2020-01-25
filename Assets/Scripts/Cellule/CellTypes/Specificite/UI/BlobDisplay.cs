@@ -31,7 +31,7 @@ public class BlobDisplay : MonoBehaviour
         ratio = (float)blobNumber / (float)stockageCapacity;
 
         //anim.speed = 1 / (TickManager.instance.tickDuration - TickManager.instance.tickDuration / 1.8f);
-        myTransform.localScale = Vector3.one * (1f + 0.5f*ratio);
+        myTransform.localScale = (Vector3.one*0.75f) * (1f + 0.75f*ratio);
 
 
         background.color = Color.Lerp(lerpTextColor[0], lerpTextColor[1], ratio);

@@ -27,6 +27,7 @@ public class CelluleTemplate : ScriptableObject
     public int proximityColliderNumber = 1;
     public ProximityCollider[] proximityColliders;
 
+    #region STATS
     [Range(0, 1000)]
     public int energyCost = 5;
     [Range(0, 1500)]
@@ -34,15 +35,17 @@ public class CelluleTemplate : ScriptableObject
 
     [Range(0f, 300f)]
     public int rangeBase = 50;
-    [Range(0, 1)]
-    public float blobRatioAtDeath;
-    [Range(5, 100)]
-    public int impulseForce_Death = 10;
 
-    [Range(1 , 6)]
-    public int overLoadTickMax = 4 ;
+    #endregion
+    [Range(1, 6)]
+    public int overLoadTickMax = 4;
     [Range(1, 10)]
     public int overloadTreshHold = 5;
+    [Range(0, 50)]
+    public int blobSpawnRatioAtDeath;
+    [Range(0, 50)]
+    public int blobSpawnAdditionnalRatioAtDeath;
+
 
 
     [Range(0, 10)]
@@ -57,19 +60,20 @@ public class CelluleTemplate : ScriptableObject
     [Range(1, 100)]
     public int energyPerClick = 2;
 
-    //[Range(0f, 12f)]
-    //public int linkCapability = 6;
+    #region LINK
     public bool limitedInLinks;
-    [Range(0.5f , 5f)]
-    public float slotDistance = 3; 
-    [Range(0 , 10)]
-    public int numberOfOuputLinks =1;
-    [Range(0 , 10)]
-    public int numberOfInputLinks =1;
+    [Range(0.5f, 5f)]
+    public float slotDistance = 3;
+    [Range(0, 10)]
+    public int numberOfOuputLinks = 1;
+    [Range(0, 10)]
+    public int numberOfInputLinks = 1;
     [Range(0, 20)]
     public int numberOfFlexLinks = 1;
 
+    #endregion
 
+    #region PROXIMITY 
     [Range(0, 5)]
     public int proximityLevelMax = 0;
     [Range(-3, 3)]
@@ -78,7 +82,7 @@ public class CelluleTemplate : ScriptableObject
     public CellType[] positivesInteractions;
     public CellType[] negativesInteractions;
 
-    #region PROXIMITY MODIF
+
     public int[] SurproductionRate;
 
     public float[] BlopPerTick;
@@ -109,13 +113,13 @@ public class CelluleTemplate : ScriptableObject
 
     #region SPECIFIC VARIABLE
 
-    [Range(1 , 15)]
+    [Range(1, 15)]
     public int maxEnergie = 5;
 
     [Range(0.4f, 5)]
     public float explosionRadius = 0.8f;
 
-    [Range(1 , 10)]
+    [Range(1, 10)]
     public int maxBlobShreddedPerClick = 1;
 
 
@@ -133,16 +137,16 @@ public class CelluleTemplate : ScriptableObject
     public int verticalConstantPower = 10;
     [Range(1, 10)]
     public float verticalOffset = 1;
-    [Range(0.25f , 4f)]
+    [Range(0.25f, 4f)]
     public float magazinSlotDistance = 3;
 
 
 
-    [Range(1 , 10)]
+    [Range(1, 10)]
     public int tourelleMaxMun = 3;
-    [Range(1 , 10)]
+    [Range(1, 10)]
     public int tourelleDamage = 5;
-    [Range(3 , 20)]
+    [Range(3, 20)]
     public int tourelleAttackRadius = 6;
 
     [Range(1, 10)]
@@ -150,7 +154,7 @@ public class CelluleTemplate : ScriptableObject
     [Range(1, 5)]
     public int blobLostPerTick;
 
-    [Range (1 , 100)]
+    [Range(1, 100)]
     public int maxLifeProd;
 
     #endregion
@@ -159,10 +163,10 @@ public class CelluleTemplate : ScriptableObject
 [System.Serializable]
 public struct ProximityCollider
 {
-    [Range(1 , 5)]
+    [Range(1, 5)]
     public int proximityLevel;
-    [Range (5 , 100)]
+    [Range(5, 100)]
     public int range;
-    [Range (0 , 75)]
+    [Range(0, 75)]
     public int productionBonusRatio;
 }
