@@ -56,6 +56,7 @@ MonoBehaviour:
       Title: 
       Text: 
     levelName: 
+    levelEvent: 0
   - eventType: 0
     eventDuration: 2
     virtualCamIndex: 1
@@ -75,6 +76,7 @@ MonoBehaviour:
       Title: 
       Text: 
     levelName: 
+    levelEvent: 0
   - eventType: 0
     eventDuration: 2
     virtualCamIndex: 0
@@ -94,6 +96,7 @@ MonoBehaviour:
       Title: 
       Text: 
     levelName: 
+    levelEvent: 0
   - eventType: 1
     eventDuration: 1.5
     virtualCamIndex: 0
@@ -128,6 +131,7 @@ MonoBehaviour:
       Title: 
       Text: 
     levelName: 
+    levelEvent: 0
   - eventType: 6
     eventDuration: 2
     virtualCamIndex: 0
@@ -162,6 +166,7 @@ MonoBehaviour:
       Title: 'Blob the Builder '
       Text: Build an aerial strike
     levelName: 
+    levelEvent: 0
   - eventType: 4
     eventDuration: 0
     virtualCamIndex: 0
@@ -196,3 +201,4 @@ MonoBehaviour:
       Title: 
       Text: 
     levelName: 
+    levelEvent: 0

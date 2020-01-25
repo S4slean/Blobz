@@ -52,7 +52,7 @@ MonoBehaviour:
     UEvent:
       m_PersistentCalls:
         m_Calls: []
-    foldout: 0
+    foldout: 1
     cellType: 0
     newTickDuration: 0
     persistentMsg:
@@ -64,6 +64,7 @@ MonoBehaviour:
       Title: 
       Text: 
     levelName: 
+    levelEvent: 0
   - eventType: 6
     eventDuration: 2
     virtualCamIndex: 0
@@ -99,3 +100,4 @@ MonoBehaviour:
       Title: General Globulus
       Text: Destroy 2 villages
     levelName: 
+    levelEvent: 0

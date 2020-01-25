@@ -21,7 +21,7 @@ MonoBehaviour:
   energyToObtain: 0
   cellType: 0
   level: 1
-  cellNbrToObtain: 1
+  cellNbrToObtain: 3
   blobExplo: 0
   anyCells: 1
   colonialCellType: 0
@@ -72,6 +72,7 @@ MonoBehaviour:
       Title: 
       Text: 
     levelName: 
+    levelEvent: 0
   - eventType: 6
     eventDuration: 2
     virtualCamIndex: 0
@@ -115,3 +116,4 @@ MonoBehaviour:
       Title: Blob the Builder
       Text: Build a Nexus
     levelName: 
+    levelEvent: 0
