@@ -11,7 +11,7 @@ public class RessourceTracker : MonoBehaviour
 
     public int hatchNbr;
     public int stockNbr;
-    public int armoryNbr;
+    public int treblobchetNbr;
     public int broyeurNbr;
     public int passageNbr;
     public int blipblopNbr;
@@ -56,7 +56,7 @@ public class RessourceTracker : MonoBehaviour
                 break;
 
             case (CellType.Treblobchet):
-                armoryNbr++;
+                treblobchetNbr++;
                 break;
 
             case (CellType.Crusher):
@@ -124,7 +124,7 @@ public class RessourceTracker : MonoBehaviour
                 break;
 
             case (CellType.Treblobchet):
-                armoryNbr--;
+                treblobchetNbr--;
                 break;
 
             case (CellType.Crusher):

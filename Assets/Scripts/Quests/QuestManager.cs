@@ -123,10 +123,6 @@ public class QuestManager : MonoBehaviour
                         questProgress = RessourceTracker.instance.stockNbr;
                         break;
 
-                    case CellType.Armory:
-                        questProgress = RessourceTracker.instance.armoryNbr;
-                        break;
-
                     case CellType.Crusher:
                         questProgress = RessourceTracker.instance.broyeurNbr;
                         break;
@@ -161,6 +157,10 @@ public class QuestManager : MonoBehaviour
 
                     case CellType.Turret:
                         questProgress = RessourceTracker.instance.towerNbr;
+                        break;
+
+                    case CellType.Treblobchet:
+                        questProgress = RessourceTracker.instance.treblobchetNbr;
                         break;
                 }
 
