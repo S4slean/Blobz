@@ -12,9 +12,9 @@ public class Destructible : PoolableObjects, PlayerAction
 
     [Header("General")]
     public DestructType destructType = DestructType.all;
-    private int remainingLife;
+    protected int remainingLife;
     public int maxLife = 5;
-    private int count = 0;
+    protected int count = 0;
     public bool isReapairable = false;
     public int repairDelay = 10;
     public bool isRuin = false;
@@ -78,7 +78,7 @@ public class Destructible : PoolableObjects, PlayerAction
     #endregion
 
     #region DESTRUCTION
-    public void ReceiveDamage(int dmg)
+    public virtual void ReceiveDamage(int dmg)
     {
         remainingLife -= dmg;
         //Play damageAnim
@@ -88,10 +88,10 @@ public class Destructible : PoolableObjects, PlayerAction
         }
         else
         {
-            anim.Play("Bounce",-1, 0);
+            anim.Play("Bounce", -1, 0);
         }
     }
-    public void SpawnEnemies()
+    public virtual void SpawnEnemies()
     {
         for (int i = 0; i < nbrOfEnemiesOnDestruction; i++)
         {
@@ -101,12 +101,12 @@ public class Destructible : PoolableObjects, PlayerAction
             Vector2 circle = Random.insideUnitCircle;
             Vector3 circleProjection = new Vector3(circle.x, 0, circle.y).normalized;
             blob.transform.position = transform.position + circleProjection * spawnRange;
-            
+
 
         }
         anim.Play("Bounce");
     }
-    public void Destruction()
+    public virtual void Destruction()
     {
 
         QuestManager.instance.DestructionCheck(destructType);
@@ -157,7 +157,7 @@ public class Destructible : PoolableObjects, PlayerAction
         TickManager.doTick -= RepairTick;
     }
     #endregion
-    public void SwapGraph()
+    public virtual void SwapGraph()
     {
         anim.SetBool("isRuin", isRuin);
     }
