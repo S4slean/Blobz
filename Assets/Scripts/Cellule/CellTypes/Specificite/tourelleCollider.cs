@@ -74,14 +74,12 @@ public class tourelleCollider : MonoBehaviour
 
     public void Fire()
     {
-        Debug.Log("TryFire");
         if (!hasTarget)
         {
             CheckForTarget();
         }
         if (hasTarget)
         {
-            Debug.Log("Fire");
             parent.setCurrentTick(0);
             TourelleProjectile projectile = ObjectPooler.poolingSystem.GetPooledObject<TourelleProjectile>() as TourelleProjectile;
             projectile.Outpool();
