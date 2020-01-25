@@ -15,7 +15,7 @@ MonoBehaviour:
   questType: 2
   questTitle: 
   questDescription: 
-  eventDone: 0
+  eventDone: 1
   isEndingQuest: 0
   populationObjective: 0
   energyToObtain: 0
@@ -64,7 +64,7 @@ MonoBehaviour:
       Text: 
     levelName: 
   - eventType: 6
-    eventDuration: 8
+    eventDuration: 5
     virtualCamIndex: 0
     popUpsMsg:
     - rpgStyle: 0
