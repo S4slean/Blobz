@@ -55,7 +55,7 @@ MonoBehaviour:
   soldierJumpForce: 5
   attackRange: 2
   detectionRadius: 10
-  angryMat: {fileID: 2100000, guid: 327822872d3c5e04ab61f508751ed570, type: 2}
+  angryMat: {fileID: 2100000, guid: 33b3f5264611cfc43bfa7492b02d310e, type: 2}
   enemiesHaveLifeTime: 0
   enemyLifeSpan: 10
   standardEnemyTicksBtwnJumps: 4
