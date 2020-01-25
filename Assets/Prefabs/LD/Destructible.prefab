@@ -208,7 +208,7 @@ MonoBehaviour:
   goodGraph: {fileID: 1386173271546363318}
   brokenGraph: {fileID: 1386173272474075141}
   anim: {fileID: 8181316890779560056}
-  destructType: 1
+  destructType: 5
   maxLife: 3
   isReapairable: 1
   repairDelay: 10
@@ -219,8 +219,8 @@ MonoBehaviour:
   nbrOfEnemiesOnDestruction: 5
   spawnRange: 0
   canBeDestroyedByClick: 1
-  splouchAtDestruction: 10
-  splouchAtClick: 1
+  splouchAtDestruction: 150
+  splouchAtClick: 15
 --- !u!135 &1386173272663449770
 SphereCollider:
   m_ObjectHideFlags: 0

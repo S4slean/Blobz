@@ -21,7 +21,7 @@ MonoBehaviour:
   energyToObtain: 0
   cellType: 7
   level: 1
-  cellNbrToObtain: 3
+  cellNbrToObtain: 2
   blobExplo: 0
   anyCells: 1
   colonialCellType: 0

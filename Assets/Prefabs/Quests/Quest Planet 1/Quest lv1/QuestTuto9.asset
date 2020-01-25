@@ -56,8 +56,8 @@ MonoBehaviour:
       usingSprite: 1
       sprite: {fileID: 21300000, guid: 74a01104759d6494d8d651afa2ac8826, type: 3}
       Title: 
-      Text: "You see the 3 circles ? They represent the proximity areas. Placing a
-        cell in an area modifies his statistics\r\n"
+      Text: "You see the 3 circles ? They represent the <#ff9933>proximity</color>
+        areas. Placing a cell in an area modifies his statistics\r\n"
     - rpgStyle: 1
       anchor: {fileID: 0}
       offset: {x: 0, y: 0, z: 0}
@@ -65,15 +65,16 @@ MonoBehaviour:
       sprite: {fileID: 21300000, guid: 74a01104759d6494d8d651afa2ac8826, type: 3}
       Title: 
       Text: "Some cells will be better in the first area, close to the nexus, some
-        will be better in the last one\r\n"
+        will be better in the last one\r or even outside, like the dump or the crusher.\n"
     - rpgStyle: 1
       anchor: {fileID: 0}
       offset: {x: 0, y: 0, z: 0}
       usingSprite: 1
       sprite: {fileID: 21300000, guid: 74a01104759d6494d8d651afa2ac8826, type: 3}
       Title: 
-      Text: "About the links, you can create links between 2 existing cells. You can
-        also destroy a link or a cell by right clicking on them ! Look a this cell\r\n"
+      Text: "About the <#ff9933>links</color>, you can create links between 2 existing
+        cells. You can also destroy a link or a cell by <#ff9933>right clicking</color>
+        on them ! Look at this cell\r\n"
     - rpgStyle: 1
       anchor: {fileID: 0}
       offset: {x: 0, y: 0, z: 0}
@@ -84,7 +85,7 @@ MonoBehaviour:
     UEvent:
       m_PersistentCalls:
         m_Calls: []
-    foldout: 0
+    foldout: 1
     cellType: 0
     newTickDuration: 0
     persistentMsg:
@@ -97,9 +98,9 @@ MonoBehaviour:
       Text: 
     levelName: 
     levelEvent: 0
-  - eventType: 9
+  - eventType: 0
     eventDuration: 2
-    virtualCamIndex: 0
+    virtualCamIndex: 8
     popUpsMsg: []
     UEvent:
       m_PersistentCalls:
@@ -117,8 +118,8 @@ MonoBehaviour:
       Text: 
     levelName: 
     levelEvent: 0
-  - eventType: 0
-    eventDuration: 2
+  - eventType: 9
+    eventDuration: 1
     virtualCamIndex: 8
     popUpsMsg: []
     UEvent:

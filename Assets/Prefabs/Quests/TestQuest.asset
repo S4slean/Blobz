@@ -16,6 +16,7 @@ MonoBehaviour:
   questTitle: TestQuest
   questDescription: 
   eventDone: 1
+  isEndingQuest: 0
   populationObjective: 200
   energyToObtain: 1000
   cellType: 2
@@ -27,4 +28,44 @@ MonoBehaviour:
   placeToGet: 0
   destructType: 3
   nbrOfObject: 3
-  questEvents: []
+  questEvents:
+  - eventType: 9
+    eventDuration: 0
+    virtualCamIndex: 0
+    popUpsMsg: []
+    UEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    foldout: 0
+    cellType: 0
+    newTickDuration: 0
+    persistentMsg:
+      rpgStyle: 0
+      anchor: {fileID: 0}
+      offset: {x: 0, y: 0, z: 0}
+      usingSprite: 0
+      sprite: {fileID: 0}
+      Title: 
+      Text: 
+    levelName: 
+    levelEvent: 0
+  - eventType: 0
+    eventDuration: 0
+    virtualCamIndex: 0
+    popUpsMsg: []
+    UEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    foldout: 0
+    cellType: 0
+    newTickDuration: 0
+    persistentMsg:
+      rpgStyle: 0
+      anchor: {fileID: 0}
+      offset: {x: 0, y: 0, z: 0}
+      usingSprite: 0
+      sprite: {fileID: 0}
+      Title: 
+      Text: 
+    levelName: 
+    levelEvent: 0

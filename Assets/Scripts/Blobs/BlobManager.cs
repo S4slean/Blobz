@@ -336,6 +336,7 @@ public class BlobManager : MonoBehaviour
                 {
                     Debug.Log("Soldier Attacked blob");
                     touchedBlobs[i].GetComponent<Blob>().Destruct();
+                    RessourceTracker.instance.AddKill();
                     blob.anim.Play("Attack");
                     return true;
                 }

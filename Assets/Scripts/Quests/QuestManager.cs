@@ -70,6 +70,7 @@ public class QuestManager : MonoBehaviour
     {
         currentQuestID++;
         questProgress = 0;
+        RessourceTracker.instance.enemyKilled = 0;
         if (QuestList.Count > currentQuestID)
         {
             currentQuest = QuestList[currentQuestID];
@@ -123,10 +124,6 @@ public class QuestManager : MonoBehaviour
                         questProgress = RessourceTracker.instance.stockNbr;
                         break;
 
-                    case CellType.Armory:
-                        questProgress = RessourceTracker.instance.armoryNbr;
-                        break;
-
                     case CellType.Crusher:
                         questProgress = RessourceTracker.instance.broyeurNbr;
                         break;
@@ -162,6 +159,10 @@ public class QuestManager : MonoBehaviour
                     case CellType.Turret:
                         questProgress = RessourceTracker.instance.towerNbr;
                         break;
+
+                    case CellType.Treblobchet:
+                        questProgress = RessourceTracker.instance.treblobchetNbr;
+                        break;
                 }
 
                 if (questProgress >= currentQuest.cellNbrToObtain)
@@ -186,6 +187,8 @@ public class QuestManager : MonoBehaviour
 
             case QuestType.Destruction:
 
+                if (currentQuest.destructType == Destructible.DestructType.EnemyBlob)
+                    questProgress = RessourceTracker.instance.enemyKilled;
 
                 if (questProgress == currentQuest.nbrOfObject)
                     QuestSuccess();

@@ -91,7 +91,7 @@ public class CameraController : MonoBehaviour
             camHeightGoal += -Input.GetAxis("Mouse ScrollWheel") * heightStep;
             camHeightGoal = Mathf.Clamp(camHeightGoal, minHeight, maxHeight);
             smoothCount = 0;
-            InputManager.Instance.dragDistance = 2.8f * 0.05f *transform.position.y;
+            InputManager.Instance.dragDistance = InputManager.Instance.distanceBeforeDrag * 0.045f *transform.position.y;
 
 
         }

@@ -11,7 +11,7 @@ public class RessourceTracker : MonoBehaviour
 
     public int hatchNbr;
     public int stockNbr;
-    public int armoryNbr;
+    public int treblobchetNbr;
     public int broyeurNbr;
     public int passageNbr;
     public int blipblopNbr;
@@ -33,12 +33,24 @@ public class RessourceTracker : MonoBehaviour
     public int energy;
     public int blobProduced;
 
+    public int enemyKilled;
+
     private void Awake()
     {
         instance = this;
     }
 
+    #region COMBAT
+    public void AddKill()
+    {
+        enemyKilled++;
+    }
 
+    public void ResetKillCount()
+    {
+        enemyKilled = 0;
+    }
+    #endregion
 
     #region CELLS
     public void AddCell(CellMain cell)
@@ -56,7 +68,7 @@ public class RessourceTracker : MonoBehaviour
                 break;
 
             case (CellType.Treblobchet):
-                armoryNbr++;
+                treblobchetNbr++;
                 break;
 
             case (CellType.Crusher):
@@ -124,7 +136,7 @@ public class RessourceTracker : MonoBehaviour
                 break;
 
             case (CellType.Treblobchet):
-                armoryNbr--;
+                treblobchetNbr--;
                 break;
 
             case (CellType.Crusher):
