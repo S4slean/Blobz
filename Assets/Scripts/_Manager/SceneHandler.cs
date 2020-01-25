@@ -42,6 +42,9 @@ public class SceneHandler : MonoBehaviour
 
     public void LoadScene()
     {
+        ClearInstances();
+        SoundManager.instance.PlayStandardMusic();
+
         if (!loadByString)
             SceneManager.LoadSceneAsync(indexToLoad, LoadSceneMode.Single);
         else
@@ -74,8 +77,25 @@ public class SceneHandler : MonoBehaviour
 
     public void BackToLevelSelection()
     {
+
         loadByString = true;
         stringToLoad = "LevelSelector";
         anim.Play("FadeIn");
+        SoundManager.instance.PlayMenuMusic();
+    }
+
+    public void ClearInstances()
+    {
+        TickManager.doTick = null;
+
+        BlobManager.instance = null;
+        CellManager.Instance = null;
+        CinematicManager.instance = null;
+        InputManager.Instance = null;
+        LevelManager.instance = null;
+        QuestManager.instance = null;
+        TickManager.instance = null;
+        UIManager.Instance = null;
+        RessourceTracker.instance = null;
     }
 }

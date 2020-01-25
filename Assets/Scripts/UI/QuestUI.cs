@@ -24,7 +24,8 @@ public class QuestUI : MonoBehaviour
         yield return new WaitForEndOfFrame();
 
 
-
+        if (QuestManager.instance == null)
+            yield  return null;
 
         title.text = QuestManager.instance.currentQuest.questTitle;
 

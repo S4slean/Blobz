@@ -157,7 +157,6 @@ public class InputManager : MonoBehaviour
             case InputMode.normal:
 
                 #region LINKS, INTERACTIONS AND CELL_CREATIONS
-                Debug.Log("drag :" + dragDistance);
                 //En train de drag le lien 
                 if (dragging)
                 {

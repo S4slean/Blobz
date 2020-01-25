@@ -50,6 +50,8 @@ MonoBehaviour:
   menuMusic: {fileID: 8300000, guid: 3e54c7e2fdd4e6a47b8a5845fe973d38, type: 3}
   level1Music: {fileID: 8300000, guid: 97b420b713c458a48a577abdcd117ea7, type: 3}
   badBlobzMusic: {fileID: 8300000, guid: 997fd45abfa84ed488d25c50358da580, type: 3}
+  questSuccessSound: {fileID: 8300000, guid: 6fa3deed06bc43949b9a030e6b8e4a9e, type: 3}
+  victorySound: {fileID: 8300000, guid: fc256d6e9b7d0a0418e101efbfa335b5, type: 3}
   fadingCurve:
     serializedVersion: 2
     m_Curve:
@@ -95,7 +97,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 1369907168496206765, guid: 9af4d9356a850e848974e40c45edad09,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: 97b420b713c458a48a577abdcd117ea7, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 3e54c7e2fdd4e6a47b8a5845fe973d38, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1

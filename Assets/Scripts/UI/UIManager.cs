@@ -10,15 +10,9 @@ public class UIManager : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance)
-        {
-            Destroy(gameObject);
-        }
-        else
-        {
+
             Instance = this;
-            //DontDestroyOnLoad(gameObject);
-        }
+
 
         if (cellSelection == null)
         {
@@ -28,6 +22,7 @@ public class UIManager : MonoBehaviour
         QuestUI.gameObject.SetActive(true);
 
     }
+
 
     private void Update()
     {
@@ -145,7 +140,6 @@ public class UIManager : MonoBehaviour
 
         if (tooltipCount > firstTooltipDelay && !firstTooltipDisplayed)
         {
-            Debug.Log("DisplayTooltip");
             DisplayTooltip(pos, cell, displayCost);
         }
 

@@ -89,7 +89,7 @@ public class CellManager : MonoBehaviour
         if (currentLink == null)
         {
             //Alert Message
-            Debug.Log("This cell has no more links available");
+            UIManager.Instance.WarningMessage("This cell can't output more links");
             InputManager.Instance.ResetInputs();
             return;
         }
@@ -212,7 +212,7 @@ public class CellManager : MonoBehaviour
             LinkJointClass cellJoint = receivingCell.CheckForAvailableJointOfType(linkJointType.input);
             if (cellJoint == null)
             {
-                Debug.Log("This cell can't receive more links");
+                UIManager.Instance.WarningMessage("This cell can't receive more links !");
                 SupressCurrentLink();
                 return;
             }
@@ -397,13 +397,11 @@ public class CellManager : MonoBehaviour
 
         if (wasObstructedLink && !obstructedLink && terrainIsBuildable)
         {
-            Debug.Log("UnobstructedMat");
             cellToMove.ChangeDeplacementMat(true);
         }
         if (!wasObstructedLink && obstructedLink)
         {
             cellToMove.ChangeDeplacementMat(false);
-            Debug.Log("ObstructedMat");
         }
 
         terrainWasBuildable = terrainIsBuildable;

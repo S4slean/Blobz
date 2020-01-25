@@ -17,6 +17,7 @@ public class CellMain : PoolableObjects, PlayerAction
     public bool hasCustomEvent;
     public UnityEvent onConnectEvent;
     public UnityEvent onOverloadEvent;
+    public AudioSource audioSource;
 
 
     // public List<CelulleMain> outputCell;
@@ -145,6 +146,7 @@ public class CellMain : PoolableObjects, PlayerAction
         }
 
         ownCollider.enabled = false;
+        audioSource = GetComponent<AudioSource>();
     }
 
     public virtual void OnEnable()
@@ -184,8 +186,15 @@ public class CellMain : PoolableObjects, PlayerAction
         {
             ownCollider = GetComponent<Collider>();
         }
+
+        if (!isNexus)
+        {
+            audioSource.Play();
+        }
+
         RessourceTracker.instance.AddCell(this);
         ownCollider.enabled = true;
+
         TickInscription();
         isDead = false;
 
@@ -283,7 +292,7 @@ public class CellMain : PoolableObjects, PlayerAction
                 currentTick = 0;
             }
 
-            if (haveExpulse)
+            if (haveExpulse && anim != null)
             {
                 anim.Play("BlobExpulsion");
             }
@@ -1231,8 +1240,7 @@ public class CellMain : PoolableObjects, PlayerAction
     {
         if (CheckForAvailableJointOfType(linkJointType.output) == null)
         {
-
-            Debug.Log("This cell is full , alerte message");
+            UIManager.Instance.WarningMessage("This cell can't expell more blobz");
             return;
 
         }
@@ -1277,7 +1285,6 @@ public class CellMain : PoolableObjects, PlayerAction
 
     public virtual void OnmouseIn(RaycastHit hit)
     {
-        Debug.Log("mouseIn");
         UIManager.Instance.LoadToolTip(transform.position, this, false, true);
     }
     public virtual void OnMouseOut(RaycastHit hit)

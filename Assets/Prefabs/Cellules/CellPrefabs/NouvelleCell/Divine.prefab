@@ -934,9 +934,10 @@ AudioSource:
   m_GameObject: {fileID: 6972052367257400834}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 5564211978628714315, guid: 9af4d9356a850e848974e40c45edad09,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: fe33d5f60093010449c35416179d262c, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -1345,11 +1346,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5911719936170165945}
     m_Modifications:
-    - target: {fileID: 4028331623054447071, guid: 244bc6bfe959c64448572d55c83362e5,
-        type: 3}
-      propertyPath: m_Name
-      value: BlobDisplay
-      objectReference: {fileID: 0}
     - target: {fileID: 8934393083490407729, guid: 244bc6bfe959c64448572d55c83362e5,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1404,6 +1400,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4028331623054447071, guid: 244bc6bfe959c64448572d55c83362e5,
+        type: 3}
+      propertyPath: m_Name
+      value: BlobDisplay
       objectReference: {fileID: 0}
     - target: {fileID: 6454976058459613702, guid: 244bc6bfe959c64448572d55c83362e5,
         type: 3}
@@ -1630,11 +1631,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5911719936170165945}
     m_Modifications:
-    - target: {fileID: 6239901309992010810, guid: bf5c779ebb40d1e42a1e2b3931e947df,
-        type: 3}
-      propertyPath: m_Name
-      value: stockJauge
-      objectReference: {fileID: 0}
     - target: {fileID: 8500099920274862476, guid: bf5c779ebb40d1e42a1e2b3931e947df,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1689,6 +1685,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6239901309992010810, guid: bf5c779ebb40d1e42a1e2b3931e947df,
+        type: 3}
+      propertyPath: m_Name
+      value: stockJauge
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bf5c779ebb40d1e42a1e2b3931e947df, type: 3}

@@ -87,6 +87,24 @@ public class SoundManager : MonoBehaviour
         nextMusic = newMusic;
     }
 
+    public void PlayMenuMusic()
+    {
+        FadeMusic();
+        nextMusic = menuMusic;
+    }
+
+    public void PlayStandardMusic()
+    {
+        FadeMusic();
+        nextMusic = level1Music;
+    }
+
+    public void PlayAngryMusic()
+    {
+        FadeMusic();
+        nextMusic = badBlobzMusic;
+    }
+
     public void FadeMusic()
     {
         fading = true;

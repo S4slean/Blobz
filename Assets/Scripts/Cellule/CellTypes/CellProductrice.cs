@@ -58,7 +58,7 @@ public class CellProductrice : CellMain
 
             }
 
-            if (haveExpulse)
+            if (haveExpulse && anim != null)
             {
                 anim.Play("BlobExpulsion");
             }

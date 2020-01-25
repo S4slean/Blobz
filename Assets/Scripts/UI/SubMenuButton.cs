@@ -14,7 +14,7 @@ public class SubMenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     private void Start()
     {
         img = GetComponent<Image>();
-        img.alphaHitTestMinimumThreshold = .5f;
+        img.alphaHitTestMinimumThreshold = .2f;
     }
 
     public void OnPointerEnter(PointerEventData eventData)
