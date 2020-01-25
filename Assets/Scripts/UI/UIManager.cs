@@ -49,9 +49,9 @@ public class UIManager : MonoBehaviour
 
     public void UpdateAllUI()
     {
-        if(TopBar.gameObject.activeSelf)
+        if (TopBar.gameObject.activeSelf)
             TopBar.UpdateUI();
-        if(QuestUI.gameObject.activeSelf)
+        if (QuestUI.gameObject.activeSelf)
             QuestUI.UpdateUI();
     }
     #endregion
@@ -68,10 +68,10 @@ public class UIManager : MonoBehaviour
     public void DisplayCellShop(CellMain originalCell)
     {
         cellSelection.transform.position = originalCell.transform.position + Vector3.up * .5f;
-        
+
         cellSelection.DisplaySections();
     }
-        
+
     public void DesactivateCellShop()
     {
         cellSelection.HideSections();
@@ -251,7 +251,7 @@ public class UIManager : MonoBehaviour
 
     public void DisplayColonyBtn(NexusAera area)
     {
-        ColonyBtn colonyBtn = ObjectPooler.poolingSystem.GetPooledObject<ColonyBtn>() as ColonyBtn ;
+        ColonyBtn colonyBtn = ObjectPooler.poolingSystem.GetPooledObject<ColonyBtn>() as ColonyBtn;
         Debug.Log("Woooo");
         colonyBtn.cost = area.splouchCost;
         colonyBtn.point = area.transform.position;
@@ -294,13 +294,13 @@ public class UIManager : MonoBehaviour
     {
         if (InputManager.Instance.shootingCell == null)
             return;
-        divineShotArea.transform.position = InputManager.Instance.shootingCell.transform.position;
-        divineShotArea.transform.localScale = (Vector3.one * newRange /0.075f);
+        divineShotArea.transform.position = InputManager.Instance.shootingCell.graphTransform.position;
+        divineShotArea.transform.localScale = (Vector3.one * newRange / 0.075f);
     }
 
     public void SetTargetPos(Vector3 pos)
     {
-        divineCellTarget.transform.position = pos;
+        divineCellTarget.transform.position = pos + new Vector3(0, 0.05f, 0);
     }
 
     #endregion
@@ -345,7 +345,7 @@ public class UIManager : MonoBehaviour
 
     #region PAUSE MENU 
 
-    [Header ("PauseMenu")]
+    [Header("PauseMenu")]
     public PauseMenu pauseMenu;
 
     #endregion

@@ -401,9 +401,9 @@ public class InputManager : MonoBehaviour
                 if (Input.GetMouseButtonDown(0))
                 {
                     Collider[] hitColliders = Physics.OverlapSphere(UIManager.Instance.divineCellTarget.transform.position, shootingCell.myCellTemplate.explosionRadius, 1 << 12 | 1 << 16 | 1 << 15);
-                    GameObject sphere =   GameObject.CreatePrimitive(PrimitiveType.Sphere);
-                    sphere.transform.localScale = new Vector3 (shootingCell.myCellTemplate.explosionRadius, shootingCell.myCellTemplate.explosionRadius, shootingCell.myCellTemplate.explosionRadius);
-                    sphere.transform.position = UIManager.Instance.divineCellTarget.transform.position;
+                    //GameObject sphere =   GameObject.CreatePrimitive(PrimitiveType.Sphere);
+                    //sphere.transform.localScale = new Vector3 (shootingCell.myCellTemplate.explosionRadius, shootingCell.myCellTemplate.explosionRadius, shootingCell.myCellTemplate.explosionRadius);
+                    //sphere.transform.position = UIManager.Instance.divineCellTarget.transform.position;
 
 
                     for (int i = 0; i < hitColliders.Length; i++)
@@ -420,7 +420,7 @@ public class InputManager : MonoBehaviour
                             }
                         }
                     }
-
+                    shootingCell.divineSparke.PlayFx(shootingCell.myCellTemplate.explosionRadius, UIManager.Instance.divineCellTarget.transform.position);
                     shootingCell.Decharge();
                     SwitchInputMode(InputMode.normal);
                 }
