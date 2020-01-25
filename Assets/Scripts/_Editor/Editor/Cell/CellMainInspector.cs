@@ -7,9 +7,9 @@ using UnityEditor;
 [CustomEditor(typeof(CellMain), true)]
 public class CellMainInspector : Editor
 {
-    SerializedProperty myCellTemplateProp , isNexusProp;
+    SerializedProperty myCellTemplateProp, isNexusProp;
 
-    SerializedProperty NBlobProp, NLinkProp, NCurrentProximityProp, graphTransformProp, ProximityDectectionProp , domeMRProp, spriteMRProp;
+    SerializedProperty NBlobProp, NLinkProp, NCurrentProximityProp, graphTransformProp, ProximityDectectionProp, domeMRProp, spriteMRProp;
     //debugProperty 
     SerializedProperty linksProp, noMoreLinkProp, BlobNumberProp, hasBeenDropProp;
 
@@ -17,13 +17,15 @@ public class CellMainInspector : Editor
 
     SerializedProperty TargetPosProp;
 
-    SerializedProperty coachIconProp , exploIcon;
+    SerializedProperty coachIconProp, exploIcon;
 
     SerializedProperty animProp;
 
+    SerializedProperty hasCustomEventProp, onConnectEventProp;
 
 
-    
+
+
     private void OnEnable()
     {
         myCellTemplateProp = serializedObject.FindProperty("myCellTemplate");
@@ -53,6 +55,9 @@ public class CellMainInspector : Editor
         TargetPosProp = serializedObject.FindProperty("TargetPos");
 
         animProp = serializedObject.FindProperty("anim");
+
+        hasCustomEventProp = serializedObject.FindProperty("hasCustomEvent");
+        onConnectEventProp = serializedObject.FindProperty("onConnectEvent");
     }
 
     public override void OnInspectorGUI()
@@ -69,9 +74,15 @@ public class CellMainInspector : Editor
         EditorGUI.indentLevel += 2;
         EditorGUILayout.PropertyField(isNexusProp);
         EditorGUI.indentLevel -= 2;
-       
 
-        EditorGUILayout.PropertyField(showRefProp );
+        EditorGUILayout.PropertyField(hasCustomEventProp);
+        //foldRef = EditorGUILayout.Foldout(foldRef, "Display REF VARIABLES", true);
+        if (hasCustomEventProp.boolValue)
+        {
+            EditorGUILayout.PropertyField(onConnectEventProp);
+        }
+
+        EditorGUILayout.PropertyField(showRefProp);
         //foldRef = EditorGUILayout.Foldout(foldRef, "Display REF VARIABLES", true);
         if (showRefProp.boolValue)
         {
@@ -81,7 +92,7 @@ public class CellMainInspector : Editor
             EditorGUILayout.PropertyField(NLinkProp);
             EditorGUILayout.PropertyField(NCurrentProximityProp);
             EditorGUILayout.PropertyField(graphTransformProp);
-           // EditorGUILayout.PropertyField(ProximityDectectionProp);
+            // EditorGUILayout.PropertyField(ProximityDectectionProp);
             EditorGUILayout.PropertyField(TargetPosProp);
             EditorGUILayout.PropertyField(animProp);
 
@@ -90,7 +101,7 @@ public class CellMainInspector : Editor
 
             EditorGUILayout.PropertyField(coachIconProp);
             EditorGUILayout.PropertyField(exploIcon);
-         
+
 
             EditorGUI.indentLevel -= 1;
         }

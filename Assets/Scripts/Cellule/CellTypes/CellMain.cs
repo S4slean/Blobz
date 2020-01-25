@@ -4,6 +4,7 @@ using UnityEngine;
 using System.Linq;
 using TMPro;
 using UnityEngine.EventSystems;
+using UnityEngine.Events;
 
 //[RequireComponent(typeof(MeshCollider))]  //typeof(MeshRenderer), typeof(MeshFilter),
 public class CellMain : PoolableObjects, PlayerAction
@@ -13,6 +14,8 @@ public class CellMain : PoolableObjects, PlayerAction
     public CelluleTemplate myCellTemplate;
     public bool isNexus;
 
+    public bool hasCustomEvent;
+    public UnityEvent onConnectEvent; 
 
 
     // public List<CelulleMain> outputCell;
@@ -905,6 +908,13 @@ public class CellMain : PoolableObjects, PlayerAction
             // linkToAdd.joints[0] = CheckForAvailableJointOfType(linkJointType.output);
             outputLinks.Add(linkToAdd);
             SortingLink();
+        }
+        else
+        {
+            if (onConnectEvent != null)
+            {
+                onConnectEvent.Invoke();
+            }
         }
 
         //Ancien Link
