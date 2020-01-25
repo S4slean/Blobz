@@ -17,8 +17,7 @@ public class QuestPopUp : MonoBehaviour
         TMPtitle.text = title;
         TMPtext.text = text;
 
-        if (sprite != null)
-            img.sprite = sprite;
+        img.sprite = sprite;
 
         SetRpgStyle(isUsingSprite);
     }
