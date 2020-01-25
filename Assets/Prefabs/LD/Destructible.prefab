@@ -208,7 +208,7 @@ MonoBehaviour:
   goodGraph: {fileID: 1386173271546363318}
   brokenGraph: {fileID: 1386173272474075141}
   anim: {fileID: 8181316890779560056}
-  destructType: 1
+  destructType: 5
   maxLife: 3
   isReapairable: 1
   repairDelay: 10

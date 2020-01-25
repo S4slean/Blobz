@@ -19,9 +19,9 @@ MonoBehaviour:
   isEndingQuest: 0
   populationObjective: 0
   energyToObtain: 0
-  cellType: 12
+  cellType: 1
   level: 1
-  cellNbrToObtain: 2
+  cellNbrToObtain: 1
   blobExplo: 0
   anyCells: 1
   colonialCellType: 0
@@ -48,23 +48,7 @@ MonoBehaviour:
       usingSprite: 1
       sprite: {fileID: 21300000, guid: 013d0ca5a2e30f7438158762ce87327c, type: 3}
       Title: General Globulus
-      Text: "We want great soldiers, perfect offenses, impenetrable defenses ! Against
-        what ?\r\n"
-    - rpgStyle: 1
-      anchor: {fileID: 0}
-      offset: {x: 0, y: 0, z: 0}
-      usingSprite: 1
-      sprite: {fileID: 21300000, guid: 013d0ca5a2e30f7438158762ce87327c, type: 3}
-      Title: General Globulus
-      Text: 'Look at those things ! '
-    - rpgStyle: 1
-      anchor: {fileID: 0}
-      offset: {x: 0, y: 0, z: 0}
-      usingSprite: 1
-      sprite: {fileID: 21300000, guid: 013d0ca5a2e30f7438158762ce87327c, type: 3}
-      Title: General Globulus
-      Text: "Discover this new place maybe we \nfound more Mushsploosh or other splooshi
-        things..."
+      Text: "We want great soldiers, perfect offenses, impenetrable defenses ! \r\n"
     - rpgStyle: 1
       anchor: {fileID: 0}
       offset: {x: 0, y: 0, z: 0}
@@ -72,11 +56,11 @@ MonoBehaviour:
       sprite: {fileID: 21300000, guid: 013d0ca5a2e30f7438158762ce87327c, type: 3}
       Title: General Globulus
       Text: "I didn\u2019t mention it put you can put explorers in the treblobchet
-        to launch them far away !\r\n"
+        to launch them far away !\r"
     UEvent:
       m_PersistentCalls:
         m_Calls: []
-    foldout: 1
+    foldout: 0
     cellType: 0
     newTickDuration: 0
     persistentMsg:
@@ -117,7 +101,7 @@ MonoBehaviour:
     levelName: 
     levelEvent: 0
   - eventType: 9
-    eventDuration: 1.5
+    eventDuration: 0.5
     virtualCamIndex: 2
     popUpsMsg:
     - rpgStyle: 1
@@ -249,9 +233,10 @@ MonoBehaviour:
       usingSprite: 1
       sprite: {fileID: 21300000, guid: 68215239a0bc5fa4a8ec1952bf8fed68, type: 3}
       Title: Blob the Builder
-      Text: "First, we will build a treblobchet ! It can launch blobz into the battlefield
-        that will fight for us ! Just build some basic cells first, because war costs
-        a lot !\r\n"
+      Text: 'First, we will build a treblobchet ! It can launch blobz into the battlefield
+        that will fight for us !
+
+'
     levelName: 
     levelEvent: 0
   - eventType: 4
