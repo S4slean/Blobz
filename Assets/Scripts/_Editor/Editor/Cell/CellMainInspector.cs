@@ -9,7 +9,7 @@ public class CellMainInspector : Editor
 {
     SerializedProperty myCellTemplateProp, isNexusProp;
 
-    SerializedProperty NBlobProp, NLinkProp, NCurrentProximityProp, graphTransformProp, ProximityDectectionProp, domeMRProp, spriteMRProp;
+    SerializedProperty /*NBlobProp, NLinkProp,*/ NCurrentProximityProp, graphTransformProp, ProximityDectectionProp, domeMRProp, spriteMRProp;
     //debugProperty 
     SerializedProperty linksProp, noMoreLinkProp, BlobNumberProp, hasBeenDropProp;
 
@@ -21,7 +21,10 @@ public class CellMainInspector : Editor
 
     SerializedProperty animProp;
 
-    SerializedProperty hasCustomEventProp, onConnectEventProp , onOverloadEventProp;
+    SerializedProperty blobDisplayProp;
+
+    SerializedProperty hasCustomEventProp, onConnectEventProp, onOverloadEventProp;
+
 
 
 
@@ -31,8 +34,9 @@ public class CellMainInspector : Editor
         myCellTemplateProp = serializedObject.FindProperty("myCellTemplate");
         isNexusProp = serializedObject.FindProperty("isNexus");
 
-       // NBlobProp = serializedObject.FindProperty("NBlob");
-        NLinkProp = serializedObject.FindProperty("NLink");
+        // NBlobProp = serializedObject.FindProperty("NBlob");
+        // NLinkProp = serializedObject.FindProperty("NLink");
+        blobDisplayProp = serializedObject.FindProperty("blobDisplay");
         NCurrentProximityProp = serializedObject.FindProperty("NCurrentProximity");
         graphTransformProp = serializedObject.FindProperty("graphTransform");
         ProximityDectectionProp = serializedObject.FindProperty("ProximityDectection");
@@ -90,8 +94,10 @@ public class CellMainInspector : Editor
         {
 
             EditorGUI.indentLevel += 1;
-           // EditorGUILayout.PropertyField(NBlobProp);
-            EditorGUILayout.PropertyField(NLinkProp);
+            // EditorGUILayout.PropertyField(NBlobProp);
+            // EditorGUILayout.PropertyField(NLinkProp);
+
+            EditorGUILayout.PropertyField(blobDisplayProp);
             EditorGUILayout.PropertyField(NCurrentProximityProp);
             EditorGUILayout.PropertyField(graphTransformProp);
             // EditorGUILayout.PropertyField(ProximityDectectionProp);

@@ -25,8 +25,8 @@ public class CellMain : PoolableObjects, PlayerAction
 
     public Animator anim;
     // public TextMeshPro NBlob;
+    //public TextMeshPro NLink;
     public BlobDisplay blobDisplay;
-    public TextMeshPro NLink;
     public TextMeshPro NCurrentProximity;
     public ProgressBar stockageBar;
     public Transform graphTransform;
@@ -152,8 +152,11 @@ public class CellMain : PoolableObjects, PlayerAction
         //Pour le delegate qui gére le tick
         //TickManager.doTick += BlobsTick;
         //UI init 
-        blobDisplay.UpdateUI(blobNumber, myCellTemplate.storageCapability);
         currentBlobStockage = myCellTemplate.storageCapability;
+        if (blobDisplay != null)
+        {
+            blobDisplay.UpdateUI(blobNumber, myCellTemplate.storageCapability);
+        }
 
         //Ancien Lien
         //NLink.text = (links.Count + " / " + myCellTemplate.linkCapability);
@@ -1001,7 +1004,10 @@ public class CellMain : PoolableObjects, PlayerAction
 
     public virtual void UpdateCaract()
     {
-        blobDisplay.UpdateUI(blobNumber, myCellTemplate.storageCapability);
+        if (blobDisplay != null)
+        {
+            blobDisplay.UpdateUI(blobNumber, currentBlobStockage);
+        }
         //NLink.text = (links.Count + " / " + currentLinkStockage);
     }
     public virtual void GraphSetup()
