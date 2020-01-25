@@ -11,10 +11,12 @@ public class tourelleCollider : MonoBehaviour
 
 
 
+
     private List<Blob> badBlobs = new List<Blob>();
     private List<Destructible> badCell = new List<Destructible>();
     private int currentCellTargetIndex;
     private int currentBlobTargetIndex;
+    public BlobManager.BlobType blobToTarget;
 
 
     public void Init(CellTourelle _parent)
@@ -72,14 +74,12 @@ public class tourelleCollider : MonoBehaviour
 
     public void Fire()
     {
-        Debug.Log("TryFire");
         if (!hasTarget)
         {
             CheckForTarget();
         }
         if (hasTarget)
         {
-            Debug.Log("Fire");
             parent.setCurrentTick(0);
             TourelleProjectile projectile = ObjectPooler.poolingSystem.GetPooledObject<TourelleProjectile>() as TourelleProjectile;
             projectile.Outpool();
@@ -109,7 +109,7 @@ public class tourelleCollider : MonoBehaviour
             hasTarget = false;
             for (int i = 0; i < badBlobs.Count; i++)
             {
-                if (badBlobs[i].gameObject.tag == "Enemies")
+                if (badBlobs[i].GetBlobType()== blobToTarget)
                 {
                     currentBlobTargetIndex = i;
                     hasTarget = true;

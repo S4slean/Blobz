@@ -525,6 +525,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myCollider: {fileID: 5854597692056063858}
   tourelleCanon: {fileID: 8996502951052294705}
+  blobToTarget: 3
 --- !u!135 &5854597692056063858
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1198,6 +1199,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5911719936170165945}
     m_Modifications:
+    - target: {fileID: 5078418085769911552, guid: 28ec50add9b929b4fb6da4df03bd820d,
+        type: 3}
+      propertyPath: m_Name
+      value: CoachIcon
+      objectReference: {fileID: 0}
+    - target: {fileID: 5078418085769911552, guid: 28ec50add9b929b4fb6da4df03bd820d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4892174692380387016, guid: 28ec50add9b929b4fb6da4df03bd820d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1251,16 +1262,6 @@ PrefabInstance:
     - target: {fileID: 4892174692380387016, guid: 28ec50add9b929b4fb6da4df03bd820d,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5078418085769911552, guid: 28ec50add9b929b4fb6da4df03bd820d,
-        type: 3}
-      propertyPath: m_Name
-      value: CoachIcon
-      objectReference: {fileID: 0}
-    - target: {fileID: 5078418085769911552, guid: 28ec50add9b929b4fb6da4df03bd820d,
-        type: 3}
-      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
