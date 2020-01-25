@@ -567,7 +567,7 @@ public class InputManager : MonoBehaviour
 
     public void BackToStandardDraggingDistance()
     {
-        dragDistance = distanceBeforeDrag * 0.05f * CameraController.instance.transform.position.y;
+        dragDistance = distanceBeforeDrag * 0.045f * CameraController.instance.transform.position.y;
     }
 
     public void SetDraggingDistance(float newDistance)
