@@ -26,8 +26,8 @@ MonoBehaviour:
   anyCells: 1
   colonialCellType: 0
   placeToGet: 0
-  destructType: 10
-  nbrOfObject: 0
+  destructType: 2
+  nbrOfObject: 5
   questEvents:
   - eventType: 1
     eventDuration: 2
@@ -73,6 +73,7 @@ MonoBehaviour:
       Title: 
       Text: 
     levelName: 
+    levelEvent: 0
   - eventType: 7
     eventDuration: 1
     virtualCamIndex: 0
@@ -117,6 +118,7 @@ MonoBehaviour:
       Title: 
       Text: 
     levelName: 
+    levelEvent: 0
   - eventType: 6
     eventDuration: 2
     virtualCamIndex: 0
@@ -161,3 +163,4 @@ MonoBehaviour:
       Title: General Globulus
       Text: Defend yourself
     levelName: 
+    levelEvent: 0
