@@ -7,6 +7,7 @@ public class CellDivine : CellMain
     private bool isLoaded;
     private int energie;
     public divineCellButon activationButton;
+    public DivineSparke divineSparke;
     public ProgressBar chargeBar;
 
     public override void BlobsTick()
