@@ -15,7 +15,8 @@ public class CellMain : PoolableObjects, PlayerAction
     public bool isNexus;
 
     public bool hasCustomEvent;
-    public UnityEvent onConnectEvent; 
+    public UnityEvent onConnectEvent;
+    public UnityEvent onOverloadEvent;
 
 
     // public List<CelulleMain> outputCell;
@@ -23,7 +24,8 @@ public class CellMain : PoolableObjects, PlayerAction
     public Material cellDefaultMat;
 
     public Animator anim;
-    public TextMeshPro NBlob;
+    // public TextMeshPro NBlob;
+    public BlobDisplay blobDisplay;
     public TextMeshPro NLink;
     public TextMeshPro NCurrentProximity;
     public ProgressBar stockageBar;
@@ -150,7 +152,7 @@ public class CellMain : PoolableObjects, PlayerAction
         //Pour le delegate qui gére le tick
         //TickManager.doTick += BlobsTick;
         //UI init 
-        NBlob.text = (blobNumber + " / " + myCellTemplate.storageCapability);
+        blobDisplay.UpdateUI(blobNumber, myCellTemplate.storageCapability);
         currentBlobStockage = myCellTemplate.storageCapability;
 
         //Ancien Lien
@@ -287,7 +289,7 @@ public class CellMain : PoolableObjects, PlayerAction
         {
             if (!LevelManager.instance.cellInvicible)
             {
-                overloadSparke.SetSpikeNumberAndSpeed(overloadStack , overloadStack*0.3f );
+                overloadSparke.SetSpikeNumberAndSpeed(overloadStack, overloadStack * 0.3f);
                 overloadStack++;
                 if (overloadStack > myCellTemplate.overLoadTickMax)
                 {
@@ -852,10 +854,10 @@ public class CellMain : PoolableObjects, PlayerAction
 
             case StatsModificationType.StockageCapacity:
                 int differenceAmount = 0;
-                if (stuckBlobs.Count >0)
+                if (stuckBlobs.Count > 0)
                 {
                     differenceAmount = currentBlobStockage - myCellTemplate.stockageCapacity[LastProximityTier];
-                    if (differenceAmount >0 )
+                    if (differenceAmount > 0)
                     {
                         differenceAmount = 0;
                     }
@@ -999,7 +1001,7 @@ public class CellMain : PoolableObjects, PlayerAction
 
     public virtual void UpdateCaract()
     {
-        NBlob.text = (blobNumber + " / " + currentBlobStockage);
+        blobDisplay.UpdateUI(blobNumber, myCellTemplate.storageCapability);
         //NLink.text = (links.Count + " / " + currentLinkStockage);
     }
     public virtual void GraphSetup()
@@ -1358,6 +1360,11 @@ public class CellMain : PoolableObjects, PlayerAction
         {
             //Debug.Log("enterInOverload ", gameObject);
             blolbNumberAtOverload = blobNumber;
+            if (onOverloadEvent != null)
+            {
+                onOverloadEvent.Invoke();
+            }
+
         }
     }
 
