@@ -596,11 +596,11 @@ public class InputManager : MonoBehaviour
         float dist = (shootingCell.transform.position - mouseWorldPos).sqrMagnitude;
         if (dist < Mathf.Pow(shootingCell.specifiqueStats / 2, 2)/*range au carré*/)
         {
-            UIManager.Instance.SetTargetPos(mouseWorldPos);
+            UIManager.Instance.SetTargetPos(mouseWorldPos + new Vector3(0, 0.25f, 0));
         }
         else
         {
-            UIManager.Instance.SetTargetPos(shootingCell.transform.position + (mouseWorldPos - shootingCell.transform.position).normalized * (shootingCell.specifiqueStats / 2));
+            UIManager.Instance.SetTargetPos(shootingCell.graphTransform.position + (mouseWorldPos - shootingCell.graphTransform.position).normalized * (shootingCell.specifiqueStats / 2));
         }
 
     }
