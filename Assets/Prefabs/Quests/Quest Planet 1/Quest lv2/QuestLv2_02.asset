@@ -163,7 +163,7 @@ MonoBehaviour:
       usingSprite: 1
       sprite: {fileID: 21300000, guid: cc3173b5ab91f26438949b73af93e3f9, type: 3}
       Title: MaJellyan
-      Text: "There is different categories of cells. You already know the sploosh
+      Text: "There are different categories of cells. You already know the sploosh
         type cell, the blue ones. The green one are the exploration ones.\r"
     - rpgStyle: 1
       anchor: {fileID: 0}
@@ -196,7 +196,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-    foldout: 0
+    foldout: 1
     cellType: 0
     newTickDuration: 0
     persistentMsg:
