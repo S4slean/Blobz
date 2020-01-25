@@ -64,6 +64,7 @@ MonoBehaviour:
       Title: 
       Text: 
     levelName: 
+    levelEvent: 0
   - eventType: 6
     eventDuration: 2
     virtualCamIndex: 0
@@ -99,3 +100,4 @@ MonoBehaviour:
       Title: General Globulus
       Text: Destroy the village
     levelName: 
+    levelEvent: 0

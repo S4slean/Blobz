@@ -18,7 +18,7 @@ MonoBehaviour:
   eventDone: 1
   isEndingQuest: 0
   populationObjective: 0
-  energyToObtain: 200
+  energyToObtain: 350
   cellType: 8
   level: 1
   cellNbrToObtain: 2
@@ -81,6 +81,7 @@ MonoBehaviour:
       Title: 
       Text: 
     levelName: 
+    levelEvent: 0
   - eventType: 6
     eventDuration: 2
     virtualCamIndex: 0
@@ -131,5 +132,6 @@ MonoBehaviour:
       usingSprite: 1
       sprite: {fileID: 21300000, guid: c98328a721f45da4fb0b32121f3026db, type: 3}
       Title: Uncle Sploodge
-      Text: Reach 200 Sploosh !
+      Text: Reach 350 Sploosh !
     levelName: 
+    levelEvent: 0
