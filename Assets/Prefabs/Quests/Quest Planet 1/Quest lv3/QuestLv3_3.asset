@@ -30,7 +30,7 @@ MonoBehaviour:
   nbrOfObject: 1
   questEvents:
   - eventType: 1
-    eventDuration: 0
+    eventDuration: 1
     virtualCamIndex: 3
     popUpsMsg:
     - rpgStyle: 1

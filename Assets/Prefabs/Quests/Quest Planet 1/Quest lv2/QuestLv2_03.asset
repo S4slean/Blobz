@@ -30,7 +30,7 @@ MonoBehaviour:
   nbrOfObject: 3
   questEvents:
   - eventType: 1
-    eventDuration: 5
+    eventDuration: 2
     virtualCamIndex: 0
     popUpsMsg:
     - rpgStyle: 1
@@ -51,7 +51,7 @@ MonoBehaviour:
     UEvent:
       m_PersistentCalls:
         m_Calls: []
-    foldout: 1
+    foldout: 0
     cellType: 0
     newTickDuration: 0
     persistentMsg:
@@ -65,7 +65,7 @@ MonoBehaviour:
     levelName: 
     levelEvent: 0
   - eventType: 0
-    eventDuration: 2
+    eventDuration: 1.5
     virtualCamIndex: 3
     popUpsMsg:
     - rpgStyle: 0
@@ -92,7 +92,7 @@ MonoBehaviour:
     levelName: 
     levelEvent: 0
   - eventType: 0
-    eventDuration: 2
+    eventDuration: 1.5
     virtualCamIndex: 4
     popUpsMsg:
     - rpgStyle: 0
@@ -119,7 +119,7 @@ MonoBehaviour:
     levelName: 
     levelEvent: 0
   - eventType: 1
-    eventDuration: 2
+    eventDuration: 1.5
     virtualCamIndex: 0
     popUpsMsg:
     - rpgStyle: 1
@@ -197,7 +197,7 @@ MonoBehaviour:
     levelName: 
     levelEvent: 0
   - eventType: 3
-    eventDuration: 2
+    eventDuration: 1.5
     virtualCamIndex: 0
     popUpsMsg:
     - rpgStyle: 0
@@ -238,10 +238,10 @@ MonoBehaviour:
     levelName: 
     levelEvent: 0
   - eventType: 1
-    eventDuration: 3
+    eventDuration: 1
     virtualCamIndex: 0
     popUpsMsg:
-    - rpgStyle: 0
+    - rpgStyle: 1
       anchor: {fileID: 0}
       offset: {x: 0, y: 0, z: 0}
       usingSprite: 1
@@ -265,7 +265,7 @@ MonoBehaviour:
     levelName: 
     levelEvent: 0
   - eventType: 6
-    eventDuration: 3
+    eventDuration: 1.5
     virtualCamIndex: 0
     popUpsMsg:
     - rpgStyle: 0
