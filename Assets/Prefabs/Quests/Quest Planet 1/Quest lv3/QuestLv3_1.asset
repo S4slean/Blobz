@@ -30,7 +30,7 @@ MonoBehaviour:
   nbrOfObject: 0
   questEvents:
   - eventType: 1
-    eventDuration: 2
+    eventDuration: 0.5
     virtualCamIndex: 0
     popUpsMsg:
     - rpgStyle: 1
@@ -129,7 +129,7 @@ MonoBehaviour:
     levelName: 
     levelEvent: 0
   - eventType: 1
-    eventDuration: 1.5
+    eventDuration: 0.5
     virtualCamIndex: 2
     popUpsMsg:
     - rpgStyle: 1
@@ -197,7 +197,7 @@ MonoBehaviour:
     levelName: 
     levelEvent: 0
   - eventType: 1
-    eventDuration: 1.5
+    eventDuration: 0.5
     virtualCamIndex: 2
     popUpsMsg:
     - rpgStyle: 1
