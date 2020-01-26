@@ -95,8 +95,11 @@ public class tourelleCollider : MonoBehaviour
 
 
             //badCell[currentCellTargetIndex].ReceiveDamage(parent.myCellTemplate.tourelleDamage);
-            projectile.Init(tourelleCanon.position, badCell[currentCellTargetIndex].transform.position, badCell[currentCellTargetIndex], parent.myCellTemplate.tourelleDamage);
-            parent.MunitionVariation(-1);
+            if (badCell[currentCellTargetIndex] != null)
+            {
+                projectile.Init(tourelleCanon.position, badCell[currentCellTargetIndex].transform.position, badCell[currentCellTargetIndex], parent.myCellTemplate.tourelleDamage);
+                parent.MunitionVariation(-1);
+            }
             CheckForTarget();
 
         }
@@ -109,7 +112,7 @@ public class tourelleCollider : MonoBehaviour
             hasTarget = false;
             for (int i = 0; i < badBlobs.Count; i++)
             {
-                if (badBlobs[i].GetBlobType()== blobToTarget)
+                if (badBlobs[i].GetBlobType() == blobToTarget)
                 {
                     currentBlobTargetIndex = i;
                     hasTarget = true;

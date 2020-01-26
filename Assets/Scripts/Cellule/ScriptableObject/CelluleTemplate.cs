@@ -52,7 +52,7 @@ public class CelluleTemplate : ScriptableObject
     public int prodPerTickBase;
     [Range(0, 10)]
     public int rejectPowerBase;
-    [Range(0f, 50f)]
+    [Range(0f, 1000)]
     public int storageCapability = 10;
     [Range(1, 5)]
     public int tickForActivationBase = 1;
@@ -157,6 +157,8 @@ public class CelluleTemplate : ScriptableObject
     [Range(1, 100)]
     public int maxLifeProd;
 
+
+       
     #endregion
 }
 
