@@ -455,7 +455,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &8937950277605345873
 RectTransform:
   m_ObjectHideFlags: 0
@@ -465,7 +465,7 @@ RectTransform:
   m_GameObject: {fileID: 3375206869952788240}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 7038464417190223033}
   m_RootOrder: 8
@@ -5340,6 +5340,7 @@ MonoBehaviour:
   alertHolder: {fileID: 7038464417759882717}
   offsetPercentage: 5
   pauseMenu: {fileID: 515377358770607703}
+  victoryScreen: {fileID: 7688861644141620146}
   gameOverScreen: {fileID: 7562233754459867842}
 --- !u!1 &7038464417660496775
 GameObject:
