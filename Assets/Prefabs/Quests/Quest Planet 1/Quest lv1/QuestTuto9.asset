@@ -65,7 +65,7 @@ MonoBehaviour:
       sprite: {fileID: 21300000, guid: 74a01104759d6494d8d651afa2ac8826, type: 3}
       Title: 
       Text: "Some cells will be better in the first area, close to the nexus, \nsome
-        will be better in the last one\r or even outside, like the dump or the crusher.\n"
+        will be better in the last one\r or even outside,\nlike the dump or the crusher.\n"
     - rpgStyle: 1
       anchor: {fileID: 0}
       offset: {x: 0, y: 0, z: 0}
