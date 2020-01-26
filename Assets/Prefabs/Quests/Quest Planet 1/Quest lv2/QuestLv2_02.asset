@@ -311,7 +311,7 @@ MonoBehaviour:
       Text: Create an academy
     levelName: 
     levelEvent: 0
-  - eventType: 6
+  - eventType: 3
     eventDuration: 0.5
     virtualCamIndex: 2
     popUpsMsg:
@@ -324,19 +324,7 @@ MonoBehaviour:
       Text: Create an academy
     UEvent:
       m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 7092926421352154698, guid: d3347b8975fd83342864f44ebbc52728,
-            type: 3}
-          m_MethodName: ReturnToMainCam
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 1
-          m_CallState: 2
+        m_Calls: []
     foldout: 1
     cellType: 0
     newTickDuration: 0
@@ -347,7 +335,7 @@ MonoBehaviour:
       usingSprite: 1
       sprite: {fileID: 21300000, guid: 68215239a0bc5fa4a8ec1952bf8fed68, type: 3}
       Title: Blob the Build
-      Text: Click and drag from the cell to give the exploraters a place to reach
+      Text: 
     levelName: 
     levelEvent: 0
   - eventType: 3

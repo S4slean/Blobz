@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: QuestLv2_03
   m_EditorClassIdentifier: 
   questType: 4
-  questTitle: Recolt the mushploosh
+  questTitle: Recolt the Splooshoshrooms
   questDescription: 
   eventDone: 1
   isEndingQuest: 0
@@ -26,7 +26,7 @@ MonoBehaviour:
   anyCells: 1
   colonialCellType: 0
   placeToGet: 0
-  destructType: 1
+  destructType: 5
   nbrOfObject: 3
   questEvents:
   - eventType: 1
