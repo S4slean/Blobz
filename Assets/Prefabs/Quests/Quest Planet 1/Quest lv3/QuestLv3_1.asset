@@ -48,7 +48,7 @@ MonoBehaviour:
       usingSprite: 1
       sprite: {fileID: 21300000, guid: 013d0ca5a2e30f7438158762ce87327c, type: 3}
       Title: General Globulus
-      Text: "We want great soldiers, perfect offenses, impenetrable defenses ! \rAgainst
+      Text: "We want great soldiers, perfect offenses, impenetrable defenses ! \n\rAgainst
         what ?\n"
     - rpgStyle: 1
       anchor: {fileID: 0}
@@ -138,7 +138,7 @@ MonoBehaviour:
       usingSprite: 1
       sprite: {fileID: 21300000, guid: 013d0ca5a2e30f7438158762ce87327c, type: 3}
       Title: General Globulus
-      Text: "I know they look like us but they are vermin ! We need to destroy them
+      Text: "I know they look like us but they are vermin ! \nWe need to destroy them
         !\r\n"
     UEvent:
       m_PersistentCalls:
