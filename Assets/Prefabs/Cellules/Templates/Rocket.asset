@@ -17,9 +17,9 @@ MonoBehaviour:
   buttonColor: {r: 0, g: 0, b: 0, a: 0}
   cellTexture: {fileID: 0}
   type: 13
-  description: AwinAwin
+  description: 
   descriptionProximity: 
-  descriptionClick: DoubleFile
+  descriptionClick: When fully charged, quickly click on it to launch.
   generateProximity: 0
   proximityColliderNumber: 1
   proximityColliders:
