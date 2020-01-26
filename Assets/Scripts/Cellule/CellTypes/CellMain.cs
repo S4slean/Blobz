@@ -125,6 +125,7 @@ public class CellMain : PoolableObjects, PlayerAction
     public bool canBePlaced;
     public bool isVisible;
     protected bool hasExplo;
+    protected bool hasProximityGenerated;
     #endregion
 
     #region Anim Variable   
@@ -737,8 +738,9 @@ public class CellMain : PoolableObjects, PlayerAction
     public void GenerateProximity()
     {
         // ProximityDectection.myCollider.radius = Mathf.SmoothDamp(0, myCellTemplate.range / 2, ref velocity, 0.01f);
-        if (myCellTemplate.generateProximity)
+        if (myCellTemplate.generateProximity && !hasProximityGenerated)
         {
+            hasProximityGenerated = true;
             myProximityCollider = new CellProximityDectection[myCellTemplate.proximityColliderNumber];
             for (int i = 0; i < myCellTemplate.proximityColliderNumber; i++)
             {
@@ -1050,7 +1052,7 @@ public class CellMain : PoolableObjects, PlayerAction
 
         explorateurBlobNumber = 0;
         hasBlobCoach = false;
-
+        hasProximityGenerated = false;
 
         currentProximityLevel = 0;
         inDanger = false;
