@@ -87,6 +87,8 @@ public class SceneHandler : MonoBehaviour
     {
         TickManager.doTick = null;
 
+
+        BlobManager.blobList.Clear();
         BlobManager.instance = null;
         CellManager.Instance = null;
         CinematicManager.instance = null;

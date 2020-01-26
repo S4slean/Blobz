@@ -167,16 +167,19 @@ public class Blob : PoolableObjects
 
     public void ReceiveDamage()
     {
-        if (damged)
-            return;
+        //if (damged)
+        //    return;
 
+        if (!damged)
+        {
+            RessourceTracker.instance.AddKill();
+        }
         damged = true;
-        RessourceTracker.instance.AddKill();
         Destruct();
 
     }
 
-    
+
 
 
     public void Destruct()
