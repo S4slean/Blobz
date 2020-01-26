@@ -158,7 +158,7 @@ MonoBehaviour:
     levelName: 
     levelEvent: 0
   - eventType: 9
-    eventDuration: 1.5
+    eventDuration: 2
     virtualCamIndex: 0
     popUpsMsg:
     - rpgStyle: 1
