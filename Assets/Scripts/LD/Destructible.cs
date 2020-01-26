@@ -112,6 +112,13 @@ public class Destructible : PoolableObjects, PlayerAction
         QuestManager.instance.DestructionCheck(destructType);
         RessourceTracker.instance.EnergyVariation(splouchAtDestruction);
 
+        TextScore newTextescore = ObjectPooler.poolingSystem.GetPooledObject<TextScore>() as TextScore;
+        newTextescore.Outpool();
+
+        newTextescore.myTransform.position = transform.position + new Vector3(Random.Range(-0.5f, 0.5f), 0.5f, 0);
+        newTextescore.textScore.text = ("+" + splouchAtDestruction.ToString());
+        newTextescore.PlayAnim(0);
+
         if (!isReapairable)
         {
             if (spawnEnemiesOnDestruction)
@@ -179,6 +186,14 @@ public class Destructible : PoolableObjects, PlayerAction
         {
             ReceiveDamage(1);
             RessourceTracker.instance.EnergyVariation(splouchAtClick);
+            //Text FX Display
+            TextScore newTextescore = ObjectPooler.poolingSystem.GetPooledObject<TextScore>() as TextScore;
+            newTextescore.Outpool();
+
+            newTextescore.myTransform.position = transform.position + new Vector3(Random.Range(-1f, 1f), 0.5f, 0);
+            newTextescore.textScore.text = ("+" + splouchAtClick.ToString());
+            newTextescore.PlayAnim(0);
+
         }
     }
 

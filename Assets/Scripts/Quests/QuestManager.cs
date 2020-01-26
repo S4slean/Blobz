@@ -82,7 +82,6 @@ public class QuestManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("no more Quest");
             UIManager.Instance.HideUI(UIManager.Instance.QuestUI.gameObject);
             TickManager.doTick -= CheckQuestSuccess;
         }

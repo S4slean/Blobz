@@ -46,12 +46,12 @@ MonoBehaviour:
       usingSprite: 1
       sprite: {fileID: 21300000, guid: cc3173b5ab91f26438949b73af93e3f9, type: 3}
       Title: MaJellyan
-      Text: "I told you there were 2 other cells. But you\u2019ll be discovering them
+      Text: "I told you there were another cell. But you\u2019ll be discovering it
         later. We have better things to do !\r\n"
     UEvent:
       m_PersistentCalls:
         m_Calls: []
-    foldout: 0
+    foldout: 1
     cellType: 0
     newTickDuration: 0
     persistentMsg:
@@ -144,7 +144,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-    foldout: 0
+    foldout: 1
     cellType: 0
     newTickDuration: 0
     persistentMsg:
@@ -237,7 +237,7 @@ MonoBehaviour:
       Text: "If you destroy it, it will give you sploosh. Destroy 3 of them !\r"
     levelName: 
     levelEvent: 0
-  - eventType: 6
+  - eventType: 1
     eventDuration: 3
     virtualCamIndex: 0
     popUpsMsg:
@@ -246,10 +246,8 @@ MonoBehaviour:
       offset: {x: 0, y: 0, z: 0}
       usingSprite: 1
       sprite: {fileID: 21300000, guid: cc3173b5ab91f26438949b73af93e3f9, type: 3}
-      Title: 
-      Text: '
-
-'
+      Title: MaJellyan
+      Text: If you destroy it, it will give you sploosh. Destroy 3 of them !
     UEvent:
       m_PersistentCalls:
         m_Calls: []
@@ -264,5 +262,32 @@ MonoBehaviour:
       sprite: {fileID: 21300000, guid: 68215239a0bc5fa4a8ec1952bf8fed68, type: 3}
       Title: Blob the Builder
       Text: "If you destroy it, it will give you sploosh. Destroy 3 of them !\r"
+    levelName: 
+    levelEvent: 0
+  - eventType: 6
+    eventDuration: 3
+    virtualCamIndex: 0
+    popUpsMsg:
+    - rpgStyle: 0
+      anchor: {fileID: 0}
+      offset: {x: 0, y: 0, z: 0}
+      usingSprite: 1
+      sprite: {fileID: 21300000, guid: cc3173b5ab91f26438949b73af93e3f9, type: 3}
+      Title: MaJellyan
+      Text: If you destroy it, it will give you sploosh. Destroy 3 of them !
+    UEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    foldout: 1
+    cellType: 0
+    newTickDuration: 0
+    persistentMsg:
+      rpgStyle: 0
+      anchor: {fileID: 0}
+      offset: {x: 0, y: 0, z: 0}
+      usingSprite: 1
+      sprite: {fileID: 21300000, guid: 68215239a0bc5fa4a8ec1952bf8fed68, type: 3}
+      Title: Blob the Builder
+      Text: Destroy 3 Splooshoshrooms
     levelName: 
     levelEvent: 0

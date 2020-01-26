@@ -58,7 +58,7 @@ public class CellProductrice : CellMain
 
             }
 
-            if (haveExpulse)
+            if (haveExpulse && anim != null)
             {
                 anim.Play("BlobExpulsion");
             }
@@ -76,7 +76,6 @@ public class CellProductrice : CellMain
             }
         }
     }
-
 
 
     public override void StockageCapabilityVariation(int Amount)
@@ -143,6 +142,7 @@ public class CellProductrice : CellMain
     {
         ProductionVariationByProximity(collider.productionBonusRatio, enter);
     }
+
     private void ProductionVariationByProximity(int amount, bool addition)
     {
         int multiplier;

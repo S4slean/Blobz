@@ -12,6 +12,9 @@ public class ProgressBar : MonoBehaviour
 
     public void UpdateBar(float ratio, bool circleBar)
     {
+        if (filledImage == null)
+            return;
+
         filledImage.fillAmount = ratio;
         anim.speed = 1 / (TickManager.instance.tickDuration - TickManager.instance.tickDuration / 1.8f);
         if (circleBar)

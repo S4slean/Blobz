@@ -518,7 +518,6 @@ MonoBehaviour:
   cellDefaultMat: {fileID: 0}
   anim: {fileID: 3036481689676122911}
   blobDisplay: {fileID: 4072473842138379597}
-  NLink: {fileID: 0}
   NCurrentProximity: {fileID: 3821511113757510336}
   stockageBar: {fileID: 7158368457243135013}
   graphTransform: {fileID: 2421516202894469946}
@@ -575,9 +574,10 @@ AudioSource:
   m_GameObject: {fileID: 5449206648009261835}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 5564211978628714315, guid: 9af4d9356a850e848974e40c45edad09,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: fe33d5f60093010449c35416179d262c, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -974,11 +974,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3248601226105789574}
     m_Modifications:
-    - target: {fileID: 4028331623054447071, guid: 244bc6bfe959c64448572d55c83362e5,
-        type: 3}
-      propertyPath: m_Name
-      value: BlobDisplay
-      objectReference: {fileID: 0}
     - target: {fileID: 8934393083490407729, guid: 244bc6bfe959c64448572d55c83362e5,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1033,6 +1028,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4028331623054447071, guid: 244bc6bfe959c64448572d55c83362e5,
+        type: 3}
+      propertyPath: m_Name
+      value: BlobDisplay
       objectReference: {fileID: 0}
     - target: {fileID: 6454976058459613702, guid: 244bc6bfe959c64448572d55c83362e5,
         type: 3}

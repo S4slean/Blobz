@@ -552,7 +552,6 @@ MonoBehaviour:
   cellDefaultMat: {fileID: 0}
   anim: {fileID: 1065516467052029509}
   blobDisplay: {fileID: 0}
-  NLink: {fileID: 0}
   NCurrentProximity: {fileID: 8662841764924815970}
   stockageBar: {fileID: 0}
   graphTransform: {fileID: 3454063361185357364}
@@ -624,9 +623,10 @@ AudioSource:
   m_GameObject: {fileID: 6972052367257400834}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 5564211978628714315, guid: 9af4d9356a850e848974e40c45edad09,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: fe33d5f60093010449c35416179d262c, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0

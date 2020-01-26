@@ -39,7 +39,9 @@ MonoBehaviour:
       usingSprite: 1
       sprite: {fileID: 21300000, guid: 74a01104759d6494d8d651afa2ac8826, type: 3}
       Title: 
-      Text: "We need to keep the spreading up ! Unfortunately, we lose a lot of sploosh\r\n"
+      Text: 'We need to keep the spreading up !
+
+'
     - rpgStyle: 1
       anchor: {fileID: 0}
       offset: {x: 0, y: 0, z: 0}
@@ -47,11 +49,11 @@ MonoBehaviour:
       sprite: {fileID: 21300000, guid: 74a01104759d6494d8d651afa2ac8826, type: 3}
       Title: 
       Text: "The more cells you have, the more sploosh you can have. There is a maximum
-        capacity, \nthan you can raise by creating more cells."
+        capacity, \nthat you can raise by creating more cells."
     UEvent:
       m_PersistentCalls:
         m_Calls: []
-    foldout: 0
+    foldout: 1
     cellType: 0
     newTickDuration: 0
     persistentMsg:
@@ -63,6 +65,7 @@ MonoBehaviour:
       Title: 
       Text: 
     levelName: 
+    levelEvent: 0
   - eventType: 6
     eventDuration: 5
     virtualCamIndex: 0
@@ -89,3 +92,4 @@ MonoBehaviour:
       Title: Blob the Builder
       Text: Reach 3 dump cells
     levelName: 
+    levelEvent: 0

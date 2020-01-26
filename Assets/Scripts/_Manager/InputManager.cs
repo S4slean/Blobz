@@ -15,6 +15,7 @@ public class InputManager : MonoBehaviour
     public LayerMask UIMask;
 
     //défini la distance avant d'activé le drag 
+    [HideInInspector] public bool camDragUpdating = false;
     public float distanceBeforeDrag = 2.8f;
     [HideInInspector] public float dragDistance;
 
@@ -83,7 +84,7 @@ public class InputManager : MonoBehaviour
         m_Raycaster = FindObjectOfType<GraphicRaycaster>();
         m_EventSystem = FindObjectOfType<EventSystem>();
         p_Raycaster = FindObjectOfType<PhysicsRaycaster>();
-        dragDistance = distanceBeforeDrag;
+        dragDistance = distanceBeforeDrag * 0.045f * CameraController.instance.transform.position.y;
     }
 
     private void Update()
@@ -91,6 +92,14 @@ public class InputManager : MonoBehaviour
         CurrentHit = Helper.ReturnHit(Input.mousePosition, CellManager.mainCamera, maskLeftCLick);
         mouseWorldPos = CurrentHit.point;
         mouseScreenPos = new Vector3(Input.mousePosition.x, 0, Input.mousePosition.y);
+
+
+        if (!camDragUpdating)
+        {
+
+            dragDistance = distanceBeforeDrag * 0.045f * CameraController.instance.transform.position.y;
+        }
+
 
         #region PAUSE
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -142,11 +151,12 @@ public class InputManager : MonoBehaviour
 
         switch (inputMode)
         {
+
+
             #region STANDARD_STATE
             case InputMode.normal:
 
                 #region LINKS, INTERACTIONS AND CELL_CREATIONS
-
                 //En train de drag le lien 
                 if (dragging)
                 {
@@ -205,8 +215,10 @@ public class InputManager : MonoBehaviour
                     if (selectedElement != null)
                     {
 
+                        Vector3 elementPos = ((Component)selectedElement).transform.position;
+                        elementPos = new Vector3(elementPos.x, 0, elementPos.z);
 
-                        float distanceFromElement = (CurrentHit.point - ((Component)selectedElement).transform.position).magnitude;
+                        float distanceFromElement = (new Vector3(CurrentHit.point.x, 0, CurrentHit.point.z) - elementPos).magnitude;
 
                         if (clickTime > clickCooldown && selectedElement != null && !dragging && distanceFromElement > dragDistance)
                         {
@@ -401,8 +413,8 @@ public class InputManager : MonoBehaviour
                 if (Input.GetMouseButtonDown(0))
                 {
                     Collider[] hitColliders = Physics.OverlapSphere(UIManager.Instance.divineCellTarget.transform.position, shootingCell.myCellTemplate.explosionRadius, 1 << 12 | 1 << 16 | 1 << 15);
-                    //GameObject sphere =   GameObject.CreatePrimitive(PrimitiveType.Sphere);
-                    //sphere.transform.localScale = new Vector3 (shootingCell.myCellTemplate.explosionRadius, shootingCell.myCellTemplate.explosionRadius, shootingCell.myCellTemplate.explosionRadius);
+                    //GameObject sphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+                    //sphere.transform.localScale = new Vector3(shootingCell.myCellTemplate.explosionRadius, shootingCell.myCellTemplate.explosionRadius, shootingCell.myCellTemplate.explosionRadius);
                     //sphere.transform.position = UIManager.Instance.divineCellTarget.transform.position;
 
 
@@ -420,6 +432,8 @@ public class InputManager : MonoBehaviour
                             }
                         }
                     }
+
+
                     shootingCell.divineSparke.PlayFx(shootingCell.myCellTemplate.explosionRadius, UIManager.Instance.divineCellTarget.transform.position);
                     shootingCell.Decharge();
                     SwitchInputMode(InputMode.normal);
@@ -440,17 +454,30 @@ public class InputManager : MonoBehaviour
 
                 if (Input.GetMouseButtonDown(0))
                 {
-                    Vector3 dir = (mouseWorldPos - selectedCell.transform.position).normalized;
+                    if (CurrentHit.transform != selectedCell.transform)
+                    {
+                        Vector3 dir = (mouseWorldPos - selectedCell.transform.position).normalized;
 
-                    flagAnim.SetTrigger("Plant");
-                    Blob explo = ObjectPooler.poolingSystem.GetPooledObject<Blob>() as Blob;
-                    explo.ChangeType(BlobManager.BlobType.explorateur);
-                    explo.transform.position = selectedCell.transform.position + dir * 2.5f + Vector3.up * 1.1f;
-                    explo.transform.LookAt(flag.transform.position);
-                    explo.Outpool();
-                    explo.JumpForward();
+                        flagAnim.SetTrigger("Plant");
+                        Blob explo = ObjectPooler.poolingSystem.GetPooledObject<Blob>() as Blob;
+                        explo.ChangeType(BlobManager.BlobType.explorateur);
+                        explo.transform.position = selectedCell.transform.position + dir * 2.5f + Vector3.up * 1.1f;
+                        explo.transform.LookAt(flag.transform.position);
+                        explo.Outpool();
+                        explo.JumpForward();
 
 
+                        SwitchInputMode(InputMode.normal);
+                    }
+                    else
+                    {
+                        flag.gameObject.SetActive(false);
+                        SwitchInputMode(InputMode.normal);
+                    }
+                }
+                if (Input.GetMouseButtonDown(1))
+                {
+                    flag.gameObject.SetActive(false);
                     SwitchInputMode(InputMode.normal);
                 }
 
@@ -567,11 +594,13 @@ public class InputManager : MonoBehaviour
 
     public void BackToStandardDraggingDistance()
     {
+        camDragUpdating = false;
         dragDistance = distanceBeforeDrag * 0.045f * CameraController.instance.transform.position.y;
     }
 
     public void SetDraggingDistance(float newDistance)
     {
+        camDragUpdating = true;
         dragDistance = newDistance;
     }
 
@@ -580,11 +609,11 @@ public class InputManager : MonoBehaviour
         float dist = (shootingCell.transform.position - mouseWorldPos).sqrMagnitude;
         if (dist < Mathf.Pow(shootingCell.specifiqueStats / 2, 2)/*range au carré*/)
         {
-            UIManager.Instance.SetTargetPos(mouseWorldPos);
+            UIManager.Instance.SetTargetPos(mouseWorldPos + new Vector3(0, 0.25f, 0));
         }
         else
         {
-            UIManager.Instance.SetTargetPos(shootingCell.transform.position + (mouseWorldPos - shootingCell.transform.position).normalized * (shootingCell.specifiqueStats / 2));
+            UIManager.Instance.SetTargetPos(shootingCell.graphTransform.position + (mouseWorldPos - shootingCell.graphTransform.position).normalized * (shootingCell.specifiqueStats / 2));
         }
 
     }

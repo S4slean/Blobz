@@ -10,15 +10,9 @@ public class UIManager : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance)
-        {
-            Destroy(gameObject);
-        }
-        else
-        {
-            Instance = this;
-            //DontDestroyOnLoad(gameObject);
-        }
+
+        Instance = this;
+
 
         if (cellSelection == null)
         {
@@ -28,6 +22,7 @@ public class UIManager : MonoBehaviour
         QuestUI.gameObject.SetActive(true);
 
     }
+
 
     private void Update()
     {
@@ -145,7 +140,6 @@ public class UIManager : MonoBehaviour
 
         if (tooltipCount > firstTooltipDelay && !firstTooltipDisplayed)
         {
-            Debug.Log("DisplayTooltip");
             DisplayTooltip(pos, cell, displayCost);
         }
 
@@ -279,7 +273,7 @@ public class UIManager : MonoBehaviour
     {
         InputManager.Instance.UpdateTargetPos();
         UpdateShootingArea(shootingCell.specifiqueStats);
-        divineShotArea.transform.position = shootingCell.transform.position;
+        divineShotArea.transform.position = shootingCell.graphTransform.position + new Vector3(0, 0.1f, 0);
         divineCellTarget.SetActive(true);
         divineShotArea.SetActive(true);
     }
@@ -294,7 +288,7 @@ public class UIManager : MonoBehaviour
     {
         if (InputManager.Instance.shootingCell == null)
             return;
-        divineShotArea.transform.position = InputManager.Instance.shootingCell.graphTransform.position;
+        divineShotArea.transform.position = InputManager.Instance.shootingCell.graphTransform.position + new Vector3(0, 0.1f, 0);
         divineShotArea.transform.localScale = (Vector3.one * newRange / 0.075f);
     }
 
