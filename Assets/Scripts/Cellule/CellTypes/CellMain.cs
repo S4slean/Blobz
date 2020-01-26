@@ -407,6 +407,7 @@ public class CellMain : PoolableObjects, PlayerAction
         else
         {
             Inpool();
+            hasProximityGenerated = false;
         }
     }
 
@@ -1052,7 +1053,7 @@ public class CellMain : PoolableObjects, PlayerAction
 
         explorateurBlobNumber = 0;
         hasBlobCoach = false;
-        hasProximityGenerated = false;
+      
 
         currentProximityLevel = 0;
         inDanger = false;
