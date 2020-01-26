@@ -18,7 +18,7 @@ public class EnemyVillage : MonoBehaviour
     [Tooltip("(in ticks")] public int repairDelay = 40;
     private int count = 0;
 
-    public Destructible[] buildings;
+    public List<Destructible> buildings;
     List<Blob> blobs = new List<Blob>();
     bool alerted = false;
 
@@ -27,7 +27,7 @@ public class EnemyVillage : MonoBehaviour
         boundaries = GetComponent<SphereCollider>();
         boundaries.radius = boundariesRange;
 
-        for (int i = 0; i < buildings.Length; i++)
+        for (int i = 0; i < buildings.Count; i++)
         {
             buildings[i].village = this;
         }
@@ -58,7 +58,7 @@ public class EnemyVillage : MonoBehaviour
 
     public void SpawnBlob()
     {
-        int rand = Random.Range(0, buildings.Length);
+        int rand = Random.Range(0, buildings.Count);
         Blob blob = ObjectPooler.poolingSystem.GetPooledObject<Blob>() as Blob;
         blob.Outpool();
         blob.ChangeType(BlobManager.BlobType.mad);
@@ -79,7 +79,7 @@ public class EnemyVillage : MonoBehaviour
 
     public void StopVillageRepair()
     {
-        for (int i = 0; i < buildings.Length; i++)
+        for (int i = 0; i < buildings.Count; i++)
         {
             if (buildings[i].isRuin && !buildings[i].isVillageNexus)
             {
@@ -90,7 +90,7 @@ public class EnemyVillage : MonoBehaviour
 
     public void RestartVillageRepair()
     {
-        for (int i = 0; i < buildings.Length; i++)
+        for (int i = 0; i < buildings.Count; i++)
         {
             if (buildings[i].isRuin && !buildings[i].isVillageNexus)
             {

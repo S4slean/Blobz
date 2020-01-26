@@ -38,10 +38,17 @@ public class EnemyCell : Destructible
                 SpawnEnemies();
 
 
+            village.buildings.Remove(this);
+            
             anim.Play("Disappear");
             domeAnim.Play("Disapear");
             //Insert Anim and put Delete at the end
             //remove once anim is inserted
+            if (isVillageNexus)
+            {
+                village.StopVillageRepair();
+                UIManager.Instance.DisplayVillageSelection(village);
+            }
         }
         else
         {
