@@ -47,5 +47,5 @@ MonoBehaviour:
       sprite: {fileID: 0}
       Title: 
       Text: 
-    levelName: MainMenu
+    levelName: LevelSelector
     levelEvent: 0

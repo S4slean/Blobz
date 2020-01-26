@@ -16,6 +16,7 @@ MonoBehaviour:
   questTitle: 
   questDescription: 
   eventDone: 0
+  isEndingQuest: 0
   populationObjective: 0
   energyToObtain: 0
   cellType: 0
@@ -46,4 +47,5 @@ MonoBehaviour:
       sprite: {fileID: 0}
       Title: 
       Text: 
-    levelName: MainMenu
+    levelName: Level
+    levelEvent: 0
