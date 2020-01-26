@@ -1164,6 +1164,7 @@ MonoBehaviour:
   onOverloadEvent:
     m_PersistentCalls:
       m_Calls: []
+  audioSource: {fileID: 0}
   cellDefaultMat: {fileID: 0}
   anim: {fileID: 1065516467052029509}
   blobDisplay: {fileID: 2754360091064661532}
@@ -1513,7 +1514,7 @@ PrefabInstance:
     - target: {fileID: 8934393083490407729, guid: 244bc6bfe959c64448572d55c83362e5,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 1.779
       objectReference: {fileID: 0}
     - target: {fileID: 8934393083490407729, guid: 244bc6bfe959c64448572d55c83362e5,
         type: 3}
@@ -1612,21 +1613,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5911719936170165945}
     m_Modifications:
-    - target: {fileID: 5078418085769911552, guid: 28ec50add9b929b4fb6da4df03bd820d,
-        type: 3}
-      propertyPath: m_Name
-      value: CoachIcon
-      objectReference: {fileID: 0}
-    - target: {fileID: 5078418085769911552, guid: 28ec50add9b929b4fb6da4df03bd820d,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2264174843217787543, guid: 28ec50add9b929b4fb6da4df03bd820d,
-        type: 3}
-      propertyPath: m_DrawMode
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4892174692380387016, guid: 28ec50add9b929b4fb6da4df03bd820d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1682,6 +1668,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5078418085769911552, guid: 28ec50add9b929b4fb6da4df03bd820d,
+        type: 3}
+      propertyPath: m_Name
+      value: CoachIcon
+      objectReference: {fileID: 0}
+    - target: {fileID: 5078418085769911552, guid: 28ec50add9b929b4fb6da4df03bd820d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2264174843217787543, guid: 28ec50add9b929b4fb6da4df03bd820d,
+        type: 3}
+      propertyPath: m_DrawMode
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 28ec50add9b929b4fb6da4df03bd820d, type: 3}
 --- !u!1 &1446133484614098437 stripped
@@ -1703,11 +1704,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1065516466398935401}
     m_Modifications:
-    - target: {fileID: 3400037836840381877, guid: d5579889a42fa05489f1a3a45ffc66c0,
-        type: 3}
-      propertyPath: m_Name
-      value: Fx_Overload
-      objectReference: {fileID: 0}
     - target: {fileID: 5002219110890899449, guid: d5579889a42fa05489f1a3a45ffc66c0,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1762,6 +1758,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3400037836840381877, guid: d5579889a42fa05489f1a3a45ffc66c0,
+        type: 3}
+      propertyPath: m_Name
+      value: Fx_Overload
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d5579889a42fa05489f1a3a45ffc66c0, type: 3}

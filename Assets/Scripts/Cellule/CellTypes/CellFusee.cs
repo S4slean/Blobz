@@ -8,6 +8,7 @@ public class CellFusee : CellMain
     public ProgressBar progressBar;
     private int Life;
     private bool isFullCharged;
+    private bool inAir;
 
 
     public override void BlobsTick()
@@ -55,24 +56,25 @@ public class CellFusee : CellMain
             actionmade = true;
         }
 
-        else if (isFullCharged)
+        else if (isFullCharged && !inAir)
         {
             clickforLauchn++;
             //Play FX 
+            anim.Play("clickWhileCharged", 0, 0f);
+
             if (clickforLauchn > myCellTemplate.clickBeforeLaunch)
             {
-                LevelManager.instance.LevelSuccessed();
-                Debug.Log("c'est win");
+                TickManager.instance.PauseTick();
+                anim.Play("RocketLauch", 0, 0f);
+                inAir = true;
+
+
             }
-            actionmade = true;
         }
 
-        if (actionmade)
-        {
-            anim.Play("PlayerInteraction", 0, 0f);
-        }
 
     }
+
 
     public override void StockageCapabilityVariation(int Amount)
     {
@@ -115,6 +117,7 @@ public class CellFusee : CellMain
         if (blobNumber > currentBlobStockage && !isDead)
         {
             isFullCharged = true;
+            anim.SetBool("isFullCharged", true);
         }
 
 
@@ -141,6 +144,7 @@ public class CellFusee : CellMain
     {
 
         isFullCharged = false;
+        anim.SetBool("isFullCharged", false);
         clickforLauchn = 0;
 
         Life = myCellTemplate.maxLifeProd;
@@ -160,12 +164,22 @@ public class CellFusee : CellMain
         {
             stockageBar.ToggleRenderer(!isOverload);
         }
+
+        if (blobNumber > currentBlobStockage && !isDead && !isOverload && !isFullCharged == false)
+        {
+            isFullCharged = true;
+            anim.SetBool("isFullCharged", true);
+        }
+
+
+
         if (isOverload)
         {
             if (isFullCharged)
             {
                 clickforLauchn = 0;
                 isFullCharged = false;
+                anim.SetBool("isFullCharged", false);
             }
 
             //Debug.Log("enterInOverload ", gameObject);

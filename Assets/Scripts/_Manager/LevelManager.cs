@@ -59,7 +59,8 @@ public class LevelManager : MonoBehaviour
     #region VICTORY_CONDITIONS
     public void LevelSuccessed()
     {
-
+       // TickManager.instance.PauseTick();
+        UIManager.Instance.DisplayVictoryScreen();
     }
 
     public void LevelFailed()

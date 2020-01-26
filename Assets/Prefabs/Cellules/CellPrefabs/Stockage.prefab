@@ -355,6 +355,7 @@ MonoBehaviour:
   onOverloadEvent:
     m_PersistentCalls:
       m_Calls: []
+  audioSource: {fileID: 0}
   cellDefaultMat: {fileID: 0}
   anim: {fileID: 1236907593613512011}
   blobDisplay: {fileID: 6951181073523034363}
@@ -722,12 +723,12 @@ PrefabInstance:
     - target: {fileID: 8934393083490407729, guid: 244bc6bfe959c64448572d55c83362e5,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.553
       objectReference: {fileID: 0}
     - target: {fileID: 8934393083490407729, guid: 244bc6bfe959c64448572d55c83362e5,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 1.84
       objectReference: {fileID: 0}
     - target: {fileID: 8934393083490407729, guid: 244bc6bfe959c64448572d55c83362e5,
         type: 3}
@@ -806,21 +807,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4323457220232236796}
     m_Modifications:
-    - target: {fileID: 5078418085769911552, guid: 28ec50add9b929b4fb6da4df03bd820d,
-        type: 3}
-      propertyPath: m_Name
-      value: CoachIcon
-      objectReference: {fileID: 0}
-    - target: {fileID: 5078418085769911552, guid: 28ec50add9b929b4fb6da4df03bd820d,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2264174843217787543, guid: 28ec50add9b929b4fb6da4df03bd820d,
-        type: 3}
-      propertyPath: m_Size.x
-      value: 11.5
-      objectReference: {fileID: 0}
     - target: {fileID: 4892174692380387016, guid: 28ec50add9b929b4fb6da4df03bd820d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -876,6 +862,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5078418085769911552, guid: 28ec50add9b929b4fb6da4df03bd820d,
+        type: 3}
+      propertyPath: m_Name
+      value: CoachIcon
+      objectReference: {fileID: 0}
+    - target: {fileID: 5078418085769911552, guid: 28ec50add9b929b4fb6da4df03bd820d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2264174843217787543, guid: 28ec50add9b929b4fb6da4df03bd820d,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 11.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 28ec50add9b929b4fb6da4df03bd820d, type: 3}
 --- !u!4 &4931042404103941156 stripped
@@ -897,11 +898,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 347336514114222625}
     m_Modifications:
-    - target: {fileID: 400314428079193311, guid: 74d7f2ad0af3d5644aa3194c57b18389,
-        type: 3}
-      propertyPath: m_Name
-      value: Stock
-      objectReference: {fileID: 0}
     - target: {fileID: 400314428079193252, guid: 74d7f2ad0af3d5644aa3194c57b18389,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -956,6 +952,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400314428079193311, guid: 74d7f2ad0af3d5644aa3194c57b18389,
+        type: 3}
+      propertyPath: m_Name
+      value: Stock
       objectReference: {fileID: 0}
     - target: {fileID: 26032503570507822, guid: 74d7f2ad0af3d5644aa3194c57b18389,
         type: 3}
@@ -1093,11 +1094,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1236907594294021662}
     m_Modifications:
-    - target: {fileID: 3400037836840381877, guid: d5579889a42fa05489f1a3a45ffc66c0,
-        type: 3}
-      propertyPath: m_Name
-      value: Fx_Overload
-      objectReference: {fileID: 0}
     - target: {fileID: 5002219110890899449, guid: d5579889a42fa05489f1a3a45ffc66c0,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1152,6 +1148,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3400037836840381877, guid: d5579889a42fa05489f1a3a45ffc66c0,
+        type: 3}
+      propertyPath: m_Name
+      value: Fx_Overload
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d5579889a42fa05489f1a3a45ffc66c0, type: 3}
