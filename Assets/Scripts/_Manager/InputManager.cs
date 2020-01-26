@@ -454,17 +454,30 @@ public class InputManager : MonoBehaviour
 
                 if (Input.GetMouseButtonDown(0))
                 {
-                    Vector3 dir = (mouseWorldPos - selectedCell.transform.position).normalized;
+                    if (CurrentHit.transform != selectedCell.transform)
+                    {
+                        Vector3 dir = (mouseWorldPos - selectedCell.transform.position).normalized;
 
-                    flagAnim.SetTrigger("Plant");
-                    Blob explo = ObjectPooler.poolingSystem.GetPooledObject<Blob>() as Blob;
-                    explo.ChangeType(BlobManager.BlobType.explorateur);
-                    explo.transform.position = selectedCell.transform.position + dir * 2.5f + Vector3.up * 1.1f;
-                    explo.transform.LookAt(flag.transform.position);
-                    explo.Outpool();
-                    explo.JumpForward();
+                        flagAnim.SetTrigger("Plant");
+                        Blob explo = ObjectPooler.poolingSystem.GetPooledObject<Blob>() as Blob;
+                        explo.ChangeType(BlobManager.BlobType.explorateur);
+                        explo.transform.position = selectedCell.transform.position + dir * 2.5f + Vector3.up * 1.1f;
+                        explo.transform.LookAt(flag.transform.position);
+                        explo.Outpool();
+                        explo.JumpForward();
 
 
+                        SwitchInputMode(InputMode.normal);
+                    }
+                    else
+                    {
+                        flag.gameObject.SetActive(false);
+                        SwitchInputMode(InputMode.normal);
+                    }
+                }
+                if (Input.GetMouseButtonDown(1))
+                {
+                    flag.gameObject.SetActive(false);
                     SwitchInputMode(InputMode.normal);
                 }
 
