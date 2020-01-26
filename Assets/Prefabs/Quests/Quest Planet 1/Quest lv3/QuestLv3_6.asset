@@ -15,7 +15,7 @@ MonoBehaviour:
   questType: 4
   questTitle: 
   questDescription: 
-  eventDone: 0
+  eventDone: 1
   isEndingQuest: 0
   populationObjective: 0
   energyToObtain: 0
@@ -26,7 +26,7 @@ MonoBehaviour:
   anyCells: 1
   colonialCellType: 0
   placeToGet: 0
-  destructType: 3
+  destructType: 4
   nbrOfObject: 1
   questEvents:
   - eventType: 1

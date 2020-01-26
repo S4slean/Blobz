@@ -105,7 +105,6 @@ GameObject:
   - component: {fileID: 1614161555072513785}
   - component: {fileID: 1614161555072513781}
   - component: {fileID: 245632441357610159}
-  - component: {fileID: 3530137145383302592}
   m_Layer: 10
   m_Name: BuildingArea
   m_TagString: Untagged
@@ -186,18 +185,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &3530137145383302592
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1614161555072513784}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a1d00491f3c3914d909dd5333a648b5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2743642105127321204
 GameObject:
   m_ObjectHideFlags: 0

@@ -13,15 +13,15 @@ MonoBehaviour:
   m_Name: QuestLv3_7
   m_EditorClassIdentifier: 
   questType: 2
-  questTitle: 
+  questTitle: Conquer the village
   questDescription: 
   eventDone: 0
-  isEndingQuest: 0
+  isEndingQuest: 1
   populationObjective: 0
   energyToObtain: 0
   cellType: 0
   level: 1
-  cellNbrToObtain: 3
+  cellNbrToObtain: 4
   blobExplo: 0
   anyCells: 1
   colonialCellType: 0
