@@ -63,7 +63,7 @@ MonoBehaviour:
   ProximityGestion: 1
   clickInteraction: 1
   maxEnergie: 5
-  explosionRadius: 2
+  explosionRadius: 3
   maxBlobShreddedPerClick: 1
   maxBlobCoach: 0
   magazineDragRange: 1.5
