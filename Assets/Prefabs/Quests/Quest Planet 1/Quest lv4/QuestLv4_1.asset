@@ -18,7 +18,7 @@ MonoBehaviour:
   eventDone: 1
   isEndingQuest: 0
   populationObjective: 0
-  energyToObtain: 350
+  energyToObtain: 600
   cellType: 8
   level: 1
   cellNbrToObtain: 2
@@ -39,9 +39,10 @@ MonoBehaviour:
       usingSprite: 1
       sprite: {fileID: 21300000, guid: c98328a721f45da4fb0b32121f3026db, type: 3}
       Title: Oncle Sploodge
-      Text: "Alright, I saw you've learnt quite a few things but it will be different
-        with me buddy.\nYou need to optimise okay? We don\u2019t have infinite space
-        around the nexus alright? \r\n"
+      Text: 'Alright, I saw you''ve learnt quite a few things but it will be different
+        with me buddy.
+
+        You need to optimise okay?'
     - rpgStyle: 1
       anchor: {fileID: 0}
       offset: {x: 0, y: 0, z: 0}
@@ -132,6 +133,6 @@ MonoBehaviour:
       usingSprite: 1
       sprite: {fileID: 21300000, guid: 68215239a0bc5fa4a8ec1952bf8fed68, type: 3}
       Title: Uncle Sploodge
-      Text: Reach 350 Sploosh !
+      Text: Reach 600 Sploosh !
     levelName: 
     levelEvent: 0

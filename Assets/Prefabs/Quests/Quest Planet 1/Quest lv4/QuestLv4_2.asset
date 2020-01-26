@@ -15,7 +15,7 @@ MonoBehaviour:
   questType: 2
   questTitle: Pilone
   questDescription: 
-  eventDone: 0
+  eventDone: 1
   isEndingQuest: 0
   populationObjective: 0
   energyToObtain: 0
@@ -65,6 +65,7 @@ MonoBehaviour:
       Title: 
       Text: 
     levelName: 
+    levelEvent: 0
   - eventType: 6
     eventDuration: 0
     virtualCamIndex: 0
@@ -97,10 +98,11 @@ MonoBehaviour:
       anchor: {fileID: 0}
       offset: {x: 0, y: 0, z: 0}
       usingSprite: 1
-      sprite: {fileID: 21300000, guid: c98328a721f45da4fb0b32121f3026db, type: 3}
-      Title: 
+      sprite: {fileID: 21300000, guid: 68215239a0bc5fa4a8ec1952bf8fed68, type: 3}
+      Title: Blob the Builder
       Text: Build a Battery
     levelName: 
+    levelEvent: 0
   - eventType: 4
     eventDuration: 0
     virtualCamIndex: 0
@@ -137,3 +139,4 @@ MonoBehaviour:
       Title: 
       Text: 
     levelName: 
+    levelEvent: 0
