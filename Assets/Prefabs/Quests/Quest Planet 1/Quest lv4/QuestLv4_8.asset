@@ -67,7 +67,7 @@ MonoBehaviour:
     UEvent:
       m_PersistentCalls:
         m_Calls: []
-    foldout: 1
+    foldout: 0
     cellType: 0
     newTickDuration: 0
     persistentMsg:
@@ -79,6 +79,7 @@ MonoBehaviour:
       Title: 
       Text: 
     levelName: 
+    levelEvent: 0
   - eventType: 6
     eventDuration: 2
     virtualCamIndex: 0
@@ -129,3 +130,4 @@ MonoBehaviour:
       Title: Blob the Builder
       Text: Build a Rocket !
     levelName: 
+    levelEvent: 0

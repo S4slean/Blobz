@@ -65,7 +65,7 @@ MonoBehaviour:
     levelName: 
     levelEvent: 0
   - eventType: 1
-    eventDuration: 2
+    eventDuration: 1.5
     virtualCamIndex: 0
     popUpsMsg:
     - rpgStyle: 1
@@ -100,7 +100,7 @@ MonoBehaviour:
     levelName: 
     levelEvent: 0
   - eventType: 0
-    eventDuration: 2
+    eventDuration: 1.5
     virtualCamIndex: 1
     popUpsMsg:
     - rpgStyle: 1

@@ -60,7 +60,7 @@ MonoBehaviour:
     UEvent:
       m_PersistentCalls:
         m_Calls: []
-    foldout: 1
+    foldout: 0
     cellType: 0
     newTickDuration: 0
     persistentMsg:
@@ -129,7 +129,7 @@ MonoBehaviour:
     levelName: 
     levelEvent: 0
   - eventType: 1
-    eventDuration: 2
+    eventDuration: 1.5
     virtualCamIndex: 2
     popUpsMsg:
     - rpgStyle: 1
@@ -157,7 +157,7 @@ MonoBehaviour:
     levelName: 
     levelEvent: 0
   - eventType: 3
-    eventDuration: 2
+    eventDuration: 1
     virtualCamIndex: 2
     popUpsMsg:
     - rpgStyle: 1
@@ -197,7 +197,7 @@ MonoBehaviour:
     levelName: 
     levelEvent: 0
   - eventType: 1
-    eventDuration: 2
+    eventDuration: 1.5
     virtualCamIndex: 2
     popUpsMsg:
     - rpgStyle: 1
