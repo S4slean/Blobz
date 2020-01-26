@@ -50,7 +50,7 @@ MonoBehaviour:
     levelName: 
     levelEvent: 0
   - eventType: 3
-    eventDuration: 2
+    eventDuration: 1.5
     virtualCamIndex: 0
     popUpsMsg: []
     UEvent:

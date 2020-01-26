@@ -30,7 +30,7 @@ MonoBehaviour:
   nbrOfObject: 0
   questEvents:
   - eventType: 1
-    eventDuration: 2
+    eventDuration: 0.5
     virtualCamIndex: 0
     popUpsMsg:
     - rpgStyle: 1
@@ -55,8 +55,9 @@ MonoBehaviour:
       Title: 
       Text: 
     levelName: 
+    levelEvent: 0
   - eventType: 6
-    eventDuration: 2
+    eventDuration: 0.5
     virtualCamIndex: 0
     popUpsMsg:
     - rpgStyle: 1
@@ -81,3 +82,4 @@ MonoBehaviour:
       Title: Blob the Builder
       Text: Build 2 cells around the battery
     levelName: 
+    levelEvent: 0

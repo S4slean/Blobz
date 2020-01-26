@@ -85,7 +85,7 @@ MonoBehaviour:
     levelName: 
     levelEvent: 0
   - eventType: 1
-    eventDuration: 3
+    eventDuration: 0.5
     virtualCamIndex: 7
     popUpsMsg:
     - rpgStyle: 1
@@ -181,7 +181,7 @@ MonoBehaviour:
     levelName: 
     levelEvent: 0
   - eventType: 1
-    eventDuration: 2
+    eventDuration: 0.5
     virtualCamIndex: 1
     popUpsMsg:
     - rpgStyle: 1
@@ -298,7 +298,7 @@ MonoBehaviour:
     levelName: 
     levelEvent: 0
   - eventType: 6
-    eventDuration: 3
+    eventDuration: 0.5
     virtualCamIndex: 1
     popUpsMsg:
     - rpgStyle: 1
@@ -333,6 +333,6 @@ MonoBehaviour:
       usingSprite: 1
       sprite: {fileID: 21300000, guid: 68215239a0bc5fa4a8ec1952bf8fed68, type: 3}
       Title: Blob the Builder
-      Text: "Click and hold to select the dump cell and \nplace it !"
+      Text: "Click and hold on the nexus to select the dump cell and \nplace it !"
     levelName: 
     levelEvent: 0
