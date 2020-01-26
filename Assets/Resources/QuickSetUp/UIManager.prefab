@@ -5254,7 +5254,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e84bc7b3ea89bf94cb82d666bc704994, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cellAssociated: {fileID: 0}
+  cellAssociated: {fileID: 7604940096188491477, guid: 232b4ee6411fea04f80f6076075f7ea6,
+    type: 3}
 --- !u!95 &7038464417599200428
 Animator:
   serializedVersion: 3
