@@ -48,19 +48,19 @@ MonoBehaviour:
       usingSprite: 1
       sprite: {fileID: 21300000, guid: 013d0ca5a2e30f7438158762ce87327c, type: 3}
       Title: General Globulus
-      Text: "We want great soldiers, perfect offenses, impenetrable defenses ! \r\n"
+      Text: "We want great soldiers, perfect offenses, impenetrable defenses ! \n\rAgainst
+        what ?\n"
     - rpgStyle: 1
       anchor: {fileID: 0}
       offset: {x: 0, y: 0, z: 0}
       usingSprite: 1
       sprite: {fileID: 21300000, guid: 013d0ca5a2e30f7438158762ce87327c, type: 3}
       Title: General Globulus
-      Text: "I didn\u2019t mention it put you can put explorers in the treblobchet
-        to launch them far away !\r"
+      Text: 'Look at those things ! '
     UEvent:
       m_PersistentCalls:
         m_Calls: []
-    foldout: 0
+    foldout: 1
     cellType: 0
     newTickDuration: 0
     persistentMsg:
@@ -138,7 +138,7 @@ MonoBehaviour:
       usingSprite: 1
       sprite: {fileID: 21300000, guid: 013d0ca5a2e30f7438158762ce87327c, type: 3}
       Title: General Globulus
-      Text: "I know they look like us but they are vermin ! We need to destroy them
+      Text: "I know they look like us but they are vermin ! \nWe need to destroy them
         !\r\n"
     UEvent:
       m_PersistentCalls:
@@ -196,7 +196,7 @@ MonoBehaviour:
       Text: 
     levelName: 
     levelEvent: 0
-  - eventType: 6
+  - eventType: 1
     eventDuration: 2
     virtualCamIndex: 2
     popUpsMsg:
@@ -206,8 +206,10 @@ MonoBehaviour:
       usingSprite: 1
       sprite: {fileID: 21300000, guid: 013d0ca5a2e30f7438158762ce87327c, type: 3}
       Title: General Globulus
-      Text: " know they look like us but they are vermin ! We need to destroy them
-        !\r\n"
+      Text: 'First, we will build a treblobchet ! It can launch blobz into the battlefield
+
+        that will fight for us ! Just build some basic cells first, because war costs
+        a lot !'
     UEvent:
       m_PersistentCalls:
         m_Calls:
@@ -231,7 +233,7 @@ MonoBehaviour:
       anchor: {fileID: 0}
       offset: {x: 0, y: 0, z: 0}
       usingSprite: 1
-      sprite: {fileID: 21300000, guid: 68215239a0bc5fa4a8ec1952bf8fed68, type: 3}
+      sprite: {fileID: 21300000, guid: ffd3b1ed1b798c144ba2d2d9f69162b0, type: 3}
       Title: Blob the Builder
       Text: 'First, we will build a treblobchet ! It can launch blobz into the battlefield
         that will fight for us !

@@ -454,17 +454,30 @@ public class InputManager : MonoBehaviour
 
                 if (Input.GetMouseButtonDown(0))
                 {
-                    Vector3 dir = (mouseWorldPos - selectedCell.transform.position).normalized;
+                    if (CurrentHit.transform != selectedCell.transform)
+                    {
+                        Vector3 dir = (mouseWorldPos - selectedCell.transform.position).normalized;
 
-                    flagAnim.SetTrigger("Plant");
-                    Blob explo = ObjectPooler.poolingSystem.GetPooledObject<Blob>() as Blob;
-                    explo.ChangeType(BlobManager.BlobType.explorateur);
-                    explo.transform.position = selectedCell.transform.position + dir * 2.5f + Vector3.up * 1.1f;
-                    explo.transform.LookAt(flag.transform.position);
-                    explo.Outpool();
-                    explo.JumpForward();
+                        flagAnim.SetTrigger("Plant");
+                        Blob explo = ObjectPooler.poolingSystem.GetPooledObject<Blob>() as Blob;
+                        explo.ChangeType(BlobManager.BlobType.explorateur);
+                        explo.transform.position = selectedCell.transform.position + dir * 2.5f + Vector3.up * 1.1f;
+                        explo.transform.LookAt(flag.transform.position);
+                        explo.Outpool();
+                        explo.JumpForward();
 
 
+                        SwitchInputMode(InputMode.normal);
+                    }
+                    else
+                    {
+                        flag.gameObject.SetActive(false);
+                        SwitchInputMode(InputMode.normal);
+                    }
+                }
+                if (Input.GetMouseButtonDown(1))
+                {
+                    flag.gameObject.SetActive(false);
                     SwitchInputMode(InputMode.normal);
                 }
 
@@ -596,11 +609,11 @@ public class InputManager : MonoBehaviour
         float dist = (shootingCell.transform.position - mouseWorldPos).sqrMagnitude;
         if (dist < Mathf.Pow(shootingCell.specifiqueStats / 2, 2)/*range au carré*/)
         {
-            UIManager.Instance.SetTargetPos(mouseWorldPos);
+            UIManager.Instance.SetTargetPos(mouseWorldPos + new Vector3(0, 0.25f, 0));
         }
         else
         {
-            UIManager.Instance.SetTargetPos(shootingCell.transform.position + (mouseWorldPos - shootingCell.transform.position).normalized * (shootingCell.specifiqueStats / 2));
+            UIManager.Instance.SetTargetPos(shootingCell.graphTransform.position + (mouseWorldPos - shootingCell.graphTransform.position).normalized * (shootingCell.specifiqueStats / 2));
         }
 
     }

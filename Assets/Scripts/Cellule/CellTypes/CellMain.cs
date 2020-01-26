@@ -1361,7 +1361,7 @@ public class CellMain : PoolableObjects, PlayerAction
 
     #region OVERLOAD
 
-    protected void ToggleOverload(bool isOverload)
+    protected virtual void ToggleOverload(bool isOverload)
     {
         overLoad = isOverload;
         if (stockageBar != null)

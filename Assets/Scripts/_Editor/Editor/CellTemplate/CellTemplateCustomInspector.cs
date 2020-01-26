@@ -258,6 +258,7 @@ public class CellTemplateCustomInspector : Editor
 
                 break;
             case CellType.Rocket:
+                EditorGUILayout.PropertyField(maxLifeProdProp);
                 EditorGUILayout.PropertyField(clickBeforeLaunchProp);
                 EditorGUILayout.PropertyField(blobLostPerTickProp);
                 break;

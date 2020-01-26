@@ -78,7 +78,6 @@ public class CellProductrice : CellMain
     }
 
 
-
     public override void StockageCapabilityVariation(int Amount)
     {
         Life += Amount;
@@ -143,6 +142,7 @@ public class CellProductrice : CellMain
     {
         ProductionVariationByProximity(collider.productionBonusRatio, enter);
     }
+
     private void ProductionVariationByProximity(int amount, bool addition)
     {
         int multiplier;
