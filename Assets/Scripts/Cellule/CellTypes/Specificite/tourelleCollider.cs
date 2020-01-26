@@ -87,7 +87,7 @@ public class tourelleCollider : MonoBehaviour
             {
                 // badBlobs[currentCellTargetIndex].Destruct();
                 projectile.Init(tourelleCanon.position, badBlobs[currentBlobTargetIndex].transform.position, badBlobs[currentBlobTargetIndex]);
-                badBlobs.Remove(badBlobs[currentBlobTargetIndex]);
+               // badBlobs.Remove(badBlobs[currentBlobTargetIndex]);
                 parent.MunitionVariation(-1);
                 CheckForTarget();
                 return;
