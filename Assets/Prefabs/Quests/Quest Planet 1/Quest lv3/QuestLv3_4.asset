@@ -15,7 +15,7 @@ MonoBehaviour:
   questType: 4
   questTitle: 'The are coming '
   questDescription: 
-  eventDone: 0
+  eventDone: 1
   isEndingQuest: 0
   populationObjective: 0
   energyToObtain: 0
@@ -74,8 +74,8 @@ MonoBehaviour:
       Text: 
     levelName: 
     levelEvent: 0
-  - eventType: 7
-    eventDuration: 1
+  - eventType: 9
+    eventDuration: 0
     virtualCamIndex: 0
     popUpsMsg:
     - rpgStyle: 1
@@ -118,7 +118,7 @@ MonoBehaviour:
       Title: 
       Text: 
     levelName: 
-    levelEvent: 0
+    levelEvent: 1
   - eventType: 6
     eventDuration: 0.5
     virtualCamIndex: 0

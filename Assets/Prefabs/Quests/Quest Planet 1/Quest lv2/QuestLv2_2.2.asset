@@ -30,7 +30,7 @@ MonoBehaviour:
   nbrOfObject: 5
   questEvents:
   - eventType: 1
-    eventDuration: 0.5
+    eventDuration: 1
     virtualCamIndex: 0
     popUpsMsg:
     - rpgStyle: 1
@@ -38,9 +38,16 @@ MonoBehaviour:
       offset: {x: 0, y: 0, z: 0}
       usingSprite: 1
       sprite: {fileID: 21300000, guid: cc3173b5ab91f26438949b73af93e3f9, type: 3}
+      Title: Blob the Builder
+      Text: Click and drag from the cell to give the explorators a place to reach
+    - rpgStyle: 1
+      anchor: {fileID: 0}
+      offset: {x: 0, y: 0, z: 0}
+      usingSprite: 1
+      sprite: {fileID: 21300000, guid: cc3173b5ab91f26438949b73af93e3f9, type: 3}
       Title: MaJellyan
       Text: "Great ! Change the destination point so they will explore more part of
-        the world. \r\n"
+        the world. \r"
     - rpgStyle: 1
       anchor: {fileID: 0}
       offset: {x: 0, y: 0, z: 0}
@@ -79,7 +86,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-    foldout: 1
+    foldout: 0
     cellType: 0
     newTickDuration: 0
     persistentMsg:
