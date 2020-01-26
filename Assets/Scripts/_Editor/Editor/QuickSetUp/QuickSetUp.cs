@@ -203,7 +203,7 @@ public class QuickSetUp : Editor
 
 
         ObjectPoolItem tourelleProjectile = new ObjectPoolItem();
-        tourelleProjectile.objectToPool = Resources.Load("QuickSetUp/TourelleProjectile") as GameObject;
+        tourelleProjectile.objectToPool = Resources.Load("QuickSetUp/Fx_TourelleProjectile") as GameObject;
         tourelleProjectile.AmountToPool = 50;
         pooler.poolItems.Add(tourelleProjectile);
 
