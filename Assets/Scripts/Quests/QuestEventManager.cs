@@ -15,7 +15,7 @@ public class QuestEventManager : MonoBehaviour
     QuestEvent.QuestEventType currentEventType;
 
 
-    private void Start()
+    private void Awake()
     {
         if (instance == null)
             instance = this;
