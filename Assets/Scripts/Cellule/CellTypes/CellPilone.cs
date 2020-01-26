@@ -117,7 +117,7 @@ public class CellPilone : CellMain
         for (int i = 0; i < myProximityCollider.Length; i++)
         {
             myProximityCollider[i].gameObject.SetActive(true);
-            myProximityCollider[i].transform.position = transform.position;
+            myProximityCollider[i].transform.position = graphTransform.position;
         }
     }
 
