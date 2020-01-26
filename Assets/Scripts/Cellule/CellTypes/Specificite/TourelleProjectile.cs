@@ -61,7 +61,7 @@ public class TourelleProjectile : PoolableObjects
         inTravel = false;
         if (targetIsBlob)
         {
-            currentblobTarget.Destruct();
+            currentblobTarget.ReceiveDamage();
         }
         else
         {
