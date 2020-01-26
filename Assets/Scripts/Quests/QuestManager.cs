@@ -189,7 +189,7 @@ public class QuestManager : MonoBehaviour
                 if (currentQuest.destructType == Destructible.DestructType.EnemyBlob)
                     questProgress = RessourceTracker.instance.enemyKilled;
 
-                if (questProgress == currentQuest.nbrOfObject)
+                if (questProgress >= currentQuest.nbrOfObject)
                     QuestSuccess();
 
                 break;
