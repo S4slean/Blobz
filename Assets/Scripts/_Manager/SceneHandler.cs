@@ -43,12 +43,12 @@ public class SceneHandler : MonoBehaviour
     public void LoadScene()
     {
         ClearInstances();
-        SoundManager.instance.PlayStandardMusic();
+
 
         if (!loadByString)
-            SceneManager.LoadSceneAsync(indexToLoad, LoadSceneMode.Single);
+            SceneManager.LoadScene(indexToLoad, LoadSceneMode.Single);
         else
-            SceneManager.LoadSceneAsync(stringToLoad, LoadSceneMode.Single);
+            SceneManager.LoadScene(stringToLoad, LoadSceneMode.Single);
 
     }
 
@@ -77,7 +77,6 @@ public class SceneHandler : MonoBehaviour
 
     public void BackToLevelSelection()
     {
-
         loadByString = true;
         stringToLoad = "LevelSelector";
         anim.Play("FadeIn");
