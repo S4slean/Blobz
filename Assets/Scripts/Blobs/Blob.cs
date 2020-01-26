@@ -163,6 +163,19 @@ public class Blob : PoolableObjects
 
     }
 
+    private bool damged = false;
+
+    public void ReceiveDamage()
+    {
+        if (damged || blobType != BlobManager.BlobType.mad)
+            return;
+
+        damged = true;
+        RessourceTracker.instance.AddKill();
+        Destruct();
+
+    }
+
 
     public void Destruct()
     {

@@ -335,8 +335,8 @@ public class BlobManager : MonoBehaviour
                 if (touchedBlobs[i].GetComponent<Blob>().GetBlobType() == BlobType.mad)
                 {
                     Debug.Log("Soldier Attacked blob");
-                    touchedBlobs[i].GetComponent<Blob>().Destruct();
-                    RessourceTracker.instance.AddKill();
+                    touchedBlobs[i].GetComponent<Blob>().ReceiveDamage();
+
                     blob.anim.Play("Attack");
                     return true;
                 }
