@@ -45,7 +45,7 @@ public class Blob : PoolableObjects
     {
         rb = GetComponent<Rigidbody>();
         // rd = GetComponent<Renderer>();
-
+        damged = false;
 
         UpdateMat();
         //rajoute le blob à la liste des blobs actifs dans la scène
@@ -167,7 +167,7 @@ public class Blob : PoolableObjects
 
     public void ReceiveDamage()
     {
-        if (damged || blobType != BlobManager.BlobType.mad)
+        if (damged)
             return;
 
         damged = true;
@@ -175,6 +175,8 @@ public class Blob : PoolableObjects
         Destruct();
 
     }
+
+    
 
 
     public void Destruct()

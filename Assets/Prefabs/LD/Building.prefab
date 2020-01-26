@@ -336,7 +336,7 @@ MonoBehaviour:
   anim: {fileID: 8260789756600711135}
   destructType: 0
   maxLife: 3
-  isReapairable: 1
+  isReapairable: 0
   repairDelay: 20
   isRuin: 0
   isVillageNexus: 0
