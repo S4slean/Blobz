@@ -8,6 +8,7 @@ public class BlobDisplay : MonoBehaviour
 {
     public Transform myTransform;
     public SpriteRenderer background;
+    public float baseScale = 0.75f;
 
 
     public TextMeshPro blobText;
@@ -31,12 +32,12 @@ public class BlobDisplay : MonoBehaviour
         ratio = (float)blobNumber / (float)stockageCapacity;
 
         //anim.speed = 1 / (TickManager.instance.tickDuration - TickManager.instance.tickDuration / 1.8f);
-        myTransform.localScale = (Vector3.one*0.75f) * (1f + 0.75f*ratio);
+        float ratioClamp = ratio > 1 ? 1 : ratio;
+
+        myTransform.localScale = (Vector3.one* baseScale) * (1f + baseScale * ratioClamp);
 
 
-        background.color = Color.Lerp(lerpTextColor[0], lerpTextColor[1], ratio);
-
-
+        background.color = Color.Lerp(lerpTextColor[0], lerpTextColor[1], ratioClamp);
     }
 
 }
