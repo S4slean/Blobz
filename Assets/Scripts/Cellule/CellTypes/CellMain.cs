@@ -1232,6 +1232,15 @@ public class CellMain : PoolableObjects, PlayerAction
         //    actionMade = true;
         //}
 
+        //if (CheckForAvailableJointOfType(linkJointType.output) == null)
+        //{
+        //    UIManager.Instance.WarningMessage("This cell can't expell more blobz");
+        //    return;
+
+        //}
+        //UIManager.Instance.DisplayCellShop(InputManager.Instance.selectedCell);
+
+
         if (actionmade)
         {
             anim.Play("PlayerInteraction", 0, 0f);
@@ -1241,13 +1250,7 @@ public class CellMain : PoolableObjects, PlayerAction
 
     public virtual void OnLeftClickHolding(RaycastHit hit)
     {
-        if (CheckForAvailableJointOfType(linkJointType.output) == null)
-        {
-            UIManager.Instance.WarningMessage("This cell can't expell more blobz");
-            return;
 
-        }
-        UIManager.Instance.DisplayCellShop(InputManager.Instance.selectedCell);
     }
     public virtual void OnLongLeftClickUp(RaycastHit hit)
     {
@@ -1274,7 +1277,15 @@ public class CellMain : PoolableObjects, PlayerAction
 
     public virtual void OnShortRightClick(RaycastHit hit)
     {
-        UIManager.Instance.DisplayCellOptions(this);
+        InputManager.Instance.SelectCell();
+        if (CheckForAvailableJointOfType(linkJointType.output) == null)
+        {
+            UIManager.Instance.WarningMessage("This cell can't expell more blobz");
+            return;
+
+        }
+        UIManager.Instance.DisplayCellShop(InputManager.Instance.selectedCell);
+        //UIManager.Instance.DisplayCellOptions(this);
     }
     public virtual void OnRightClickWhileHolding(RaycastHit hit)
     {

@@ -39,10 +39,10 @@ public class CellButtonsShop : MonoBehaviour, IPointerEnterHandler, IPointerExit
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if (!detectMouse)
-            return;
+        //if (!detectMouse)
+        //    return;
 
-        CellSelectionShop.instance.DisplaySubMenu(index);
+        //CellSelectionShop.instance.DisplaySubMenu(index);
     }
 
 

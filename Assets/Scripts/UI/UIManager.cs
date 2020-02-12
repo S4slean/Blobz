@@ -65,6 +65,7 @@ public class UIManager : MonoBehaviour
         cellSelection.transform.position = originalCell.transform.position + Vector3.up * .5f;
 
         cellSelection.DisplaySections();
+        cellSelection.DisplayAllSubMenus();
     }
 
     public void DesactivateCellShop()
