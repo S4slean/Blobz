@@ -247,6 +247,8 @@ public class InputManager : MonoBehaviour
                         holdingLeftClick = false;
                     }
 
+
+                    UIManager.Instance.DesactivateCellShop();
                     DeselectElement();
                     clickTime = 0;
                 }
@@ -256,6 +258,7 @@ public class InputManager : MonoBehaviour
                 {
                     SelectElement();
                     UIManager.Instance.HideCellOptions();
+                    UIManager.Instance.DesactivateCellShop();
 
                     if (holdingLeftClick)
                     {
