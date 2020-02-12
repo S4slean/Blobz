@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using Malee;
 
 [CreateAssetMenu(fileName = "QuestData.asset", menuName = "Blobz/Quest")]
 public class QuestData : ScriptableObject
@@ -38,11 +39,18 @@ public class QuestData : ScriptableObject
 
 
     [Header("Events")]
-    public QuestEvent[] questEvents;
+    [Reorderable]
+    public QuestEventList questEvents;
 
 
 
     
+}
+
+[System.Serializable]
+public class QuestEventList : ReorderableArray<QuestEvent>
+{
+
 }
 
 [System.Serializable]

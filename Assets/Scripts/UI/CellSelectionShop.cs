@@ -123,6 +123,30 @@ public class CellSelectionShop : MonoBehaviour
         }
     }
 
+    public void DisplayAllSubMenus()
+    {
+        for (int i = 0; i < energySubMenus.Length; i++)
+        {
+            if (energySubMenus[i].gameObject.activeSelf)
+                energySubMenus[i].SetBool("Open", true);
+        }
+        for (int i = 0; i < energySubMenus.Length; i++)
+        {
+            if (exploSubMenus[i].gameObject.activeSelf)
+                exploSubMenus[i].SetBool("Open", true);
+        }
+        for (int i = 0; i < energySubMenus.Length; i++)
+        {
+            if (gestionSubMenus[i].gameObject.activeSelf)
+                gestionSubMenus[i].SetBool("Open", true);
+        }
+        for (int i = 0; i < energySubMenus.Length; i++)
+        {
+            if (combatSubMenus[i].gameObject.activeSelf)
+                combatSubMenus[i].SetBool("Open", true);
+        }
+    }
+
     public void DisplaySubMenu(int index)
     {
 
