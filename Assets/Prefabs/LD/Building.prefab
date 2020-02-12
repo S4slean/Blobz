@@ -391,6 +391,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Nexus
       objectReference: {fileID: 0}
+    - target: {fileID: 202981705152538488, guid: 00a9b098515673e4fa0689d0e8ba54ca,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 202981705152538493, guid: 00a9b098515673e4fa0689d0e8ba54ca,
         type: 3}
       propertyPath: m_LocalPosition.x
