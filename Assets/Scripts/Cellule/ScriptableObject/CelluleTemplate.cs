@@ -21,6 +21,8 @@ public class CelluleTemplate : ScriptableObject
     public string description;
     public string descriptionProximity;
     public string descriptionClick;
+    [Range (1 , 200)]
+    public int expAmount = 10;
 
     public bool generateProximity;
     [Range(1, 5)]
@@ -45,7 +47,6 @@ public class CelluleTemplate : ScriptableObject
     public int blobSpawnRatioAtDeath;
     [Range(0, 50)]
     public int blobSpawnAdditionnalRatioAtDeath;
-
 
 
     [Range(0, 10)]

@@ -12,14 +12,15 @@ public class CellTemplateCustomInspector : Editor
     #region VARIABLES
     SerializedProperty cellsEnableToBuildProp, blopPrefabProp, buttonColorProp, cellTextureProp;
     SerializedProperty typeProp;
-    SerializedProperty energyCostProp, energyCapBaseProp, rangeBaseProp, blobSpawnRatioAtDeathProp , blobSpawnAdditionnalRatioAtDeath;
+    SerializedProperty energyCostProp, energyCapBaseProp, rangeBaseProp, blobSpawnRatioAtDeathProp, blobSpawnAdditionnalRatioAtDeath;
 
     SerializedProperty prodPerTickProp, rejectPowerProp, storageCapabilityProp/*, linkCapabilityProp*/, tickForActivationBaseProp, energyPerClickProp;
 
     SerializedProperty proximityLevelMaxProp, positivesInteractionsProp, negativesInteractionsProp, StatsModificationProp;
 
-    //Productrice Spé
     SerializedProperty SurprodRateProp;
+    //Productrice Spé
+    SerializedProperty expAmountProp;
     //Armory Spé
     SerializedProperty BlopPerTickProp;
 
@@ -77,6 +78,7 @@ public class CellTemplateCustomInspector : Editor
         descriptionProp = serializedObject.FindProperty("description");
         descriptionProximityProp = serializedObject.FindProperty("descriptionProximity");
         descriptionClickProp = serializedObject.FindProperty("descriptionClick");
+        expAmountProp = serializedObject.FindProperty("expAmount");
 
 
         #region Proximity Initialisation 
@@ -263,9 +265,15 @@ public class CellTemplateCustomInspector : Editor
                 EditorGUILayout.PropertyField(blobLostPerTickProp);
                 break;
         }
+        EditorGUILayout.Space();
+        EditorGUILayout.Space();
+
+        EditorGUILayout.PropertyField(expAmountProp);
+
+        EditorGUILayout.Space();
+        EditorGUILayout.Space();
+
         EditorGUILayout.EndVertical();
-        EditorGUILayout.Space();
-        EditorGUILayout.Space();
         #endregion
 
         #region REFS
