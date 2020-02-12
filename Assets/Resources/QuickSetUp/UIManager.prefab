@@ -2724,6 +2724,7 @@ GameObject:
   - component: {fileID: 7038464417021345730}
   - component: {fileID: 7038464417021345729}
   - component: {fileID: 7038464417021345728}
+  - component: {fileID: 375328724662388489}
   m_Layer: 5
   m_Name: CellToolTips
   m_TagString: UI
@@ -2778,6 +2779,19 @@ MonoBehaviour:
   proximityLvl: {fileID: 5561573918509686687}
   cellCost: {fileID: 7038464417581774332}
   secondDisplay: {fileID: 7038464417690194932}
+--- !u!114 &375328724662388489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7038464417021345731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b025400018a9947419f556ea6ad88b3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ratio: 0.19
 --- !u!1 &7038464417041941410
 GameObject:
   m_ObjectHideFlags: 0
@@ -5925,6 +5939,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7038464417905372441}
   - component: {fileID: 7038464417905372440}
+  - component: {fileID: 668017582661707435}
   m_Layer: 5
   m_Name: ChooseACell
   m_TagString: Untagged
@@ -6006,6 +6021,19 @@ MonoBehaviour:
   - {fileID: 7038464418308316001}
   - {fileID: 7038464416830526102}
   - {fileID: 7038464417958195713}
+--- !u!114 &668017582661707435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7038464417905372442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b025400018a9947419f556ea6ad88b3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ratio: 0.12
 --- !u!1 &7038464417953392492
 GameObject:
   m_ObjectHideFlags: 0
