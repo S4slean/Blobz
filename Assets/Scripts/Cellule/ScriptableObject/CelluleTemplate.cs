@@ -16,6 +16,10 @@ public class CelluleTemplate : ScriptableObject
 
 
     [Space(20f)]
+    [Range(1, 10)]
+    public int prodLevelMax = 1;
+    public ProdLevel[] levelProduction;
+
 
     public CellType type;
     public string description;
@@ -172,4 +176,13 @@ public struct ProximityCollider
     public int range;
     [Range(0, 75)]
     public int productionBonusRatio;
+}
+
+[System.Serializable]
+public struct ProdLevel
+{
+    [Range(1, 10)]
+    public int prodLevel;
+    public Sprite spriteLevel;
+
 }
