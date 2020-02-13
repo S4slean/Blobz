@@ -31,6 +31,7 @@ public class RessourceTracker : MonoBehaviour
 
     public int energyCap;
     public int energy;
+    public int rocketPiece;
     public int blobProduced;
 
     public int enemyKilled;
@@ -39,6 +40,44 @@ public class RessourceTracker : MonoBehaviour
     {
         instance = this;
     }
+
+    #region ROCKET_PIECE
+    public void AddRocketPiece()
+    {
+        rocketPiece++;
+        if(rocketPiece >= 3)
+        {
+            SufficientRocketPieceUnlocked();
+        }
+
+
+    }
+
+    public void SufficientRocketPieceUnlocked()
+    {
+        LevelManager.instance.UnlockNewCell(CellType.Rocket);
+    }
+
+    public void RemoveRocketPiece()
+    {
+        if(rocketPiece > 0)
+        {
+            rocketPiece--;
+
+            if(rocketPiece < 3)
+            {
+                LevelManager.instance.LockCell(CellType.Rocket);
+            }
+
+        }
+    }
+
+    public void ResetRocketPiece()
+    {
+        rocketPiece = 0;
+    }
+
+    #endregion
 
     #region COMBAT
     public void AddKill()
