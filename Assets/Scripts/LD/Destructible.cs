@@ -8,6 +8,7 @@ public class Destructible : PoolableObjects, PlayerAction
     public GameObject goodGraph;
     public GameObject brokenGraph;
     public Animator anim;
+    public TooltipScriptable tooltipData;
     public enum DestructType { all, ressources, EnemyBlob, enemyCell, enemyNexus, shroom, crystal, barricade, tree, rock };
 
     [Header("General")]
@@ -238,12 +239,12 @@ public class Destructible : PoolableObjects, PlayerAction
 
     public void OnmouseIn(RaycastHit hit)
     {
-
+        UIManager.Instance.DisplayPropsTooltip(transform.position, tooltipData);
     }
 
     public void OnMouseOut(RaycastHit hit)
     {
-
+        UIManager.Instance.HidePropsTooltip();
     }
 
     public void OnSelect()

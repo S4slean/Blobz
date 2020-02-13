@@ -128,6 +128,8 @@ public class UIManager : MonoBehaviour
     public TooltipUI tooltipUI;
     public CellOptionsUI cellOptionsUI;
     public ProximityToolTip proximityToolTipUI;
+    public PropsTooltip propsTooltip;
+
 
     private float tooltipCount = 0;
     public float firstTooltipDelay = .4f;
@@ -203,6 +205,17 @@ public class UIManager : MonoBehaviour
     public void HideProximityToolTip()
     {
         proximityToolTipUI.gameObject.SetActive(false);
+    }
+
+    public void DisplayPropsTooltip(Vector3 pos, TooltipScriptable tooltipData)
+    {
+        propsTooltip.gameObject.SetActive(true);
+        propsTooltip.UpdateTooltipInfos(tooltipData);
+        propsTooltip.transform.position = pos + Vector3.up;
+    }
+    public void HidePropsTooltip()
+    {
+        propsTooltip.gameObject.SetActive(false);
     }
 
     public void DisplayCellOptions(CellMain cell)
