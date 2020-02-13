@@ -17,23 +17,22 @@ MonoBehaviour:
     type: 3}
   buttonColor: {r: 0.9716981, g: 0.58233446, b: 0.022917405, a: 1}
   cellTexture: {fileID: 2800000, guid: fa8a025f4698212438823fbaf9a5967d, type: 3}
-  prodLevelMax: 5
+  prodLevelMax: 3
   levelProduction:
-  - prodLevel: 1
-    spriteLevel: {fileID: 0}
-  - prodLevel: 2
-    spriteLevel: {fileID: 0}
-  - prodLevel: 3
-    spriteLevel: {fileID: 0}
-  - prodLevel: 4
-    spriteLevel: {fileID: 0}
-  - prodLevel: 5
-    spriteLevel: {fileID: 0}
+  - blobsProduction: 2
+    expNeeded: 0
+    spriteLevel: {fileID: 21300000, guid: d64898f93a837374a9ce704828ec1c8c, type: 3}
+  - blobsProduction: 4
+    expNeeded: 50
+    spriteLevel: {fileID: 21300000, guid: d64898f93a837374a9ce704828ec1c8c, type: 3}
+  - blobsProduction: 6
+    expNeeded: 100
+    spriteLevel: {fileID: 21300000, guid: d64898f93a837374a9ce704828ec1c8c, type: 3}
   type: 0
   description: Produce blobz each tick
   descriptionProximity: 
   descriptionClick: 
-  expAmount: 10
+  expAmount: 1
   generateProximity: 1
   proximityColliderNumber: 3
   proximityColliders:

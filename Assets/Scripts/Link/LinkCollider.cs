@@ -84,10 +84,10 @@ public class LinkCollider : MonoBehaviour, PlayerAction
 
     public void OnShortRightClick(RaycastHit hit)
     {
-        if (canDestroyLink)
-        {
-            parent.Break();
-        }
+        //if (canDestroyLink)
+        //{
+        //    parent.Break();
+        //}
     }
 
     public void StopAction()

@@ -24,8 +24,6 @@ public class CellTemplateCustomInspector : Editor
 
     SerializedProperty prodLevelMaxProp , levelProductionProp;
 
-
-
     //Armory Spé
     SerializedProperty BlopPerTickProp;
 
@@ -757,8 +755,14 @@ public class CellTemplateCustomInspector : Editor
 
                 EditorGUILayout.BeginHorizontal("Box");
                 EditorGUILayout.LabelField("Blobs production");
-                SerializedProperty currentProdLevel = currentElement.FindPropertyRelative("prodLevel");
+                SerializedProperty currentProdLevel = currentElement.FindPropertyRelative("blobsProduction");
                 currentProdLevel.intValue = EditorGUILayout.IntField(currentProdLevel.intValue);
+                EditorGUILayout.EndHorizontal();
+
+                EditorGUILayout.BeginHorizontal("Box");
+                EditorGUILayout.LabelField("Exp Needed");
+                SerializedProperty currentExpNeed = currentElement.FindPropertyRelative("expNeeded");
+                currentExpNeed.intValue = EditorGUILayout.IntField(currentExpNeed.intValue);
                 EditorGUILayout.EndHorizontal();
 
 
