@@ -120,7 +120,7 @@ Transform:
   m_GameObject: {fileID: 1065516467052029508}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.09, y: 0.09, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2458937770509576860}
   - {fileID: 7041524281203698381}
@@ -771,7 +771,7 @@ MonoBehaviour:
   coachIcon: {fileID: 184319268618025571}
   exploIcon: {fileID: 8932230848544063267}
   domeMR: {fileID: 1065516466398935383}
-  baseR: {fileID: 0}
+  baseR: {fileID: 2282531396309396080}
   links: []
   inThoseCellProximity: []
   influencedByThoseCellProximity: []
