@@ -32,7 +32,7 @@ public class BlobManager : MonoBehaviour
     [Range(0, 1000)] public float soldierJumpForce = 5;
     [SerializeField] [Range(0, 1000)] private float attackRange = 20;
     [SerializeField] [Range(0, 1000)] private float detectionRadius = 10;
-    [SerializeField] [Range(0, 1000)] private int lifeRimeReductionOnAttack = 1;
+    [SerializeField] [Range(0, 1000)] private int lifeTimeReductionOnAttack = 1;
     private Transform targetTransform;
 
 
@@ -337,7 +337,7 @@ public class BlobManager : MonoBehaviour
                 {
 
                     touchedBlobs[i].GetComponent<Blob>().ReceiveDamage();
-                    blob.lifeTime -= lifeRimeReductionOnAttack;
+                    blob.lifeTime += lifeTimeReductionOnAttack;
                     blob.anim.Play("Attack");
                     return true;
                 }
