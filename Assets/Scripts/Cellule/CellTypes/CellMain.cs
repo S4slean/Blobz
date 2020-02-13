@@ -43,8 +43,10 @@ public class CellMain : PoolableObjects, PlayerAction
     public GameObject exploIcon;
 
 
-    public MeshRenderer domeMR, spriteMR;
-    private Material domeInitialMat, spriteInitialMat;
+    public MeshRenderer domeMR;
+    public SpriteRenderer baseR;
+    private Material domeInitialMat;
+    private Sprite initialSprite;
 
     public List<LinkClass> links = new List<LinkClass>();
     protected List<LinkClass> outputLinks = new List<LinkClass>();
@@ -1053,7 +1055,7 @@ public class CellMain : PoolableObjects, PlayerAction
 
         explorateurBlobNumber = 0;
         hasBlobCoach = false;
-      
+
 
         currentProximityLevel = 0;
         inDanger = false;
@@ -1179,25 +1181,25 @@ public class CellMain : PoolableObjects, PlayerAction
     private void GetInitialMat()
     {
         domeInitialMat = domeMR.material;
-        spriteInitialMat = spriteMR.material;
+        initialSprite = baseR.sprite;
 
     }
     public void RestoreInitialMat()
     {
         domeMR.material = domeInitialMat;
-        spriteMR.material = spriteInitialMat;
+        baseR.color = CellManager.Instance.allowedBuildingSpriteColor;
     }
     public void ChangeDeplacementMat(bool canBePlaced)
     {
         if (canBePlaced)
         {
             domeMR.material = CellManager.Instance.allowedBuildingMat;
-            spriteMR.material = CellManager.Instance.allowedBuildingSpriteMat;
+            baseR.color = CellManager.Instance.allowedBuildingSpriteColor;
         }
         else
         {
             domeMR.material = CellManager.Instance.refusedBuildingMat;
-            spriteMR.material = CellManager.Instance.refusedBuldingSpriteMask;
+            baseR.color = CellManager.Instance.refusedBuldingSpriteSpriteColor;
         }
     }
     #endregion
@@ -1351,7 +1353,8 @@ public class CellMain : PoolableObjects, PlayerAction
             if (collider.parent.myCellTemplate.type == CellType.Nexus)
             {
                 CellProductrice prod = collider.parent as CellProductrice;
-                prod.ProductriceProximityGestion(collider, true);
+                //prod.ProductriceProximityGestion(collider, true);
+                prod.ProductionVariationByProximity(myCellTemplate.expAmount, true);
             }
         }
     }
@@ -1363,11 +1366,13 @@ public class CellMain : PoolableObjects, PlayerAction
         {
             RemoveProximityInfluence(collider);
             //OVERRIDE POSSIBLE 
-            if (collider.parent.myCellTemplate.type == CellType.Nexus)
-            {
-                CellProductrice prod = collider.parent as CellProductrice;
-                prod.ProductriceProximityGestion(collider, false);
-            }
+            //au cas où il faut enlevé des l'exp 
+            //if (collider.parent.myCellTemplate.type == CellType.Nexus)
+            //{
+            //    CellProductrice prod = collider.parent as CellProductrice;
+            //    prod.ProductriceProximityGestion(collider, false);
+            //    prod.ProductionVariationByProximity(myCellTemplate.expAmount, true);
+            //}
         }
 
     }

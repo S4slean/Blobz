@@ -138,12 +138,12 @@ public class CellProductrice : CellMain
     }
 
 
-    public void ProductriceProximityGestion(CellProximityDectection collider, bool enter)
-    {
-        ProductionVariationByProximity(collider.productionBonusRatio, enter);
-    }
+    //public void ProductriceProximityGestion(CellProximityDectection collider, bool enter)
+    //{
+    //    ProductionVariationByProximity(collider.productionBonusRatio, enter);
+    //}
 
-    private void ProductionVariationByProximity(int amount, bool addition)
+    public void ProductionVariationByProximity(int amount, bool addition)
     {
         int multiplier;
         multiplier = (addition == true) ? 1 : -1;

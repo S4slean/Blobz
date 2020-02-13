@@ -12,9 +12,9 @@ public class CellManager : MonoBehaviour
 
     [Header("Placement Materials")]
     public Material allowedBuildingMat;
-    public Material allowedBuildingSpriteMat;
+    public Color allowedBuildingSpriteColor;
     public Material refusedBuildingMat;
-    public Material refusedBuldingSpriteMask;
+    public Color refusedBuldingSpriteSpriteColor;
 
     private bool shouldStop;
     [HideInInspector] public bool terrainIsBuildable = false;
