@@ -89,7 +89,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5add71f170050b046abe92685632a3fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 0}
+  cam: {fileID: 7957181515078020139}
   camXMin: -50
   camXMax: 50
   camYmin: -50
@@ -102,7 +102,7 @@ MonoBehaviour:
   defaultHeight: 35
   camSpeed: 23
   minHeight: 5
-  maxHeight: 15
+  maxHeight: 40
   heightStep: 1
   panningSpeed: 50
   closesetPanningMultiplier: 0.5
@@ -133,7 +133,7 @@ MonoBehaviour:
   m_Follow: {fileID: 0}
   m_Lens:
     FieldOfView: 40
-    OrthographicSize: 10
+    OrthographicSize: 14
     NearClipPlane: 0.1
     FarClipPlane: 5000
     Dutch: 0
