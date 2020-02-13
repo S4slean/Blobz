@@ -4,54 +4,163 @@ using UnityEngine;
 
 public class CellExplo : CellMain
 {
+    private bool isLoaded;
+    private int energie;
+    public CellButon activationButton;
+    public ProgressBar chargeBar;
 
-    public override void blobAddCheckType(int amount, BlobManager.BlobType _blobType, bool transmission)
+
+    public override void BlobsTick()
     {
-        switch (_blobType)
+        if (stuckBlobs.Count <= 0 && currentBlobStockage < myCellTemplate.storageCapability)
         {
-            case BlobManager.BlobType.normal:
-                RessourceTracker.instance.AddBlob(BlobManager.BlobType.explorateur, amount);
-                explorateurBlobNumber += amount;
-                break;
+            StockageCapabilityVariation(1);
+        }
 
-            case BlobManager.BlobType.coach:
-                RessourceTracker.instance.AddBlob(BlobManager.BlobType.coach, amount);
-                if (!transmission)
+
+        if (!overLoad)
+        {
+            overloadStack = 0;
+            if (blobNumber > 0 && !isLoaded)
+            {
+                BlobNumberVariation(-1, BlobCheck(), false);
+                Charge(1);
+            }
+            BlobNumberVariation(myCellTemplate.prodPerTickBase, BlobManager.BlobType.normal, true);
+
+            //ANIM
+            haveExpulse = false;
+
+            if (blobNumber > 0)
+            {
+                currentTick++;
+                if (currentTick >= currentTickForActivation)
                 {
-                    if (amount < 0)
+                    for (int i = 0; i < outputLinks.Count; i++)
                     {
-                        for (int i = 0; i < amount; i++)
+                        if (blobNumber > 0 && outputLinks.Count > 0)
                         {
+                            if (currentIndex < outputLinks.Count)
+                            {
+                                BlobManager.BlobType blobType = BlobCheck();
 
-                            blobCoaches.Remove(blobCoaches[blobCoaches.Count - 1]);
+                                if (blobType != BlobManager.BlobType.aucun)
+                                {
+                                    outputLinks[currentIndex].Transmitt(1, BlobCheck());
+                                    haveExpulse = true;
+                                    currentIndex++;
+                                    currentIndex = Helper.LoopIndex(currentIndex, outputLinks.Count);
+                                }
+                            }
+                            else
+                            {
+                                currentIndex = 0;
+                            }
                         }
                     }
+                    currentTick = 0;
                 }
-                break;
+            }
+            else
+            {
+                currentTick = 0;
+            }
 
-            case BlobManager.BlobType.explorateur:
-                explorateurBlobNumber += amount;
-                RessourceTracker.instance.AddBlob(BlobManager.BlobType.explorateur, amount);
-                break;
-        }
-        blobNumber = normalBlobNumber + blobCoaches.Count + explorateurBlobNumber;
-        UpdateCaract();
-    }
-
-    public override void CheckForExplo(BlobManager.BlobType _blobType)
-    {
-        if (explorateurBlobNumber <= 0)
-        {
-            //explorateurBlobNumber = 0;
-            hasExplo = false;
-            exploIcon.SetActive(false);
+            if (haveExpulse)
+            {
+                anim.Play("BlobExpulsion");
+            }
         }
         else
         {
-            hasExplo = true;
-            exploIcon.SetActive(true);
+            if (!LevelManager.instance.cellInvicible)
+            {
+                overloadSparke.SetSpikeNumberAndSpeed(overloadStack, overloadStack * 0.3f);
+                overloadStack++;
+                if (overloadStack > myCellTemplate.overLoadTickMax)
+                {
+                    Died(false);
+                }
+            }
+        }
+
+    }
+    private void Charge(int amount)
+    {
+        if (!isLoaded)
+        {
+            energie += amount;
+            if (energie >= myCellTemplate.maxEnergie)
+            {
+                isLoaded = true;
+                energie = myCellTemplate.maxEnergie;
+                activationButton.ToggleButton(true);
+            }
+            float ratio = (float)energie / (float)myCellTemplate.maxEnergie;
+            chargeBar.UpdateBar(ratio, false);
         }
     }
+
+    public void Decharge()
+    {
+        energie = 0;
+        isLoaded = false;
+        activationButton.ToggleButton(false);
+        float ratio = (float)energie / (float)myCellTemplate.maxEnergie;
+        chargeBar.UpdateBar(ratio, false);
+
+    }
+
+    //#region ancien treblochet
+
+    //public override void blobAddCheckType(int amount, BlobManager.BlobType _blobType, bool transmission)
+    //{
+    //    switch (_blobType)
+    //    {
+    //        case BlobManager.BlobType.normal:
+    //            RessourceTracker.instance.AddBlob(BlobManager.BlobType.explorateur, amount);
+    //            explorateurBlobNumber += amount;
+    //            break;
+
+    //        case BlobManager.BlobType.coach:
+    //            RessourceTracker.instance.AddBlob(BlobManager.BlobType.coach, amount);
+    //            if (!transmission)
+    //            {
+    //                if (amount < 0)
+    //                {
+    //                    for (int i = 0; i < amount; i++)
+    //                    {
+
+    //                        blobCoaches.Remove(blobCoaches[blobCoaches.Count - 1]);
+    //                    }
+    //                }
+    //            }
+    //            break;
+
+    //        case BlobManager.BlobType.explorateur:
+    //            explorateurBlobNumber += amount;
+    //            RessourceTracker.instance.AddBlob(BlobManager.BlobType.explorateur, amount);
+    //            break;
+    //    }
+    //    blobNumber = normalBlobNumber + blobCoaches.Count + explorateurBlobNumber;
+    //    UpdateCaract();
+    //}
+
+    //public override void CheckForExplo(BlobManager.BlobType _blobType)
+    //{
+    //    if (explorateurBlobNumber <= 0)
+    //    {
+    //        //explorateurBlobNumber = 0;
+    //        hasExplo = false;
+    //        exploIcon.SetActive(false);
+    //    }
+    //    else
+    //    {
+    //        hasExplo = true;
+    //        exploIcon.SetActive(true);
+    //    }
+    //}
+    //#endregion
 
     public override void OnShortLeftClickUp(RaycastHit hit)
     {
@@ -68,9 +177,9 @@ public class CellExplo : CellMain
             actionmade = true;
         }
 
-        if (hasExplo && !actionmade)
+        if (isLoaded && !actionmade)
         {
-            InputManager.SwitchInputMode(InputManager.InputMode.flag);
+            InputManager.SwitchInputMode(InputManager.InputMode.flag , myCellTemplate.type);
             actionmade = true;
         }
 
@@ -82,4 +191,9 @@ public class CellExplo : CellMain
 
     }
 
+    public override void SetupVariable()
+    {
+        Decharge();
+        base.SetupVariable();
+    }
 }

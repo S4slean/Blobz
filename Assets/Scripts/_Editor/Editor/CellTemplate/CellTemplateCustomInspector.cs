@@ -262,15 +262,18 @@ public class CellTemplateCustomInspector : Editor
                 EditorGUILayout.PropertyField(maxBlobShreddedPerClickProp);
                 break;
             case CellType.Academy:
+                EditorGUILayout.PropertyField(MaxEnergieProp);
                 break;
             case CellType.Treblobchet:
-                EditorGUILayout.PropertyField(magazineDragRangeProp);
-                EditorGUILayout.PropertyField(minDragRatioProp);
-                EditorGUILayout.HelpBox("VARIABLE POUR LE LANCER", MessageType.None);
-                EditorGUILayout.PropertyField(shotPowerProp);
-                EditorGUILayout.PropertyField(verticalConstantPowerProp);
-                EditorGUILayout.PropertyField(verticalOffsetProp);
-                EditorGUILayout.PropertyField(magazinSlotDistanceProp);
+                EditorGUILayout.PropertyField(MaxEnergieProp);
+
+                //EditorGUILayout.PropertyField(magazineDragRangeProp);
+                //EditorGUILayout.PropertyField(minDragRatioProp);
+                //EditorGUILayout.HelpBox("VARIABLE POUR LE LANCER", MessageType.None);
+                //EditorGUILayout.PropertyField(shotPowerProp);
+                //EditorGUILayout.PropertyField(verticalConstantPowerProp);
+                //EditorGUILayout.PropertyField(verticalOffsetProp);
+                //EditorGUILayout.PropertyField(magazinSlotDistanceProp);
 
                 break;
             case CellType.Rocket:
