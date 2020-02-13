@@ -182,7 +182,10 @@ public struct ProximityCollider
 public struct ProdLevel
 {
     [Range(1, 10)]
-    public int prodLevel;
+    public int blobsProduction;
+    [Range(10, 1000)]
+    public int expNeeded;
     public Sprite spriteLevel;
+
 
 }

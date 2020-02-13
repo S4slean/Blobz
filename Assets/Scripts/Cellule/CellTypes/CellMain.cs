@@ -51,7 +51,7 @@ public class CellMain : PoolableObjects, PlayerAction
     public List<LinkClass> links = new List<LinkClass>();
     protected List<LinkClass> outputLinks = new List<LinkClass>();
 
-    public List<CellProximityDectection> inThoseCellProximity = new List<CellProximityDectection>();
+    public List<CellProximityDectection> inThoseProximityCollider = new List<CellProximityDectection>();
     public List<CellProximityDectection> influencedByThoseCellProximity = new List<CellProximityDectection>();
 
     public List<Blob> stuckBlobs = new List<Blob>();
@@ -396,7 +396,7 @@ public class CellMain : PoolableObjects, PlayerAction
         }
 
 
-        inThoseCellProximity.Clear();
+        inThoseProximityCollider.Clear();
         influencedByThoseCellProximity.Clear();
 
         blobNumber = 0;
@@ -796,7 +796,7 @@ public class CellMain : PoolableObjects, PlayerAction
 
     public void RemoveProximityInfluence(CellProximityDectection proximityToRemove)
     {
-        inThoseCellProximity.Remove(proximityToRemove);
+        inThoseProximityCollider.Remove(proximityToRemove);
         //for (int i = 0; i < influencedByThoseCellProximity.Count; i++)
         //{
         //    if (proximityToRemove == influencedByThoseCellProximity[i])
@@ -810,9 +810,9 @@ public class CellMain : PoolableObjects, PlayerAction
         //}
 
         influencedByThoseCellProximity.Remove(proximityToRemove);
-        for (int y = 0; y < inThoseCellProximity.Count; y++)
+        for (int y = 0; y < inThoseProximityCollider.Count; y++)
         {
-            AddProximityInfluence(inThoseCellProximity[y]);
+            AddProximityInfluence(inThoseProximityCollider[y]);
         }
         ProximityLevelModification();
     }
@@ -1182,7 +1182,6 @@ public class CellMain : PoolableObjects, PlayerAction
     {
         domeInitialMat = domeMR.material;
         initialSprite = baseR.sprite;
-
     }
     public void RestoreInitialMat()
     {
@@ -1339,22 +1338,23 @@ public class CellMain : PoolableObjects, PlayerAction
         CellProximityDectection collider = other.GetComponent<CellProximityDectection>();
         if (collider != null && collider.parent != this)
         {
-            for (int i = 0; i < inThoseCellProximity.Count; i++)
+            for (int i = 0; i < inThoseProximityCollider.Count; i++)
             {
-                if (inThoseCellProximity[i] == collider)
+                if (inThoseProximityCollider[i] == collider)
                 {
                     return;
                 }
             }
-            inThoseCellProximity.Add(collider);
+            inThoseProximityCollider.Add(collider);
             //parent.AddToCellAtPromity(cell);
             AddProximityInfluence(collider);
             //OVERRIDE POSSIBLE 
             if (collider.parent.myCellTemplate.type == CellType.Nexus)
             {
-                CellProductrice prod = collider.parent as CellProductrice;
+                // CellProductrice prod = collider.parent as CellProductrice;
                 //prod.ProductriceProximityGestion(collider, true);
-                prod.ProductionVariationByProximity(myCellTemplate.expAmount, true);
+                //prod.ProductionVariationByProximity(myCellTemplate.expAmount, true);
+                collider.TryToAddExp(this);
             }
         }
     }

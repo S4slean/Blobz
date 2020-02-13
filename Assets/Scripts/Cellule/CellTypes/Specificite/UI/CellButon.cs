@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class divineCellButon : MonoBehaviour
+public class CellButon : MonoBehaviour
 {
     public Animator anim;
 
