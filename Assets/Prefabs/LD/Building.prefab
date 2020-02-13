@@ -334,6 +334,7 @@ MonoBehaviour:
   goodGraph: {fileID: 6438243430102390527}
   brokenGraph: {fileID: 1425149600685392508}
   anim: {fileID: 8260789756600711135}
+  tooltipData: {fileID: 11400000, guid: 2197cea21f9159245bc515537fa07e3c, type: 2}
   destructType: 0
   maxLife: 3
   isReapairable: 0
