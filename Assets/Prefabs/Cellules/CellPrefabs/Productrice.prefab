@@ -614,7 +614,7 @@ MonoBehaviour:
   domeMR: {fileID: 1065516466398935383}
   baseR: {fileID: 4193020531804808406}
   links: []
-  inThoseCellProximity: []
+  inThoseProximityCollider: []
   influencedByThoseCellProximity: []
   stuckBlobs: []
   ownCollider: {fileID: 2955111989555263193}
@@ -1061,6 +1061,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6515782174673828743, guid: fac3b6f839014844ba1edf5ffc4dfad1,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 6515782174673828743, guid: fac3b6f839014844ba1edf5ffc4dfad1,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 6515782174673828743, guid: fac3b6f839014844ba1edf5ffc4dfad1,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.35
+      objectReference: {fileID: 0}
     - target: {fileID: 154135135859092829, guid: fac3b6f839014844ba1edf5ffc4dfad1,
         type: 3}
       propertyPath: m_Layer
@@ -1505,17 +1520,17 @@ PrefabInstance:
     - target: {fileID: 6515782174673828743, guid: fac3b6f839014844ba1edf5ffc4dfad1,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 1.3501
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6515782174673828743, guid: fac3b6f839014844ba1edf5ffc4dfad1,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.3501
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6515782174673828743, guid: fac3b6f839014844ba1edf5ffc4dfad1,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 1.3501
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 154135135859092829, guid: fac3b6f839014844ba1edf5ffc4dfad1,
         type: 3}
