@@ -34,16 +34,13 @@ MonoBehaviour:
   descriptionClick: 
   expAmount: 1
   generateProximity: 1
-  proximityColliderNumber: 3
+  proximityColliderNumber: 2
   proximityColliders:
   - proximityLevel: 3
-    range: 22
+    range: 25
     productionBonusRatio: 70
-  - proximityLevel: 3
-    range: 22
-    productionBonusRatio: 70
-  - proximityLevel: 3
-    range: 22
+  - proximityLevel: 1
+    range: 60
     productionBonusRatio: 70
   energyCost: 500
   energyCapBase: 500
