@@ -1365,6 +1365,7 @@ public class CellMain : PoolableObjects, PlayerAction
         if (collider != null && collider.parent != this)
         {
             RemoveProximityInfluence(collider);
+            collider.TryToReomveCellExp(this);
             //OVERRIDE POSSIBLE 
             //au cas où il faut enlevé des l'exp 
             //if (collider.parent.myCellTemplate.type == CellType.Nexus)

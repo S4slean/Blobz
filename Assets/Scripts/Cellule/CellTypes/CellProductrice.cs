@@ -281,19 +281,19 @@ public class CellProductrice : CellMain
 
         CellThatGiveExp.Add(cellToAdd);
 
-        int expAmount = 0;
-        for (int i = 0; i < CellThatGiveExp.Count; i++)
-        {
-            expAmount += CellThatGiveExp[i].myCellTemplate.expAmount;
-        }
-        int removePreviousExpAmount = 0;
-        for (int i = 0; i < currentLevel + 1; i++)
-        {
-            removePreviousExpAmount += myCellTemplate.levelProduction[i].expNeeded;
-        }
+        //int expAmount = 0;
+        //for (int i = 0; i < CellThatGiveExp.Count; i++)
+        //{
+        //    expAmount += CellThatGiveExp[i].myCellTemplate.expAmount;
+        //}
+        //int removePreviousExpAmount = 0;
+        //for (int i = 0; i < currentLevel + 1; i++)
+        //{
+        //    removePreviousExpAmount += myCellTemplate.levelProduction[i].expNeeded;
+        //}
 
 
-        currentExp = expAmount - removePreviousExpAmount;
+        currentExp += cellToAdd.myCellTemplate.expAmount;
 
         int expNeeded = myCellTemplate.levelProduction[currentLevel + 1].expNeeded;
 
@@ -350,5 +350,10 @@ public class CellProductrice : CellMain
 
         float ratio = (float)currentExp / (float)expNeeded;
         expBar.UpdateBar(ratio, true);
+    }
+
+    public void RemoveFromCellTahtGIveExp(CellMain cellToRemove)
+    {
+        CellThatGiveExp.Remove(cellToRemove);
     }
 }

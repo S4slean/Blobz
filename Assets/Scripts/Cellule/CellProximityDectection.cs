@@ -24,7 +24,13 @@ public class CellProximityDectection : PoolableObjects
     {
         CellProductrice prod = parent as CellProductrice;
         prod.AddExpCell(cellToAdd);
+    }    
+    public void TryToReomveCellExp(CellMain cellToAdd)
+    {
+        CellProductrice prod = parent as CellProductrice;
+        prod.RemoveFromCellTahtGIveExp(cellToAdd);
     }
+
 
 
     //private void OnTriggerEnter(Collider other)
