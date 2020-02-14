@@ -131,7 +131,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 32
   camDragUpdating: 0
-  distanceBeforeDrag: 3
+  distanceBeforeDrag: 1
   dragDistance: 0
   DelayBetweenClick: 0
   clickCooldown: 0.2
