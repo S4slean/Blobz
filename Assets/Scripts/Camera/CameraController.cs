@@ -1,10 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class CameraController : MonoBehaviour
 {
-    public Camera cam;
+    public CinemachineVirtualCamera cam;
 
     public float camXMin = -50;
     public float camXMax = 50;
@@ -61,6 +62,7 @@ public class CameraController : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
 
         originPos = new Vector3(transform.position.x, 0, transform.position.z);
         camHeightGoal = maxHeight;
@@ -155,7 +157,7 @@ public class CameraController : MonoBehaviour
 
         transform.position = originPos + tiltDir + new Vector3(0, camHeight, -camfHeight);
         transform.eulerAngles = new Vector3(angle, 0, 0);
-        CinematicManager.instance.currentCam.m_Lens.OrthographicSize = camHeight;
+        cam.m_Lens.OrthographicSize = camHeight;
 
     }
 

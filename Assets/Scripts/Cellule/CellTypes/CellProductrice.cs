@@ -5,19 +5,29 @@ using TMPro;
 
 public class CellProductrice : CellMain
 {
-    private int productionBonusRatio;
-    private int productionBonusPacket;
+    //private int productionBonusRatio;
+    //private int productionBonusPacket;
+    private int currentLevel = 0;
+    private int currentExp = 0;
+    private bool canLevelUp;
+    private bool levelUpButtonOn;
+    private bool isLevelMax;
     public TextMeshPro prodDisplay;
 
 
     private int Life;
     public ProgressBar progressBar;
+    public ProgressBar expBar;
+    public CellButon levelUpButton;
+
+    private List<CellMain> CellThatGiveExp = new List<CellMain>();
 
 
     public override void BlobsTick()
     {
-        int production = outputLinks.Count + productionBonusPacket;
-        prodDisplay.text = production.ToString();
+        //int production = outputLinks.Count + productionBonusPacket;
+        // prodDisplay.text = production.ToString();
+        prodDisplay.text = (currentLevel+1).ToString();
 
         if (stuckBlobs.Count <= 0 && Life < myCellTemplate.maxLifeProd)
         {
@@ -39,7 +49,7 @@ public class CellProductrice : CellMain
             haveExpulse = false;
 
             int nbrTransmission = 0;
-            for (int i = 0; i < production; i++)
+            for (int i = 0; i < myCellTemplate.levelProduction[currentLevel].blobsProduction; i++)
             {
 
                 if (currentIndex < outputLinks.Count)
@@ -52,7 +62,7 @@ public class CellProductrice : CellMain
                 }
                 else
                 {
-                    Debug.Log(currentIndex + "Reset Index" + "LinkCount" + outputLinks.Count);
+                   // Debug.Log(currentIndex + "Reset Index" + "LinkCount" + outputLinks.Count);
                     currentIndex = 0;
                 }
 
@@ -102,10 +112,9 @@ public class CellProductrice : CellMain
             ToggleOverload(false);
         }
         HandleAlerts();
-        progressBar.UpdateBar(ratio , true);
+        progressBar.UpdateBar(ratio, true);
 
     }
-
     public override void BlobNumberVariation(int amount, BlobManager.BlobType _blobType, bool transmission)
     {
         switch (_blobType)
@@ -136,47 +145,89 @@ public class CellProductrice : CellMain
         }
         blobNumber = normalBlobNumber + blobCoaches.Count + explorateurBlobNumber;
     }
-
-
-    public void ProductriceProximityGestion(CellProximityDectection collider, bool enter)
-    {
-        ProductionVariationByProximity(collider.productionBonusRatio, enter);
-    }
-
-    private void ProductionVariationByProximity(int amount, bool addition)
+    //public void ProductriceProximityGestion(CellProximityDectection collider, bool enter)
+    //{
+    //    ProductionVariationByProximity(collider.productionBonusRatio, enter);
+    //}
+    public void ProductionVariationByProximity(int amount, bool addition)
     {
         int multiplier;
         multiplier = (addition == true) ? 1 : -1;
 
-        productionBonusRatio += multiplier * amount;
+        currentExp += multiplier * amount;
 
-        if (productionBonusRatio >= 100)
+        int expNeeded = myCellTemplate.levelProduction[currentLevel + 1].expNeeded;
+
+        if (currentExp >= expNeeded)
         {
-            productionBonusPacket++;
-            int reste = productionBonusRatio - 100;
-            productionBonusRatio = 0;
-            productionBonusRatio += reste;
+            currentExp = expNeeded;
+            if (!isLevelMax && !levelUpButtonOn)
+            {
+                canLevelUp = true;
+                levelUpButton.ToggleButton(true);
+            }
         }
-        if (productionBonusRatio < 0)
+        else
         {
-            productionBonusPacket--;
-            int reste = productionBonusRatio;
-            productionBonusRatio = 100;
-            productionBonusRatio += reste;
+            canLevelUp = false;
         }
 
+        float ratio = (float)currentExp / (float)expNeeded;
+        expBar.UpdateBar(ratio, true);
+        //productionBonusRatio += multiplier * amount;
+
+        //if (productionBonusRatio >= 100)
+        //{
+        //    productionBonusPacket++;
+        //    int reste = productionBonusRatio - 100;
+        //    productionBonusRatio = 0;
+        //    productionBonusRatio += reste;
+        //}
+        //if (productionBonusRatio < 0)
+        //{
+        //    productionBonusPacket--;
+        //    int reste = productionBonusRatio;
+        //    productionBonusRatio = 100;
+        //    productionBonusRatio += reste;
+        //}
     }
-
+    public void LevelUp()
+    {
+        currentExp = 0;
+        currentLevel += 1;
+        baseR.sprite = myCellTemplate.levelProduction[currentLevel].spriteLevel;
+        levelUpButton.ToggleButton(false);
+        UpdateExpLevelUp();
+        if (currentLevel + 1 >= myCellTemplate.levelProduction.Length)
+        {
+            isLevelMax = true;
+            expBar.gameObject.SetActive(false);
+        }
+    }
     public override void Died(bool intentionnalDeath)
     {
-        productionBonusPacket = 0;
-        productionBonusRatio = 0;
+        //productionBonusPacket = 0;
+        //productionBonusRatio = 0;
+        currentLevel = 0;
+        levelUpButton.ToggleButton(false);
+        CellThatGiveExp.Clear();
         base.Died(intentionnalDeath);
     }
-
     public override void SetupVariable()
     {
         Life = myCellTemplate.maxLifeProd;
+
+        canLevelUp = false;
+        isLevelMax = false;
+        levelUpButtonOn = false;
+        currentLevel = 0;
+        baseR.sprite = myCellTemplate.levelProduction[currentLevel].spriteLevel;
+
+        int expNeeded = myCellTemplate.levelProduction[currentLevel + 1].expNeeded;
+        float ratioExp = (float)currentExp / (float)expNeeded;
+        expBar.gameObject.SetActive(true);
+        expBar.UpdateBar(ratioExp, true);
+
         float ratio = (float)Life / (float)myCellTemplate.maxLifeProd;
         progressBar.transform.position = graphTransform.position;
 
@@ -185,5 +236,124 @@ public class CellProductrice : CellMain
 
         base.SetupVariable();
     }
+    public override void OnShortLeftClickUp(RaycastHit hit)
+    {
 
+        actionmade = false;
+        if (stuckBlobs.Count > 0)
+        {
+            stuckBlobs[stuckBlobs.Count - 1].Unstuck();
+            actionmade = true;
+        }
+        else if (overLoad)
+        {
+            BlobNumberVariation(-1, BlobCheck(), false);
+            actionmade = true;
+        }
+
+        if (canLevelUp)
+        {
+            LevelUp();
+            actionmade = true;
+        }
+
+        if (actionmade)
+        {
+            anim.Play("PlayerInteraction", 0, 0f);
+        }
+
+    }
+
+    public void AddExpCell(CellMain cellToAdd)
+    {
+        bool alreadyAdded = false;
+        for (int i = 0; i < CellThatGiveExp.Count; i++)
+        {
+            if (cellToAdd == CellThatGiveExp[i])
+            {
+                alreadyAdded = true;
+            }
+        }
+        if (alreadyAdded)
+        {
+            return;
+        }
+
+        CellThatGiveExp.Add(cellToAdd);
+
+        //int expAmount = 0;
+        //for (int i = 0; i < CellThatGiveExp.Count; i++)
+        //{
+        //    expAmount += CellThatGiveExp[i].myCellTemplate.expAmount;
+        //}
+        //int removePreviousExpAmount = 0;
+        //for (int i = 0; i < currentLevel + 1; i++)
+        //{
+        //    removePreviousExpAmount += myCellTemplate.levelProduction[i].expNeeded;
+        //}
+
+
+        currentExp += cellToAdd.myCellTemplate.expAmount;
+
+        int expNeeded = myCellTemplate.levelProduction[currentLevel + 1].expNeeded;
+
+        if (currentExp >= expNeeded)
+        {
+            currentExp = expNeeded;
+            if (!isLevelMax && !levelUpButtonOn)
+            {
+                canLevelUp = true;
+                levelUpButton.ToggleButton(true);
+            }
+        }
+        else
+        {
+            canLevelUp = false;
+        }
+
+        float ratio = (float)currentExp / (float)expNeeded;
+        expBar.UpdateBar(ratio, true);
+    }
+    public void UpdateExpLevelUp()
+    {
+
+
+        int expAmount = 0;
+        for (int i = 0; i < CellThatGiveExp.Count; i++)
+        {
+            expAmount += CellThatGiveExp[i].myCellTemplate.expAmount;
+        }
+        int removePreviousExpAmount = 0;
+        for (int i = 0; i < currentLevel + 1; i++)
+        {
+            removePreviousExpAmount += myCellTemplate.levelProduction[i].expNeeded;
+        }
+
+
+        currentExp = expAmount - removePreviousExpAmount;
+
+        int expNeeded = myCellTemplate.levelProduction[currentLevel + 1].expNeeded;
+
+        if (currentExp >= expNeeded)
+        {
+            currentExp = expNeeded;
+            if (!isLevelMax && !levelUpButtonOn)
+            {
+                canLevelUp = true;
+                levelUpButton.ToggleButton(true);
+            }
+        }
+        else
+        {
+            canLevelUp = false;
+        }
+
+        float ratio = (float)currentExp / (float)expNeeded;
+        expBar.UpdateBar(ratio, true);
+    }
+
+    public void RemoveFromCellTahtGIveExp(CellMain cellToRemove)
+    {
+        CellThatGiveExp.Remove(cellToRemove);
+    }
 }

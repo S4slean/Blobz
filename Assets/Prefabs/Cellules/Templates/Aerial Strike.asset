@@ -16,12 +16,15 @@ MonoBehaviour:
   blopPrefab: {fileID: 0}
   buttonColor: {r: 0, g: 0, b: 0, a: 0}
   cellTexture: {fileID: 0}
+  prodLevelMax: 1
+  levelProduction: 
   type: 6
   description: Send a powerfull strike on an area
   descriptionProximity: 'Far proximity effect: The range of the strike is raised by
     the proximity'
   descriptionClick: Click on the cell to switch to the aiming pointer. Click again
     to launched a strike on the aimed area
+  expAmount: 10
   generateProximity: 0
   proximityColliderNumber: 1
   proximityColliders: []

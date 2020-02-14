@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 3692103664759762485}
   - component: {fileID: 8421910935616876991}
   - component: {fileID: 4591898421133971780}
-  m_Layer: 15
+  - component: {fileID: 3183019858045629757}
+  m_Layer: 16
   m_Name: Sphere
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -92,6 +93,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 0.06, z: 1}
   m_Center: {x: 0, y: -0.000000007450581, z: 0}
+--- !u!114 &3183019858045629757
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1027104181505598654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a30af718d80abd042b5b8df0532991a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tooltipData: {fileID: 11400000, guid: 2197cea21f9159245bc515537fa07e3c, type: 2}
 --- !u!1 &1614161555072513784
 GameObject:
   m_ObjectHideFlags: 0

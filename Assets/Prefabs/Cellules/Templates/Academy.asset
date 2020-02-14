@@ -16,12 +16,15 @@ MonoBehaviour:
   blopPrefab: {fileID: 0}
   buttonColor: {r: 0, g: 0, b: 0, a: 0}
   cellTexture: {fileID: 0}
+  prodLevelMax: 1
+  levelProduction: []
   type: 11
   description: Create explorator blobz
   descriptionProximity: "Close \rproximity effect: The lifespan of explorator blobz
     is higher"
   descriptionClick: Click on the cell to place the flag. An enplorator blobz will
     leave the cell and go in this direction
+  expAmount: 10
   generateProximity: 0
   proximityColliderNumber: 1
   proximityColliders:

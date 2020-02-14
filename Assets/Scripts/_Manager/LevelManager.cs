@@ -226,6 +226,75 @@ public class LevelManager : MonoBehaviour
         UnlockSectionCheck();
     }
 
+    public void LockCell(CellType cellType)
+    {
+        switch (cellType)
+        {
+            case CellType.Accelerator:
+                UIManager.Instance.cellSelection.exploSubMenus[0].gameObject.SetActive(false);
+                CellPassage = false;
+                break;
+
+            case CellType.BlipBlop:
+                UIManager.Instance.cellSelection.gestionSubMenus[0].gameObject.SetActive(false);
+                CellBlipBlop = false;
+                break;
+
+            case CellType.Crusher:
+                UIManager.Instance.cellSelection.energySubMenus[2].gameObject.SetActive(false);
+                CellBroyeur = false;
+                break;
+
+            case CellType.Dump:
+                UIManager.Instance.cellSelection.energySubMenus[1].gameObject.SetActive(false);
+                CellDecharge = false;
+                break;
+
+            case CellType.AerialStrike:
+                UIManager.Instance.cellSelection.combatSubMenus[2].gameObject.SetActive(false);
+                CellDivine = false;
+                break;
+
+            case CellType.Academy:
+                UIManager.Instance.cellSelection.exploSubMenus[1].gameObject.SetActive(false);
+                CellExplo = false;
+                break;
+
+            case CellType.Gym:
+                UIManager.Instance.cellSelection.gestionSubMenus[2].gameObject.SetActive(false);
+                CellSalle = false;
+                break;
+
+            case CellType.Rocket:
+                UIManager.Instance.cellSelection.exploSubMenus[2].gameObject.SetActive(false);
+                CellFusee = false;
+                break;
+
+            case CellType.Battery:
+                UIManager.Instance.cellSelection.gestionSubMenus[1].gameObject.SetActive(false);
+                CellPilone = false;
+                break;
+
+            case CellType.Stock:
+                UIManager.Instance.cellSelection.energySubMenus[0].gameObject.SetActive(false);
+                CellStockage = false;
+                break;
+
+            case CellType.Turret:
+                UIManager.Instance.cellSelection.combatSubMenus[1].gameObject.SetActive(false);
+                CellTourelle = false;
+                break;
+
+            case CellType.Treblobchet:
+                UIManager.Instance.cellSelection.combatSubMenus[0].gameObject.SetActive(false);
+                CellTreblobchet = false;
+                break;
+
+        }
+        UnlockSectionCheck();
+    }
+
+
     public void SetupUnlockedFeatures()
     {
         if (CellStockage)

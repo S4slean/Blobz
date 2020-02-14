@@ -45,12 +45,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Energy: 0
   allowedBuildingMat: {fileID: 2100000, guid: c6bd5bcdd635406dbdd3b89cb32e5989, type: 2}
-  allowedBuildingSpriteMat: {fileID: 2100000, guid: b77b756311bd9db468e4adfd33652476,
-    type: 2}
+  allowedBuildingSpriteColor: {r: 1, g: 1, b: 1, a: 1}
   refusedBuildingMat: {fileID: 2100000, guid: b04fd4141dc36094a822bb8e4b27aced, type: 2}
-  refusedBuldingSpriteMask: {fileID: 2100000, guid: e414af1524d258047bb6b82b8860062c,
-    type: 2}
+  refusedBuldingSpriteSpriteColor: {r: 1, g: 0, b: 0, a: 0.5882353}
   terrainIsBuildable: 0
+  obstructedLink: 1
   newCell: 0
   selectedCell: {fileID: 0}
   createdCell: {fileID: 0}
