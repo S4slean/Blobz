@@ -1,0 +1,90 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac59c85db94beed47808c892abe2bae2, type: 3}
+  m_Name: QuestTuto10
+  m_EditorClassIdentifier: 
+  questType: 1
+  questTitle: Conquer this planet !
+  questDescription: 
+  eventDone: 1
+  isEndingQuest: 1
+  populationObjective: 0
+  energyToObtain: 800
+  cellType: 0
+  level: 1
+  cellNbrToObtain: 1
+  blobExplo: 0
+  anyCells: 1
+  colonialCellType: 0
+  placeToGet: 0
+  destructType: 0
+  nbrOfObject: 0
+  questEvents:
+  - eventType: 1
+    eventDuration: 0.5
+    virtualCamIndex: 0
+    popUpsMsg:
+    - rpgStyle: 1
+      anchor: {fileID: 0}
+      offset: {x: 0, y: 0, z: 0}
+      usingSprite: 1
+      sprite: {fileID: 21300000, guid: 74a01104759d6494d8d651afa2ac8826, type: 3}
+      Title: 
+      Text: "Wow, you made it ! Congratulation !\r\n"
+    - rpgStyle: 1
+      anchor: {fileID: 0}
+      offset: {x: 0, y: 0, z: 0}
+      usingSprite: 1
+      sprite: {fileID: 21300000, guid: 74a01104759d6494d8d651afa2ac8826, type: 3}
+      Title: 
+      Text: "One last thing I didn\u2019t mention. You see the number next to each
+        cell? This is the capacity number."
+    - rpgStyle: 1
+      anchor: {fileID: 0}
+      offset: {x: 0, y: 0, z: 0}
+      usingSprite: 1
+      sprite: {fileID: 21300000, guid: 74a01104759d6494d8d651afa2ac8826, type: 3}
+      Title: 
+      Text: It shows you the number of blobz in the cell and the maximum capacity
+        of the cell. If the left number reach the right number, the cell will be in
+        a overloaded state during few ticks then explode !
+    - rpgStyle: 1
+      anchor: {fileID: 0}
+      offset: {x: 0, y: 0, z: 0}
+      usingSprite: 1
+      sprite: {fileID: 21300000, guid: 74a01104759d6494d8d651afa2ac8826, type: 3}
+      Title: 
+      Text: "The links will be destroyed and blobz will die ! So be carefull !\r\n"
+    - rpgStyle: 1
+      anchor: {fileID: 0}
+      offset: {x: 0, y: 0, z: 0}
+      usingSprite: 1
+      sprite: {fileID: 21300000, guid: 74a01104759d6494d8d651afa2ac8826, type: 3}
+      Title: 
+      Text: "Creating more links will help the regulation. But you can\u2019t build
+        an infinity of links. You\u2019ll learn.\r\n"
+    UEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    foldout: 0
+    cellType: 0
+    newTickDuration: 0
+    persistentMsg:
+      rpgStyle: 0
+      anchor: {fileID: 0}
+      offset: {x: 0, y: 0, z: 0}
+      usingSprite: 0
+      sprite: {fileID: 0}
+      Title: 
+      Text: 
+    levelName: 
+    levelEvent: 0
