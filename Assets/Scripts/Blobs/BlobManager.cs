@@ -120,29 +120,28 @@ public class BlobManager : MonoBehaviour
                         }
                         else if (TryAttack(blob, 1))
                         {
-                            Debug.Log($"Harvesting");
+
                             
                         }
                         else if (blob.resourceTransform != null)
                         {
-                            Debug.Log($"Jump Towards {blob.resourceTransform}");
+
                             blob.JumpTowards(blob.resourceTransform);
 
                         }
                         else if (!blob.CheckIfInFlagRadius())
                         {
-                            Debug.Log("JumpToFlag");
+
                             blob.JumpTowardFlag();
 
                         }
                         else if (CheckNearbyRessources(blob))
                         {
-                            Debug.Log($"Found {blob.resourceTransform}");
+
                             blob.JumpTowards(blob.resourceTransform);
                         }
                         else
                         {
-                            Debug.Log("RandomJump");
                             blob.RandomJump();
                         }
                     blob.tickCount = 0;
@@ -467,7 +466,6 @@ public class BlobManager : MonoBehaviour
                         || destructible.destructType == Destructible.DestructType.enemyNexus
                         || destructible.destructType == Destructible.DestructType.barricade))
                     {
-                        Debug.Log("Soldier attacked enemy Base");
                         blob.anim.Play("Attack");
                         destructible.ReceiveDamage(dmg);
                         return true;
@@ -479,7 +477,6 @@ public class BlobManager : MonoBehaviour
                         || destructible.destructType == Destructible.DestructType.crystal))
                     {
 
-                        Debug.Log("Explo harvested ressources");
                         blob.anim.Play("Attack");
                         destructible.ReceiveDamage(dmg);
                         if(destructible.remainingLife <= 0)
