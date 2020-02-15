@@ -334,7 +334,7 @@ MonoBehaviour:
   goodGraph: {fileID: 6438243430102390527}
   brokenGraph: {fileID: 1425149600685392508}
   anim: {fileID: 8260789756600711135}
-  tooltipData: {fileID: 11400000, guid: 2197cea21f9159245bc515537fa07e3c, type: 2}
+  tooltipData: {fileID: 11400000, guid: 569f65a6b2ea94249b1b062fd18eccbd, type: 2}
   destructType: 0
   maxLife: 3
   isReapairable: 0
@@ -387,16 +387,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 702070642367133429}
     m_Modifications:
-    - target: {fileID: 202981705152538488, guid: 00a9b098515673e4fa0689d0e8ba54ca,
-        type: 3}
-      propertyPath: m_Name
-      value: Nexus
-      objectReference: {fileID: 0}
-    - target: {fileID: 202981705152538488, guid: 00a9b098515673e4fa0689d0e8ba54ca,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 202981705152538493, guid: 00a9b098515673e4fa0689d0e8ba54ca,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -466,6 +456,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 202981705152538488, guid: 00a9b098515673e4fa0689d0e8ba54ca,
+        type: 3}
+      propertyPath: m_Name
+      value: Nexus
+      objectReference: {fileID: 0}
+    - target: {fileID: 202981705152538488, guid: 00a9b098515673e4fa0689d0e8ba54ca,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 00a9b098515673e4fa0689d0e8ba54ca, type: 3}
