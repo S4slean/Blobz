@@ -476,6 +476,8 @@ public class InputManager : MonoBehaviour
                                 CellExplo cellExplo = selectedCell as CellExplo;
                                 cellExplo.Decharge();
                                 explo.transform.LookAt(flag.transform.position);
+                                explo.AssignFlagPos(flag.transform.position);
+                                explo.originCell = selectedCell.transform;
                                 explo.Outpool();
                                 explo.JumpForward();
                                 break;
@@ -486,6 +488,8 @@ public class InputManager : MonoBehaviour
                                 CellTreblochet cellTreblochet = selectedCell as CellTreblochet;
                                 cellTreblochet.Decharge();
                                 soldier.transform.LookAt(flag.transform.position);
+                                soldier.AssignFlagPos(flag.transform.position);
+                                soldier.originCell = selectedCell.transform;
                                 soldier.Outpool();
                                 soldier.JumpForward();
                                 break;                       

@@ -14,18 +14,19 @@ public class Blob : PoolableObjects
 
     [Header("General")]
     #region GENERAL
-    [HideInInspector] public int tickCount = 0;
+    public int tickCount = 0;
     public int lifeTime = 0;
     public int LifeSpan = 32;
     [SerializeField] private BlobManager.BlobType blobType = BlobManager.BlobType.normal;
     private float jumpForce = 5;
     public Transform carriableSocket;
     private Vector3 flagPos;
+    [HideInInspector] public Transform originCell;
     #endregion
 
     #region EXPLO
-    [HideInInspector]public Transform resourceTransform;
-    [HideInInspector]public Carriable carriedObject;
+    [HideInInspector] public Transform resourceTransform;
+    [HideInInspector] public Carriable carriedObject;
     #endregion
 
     [Header("Enemy")]
@@ -218,8 +219,12 @@ public class Blob : PoolableObjects
 
     public void Destruct()
     {
-        carriedObject.GetDropped();
-        carriedObject = null;
+        if (carriedObject != null)
+        {
+            carriedObject.GetDropped();
+            carriedObject = null;
+        }
+
         anim.Play("Death");
         //event --> GetBackInPool();
     }
@@ -248,6 +253,12 @@ public class Blob : PoolableObjects
         Vector3 circle = Random.insideUnitCircle;
         circle = new Vector3(circle.x, 0, circle.y).normalized;
         transform.LookAt(transform.position + circle);
+        JumpForward();
+    }
+
+    public void JumpBackToCell()
+    {
+        transform.LookAt(originCell);
         JumpForward();
     }
 

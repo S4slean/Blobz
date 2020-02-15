@@ -49,12 +49,16 @@ MonoBehaviour:
   exploLifeSpan: 25
   exploTicksBtwnJumps: 3
   exploJumpForce: 7
+  resourcesDetectionRadius: 15
+  exploFlagRadius: 5
   soldierMat: {fileID: 2100000, guid: 6018a20d4edd2424f8c041befa1d1cf4, type: 2}
   soldierLifeSpan: 20
   soldierTicksBtwnJumps: 4
   soldierJumpForce: 5
+  soldierFlagRadius: 5
   attackRange: 2
   detectionRadius: 10
+  lifeTimeReductionOnAttack: 1
   angryMat: {fileID: 2100000, guid: 33b3f5264611cfc43bfa7492b02d310e, type: 2}
   enemiesHaveLifeTime: 0
   enemyLifeSpan: 10

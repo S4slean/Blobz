@@ -113,39 +113,44 @@ public class BlobManager : MonoBehaviour
 
                     if (blob.tickCount > exploTicksBtwnJumps)
                     {
-                        if (TryAttack(blob, 1))
+                        if (blob.carriedObject != null)
                         {
-                            Debug.Log($"Harvesting {blob.resourceTransform.gameObject}");
-                            blob.resourceTransform = null;
-                            blob.tickCount = 0;
-                            break;
+                            blob.JumpBackToCell();
+
+                        }
+                        else if (TryAttack(blob, 1))
+                        {
+                            Debug.Log($"Harvesting");
+                            
+                        }
+                        else if (blob.resourceTransform != null)
+                        {
+                            Debug.Log($"Jump Towards {blob.resourceTransform}");
+                            blob.JumpTowards(blob.resourceTransform);
+
                         }
                         else if (!blob.CheckIfInFlagRadius())
                         {
+                            Debug.Log("JumpToFlag");
                             blob.JumpTowardFlag();
+
+                        }
+                        else if (CheckNearbyRessources(blob))
+                        {
+                            Debug.Log($"Found {blob.resourceTransform}");
+                            blob.JumpTowards(blob.resourceTransform);
                         }
                         else
                         {
-                            if (blob.resourceTransform != null)
-                            {
-                                Debug.Log($"Jump Towards {blob.resourceTransform}");
-                                blob.JumpTowards(blob.resourceTransform);
-                            }
-                            else if (CheckNearbyRessources(blob))
-                            {
-                                Debug.Log($"Found {blob.resourceTransform}");
-                                blob.JumpTowards(blob.resourceTransform);
-                            }
-                            else
-                            {
-                                Debug.Log("RandomJump");
-                                blob.RandomJump();
-                            }
+                            Debug.Log("RandomJump");
+                            blob.RandomJump();
                         }
-                        blob.tickCount = 0;
+                    blob.tickCount = 0;
                     }
-
                     break;
+
+
+
 
                 case BlobType.soldier:
 
@@ -354,8 +359,18 @@ public class BlobManager : MonoBehaviour
 
         for (int i = 0; i < touchedResources.Length; i++)
         {
+            if (touchedResources[i].TryGetComponent<Carriable>(out Carriable carriable))
+            {
+                blob.resourceTransform = carriable.transform;
+                return true;
+            }
+
+
             if (touchedResources[i].TryGetComponent<Destructible>(out Destructible destructible))
             {
+                if (destructible.remainingLife <= 0)
+                    continue;
+
                 if (destructible.destructType == Destructible.DestructType.crystal
                     || destructible.destructType == Destructible.DestructType.ressources
                     || destructible.destructType == Destructible.DestructType.rock
@@ -431,14 +446,20 @@ public class BlobManager : MonoBehaviour
 
             for (int i = 0; i < touchedDestructibles.Length; i++)
             {
-                if( blob.GetBlobType() == BlobType.explorateur && touchedDestructibles[i].TryGetComponent<Carriable>(out Carriable carriable) )
+                if (blob.GetBlobType() == BlobType.explorateur && touchedDestructibles[i].TryGetComponent<Carriable>(out Carriable carriable))
                 {
                     carriable.GetCarried(blob);
+                    return true;
                 }
 
 
                 if (touchedDestructibles[i].TryGetComponent<Destructible>(out Destructible destructible))
                 {
+                    if (destructible.remainingLife <= 0)
+                    {
+                        continue;
+                    }
+
 
                     if (blob.GetBlobType() == BlobType.soldier && (destructible.destructType == Destructible.DestructType.EnemyBlob
                         || destructible.destructType == Destructible.DestructType.all
@@ -457,10 +478,19 @@ public class BlobManager : MonoBehaviour
                         || destructible.destructType == Destructible.DestructType.shroom
                         || destructible.destructType == Destructible.DestructType.crystal))
                     {
+
                         Debug.Log("Explo harvested ressources");
                         blob.anim.Play("Attack");
                         destructible.ReceiveDamage(dmg);
+                        if(destructible.remainingLife <= 0)
+                        {
+                            if (!CheckNearbyRessources(blob))
+                            {
+                                blob.resourceTransform = null;
+                            }
+                        }
                         return true;
+
                     }
 
                 }
