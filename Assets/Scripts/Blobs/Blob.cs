@@ -19,6 +19,13 @@ public class Blob : PoolableObjects
     public int LifeSpan = 32;
     [SerializeField] private BlobManager.BlobType blobType = BlobManager.BlobType.normal;
     private float jumpForce = 5;
+    public Transform carriableSocket;
+    private Vector3 flagPos;
+    #endregion
+
+    #region EXPLO
+    [HideInInspector]public Transform resourceTransform;
+    [HideInInspector]public Carriable carriedObject;
     #endregion
 
     [Header("Enemy")]
@@ -53,6 +60,33 @@ public class Blob : PoolableObjects
         anim.Play("Appear");
         RessourceTracker.instance.AddBlob(this);
         BlobManager.blobList.Add(this);
+    }
+
+    public void AssignFlagPos(Vector3 newFlagPos)
+    {
+        flagPos = newFlagPos;
+    }
+
+    public bool CheckIfInFlagRadius()
+    {
+
+
+        if (blobType == BlobManager.BlobType.soldier)
+        {
+            return Vector3.SqrMagnitude(transform.position - flagPos) < Mathf.Pow(BlobManager.instance.soldierFlagRadius, 2);
+        }
+        else if (blobType == BlobManager.BlobType.explorateur)
+        {
+            return Vector3.SqrMagnitude(transform.position - flagPos) < Mathf.Pow(BlobManager.instance.exploFlagRadius, 2);
+        }
+        else
+        {
+            Debug.Log($"this Blob {blobType} isn't supposed to check for flag");
+            return false;
+        }
+
+
+
     }
 
     public void ChangeType(BlobManager.BlobType newType)
@@ -184,6 +218,8 @@ public class Blob : PoolableObjects
 
     public void Destruct()
     {
+        carriedObject.GetDropped();
+        carriedObject = null;
         anim.Play("Death");
         //event --> GetBackInPool();
     }
@@ -193,9 +229,19 @@ public class Blob : PoolableObjects
     {
         transform.LookAt(target);
         JumpForward();
-
-
     }
+
+    public void JumpTowards(Vector3 destination)
+    {
+        transform.LookAt(destination);
+        JumpForward();
+    }
+
+    public void JumpTowardFlag()
+    {
+        JumpTowards(flagPos);
+    }
+
 
     public void RandomJump()
     {
