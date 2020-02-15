@@ -306,7 +306,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8797202516616333098}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 0.86}
   m_Children:
@@ -365,7 +365,7 @@ MonoBehaviour:
   goodGraph: {fileID: 8283075293346991394}
   brokenGraph: {fileID: 4066046075924470177}
   anim: {fileID: 6417174108804688898}
-  tooltipData: {fileID: 11400000, guid: 2197cea21f9159245bc515537fa07e3c, type: 2}
+  tooltipData: {fileID: 11400000, guid: eab25dbf7f03bfa47873b0333d14fede, type: 2}
   destructType: 0
   maxLife: 5
   isReapairable: 0
@@ -387,16 +387,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2455615019844906280}
     m_Modifications:
-    - target: {fileID: 202981705152538488, guid: 00a9b098515673e4fa0689d0e8ba54ca,
-        type: 3}
-      propertyPath: m_Name
-      value: NexusDome
-      objectReference: {fileID: 0}
-    - target: {fileID: 202981705152538488, guid: 00a9b098515673e4fa0689d0e8ba54ca,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 202981705152538493, guid: 00a9b098515673e4fa0689d0e8ba54ca,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -452,22 +442,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 202981706594760789, guid: 00a9b098515673e4fa0689d0e8ba54ca,
+    - target: {fileID: 202981705152538488, guid: 00a9b098515673e4fa0689d0e8ba54ca,
         type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1.282776
+      propertyPath: m_Name
+      value: NexusDome
       objectReference: {fileID: 0}
-    - target: {fileID: 202981706594760789, guid: 00a9b098515673e4fa0689d0e8ba54ca,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1.282776
-      objectReference: {fileID: 0}
-    - target: {fileID: 202981706594760789, guid: 00a9b098515673e4fa0689d0e8ba54ca,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1.282776
-      objectReference: {fileID: 0}
-    - target: {fileID: 202981706594760788, guid: 00a9b098515673e4fa0689d0e8ba54ca,
+    - target: {fileID: 202981705152538488, guid: 00a9b098515673e4fa0689d0e8ba54ca,
         type: 3}
       propertyPath: m_IsActive
       value: 0

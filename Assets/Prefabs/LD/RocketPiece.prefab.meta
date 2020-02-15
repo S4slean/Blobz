@@ -1,7 +1,13 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Prefabs/LD/RocketPiece.prefab.meta
 guid: 0ebfb5ac22c75bb45a502dc8c25911b6
 PrefabImporter:
+=======
+guid: eab25dbf7f03bfa47873b0333d14fede
+NativeFormatImporter:
+>>>>>>> 5b80e4e5ac549f42f3f81262fe5d7f9c115771ba:Assets/Prefabs/UI/ToolTips/BadCellNexusTooltip.asset.meta
   externalObjects: {}
+  mainObjectFileID: 11400000
   userData: 
   assetBundleName: 
   assetBundleVariant: 

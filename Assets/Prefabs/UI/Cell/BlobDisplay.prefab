@@ -37,7 +37,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -0.29999784}
-  m_SizeDelta: {x: 3.56, y: 0.86}
+  m_SizeDelta: {x: 3.24, y: 0.86}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!23 &6775272925069685714
 MeshRenderer:
@@ -331,6 +331,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myTransform: {fileID: 8934393083490407729}
   background: {fileID: 7916024192009186880}
+  baseScale: 0.75
   blobText: {fileID: 4329204264335204361}
   lerpTextColor:
   - {r: 1, g: 1, b: 1, a: 1}
