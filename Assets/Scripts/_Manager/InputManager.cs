@@ -482,7 +482,7 @@ public class InputManager : MonoBehaviour
                             case CellType.Treblobchet:
                                 Blob soldier = ObjectPooler.poolingSystem.GetPooledObject<Blob>() as Blob;
                                 soldier.ChangeType(BlobManager.BlobType.soldier);
-                                soldier.transform.position = selectedCell.transform.position + dir * 2.5f + Vector3.up * 1.1f;
+                                soldier.transform.position = selectedCell.transform.position + dir * 1.5f + Vector3.up * 1.1f;
                                 CellTreblochet cellTreblochet = selectedCell as CellTreblochet;
                                 cellTreblochet.Decharge();
                                 soldier.transform.LookAt(flag.transform.position);
