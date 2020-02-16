@@ -55,7 +55,7 @@ MonoBehaviour:
   soldierLifeSpan: 20
   soldierTicksBtwnJumps: 4
   soldierJumpForce: 5
-  soldierFlagRadius: 5
+  soldierFlagRadius: 1
   attackRange: 2
   detectionRadius: 10
   lifeTimeReductionOnAttack: 1

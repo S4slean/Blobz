@@ -57,8 +57,20 @@ MonoBehaviour:
   - {fileID: 6972052367257400834, guid: db568c5a09475324f9d294cb03123f22, type: 3}
   - {fileID: 6972052367257400834, guid: de6f700f0b614254aa63e021b48c4a6e, type: 3}
   - {fileID: 6972052367257400834, guid: 4d08c1ed77196d34cac196ad5bbd0cab, type: 3}
+  - {fileID: 6972052367257400834, guid: 232b4ee6411fea04f80f6076075f7ea6, type: 3}
   Quests: 0
   TopBar: 0
+  cellInvicible: 0
+  allUnlocked: 1
   CellStockage: 0
-  CellArmory: 0
+  CellTreblobchet: 0
   CellBroyeur: 0
+  CellPassage: 0
+  CellBlipBlop: 0
+  CellDecharge: 0
+  CellDivine: 0
+  CellExplo: 0
+  CellSalle: 0
+  CellFusee: 0
+  CellPilone: 0
+  CellTourelle: 0

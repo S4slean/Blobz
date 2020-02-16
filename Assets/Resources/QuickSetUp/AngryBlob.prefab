@@ -167,6 +167,7 @@ MonoBehaviour:
   LifeSpan: 32
   blobType: 3
   carriableSocket: {fileID: 593026898182767280}
+  originCell: {fileID: 0}
   resourceTransform: {fileID: 0}
   carriedObject: {fileID: 0}
   tagetTransform: {fileID: 0}
@@ -202,7 +203,7 @@ SphereCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2596948755250502091}
-  m_Material: {fileID: 13400000, guid: 59e172a6939a1c949a14d7540ae7a336, type: 2}
+  m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2

@@ -10,6 +10,7 @@ public class CellTreblochet : CellMain
     private int energie;
     public CellButon activationButton;
     public ProgressBar chargeBar;
+    public Vector3 flagPos;
 
     //public override void ProximityLevelModification()
     //{
@@ -38,6 +39,14 @@ public class CellTreblochet : CellMain
 
             //ANIM
             haveExpulse = false;
+
+            if (isLoaded && flagPos != Vector3.zero)
+            {
+                SpawnSoldier();
+                Decharge();
+            }
+
+
 
             if (blobNumber > 0)
             {
@@ -92,6 +101,19 @@ public class CellTreblochet : CellMain
             }
         }
 
+    }
+
+    private void SpawnSoldier()
+    {
+        Vector3 dir = (flagPos - transform.position).normalized;
+        Blob soldier = ObjectPooler.poolingSystem.GetPooledObject<Blob>() as Blob;
+        soldier.ChangeType(BlobManager.BlobType.soldier);
+        soldier.transform.position = transform.position + dir * 1.5f + Vector3.up * 1.1f;
+        soldier.transform.LookAt(flagPos);
+        soldier.AssignFlagPos(flagPos);
+        soldier.originCell = transform;
+        soldier.Outpool();
+        soldier.JumpForward();
     }
 
     private void Charge(int amount)
@@ -216,7 +238,7 @@ public class CellTreblochet : CellMain
             actionmade = true;
         }
 
-        if (isLoaded && !actionmade)
+        if (!actionmade)
         {
             InputManager.SwitchInputMode(InputManager.InputMode.flag, myCellTemplate.type);
             actionmade = true;

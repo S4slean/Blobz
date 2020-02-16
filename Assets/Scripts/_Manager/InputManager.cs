@@ -470,28 +470,16 @@ public class InputManager : MonoBehaviour
                         {
                           
                             case CellType.Academy:
-                                Blob explo = ObjectPooler.poolingSystem.GetPooledObject<Blob>() as Blob;
-                                explo.ChangeType(BlobManager.BlobType.explorateur);
-                                explo.transform.position = selectedCell.transform.position + dir * 2.5f + Vector3.up * 1.1f;
+ 
                                 CellExplo cellExplo = selectedCell as CellExplo;
-                                cellExplo.Decharge();
-                                explo.transform.LookAt(flag.transform.position);
-                                explo.AssignFlagPos(flag.transform.position);
-                                explo.originCell = selectedCell.transform;
-                                explo.Outpool();
-                                explo.JumpForward();
+                                cellExplo.flagPos = mouseWorldPos;
+
                                 break;
                             case CellType.Treblobchet:
-                                Blob soldier = ObjectPooler.poolingSystem.GetPooledObject<Blob>() as Blob;
-                                soldier.ChangeType(BlobManager.BlobType.soldier);
-                                soldier.transform.position = selectedCell.transform.position + dir * 1.5f + Vector3.up * 1.1f;
+
                                 CellTreblochet cellTreblochet = selectedCell as CellTreblochet;
-                                cellTreblochet.Decharge();
-                                soldier.transform.LookAt(flag.transform.position);
-                                soldier.AssignFlagPos(flag.transform.position);
-                                soldier.originCell = selectedCell.transform;
-                                soldier.Outpool();
-                                soldier.JumpForward();
+                                cellTreblochet.flagPos = mouseWorldPos;
+
                                 break;                       
                             default:
                                 break;

@@ -53,7 +53,7 @@ public class Blob : PoolableObjects
     {
         rb = GetComponent<Rigidbody>();
         // rd = GetComponent<Renderer>();
-        damged = false;
+        damaged = false;
 
         UpdateMat();
         //rajoute le blob à la liste des blobs actifs dans la scène
@@ -198,18 +198,18 @@ public class Blob : PoolableObjects
 
     }
 
-    private bool damged = false;
+    private bool damaged = false;
 
     public void ReceiveDamage()
     {
         //if (damged)
         //    return;
 
-        if (!damged)
+        if (!damaged)
         {
             RessourceTracker.instance.AddKill();
         }
-        damged = true;
+        damaged = true;
         Destruct();
 
     }
