@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4591898421133971780}
   - component: {fileID: 3183019858045629757}
   m_Layer: 16
-  m_Name: Sphere
+  m_Name: Area
   m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -88,7 +88,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1027104181505598654}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 0.06, z: 1}

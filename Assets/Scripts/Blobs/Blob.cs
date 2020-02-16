@@ -14,11 +14,19 @@ public class Blob : PoolableObjects
 
     [Header("General")]
     #region GENERAL
-    [HideInInspector] public int tickCount = 0;
+    public int tickCount = 0;
     public int lifeTime = 0;
     public int LifeSpan = 32;
     [SerializeField] private BlobManager.BlobType blobType = BlobManager.BlobType.normal;
     private float jumpForce = 5;
+    public Transform carriableSocket;
+    private Vector3 flagPos;
+    [HideInInspector] public Transform originCell;
+    #endregion
+
+    #region EXPLO
+    [HideInInspector] public Transform resourceTransform;
+    [HideInInspector] public Carriable carriedObject;
     #endregion
 
     [Header("Enemy")]
@@ -45,7 +53,7 @@ public class Blob : PoolableObjects
     {
         rb = GetComponent<Rigidbody>();
         // rd = GetComponent<Renderer>();
-        damged = false;
+        damaged = false;
 
         UpdateMat();
         //rajoute le blob à la liste des blobs actifs dans la scène
@@ -53,6 +61,33 @@ public class Blob : PoolableObjects
         anim.Play("Appear");
         RessourceTracker.instance.AddBlob(this);
         BlobManager.blobList.Add(this);
+    }
+
+    public void AssignFlagPos(Vector3 newFlagPos)
+    {
+        flagPos = newFlagPos;
+    }
+
+    public bool CheckIfInFlagRadius()
+    {
+
+
+        if (blobType == BlobManager.BlobType.soldier)
+        {
+            return Vector3.SqrMagnitude(transform.position - flagPos) < Mathf.Pow(BlobManager.instance.soldierFlagRadius, 2);
+        }
+        else if (blobType == BlobManager.BlobType.explorateur)
+        {
+            return Vector3.SqrMagnitude(transform.position - flagPos) < Mathf.Pow(BlobManager.instance.exploFlagRadius, 2);
+        }
+        else
+        {
+            Debug.Log($"this Blob {blobType} isn't supposed to check for flag");
+            return false;
+        }
+
+
+
     }
 
     public void ChangeType(BlobManager.BlobType newType)
@@ -163,18 +198,18 @@ public class Blob : PoolableObjects
 
     }
 
-    private bool damged = false;
+    private bool damaged = false;
 
     public void ReceiveDamage()
     {
         //if (damged)
         //    return;
 
-        if (!damged)
+        if (!damaged)
         {
             RessourceTracker.instance.AddKill();
         }
-        damged = true;
+        damaged = true;
         Destruct();
 
     }
@@ -184,6 +219,12 @@ public class Blob : PoolableObjects
 
     public void Destruct()
     {
+        if (carriedObject != null)
+        {
+            carriedObject.GetDropped();
+            carriedObject = null;
+        }
+
         anim.Play("Death");
         //event --> GetBackInPool();
     }
@@ -193,15 +234,31 @@ public class Blob : PoolableObjects
     {
         transform.LookAt(target);
         JumpForward();
-
-
     }
+
+    public void JumpTowards(Vector3 destination)
+    {
+        transform.LookAt(destination);
+        JumpForward();
+    }
+
+    public void JumpTowardFlag()
+    {
+        JumpTowards(flagPos);
+    }
+
 
     public void RandomJump()
     {
         Vector3 circle = Random.insideUnitCircle;
         circle = new Vector3(circle.x, 0, circle.y).normalized;
         transform.LookAt(transform.position + circle);
+        JumpForward();
+    }
+
+    public void JumpBackToCell()
+    {
+        transform.LookAt(originCell);
         JumpForward();
     }
 

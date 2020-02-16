@@ -16,10 +16,13 @@ MonoBehaviour:
   blopPrefab: {fileID: 0}
   buttonColor: {r: 0, g: 0, b: 0, a: 0}
   cellTexture: {fileID: 0}
+  prodLevelMax: 1
+  levelProduction: []
   type: 8
   description: Train coach blobz that boost proximity cells they are in
   descriptionProximity: 'Close proximity effect: The lifespan of coach blobz is higher'
   descriptionClick: 
+  expAmount: 10
   generateProximity: 0
   proximityColliderNumber: 1
   proximityColliders:
@@ -60,7 +63,7 @@ MonoBehaviour:
   rangeLien: 
   tickForActivation: 
   energyCap: 
-  specifique: 0200000005000000070000000a000000
+  specifique: 280000001e0000001400000005000000
   energyPerblop: 0
   StatsModification: 7
   REFS: 0

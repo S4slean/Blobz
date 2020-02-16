@@ -17,7 +17,7 @@ MonoBehaviour:
   buttonColor: {r: 0, g: 0, b: 0, a: 0}
   cellTexture: {fileID: 0}
   prodLevelMax: 1
-  levelProduction: 
+  levelProduction: []
   type: 6
   description: Send a powerfull strike on an area
   descriptionProximity: 'Far proximity effect: The range of the strike is raised by
@@ -56,7 +56,7 @@ MonoBehaviour:
   rangeLien: 00000000000000000000000000000000
   tickForActivation: 05000000030000000200000001000000
   energyCap: 
-  specifique: 0a000000140000001e0000002d000000
+  specifique: 280000001e0000001400000005000000
   energyPerblop: 0
   StatsModification: 7
   REFS: 0
