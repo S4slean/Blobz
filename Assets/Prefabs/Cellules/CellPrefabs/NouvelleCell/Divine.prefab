@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 1065516466398935401}
   - component: {fileID: 1065516466398935380}
   - component: {fileID: 1065516466398935383}
-  - component: {fileID: 19164762035909700}
   m_Layer: 0
   m_Name: Dome
   m_TagString: Untagged
@@ -79,19 +78,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &19164762035909700
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1065516466398935400}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 61958975c84ac004f90348d6e9e3c35c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cellParent: {fileID: 5055533939074660160}
 --- !u!1 &1065516467052029508
 GameObject:
   m_ObjectHideFlags: 0
@@ -104,6 +90,7 @@ GameObject:
   - component: {fileID: 1065516467052029509}
   - component: {fileID: 9044863700266225322}
   - component: {fileID: 6096778105169394853}
+  - component: {fileID: 579429697585440792}
   m_Layer: 0
   m_Name: Tourelle
   m_TagString: Untagged
@@ -210,6 +197,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &579429697585440792
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1065516467052029508}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61958975c84ac004f90348d6e9e3c35c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cellParent: {fileID: 5055533939074660160}
 --- !u!1 &2577983949660105163
 GameObject:
   m_ObjectHideFlags: 0
@@ -803,7 +803,7 @@ MonoBehaviour:
   domeMR: {fileID: 1065516466398935383}
   baseR: {fileID: 6096778105169394853}
   links: []
-  inThoseCellProximity: []
+  inThoseProximityCollider: []
   influencedByThoseCellProximity: []
   stuckBlobs: []
   ownCollider: {fileID: 4102602269581784783}
@@ -1142,15 +1142,15 @@ PrefabInstance:
       objectReference: {fileID: 3454063361185357364}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dce2aade4d19fd64bafb21906e96a13d, type: 3}
---- !u!4 &7041524281203698381 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8009261302443850914, guid: dce2aade4d19fd64bafb21906e96a13d,
-    type: 3}
-  m_PrefabInstance: {fileID: 1053307669086836335}
-  m_PrefabAsset: {fileID: 0}
 --- !u!198 &7041524281203698387 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 8009261302443850940, guid: dce2aade4d19fd64bafb21906e96a13d,
+    type: 3}
+  m_PrefabInstance: {fileID: 1053307669086836335}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &7041524281203698381 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8009261302443850914, guid: dce2aade4d19fd64bafb21906e96a13d,
     type: 3}
   m_PrefabInstance: {fileID: 1053307669086836335}
   m_PrefabAsset: {fileID: 0}
