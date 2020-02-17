@@ -12,9 +12,9 @@ public class CellManager : MonoBehaviour
 
     [Header("Placement Materials")]
     public Material allowedBuildingMat;
-    public Material allowedBuildingSpriteMat;
+    public Color allowedBuildingSpriteColor;
     public Material refusedBuildingMat;
-    public Material refusedBuldingSpriteMask;
+    public Color refusedBuldingSpriteSpriteColor;
 
     private bool shouldStop;
     [HideInInspector] public bool terrainIsBuildable = false;
@@ -136,8 +136,8 @@ public class CellManager : MonoBehaviour
         if (distance <= (selectedCell.GetCurrentRange() + selectedCell.myCellTemplate.slotDistance + cellMoved.myCellTemplate.slotDistance))
         {
             Vector3 firstPos = selectedCell.graphTransform.transform.position + direction * selectedCell.myCellTemplate.slotDistance;
-
             Vector3 lastPos = new Vector3(pos.x, currentLink.extremityPos[0].y, pos.z) - (direction * cellMoved.myCellTemplate.slotDistance);
+
             currentLink.UpdatePoint(firstPos, lastPos);
 
             LinkObstructedCheck(firstPos, lastPos);
@@ -146,10 +146,13 @@ public class CellManager : MonoBehaviour
         }
         else
         {
-            Vector3 lastPos = selectedCell.graphTransform.transform.position + (direction * selectedCell.GetCurrentRange() + direction * selectedCell.myCellTemplate.slotDistance);
             Vector3 firstPos = selectedCell.graphTransform.transform.position + direction * selectedCell.myCellTemplate.slotDistance;
+            //Vector3 lastPos = selectedCell.graphTransform.transform.position + (direction * selectedCell.GetCurrentRange() + direction * selectedCell.myCellTemplate.slotDistance);
+            Vector3 lastPos =firstPos + ((direction * selectedCell.GetCurrentRange() )/*+ (cellMoved.myCellTemplate.slotDistance *direction)*/);
+
+
             currentLink.UpdatePoint(firstPos, lastPos);
-            LinkObstructedCheck(lastPos, firstPos);
+            LinkObstructedCheck(firstPos, lastPos);
         }
     }
 

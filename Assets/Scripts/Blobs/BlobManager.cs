@@ -17,11 +17,15 @@ public class BlobManager : MonoBehaviour
     [SerializeField] [Range(0, 128)] private int ticksBeforeMad = 4;
 
 
+
     [Header("Explo variables")]
     public Material exploMat;
     public int exploLifeSpan = 10;
     [SerializeField] [Range(0, 1000)] private int exploTicksBtwnJumps = 3;
     [Range(0, 1000)] public float exploJumpForce = 7;
+    public float resourcesDetectionRadius = 3;
+    public float exploFlagRadius = 5;
+
     //[SerializeField][Range(0, 10000)] private int energyGain = 10;
 
 
@@ -30,8 +34,10 @@ public class BlobManager : MonoBehaviour
     public int soldierLifeSpan = 10;
     [SerializeField] [Range(0, 1000)] private int soldierTicksBtwnJumps = 4;
     [Range(0, 1000)] public float soldierJumpForce = 5;
+    public float soldierFlagRadius = 5;
     [SerializeField] [Range(0, 1000)] private float attackRange = 20;
     [SerializeField] [Range(0, 1000)] private float detectionRadius = 10;
+    [SerializeField] [Range(0, 1000)] private int lifeTimeReductionOnAttack = 1;
     private Transform targetTransform;
 
 
@@ -47,6 +53,8 @@ public class BlobManager : MonoBehaviour
     [Range(0, 100)] private int enemyTicksBtwnJumps = 4;
 
     private Blob blob;
+
+
     public void Awake()
     {
         if (instance == null)
@@ -57,8 +65,6 @@ public class BlobManager : MonoBehaviour
         //ajoute la fonction onTick au delegate pour qu'elle s'effectue à chaque tick
         TickManager.doTick += onTick;
     }
-
-
     private void OnDestroy()
     {
         //retire la fonction onTick du delegate (pour éviter qu'elle ne soit appelées alors que le script n'existe plus)
@@ -66,7 +72,7 @@ public class BlobManager : MonoBehaviour
 
     }
 
-
+    #region BLOB_BEHAVIOUR
     //Comprtements qui s'effectue à chaque Tick
     public void onTick()
     {
@@ -81,6 +87,7 @@ public class BlobManager : MonoBehaviour
 
             switch (blob.GetBlobType())
             {
+                #region NORMAL
                 //Si le blob est normal
                 case BlobType.normal:
 
@@ -95,7 +102,9 @@ public class BlobManager : MonoBehaviour
 
 
                     break;
+                #endregion
 
+                #region EXPLO
                 case BlobType.explorateur:
 
                     blob.tickCount++;
@@ -107,16 +116,43 @@ public class BlobManager : MonoBehaviour
 
                     if (blob.tickCount > exploTicksBtwnJumps)
                     {
-                        if (!TryAttack(blob, 1))
+                        if (blob.carriedObject != null)
                         {
-                            JumpForward(blob);
+                            blob.JumpBackToCell();
 
                         }
-                        blob.tickCount = 0;
+                        else if (TryAttack(blob, 1))
+                        {
+
+                            
+                        }
+                        else if (blob.resourceTransform != null)
+                        {
+
+                            blob.JumpTowards(blob.resourceTransform);
+
+                        }
+                        else if (!blob.CheckIfInFlagRadius())
+                        {
+
+                            blob.JumpTowardFlag();
+
+                        }
+                        else if (CheckNearbyRessources(blob))
+                        {
+
+                            blob.JumpTowards(blob.resourceTransform);
+                        }
+                        else
+                        {
+                            blob.RandomJump();
+                        }
+                    blob.tickCount = 0;
                     }
-
                     break;
+                #endregion
 
+                #region SOLDIER
                 case BlobType.soldier:
 
                     blob.tickCount++;
@@ -134,7 +170,7 @@ public class BlobManager : MonoBehaviour
                         //si le blob detecte un ennemi proche
                         if (CheckNearbyEnemies(blob))
                         {
-
+                            Debug.Log("detected enemy");
                             //il calcule la bonne direction
                             Vector3 directionToTarget = targetTransform.position - blob.transform.position;
 
@@ -142,23 +178,36 @@ public class BlobManager : MonoBehaviour
                             if (directionToTarget.magnitude < attackRange / 2)
                             {
                                 TryAttack(blob, 1);
+                                Debug.Log("Attack");
                             }
                             //sinon  il se rapproche
                             else
                             {
                                 JumpTowards(blob, targetTransform);
+                                Debug.Log("JumpTowardEnemy" + targetTransform.name);
                             }
                         }
                         //si il ne detecte rien il se dépace de manière aléatoire
                         else
                         {
-                            RanndomJump(blob);
+                            if (!blob.CheckIfInFlagRadius())
+                            {
+                                JumpTowardsFlag(blob);
+                                Debug.Log("JumpToFlag");
+                            }
+                            else
+                            {
+                                RandomJump(blob);
+                                Debug.Log("RandomJump");
+                            }
                         }
                     }
 
 
                     break;
+                #endregion
 
+                #region MAD
                 case BlobType.mad:
 
                     blob.tickCount++;
@@ -184,10 +233,19 @@ public class BlobManager : MonoBehaviour
                         {
                             blob.tickCount = 0;
 
-                            if (CheckNearbyCells(blob))
+
+                            if (TryAttack(blob, 1))
+                            {
+
+                            }
+                            else if (CheckNearbyCells(blob))
                             {
                                 enemyTicksBtwnJumps = AngryEnemyTicksBtwnJumps;
                                 JumpTowards(blob, targetTransform);
+                            }
+                            else if (CheckNearbyEnemies(blob))
+                            {
+                                JumpTowards(blob, blob.tagetTransform);
                             }
                             else
                             {
@@ -203,7 +261,7 @@ public class BlobManager : MonoBehaviour
                                 }
                                 else
                                 {
-                                    RanndomJump(blob);
+                                    RandomJump(blob);
                                 }
 
                             }
@@ -211,10 +269,13 @@ public class BlobManager : MonoBehaviour
 
                     }
                     break;
+                    #endregion
             }
         }
     }
+    #endregion
 
+    #region CHECK_SURROUNDINGS
     private bool CheckNearbyEnemies(Blob blob)
     {
         targetTransform = blob.tagetTransform;
@@ -235,16 +296,24 @@ public class BlobManager : MonoBehaviour
             //il check lequel est le plus près
             for (int i = 0; i < detectedColliders.Length; i++)
             {
-                if (detectedColliders[i].GetComponent<Blob>().GetBlobType() != BlobType.mad)
-                    continue;
-
-                Vector3 directionToTarget = detectedColliders[i].transform.position - currentPos;
-                float doSqrToTarget = directionToTarget.sqrMagnitude;
-                //si il trouve un blob plus près il enregistre sa distance et son transform
-                if (doSqrToTarget < closestDistSqr)
+                BlobType detectedBlobType = detectedColliders[i].GetComponent<Blob>().GetBlobType();
+                if (detectedBlobType == BlobType.mad && blob.GetBlobType() == BlobType.soldier
+                    || detectedBlobType == BlobType.explorateur && blob.GetBlobType() == BlobType.mad
+                    || detectedBlobType == BlobType.soldier && blob.GetBlobType() == BlobType.mad)
                 {
-                    closestDistSqr = doSqrToTarget;
-                    targetTransform = detectedColliders[i].transform;
+
+                    Vector3 directionToTarget = detectedColliders[i].transform.position - currentPos;
+                    float doSqrToTarget = directionToTarget.sqrMagnitude;
+                    //si il trouve un blob plus près il enregistre sa distance et son transform
+                    if (doSqrToTarget < closestDistSqr)
+                    {
+                        closestDistSqr = doSqrToTarget;
+                        targetTransform = detectedColliders[i].transform;
+                    }
+                }
+                else
+                {
+                    continue;
                 }
             }
         }
@@ -259,7 +328,6 @@ public class BlobManager : MonoBehaviour
         else
             return false;
     }
-
     private bool CheckNearbyCells(Blob blob)
     {
         targetTransform = blob.tagetTransform;
@@ -300,32 +368,73 @@ public class BlobManager : MonoBehaviour
         else
             return false;
     }
+    private bool CheckNearbyRessources(Blob blob)
+    {
+        Collider[] touchedResources;
+        touchedResources = Physics.OverlapSphere(blob.transform.position, resourcesDetectionRadius, 1 << 16);
+
+        for (int i = 0; i < touchedResources.Length; i++)
+        {
+            if (touchedResources[i].TryGetComponent<Carriable>(out Carriable carriable))
+            {
+                blob.resourceTransform = carriable.transform;
+                return true;
+            }
 
 
+            if (touchedResources[i].TryGetComponent<Destructible>(out Destructible destructible))
+            {
+                if (destructible.remainingLife <= 0)
+                    continue;
+
+                if (destructible.destructType == Destructible.DestructType.crystal
+                    || destructible.destructType == Destructible.DestructType.ressources
+                    || destructible.destructType == Destructible.DestructType.rock
+                    || destructible.destructType == Destructible.DestructType.shroom
+                    || destructible.destructType == Destructible.DestructType.tree)
+                {
+                    blob.resourceTransform = destructible.transform;
+                    return true;
+                }
+            }
+        }
+
+        blob.resourceTransform = null;
+        return false;
+
+
+    }
+    #endregion
+
+    #region JUMPS
     public void JumpTowards(Blob blob, Transform target)
     {
 
         blob.JumpTowards(target);
 
     }
-
+    public void JumpTowardsFlag(Blob blob)
+    {
+        blob.JumpTowardFlag();
+    }
     public void JumpForward(Blob blob)
     {
         blob.JumpForward();
     }
-
-    public void RanndomJump(Blob blob)
+    public void RandomJump(Blob blob)
     {
         blob.RandomJump();
     }
+    #endregion
 
+    #region ATTACK
     public bool TryAttack(Blob blob, int dmg)
     {
         Collider[] touchedBlobs;
         touchedBlobs = Physics.OverlapSphere(blob.transform.position, attackRange, 1 << 12);
 
         Collider[] touchedDestructibles;
-        touchedDestructibles = Physics.OverlapSphere(blob.transform.position, attackRange, 1 << 15 | 1<<16);
+        touchedDestructibles = Physics.OverlapSphere(blob.transform.position, attackRange, 1 << 15 | 1 << 16);
 
         if (blob.GetBlobType() == BlobType.soldier && touchedBlobs.Length > 0)
         {
@@ -334,8 +443,9 @@ public class BlobManager : MonoBehaviour
 
                 if (touchedBlobs[i].GetComponent<Blob>().GetBlobType() == BlobType.mad)
                 {
-                    Debug.Log("Soldier Attacked blob");
+
                     touchedBlobs[i].GetComponent<Blob>().ReceiveDamage();
+                    blob.lifeTime += lifeTimeReductionOnAttack;
                     blob.anim.Play("Attack");
                     return true;
                 }
@@ -344,35 +454,72 @@ public class BlobManager : MonoBehaviour
 
         //Debug.Log("Soldier Explosed " + touchedBlobs.Length + " blobs");
 
+        if (blob.GetBlobType() == BlobType.mad && touchedBlobs.Length > 0)
+        {
+            for (int i = 0; i < touchedBlobs.Length; i++)
+            {
+
+                if (touchedBlobs[i].GetComponent<Blob>().GetBlobType() == BlobType.explorateur)
+                {
+                    touchedBlobs[i].GetComponent<Blob>().ReceiveDamage();
+                    blob.lifeTime += lifeTimeReductionOnAttack;
+                    blob.anim.Play("Attack");
+                    return true;
+                }
+            }
+
+            return false;
+
+        }
+
         if (touchedDestructibles.Length > 0)
         {
 
             for (int i = 0; i < touchedDestructibles.Length; i++)
             {
+                if (blob.GetBlobType() == BlobType.explorateur && touchedDestructibles[i].TryGetComponent<Carriable>(out Carriable carriable))
+                {
+                    carriable.GetCarried(blob);
+                    return true;
+                }
+
 
                 if (touchedDestructibles[i].TryGetComponent<Destructible>(out Destructible destructible))
                 {
-                    if (blob.GetBlobType() == BlobType.soldier && (destructible.destructType == Destructible.DestructType.EnemyBlob 
-                        || destructible.destructType == Destructible.DestructType.all 
+                    if (destructible.remainingLife <= 0)
+                    {
+                        continue;
+                    }
+
+
+                    if (blob.GetBlobType() == BlobType.soldier && (destructible.destructType == Destructible.DestructType.EnemyBlob
+                        || destructible.destructType == Destructible.DestructType.all
                         || destructible.destructType == Destructible.DestructType.enemyCell
                         || destructible.destructType == Destructible.DestructType.enemyNexus
                         || destructible.destructType == Destructible.DestructType.barricade))
                     {
-                        Debug.Log("Soldier attacked enemy Base");
                         blob.anim.Play("Attack");
                         destructible.ReceiveDamage(dmg);
                         return true;
 
                     }
-                    else if (blob.GetBlobType() == BlobType.explorateur && (destructible.destructType == Destructible.DestructType.ressources 
+                    else if (blob.GetBlobType() == BlobType.explorateur && (destructible.destructType == Destructible.DestructType.ressources
                         || destructible.destructType == Destructible.DestructType.all
                         || destructible.destructType == Destructible.DestructType.shroom
                         || destructible.destructType == Destructible.DestructType.crystal))
                     {
-                        Debug.Log("Explo harvested ressources");
+
                         blob.anim.Play("Attack");
                         destructible.ReceiveDamage(dmg);
+                        if(destructible.remainingLife <= 0)
+                        {
+                            if (!CheckNearbyRessources(blob))
+                            {
+                                blob.resourceTransform = null;
+                            }
+                        }
                         return true;
+
                     }
 
                 }
@@ -382,6 +529,7 @@ public class BlobManager : MonoBehaviour
         return false;
 
     }
+    #endregion
 
 
 

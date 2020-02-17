@@ -17,10 +17,13 @@ MonoBehaviour:
     type: 3}
   buttonColor: {r: 0.2688679, g: 0.7080042, b: 1, a: 1}
   cellTexture: {fileID: 2800000, guid: 2162646fcfe8d3543bd48e3f88874de3, type: 3}
+  prodLevelMax: 1
+  levelProduction: []
   type: 2
   description: High capacity. Raise the max sploosh capacity
   descriptionProximity: 'Close proximity effect: Increase the max blobz capacity '
   descriptionClick: 'Click on the cell to push blobz into the links '
+  expAmount: 10
   generateProximity: 0
   proximityColliderNumber: 2
   proximityColliders:
@@ -47,7 +50,7 @@ MonoBehaviour:
   energyPerClick: 1
   limitedInLinks: 0
   slotDistance: 1.5
-  numberOfOuputLinks: 0
+  numberOfOuputLinks: 3
   numberOfInputLinks: 0
   numberOfFlexLinks: 5
   proximityLevelMax: 4
@@ -61,7 +64,7 @@ MonoBehaviour:
   rangeLien: 
   tickForActivation: 
   energyCap: 
-  specifique: 0200000005000000070000000a000000
+  specifique: 280000001e0000001400000005000000
   energyPerblop: 0
   StatsModification: 2
   REFS: 1

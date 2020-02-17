@@ -19,6 +19,11 @@ public class CinematicManager : MonoBehaviour
         else
             Destroy(gameObject);
 
+
+        if(mainCam == null)
+        {
+            mainCam = GameObject.FindObjectOfType<CameraController>().GetComponent<CinemachineVirtualCamera>();
+        }
         currentCam = mainCam;
     }
 

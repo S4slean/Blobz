@@ -8,11 +8,14 @@ public class TopBarUI : MonoBehaviour
 
     public TextMeshProUGUI energy;
     public energieTopBar energieTopBar;
+    public TextMeshProUGUI rocketShards;
 
     public void UpdateUI()
     {
         energy.text = "Sploosh : " + RessourceTracker.instance.energy + "/ " + RessourceTracker.instance.energyCap;
         energieTopBar.CheckEnergieAmount();
+
+        rocketShards.text = "Rocket Shards: " + RessourceTracker.instance.rocketPiece + "/3";
 
     }
 

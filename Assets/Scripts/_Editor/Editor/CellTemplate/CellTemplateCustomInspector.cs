@@ -12,14 +12,18 @@ public class CellTemplateCustomInspector : Editor
     #region VARIABLES
     SerializedProperty cellsEnableToBuildProp, blopPrefabProp, buttonColorProp, cellTextureProp;
     SerializedProperty typeProp;
-    SerializedProperty energyCostProp, energyCapBaseProp, rangeBaseProp, blobSpawnRatioAtDeathProp , blobSpawnAdditionnalRatioAtDeath;
+    SerializedProperty energyCostProp, energyCapBaseProp, rangeBaseProp, blobSpawnRatioAtDeathProp, blobSpawnAdditionnalRatioAtDeath;
 
     SerializedProperty prodPerTickProp, rejectPowerProp, storageCapabilityProp/*, linkCapabilityProp*/, tickForActivationBaseProp, energyPerClickProp;
 
     SerializedProperty proximityLevelMaxProp, positivesInteractionsProp, negativesInteractionsProp, StatsModificationProp;
 
-    //Productrice Spé
     SerializedProperty SurprodRateProp;
+    //Productrice Spé
+    SerializedProperty expAmountProp;
+
+    SerializedProperty prodLevelMaxProp , levelProductionProp;
+
     //Armory Spé
     SerializedProperty BlopPerTickProp;
 
@@ -77,6 +81,9 @@ public class CellTemplateCustomInspector : Editor
         descriptionProp = serializedObject.FindProperty("description");
         descriptionProximityProp = serializedObject.FindProperty("descriptionProximity");
         descriptionClickProp = serializedObject.FindProperty("descriptionClick");
+        expAmountProp = serializedObject.FindProperty("expAmount");
+        prodLevelMaxProp = serializedObject.FindProperty("prodLevelMax");
+        levelProductionProp = serializedObject.FindProperty("levelProduction");
 
 
         #region Proximity Initialisation 
@@ -214,6 +221,15 @@ public class CellTemplateCustomInspector : Editor
         {
             case CellType.Nexus:
                 EditorGUILayout.PropertyField(maxLifeProdProp);
+                EditorGUILayout.HelpBox("Il s'agit de la production par rapport au level actuel", MessageType.Info);
+       
+
+               // proximityCollidersProp.arraySize = proximityColliderNumberProp.intValue;
+                EditorGUILayout.PropertyField(prodLevelMaxProp);
+                levelProductionProp.arraySize = prodLevelMaxProp.intValue;
+                DisplayProdLevel(levelProductionProp, "Productrive Level");
+                 //DisplayArray(proximityCollidersProp, "Proximity Collider n°", true);
+                // DisplayArray(levelProductionProp, "Level"); 
                 break;
             case CellType.Armory:
                 break;
@@ -246,15 +262,18 @@ public class CellTemplateCustomInspector : Editor
                 EditorGUILayout.PropertyField(maxBlobShreddedPerClickProp);
                 break;
             case CellType.Academy:
+                EditorGUILayout.PropertyField(MaxEnergieProp);
                 break;
             case CellType.Treblobchet:
-                EditorGUILayout.PropertyField(magazineDragRangeProp);
-                EditorGUILayout.PropertyField(minDragRatioProp);
-                EditorGUILayout.HelpBox("VARIABLE POUR LE LANCER", MessageType.None);
-                EditorGUILayout.PropertyField(shotPowerProp);
-                EditorGUILayout.PropertyField(verticalConstantPowerProp);
-                EditorGUILayout.PropertyField(verticalOffsetProp);
-                EditorGUILayout.PropertyField(magazinSlotDistanceProp);
+                EditorGUILayout.PropertyField(MaxEnergieProp);
+
+                //EditorGUILayout.PropertyField(magazineDragRangeProp);
+                //EditorGUILayout.PropertyField(minDragRatioProp);
+                //EditorGUILayout.HelpBox("VARIABLE POUR LE LANCER", MessageType.None);
+                //EditorGUILayout.PropertyField(shotPowerProp);
+                //EditorGUILayout.PropertyField(verticalConstantPowerProp);
+                //EditorGUILayout.PropertyField(verticalOffsetProp);
+                //EditorGUILayout.PropertyField(magazinSlotDistanceProp);
 
                 break;
             case CellType.Rocket:
@@ -263,9 +282,15 @@ public class CellTemplateCustomInspector : Editor
                 EditorGUILayout.PropertyField(blobLostPerTickProp);
                 break;
         }
+        EditorGUILayout.Space();
+        EditorGUILayout.Space();
+
+        EditorGUILayout.PropertyField(expAmountProp);
+
+        EditorGUILayout.Space();
+        EditorGUILayout.Space();
+
         EditorGUILayout.EndVertical();
-        EditorGUILayout.Space();
-        EditorGUILayout.Space();
         #endregion
 
         #region REFS
@@ -306,7 +331,7 @@ public class CellTemplateCustomInspector : Editor
                     "de la productrice " +
                     ", les Bonus de chaque collider se cumule pour la meme Productrice", MessageType.Info);
             }
-
+           // EditorGUILayout.PropertyField(proximityColliderNumberProp);
 
             EditorGUILayout.PropertyField(proximityColliderNumberProp);
 
@@ -692,6 +717,73 @@ public class CellTemplateCustomInspector : Editor
                     EditorGUILayout.EndHorizontal();
 
                 }
+
+
+
+                if (currentElement == null && InfoBoxToggleProp.boolValue)
+                {
+                    EditorGUILayout.HelpBox("Le Label est vide", MessageType.Warning);
+                }
+
+                EditorGUILayout.EndVertical();
+                EditorGUIUtility.labelWidth = labelWidthBase;
+            }
+
+            EditorGUI.indentLevel -= 1;
+        }
+        serializedObject.ApplyModifiedProperties();
+    }
+    private void DisplayProdLevel(SerializedProperty array, string Label)
+    {
+        EditorGUILayout.BeginHorizontal();
+        array.arraySize = EditorGUILayout.IntField(array.name, array.arraySize);
+        if (array.arraySize <= 0 && InfoBoxToggleProp.boolValue)
+        {
+            EditorGUILayout.HelpBox("Aucun(e)" + Label, MessageType.Info);
+            EditorGUILayout.EndHorizontal();
+        }
+        else
+        {
+            EditorGUILayout.EndHorizontal();
+            EditorGUI.indentLevel += 1;
+            for (int i = 0; i < array.arraySize; i++)
+            {
+
+                EditorGUIUtility.labelWidth = 0.01f;
+                SerializedProperty currentElement = array.GetArrayElementAtIndex(i);
+                EditorGUILayout.BeginVertical("Box");
+
+                EditorGUILayout.PropertyField(currentElement);
+
+
+                EditorGUILayout.BeginHorizontal("Box");
+                EditorGUILayout.LabelField("Blobs production");
+                SerializedProperty currentProdLevel = currentElement.FindPropertyRelative("blobsProduction");
+                currentProdLevel.intValue = EditorGUILayout.IntField(currentProdLevel.intValue);
+                EditorGUILayout.EndHorizontal();
+
+                EditorGUILayout.BeginHorizontal("Box");
+                EditorGUILayout.LabelField("Exp Needed");
+                SerializedProperty currentExpNeed = currentElement.FindPropertyRelative("expNeeded");
+                currentExpNeed.intValue = EditorGUILayout.IntField(currentExpNeed.intValue);
+                EditorGUILayout.EndHorizontal();
+
+
+                EditorGUILayout.BeginHorizontal("Box");
+                EditorGUILayout.LabelField("Level Sprite");
+                SerializedProperty currentSprite = currentElement.FindPropertyRelative("spriteLevel");
+                EditorGUILayout.PropertyField(currentSprite);
+                EditorGUILayout.EndHorizontal();
+
+                //if (((CellType)typeProp.enumValueIndex) == CellType.Nexus)
+                //{
+                //    EditorGUILayout.BeginHorizontal("Box");
+                //    EditorGUILayout.LabelField("Collider Production Ratio Bonus");
+                //    SerializedProperty currentElementProductionBonus = currentElement.FindPropertyRelative("productionBonusRatio");
+                //    currentElementProductionBonus.intValue = EditorGUILayout.IntField(currentElementProductionBonus.intValue);
+                //    EditorGUILayout.EndHorizontal();
+
+                //}
 
 
 

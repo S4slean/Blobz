@@ -40,6 +40,9 @@ public class InputManager : MonoBehaviour
 
     private float clickTime;
     public enum InputMode { normal, movingCell, divineShot, flag };
+    //
+    public CellType currentCellType;
+    //
     private InputMode inputMode = InputMode.normal;
 
 
@@ -247,6 +250,8 @@ public class InputManager : MonoBehaviour
                         holdingLeftClick = false;
                     }
 
+
+                    UIManager.Instance.DesactivateCellShop();
                     DeselectElement();
                     clickTime = 0;
                 }
@@ -256,6 +261,7 @@ public class InputManager : MonoBehaviour
                 {
                     SelectElement();
                     UIManager.Instance.HideCellOptions();
+                    UIManager.Instance.DesactivateCellShop();
 
                     if (holdingLeftClick)
                     {
@@ -459,12 +465,26 @@ public class InputManager : MonoBehaviour
                         Vector3 dir = (mouseWorldPos - selectedCell.transform.position).normalized;
 
                         flagAnim.SetTrigger("Plant");
-                        Blob explo = ObjectPooler.poolingSystem.GetPooledObject<Blob>() as Blob;
-                        explo.ChangeType(BlobManager.BlobType.explorateur);
-                        explo.transform.position = selectedCell.transform.position + dir * 2.5f + Vector3.up * 1.1f;
-                        explo.transform.LookAt(flag.transform.position);
-                        explo.Outpool();
-                        explo.JumpForward();
+
+                        switch (currentCellType)
+                        {
+                          
+                            case CellType.Academy:
+ 
+                                CellExplo cellExplo = selectedCell as CellExplo;
+                                cellExplo.flagPos = mouseWorldPos;
+
+                                break;
+                            case CellType.Treblobchet:
+
+                                CellTreblochet cellTreblochet = selectedCell as CellTreblochet;
+                                cellTreblochet.flagPos = mouseWorldPos;
+
+                                break;                       
+                            default:
+                                break;
+                        }
+                
 
 
                         SwitchInputMode(InputMode.normal);
@@ -554,7 +574,7 @@ public class InputManager : MonoBehaviour
     {
 
         UIManager.Instance.DeselectElement();
-
+        
 
         if (inputMode == InputMode.movingCell)
         {
@@ -571,9 +591,31 @@ public class InputManager : MonoBehaviour
         shootingCell = newShootingCell;
     }
 
-    public static void SwitchInputMode(InputMode newInputMode)
+    public static void SwitchInputMode(InputMode newInputMode )
     {
         Instance.inputMode = newInputMode;
+
+        if (newInputMode == InputMode.flag)
+        {
+            Instance.flag.SetActive(true);
+            Instance.flag.transform.position = Instance.mouseWorldPos;
+            Instance.flagAnim.Play("Appear");
+        }
+        else if (newInputMode == InputMode.divineShot)
+        {
+            UIManager.Instance.DisplayDivineShot(Instance.shootingCell);
+        }
+        else
+        {
+            Instance.shootingCell = null;
+            UIManager.Instance.HideDivineShot();
+        }
+    }
+
+    public static void SwitchInputMode(InputMode newInputMode , CellType _cellType)
+    {
+        Instance.inputMode = newInputMode;
+        Instance.currentCellType = _cellType;
 
         if (newInputMode == InputMode.flag)
         {

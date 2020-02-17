@@ -14,12 +14,23 @@ public class CellProximityDectection : PoolableObjects
 
     public void Init(int proxLevel, Transform targetTransform)
     {
-
         Color matColor = proximityColor[proxLevel - 1];
         mR.material.SetColor("_Color", matColor);
         transform.position = targetTransform.position + new Vector3(0f, 0.01f * (float)proxLevel + 0.3f, 0f);
         proximityLevel = proxLevel;
     }
+
+    public void TryToAddExp(CellMain cellToAdd)
+    {
+        CellProductrice prod = parent as CellProductrice;
+        prod.AddExpCell(cellToAdd);
+    }    
+    public void TryToReomveCellExp(CellMain cellToAdd)
+    {
+        CellProductrice prod = parent as CellProductrice;
+        prod.RemoveFromCellTahtGIveExp(cellToAdd);
+    }
+
 
 
     //private void OnTriggerEnter(Collider other)

@@ -16,17 +16,20 @@ MonoBehaviour:
   blopPrefab: {fileID: 0}
   buttonColor: {r: 0, g: 0, b: 0, a: 0}
   cellTexture: {fileID: 0}
+  prodLevelMax: 1
+  levelProduction: []
   type: 5
   description: Allow you to switch links pathes
   descriptionProximity: 
   descriptionClick: Allow you to switch links pathes
+  expAmount: 10
   generateProximity: 0
   proximityColliderNumber: 1
   proximityColliders:
   - proximityLevel: 0
     range: 0
     productionBonusRatio: 0
-  energyCost: 125
+  energyCost: 50
   energyCapBase: 0
   rangeBase: 15
   overLoadTickMax: 4
@@ -35,13 +38,13 @@ MonoBehaviour:
   blobSpawnAdditionnalRatioAtDeath: 5
   prodPerTickBase: 0
   rejectPowerBase: 1
-  storageCapability: 25
+  storageCapability: 15
   tickForActivationBase: 1
   energyPerClick: 2
   limitedInLinks: 1
   slotDistance: 1.5
-  numberOfOuputLinks: 2
-  numberOfInputLinks: 3
+  numberOfOuputLinks: 3
+  numberOfInputLinks: 1
   numberOfFlexLinks: 0
   proximityLevelMax: 1
   proximityInfluenceMultiplier: 1
@@ -54,7 +57,7 @@ MonoBehaviour:
   rangeLien: 
   tickForActivation: 
   energyCap: 
-  specifique: 0200000005000000070000000a000000
+  specifique: 280000001e0000001400000005000000
   energyPerblop: 0
   StatsModification: 8
   REFS: 1

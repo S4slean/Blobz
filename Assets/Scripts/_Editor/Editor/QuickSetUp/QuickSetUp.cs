@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEditor.Events;
+using Cinemachine;
 
 public class QuickSetUp : Editor
 {
@@ -82,6 +83,8 @@ public class QuickSetUp : Editor
 
         if (FindObjectOfType<BlobManager>() != null)
             DestroyImmediate(FindObjectOfType<BlobManager>().gameObject);
+
+
 
 
         Debug.Log("Scene Cleaned");
@@ -252,6 +255,7 @@ public class QuickSetUp : Editor
 
         #endregion
 
+        cinematicManager.GetComponent<CinematicManager>().mainCam = camera.GetComponent<CinemachineVirtualCamera>();
 
     }
 

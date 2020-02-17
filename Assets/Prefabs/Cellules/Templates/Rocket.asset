@@ -16,10 +16,13 @@ MonoBehaviour:
   blopPrefab: {fileID: 0}
   buttonColor: {r: 0, g: 0, b: 0, a: 0}
   cellTexture: {fileID: 0}
+  prodLevelMax: 1
+  levelProduction: []
   type: 13
   description: 
   descriptionProximity: 
   descriptionClick: When fully charged, quickly click on it to launch.
+  expAmount: 10
   generateProximity: 0
   proximityColliderNumber: 1
   proximityColliders:
@@ -40,7 +43,7 @@ MonoBehaviour:
   energyPerClick: 1
   limitedInLinks: 1
   slotDistance: 1.5
-  numberOfOuputLinks: 0
+  numberOfOuputLinks: 3
   numberOfInputLinks: 10
   numberOfFlexLinks: 0
   proximityLevelMax: 0
@@ -54,7 +57,7 @@ MonoBehaviour:
   rangeLien: 
   tickForActivation: 
   energyCap: 
-  specifique: 
+  specifique: 280000001e0000001400000005000000
   energyPerblop: 0
   StatsModification: 8
   REFS: 0

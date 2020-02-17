@@ -43,13 +43,15 @@ public class CellMain : PoolableObjects, PlayerAction
     public GameObject exploIcon;
 
 
-    public MeshRenderer domeMR, spriteMR;
-    private Material domeInitialMat, spriteInitialMat;
+    public MeshRenderer domeMR;
+    public SpriteRenderer baseR;
+    private Material domeInitialMat;
+    private Sprite initialSprite;
 
     public List<LinkClass> links = new List<LinkClass>();
     protected List<LinkClass> outputLinks = new List<LinkClass>();
 
-    public List<CellProximityDectection> inThoseCellProximity = new List<CellProximityDectection>();
+    public List<CellProximityDectection> inThoseProximityCollider = new List<CellProximityDectection>();
     public List<CellProximityDectection> influencedByThoseCellProximity = new List<CellProximityDectection>();
 
     public List<Blob> stuckBlobs = new List<Blob>();
@@ -394,7 +396,7 @@ public class CellMain : PoolableObjects, PlayerAction
         }
 
 
-        inThoseCellProximity.Clear();
+        inThoseProximityCollider.Clear();
         influencedByThoseCellProximity.Clear();
 
         blobNumber = 0;
@@ -794,7 +796,7 @@ public class CellMain : PoolableObjects, PlayerAction
 
     public void RemoveProximityInfluence(CellProximityDectection proximityToRemove)
     {
-        inThoseCellProximity.Remove(proximityToRemove);
+        inThoseProximityCollider.Remove(proximityToRemove);
         //for (int i = 0; i < influencedByThoseCellProximity.Count; i++)
         //{
         //    if (proximityToRemove == influencedByThoseCellProximity[i])
@@ -808,9 +810,9 @@ public class CellMain : PoolableObjects, PlayerAction
         //}
 
         influencedByThoseCellProximity.Remove(proximityToRemove);
-        for (int y = 0; y < inThoseCellProximity.Count; y++)
+        for (int y = 0; y < inThoseProximityCollider.Count; y++)
         {
-            AddProximityInfluence(inThoseCellProximity[y]);
+            AddProximityInfluence(inThoseProximityCollider[y]);
         }
         ProximityLevelModification();
     }
@@ -1053,7 +1055,7 @@ public class CellMain : PoolableObjects, PlayerAction
 
         explorateurBlobNumber = 0;
         hasBlobCoach = false;
-      
+
 
         currentProximityLevel = 0;
         inDanger = false;
@@ -1179,25 +1181,24 @@ public class CellMain : PoolableObjects, PlayerAction
     private void GetInitialMat()
     {
         domeInitialMat = domeMR.material;
-        spriteInitialMat = spriteMR.material;
-
+        initialSprite = baseR.sprite;
     }
     public void RestoreInitialMat()
     {
         domeMR.material = domeInitialMat;
-        spriteMR.material = spriteInitialMat;
+        baseR.color = CellManager.Instance.allowedBuildingSpriteColor;
     }
     public void ChangeDeplacementMat(bool canBePlaced)
     {
         if (canBePlaced)
         {
             domeMR.material = CellManager.Instance.allowedBuildingMat;
-            spriteMR.material = CellManager.Instance.allowedBuildingSpriteMat;
+            baseR.color = CellManager.Instance.allowedBuildingSpriteColor;
         }
         else
         {
             domeMR.material = CellManager.Instance.refusedBuildingMat;
-            spriteMR.material = CellManager.Instance.refusedBuldingSpriteMask;
+            baseR.color = CellManager.Instance.refusedBuldingSpriteSpriteColor;
         }
     }
     #endregion
@@ -1232,6 +1233,15 @@ public class CellMain : PoolableObjects, PlayerAction
         //    actionMade = true;
         //}
 
+        //if (CheckForAvailableJointOfType(linkJointType.output) == null)
+        //{
+        //    UIManager.Instance.WarningMessage("This cell can't expell more blobz");
+        //    return;
+
+        //}
+        //UIManager.Instance.DisplayCellShop(InputManager.Instance.selectedCell);
+
+
         if (actionmade)
         {
             anim.Play("PlayerInteraction", 0, 0f);
@@ -1241,13 +1251,7 @@ public class CellMain : PoolableObjects, PlayerAction
 
     public virtual void OnLeftClickHolding(RaycastHit hit)
     {
-        if (CheckForAvailableJointOfType(linkJointType.output) == null)
-        {
-            UIManager.Instance.WarningMessage("This cell can't expell more blobz");
-            return;
 
-        }
-        UIManager.Instance.DisplayCellShop(InputManager.Instance.selectedCell);
     }
     public virtual void OnLongLeftClickUp(RaycastHit hit)
     {
@@ -1274,7 +1278,15 @@ public class CellMain : PoolableObjects, PlayerAction
 
     public virtual void OnShortRightClick(RaycastHit hit)
     {
-        UIManager.Instance.DisplayCellOptions(this);
+        InputManager.Instance.SelectCell();
+        if (CheckForAvailableJointOfType(linkJointType.output) == null)
+        {
+            UIManager.Instance.WarningMessage("This cell can't expell more blobz");
+            return;
+
+        }
+        UIManager.Instance.DisplayCellShop(InputManager.Instance.selectedCell);
+        //UIManager.Instance.DisplayCellOptions(this);
     }
     public virtual void OnRightClickWhileHolding(RaycastHit hit)
     {
@@ -1297,6 +1309,7 @@ public class CellMain : PoolableObjects, PlayerAction
 
     public virtual void OnSelect()
     {
+
         CellManager.Instance.selectedCell = this;
     }
 
@@ -1326,21 +1339,23 @@ public class CellMain : PoolableObjects, PlayerAction
         CellProximityDectection collider = other.GetComponent<CellProximityDectection>();
         if (collider != null && collider.parent != this)
         {
-            for (int i = 0; i < inThoseCellProximity.Count; i++)
+            for (int i = 0; i < inThoseProximityCollider.Count; i++)
             {
-                if (inThoseCellProximity[i] == collider)
+                if (inThoseProximityCollider[i] == collider)
                 {
                     return;
                 }
             }
-            inThoseCellProximity.Add(collider);
+            inThoseProximityCollider.Add(collider);
             //parent.AddToCellAtPromity(cell);
             AddProximityInfluence(collider);
             //OVERRIDE POSSIBLE 
             if (collider.parent.myCellTemplate.type == CellType.Nexus)
             {
-                CellProductrice prod = collider.parent as CellProductrice;
-                prod.ProductriceProximityGestion(collider, true);
+                // CellProductrice prod = collider.parent as CellProductrice;
+                //prod.ProductriceProximityGestion(collider, true);
+                //prod.ProductionVariationByProximity(myCellTemplate.expAmount, true);
+                collider.TryToAddExp(this);
             }
         }
     }
@@ -1351,12 +1366,15 @@ public class CellMain : PoolableObjects, PlayerAction
         if (collider != null && collider.parent != this)
         {
             RemoveProximityInfluence(collider);
+            collider.TryToReomveCellExp(this);
             //OVERRIDE POSSIBLE 
-            if (collider.parent.myCellTemplate.type == CellType.Nexus)
-            {
-                CellProductrice prod = collider.parent as CellProductrice;
-                prod.ProductriceProximityGestion(collider, false);
-            }
+            //au cas où il faut enlevé des l'exp 
+            //if (collider.parent.myCellTemplate.type == CellType.Nexus)
+            //{
+            //    CellProductrice prod = collider.parent as CellProductrice;
+            //    prod.ProductriceProximityGestion(collider, false);
+            //    prod.ProductionVariationByProximity(myCellTemplate.expAmount, true);
+            //}
         }
 
     }
@@ -1374,6 +1392,13 @@ public class CellMain : PoolableObjects, PlayerAction
         //FX.setActive()
         if (isOverload)
         {
+            if (CellManager.Instance.selectedCell == this)
+            {
+                
+                InputManager.Instance.StopCurrentAction();
+                InputManager.Instance.DeselectElement();
+            }
+
             //Debug.Log("enterInOverload ", gameObject);
             blolbNumberAtOverload = blobNumber;
             if (onOverloadEvent != null)

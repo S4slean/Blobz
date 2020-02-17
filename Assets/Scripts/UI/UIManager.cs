@@ -62,9 +62,10 @@ public class UIManager : MonoBehaviour
 
     public void DisplayCellShop(CellMain originalCell)
     {
-        cellSelection.transform.position = originalCell.transform.position + Vector3.up * .5f;
+        cellSelection.transform.position = originalCell.transform.position + Vector3.up * 2;
 
         cellSelection.DisplaySections();
+        cellSelection.DisplayAllSubMenus();
     }
 
     public void DesactivateCellShop()
@@ -126,6 +127,8 @@ public class UIManager : MonoBehaviour
     [Header("ToolTip")]
     public TooltipUI tooltipUI;
     public CellOptionsUI cellOptionsUI;
+    public ProximityToolTip proximityToolTipUI;
+    public PropsTooltip propsTooltip;
 
 
     private float tooltipCount = 0;
@@ -149,38 +152,6 @@ public class UIManager : MonoBehaviour
         }
 
     }
-
-    public void DisplayTooltip(Vector3 pos, CellMain cell, bool displayCost)
-    {
-        DisplayUI(tooltipUI.gameObject);
-        tooltipUI.UpdateUI(cell, displayCost);
-        tooltipUI.transform.position = pos + Vector3.up;
-        //tooltipUI.anim.Play("first Display");
-
-
-
-        firstTooltipDisplayed = true;
-    }
-
-    public void DisplayCostToolTip(Vector3 pos, CellMain cell)
-    {
-        //costUI.transform.position = pos + Vector3.forward;
-    }
-
-    public void HideCostTooltip()
-    {
-
-    }
-
-    public void DisplaySecondToolTip()
-    {
-
-        secondTooltipDisplayed = true;
-
-        DisplayUI(tooltipUI.secondDisplay);
-        //tooltipUI.anim.Play("second Display");
-    }
-
     public void UnloadToolTip()
     {
 
@@ -197,10 +168,54 @@ public class UIManager : MonoBehaviour
         firstTooltipDisplayed = false;
         secondTooltipDisplayed = false;
     }
+    public void DisplayTooltip(Vector3 pos, CellMain cell, bool displayCost)
+    {
+        DisplayUI(tooltipUI.gameObject);
+        tooltipUI.UpdateUI(cell, displayCost);
+        tooltipUI.transform.position = pos + Vector3.up;
+        //tooltipUI.anim.Play("first Display");
 
+
+
+        firstTooltipDisplayed = true;
+    }
     public void HideTooltip()
     {
         HideUI(tooltipUI.gameObject);
+    }
+    public void DisplaySecondToolTip()
+    {
+
+        secondTooltipDisplayed = true;
+
+        DisplayUI(tooltipUI.secondDisplay);
+        //tooltipUI.anim.Play("second Display");
+    }
+
+    public void DisplayProximityToolTip(Vector3 pos, CellMain cell)
+    {
+        proximityToolTipUI.gameObject.SetActive(true);
+        proximityToolTipUI.UpdateInfo(cell);
+        proximityToolTipUI.transform.position = pos + Vector3.up;
+    }
+    public void UpdateProximityToolTipPos(Vector3 pos)
+    {
+        proximityToolTipUI.transform.position = pos + Vector3.up;
+    }
+    public void HideProximityToolTip()
+    {
+        proximityToolTipUI.gameObject.SetActive(false);
+    }
+
+    public void DisplayPropsTooltip(Vector3 pos, TooltipScriptable tooltipData)
+    {
+        propsTooltip.gameObject.SetActive(true);
+        propsTooltip.UpdateTooltipInfos(tooltipData);
+        propsTooltip.transform.position = pos + Vector3.up;
+    }
+    public void HidePropsTooltip()
+    {
+        propsTooltip.gameObject.SetActive(false);
     }
 
     public void DisplayCellOptions(CellMain cell)
@@ -210,7 +225,6 @@ public class UIManager : MonoBehaviour
         cellOptionsUI.cell = cell;
         //cellOptionsUI.anim.Play("Display");
     }
-
     public void HideCellOptions()
     {
         HideUI(UIManager.Instance.cellOptionsUI.gameObject);

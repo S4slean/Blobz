@@ -16,11 +16,17 @@ public class CelluleTemplate : ScriptableObject
 
 
     [Space(20f)]
+    [Range(1, 10)]
+    public int prodLevelMax = 1;
+    public ProdLevel[] levelProduction;
+
 
     public CellType type;
     public string description;
     public string descriptionProximity;
     public string descriptionClick;
+    [Range (1 , 200)]
+    public int expAmount = 10;
 
     public bool generateProximity;
     [Range(1, 5)]
@@ -45,7 +51,6 @@ public class CelluleTemplate : ScriptableObject
     public int blobSpawnRatioAtDeath;
     [Range(0, 50)]
     public int blobSpawnAdditionnalRatioAtDeath;
-
 
 
     [Range(0, 10)]
@@ -171,4 +176,16 @@ public struct ProximityCollider
     public int range;
     [Range(0, 75)]
     public int productionBonusRatio;
+}
+
+[System.Serializable]
+public struct ProdLevel
+{
+    [Range(1, 10)]
+    public int blobsProduction;
+    [Range(10, 1000)]
+    public int expNeeded;
+    public Sprite spriteLevel;
+
+
 }

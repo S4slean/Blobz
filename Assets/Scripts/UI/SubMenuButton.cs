@@ -26,7 +26,6 @@ public class SubMenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     public void OnPointerExit(PointerEventData eventData)
     {
         UIManager.Instance.UnloadToolTip();
-
         mousOnMe = false;
 
     }

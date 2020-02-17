@@ -17,22 +17,37 @@ MonoBehaviour:
     type: 3}
   buttonColor: {r: 0.9716981, g: 0.58233446, b: 0.022917405, a: 1}
   cellTexture: {fileID: 2800000, guid: fa8a025f4698212438823fbaf9a5967d, type: 3}
+  prodLevelMax: 5
+  levelProduction:
+  - blobsProduction: 1
+    expNeeded: 0
+    spriteLevel: {fileID: 21300000, guid: d64898f93a837374a9ce704828ec1c8c, type: 3}
+  - blobsProduction: 2
+    expNeeded: 30
+    spriteLevel: {fileID: 21300000, guid: d64898f93a837374a9ce704828ec1c8c, type: 3}
+  - blobsProduction: 3
+    expNeeded: 30
+    spriteLevel: {fileID: 21300000, guid: d64898f93a837374a9ce704828ec1c8c, type: 3}
+  - blobsProduction: 4
+    expNeeded: 50
+    spriteLevel: {fileID: 21300000, guid: d64898f93a837374a9ce704828ec1c8c, type: 3}
+  - blobsProduction: 5
+    expNeeded: 50
+    spriteLevel: {fileID: 21300000, guid: d64898f93a837374a9ce704828ec1c8c, type: 3}
   type: 0
   description: Produce blobz each tick
   descriptionProximity: 
   descriptionClick: 
+  expAmount: 1
   generateProximity: 1
-  proximityColliderNumber: 3
+  proximityColliderNumber: 2
   proximityColliders:
   - proximityLevel: 3
-    range: 22
+    range: 25
     productionBonusRatio: 70
-  - proximityLevel: 2
-    range: 43
-    productionBonusRatio: 4
   - proximityLevel: 1
     range: 60
-    productionBonusRatio: 1
+    productionBonusRatio: 70
   energyCost: 500
   energyCapBase: 500
   rangeBase: 15
@@ -61,7 +76,7 @@ MonoBehaviour:
   rangeLien: 
   tickForActivation: 
   energyCap: 
-  specifique: 0200000005000000070000000a000000
+  specifique: 280000001e0000001400000005000000
   energyPerblop: 0
   StatsModification: 0
   REFS: 0

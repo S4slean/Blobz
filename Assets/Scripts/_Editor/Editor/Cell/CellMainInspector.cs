@@ -41,7 +41,7 @@ public class CellMainInspector : Editor
         graphTransformProp = serializedObject.FindProperty("graphTransform");
         ProximityDectectionProp = serializedObject.FindProperty("ProximityDectection");
         domeMRProp = serializedObject.FindProperty("domeMR");
-        spriteMRProp = serializedObject.FindProperty("spriteMR");
+        spriteMRProp = serializedObject.FindProperty("baseR");
 
         coachIconProp = serializedObject.FindProperty("coachIcon");
         exploIcon = serializedObject.FindProperty("exploIcon");
