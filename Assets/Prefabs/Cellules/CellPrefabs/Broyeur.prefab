@@ -217,6 +217,7 @@ GameObject:
   - component: {fileID: 3036481689676122911}
   - component: {fileID: 27353670215157043}
   - component: {fileID: 4746712392764575212}
+  - component: {fileID: 9092630772544438489}
   m_Layer: 0
   m_Name: Broyeur
   m_TagString: Untagged
@@ -322,6 +323,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &9092630772544438489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3036481689676122910}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61958975c84ac004f90348d6e9e3c35c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cellParent: {fileID: 5867697968191919761}
 --- !u!1 &3036481689729489372
 GameObject:
   m_ObjectHideFlags: 0
@@ -333,7 +347,6 @@ GameObject:
   - component: {fileID: 3036481689729489373}
   - component: {fileID: 3036481689729489368}
   - component: {fileID: 3036481689729489375}
-  - component: {fileID: 7816070874275707900}
   m_Layer: 0
   m_Name: Dome
   m_TagString: Untagged
@@ -401,19 +414,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &7816070874275707900
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3036481689729489372}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 61958975c84ac004f90348d6e9e3c35c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cellParent: {fileID: 5867697968191919761}
 --- !u!1 &3331227436172166562
 GameObject:
   m_ObjectHideFlags: 0
@@ -531,7 +531,7 @@ MonoBehaviour:
   domeMR: {fileID: 3036481689729489375}
   baseR: {fileID: 4746712392764575212}
   links: []
-  inThoseCellProximity: []
+  inThoseProximityCollider: []
   influencedByThoseCellProximity: []
   stuckBlobs: []
   ownCollider: {fileID: 55899866799495373}

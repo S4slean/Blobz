@@ -22,7 +22,7 @@ MonoBehaviour:
   description: Create sploosh by clicking on it
   descriptionProximity: 'Far proximity effect: The amount of sploosh by click is higher'
   descriptionClick: Click on the dump to destroy a blobz in it and give you sploosh
-  expAmount: 3
+  expAmount: 10
   generateProximity: 0
   proximityColliderNumber: 1
   proximityColliders: []
@@ -40,7 +40,7 @@ MonoBehaviour:
   energyPerClick: 10
   limitedInLinks: 1
   slotDistance: 1.5
-  numberOfOuputLinks: 2
+  numberOfOuputLinks: 3
   numberOfInputLinks: 3
   numberOfFlexLinks: 0
   proximityLevelMax: 4

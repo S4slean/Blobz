@@ -13,7 +13,7 @@ public class Destructible : PoolableObjects, PlayerAction
 
     [Header("General")]
     public DestructType destructType = DestructType.all;
-    protected int remainingLife;
+    public int remainingLife;
     public int maxLife = 5;
     protected int count = 0;
     public bool isReapairable = false;

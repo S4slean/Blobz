@@ -16,6 +16,8 @@ MonoBehaviour:
   blopPrefab: {fileID: 0}
   buttonColor: {r: 0.7169812, g: 0.4398764, b: 0, a: 1}
   cellTexture: {fileID: 0}
+  prodLevelMax: 1
+  levelProduction: []
   type: 4
   description: 'Send blobz further and faster
 
@@ -23,6 +25,7 @@ MonoBehaviour:
   descriptionProximity: 'Far proximity effect: The number of blobz that can be rejected
     each tick is higher'
   descriptionClick: 
+  expAmount: 10
   generateProximity: 0
   proximityColliderNumber: 1
   proximityColliders: []
@@ -40,7 +43,7 @@ MonoBehaviour:
   energyPerClick: 1
   limitedInLinks: 0
   slotDistance: 1.5
-  numberOfOuputLinks: 0
+  numberOfOuputLinks: 3
   numberOfInputLinks: 0
   numberOfFlexLinks: 5
   proximityLevelMax: 4
@@ -58,7 +61,7 @@ MonoBehaviour:
   rangeLien: 00000000000000000000000000000000
   tickForActivation: 00000000
   energyCap: 
-  specifique: 0200000005000000070000000a000000
+  specifique: 280000001e0000001400000005000000
   energyPerblop: 0
   StatsModification: 1
   REFS: 0

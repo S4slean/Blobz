@@ -8,6 +8,7 @@ public class CellExplo : CellMain
     private int energie;
     public CellButon activationButton;
     public ProgressBar chargeBar;
+   [HideInInspector] public Vector3 flagPos;
 
 
     public override void BlobsTick()
@@ -30,6 +31,14 @@ public class CellExplo : CellMain
 
             //ANIM
             haveExpulse = false;
+
+            //Generation de Blob Auto
+            if (isLoaded && flagPos != Vector3.zero )
+            {
+                SpawnExplo();
+                Decharge();
+            }
+
 
             if (blobNumber > 0)
             {
@@ -85,6 +94,20 @@ public class CellExplo : CellMain
         }
 
     }
+
+    private void SpawnExplo()
+    {
+        Vector3 dir = (flagPos - transform.position).normalized;
+        Blob explo = ObjectPooler.poolingSystem.GetPooledObject<Blob>() as Blob;
+        explo.ChangeType(BlobManager.BlobType.explorateur);
+        explo.transform.position = transform.position + dir * 2.5f + Vector3.up * 1.1f;
+        explo.transform.LookAt(flagPos);
+        explo.AssignFlagPos(flagPos);
+        explo.originCell = transform;
+        explo.Outpool();
+        explo.JumpForward();
+    }
+
     private void Charge(int amount)
     {
         if (!isLoaded)
@@ -177,7 +200,7 @@ public class CellExplo : CellMain
             actionmade = true;
         }
 
-        if (isLoaded && !actionmade)
+        if (!actionmade)
         {
             InputManager.SwitchInputMode(InputManager.InputMode.flag , myCellTemplate.type);
             actionmade = true;

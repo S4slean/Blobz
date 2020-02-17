@@ -1309,6 +1309,7 @@ public class CellMain : PoolableObjects, PlayerAction
 
     public virtual void OnSelect()
     {
+
         CellManager.Instance.selectedCell = this;
     }
 
@@ -1391,6 +1392,13 @@ public class CellMain : PoolableObjects, PlayerAction
         //FX.setActive()
         if (isOverload)
         {
+            if (CellManager.Instance.selectedCell == this)
+            {
+                
+                InputManager.Instance.StopCurrentAction();
+                InputManager.Instance.DeselectElement();
+            }
+
             //Debug.Log("enterInOverload ", gameObject);
             blolbNumberAtOverload = blobNumber;
             if (onOverloadEvent != null)

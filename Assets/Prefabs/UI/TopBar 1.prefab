@@ -368,6 +368,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   energy: {fileID: 2660070319258974839}
   energieTopBar: {fileID: 8937814006563493180}
+  rocketShards: {fileID: 8724322621284632282}
 --- !u!1 &2660070319258974837
 GameObject:
   m_ObjectHideFlags: 0
