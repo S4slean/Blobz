@@ -18,6 +18,8 @@ public class CellTemplateCustomInspector : Editor
 
     SerializedProperty proximityLevelMaxProp, positivesInteractionsProp, negativesInteractionsProp, StatsModificationProp;
 
+    SerializedProperty lineOfSightProp;
+
     SerializedProperty SurprodRateProp;
     //Productrice Spé
     SerializedProperty expAmountProp;
@@ -84,6 +86,8 @@ public class CellTemplateCustomInspector : Editor
         expAmountProp = serializedObject.FindProperty("expAmount");
         prodLevelMaxProp = serializedObject.FindProperty("prodLevelMax");
         levelProductionProp = serializedObject.FindProperty("levelProduction");
+
+        lineOfSightProp = serializedObject.FindProperty("lineOfSight");
 
 
         #region Proximity Initialisation 
@@ -286,6 +290,11 @@ public class CellTemplateCustomInspector : Editor
         EditorGUILayout.Space();
 
         EditorGUILayout.PropertyField(expAmountProp);
+
+        EditorGUILayout.Space();
+        EditorGUILayout.Space();
+
+        EditorGUILayout.PropertyField(lineOfSightProp);
 
         EditorGUILayout.Space();
         EditorGUILayout.Space();

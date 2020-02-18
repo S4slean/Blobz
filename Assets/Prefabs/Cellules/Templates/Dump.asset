@@ -23,6 +23,7 @@ MonoBehaviour:
   descriptionProximity: 'Far proximity effect: The amount of sploosh by click is higher'
   descriptionClick: Click on the dump to destroy a blobz in it and give you sploosh
   expAmount: 10
+  lineOfSight: 3
   generateProximity: 0
   proximityColliderNumber: 1
   proximityColliders: []

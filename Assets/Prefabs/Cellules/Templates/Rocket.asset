@@ -23,6 +23,7 @@ MonoBehaviour:
   descriptionProximity: 
   descriptionClick: When fully charged, quickly click on it to launch.
   expAmount: 10
+  lineOfSight: 3
   generateProximity: 0
   proximityColliderNumber: 1
   proximityColliders:

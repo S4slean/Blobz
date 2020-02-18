@@ -25,6 +25,7 @@ MonoBehaviour:
   descriptionClick: Click on the cell to switch to the aiming pointer. Click again
     to launched a strike on the aimed area
   expAmount: 10
+  lineOfSight: 3
   generateProximity: 0
   proximityColliderNumber: 1
   proximityColliders: []
