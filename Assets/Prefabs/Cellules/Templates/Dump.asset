@@ -40,7 +40,7 @@ MonoBehaviour:
   energyPerClick: 10
   limitedInLinks: 1
   slotDistance: 1.5
-  numberOfOuputLinks: 2
+  numberOfOuputLinks: 3
   numberOfInputLinks: 3
   numberOfFlexLinks: 0
   proximityLevelMax: 4
