@@ -23,6 +23,7 @@ MonoBehaviour:
   descriptionProximity: 
   descriptionClick: 
   expAmount: 10
+  lineOfSight: 3
   generateProximity: 1
   proximityColliderNumber: 1
   proximityColliders:

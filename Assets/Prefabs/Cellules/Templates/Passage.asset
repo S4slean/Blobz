@@ -26,6 +26,7 @@ MonoBehaviour:
     each tick is higher'
   descriptionClick: 
   expAmount: 10
+  lineOfSight: 3
   generateProximity: 0
   proximityColliderNumber: 1
   proximityColliders: []

@@ -8,6 +8,7 @@ public class CellManager : MonoBehaviour
     public static CellManager Instance;
     public static Camera mainCamera;
 
+    //public Transform fogOfWar;
     public int Energy;
 
     [Header("Placement Materials")]

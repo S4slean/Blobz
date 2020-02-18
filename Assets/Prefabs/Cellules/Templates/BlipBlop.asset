@@ -23,6 +23,7 @@ MonoBehaviour:
   descriptionProximity: 
   descriptionClick: Allow you to switch links pathes
   expAmount: 10
+  lineOfSight: 3
   generateProximity: 0
   proximityColliderNumber: 1
   proximityColliders:

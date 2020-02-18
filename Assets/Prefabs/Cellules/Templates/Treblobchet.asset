@@ -24,6 +24,7 @@ MonoBehaviour:
     the waiting line is higher'
   descriptionClick: Click on the sling, drag and aim, then release to launch a blobz
   expAmount: 10
+  lineOfSight: 3
   generateProximity: 0
   proximityColliderNumber: 1
   proximityColliders: []
