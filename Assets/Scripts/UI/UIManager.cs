@@ -286,7 +286,7 @@ public class UIManager : MonoBehaviour
     public void DisplayDivineShot(CellDivine shootingCell)
     {
         InputManager.Instance.UpdateTargetPos();
-        UpdateShootingArea(shootingCell.specifiqueStats);
+        UpdateShootingArea(shootingCell.specifiqueStats , shootingCell.myCellTemplate.explosionRadius);
         divineShotArea.transform.position = shootingCell.graphTransform.position + new Vector3(0, 0.1f, 0);
         divineCellTarget.SetActive(true);
         divineShotArea.SetActive(true);
@@ -298,12 +298,14 @@ public class UIManager : MonoBehaviour
     }
 
 
-    public void UpdateShootingArea(float newRange)
+    public void UpdateShootingArea(float newRange , float areaRadius)
     {
         if (InputManager.Instance.shootingCell == null)
             return;
-        divineShotArea.transform.position = InputManager.Instance.shootingCell.graphTransform.position + new Vector3(0, 0.1f, 0);
+        divineShotArea.transform.position = InputManager.Instance.shootingCell.graphTransform.position + new Vector3(0, 0.3f, 0);
         divineShotArea.transform.localScale = (Vector3.one * newRange / 0.075f);
+        divineCellTarget.transform.localScale = (Vector3.one * areaRadius / 0.075f);
+        //divineShotArea.transform.localScale = (Vector3.one );
     }
 
     public void SetTargetPos(Vector3 pos)

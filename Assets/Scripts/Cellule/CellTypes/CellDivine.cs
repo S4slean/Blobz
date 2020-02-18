@@ -151,6 +151,6 @@ public class CellDivine : CellMain
     {
         base.ProximityLevelModification();
 
-        UIManager.Instance.UpdateShootingArea(specifiqueStats);
+        UIManager.Instance.UpdateShootingArea(specifiqueStats ,myCellTemplate.explosionRadius);
     }
 }
