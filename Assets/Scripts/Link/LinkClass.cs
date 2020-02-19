@@ -18,8 +18,8 @@ public class LinkClass : PoolableObjects
 
     public LinkTransmissionNumber LinkTransmissionNumber;
 
-    private int transmissionAmount;
-
+    //private int transmissionAmount;
+    private int blobTransmited;
 
     #endregion
 
@@ -46,7 +46,7 @@ public class LinkClass : PoolableObjects
     #endregion
 
     #region AnimVariable
-    private int transMitAmount;
+    //private int transMitAmount;
     private BlobManager.BlobType transmitType;
 
 
@@ -59,8 +59,8 @@ public class LinkClass : PoolableObjects
 
     public void Tick()
     {
-        numberOfBlob.text = transmissionAmount.ToString();
-        transmissionAmount = 0;
+        //numberOfBlob.text = transmissionAmount.ToString();
+        blobTransmited = 0;
     }
 
     public void Break()
@@ -78,7 +78,11 @@ public class LinkClass : PoolableObjects
         line.positionCount = range;
         extremityPos[0] = firstPos;
         extremityPos[1] = lastPos;
-        line.material.SetFloat("_rangeDivision", range);
+        //line.material.SetFloat("_rangeDivision", range);
+        float rangeTransmit = (float)range / 2;
+        line.material.SetFloat("_rangeDivision", rangeTransmit);
+        Debug.Log("OUIII");
+
         for (int i = 0; i < joints.Length; i++)
         {
             joints[i] = ObjectPooler.poolingSystem.GetPooledObject<LinkJointClass>() as LinkJointClass;
@@ -94,6 +98,8 @@ public class LinkClass : PoolableObjects
         line.positionCount = range;
         extremityPos[0] = firstPos;
         extremityPos[1] = lastPos;
+        float rangeTransmit = (float)range / 2;
+        line.material.SetFloat("_rangeDivision", rangeTransmit);
 
         LinkJointClass createdJoint = ObjectPooler.poolingSystem.GetPooledObject<LinkJointClass>() as LinkJointClass; ;
 
@@ -217,11 +223,11 @@ public class LinkClass : PoolableObjects
         }
 
         transmitType = _blobType;
-        transMitAmount = blobAmount;
+        blobTransmited += blobAmount;
 
         if (_blobType == BlobManager.BlobType.coach)
         {
-            blobCoachInTransition = originalCell.blobCoaches[originalCell.blobCoaches.Count-1];
+            blobCoachInTransition = originalCell.blobCoaches[originalCell.blobCoaches.Count - 1];
             blobCoachInTransition.ChangeCellOut(receivingCell);
         }
         else
@@ -231,13 +237,15 @@ public class LinkClass : PoolableObjects
 
         float speed = 1 / (TickManager.instance.tickDuration - TickManager.instance.tickDuration / 1.4f);
 
-        anim.speed =speed;
-      
+        anim.speed = speed;
+        numberOfBlob.text = blobTransmited.ToString();
+        line.material.SetFloat("_blobNumber", blobTransmited);
+
         anim.Play("Transfer");
-        StartCoroutine(Transmission(TickManager.instance.tickDuration - TickManager.instance.tickDuration / 1.4f));
+        StartCoroutine(Transmission((TickManager.instance.tickDuration - TickManager.instance.tickDuration / 1.4f), blobAmount));
     }
 
-    private IEnumerator Transmission(float delay)
+    private IEnumerator Transmission(float delay, int blobAmount)
     {
         yield return new WaitForSeconds(delay);
         if (transmitType == BlobManager.BlobType.coach)
@@ -246,9 +254,9 @@ public class LinkClass : PoolableObjects
         }
         else
         {
-            receivingCell.BlobNumberVariation(transMitAmount, transmitType, true);
+            receivingCell.BlobNumberVariation(blobAmount, transmitType, true);
         }
-        transmissionAmount++;
+        //transmissionAmount += transmissionAmount;
 
     }
 
@@ -260,6 +268,7 @@ public class LinkClass : PoolableObjects
     public void AngleFromCell(CellMain OutputCell)
     {
         originalCell = OutputCell;
+
 
         Vector3 dir = (line.GetPosition(1) - OutputCell.transform.position).normalized;
         if (line.GetPosition(1).x <= OutputCell.transform.position.x)
@@ -274,11 +283,11 @@ public class LinkClass : PoolableObjects
         //Vector3 relative = outputCell.transform.InverseTransformDirection(line.GetPosition(1));
         //angle = Mathf.Atan2(relative.x, relative.z) * Mathf.Rad2Deg;
         Vector3 _pos = extremityPos[0] + trajectoir / 2;
-        float scale = trajectoir.magnitude ;
+        float scale = trajectoir.magnitude;
 
         TickManager.doTick += Tick;
-        myCollider.UpdatePosAndScale(_pos, angle , scale);
-        LinkTransmissionNumber.UpdatePosAndScale(_pos , angle);
+        myCollider.UpdatePosAndScale(_pos, angle, scale);
+        LinkTransmissionNumber.UpdatePosAndScale(_pos, angle);
 
     }
 
