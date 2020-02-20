@@ -23,6 +23,7 @@ MonoBehaviour:
   descriptionProximity: 
   descriptionClick: 
   expAmount: 10
+  lineOfSight: 3
   generateProximity: 1
   proximityColliderNumber: 1
   proximityColliders:
@@ -43,7 +44,7 @@ MonoBehaviour:
   energyPerClick: 2
   limitedInLinks: 0
   slotDistance: 1.5
-  numberOfOuputLinks: 1
+  numberOfOuputLinks: 3
   numberOfInputLinks: 1
   numberOfFlexLinks: 5
   proximityLevelMax: 0

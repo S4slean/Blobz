@@ -23,6 +23,7 @@ MonoBehaviour:
   descriptionProximity: 'Close proximity effect: The speed of shooting is increased'
   descriptionClick: 
   expAmount: 10
+  lineOfSight: 3
   generateProximity: 0
   proximityColliderNumber: 1
   proximityColliders:
@@ -43,7 +44,7 @@ MonoBehaviour:
   energyPerClick: 2
   limitedInLinks: 1
   slotDistance: 1.5
-  numberOfOuputLinks: 2
+  numberOfOuputLinks: 3
   numberOfInputLinks: 2
   numberOfFlexLinks: 0
   proximityLevelMax: 4

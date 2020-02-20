@@ -29,7 +29,7 @@ TagManager:
   - Destructible
   - tourelleDetection
   - Link
-  - 
+  - FogWar
   - 
   - 
   - 
@@ -45,4 +45,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: FogOfWar
+    uniqueID: 676073517
     locked: 0

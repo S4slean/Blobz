@@ -33,6 +33,7 @@ public class CellMain : PoolableObjects, PlayerAction
     public Transform graphTransform;
     public Transform TargetPos;
     private CellAlert alert;
+    public Transform lineOfsightTransform;
 
     public OverloadSparke overloadSparke;
 
@@ -753,7 +754,7 @@ public class CellMain : PoolableObjects, PlayerAction
                 newProximityCollider.transform.localScale = new Vector3(1, 1, 1) * (myCellTemplate.proximityColliders[i].range / 2);
                 newProximityCollider.transform.SetParent(transform);
                 newProximityCollider.productionBonusRatio = myCellTemplate.proximityColliders[i].productionBonusRatio;
-                newProximityCollider.Init(myCellTemplate.proximityColliders[i].proximityLevel, graphTransform);
+                newProximityCollider.Init(myCellTemplate.proximityColliders[i].proximityLevel, myTransform);
                 newProximityCollider.parent = this;
 
                 newProximityCollider.Outpool();
@@ -1073,6 +1074,9 @@ public class CellMain : PoolableObjects, PlayerAction
 
         overloadSparke.SetupPos(graphTransform.position + new Vector3(0, 0.2f, 0));
 
+
+        //lineOfsightTransform.localScale = Vector3.one * myCellTemplate.lineOfSight;
+        //lineOfsightTransform.position = new Vector3(lineOfsightTransform.position.x, 0, lineOfsightTransform.position.x);
 
 
         RessourceTracker.instance.EnergyCapVariation(currentEnergyCap);

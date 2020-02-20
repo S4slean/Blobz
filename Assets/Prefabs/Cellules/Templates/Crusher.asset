@@ -24,6 +24,7 @@ MonoBehaviour:
   descriptionProximity: 'Far proximity effect: The amount of sploosh by tick is higher'
   descriptionClick: 
   expAmount: 10
+  lineOfSight: 3
   generateProximity: 0
   proximityColliderNumber: 1
   proximityColliders: []
@@ -41,7 +42,7 @@ MonoBehaviour:
   energyPerClick: 1
   limitedInLinks: 1
   slotDistance: 1.5
-  numberOfOuputLinks: 0
+  numberOfOuputLinks: 3
   numberOfInputLinks: 3
   numberOfFlexLinks: 0
   proximityLevelMax: 4
