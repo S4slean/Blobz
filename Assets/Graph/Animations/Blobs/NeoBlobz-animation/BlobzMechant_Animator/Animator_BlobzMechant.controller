@@ -1,13 +1,13 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1102 &-9098072803651082735
+--- !u!1102 &-8851876902962759064
 AnimatorState:
   serializedVersion: 5
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: DeathLeft-Soldat
+  m_Name: DeathBack-Mechant
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -20,20 +20,20 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: c673ba9c86713f4498ae784fb83eae05, type: 2}
+  m_Motion: {fileID: 7400000, guid: 38dde9f09b4e6e24199cdd42ac636def, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
---- !u!1102 &-7371646195755656213
+--- !u!1102 &-5620097933095229334
 AnimatorState:
   serializedVersion: 5
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: MoveFront-Soldat
+  m_Name: AttakFront-Mechant
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -46,20 +46,20 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 75749de7686f7d046ba1ffd271fd920b, type: 2}
+  m_Motion: {fileID: 7400000, guid: 823dcafa5bc73004c9d66a0ce5f73f2d, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
---- !u!1102 &-4554120086346007232
+--- !u!1102 &-3107966419685699972
 AnimatorState:
   serializedVersion: 5
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: DeathBack-Soldat
+  m_Name: AtkLeft-Mechant
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -72,20 +72,20 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 8da7b90d56bbdbc419802aa4f62ed876, type: 2}
+  m_Motion: {fileID: 7400000, guid: 5187ba61e36afb340a3094a39fb20b3f, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
---- !u!1102 &-1722021551598702917
+--- !u!1102 &-2766845108473013619
 AnimatorState:
   serializedVersion: 5
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: AttakFront-Soldat
+  m_Name: IdleBack-Mechant
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -98,20 +98,20 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 6eb7282b60d0a4d43b957fccbb9663df, type: 2}
+  m_Motion: {fileID: 7400000, guid: cce7151cf701c3d42999504fa2052c73, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
---- !u!1102 &-104989204950189204
+--- !u!1102 &-1884093601728200400
 AnimatorState:
   serializedVersion: 5
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: MoveRight-Soldat
+  m_Name: MoveFront-Mechant
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -124,20 +124,20 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: b771c926784cfca4e9dcfbf65bc9a1e9, type: 2}
+  m_Motion: {fileID: 7400000, guid: ff8574f7bae3be44bbe815d9baef07bf, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
---- !u!1102 &-51424739245205977
+--- !u!1102 &-1466516573584574565
 AnimatorState:
   serializedVersion: 5
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: MoveLeft-Soldat
+  m_Name: IdleLeft-Mechant
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -150,7 +150,33 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: e743a8f3ece00df45bc0bad8dd6f0787, type: 2}
+  m_Motion: {fileID: 7400000, guid: f3ad401e1b34be94d84da06862d90730, type: 2}
+  m_Tag: 
+  m_SpeedParameter: 
+  m_MirrorParameter: 
+  m_CycleOffsetParameter: 
+  m_TimeParameter: 
+--- !u!1102 &-1398009248547656651
+AnimatorState:
+  serializedVersion: 5
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: DeathFront-Mechant
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Transitions: []
+  m_StateMachineBehaviours: []
+  m_Position: {x: 50, y: 50, z: 0}
+  m_IKOnFeet: 0
+  m_WriteDefaultValues: 1
+  m_Mirror: 0
+  m_SpeedParameterActive: 0
+  m_MirrorParameterActive: 0
+  m_CycleOffsetParameterActive: 0
+  m_TimeParameterActive: 0
+  m_Motion: {fileID: 7400000, guid: 3da27f4658d477e45928ff126dc9c2e0, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -162,7 +188,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Animator_BlobzSoldat
+  m_Name: Animator_BlobzMechant
   serializedVersion: 5
   m_AnimatorParameters: []
   m_AnimatorLayers:
@@ -178,14 +204,14 @@ AnimatorController:
     m_IKPass: 0
     m_SyncedLayerAffectsTiming: 0
     m_Controller: {fileID: 9100000}
---- !u!1102 &127046557583018086
+--- !u!1102 &1534978577430385045
 AnimatorState:
   serializedVersion: 5
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: IdleFront-Soldat
+  m_Name: DeathRight-Mechant
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -198,20 +224,20 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: bd367f362c4649f47acbaecfd33660f1, type: 2}
+  m_Motion: {fileID: 7400000, guid: a4e5f127b8fe88b4684e7358029a8306, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
---- !u!1102 &568332355100335321
+--- !u!1102 &2926095522958520264
 AnimatorState:
   serializedVersion: 5
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: IdleRight-Soldat
+  m_Name: IdleFront-Mechant
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -224,20 +250,20 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: f016215abc727324383f0341d7146fa3, type: 2}
+  m_Motion: {fileID: 7400000, guid: 0d53c3d446c6d264285305cad1a31f7b, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
---- !u!1102 &1100578993381459844
+--- !u!1102 &3219533136660903013
 AnimatorState:
   serializedVersion: 5
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: DeathFront-Soldat
+  m_Name: AtkRight-Mechant
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -250,20 +276,20 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 57cac73510950ef45affdbb6c8631db1, type: 2}
+  m_Motion: {fileID: 7400000, guid: 6f8604ca86537d64c8136210e22e8680, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
---- !u!1102 &1219367162429895691
+--- !u!1102 &3656693606551725792
 AnimatorState:
   serializedVersion: 5
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: IdleBack-Soldat
+  m_Name: MoveLeft-Mechant
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -276,33 +302,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 9aa35d4da342b7844bf0719f3c2ee627, type: 2}
-  m_Tag: 
-  m_SpeedParameter: 
-  m_MirrorParameter: 
-  m_CycleOffsetParameter: 
-  m_TimeParameter: 
---- !u!1102 &1301264492689863561
-AnimatorState:
-  serializedVersion: 5
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: MoveBack-Soldat
-  m_Speed: 1
-  m_CycleOffset: 0
-  m_Transitions: []
-  m_StateMachineBehaviours: []
-  m_Position: {x: 50, y: 50, z: 0}
-  m_IKOnFeet: 0
-  m_WriteDefaultValues: 1
-  m_Mirror: 0
-  m_SpeedParameterActive: 0
-  m_MirrorParameterActive: 0
-  m_CycleOffsetParameterActive: 0
-  m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 772c930f3a4f50c4baca416b653d4bd3, type: 2}
+  m_Motion: {fileID: 7400000, guid: 6fbf4541298e42c4480b3235066b0967, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -318,53 +318,53 @@ AnimatorStateMachine:
   m_Name: Base Layer
   m_ChildStates:
   - serializedVersion: 1
-    m_State: {fileID: -7371646195755656213}
-    m_Position: {x: -180, y: 320, z: 0}
+    m_State: {fileID: 4838332933497647608}
+    m_Position: {x: -10, y: 310, z: 0}
   - serializedVersion: 1
-    m_State: {fileID: 1301264492689863561}
-    m_Position: {x: 30, y: 320, z: 0}
+    m_State: {fileID: -3107966419685699972}
+    m_Position: {x: 230, y: 310, z: 0}
   - serializedVersion: 1
-    m_State: {fileID: -51424739245205977}
-    m_Position: {x: 240, y: 320, z: 0}
+    m_State: {fileID: 3219533136660903013}
+    m_Position: {x: 470, y: 310, z: 0}
   - serializedVersion: 1
-    m_State: {fileID: -104989204950189204}
-    m_Position: {x: 480, y: 320, z: 0}
+    m_State: {fileID: -5620097933095229334}
+    m_Position: {x: 730, y: 310, z: 0}
   - serializedVersion: 1
-    m_State: {fileID: -1722021551598702917}
-    m_Position: {x: -150, y: 420, z: 0}
+    m_State: {fileID: -8851876902962759064}
+    m_Position: {x: -10, y: 390, z: 0}
   - serializedVersion: 1
-    m_State: {fileID: 127046557583018086}
-    m_Position: {x: 40, y: 230, z: 0}
+    m_State: {fileID: -1398009248547656651}
+    m_Position: {x: 230, y: 390, z: 0}
   - serializedVersion: 1
-    m_State: {fileID: 1219367162429895691}
-    m_Position: {x: -140, y: 510, z: 0}
+    m_State: {fileID: 4623965930044807101}
+    m_Position: {x: 470, y: 390, z: 0}
   - serializedVersion: 1
-    m_State: {fileID: 8888926306226357224}
-    m_Position: {x: 100, y: 510, z: 0}
+    m_State: {fileID: 1534978577430385045}
+    m_Position: {x: 730, y: 390, z: 0}
   - serializedVersion: 1
-    m_State: {fileID: 568332355100335321}
-    m_Position: {x: 350, y: 510, z: 0}
+    m_State: {fileID: -2766845108473013619}
+    m_Position: {x: -10, y: 480, z: 0}
   - serializedVersion: 1
-    m_State: {fileID: 8115747214892947173}
-    m_Position: {x: 570, y: 510, z: 0}
+    m_State: {fileID: 2926095522958520264}
+    m_Position: {x: 230, y: 180, z: 0}
   - serializedVersion: 1
-    m_State: {fileID: 5401058101924165299}
-    m_Position: {x: 90, y: 410, z: 0}
+    m_State: {fileID: -1466516573584574565}
+    m_Position: {x: 470, y: 470, z: 0}
   - serializedVersion: 1
-    m_State: {fileID: 8952348666859605976}
-    m_Position: {x: 330, y: 410, z: 0}
+    m_State: {fileID: 6080361435221799869}
+    m_Position: {x: 730, y: 470, z: 0}
   - serializedVersion: 1
-    m_State: {fileID: 1100578993381459844}
-    m_Position: {x: -110, y: 610, z: 0}
+    m_State: {fileID: 5387019356518979261}
+    m_Position: {x: -20, y: 570, z: 0}
   - serializedVersion: 1
-    m_State: {fileID: -4554120086346007232}
-    m_Position: {x: 120, y: 620, z: 0}
+    m_State: {fileID: -1884093601728200400}
+    m_Position: {x: 220, y: 570, z: 0}
   - serializedVersion: 1
-    m_State: {fileID: -9098072803651082735}
-    m_Position: {x: 350, y: 620, z: 0}
+    m_State: {fileID: 3656693606551725792}
+    m_Position: {x: 470, y: 570, z: 0}
   - serializedVersion: 1
-    m_State: {fileID: 8201803752931174974}
-    m_Position: {x: 570, y: 620, z: 0}
+    m_State: {fileID: 8118205451906252092}
+    m_Position: {x: 720, y: 570, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
@@ -374,15 +374,15 @@ AnimatorStateMachine:
   m_EntryPosition: {x: 50, y: 120, z: 0}
   m_ExitPosition: {x: 800, y: 120, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
-  m_DefaultState: {fileID: 127046557583018086}
---- !u!1102 &5401058101924165299
+  m_DefaultState: {fileID: 2926095522958520264}
+--- !u!1102 &4623965930044807101
 AnimatorState:
   serializedVersion: 5
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: AtkLeft-Soldat
+  m_Name: DeathLeft-Mechant
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -395,20 +395,20 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: de6717b5d8b578646a3b8c193d2c124e, type: 2}
+  m_Motion: {fileID: 7400000, guid: 14ecde32ff2bba34ba9da651465d4381, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
---- !u!1102 &8115747214892947173
+--- !u!1102 &4838332933497647608
 AnimatorState:
   serializedVersion: 5
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: AtkBack-Soldat
+  m_Name: AtkBack-Mechant
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -421,20 +421,20 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 425a1232ea4e471489b5a1d74ec412c0, type: 2}
+  m_Motion: {fileID: 7400000, guid: 594a3a64b1b59124c912cd38bf58f515, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
---- !u!1102 &8201803752931174974
+--- !u!1102 &5387019356518979261
 AnimatorState:
   serializedVersion: 5
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: DeathRight-Soldat
+  m_Name: MoveBack-Mechant
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -447,20 +447,20 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 9b6d24ee541482546befd76f69079e18, type: 2}
+  m_Motion: {fileID: 7400000, guid: b4de54640ed07e2418e5ff3e7945da43, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
---- !u!1102 &8888926306226357224
+--- !u!1102 &6080361435221799869
 AnimatorState:
   serializedVersion: 5
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: IdleLeft-Soldat
+  m_Name: IdleRight-Mechant
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -473,20 +473,20 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: bfe5b06d275e2e24aacafb46450ec2ed, type: 2}
+  m_Motion: {fileID: 7400000, guid: 8f717831e9bdc274393f6e3f7323a6ea, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
---- !u!1102 &8952348666859605976
+--- !u!1102 &8118205451906252092
 AnimatorState:
   serializedVersion: 5
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: AtkRight-Soldat
+  m_Name: MoveRight-Mechant
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -499,7 +499,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 0ffae778ca0f46e49bb24759fc470ce5, type: 2}
+  m_Motion: {fileID: 7400000, guid: 856de900e28e5ab4da1f838799811db0, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
