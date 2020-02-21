@@ -2,8 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FogOfWar : MonoBehaviour 
+public class FogOfWar : MonoBehaviour
 {
+
+    public static FogOfWar instance;
+
+
+
     //   [SerializeField]
     //   GameObject[] objects;
     //   Vector4[] positions = new Vector4[100];
@@ -23,9 +28,37 @@ public class FogOfWar : MonoBehaviour
     //}
 
     [SerializeField]
-    FogOfWarData[] fogDatas;
-    Vector4[] positions = new Vector4[300];
-    float[] radius = new float[300];
+    private FogOfWarData[] fogDatas;
+    private Vector4[] positions = new Vector4[1000];
+    private float[] radius = new float[1000];
+    private int currentIndex;
+
+
+    private void Awake()
+    {
+        if (instance)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            //fogDatas = new FogOfWarData[1000];
+            instance = this;
+            //DontDestroyOnLoad(gameObject);
+        }
+    }
+
+    public void AddFogOfWarInfluenceur(FogOfWarData fogOfWarInfluenceur)
+    {
+        if (fogOfWarInfluenceur.alreadyAddToFog)
+        {
+            return;
+        }
+        fogOfWarInfluenceur.alreadyAddToFog = true;
+        fogDatas[currentIndex] = fogOfWarInfluenceur;
+        currentIndex++;
+    }
+
 
     private void Update()
     {

@@ -1091,6 +1091,7 @@ GameObject:
   - component: {fileID: 3922479743895655383}
   - component: {fileID: 2193342929345419883}
   - component: {fileID: 4614235762583305921}
+  - component: {fileID: 4689535562704849236}
   m_Layer: 11
   m_Name: Decharge
   m_TagString: Cell
@@ -1175,7 +1176,7 @@ MonoBehaviour:
   stockageBar: {fileID: 7380140809967349052}
   graphTransform: {fileID: 3454063361185357364}
   TargetPos: {fileID: 0}
-  lineOfsightTransform: {fileID: 1116941633532641953}
+  FogOfWarData: {fileID: 4689535562704849236}
   overloadSparke: {fileID: 1457410935186440428}
   coachIcon: {fileID: 1446133484614098437}
   exploIcon: {fileID: 6616709052493337025}
@@ -1300,6 +1301,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &4689535562704849236
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6972052367257400834}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25bf64e1e1933c84ba6057ed7ec89315, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rangeOfSight: 0
+  alreadyAddToFog: 0
 --- !u!1 &8336987003556497207
 GameObject:
   m_ObjectHideFlags: 0
@@ -1510,26 +1525,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: BlobDisplay
       objectReference: {fileID: 0}
-    - target: {fileID: 4329204264335204361, guid: 244bc6bfe959c64448572d55c83362e5,
-        type: 3}
-      propertyPath: m_textInfo.characterCount
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 4329204264335204361, guid: 244bc6bfe959c64448572d55c83362e5,
-        type: 3}
-      propertyPath: m_textInfo.wordCount
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4329204264335204361, guid: 244bc6bfe959c64448572d55c83362e5,
-        type: 3}
-      propertyPath: m_textInfo.lineCount
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4329204264335204361, guid: 244bc6bfe959c64448572d55c83362e5,
-        type: 3}
-      propertyPath: m_textInfo.pageCount
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8934393083490407729, guid: 244bc6bfe959c64448572d55c83362e5,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1585,6 +1580,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4329204264335204361, guid: 244bc6bfe959c64448572d55c83362e5,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4329204264335204361, guid: 244bc6bfe959c64448572d55c83362e5,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4329204264335204361, guid: 244bc6bfe959c64448572d55c83362e5,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4329204264335204361, guid: 244bc6bfe959c64448572d55c83362e5,
+        type: 3}
+      propertyPath: m_textInfo.pageCount
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6454976058459613702, guid: 244bc6bfe959c64448572d55c83362e5,
         type: 3}
       propertyPath: m_Mesh
@@ -1625,6 +1640,11 @@ PrefabInstance:
     - target: {fileID: 5078418085769911552, guid: 28ec50add9b929b4fb6da4df03bd820d,
         type: 3}
       propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2264174843217787543, guid: 28ec50add9b929b4fb6da4df03bd820d,
+        type: 3}
+      propertyPath: m_DrawMode
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4892174692380387016, guid: 28ec50add9b929b4fb6da4df03bd820d,
@@ -1682,22 +1702,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2264174843217787543, guid: 28ec50add9b929b4fb6da4df03bd820d,
-        type: 3}
-      propertyPath: m_DrawMode
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 28ec50add9b929b4fb6da4df03bd820d, type: 3}
---- !u!4 &1265483044647183821 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4892174692380387016, guid: 28ec50add9b929b4fb6da4df03bd820d,
-    type: 3}
-  m_PrefabInstance: {fileID: 5939008663049241349}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1446133484614098437 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5078418085769911552, guid: 28ec50add9b929b4fb6da4df03bd820d,
+    type: 3}
+  m_PrefabInstance: {fileID: 5939008663049241349}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1265483044647183821 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4892174692380387016, guid: 28ec50add9b929b4fb6da4df03bd820d,
     type: 3}
   m_PrefabInstance: {fileID: 5939008663049241349}
   m_PrefabAsset: {fileID: 0}
@@ -1896,11 +1911,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7213726001769118057}
     m_Modifications:
-    - target: {fileID: 8753445675058350553, guid: f1353f95c2a2d4d44996e863a583e989,
-        type: 3}
-      propertyPath: m_Name
-      value: LineofSight
-      objectReference: {fileID: 0}
     - target: {fileID: 8166281988261949198, guid: f1353f95c2a2d4d44996e863a583e989,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1954,6 +1964,16 @@ PrefabInstance:
     - target: {fileID: 8166281988261949198, guid: f1353f95c2a2d4d44996e863a583e989,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8753445675058350553, guid: f1353f95c2a2d4d44996e863a583e989,
+        type: 3}
+      propertyPath: m_Name
+      value: LineofSight
+      objectReference: {fileID: 0}
+    - target: {fileID: 8753445675058350553, guid: f1353f95c2a2d4d44996e863a583e989,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

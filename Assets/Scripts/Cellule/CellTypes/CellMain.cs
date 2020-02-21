@@ -33,7 +33,9 @@ public class CellMain : PoolableObjects, PlayerAction
     public Transform graphTransform;
     public Transform TargetPos;
     private CellAlert alert;
-    public Transform lineOfsightTransform;
+
+    public FogOfWarData FogOfWarData;
+    //public Transform lineOfsightTransform;
 
     public OverloadSparke overloadSparke;
 
@@ -196,12 +198,14 @@ public class CellMain : PoolableObjects, PlayerAction
             audioSource.Play();
         }
 
+
         RessourceTracker.instance.AddCell(this);
         ownCollider.enabled = true;
 
         TickInscription();
         isDead = false;
 
+        FogOfWar.instance.AddFogOfWarInfluenceur(FogOfWarData);
         SetupVariable();
         RestoreInitialMat();
     }
@@ -395,7 +399,7 @@ public class CellMain : PoolableObjects, PlayerAction
                 myProximityCollider[i].Inpool();
             }
         }
-
+        FogOfWarData.rangeOfSight = 0;
 
         inThoseProximityCollider.Clear();
         influencedByThoseCellProximity.Clear();
@@ -1052,6 +1056,8 @@ public class CellMain : PoolableObjects, PlayerAction
         //cellAtProximity.Clear();
         normalBlobNumber = 0;
         //coachBlobNumber = 0;
+
+        FogOfWarData.rangeOfSight = myCellTemplate.lineOfSight;
 
 
         explorateurBlobNumber = 0;

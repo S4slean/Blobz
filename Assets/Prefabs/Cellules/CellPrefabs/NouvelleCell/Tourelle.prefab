@@ -585,6 +585,7 @@ GameObject:
   - component: {fileID: 3922479743895655383}
   - component: {fileID: 8709668316821708887}
   - component: {fileID: 2557912605627443632}
+  - component: {fileID: 2905100375247697065}
   m_Layer: 11
   m_Name: Tourelle
   m_TagString: Cell
@@ -670,7 +671,7 @@ MonoBehaviour:
   stockageBar: {fileID: 2474636823487549751}
   graphTransform: {fileID: 3454063361185357364}
   TargetPos: {fileID: 0}
-  lineOfsightTransform: {fileID: 8018441849824055751}
+  FogOfWarData: {fileID: 2905100375247697065}
   overloadSparke: {fileID: 169894334308604554}
   coachIcon: {fileID: 4981454565029333099}
   exploIcon: {fileID: 5826387253737535378}
@@ -797,6 +798,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2905100375247697065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6972052367257400834}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25bf64e1e1933c84ba6057ed7ec89315, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rangeOfSight: 0
+  alreadyAddToFog: 0
 --- !u!1001 &241933098616247659
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1083,12 +1098,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c964d9f903b34f241ba84357b3b7e346, type: 3}
---- !u!4 &1504264503489072778 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 503131975509192573, guid: c964d9f903b34f241ba84357b3b7e346,
-    type: 3}
-  m_PrefabInstance: {fileID: 1304710481255047671}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &2474636823487549751 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3480418645018685632, guid: c964d9f903b34f241ba84357b3b7e346,
@@ -1101,6 +1110,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bb3219c9d53de74783035e5f0e216a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &1504264503489072778 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 503131975509192573, guid: c964d9f903b34f241ba84357b3b7e346,
+    type: 3}
+  m_PrefabInstance: {fileID: 1304710481255047671}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2167159766821224137
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1108,11 +1123,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7213726001769118057}
     m_Modifications:
-    - target: {fileID: 8753445675058350553, guid: f1353f95c2a2d4d44996e863a583e989,
-        type: 3}
-      propertyPath: m_Name
-      value: LineofSight
-      objectReference: {fileID: 0}
     - target: {fileID: 8166281988261949198, guid: f1353f95c2a2d4d44996e863a583e989,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1166,6 +1176,16 @@ PrefabInstance:
     - target: {fileID: 8166281988261949198, guid: f1353f95c2a2d4d44996e863a583e989,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8753445675058350553, guid: f1353f95c2a2d4d44996e863a583e989,
+        type: 3}
+      propertyPath: m_Name
+      value: LineofSight
+      objectReference: {fileID: 0}
+    - target: {fileID: 8753445675058350553, guid: f1353f95c2a2d4d44996e863a583e989,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -1275,26 +1295,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: BlobDisplay
       objectReference: {fileID: 0}
-    - target: {fileID: 4329204264335204361, guid: 244bc6bfe959c64448572d55c83362e5,
-        type: 3}
-      propertyPath: m_textInfo.characterCount
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 4329204264335204361, guid: 244bc6bfe959c64448572d55c83362e5,
-        type: 3}
-      propertyPath: m_textInfo.wordCount
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4329204264335204361, guid: 244bc6bfe959c64448572d55c83362e5,
-        type: 3}
-      propertyPath: m_textInfo.lineCount
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4329204264335204361, guid: 244bc6bfe959c64448572d55c83362e5,
-        type: 3}
-      propertyPath: m_textInfo.pageCount
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8934393083490407729, guid: 244bc6bfe959c64448572d55c83362e5,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1349,6 +1349,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4329204264335204361, guid: 244bc6bfe959c64448572d55c83362e5,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4329204264335204361, guid: 244bc6bfe959c64448572d55c83362e5,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4329204264335204361, guid: 244bc6bfe959c64448572d55c83362e5,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4329204264335204361, guid: 244bc6bfe959c64448572d55c83362e5,
+        type: 3}
+      propertyPath: m_textInfo.pageCount
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6454976058459613702, guid: 244bc6bfe959c64448572d55c83362e5,
         type: 3}

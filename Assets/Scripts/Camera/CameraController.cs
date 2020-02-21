@@ -6,6 +6,7 @@ using Cinemachine;
 public class CameraController : MonoBehaviour
 {
     public CinemachineVirtualCamera cam;
+    public Camera fogCam;
 
     public float camXMin = -50;
     public float camXMax = 50;
@@ -158,7 +159,7 @@ public class CameraController : MonoBehaviour
         transform.position = originPos + tiltDir + new Vector3(0, camHeight, -camfHeight);
         transform.eulerAngles = new Vector3(angle, 0, 0);
         cam.m_Lens.OrthographicSize = camHeight;
-
+        fogCam.orthographicSize = camHeight;
     }
 
 

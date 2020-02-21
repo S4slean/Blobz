@@ -697,6 +697,7 @@ GameObject:
   - component: {fileID: 2964775939276315504}
   - component: {fileID: 3529201488866929007}
   - component: {fileID: 4968798137265523533}
+  - component: {fileID: 4618226397864501941}
   m_Layer: 11
   m_Name: BlipBlop
   m_TagString: Cell
@@ -767,6 +768,7 @@ MonoBehaviour:
   stockageBar: {fileID: 5025584326783035145}
   graphTransform: {fileID: 3454063361185357364}
   TargetPos: {fileID: 0}
+  FogOfWarData: {fileID: 4618226397864501941}
   overloadSparke: {fileID: 5961563951591252931}
   coachIcon: {fileID: 7501960087827837093}
   exploIcon: {fileID: 6896494697707206688}
@@ -904,6 +906,20 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 1.1
   m_Center: {x: 0, y: 0.28, z: 0}
+--- !u!114 &4618226397864501941
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6972052367257400834}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25bf64e1e1933c84ba6057ed7ec89315, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rangeOfSight: 0
+  alreadyAddToFog: 0
 --- !u!1001 &504271264035293496
 PrefabInstance:
   m_ObjectHideFlags: 0

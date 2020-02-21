@@ -7,6 +7,7 @@ public class FogOfWarData : MonoBehaviour
 
     public Transform MyTransform { get; private set; }
     public float rangeOfSight;
+    public bool alreadyAddToFog;
 
     private void Awake()
     {
@@ -14,8 +15,5 @@ public class FogOfWarData : MonoBehaviour
         {
             MyTransform = transform;
         }
-
     }
-
-
 }

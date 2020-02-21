@@ -1089,6 +1089,7 @@ GameObject:
   - component: {fileID: 3922479743895655383}
   - component: {fileID: 7074315802334576445}
   - component: {fileID: 3577288700624646505}
+  - component: {fileID: 7357829516188123152}
   m_Layer: 11
   m_Name: Salle
   m_TagString: Cell
@@ -1173,7 +1174,7 @@ MonoBehaviour:
   stockageBar: {fileID: 7070124843747111053}
   graphTransform: {fileID: 3454063361185357364}
   TargetPos: {fileID: 0}
-  lineOfsightTransform: {fileID: 5558838443997871736}
+  FogOfWarData: {fileID: 7357829516188123152}
   overloadSparke: {fileID: 5368161859076462570}
   coachIcon: {fileID: 4981454565029333099}
   exploIcon: {fileID: 8882256056067667114}
@@ -1299,6 +1300,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &7357829516188123152
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6972052367257400834}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25bf64e1e1933c84ba6057ed7ec89315, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rangeOfSight: 0
+  alreadyAddToFog: 0
 --- !u!1 &8630949000801606278
 GameObject:
   m_ObjectHideFlags: 0
@@ -1590,11 +1605,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7213726001769118057}
     m_Modifications:
-    - target: {fileID: 8753445675058350553, guid: f1353f95c2a2d4d44996e863a583e989,
-        type: 3}
-      propertyPath: m_Name
-      value: LineofSight
-      objectReference: {fileID: 0}
     - target: {fileID: 8166281988261949198, guid: f1353f95c2a2d4d44996e863a583e989,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1648,6 +1658,16 @@ PrefabInstance:
     - target: {fileID: 8166281988261949198, guid: f1353f95c2a2d4d44996e863a583e989,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8753445675058350553, guid: f1353f95c2a2d4d44996e863a583e989,
+        type: 3}
+      propertyPath: m_Name
+      value: LineofSight
+      objectReference: {fileID: 0}
+    - target: {fileID: 8753445675058350553, guid: f1353f95c2a2d4d44996e863a583e989,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -1772,26 +1792,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: BlobDisplay
       objectReference: {fileID: 0}
-    - target: {fileID: 4329204264335204361, guid: 244bc6bfe959c64448572d55c83362e5,
-        type: 3}
-      propertyPath: m_textInfo.characterCount
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 4329204264335204361, guid: 244bc6bfe959c64448572d55c83362e5,
-        type: 3}
-      propertyPath: m_textInfo.wordCount
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4329204264335204361, guid: 244bc6bfe959c64448572d55c83362e5,
-        type: 3}
-      propertyPath: m_textInfo.lineCount
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4329204264335204361, guid: 244bc6bfe959c64448572d55c83362e5,
-        type: 3}
-      propertyPath: m_textInfo.pageCount
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8934393083490407729, guid: 244bc6bfe959c64448572d55c83362e5,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1846,6 +1846,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4329204264335204361, guid: 244bc6bfe959c64448572d55c83362e5,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4329204264335204361, guid: 244bc6bfe959c64448572d55c83362e5,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4329204264335204361, guid: 244bc6bfe959c64448572d55c83362e5,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4329204264335204361, guid: 244bc6bfe959c64448572d55c83362e5,
+        type: 3}
+      propertyPath: m_textInfo.pageCount
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6454976058459613702, guid: 244bc6bfe959c64448572d55c83362e5,
         type: 3}

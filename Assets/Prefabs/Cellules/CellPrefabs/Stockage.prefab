@@ -345,6 +345,7 @@ GameObject:
   - component: {fileID: 5565576154424326082}
   - component: {fileID: 8777569679337227342}
   - component: {fileID: 3159442798840477053}
+  - component: {fileID: 1509351681793786737}
   m_Layer: 11
   m_Name: Stockage
   m_TagString: Cell
@@ -413,7 +414,7 @@ MonoBehaviour:
   stockageBar: {fileID: 8961142831528148904}
   graphTransform: {fileID: 347336514114222625}
   TargetPos: {fileID: 0}
-  lineOfsightTransform: {fileID: 7143977866070156587}
+  FogOfWarData: {fileID: 1509351681793786737}
   overloadSparke: {fileID: 2050091651154780500}
   coachIcon: {fileID: 4751509061206398956}
   exploIcon: {fileID: 407873977429383688}
@@ -554,6 +555,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1509351681793786737
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8322403635272401023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25bf64e1e1933c84ba6057ed7ec89315, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rangeOfSight: 0
+  alreadyAddToFog: 0
 --- !u!1 &8859783543846015379
 GameObject:
   m_ObjectHideFlags: 0
@@ -868,6 +883,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2264174843217787543, guid: 28ec50add9b929b4fb6da4df03bd820d,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 11.5
+      objectReference: {fileID: 0}
     - target: {fileID: 4892174692380387016, guid: 28ec50add9b929b4fb6da4df03bd820d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -923,22 +943,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2264174843217787543, guid: 28ec50add9b929b4fb6da4df03bd820d,
-        type: 3}
-      propertyPath: m_Size.x
-      value: 11.5
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 28ec50add9b929b4fb6da4df03bd820d, type: 3}
---- !u!4 &4931042404103941156 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4892174692380387016, guid: 28ec50add9b929b4fb6da4df03bd820d,
-    type: 3}
-  m_PrefabInstance: {fileID: 543504019419417324}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &4751509061206398956 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5078418085769911552, guid: 28ec50add9b929b4fb6da4df03bd820d,
+    type: 3}
+  m_PrefabInstance: {fileID: 543504019419417324}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &4931042404103941156 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4892174692380387016, guid: 28ec50add9b929b4fb6da4df03bd820d,
     type: 3}
   m_PrefabInstance: {fileID: 543504019419417324}
   m_PrefabAsset: {fileID: 0}
@@ -949,11 +964,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8620706792611696404}
     m_Modifications:
-    - target: {fileID: 8753445675058350553, guid: f1353f95c2a2d4d44996e863a583e989,
-        type: 3}
-      propertyPath: m_Name
-      value: LineofSight
-      objectReference: {fileID: 0}
     - target: {fileID: 8166281988261949198, guid: f1353f95c2a2d4d44996e863a583e989,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1007,6 +1017,16 @@ PrefabInstance:
     - target: {fileID: 8166281988261949198, guid: f1353f95c2a2d4d44996e863a583e989,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8753445675058350553, guid: f1353f95c2a2d4d44996e863a583e989,
+        type: 3}
+      propertyPath: m_Name
+      value: LineofSight
+      objectReference: {fileID: 0}
+    - target: {fileID: 8753445675058350553, guid: f1353f95c2a2d4d44996e863a583e989,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

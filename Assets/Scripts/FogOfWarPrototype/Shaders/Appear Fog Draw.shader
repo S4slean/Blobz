@@ -51,8 +51,8 @@ sampler2D _Ramp;
 	uniform float3 _Position;
 	uniform float _ArrayLength;
 	//uniform float3 _Positions[100];
-	uniform float3 _FogPositions[300];
-	uniform float _FogRadius[300];
+	uniform float3 _FogPositions[1000];
+	uniform float _FogRadius[1000];
 	float3 _Distances[100];
 	float _Radius;
 
@@ -74,23 +74,25 @@ sampler2D _Ramp;
 
 	};
 
-	void surf(Input IN, inout SurfaceOutput o) {
-		half4 c = tex2D(_MainTex, IN.uv_MainTex) * _Color;
-		half4 paint = (tex2D(_PaintMap, IN.uv2_NoiseTex)); // painted on texture
-		float4 endresult = (1 - paint.r) * _Color; // reveal main texture where painted black
-	// triplanar noise
-		 float3 blendNormal = saturate(pow(IN.worldNormal * 1.4,4));
-		half4 nSide1 = tex2D(_NoiseTex, (IN.worldPos.xy + _Time.x) * _NScale);
-		half4 nSide2 = tex2D(_NoiseTex, (IN.worldPos.xz + _Time.x) * _NScale);
-		half4 nTop = tex2D(_NoiseTex, (IN.worldPos.yz + _Time.x) * _NScale);
+		void surf(Input IN, inout SurfaceOutput o)
+		{
+			half4 c = tex2D(_MainTex, IN.uv_MainTex) * _Color;
+			half4 paint = (tex2D(_PaintMap, IN.uv2_NoiseTex)); // painted on texture
+			float4 endresult = (1 - paint.r) * _Color; // reveal main texture where painted black
+			// triplanar noise
+			float3 blendNormal = saturate(pow(IN.worldNormal * 1.4,4));
+			half4 nSide1 = tex2D(_NoiseTex, (IN.worldPos.xy + _Time.x) * _NScale);
+			half4 nSide2 = tex2D(_NoiseTex, (IN.worldPos.xz + _Time.x) * _NScale);
+			half4 nTop = tex2D(_NoiseTex, (IN.worldPos.yz + _Time.x) * _NScale);
 
-		float3 noisetexture = nSide1;
-		noisetexture = lerp(noisetexture, nTop, blendNormal.x);
-		noisetexture = lerp(noisetexture, nSide2, blendNormal.y);
+			float3 noisetexture = nSide1;
+			noisetexture = lerp(noisetexture, nTop, blendNormal.x);
+			noisetexture = lerp(noisetexture, nSide2, blendNormal.y);
 
-		// distance influencer position to world position and sphere radius
-		float3 sphereRNoise;
-		for (int i = 0; i < 100; i++) {
+			// distance influencer position to world position and sphere radius
+			float3 sphereRNoise;
+			for (int i = 0; i < _FogPositions.Length; i++) 
+			{
 			//float3 dis =  distance(_Positions[i], IN.worldPos);
 			float3 dis = distance(_FogPositions[i], IN.worldPos);
 
@@ -98,8 +100,7 @@ sampler2D _Ramp;
 			float3 sphereR = 1 - saturate(dis / _FogRadius[i]);
 			sphereR *= noisetexture;
 			sphereRNoise += (sphereR);
-		}
-
+			}
 
 		float3 DissolveLineIn = step(sphereRNoise - _DisLineWidth, _DisAmount);
 
@@ -114,7 +115,7 @@ sampler2D _Ramp;
 
 
 
-	 }
+		}
 	 ENDCG
 
 	}
