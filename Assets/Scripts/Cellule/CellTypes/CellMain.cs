@@ -151,6 +151,8 @@ public class CellMain : PoolableObjects, PlayerAction
             myTransform = transform;
         }
 
+
+
         ownCollider.enabled = false;
         audioSource = GetComponent<AudioSource>();
     }
@@ -1036,6 +1038,10 @@ public class CellMain : PoolableObjects, PlayerAction
     }
     public virtual void SetupVariable()
     {
+
+        float speed = 1 / (TickManager.instance.tickDuration - TickManager.instance.tickDuration / 1.4f);
+        anim.speed = speed;
+
         int B = stuckBlobs.Count;
         for (int y = 0; y < B; y++)
         {
@@ -1255,6 +1261,7 @@ public class CellMain : PoolableObjects, PlayerAction
         if (actionmade)
         {
             anim.Play("PlayerInteraction", 0, 0f);
+            //anim.SetBool("makeAction", true);
         }
     }
 

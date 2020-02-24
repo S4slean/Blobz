@@ -66,6 +66,7 @@ public class CellTourelle : CellMain
                 {
                     //TIR
                     tourelleCollider.Fire();
+                    anim.SetBool("makeAction", true);
                 }
 
             }

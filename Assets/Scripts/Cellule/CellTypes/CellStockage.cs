@@ -26,7 +26,8 @@ public class CellStockage : CellMain
 
         if (actionmade)
         {
-            anim.Play("PlayerInteraction", 0, 0f);
+            //anim.Play("PlayerInteraction", 0, 0f);
+            anim.SetBool("makeAction", true);
         }
 
     }

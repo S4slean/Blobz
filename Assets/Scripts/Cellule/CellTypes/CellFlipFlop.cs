@@ -47,7 +47,8 @@ public class CellFlipFlop : CellMain
 
             if (haveExpulse)
             {
-                anim.Play("BlobExpulsion");
+                //anim.Play("BlobExpulsion");
+                anim.SetBool("makeAction", true);
             }
         }
         else
