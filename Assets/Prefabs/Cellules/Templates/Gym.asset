@@ -23,7 +23,7 @@ MonoBehaviour:
   descriptionProximity: 'Close proximity effect: The lifespan of coach blobz is higher'
   descriptionClick: 
   expAmount: 10
-  lineOfSight: 3
+  lineOfSight: 12
   generateProximity: 0
   proximityColliderNumber: 1
   proximityColliders:
@@ -58,7 +58,11 @@ MonoBehaviour:
   positivesInteractions: 
   negativesInteractions: 
   SurproductionRate: 
-  BlopPerTick: []
+  BlopPerTick:
+  - 1
+  - 2
+  - 3
+  - 4
   stockageCapacity: 19000000320000003c00000050000000
   LinkCapacity: 
   rangeLien: 

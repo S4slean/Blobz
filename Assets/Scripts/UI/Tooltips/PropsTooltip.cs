@@ -10,7 +10,10 @@ public class PropsTooltip : MonoBehaviour
 
     public void UpdateTooltipInfos(TooltipScriptable tooltipData)
     {
-        title.text = tooltipData.objectName;
-        description.text = tooltipData.description;
+        if (tooltipData)
+        {
+            title.text = tooltipData.objectName;
+            description.text = tooltipData.description;
+        }
     }
 }

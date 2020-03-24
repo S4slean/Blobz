@@ -27,7 +27,7 @@ public class CelluleTemplate : ScriptableObject
     public string descriptionClick;
     [Range (0 , 200)]
     public int expAmount = 10;
-    [Range (0.2f , 10f)] 
+    [Range (0.2f , 20f)] 
     public float lineOfSight = 1;
 
     public bool generateProximity;

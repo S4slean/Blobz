@@ -107,6 +107,7 @@ GameObject:
   - component: {fileID: 366999152}
   - component: {fileID: 366999153}
   - component: {fileID: 8399404954119418303}
+  - component: {fileID: 2332514088417231791}
   m_Layer: 12
   m_Name: Blob
   m_TagString: Untagged
@@ -147,11 +148,13 @@ MonoBehaviour:
   rd: {fileID: 565441561003744860}
   anim: {fileID: 8399404954119418303}
   sword: {fileID: 2600814841338242995}
+  fogData: {fileID: 2332514088417231791}
   tickCount: 0
   lifeTime: 0
   LifeSpan: 32
   blobType: 0
   carriableSocket: {fileID: 5162969060887734323}
+  originCell: {fileID: 0}
   resourceTransform: {fileID: 0}
   carriedObject: {fileID: 0}
   tagetTransform: {fileID: 0}
@@ -212,6 +215,20 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &2332514088417231791
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2596948755250502091}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25bf64e1e1933c84ba6057ed7ec89315, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rangeOfSight: 0
+  alreadyAddToFog: 0
 --- !u!1 &2600814841338242995
 GameObject:
   m_ObjectHideFlags: 0

@@ -59,7 +59,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a30af718d80abd042b5b8df0532991a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tooltipData: {fileID: 11400000, guid: 2197cea21f9159245bc515537fa07e3c, type: 2}
+  tooltipData: {fileID: 11400000, guid: c0440182e88917641acbd867a9a10f8c, type: 2}
 --- !u!114 &6929894696961826752
 MonoBehaviour:
   m_ObjectHideFlags: 0

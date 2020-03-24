@@ -10,6 +10,7 @@ public class Blob : PoolableObjects
     public Renderer rd;
     public Animator anim;
     public GameObject sword;
+    public FogOfWarData fogData;
     #endregion
 
     [Header("General")]
@@ -27,6 +28,7 @@ public class Blob : PoolableObjects
     #region EXPLO
     [HideInInspector] public Transform resourceTransform;
     [HideInInspector] public Carriable carriedObject;
+    private float ExploLineOfSigth = 6f;
     #endregion
 
     [Header("Enemy")]
@@ -38,6 +40,7 @@ public class Blob : PoolableObjects
     public bool knowsNexus = false;
     public bool cameFromVillage = false;
     public EnemyVillage village;
+    private float enemyLineOfSigth = 0f;
     #endregion
 
     [Header("Soldier")]
@@ -45,6 +48,7 @@ public class Blob : PoolableObjects
     public float flyTime = 3;
     public float flySpeed = 5;
     public bool canExplode = false;
+    private float soldierLineOfSigth = 3f;
     #endregion
 
 
@@ -102,11 +106,15 @@ public class Blob : PoolableObjects
             case BlobManager.BlobType.soldier:
                 sword.SetActive(true);
                 jumpForce = BlobManager.instance.soldierJumpForce;
+                fogData.rangeOfSight = soldierLineOfSigth;
+                FogOfWar.instance.AddFogOfWarInfluenceur(fogData);
                 break;
 
             case BlobManager.BlobType.mad:
                 sword.SetActive(false);
                 jumpForce = BlobManager.instance.enemyJumpForce;
+                fogData.rangeOfSight = enemyLineOfSigth;
+                FogOfWar.instance.AddFogOfWarInfluenceur(fogData);
                 tag = "Enemies";
 
                 break;
@@ -114,6 +122,8 @@ public class Blob : PoolableObjects
             case BlobManager.BlobType.explorateur:
                 sword.SetActive(false);
                 jumpForce = BlobManager.instance.exploJumpForce;
+                fogData.rangeOfSight = ExploLineOfSigth;
+                FogOfWar.instance.AddFogOfWarInfluenceur(fogData);
 
                 break;
         }
@@ -185,6 +195,7 @@ public class Blob : PoolableObjects
         lifeTime = 10;
         blobType = BlobManager.BlobType.normal;
         tagetTransform = null;
+        fogData.rangeOfSight = 0;
 
         infectedCell = null;
         isStuck = false;

@@ -25,7 +25,7 @@ MonoBehaviour:
   descriptionClick: Click on the cell to switch to the aiming pointer. Click again
     to launched a strike on the aimed area
   expAmount: 10
-  lineOfSight: 3
+  lineOfSight: 12
   generateProximity: 0
   proximityColliderNumber: 1
   proximityColliders: []
@@ -51,13 +51,17 @@ MonoBehaviour:
   positivesInteractions: 
   negativesInteractions: 
   SurproductionRate: 
-  BlopPerTick: []
+  BlopPerTick:
+  - 1
+  - 2
+  - 3
+  - 4
   stockageCapacity: 
   LinkCapacity: 
   rangeLien: 00000000000000000000000000000000
   tickForActivation: 05000000030000000200000001000000
   energyCap: 
-  specifique: 05000000140000001e00000028000000
+  specifique: 280000001e0000001400000005000000
   energyPerblop: 0
   StatsModification: 7
   REFS: 0

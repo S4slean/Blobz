@@ -24,7 +24,7 @@ MonoBehaviour:
   descriptionProximity: 'Close proximity effect: Increase the max blobz capacity '
   descriptionClick: 'Click on the cell to push blobz into the links '
   expAmount: 10
-  lineOfSight: 3
+  lineOfSight: 12
   generateProximity: 0
   proximityColliderNumber: 2
   proximityColliders:
@@ -59,7 +59,11 @@ MonoBehaviour:
   positivesInteractions: 0100000000000000
   negativesInteractions: 03000000
   SurproductionRate: 00000000000000000000000000000000
-  BlopPerTick: []
+  BlopPerTick:
+  - 1
+  - 2
+  - 3
+  - 4
   stockageCapacity: 320000006400000078000000a0000000
   LinkCapacity: 00000000000000000000000000000000
   rangeLien: 

@@ -25,7 +25,7 @@ MonoBehaviour:
   descriptionClick: Click on the cell to place the flag. An enplorator blobz will
     leave the cell and go in this direction
   expAmount: 10
-  lineOfSight: 3
+  lineOfSight: 12
   generateProximity: 0
   proximityColliderNumber: 1
   proximityColliders:
@@ -54,7 +54,11 @@ MonoBehaviour:
   positivesInteractions: 
   negativesInteractions: 
   SurproductionRate: 
-  BlopPerTick: []
+  BlopPerTick:
+  - 1
+  - 2
+  - 3
+  - 4
   stockageCapacity: 
   LinkCapacity: 
   rangeLien: 
